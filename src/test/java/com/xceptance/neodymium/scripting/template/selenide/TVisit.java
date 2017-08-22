@@ -3,8 +3,8 @@ package com.xceptance.neodymium.scripting.template.selenide;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.xceptance.multibrowser.annotation.TestTargets;
-import com.xceptance.multibrowser.runner.AnnotationRunner;
+import com.xceptance.multibrowser.AnnotationRunner;
+import com.xceptance.multibrowser.TestTargets;
 import com.xceptance.neodymium.scripting.template.selenide.flow.FOpenHomepage;
 import com.xceptance.neodymium.scripting.template.selenide.page.HomePage;
 
