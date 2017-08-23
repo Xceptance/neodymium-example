@@ -2,11 +2,17 @@ package com.xceptance.neodymium.scripting.template.selenide;
 
 import org.junit.Test;
 
+import com.xceptance.multibrowser.TestTargets;
 import com.xceptance.neodymium.scripting.template.selenide.flow.FOpenHomepage;
 import com.xceptance.neodymium.scripting.template.selenide.page.CartPage;
 import com.xceptance.neodymium.scripting.template.selenide.page.CategoryPage;
 import com.xceptance.neodymium.scripting.template.selenide.page.HomePage;
 import com.xceptance.neodymium.scripting.template.selenide.page.ProductPage;
+
+@TestTargets(
+{
+  "Chrome_1024x768"
+})
 
 public class TAddToCart extends BasicTest
 {
