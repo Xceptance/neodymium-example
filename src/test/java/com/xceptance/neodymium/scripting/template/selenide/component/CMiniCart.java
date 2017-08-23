@@ -97,7 +97,7 @@ public class CMiniCart extends BasicComponent
         return page(CartPage.class);
     }
 
-    public void validateMiniCart(String index, String productName, String productStyle, String productSize, String productCount, String prodTotalPrice)
+    public void validateMiniCart(int index, String productName, String productStyle, String productSize, String productCount, String prodTotalPrice)
     {
         // Open the mini cart
         openMiniCart();

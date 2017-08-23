@@ -53,7 +53,7 @@ public class TAddToCart extends BasicTest
         CartPage cartPage = productPage.miniCart().openCartPage();
         cartPage.validate();
         cartPage.validateShippingCosts("7.00");
-        cartPage.miniCart().validateMiniCart("1",
+        cartPage.miniCart().validateMiniCart(1,
                                              productName,
                                              productStyle,
                                              productSize,
