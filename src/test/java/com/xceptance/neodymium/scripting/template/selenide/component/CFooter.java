@@ -1,6 +1,6 @@
 package com.xceptance.neodymium.scripting.template.selenide.component;
 
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selenide.$;
 
 public class CFooter extends BasicComponent
@@ -16,6 +16,6 @@ public class CFooter extends BasicComponent
     public void validate()
     {
         // Asserts the footer contains the correct text.
-        $("body > footer#footer").shouldBe(text(footerText));
+        $("body > footer#footer").shouldBe(exactText(footerText));
     }
 }

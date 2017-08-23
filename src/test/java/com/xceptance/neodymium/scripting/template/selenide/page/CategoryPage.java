@@ -10,7 +10,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
 import com.xceptance.neodymium.scripting.template.selenide.component.CTopNav;
-import com.xceptance.neodymium.scripting.template.selenide.utility.VariableStoreProvider;
 
 /**
  * @author pfotenhauer
@@ -65,13 +64,17 @@ public class CategoryPage extends BasicPage
      */
     public ProductPage clickProductByIndex(int row, int column)
     {
-        // Stores the product name
-        String productName = $("#productOverview > .row:nth-child(" + row + ") li:nth-of-type(" + column + ") h4.pName").text();
-        VariableStoreProvider.put("productName", productName);
-
         // Open the product detail page
         // Clicks a product by index. Because of the html code, this requires x and y coordinates.
         $("#productOverview > .row:nth-child(" + row + ") li:nth-of-type(" + column + ") h4.pName").click();
         return page(ProductPage.class);
+    }
+
+    /**
+     * @return
+     */
+    public String getProducNametByIndex(int row, int column)
+    {
+        return $("#productOverview > .row:nth-child(" + row + ") li:nth-of-type(" + column + ") h4.pName").text();
     }
 }

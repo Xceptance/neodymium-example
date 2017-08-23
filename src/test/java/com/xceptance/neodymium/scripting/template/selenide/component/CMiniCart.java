@@ -3,8 +3,8 @@
  */
 package com.xceptance.neodymium.scripting.template.selenide.component;
 
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.not;
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
@@ -31,7 +31,7 @@ public class CMiniCart extends BasicComponent
 
     public void validateQuantity(int quantity)
     {
-        $("#btnCartOverviewForm .headerCartProductCount").shouldBe(text(Integer.toString(quantity)));
+        $("#btnCartOverviewForm .headerCartProductCount").shouldBe(exactText(Integer.toString(quantity)));
     }
 
     private void openMiniCart()
@@ -61,7 +61,7 @@ public class CMiniCart extends BasicComponent
         openMiniCart();
         // Verify subtotal equals specified subtotal
         // Compare the subTotal to the parameter
-        $("#miniCartMenu .subOrderPrice").should(text(subtotal));
+        $("#miniCartMenu .subOrderPrice").should(exactText(subtotal));
         // Close Mini Cart
         closeMiniCart();
     }
@@ -84,6 +84,11 @@ public class CMiniCart extends BasicComponent
         return subtotal;
     }
 
+    public String getTotalCount()
+    {
+        return $("#btnCartOverviewForm .headerCartProductCount").text();
+    }
+
     public CartPage openCartPage()
     {
         // Open the cart
@@ -99,19 +104,19 @@ public class CMiniCart extends BasicComponent
         // Validate data of specified item
         // Product Name
         // Compares the name of the cart item at index @{index} to the parameter
-        $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodName").shouldHave(text(productName));
+        $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodName").shouldHave(exactText(productName));
         // Product Style
         // Compares the style of the cart item at index @{index} to the parameter
-        $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodStyle").shouldHave(text(productStyle));
+        $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodStyle").shouldHave(exactText(productStyle));
         // Product Size
         // Compares the style of the cart item at index @{index} to the parameter
-        $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodSize").shouldHave(text(productSize));
+        $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodSize").shouldHave(exactText(productSize));
         // Amount
         // Compares the amount of the cart item at index @{index} to the parameter
-        $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodCount").shouldHave(text(productCount));
+        $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodCount").shouldHave(exactText(productCount));
         // Price
         // Compares the price of the cart item at index @{index} to the parameter
-        $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodPrice").shouldHave(text(prodTotalPrice));
+        $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodPrice").shouldHave(exactText(prodTotalPrice));
         // Close mini cart
         closeMiniCart();
     }

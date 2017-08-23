@@ -10,8 +10,6 @@ import static com.codeborne.selenide.Selenide.$;
 
 import org.junit.Assert;
 
-import com.xceptance.neodymium.scripting.template.selenide.utility.VariableStoreProvider;
-
 /**
  * @author pfotenhauer
  */
@@ -48,15 +46,18 @@ public class CartPage extends BasicPage
         // Assert the cart summary is visible
         // Makes sure the price breakdown list is there
         $("#cartSummaryList").shouldBe(visible);
-        // Assert the correct shipping price is shown
-        // Stores the shipping costs
-        VariableStoreProvider.put("shippingCosts", $("#orderShippingCosts").text());
-        // Removes the first character off the stored shipping costs and compares it to the global shipping costs
-        // variable to make sure the displayed shipping costs are correct
-        VariableStoreProvider.get("shippingCosts");
-        Assert.assertEquals(VariableStoreProvider.get("shippingCosts").toString().substring(1), "7.00");
         // Checkout Button
         // Makes sure the checkout button is there.
         $("#btnStartCheckout").should(exist);
     }
+
+    public void validateShippingCosts(String shippingCosts)
+    {
+        // Assert the correct shipping price is shown
+        String currentShippingCosts = $("#orderShippingCosts").text();
+        // Removes the first character off the stored shipping costs and compares it to the global shipping costs
+        // variable to make sure the displayed shipping costs are correct
+        Assert.assertEquals(currentShippingCosts.substring(1), shippingCosts);
+    }
+
 }
