@@ -28,6 +28,11 @@
     <version>4.5.1</version>
     <scope>test</scope>
 </dependency>
+    <dependency>
+    	<groupId>com.xceptance</groupId>
+    	<artifactId>neodymium-library</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </dependency>
   </dependencies>
   <artifactId>scripting.template.selenide</artifactId>
 </project>
