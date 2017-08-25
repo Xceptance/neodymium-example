@@ -6,7 +6,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import com.xceptance.neodymium.scripting.template.selenide.component.CSearch;
 import com.xceptance.neodymium.scripting.template.selenide.component.CTopNav;
 
 public class HomePage extends BasicPage
@@ -16,11 +15,6 @@ public class HomePage extends BasicPage
     protected boolean isAwaitedPage()
     {
         return $("#titleIndex").exists();
-    }
-
-    public CSearch search()
-    {
-        return new CSearch();
     }
 
     public CTopNav topNav()

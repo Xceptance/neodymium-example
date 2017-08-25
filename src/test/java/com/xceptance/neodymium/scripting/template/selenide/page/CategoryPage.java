@@ -3,10 +3,15 @@
  */
 package com.xceptance.neodymium.scripting.template.selenide.page;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exactValue;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.page;
 
 import com.xceptance.neodymium.scripting.template.selenide.component.CTopNav;
@@ -76,5 +81,34 @@ public class CategoryPage extends BasicPage
     public String getProducNametByIndex(int row, int column)
     {
         return $("#productOverview > .row:nth-child(" + row + ") li:nth-of-type(" + column + ") h4.pName").text();
+    }
+
+    /**
+     * @param searchTerm
+     * @param searchTermExpectedCount
+     */
+    public void validateSearchHits(String searchTerm, int searchTermExpectedCount)
+    {
+        $("#titleSearchText").should(exist);
+        // Validate the headline contains the search phrase
+        // \\(" + searchTermExpectedCount + " *\\)
+        $("#titleSearchText").should(matchText("Your results for your search: '" + searchTerm + "' \\(" + searchTermExpectedCount + ".*\\)"));
+        // Verify that the correct search term is displayed
+        // Validate the entered search phrase is still visible in the input
+        this.search().openSearch();
+        // Validate the entered search phrase is still visible in the input
+        $("#searchForm #s").should(visible);
+        // Validate the entered search phrase is still visible in the input
+        $("#searchForm #s").should(exactValue(searchTerm));
+        // Assert the Headline displays the search term.
+        $(".header-container #searchTextValue").should(exactText(searchTerm));
+        // Verify there are search results
+        // There is at least one row of results
+        $("#productOverview ul.row").shouldBe(exist);
+        // There is at least one product in the results
+        $$("#productOverview li").shouldHave(sizeGreaterThan(0));
+        // Verify that there is the specified amount of results
+        // The amount of products shown in the headline matches the expected value
+        $("#totalProductCount").shouldBe(exactText(Integer.toString(searchTermExpectedCount)));
     }
 }

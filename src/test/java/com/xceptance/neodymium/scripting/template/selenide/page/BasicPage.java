@@ -5,6 +5,7 @@ import org.junit.Assert;
 import com.xceptance.neodymium.scripting.template.selenide.component.CFooter;
 import com.xceptance.neodymium.scripting.template.selenide.component.CHeader;
 import com.xceptance.neodymium.scripting.template.selenide.component.CMiniCart;
+import com.xceptance.neodymium.scripting.template.selenide.component.CSearch;
 
 public abstract class BasicPage
 {
@@ -14,6 +15,8 @@ public abstract class BasicPage
     private CHeader header;
 
     private CMiniCart miniCart;
+
+    private CSearch search;
 
     public BasicPage()
     {
@@ -26,6 +29,7 @@ public abstract class BasicPage
         header();
         footer();
         miniCart();
+        search();
     }
 
     private void validatePage()
@@ -63,6 +67,15 @@ public abstract class BasicPage
             miniCart = new CMiniCart();
         }
         return miniCart;
+    }
+
+    public CSearch search()
+    {
+        if (search == null)
+        {
+            search = new CSearch();
+        }
+        return search;
     }
 
     abstract public void validate();
