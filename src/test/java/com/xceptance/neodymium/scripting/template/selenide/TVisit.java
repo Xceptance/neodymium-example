@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import com.xceptance.multibrowser.TestTargets;
 import com.xceptance.neodymium.scripting.template.selenide.flow.FOpenHomepage;
-import com.xceptance.neodymium.scripting.template.selenide.page.HomePage;
+import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
 
 @TestTargets(
 {
@@ -16,7 +16,7 @@ public class TVisit extends BasicTest
     @Test
     public void test()
     {
-        HomePage homePage = FOpenHomepage.flow();
+        PHome homePage = new FOpenHomepage().flow();
         homePage.validate();
         homePage.footer().validate();
     }

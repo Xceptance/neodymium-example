@@ -12,11 +12,11 @@ import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
 /**
  * @author pfotenhauer
  */
-public class ProductPage extends BasicPage
+public class PProduct extends BasicPage
 {
 
     @Override
-    protected boolean isAwaitedPage()
+    public boolean isAwaitedPage()
     {
         return $("#addToCartForm").exists();
     }

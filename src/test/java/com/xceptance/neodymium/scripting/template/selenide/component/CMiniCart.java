@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-import com.xceptance.neodymium.scripting.template.selenide.page.CartPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.PCart;
 import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
 /**
@@ -72,12 +72,12 @@ public class CMiniCart extends BasicComponent
         return Integer.parseInt($("#btnCartOverviewForm .headerCartProductCount").text());
     }
 
-    public CartPage openCartPage()
+    public PCart openCartPage()
     {
         // Open the cart
         // Click on the button to go to the Cart
         $("#miniCartMenu .goToCart").click();
-        return page(CartPage.class);
+        return page(PCart.class);
     }
 
     public void validateQuantity(int quantity)

@@ -19,7 +19,7 @@ import com.xceptance.neodymium.scripting.template.selenide.component.CTopNav;
 /**
  * @author pfotenhauer
  */
-public class CategoryPage extends BasicPage
+public class PCategory extends BasicPage
 {
 
     /*
@@ -28,7 +28,7 @@ public class CategoryPage extends BasicPage
      * @see com.xceptance.scripting.selenide.page.BasicPage#isAwaitedPage()
      */
     @Override
-    protected boolean isAwaitedPage()
+    public boolean isAwaitedPage()
     {
         return $("#productOverview").exists();
     }
@@ -67,12 +67,12 @@ public class CategoryPage extends BasicPage
      * @param column
      * @return
      */
-    public ProductPage clickProductByIndex(int row, int column)
+    public PProduct clickProductByIndex(int row, int column)
     {
         // Open the product detail page
         // Clicks a product by index. Because of the html code, this requires x and y coordinates.
         $("#productOverview > .row:nth-child(" + row + ") li:nth-of-type(" + column + ") h4.pName").click();
-        return page(ProductPage.class);
+        return page(PProduct.class);
     }
 
     /**

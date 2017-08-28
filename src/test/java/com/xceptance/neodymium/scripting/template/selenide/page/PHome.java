@@ -8,11 +8,11 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import com.xceptance.neodymium.scripting.template.selenide.component.CTopNav;
 
-public class HomePage extends BasicPage
+public class PHome extends BasicPage
 {
 
     @Override
-    protected boolean isAwaitedPage()
+    public boolean isAwaitedPage()
     {
         return $("#titleIndex").exists();
     }

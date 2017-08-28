@@ -7,7 +7,7 @@ import com.xceptance.neodymium.scripting.template.selenide.component.CHeader;
 import com.xceptance.neodymium.scripting.template.selenide.component.CMiniCart;
 import com.xceptance.neodymium.scripting.template.selenide.component.CSearch;
 
-public abstract class BasicPage
+public abstract class BasicPage implements PageObject
 {
 
     private CFooter footer;
@@ -32,14 +32,9 @@ public abstract class BasicPage
         search();
     }
 
-    private void validatePage()
+    void validatePage()
     {
         Assert.assertTrue("The current page doesn't match the awaited page", isAwaitedPage());
-    }
-
-    protected boolean isAwaitedPage()
-    {
-        return true;
     }
 
     public CFooter footer()
@@ -78,5 +73,4 @@ public abstract class BasicPage
         return search;
     }
 
-    abstract public void validate();
 }

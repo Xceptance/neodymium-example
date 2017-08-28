@@ -3,8 +3,8 @@ package com.xceptance.neodymium.scripting.template.selenide.component;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-import com.xceptance.neodymium.scripting.template.selenide.page.CategoryPage;
-import com.xceptance.neodymium.scripting.template.selenide.page.NoHitsPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.PCategory;
+import com.xceptance.neodymium.scripting.template.selenide.page.PNoHits;
 
 public class CSearch extends BasicComponent
 {
@@ -15,16 +15,16 @@ public class CSearch extends BasicComponent
         return $("#searchForm > #s").exists();
     }
 
-    public NoHitsPage noResult(String searchTerm)
+    public PNoHits noResult(String searchTerm)
     {
         search(searchTerm);
-        return page(NoHitsPage.class);
+        return page(PNoHits.class);
     }
 
-    public CategoryPage categoryPageResult(String searchTerm)
+    public PCategory categoryPageResult(String searchTerm)
     {
         search(searchTerm);
-        return page(CategoryPage.class);
+        return page(PCategory.class);
     }
 
     private void search(String searchTerm)

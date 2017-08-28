@@ -17,7 +17,7 @@ import com.xceptance.neodymium.scripting.template.selenide.utility.PriceHelper;
 /**
  * @author pfotenhauer
  */
-public class CartPage extends BasicPage
+public class PCart extends BasicPage
 {
 
     /*
@@ -26,7 +26,7 @@ public class CartPage extends BasicPage
      * @see com.xceptance.scripting.selenide.page.BasicPage#isAwaitedPage()
      */
     @Override
-    protected boolean isAwaitedPage()
+    public boolean isAwaitedPage()
     {
         return $("#cartOverviewTable").exists();
     }

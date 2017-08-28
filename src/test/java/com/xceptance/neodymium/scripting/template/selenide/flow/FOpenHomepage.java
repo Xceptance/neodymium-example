@@ -1,15 +1,17 @@
 package com.xceptance.neodymium.scripting.template.selenide.flow;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.clearBrowserCookies;
+import static com.codeborne.selenide.Selenide.open;
 
-import com.xceptance.neodymium.scripting.template.selenide.page.HomePage;
+import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
 
-public class FOpenHomepage
+public class FOpenHomepage implements BasicFlow<PHome>
 {
 
-    public static HomePage flow()
+    @Override
+    public PHome flow()
     {
         clearBrowserCookies();
-        return open("https://localhost:8443/posters/", HomePage.class);
+        return open("https://localhost:8443/posters/", PHome.class);
     };
 }
