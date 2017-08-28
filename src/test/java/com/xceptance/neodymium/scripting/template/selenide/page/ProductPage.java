@@ -7,6 +7,8 @@ import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
+
 /**
  * @author pfotenhauer
  */
@@ -84,4 +86,9 @@ public class ProductPage extends BasicPage
         // Get the product price to enable usage outside this module.
         return $("#prodPrice").text();
     }
+
+    public Product getProduct()
+    {
+        return new Product(getProductName(), getProductPrice(), getChosenStyle(), getChosenSize());
+    };
 }
