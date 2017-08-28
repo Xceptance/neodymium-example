@@ -34,7 +34,7 @@ public abstract class BasicPage implements PageObject
 
     void validatePage()
     {
-        Assert.assertTrue("The current page doesn't match the awaited page", isAwaitedPage());
+        Assert.assertTrue("The current page doesn't match the expected page", isExpectedPage());
     }
 
     public CFooter footer()

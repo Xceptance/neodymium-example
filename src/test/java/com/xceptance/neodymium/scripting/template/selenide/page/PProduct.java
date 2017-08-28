@@ -16,7 +16,7 @@ public class PProduct extends BasicPage
 {
 
     @Override
-    public boolean isAwaitedPage()
+    public boolean isExpectedPage()
     {
         return $("#addToCartForm").exists();
     }

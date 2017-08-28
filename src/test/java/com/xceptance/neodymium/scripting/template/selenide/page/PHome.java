@@ -12,7 +12,7 @@ public class PHome extends BasicPage
 {
 
     @Override
-    public boolean isAwaitedPage()
+    public boolean isExpectedPage()
     {
         return $("#titleIndex").exists();
     }

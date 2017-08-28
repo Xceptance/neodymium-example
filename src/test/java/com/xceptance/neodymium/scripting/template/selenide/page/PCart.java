@@ -26,7 +26,7 @@ public class PCart extends BasicPage
      * @see com.xceptance.scripting.selenide.page.BasicPage#isAwaitedPage()
      */
     @Override
-    public boolean isAwaitedPage()
+    public boolean isExpectedPage()
     {
         return $("#cartOverviewTable").exists();
     }

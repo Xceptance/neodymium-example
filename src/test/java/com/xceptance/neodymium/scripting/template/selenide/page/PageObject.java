@@ -11,7 +11,7 @@ public interface PageObject
 
     public void validate();
 
-    default boolean isAwaitedPage()
+    default boolean isExpectedPage()
     {
         return true;
     }
