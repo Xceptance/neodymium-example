@@ -80,9 +80,9 @@ public class CMiniCart extends BasicComponent
         return page(PCart.class);
     }
 
-    public void validateQuantity(int quantity)
+    public void validateTotalCount(int totalCount)
     {
-        $("#btnCartOverviewForm .headerCartProductCount").shouldBe(exactText(Integer.toString(quantity)));
+        $("#btnCartOverviewForm .headerCartProductCount").shouldBe(exactText(Integer.toString(totalCount)));
     }
 
     public void validateSubtotal(String subtotal)

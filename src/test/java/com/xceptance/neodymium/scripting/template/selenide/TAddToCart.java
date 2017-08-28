@@ -25,9 +25,11 @@ public class TAddToCart extends BasicTest
         PHome homePage = new FOpenHomepage().flow();
         homePage.validate();
 
+        int totalCount = 0;
+
         // TODO Discuss where and how to validate state dependent things
         homePage.footer().validate();
-        homePage.miniCart().validateQuantity(0);
+        homePage.miniCart().validateTotalCount(totalCount++);
         homePage.miniCart().validateSubtotal("$0.00");
         final String oldSubtotal = homePage.miniCart().getSubtotal();
         final String currency = "$";
@@ -77,7 +79,7 @@ public class TAddToCart extends BasicTest
 
         final String oldSubtotal2 = homePage.miniCart().getSubtotal();
 
-        cartPage.miniCart().validateQuantity(productCount);
+        cartPage.miniCart().validateTotalCount(totalCount++);
 
         final String searchTerm = "pizza";
         final int searchTermExpectedCount = 1;
@@ -105,6 +107,7 @@ public class TAddToCart extends BasicTest
                                               productSize2,
                                               productCount2,
                                               productPrice2);
+        cartPage2.miniCart().validateTotalCount(totalCount++);
         cartPage2.validateCartItem(0,
                                    productName2,
                                    productStyle2,
@@ -115,6 +118,8 @@ public class TAddToCart extends BasicTest
                                    oldSubtotal2,
                                    currency,
                                    productPrice2);
+
+        cartPage2.updateProductCount(0, 3);
 
     }
 }
