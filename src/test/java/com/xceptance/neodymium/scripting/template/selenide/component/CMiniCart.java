@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-import com.xceptance.neodymium.scripting.template.selenide.page.CartPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.PCart;
 import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
 /**
@@ -27,11 +27,6 @@ public class CMiniCart extends BasicComponent
     protected boolean isComponentAvailable()
     {
         return $("#btnCartOverviewForm").exists();
-    }
-
-    public void validateQuantity(int quantity)
-    {
-        $("#btnCartOverviewForm .headerCartProductCount").shouldBe(exactText(Integer.toString(quantity)));
     }
 
     private void openMiniCart()
@@ -54,18 +49,6 @@ public class CMiniCart extends BasicComponent
         $("#miniCartMenu").waitUntil(not(visible), Settings.timeout);
     }
 
-    public void validateSubtotal(String subtotal)
-    {
-        // Verify the mini cart shows the specified subtotal
-        // Open mini cart
-        openMiniCart();
-        // Verify subtotal equals specified subtotal
-        // Compare the subTotal to the parameter
-        $("#miniCartMenu .subOrderPrice").should(exactText(subtotal));
-        // Close Mini Cart
-        closeMiniCart();
-    }
-
     public String getSubtotal()
     {
 
@@ -84,20 +67,37 @@ public class CMiniCart extends BasicComponent
         return subtotal;
     }
 
-    public String getTotalCount()
+    public int getTotalCount()
     {
-        return $("#btnCartOverviewForm .headerCartProductCount").text();
+        return Integer.parseInt($("#btnCartOverviewForm .headerCartProductCount").text());
     }
 
-    public CartPage openCartPage()
+    public PCart openCartPage()
     {
         // Open the cart
         // Click on the button to go to the Cart
         $("#miniCartMenu .goToCart").click();
-        return page(CartPage.class);
+        return page(PCart.class);
     }
 
-    public void validateMiniCart(String index, String productName, String productStyle, String productSize, String productCount, String prodTotalPrice)
+    public void validateQuantity(int quantity)
+    {
+        $("#btnCartOverviewForm .headerCartProductCount").shouldBe(exactText(Integer.toString(quantity)));
+    }
+
+    public void validateSubtotal(String subtotal)
+    {
+        // Verify the mini cart shows the specified subtotal
+        // Open mini cart
+        openMiniCart();
+        // Verify subtotal equals specified subtotal
+        // Compare the subTotal to the parameter
+        $("#miniCartMenu .subOrderPrice").should(exactText(subtotal));
+        // Close Mini Cart
+        closeMiniCart();
+    }
+
+    public void validateMiniCart(int index, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
     {
         // Open the mini cart
         openMiniCart();
@@ -113,7 +113,7 @@ public class CMiniCart extends BasicComponent
         $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodSize").shouldHave(exactText(productSize));
         // Amount
         // Compares the amount of the cart item at index @{index} to the parameter
-        $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodCount").shouldHave(exactText(productCount));
+        $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodCount").shouldHave(exactText(Integer.toString(productCount)));
         // Price
         // Compares the price of the cart item at index @{index} to the parameter
         $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodPrice").shouldHave(exactText(prodTotalPrice));

@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.page;
 
 import org.openqa.selenium.By;
 
-import com.xceptance.neodymium.scripting.template.selenide.page.CategoryPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.PCategory;
 
 /**
  * @author pfotenhauer
@@ -30,10 +30,10 @@ public class CTopNav extends BasicComponent
     /**
      * @return
      */
-    public CategoryPage clickCategory(String categoryName)
+    public PCategory clickCategory(String categoryName)
     {
         $(By.linkText(categoryName)).click();
-        return page(CategoryPage.class);
+        return page(PCategory.class);
     }
 
     public String getSubCategoryNameByIndex(int categoryIndex, int subCategoryIndex)
@@ -42,12 +42,12 @@ public class CTopNav extends BasicComponent
                  + ") ul.dropdown-menu li:nth-of-type(" + subCategoryIndex + ") a").attr("title");
     }
 
-    public CategoryPage clickSubCategoryByIndex(int categoryIndex, int subCategoryIndex)
+    public PCategory clickSubCategoryByIndex(int categoryIndex, int subCategoryIndex)
     {
         // Open the category page
         $("#categoryMenu > ul > li:nth-of-type(" + categoryIndex + ") a").hover();
         // Clicks the subcategory with index @{subcategoryIndex} belonging to the category with index @{categoryIndex}
         $("#categoryMenu > ul > li:nth-of-type(" + categoryIndex + ") ul.dropdown-menu li:nth-of-type(" + subCategoryIndex + ") a").click();
-        return page(CategoryPage.class);
+        return page(PCategory.class);
     }
 }

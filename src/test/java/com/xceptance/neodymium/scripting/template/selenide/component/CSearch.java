@@ -3,7 +3,8 @@ package com.xceptance.neodymium.scripting.template.selenide.component;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-import com.xceptance.neodymium.scripting.template.selenide.page.NoHitsPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.PCategory;
+import com.xceptance.neodymium.scripting.template.selenide.page.PNoHits;
 
 public class CSearch extends BasicComponent
 {
@@ -14,11 +15,26 @@ public class CSearch extends BasicComponent
         return $("#searchForm > #s").exists();
     }
 
-    public NoHitsPage noResult(String text)
+    public PNoHits noResult(String searchTerm)
     {
-        $("#header-search-trigger").click();
-        $("#searchForm > #s").val(text).pressEnter();
-        return page(NoHitsPage.class);
+        search(searchTerm);
+        return page(PNoHits.class);
     }
 
+    public PCategory categoryPageResult(String searchTerm)
+    {
+        search(searchTerm);
+        return page(PCategory.class);
+    }
+
+    private void search(String searchTerm)
+    {
+        openSearch();
+        $("#searchForm > #s").val(searchTerm).pressEnter();
+    }
+
+    public void openSearch()
+    {
+        $("#header-search-trigger").click();
+    }
 }
