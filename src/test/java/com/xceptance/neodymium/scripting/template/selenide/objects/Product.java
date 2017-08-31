@@ -10,21 +10,28 @@ public class Product
 {
     String name;
 
-    String price;
+    String unitPrice;
+
+    String totalUnitPrice;
 
     String style;
 
     String size;
 
+    int amount;
+
     /**
-     * 
+     * @param string
+     * @param amount
      */
-    public Product(String name, String price, String style, String size)
+    public Product(String name, String unitPrice, String totalUnitPrice, String style, String size, int amount)
     {
         this.name = name;
-        this.price = price;
+        this.unitPrice = unitPrice;
+        this.totalUnitPrice = totalUnitPrice;
         this.style = style;
-        this.size = style;
+        this.size = size;
+        this.amount = amount;
     }
 
     /**
@@ -47,18 +54,35 @@ public class Product
     /**
      * @return the price
      */
-    public String getPrice()
+    public String getUnitPrice()
     {
-        return price;
+        return unitPrice;
     }
 
     /**
      * @param price
      *            the price to set
      */
-    public void setPrice(String price)
+    public void setUnitPrice(String price)
     {
-        this.price = price;
+        this.unitPrice = price;
+    }
+
+    /**
+     * @return the totalUnitPrice
+     */
+    public String getTotalUnitPrice()
+    {
+        return totalUnitPrice;
+    }
+
+    /**
+     * @param totalUnitPrice
+     *            the totalUnitPrice to set
+     */
+    public void setTotalUnitPrice(String totalUnitPrice)
+    {
+        this.totalUnitPrice = totalUnitPrice;
     }
 
     /**
@@ -93,5 +117,22 @@ public class Product
     public void setSize(String size)
     {
         this.size = size;
+    }
+
+    /**
+     * @return the amount
+     */
+    public int getAmount()
+    {
+        return amount;
+    }
+
+    /**
+     * @param amount
+     *            the amount to set
+     */
+    public void setAmount(int amount)
+    {
+        this.amount = amount;
     }
 }

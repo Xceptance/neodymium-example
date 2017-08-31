@@ -6,13 +6,17 @@ package com.xceptance.neodymium.scripting.template.selenide.page;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exactValue;
 import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.hidden;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.page;
 
 import org.junit.Assert;
 
+import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
 import com.xceptance.neodymium.scripting.template.selenide.utility.PriceHelper;
+import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
 /**
  * @author pfotenhauer
@@ -58,13 +62,10 @@ public class PCart extends BasicPage
     public void validateShippingCosts(String shippingCosts)
     {
         // Assert the correct shipping price is shown
-        String currentShippingCosts = $("#orderShippingCosts").text();
-        // Removes the first character off the stored shipping costs and compares it to the global shipping costs
-        // variable to make sure the displayed shipping costs are correct
-        Assert.assertEquals(currentShippingCosts.substring(1), shippingCosts);
+        $("#orderShippingCosts").should(exactText(shippingCosts));
     }
 
-    public void validateCartItem(int index, String productName, String productStyle, String productSize, int productCount, String productPrice)
+    public void validateCartItem(int index, String productName, String productStyle, String productSize, int productAmount, String productPrice)
     {
         // Visibility
         // Makes sure a product at the specified index exists and is visible
@@ -74,7 +75,7 @@ public class PCart extends BasicPage
         $("#product" + index + " .productName").shouldBe(exactText(productName));
         // Count
         // Compares the displayed amount with the parameter
-        $("#product" + index + " .productCount").shouldBe(exactValue(Integer.toString(productCount)));
+        validateProductAmount(index, productAmount);
         // Style
         // Compares the displayed style with the parameter
         $("#product" + index + " .productStyle").shouldBe(exactText(productStyle));
@@ -86,7 +87,7 @@ public class PCart extends BasicPage
         $("#product" + index + " .productUnitPrice").shouldBe(exactText(productPrice));
     }
 
-    public void validateSubTotal(int index, String oldSubTotal, String currency, String productTotalPrice)
+    public void validateSubAndLineItemTotalAfterAdd(int index, String oldSubTotal, String oldLineItemTotal)
     {
 
         // Store unit price (without $ sign)
@@ -96,31 +97,122 @@ public class PCart extends BasicPage
         // Takes the amount of the specified item
         String quantity_varDynamic = $("#productCount" + index).val();
 
-        String subOrderPrice = PriceHelper.computeRowPrice(unitPriceShort_varDynamic, quantity_varDynamic);
-        // add a "$" at the beginning
-        String subOrderPrice_varDynamic = "$" + subOrderPrice;
-        // Store the price that is actually shown for calculations
-        // Stores the displayed Total Unit Price
-        // Removes the first character from the string, which is the "$" symbol
-        String shownUnitPrice = $("#product" + index + " .productTotalUnitPrice").text().substring(1);
+        String subOrderPrice = PriceHelper.computeRowPrice(PriceHelper.addCurrency(unitPriceShort_varDynamic), quantity_varDynamic);
 
         // Verify calculated cost is the shown cost
         // Compare calculated Unit Price to displayed total Unit Price
-        $("#product" + index + " .productTotalUnitPrice").shouldBe(exactText(productTotalPrice));
+        $("#product" + index + " .productTotalUnitPrice").shouldBe(exactText(subOrderPrice));
 
         // Verify subtotal
         // Stores the subtotal with the new item present
         // Remove "$" symbol from price to be able to use it in a calculation
         // Cuts off the first character from the string, which is the "$" symbol
-        String newSubTotal = $("#orderSubTotalValue").text().substring(1);
+        String newSubTotal = $("#orderSubTotalValue").text();
         // New Total - Old Total = Price of item you just added
         String price = PriceHelper.subtractFromPrice(newSubTotal, oldSubTotal);
-        Assert.assertEquals(price, subOrderPrice);
+        String price2 = PriceHelper.subtractFromPrice(subOrderPrice, oldLineItemTotal);
 
-        // TODO
-        // Store subtotal
-        // Removes the first character from the string, which is the "$" symbol
-        String oldSubTotal2 = $("#orderSubTotalValue").text().substring(1);
+        Assert.assertEquals(price, price2);
+    }
 
+    public void validateProductAmount(int index, int amount)
+    {
+        // Makes sure the amount of the item with index @{index} in the cart equals the parameter
+        $("#product" + index + " .productCount").shouldHave(exactValue(Integer.toString(amount)));
+    }
+
+    public String getProductName(int index)
+    {
+        // Get the product name to enable usage outside this module.
+        return $("#product" + index + " .productName").text();
+    }
+
+    public String getProductStyle(int index)
+    {
+        // Get the style to enable usage outside this module.
+        return $("#product" + index + " .productStyle").text();
+    }
+
+    public String getProductSize(int index)
+    {
+        // Get the size to enable usage outside this module.
+        return $("#product" + index + " .productSize").text();
+    }
+
+    public String getProductCount(int index)
+    {
+        // Get the size to enable usage outside this module.
+        return $("#product" + index + " .productCount").val();
+    }
+
+    public String getProductUnitPrice(int index)
+    {
+        // Get the product price to enable usage outside this module.
+        return $("#product" + index + " .productUnitPrice").text();
+    }
+
+    public String getProductTotalUnitPrice(int index)
+    {
+        // Get the product price to enable usage outside this module.
+        return $("#product" + index + " .productTotalUnitPrice").text();
+    }
+
+    public Product getProduct(int index)
+    {
+        return new Product(getProductName(index), getProductUnitPrice(index), getProductTotalUnitPrice(index), getProductStyle(index), getProductSize(index), Integer.parseInt(getProductCount(index)));
+    };
+
+    /**
+     * @param index
+     * @param amount
+     */
+    public void updateProductCount(int index, int amount)
+    {
+        // Type in the specified amount
+        $("#product" + index + " .productCount").setValue(Integer.toString(amount));
+        // Stores the new amount in an outside variable
+        // Click the update button
+        // Clicks the update button for the product
+        $("#product" + index + " .btnUpdateProduct").click();
+    }
+
+    /**
+     * @param productBeforeUpdate
+     */
+    public void removeProduct(int index)
+    {
+        // Click delete button
+        // Click on the delete button for the product
+        $("#btnRemoveProdCount" + index).click();
+        // Wait for the second delete button to appear
+        // Wait until the confirmation button is visible
+        $("#buttonDelete").waitUntil(visible, Settings.timeout);
+        // Click delete button
+        // Click the confirmation button
+        $("#buttonDelete").click();
+        // Wait until the confirmation button is gone
+        $("#buttonDelete").waitUntil(hidden, Settings.timeout);
+        // Reload page to let IDs adjust to the deletion
+        miniCart().openMiniCart();
+        miniCart().openCartPage();
+    }
+
+    /**
+     * @param oldSubTotal
+     * @param oldLineItemTotal
+     */
+    public void validateSubAndLineItemTotalAfterRemove(String oldSubTotal, String oldLineItemTotal)
+    {
+        String newSubTotal = PriceHelper.subtractFromPrice(oldSubTotal, oldLineItemTotal);
+        $("#orderSubTotalValue").shouldBe(exactText(newSubTotal));
+    }
+
+    /**
+     * @param index
+     */
+    public PProduct openProductPage(int index)
+    {
+        $("#product" + index + " img").click();
+        return page(PProduct.class);
     }
 }

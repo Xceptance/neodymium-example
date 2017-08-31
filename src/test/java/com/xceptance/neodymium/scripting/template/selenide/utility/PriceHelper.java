@@ -10,12 +10,13 @@ import java.text.DecimalFormat;
  */
 public class PriceHelper
 {
+    public final static String CURRENCY = "$";
 
     // Calculate units * price per unit
     // calculates price per 1 unit * amount, rounds it to 2 decimals (to avoid things like 19.9 instead of 19.90)
     public static String computeRowPrice(String unitPrice, String quantity)
     {
-        float res = (float) (Math.round(Float.valueOf(unitPrice) * Float.valueOf(quantity) * 100)) / 100;
+        float res = (float) (Math.round(Float.valueOf(removeCurrency(unitPrice)) * Float.valueOf(quantity) * 100)) / 100;
         return format(res);
     }
 
@@ -23,7 +24,7 @@ public class PriceHelper
     // instead of 19.90) and compares it to the price of the new item
     public static String subtractFromPrice(String from, String value)
     {
-        float res = (float) (Math.round((Float.valueOf(from) - Float.valueOf(value)) * 100)) / 100;
+        float res = (float) (Math.round((Float.valueOf(removeCurrency(from)) - Float.valueOf(removeCurrency(value))) * 100)) / 100;
         return format(res);
     }
 
@@ -32,6 +33,21 @@ public class PriceHelper
         DecimalFormat decimalFormat = new DecimalFormat();
         decimalFormat.setMinimumFractionDigits(2);
         decimalFormat.setMaximumFractionDigits(2);
-        return decimalFormat.format(input);
+        return addCurrency(decimalFormat.format(input));
+    }
+
+    public static String removeCurrency(String price)
+    {
+        return price.substring(1);
+    }
+
+    /**
+     * @param price
+     * @return
+     */
+    public static String addCurrency(String price)
+    {
+        // TODO Auto-generated method stub
+        return CURRENCY + price;
     }
 }

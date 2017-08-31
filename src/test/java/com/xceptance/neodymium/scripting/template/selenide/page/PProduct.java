@@ -50,14 +50,14 @@ public class PProduct extends BasicPage
         $("#titleProductName").shouldBe(exactText(name));
     }
 
-    public void addToCart(int sizePositon, String style)
+    public void addToCart(String size, String style)
     {
         // Style
         // Checks the chosen style.
         $(".radio #finish-" + style).selectRadio(style);
         // Size
         // Selects the chosen size.
-        $("#selectSize").selectOption(sizePositon);
+        $("#selectSize").selectOptionContainingText(size);
         // Click the Add to cart button
         // click("css= #btnAddToCart");
         $("#btnAddToCart").click();
@@ -89,6 +89,6 @@ public class PProduct extends BasicPage
 
     public Product getProduct()
     {
-        return new Product(getProductName(), getProductPrice(), getChosenStyle(), getChosenSize());
+        return new Product(getProductName(), getProductPrice(), getProductPrice(), getChosenStyle(), getChosenSize(), 1);
     };
 }

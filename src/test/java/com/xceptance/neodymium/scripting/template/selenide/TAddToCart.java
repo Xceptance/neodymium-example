@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import com.xceptance.multibrowser.TestTargets;
 import com.xceptance.neodymium.scripting.template.selenide.flow.FOpenHomepage;
+import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
 import com.xceptance.neodymium.scripting.template.selenide.page.PCart;
 import com.xceptance.neodymium.scripting.template.selenide.page.PCategory;
 import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
@@ -17,7 +18,7 @@ import com.xceptance.neodymium.scripting.template.selenide.page.PProduct;
 public class TAddToCart extends BasicTest
 {
 
-    static final String SHIPPINGCOSTS = "7.00";
+    static final String SHIPPINGCOSTS = "$7.00";
 
     @Test
     public void test()
@@ -29,7 +30,7 @@ public class TAddToCart extends BasicTest
 
         // TODO Discuss where and how to validate state dependent things
         homePage.footer().validate();
-        homePage.miniCart().validateTotalCount(totalCount++);
+        homePage.miniCart().validateTotalCount(totalCount);
         homePage.miniCart().validateSubtotal("$0.00");
         final String oldSubtotal = homePage.miniCart().getSubtotal();
         final String currency = "$";
@@ -49,7 +50,7 @@ public class TAddToCart extends BasicTest
         PProduct productPage = categoryPage.clickProductByIndex(1, 1);
         productPage.validate();
         productPage.validateProductName(productName);
-        productPage.addToCart(0, "matte");
+        productPage.addToCart("16 x 12 in", "matte");
 
         final String productSize = productPage.getChosenSize();
         final String productStyle = productPage.getChosenStyle();
@@ -72,14 +73,13 @@ public class TAddToCart extends BasicTest
                                   productCount,
                                   productPrice);
 
-        cartPage.validateSubTotal(0,
-                                  oldSubtotal,
-                                  currency,
-                                  productPrice);
+        cartPage.validateSubAndLineItemTotalAfterAdd(0,
+                                                     oldSubtotal,
+                                                     "$0.00");
 
         final String oldSubtotal2 = homePage.miniCart().getSubtotal();
 
-        cartPage.miniCart().validateTotalCount(totalCount++);
+        cartPage.miniCart().validateTotalCount(++totalCount);
 
         final String searchTerm = "pizza";
         final int searchTermExpectedCount = 1;
@@ -90,7 +90,7 @@ public class TAddToCart extends BasicTest
         PProduct productPage2 = categoryPage.clickProductByIndex(1, 1);
         productPage2.validate();
         productPage2.validateProductName(productName2);
-        productPage2.addToCart(2, "gloss");
+        productPage2.addToCart("64 x 48 in", "gloss");
 
         final String productSize2 = productPage2.getChosenSize();
         final String productStyle2 = productPage2.getChosenStyle();
@@ -107,19 +107,63 @@ public class TAddToCart extends BasicTest
                                               productSize2,
                                               productCount2,
                                               productPrice2);
-        cartPage2.miniCart().validateTotalCount(totalCount++);
+        cartPage2.miniCart().validateTotalCount(++totalCount);
         cartPage2.validateCartItem(0,
                                    productName2,
                                    productStyle2,
                                    productSize2,
                                    productCount2,
                                    productPrice2);
-        cartPage2.validateSubTotal(0,
-                                   oldSubtotal2,
-                                   currency,
-                                   productPrice2);
+        cartPage2.validateSubAndLineItemTotalAfterAdd(0,
+                                                      oldSubtotal2,
+                                                      "$0.00");
 
-        cartPage2.updateProductCount(0, 3);
+        int productToUpdateIndex = 0;
+        int newProductAmount = 3;
+        final String oldSubtotal3 = cartPage2.miniCart().getSubtotal();
 
+        Product productBeforeUpdate = cartPage2.getProduct(productToUpdateIndex);
+        cartPage2.updateProductCount(productToUpdateIndex, newProductAmount);
+
+        cartPage2.validateProductAmount(productToUpdateIndex, newProductAmount);
+
+        final String newLinItemPrice = cartPage.getProductTotalUnitPrice(productToUpdateIndex);
+        cartPage2.validateSubAndLineItemTotalAfterAdd(productToUpdateIndex,
+                                                      oldSubtotal3,
+                                                      productBeforeUpdate.getTotalUnitPrice());
+        cartPage2.validateCartItem(0,
+                                   productBeforeUpdate.getName(),
+                                   productBeforeUpdate.getStyle(),
+                                   productBeforeUpdate.getSize(),
+                                   newProductAmount,
+                                   productBeforeUpdate.getUnitPrice());
+        cartPage2.miniCart().validateMiniCart(1,
+                                              productBeforeUpdate.getName(),
+                                              productBeforeUpdate.getStyle(),
+                                              productBeforeUpdate.getSize(),
+                                              newProductAmount,
+                                              newLinItemPrice);
+        totalCount = totalCount + newProductAmount - 1;
+        cartPage2.miniCart().validateTotalCount(totalCount);
+
+        final String oldLineItemTotal = cartPage.getProductTotalUnitPrice(productToUpdateIndex);
+        final String oldSubTotal4 = cartPage2.miniCart().getSubtotal();
+        cartPage2.removeProduct(productToUpdateIndex);
+        cartPage2.validateSubAndLineItemTotalAfterRemove(oldSubTotal4, oldLineItemTotal);
+        totalCount = totalCount - newProductAmount;
+        cartPage2.miniCart().validateTotalCount(totalCount);
+
+        Product productFromCartPage = cartPage2.getProduct(0);
+        PProduct productPage3 = cartPage2.openProductPage(0);
+        productPage3.validateProductName(productFromCartPage.getName());
+        productPage3.addToCart(productFromCartPage.getSize(), productFromCartPage.getStyle());
+        PCart cartPage3 = productPage3.miniCart().openCartPage();
+
+        cartPage3.validateCartItem(0,
+                                   productFromCartPage.getName(),
+                                   productFromCartPage.getStyle(),
+                                   productFromCartPage.getSize(),
+                                   2, productFromCartPage.getUnitPrice());
+        cartPage3.miniCart().validateTotalCount(++totalCount);
     }
 }

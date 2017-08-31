@@ -29,7 +29,7 @@ public class CMiniCart extends BasicComponent
         return $("#btnCartOverviewForm").exists();
     }
 
-    private void openMiniCart()
+    public void openMiniCart()
     {
         // Click the mini cart icon
         $("#headerCartOverview").click();
@@ -38,7 +38,7 @@ public class CMiniCart extends BasicComponent
         $("#miniCartMenu").waitUntil(visible, Settings.timeout);
     }
 
-    private void closeMiniCart()
+    public void closeMiniCart()
     {
         // Click the mini cart icon again
         $("#headerCartOverview").click();
@@ -55,12 +55,8 @@ public class CMiniCart extends BasicComponent
         // Store the mini cart subtotal
         // Open mini cart
         openMiniCart();
-
         // Store subtotal in oldSubTotal
         String subtotal = $("#miniCartMenu .subOrderPrice").text();
-        // Remove the $ sign off the price
-        // Removes the first character from the string, which is the "$" symbol
-        subtotal = subtotal.substring(1);
         // Close mini cart
         closeMiniCart();
 
