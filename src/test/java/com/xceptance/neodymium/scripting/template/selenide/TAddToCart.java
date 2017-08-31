@@ -14,7 +14,6 @@ import com.xceptance.neodymium.scripting.template.selenide.page.PProduct;
 {
   "Chrome_1024x768"
 })
-
 public class TAddToCart extends BasicTest
 {
 
@@ -33,7 +32,6 @@ public class TAddToCart extends BasicTest
         homePage.miniCart().validateTotalCount(totalCount);
         homePage.miniCart().validateSubtotal("$0.00");
         final String oldSubtotal = homePage.miniCart().getSubtotal();
-        final String currency = "$";
 
         // Click a top category
         final String topCatName = "World of Nature";

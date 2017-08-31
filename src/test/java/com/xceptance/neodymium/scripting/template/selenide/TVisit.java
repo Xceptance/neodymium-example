@@ -5,20 +5,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
 import com.xceptance.multibrowser.TestTargets;
 import com.xceptance.neodymium.scripting.template.selenide.flow.FOpenHomepage;
 import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
-import com.xceptance.xrunner.XCRunner;
 
 @TestTargets(
 {
   "Chrome_1024x768", "FF_1024x768"
 })
-@RunWith(XCRunner.class)
 public class TVisit extends BasicTest
 {
     @Parameter

@@ -5,12 +5,12 @@ package com.xceptance.neodymium.scripting.template.selenide;
 
 import org.junit.runner.RunWith;
 
-import com.xceptance.xrunner.XCRunner;
+import com.xceptance.multibrowser.AnnotationRunner;
 
 /**
  * @author pfotenhauer
  */
-@RunWith(XCRunner.class)
+@RunWith(AnnotationRunner.class)
 public class BasicTest
 {
 }
