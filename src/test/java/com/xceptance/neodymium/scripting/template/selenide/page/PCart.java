@@ -65,7 +65,27 @@ public class PCart extends BasicPage
         $("#orderShippingCosts").should(exactText(shippingCosts));
     }
 
-    public void validateCartItem(int index, String productName, String productStyle, String productSize, int productAmount, String productPrice)
+    /**
+     * @param index
+     * @param product
+     */
+    public void validateCartItem(int index, Product product)
+    {
+        validateCartItem(index, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), product.getUnitPrice());
+    }
+
+    /**
+     * @param index
+     * @param product
+     * @param productCount
+     * @param productTotalPrice
+     */
+    public void validateCartItem(int index, Product product, int productAmount)
+    {
+        validateCartItem(index, product.getName(), product.getStyle(), product.getSize(), productAmount, product.getUnitPrice());
+    }
+
+    private void validateCartItem(int index, String productName, String productStyle, String productSize, int productAmount, String productPrice)
     {
         // Visibility
         // Makes sure a product at the specified index exists and is visible

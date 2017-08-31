@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
+import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
 import com.xceptance.neodymium.scripting.template.selenide.page.PCart;
 import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
@@ -93,7 +94,27 @@ public class CMiniCart extends BasicComponent
         closeMiniCart();
     }
 
-    public void validateMiniCart(int index, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
+    /**
+     * @param index
+     * @param product
+     */
+    public void validateMiniCart(int index, Product product)
+    {
+        validateMiniCart(index, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), product.getTotalUnitPrice());
+    }
+
+    /**
+     * @param index
+     * @param product
+     * @param productCount
+     * @param productTotalPrice
+     */
+    public void validateMiniCart(int index, Product product, int productAmount, String productTotalPrice)
+    {
+        validateMiniCart(index, product.getName(), product.getStyle(), product.getSize(), productAmount, productTotalPrice);
+    }
+
+    private void validateMiniCart(int index, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
     {
         // Open the mini cart
         openMiniCart();
@@ -116,4 +137,5 @@ public class CMiniCart extends BasicComponent
         // Close mini cart
         closeMiniCart();
     }
+
 }
