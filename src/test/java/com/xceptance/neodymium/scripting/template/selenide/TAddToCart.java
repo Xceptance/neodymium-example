@@ -33,21 +33,21 @@ public class TAddToCart extends BasicTest
         homePage.miniCart().validateSubtotal("$0.00");
         final String oldSubtotal = homePage.miniCart().getSubtotal();
 
-        // Click a top category
+        // Go to a top category page
         final String topCatName = "World of Nature";
         PCategory categoryPage = homePage.topNav().clickCategory(topCatName);
         categoryPage.validateCategoryName(topCatName);
 
         // TODO Discuss indexes natural vs. array
-        // Click a sub category
+        // Goto sub category page
         final String categoryName = categoryPage.topNav().getSubCategoryNameByIndex(1, 1);
-        categoryPage = categoryPage.topNav().clickSubCategoryByIndex(1, 1);
-        categoryPage.validateCategoryName(categoryName);
-        categoryPage.validate();
+        PCategory categoryPage2 = categoryPage.topNav().clickSubCategoryByIndex(1, 1);
+        categoryPage2.validateCategoryName(categoryName);
+        categoryPage2.validate();
 
         // Goto product page and add to cart
-        final String productName = categoryPage.getProducNametByIndex(1, 1);
-        PProduct productPage = categoryPage.clickProductByIndex(1, 1);
+        final String productName = categoryPage2.getProducNametByIndex(1, 1);
+        PProduct productPage = categoryPage2.clickProductByIndex(1, 1);
         productPage.validate();
         productPage.validateProductName(productName);
         productPage.addToCart("16 x 12 in", "matte");
@@ -69,12 +69,12 @@ public class TAddToCart extends BasicTest
         final String searchTerm = "pizza";
         final int searchTermExpectedCount = 1;
         // TODO Discuss reuse of variable or new instance
-        PCategory categoryPage2 = cartPage.search().categoryPageResult(searchTerm);
-        categoryPage2.validateSearchHits(searchTerm, searchTermExpectedCount);
-        final String productName2 = categoryPage2.getProducNametByIndex(1, 1);
+        PCategory categoryPage3 = cartPage.search().categoryPageResult(searchTerm);
+        categoryPage3.validateSearchHits(searchTerm, searchTermExpectedCount);
+        final String productName2 = categoryPage3.getProducNametByIndex(1, 1);
 
         // Goto product page and add to cart
-        PProduct productPage2 = categoryPage2.clickProductByIndex(1, 1);
+        PProduct productPage2 = categoryPage3.clickProductByIndex(1, 1);
         productPage2.validate();
         productPage2.validateProductName(productName2);
         productPage2.addToCart("64 x 48 in", "gloss");
