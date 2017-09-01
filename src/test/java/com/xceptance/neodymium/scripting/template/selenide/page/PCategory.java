@@ -14,8 +14,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.page;
 
-import com.xceptance.neodymium.scripting.template.selenide.component.CTopNav;
-
 /**
  * @author pfotenhauer
  */
@@ -55,11 +53,6 @@ public class PCategory extends BasicPage
         // Assures there's at least one product shown
         $("#product0").shouldBe(visible);
 
-    }
-
-    public CTopNav topNav()
-    {
-        return new CTopNav();
     }
 
     /**

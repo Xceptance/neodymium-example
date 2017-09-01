@@ -10,7 +10,7 @@ public abstract class BasicComponent
         validateComponent();
     }
 
-    private void validateComponent()
+    public void validateComponent()
     {
         Assert.assertTrue("The component is not available on the current page!", isComponentAvailable());
     }

@@ -6,8 +6,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import com.xceptance.neodymium.scripting.template.selenide.component.CTopNav;
-
 public class PHome extends BasicPage
 {
 
@@ -15,11 +13,6 @@ public class PHome extends BasicPage
     public boolean isExpectedPage()
     {
         return $("#titleIndex").exists();
-    }
-
-    public CTopNav topNav()
-    {
-        return new CTopNav();
     }
 
     @Override

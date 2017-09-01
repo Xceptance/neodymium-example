@@ -6,22 +6,29 @@ import com.xceptance.neodymium.scripting.template.selenide.component.CFooter;
 import com.xceptance.neodymium.scripting.template.selenide.component.CHeader;
 import com.xceptance.neodymium.scripting.template.selenide.component.CMiniCart;
 import com.xceptance.neodymium.scripting.template.selenide.component.CSearch;
+import com.xceptance.neodymium.scripting.template.selenide.component.CTopNav;
+import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
 public abstract class BasicPage implements PageObject
 {
 
-    private CFooter footer;
-
     private CHeader header;
+
+    private CFooter footer;
 
     private CMiniCart miniCart;
 
     private CSearch search;
 
+    private CTopNav topNav;
+
     public BasicPage()
     {
-        validatePage();
-        validateBasiComponents();
+        if (Settings.DEBUG)
+        {
+            validatePage();
+            validateBasiComponents();
+        }
     }
 
     private void validateBasiComponents()
@@ -30,6 +37,7 @@ public abstract class BasicPage implements PageObject
         footer();
         miniCart();
         search();
+        topNav();
     }
 
     void validatePage()
@@ -43,6 +51,11 @@ public abstract class BasicPage implements PageObject
         {
             footer = new CFooter();
         }
+        // TODO Discuss a way to implement an implicit basic validation for components
+        if (Settings.DEBUG)
+        {
+            footer.validateComponent();
+        }
         return footer;
     }
 
@@ -51,6 +64,11 @@ public abstract class BasicPage implements PageObject
         if (header == null)
         {
             header = new CHeader();
+        }
+        // TODO Discuss a way to implement an implicit basic validation for components
+        if (Settings.DEBUG)
+        {
+            header.validateComponent();
         }
         return header;
     }
@@ -61,6 +79,11 @@ public abstract class BasicPage implements PageObject
         {
             miniCart = new CMiniCart();
         }
+        // TODO Discuss a way to implement an implicit basic validation for components
+        if (Settings.DEBUG)
+        {
+            miniCart.validateComponent();
+        }
         return miniCart;
     }
 
@@ -70,7 +93,25 @@ public abstract class BasicPage implements PageObject
         {
             search = new CSearch();
         }
+        // TODO Discuss a way to implement an implicit basic validation for components
+        if (Settings.DEBUG)
+        {
+            search.validateComponent();
+        }
         return search;
     }
 
+    public CTopNav topNav()
+    {
+        if (topNav == null)
+        {
+            topNav = new CTopNav();
+        }
+        // TODO Discuss a way to implement an implicit basic validation for components
+        if (Settings.DEBUG)
+        {
+            topNav.validateComponent();
+        }
+        return topNav;
+    }
 }

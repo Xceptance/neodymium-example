@@ -57,14 +57,10 @@ public class TAddToCart extends BasicTest
         PCart cartPage = productPage.miniCart().openCartPage();
         cartPage.validate();
         cartPage.validateShippingCosts(SHIPPINGCOSTS);
-        cartPage.miniCart().validateMiniCart(1,
-                                             product);
-        cartPage.validateCartItem(0,
-                                  product);
+        cartPage.miniCart().validateMiniCart(1, product);
+        cartPage.validateCartItem(0, product);
 
-        cartPage.validateSubAndLineItemTotalAfterAdd(0,
-                                                     oldSubtotal,
-                                                     "$0.00");
+        cartPage.validateSubAndLineItemTotalAfterAdd(0, oldSubtotal, "$0.00");
 
         final String oldSubtotal2 = homePage.miniCart().getSubtotal();
         cartPage.miniCart().validateTotalCount(++totalCount);
@@ -109,10 +105,7 @@ public class TAddToCart extends BasicTest
                                                       oldSubtotal3,
                                                       productBeforeUpdate.getTotalUnitPrice());
         cartPage2.validateCartItem(0, productBeforeUpdate, newProductAmount);
-        cartPage2.miniCart().validateMiniCart(1,
-                                              productBeforeUpdate,
-                                              newProductAmount,
-                                              newLinItemPrice);
+        cartPage2.miniCart().validateMiniCart(1, productBeforeUpdate, newProductAmount, newLinItemPrice);
         totalCount = totalCount + newProductAmount - 1;
         cartPage2.miniCart().validateTotalCount(totalCount);
 
