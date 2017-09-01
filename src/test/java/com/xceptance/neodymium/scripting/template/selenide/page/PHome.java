@@ -16,7 +16,7 @@ public class PHome extends BasicPage
     }
 
     @Override
-    public void validate()
+    public void validateStructure()
     {
         // Verifies the company Logo and name are visible.
         $("a#brand").shouldBe(visible);

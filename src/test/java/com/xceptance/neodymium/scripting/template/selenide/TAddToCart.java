@@ -27,7 +27,7 @@ public class TAddToCart extends BasicTest
         // TODO Discuss static call (PageHelper) vs. OO (PageObject), Not the pattern anymore?
         // Goto homepage
         PHome homePage = new FOpenHomepage().flow();
-        homePage.validate();
+        homePage.validateStructure();
         homePage.footer().validate();
         homePage.miniCart().validateTotalCount(totalCount);
         homePage.miniCart().validateSubtotal("$0.00");
@@ -43,26 +43,26 @@ public class TAddToCart extends BasicTest
         final String categoryName = categoryPage.topNav().getSubCategoryNameByIndex(1, 1);
         PCategory categoryPage2 = categoryPage.topNav().clickSubCategoryByIndex(1, 1);
         categoryPage2.validateCategoryName(categoryName);
-        categoryPage2.validate();
+        categoryPage2.validateStructure();
 
         // Goto product page and add to cart
         final String productName = categoryPage2.getProducNametByIndex(1, 1);
         PProduct productPage = categoryPage2.clickProductByIndex(1, 1);
-        productPage.validate();
+        productPage.validateStructure();
         productPage.validateProductName(productName);
         productPage.addToCart("16 x 12 in", "matte");
 
         // Goto cart and validate
         final Product product = productPage.getProduct();
         PCart cartPage = productPage.miniCart().openCartPage();
-        cartPage.validate();
+        cartPage.validateStructure();
         cartPage.validateShippingCosts(SHIPPINGCOSTS);
         cartPage.miniCart().validateMiniCart(1, product);
         cartPage.validateCartItem(0, product);
 
         cartPage.validateSubAndLineItemTotalAfterAdd(0, oldSubtotal, "$0.00");
 
-        final String oldSubtotal2 = homePage.miniCart().getSubtotal();
+        final String oldSubtotal2 = cartPage.miniCart().getSubtotal();
         cartPage.miniCart().validateTotalCount(++totalCount);
 
         // Search for product on cart page
@@ -75,14 +75,14 @@ public class TAddToCart extends BasicTest
 
         // Goto product page and add to cart
         PProduct productPage2 = categoryPage3.clickProductByIndex(1, 1);
-        productPage2.validate();
+        productPage2.validateStructure();
         productPage2.validateProductName(productName2);
         productPage2.addToCart("64 x 48 in", "gloss");
         final Product product2 = productPage.getProduct();
 
         // Goto cart and validate
         PCart cartPage2 = productPage2.miniCart().openCartPage();
-        cartPage2.validate();
+        cartPage2.validateStructure();
         cartPage2.validateShippingCosts(SHIPPINGCOSTS);
 
         cartPage2.miniCart().validateMiniCart(1, product2);

@@ -44,7 +44,7 @@ public class PCategory extends BasicPage
      * @see com.xceptance.scripting.selenide.page.BasicPage#validate()
      */
     @Override
-    public void validate()
+    public void validateStructure()
     {
         // Amount of results
         // Assures the amount of posters displayed in the headline is not 0.
@@ -103,5 +103,14 @@ public class PCategory extends BasicPage
         // Verify that there is the specified amount of results
         // The amount of products shown in the headline matches the expected value
         $("#totalProductCount").shouldBe(exactText(Integer.toString(searchTermExpectedCount)));
+    }
+
+    /**
+     * @param categoryName
+     */
+    public void validate(String categoryName)
+    {
+        validateStructure();
+        validateCategoryName(categoryName);
     }
 }

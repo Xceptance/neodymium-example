@@ -16,7 +16,7 @@ public class TVisit extends BasicTest
     public void test()
     {
         PHome homePage = new FOpenHomepage().flow();
-        homePage.validate();
+        homePage.validateStructure();
         homePage.footer().validate();
     }
 }

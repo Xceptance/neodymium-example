@@ -24,7 +24,7 @@ public abstract class BasicPage implements PageObject
 
     public BasicPage()
     {
-        if (Settings.DEBUG)
+        if (Settings.IMPLICITVALIDATION)
         {
             validatePage();
             validateBasiComponents();
@@ -52,8 +52,9 @@ public abstract class BasicPage implements PageObject
             footer = new CFooter();
         }
         // TODO Discuss a way to implement an implicit basic validation for components
-        if (Settings.DEBUG)
+        if (Settings.IMPLICITVALIDATION)
         {
+            validatePage();
             footer.validateComponent();
         }
         return footer;
@@ -66,8 +67,9 @@ public abstract class BasicPage implements PageObject
             header = new CHeader();
         }
         // TODO Discuss a way to implement an implicit basic validation for components
-        if (Settings.DEBUG)
+        if (Settings.IMPLICITVALIDATION)
         {
+            validatePage();
             header.validateComponent();
         }
         return header;
@@ -80,8 +82,9 @@ public abstract class BasicPage implements PageObject
             miniCart = new CMiniCart();
         }
         // TODO Discuss a way to implement an implicit basic validation for components
-        if (Settings.DEBUG)
+        if (Settings.IMPLICITVALIDATION)
         {
+            validatePage();
             miniCart.validateComponent();
         }
         return miniCart;
@@ -94,8 +97,9 @@ public abstract class BasicPage implements PageObject
             search = new CSearch();
         }
         // TODO Discuss a way to implement an implicit basic validation for components
-        if (Settings.DEBUG)
+        if (Settings.IMPLICITVALIDATION)
         {
+            validatePage();
             search.validateComponent();
         }
         return search;
@@ -108,8 +112,9 @@ public abstract class BasicPage implements PageObject
             topNav = new CTopNav();
         }
         // TODO Discuss a way to implement an implicit basic validation for components
-        if (Settings.DEBUG)
+        if (Settings.IMPLICITVALIDATION)
         {
+            validatePage();
             topNav.validateComponent();
         }
         return topNav;

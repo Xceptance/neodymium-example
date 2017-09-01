@@ -41,7 +41,7 @@ public class PCart extends BasicPage
      * @see com.xceptance.scripting.selenide.page.BasicPage#validate()
      */
     @Override
-    public void validate()
+    public void validateStructure()
     {
         // Headline
         // Makes sure the headline is there and starts with a capital letter

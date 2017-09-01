@@ -27,5 +27,5 @@ public class Settings
     @Deprecated
     public static boolean holdBrowserOpen = false;
 
-    public static final boolean DEBUG = true;
+    public static final boolean IMPLICITVALIDATION = true;
 }

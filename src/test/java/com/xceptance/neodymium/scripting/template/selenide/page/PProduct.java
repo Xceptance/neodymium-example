@@ -27,7 +27,7 @@ public class PProduct extends BasicPage
      * @see com.xceptance.scripting.selenide.page.BasicPage#validate()
      */
     @Override
-    public void validate()
+    public void validateStructure()
     {
         // Title
         // Make sure we have the proper headline and it is not empty, at least 4 characters, starting with uppercase
@@ -90,5 +90,14 @@ public class PProduct extends BasicPage
     public Product getProduct()
     {
         return new Product(getProductName(), getProductPrice(), getProductPrice(), getChosenStyle(), getChosenSize(), 1);
+    }
+
+    /**
+     * @param productName
+     */
+    public void validate(String productName)
+    {
+        validateStructure();
+        validateProductName(productName);
     };
 }

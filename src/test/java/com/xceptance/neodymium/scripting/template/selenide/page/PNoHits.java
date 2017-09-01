@@ -9,7 +9,7 @@ public class PNoHits extends BasicPage
      * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#validate()
      */
     @Override
-    public void validate()
+    public void validateStructure()
     {
         // TODO Auto-generated method stub
 

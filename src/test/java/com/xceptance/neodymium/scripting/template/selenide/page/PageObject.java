@@ -9,7 +9,7 @@ package com.xceptance.neodymium.scripting.template.selenide.page;
 public interface PageObject
 {
 
-    public void validate();
+    public void validateStructure();
 
     default boolean isExpectedPage()
     {
