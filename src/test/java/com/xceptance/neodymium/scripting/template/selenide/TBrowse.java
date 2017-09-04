@@ -54,5 +54,16 @@ public class TBrowse extends BasicTest
         final String productName2 = categoryPage.getProducNametByIndex(2, 2);
         productPage = categoryPage.clickProductByIndex(2, 2);
         productPage.validate(productName2);
+
+        // Goto category
+        final String categoryName3 = productPage.topNav().getSubCategoryNameByIndex(2, 3);
+        categoryPage = productPage.topNav().clickSubCategoryByIndex(2, 3);
+        categoryPage.validate(categoryName3);
+
+        // Goto product page
+        final String productName3 = categoryPage.getProducNametByIndex(2, 3);
+        productPage = categoryPage.clickProductByIndex(2, 3);
+        productPage.validate(productName3);
+
     }
 }
