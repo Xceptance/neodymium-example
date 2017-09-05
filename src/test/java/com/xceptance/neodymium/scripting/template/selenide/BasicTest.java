@@ -13,4 +13,6 @@ import com.xceptance.multibrowser.AnnotationRunner;
 @RunWith(AnnotationRunner.class)
 public class BasicTest
 {
+    static final String SHIPPINGCOSTS = "$7.00";
+
 }

@@ -1,6 +1,7 @@
 package com.xceptance.neodymium.scripting.template.selenide.page;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -37,5 +38,24 @@ public class PHome extends BasicPage
         $("#productList").shouldBe(visible);
         // Asserts there's at least 1 item in the list.
         $$("#productList > li").shouldHave(sizeGreaterThan(0));
+    }
+
+    public void validate()
+    {
+        validateStructure();
+        footer().validate();
+    }
+
+    public void validateSuccessfulOrder()
+    {
+        // Wait until javascript makes the success message visible
+        // Waits until javascript makes the success message visible.
+        // Verify that the correct message is displayed
+        $("#successMessage").shouldBe(visible);
+        // The message displays the correct text.
+        $("#successMessage").should(exactText("× Thank you for shopping with us!"));
+        // Verify that the mini cart is empty again
+        miniCart().validateTotalCount(0);
+        miniCart().validateSubtotal("$0.00");
     }
 }

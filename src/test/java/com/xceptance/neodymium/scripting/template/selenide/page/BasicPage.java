@@ -7,6 +7,7 @@ import com.xceptance.neodymium.scripting.template.selenide.component.CHeader;
 import com.xceptance.neodymium.scripting.template.selenide.component.CMiniCart;
 import com.xceptance.neodymium.scripting.template.selenide.component.CSearch;
 import com.xceptance.neodymium.scripting.template.selenide.component.CTopNav;
+import com.xceptance.neodymium.scripting.template.selenide.component.CUserMenu;
 import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
 public abstract class BasicPage implements PageObject
@@ -21,6 +22,8 @@ public abstract class BasicPage implements PageObject
     private CSearch search;
 
     private CTopNav topNav;
+
+    private CUserMenu userMenu;
 
     public BasicPage()
     {
@@ -38,6 +41,7 @@ public abstract class BasicPage implements PageObject
         miniCart();
         search();
         topNav();
+        userMenu();
     }
 
     void validatePage()
@@ -118,5 +122,23 @@ public abstract class BasicPage implements PageObject
             topNav.validateComponent();
         }
         return topNav;
+    }
+
+    /**
+     * @return
+     */
+    public CUserMenu userMenu()
+    {
+        if (userMenu == null)
+        {
+            userMenu = new CUserMenu();
+        }
+        // TODO Discuss a way to implement an implicit basic validation for components
+        if (Settings.IMPLICITVALIDATION)
+        {
+            validatePage();
+            userMenu.validateComponent();
+        }
+        return userMenu;
     }
 }

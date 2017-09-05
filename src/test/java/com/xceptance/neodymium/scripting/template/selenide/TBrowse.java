@@ -18,7 +18,6 @@ import com.xceptance.neodymium.scripting.template.selenide.page.PProduct;
 {
   "Chrome_1024x768"
 })
-
 public class TBrowse extends BasicTest
 {
     @Test
@@ -31,8 +30,7 @@ public class TBrowse extends BasicTest
 
         // Goto homepage
         homePage = new FOpenHomepage().flow();
-        homePage.validateStructure();
-        homePage.footer().validate();
+        homePage.validate();
 
         // Goto category
         final String categoryName = homePage.topNav().getSubCategoryNameByIndex(1, 1);

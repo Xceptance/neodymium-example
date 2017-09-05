@@ -235,4 +235,13 @@ public class PCart extends BasicPage
         $("#product" + index + " img").click();
         return page(PProduct.class);
     }
+
+    /**
+     * 
+     */
+    public PShippingAddress openCheckoutPage()
+    {
+        $("#btnStartCheckout").click();
+        return page(PShippingAddress.class);
+    }
 }

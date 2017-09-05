@@ -17,8 +17,6 @@ import com.xceptance.neodymium.scripting.template.selenide.page.PProduct;
 public class TAddToCart extends BasicTest
 {
 
-    static final String SHIPPINGCOSTS = "$7.00";
-
     @Test
     public void test()
     {
