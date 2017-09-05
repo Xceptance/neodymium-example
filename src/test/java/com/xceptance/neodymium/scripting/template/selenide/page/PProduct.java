@@ -40,14 +40,14 @@ public class PProduct extends BasicPage
         $("#prodPrice").shouldBe(matchText("\\$(\\d{1,3})(,\\d{3})*\\.\\d{2}$"));
         // Add to cart button
         // Make sure we got an add to cart button and the text matches.
-        $("#btnAddToCart").shouldBe(exactText("Add to cart"));
+        $("#btnAddToCart").shouldHave(exactText("Add to cart"));
     }
 
     public void validateProductName(String name)
     {
         // Verify product name
         // compares the displayed product name to the given parameter.
-        $("#titleProductName").shouldBe(exactText(name));
+        $("#titleProductName").shouldHave(exactText(name));
     }
 
     public void addToCart(String size, String style)

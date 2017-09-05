@@ -94,7 +94,7 @@ public class PCategory extends BasicPage
         // Validate the entered search phrase is still visible in the input
         $("#searchForm #s").should(exactValue(searchTerm));
         // Assert the Headline displays the search term.
-        $(".header-container #searchTextValue").should(exactText(searchTerm));
+        $(".header-container #searchTextValue").shouldHave(exactText(searchTerm));
         // Verify there are search results
         // There is at least one row of results
         $("#productOverview ul.row").shouldBe(exist);
@@ -102,7 +102,7 @@ public class PCategory extends BasicPage
         $$("#productOverview li").shouldHave(sizeGreaterThan(0));
         // Verify that there is the specified amount of results
         // The amount of products shown in the headline matches the expected value
-        $("#totalProductCount").shouldBe(exactText(Integer.toString(searchTermExpectedCount)));
+        $("#totalProductCount").shouldHave(exactText(Integer.toString(searchTermExpectedCount)));
     }
 
     /**

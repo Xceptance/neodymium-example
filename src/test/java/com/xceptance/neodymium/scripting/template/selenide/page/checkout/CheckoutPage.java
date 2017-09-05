@@ -1,13 +1,14 @@
 /**
  * 
  */
-package com.xceptance.neodymium.scripting.template.selenide.page;
+package com.xceptance.neodymium.scripting.template.selenide.page.checkout;
 
 import org.junit.Assert;
 
 import com.xceptance.neodymium.scripting.template.selenide.component.CCheckoutHeader;
 import com.xceptance.neodymium.scripting.template.selenide.component.CFooter;
 import com.xceptance.neodymium.scripting.template.selenide.component.CUserMenu;
+import com.xceptance.neodymium.scripting.template.selenide.page.PageObject;
 import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
 /**

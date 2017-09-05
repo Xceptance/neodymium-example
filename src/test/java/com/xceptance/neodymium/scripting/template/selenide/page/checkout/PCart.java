@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.xceptance.neodymium.scripting.template.selenide.page;
+package com.xceptance.neodymium.scripting.template.selenide.page.checkout;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exactValue;
@@ -15,6 +15,8 @@ import static com.codeborne.selenide.Selenide.page;
 import org.junit.Assert;
 
 import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
+import com.xceptance.neodymium.scripting.template.selenide.page.BasicPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.PProduct;
 import com.xceptance.neodymium.scripting.template.selenide.utility.PriceHelper;
 import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
@@ -62,7 +64,7 @@ public class PCart extends BasicPage
     public void validateShippingCosts(String shippingCosts)
     {
         // Assert the correct shipping price is shown
-        $("#orderShippingCosts").should(exactText(shippingCosts));
+        $("#orderShippingCosts").shouldHave(exactText(shippingCosts));
     }
 
     /**
@@ -92,19 +94,19 @@ public class PCart extends BasicPage
         $("#product" + index).shouldBe(visible);
         // Name
         // Compares the displayed name with the parameter
-        $("#product" + index + " .productName").shouldBe(exactText(productName));
+        $("#product" + index + " .productName").shouldHave(exactText(productName));
         // Count
         // Compares the displayed amount with the parameter
         validateProductAmount(index, productAmount);
         // Style
         // Compares the displayed style with the parameter
-        $("#product" + index + " .productStyle").shouldBe(exactText(productStyle));
+        $("#product" + index + " .productStyle").shouldHave(exactText(productStyle));
         // Size
         // Compares the displayed style with the parameter
-        $("#product" + index + " .productSize").shouldBe(exactText(productSize));
+        $("#product" + index + " .productSize").shouldHave(exactText(productSize));
         // Price
         // Compares the displayed price with the parameter
-        $("#product" + index + " .productUnitPrice").shouldBe(exactText(productPrice));
+        $("#product" + index + " .productUnitPrice").shouldHave(exactText(productPrice));
     }
 
     public void validateSubAndLineItemTotalAfterAdd(int index, String oldSubTotal, String oldLineItemTotal)
@@ -121,7 +123,7 @@ public class PCart extends BasicPage
 
         // Verify calculated cost is the shown cost
         // Compare calculated Unit Price to displayed total Unit Price
-        $("#product" + index + " .productTotalUnitPrice").shouldBe(exactText(subOrderPrice));
+        $("#product" + index + " .productTotalUnitPrice").shouldHave(exactText(subOrderPrice));
 
         // Verify subtotal
         // Stores the subtotal with the new item present
@@ -224,7 +226,7 @@ public class PCart extends BasicPage
     public void validateSubAndLineItemTotalAfterRemove(String oldSubTotal, String oldLineItemTotal)
     {
         String newSubTotal = PriceHelper.subtractFromPrice(oldSubTotal, oldLineItemTotal);
-        $("#orderSubTotalValue").shouldBe(exactText(newSubTotal));
+        $("#orderSubTotalValue").shouldHave(exactText(newSubTotal));
     }
 
     /**

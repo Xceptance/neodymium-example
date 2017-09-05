@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.xceptance.neodymium.scripting.template.selenide.page;
+package com.xceptance.neodymium.scripting.template.selenide.page.checkout;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
@@ -34,17 +34,17 @@ public class PPayment extends CheckoutPage
         $("#formAddPayment").should(exist);
         // Credit Card Number
         // Makes sure the label next to the card number field shows the correct text
-        $("label[for=\"creditCardNumber\"]").should(exactText("Card number*"));
+        $("label[for=\"creditCardNumber\"]").shouldHave(exactText("Card number*"));
         // Makes sure the card number field is there
         $("#creditCardNumber").shouldBe(visible);
         // Name
         // Makes sure the label next to the card holder field shows the correct text
-        $("label[for=\"name\"]").should(exactText("Cardholder's name*"));
+        $("label[for=\"name\"]").shouldHave(exactText("Cardholder's name*"));
         // Makes sure the card holder field is there
         $("#name").shouldBe(visible);
         // Expiration
         // Makes sure the label next to the expiration date fields shows the correct text
-        $("label[for=\"expirationDateMonth\"]").should(exactText("Expiration date*"));
+        $("label[for=\"expirationDateMonth\"]").shouldHave(exactText("Expiration date*"));
         // Makes sure the expiration month field is there
         $("#expirationDateMonth").shouldBe(visible);
         // Makes sure the expiration year field is there

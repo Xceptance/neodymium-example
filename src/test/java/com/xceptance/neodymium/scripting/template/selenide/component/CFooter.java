@@ -16,6 +16,6 @@ public class CFooter extends BasicComponent
     public void validate()
     {
         // Asserts the footer contains the correct text.
-        $("body > footer#footer").shouldBe(exactText(footerText));
+        $("body > footer#footer").shouldHave(exactText(footerText));
     }
 }

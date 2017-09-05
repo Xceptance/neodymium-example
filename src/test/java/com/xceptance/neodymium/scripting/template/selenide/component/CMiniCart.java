@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
 import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
-import com.xceptance.neodymium.scripting.template.selenide.page.PCart;
+import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PCart;
 import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
 /**
@@ -79,7 +79,7 @@ public class CMiniCart extends BasicComponent
 
     public void validateTotalCount(int totalCount)
     {
-        $("#btnCartOverviewForm .headerCartProductCount").shouldBe(exactText(Integer.toString(totalCount)));
+        $("#btnCartOverviewForm .headerCartProductCount").shouldHave(exactText(Integer.toString(totalCount)));
     }
 
     public void validateSubtotal(String subtotal)
@@ -89,7 +89,7 @@ public class CMiniCart extends BasicComponent
         openMiniCart();
         // Verify subtotal equals specified subtotal
         // Compare the subTotal to the parameter
-        $("#miniCartMenu .subOrderPrice").should(exactText(subtotal));
+        $("#miniCartMenu .subOrderPrice").shouldHave(exactText(subtotal));
         // Close Mini Cart
         closeMiniCart();
     }

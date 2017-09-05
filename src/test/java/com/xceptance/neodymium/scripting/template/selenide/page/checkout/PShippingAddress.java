@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.xceptance.neodymium.scripting.template.selenide.page;
+package com.xceptance.neodymium.scripting.template.selenide.page.checkout;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.matchText;
@@ -34,37 +34,37 @@ public class PShippingAddress extends CheckoutPage
         $("#formAddDelAddr").shouldBe(visible);
         // Name
         // Asserts the label next to the name field shows the right text
-        $("label[for=\"fullName\"]").should(exactText("Full name*"));
+        $("label[for=\"fullName\"]").shouldHave(exactText("Full name*"));
         // Asserts the name field is there
         $("#fullName").shouldBe(visible);
         // Company
         // Asserts the label next to the company field shows the right text
-        $("label[for=\"company\"]").shouldBe(exactText("Company"));
+        $("label[for=\"company\"]").shouldHave(exactText("Company"));
         // Asserts the company field is there
         $("#company").shouldBe(visible);
         // Address
         // Asserts the label next to the address field shows the right text
-        $("label[for=\"addressLine\"]").shouldBe(exactText("Address*"));
+        $("label[for=\"addressLine\"]").shouldHave(exactText("Address*"));
         // Asserts the address field is there
         $("#addressLine").shouldBe(visible);
         // City
         // Asserts the label next to the city field shows the right text
-        $("label[for=\"city\"]").shouldBe(exactText("City*"));
+        $("label[for=\"city\"]").shouldHave(exactText("City*"));
         // Asserts the city field is there
         $("#city").shouldBe(visible);
         // State
         // Asserts the label next to the state field shows the right text
-        $("label[for=\"state\"]").shouldBe(exactText("State/Province*"));
+        $("label[for=\"state\"]").shouldHave(exactText("State/Province*"));
         // Asserts the state field is there
         $("#state").shouldBe(visible);
         // Zip
         // Asserts the label next to the zip field shows the right text
-        $("label[for=\"zip\"]").shouldBe(exactText("ZIP/Postal code*"));
+        $("label[for=\"zip\"]").shouldHave(exactText("ZIP/Postal code*"));
         // Asserts the zip field is there
         $("#zip").shouldBe(visible);
         // Country
         // Asserts the label next to the country field shows the right text
-        $("label[for=\"country\"]").shouldBe(exactText("Country*"));
+        $("label[for=\"country\"]").shouldHave(exactText("Country*"));
         // Asserts the country field is there
         $("#country").shouldBe(visible);
         // Radio Button

@@ -18,6 +18,7 @@ import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PCart;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PPayment;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PPlaceOrder;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PShippingAddress;
+import com.xceptance.neodymium.scripting.template.selenide.page.user.PLogin;
 
 /**
  * @author pfotenhauer
@@ -26,13 +27,14 @@ import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PShippi
 {
   "Chrome_1024x768"
 })
-public class TGuestOrder extends BasicTest
+public class TOrder extends BasicTest
 {
     @Test
     public void test()
     {
         // Page types to use
         PHome homePage;
+        PLogin loginPage;
         PCategory categoryPage;
         PProduct productPage;
         PCart cartPage;
@@ -55,17 +57,24 @@ public class TGuestOrder extends BasicTest
         homePage.miniCart().validateSubtotal("$0.00");
         final String oldSubtotal = homePage.miniCart().getSubtotal();
 
+        // Goto login form
+        loginPage = homePage.userMenu().openLogin();
+        loginPage.validateStructure();
+        homePage = loginPage.sendLoginform("john@doe.com", "topsecret");
+
+        homePage.validateSuccessfulLogin("John");
+
         // Goto category
-        final String categoryName = homePage.topNav().getSubCategoryNameByIndex(3, 2);
-        categoryPage = homePage.topNav().clickSubCategoryByIndex(3, 2);
+        final String categoryName = homePage.topNav().getSubCategoryNameByIndex(2, 3);
+        categoryPage = homePage.topNav().clickSubCategoryByIndex(2, 3);
         categoryPage.validate(categoryName);
 
         // Goto product page
-        final String productName = categoryPage.getProducNametByIndex(1, 1);
-        productPage = categoryPage.clickProductByIndex(1, 1);
+        final String productName = categoryPage.getProducNametByIndex(2, 1);
+        productPage = categoryPage.clickProductByIndex(2, 1);
         productPage.validate(productName);
 
-        productPage.addToCart("64 x 48 in", "gloss");
+        productPage.addToCart("32 x 24 in", "matte");
 
         // Goto cart and validate
         final Product product = productPage.getProduct();
@@ -77,6 +86,7 @@ public class TGuestOrder extends BasicTest
         cartPage.validateCartItem(0, product);
         cartPage.validateSubAndLineItemTotalAfterAdd(0, oldSubtotal, "$0.00");
 
+        // TODO Change some steps form here on
         // setup checkout data
         final Address shippingAddress = new Address("Jimmy Blue", "Ochsenknecht Records", "6 Wall St", "Burlington", "Massachusetts", "01803", "United States");
         final boolean sameBillingAddress = false;
