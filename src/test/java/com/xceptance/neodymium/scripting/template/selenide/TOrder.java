@@ -13,11 +13,11 @@ import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
 import com.xceptance.neodymium.scripting.template.selenide.page.PCategory;
 import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
 import com.xceptance.neodymium.scripting.template.selenide.page.PProduct;
-import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PBillingAddress;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PCart;
+import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PNewBillingAddress;
+import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PNewShippingAddress;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PPayment;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PPlaceOrder;
-import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PShippingAddress;
 import com.xceptance.neodymium.scripting.template.selenide.page.user.PLogin;
 
 /**
@@ -38,8 +38,8 @@ public class TOrder extends BasicTest
         PCategory categoryPage;
         PProduct productPage;
         PCart cartPage;
-        PShippingAddress shippingAddressPage;
-        PBillingAddress billingAddressPage;
+        PNewShippingAddress shippingAddressPage;
+        PNewBillingAddress billingAddressPage;
         PPayment paymentPage;
         PPlaceOrder placeOrderPage;
 

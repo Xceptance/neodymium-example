@@ -15,7 +15,7 @@ import com.xceptance.neodymium.scripting.template.selenide.objects.Address;
 /**
  * @author pfotenhauer
  */
-public class PShippingAddress extends CheckoutPage
+public class PNewShippingAddress extends CheckoutPage
 {
 
     /*
@@ -106,7 +106,7 @@ public class PShippingAddress extends CheckoutPage
      * @param sameBillingAddress
      *            Decision whether or not use the same billing address
      */
-    public PBillingAddress sendShippingAddressForm(String name, String company, String address, String city,
+    public PNewBillingAddress sendShippingAddressForm(String name, String company, String address, String city,
                                                    String state, String zip, String country, boolean sameBillingAddress)
     {
         // Name
@@ -144,7 +144,7 @@ public class PShippingAddress extends CheckoutPage
         // Click on Continue
         $("#btnAddDelAddr").click();
 
-        return page(PBillingAddress.class);
+        return page(PNewBillingAddress.class);
     }
 
     /**
@@ -152,7 +152,7 @@ public class PShippingAddress extends CheckoutPage
      * @param sameBillingAddress
      * @return
      */
-    public PBillingAddress sendShippingAddressForm(Address shippingAddress, boolean sameBillingAddress)
+    public PNewBillingAddress sendShippingAddressForm(Address shippingAddress, boolean sameBillingAddress)
     {
         return sendShippingAddressForm(shippingAddress.getFullName(), shippingAddress.getCompany(), shippingAddress.getAddressLine(),
                                        shippingAddress.getCity(), shippingAddress.getState(), shippingAddress.getZip(),

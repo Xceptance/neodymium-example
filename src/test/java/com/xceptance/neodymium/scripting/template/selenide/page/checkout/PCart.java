@@ -241,9 +241,9 @@ public class PCart extends BasicPage
     /**
      * 
      */
-    public PShippingAddress openCheckoutPage()
+    public PNewShippingAddress openCheckoutPage()
     {
         $("#btnStartCheckout").click();
-        return page(PShippingAddress.class);
+        return page(PNewShippingAddress.class);
     }
 }
