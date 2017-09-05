@@ -79,7 +79,7 @@ public class Address
     }
 
     /**
-     * @param address
+     * @param addressLine
      *            the address to set
      */
     public void setAddressLine(String addressLine)

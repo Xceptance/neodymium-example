@@ -21,7 +21,11 @@ public class Product
     int amount;
 
     /**
-     * @param string
+     * @param name
+     * @param unitPrice
+     * @param totalUnitPrice
+     * @param style
+     * @param size
      * @param amount
      */
     public Product(String name, String unitPrice, String totalUnitPrice, String style, String size, int amount)

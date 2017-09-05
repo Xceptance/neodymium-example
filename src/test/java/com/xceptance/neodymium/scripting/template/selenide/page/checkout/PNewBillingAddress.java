@@ -99,8 +99,6 @@ public class PNewBillingAddress extends CheckoutPage
      *            The Zip you want to use, has to be in numbers format
      * @param country
      *            The country you want to use, currently only United States or Germany
-     * @param sameBillingAddress
-     *            Decision whether or not use the same billing address
      */
     public PPayment sendBillingAddressForm(String name, String company, String address, String city,
                                            String state, String zip, String country)

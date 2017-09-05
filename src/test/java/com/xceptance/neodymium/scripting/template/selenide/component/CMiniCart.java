@@ -106,7 +106,7 @@ public class CMiniCart extends BasicComponent
     /**
      * @param index
      * @param product
-     * @param productCount
+     * @param productAmount
      * @param productTotalPrice
      */
     public void validateMiniCart(int index, Product product, int productAmount, String productTotalPrice)

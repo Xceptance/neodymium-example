@@ -79,8 +79,7 @@ public class PCart extends BasicPage
     /**
      * @param index
      * @param product
-     * @param productCount
-     * @param productTotalPrice
+     * @param productAmount
      */
     public void validateCartItem(int index, Product product, int productAmount)
     {
@@ -199,7 +198,7 @@ public class PCart extends BasicPage
     }
 
     /**
-     * @param productBeforeUpdate
+     * @param index
      */
     public void removeProduct(int index)
     {

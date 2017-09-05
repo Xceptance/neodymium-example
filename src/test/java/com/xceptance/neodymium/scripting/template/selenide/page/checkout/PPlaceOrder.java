@@ -50,7 +50,7 @@ public class PPlaceOrder extends CheckoutPage
      *            The Product name of that product
      * @param productCount
      *            The amount
-     * @param productFinish
+     * @param productStyle
      *            The style
      * @param productSize
      *            The size
