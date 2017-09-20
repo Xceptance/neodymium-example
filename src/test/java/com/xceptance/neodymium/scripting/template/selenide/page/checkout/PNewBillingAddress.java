@@ -16,7 +16,6 @@ import com.xceptance.neodymium.scripting.template.selenide.objects.Address;
  */
 public class PNewBillingAddress extends CheckoutPage
 {
-
     /*
      * (non-Javadoc)
      * 
@@ -100,7 +99,7 @@ public class PNewBillingAddress extends CheckoutPage
      * @param country
      *            The country you want to use, currently only United States or Germany
      */
-    public PPayment sendBillingAddressForm(String name, String company, String address, String city,
+    public PNewPayment sendBillingAddressForm(String name, String company, String address, String city,
                                            String state, String zip, String country)
     {
         // Name
@@ -128,14 +127,14 @@ public class PNewBillingAddress extends CheckoutPage
         // Click on Continue
         $("#btnAddBillAddr").click();
 
-        return page(PPayment.class);
+        return page(PNewPayment.class);
     }
 
     /**
      * @param billingAddress
      * @return
      */
-    public PPayment sendBillingAddressForm(Address billingAddress)
+    public PNewPayment sendBillingAddressForm(Address billingAddress)
     {
         return sendBillingAddressForm(billingAddress.getFullName(), billingAddress.getCompany(), billingAddress.getAddressLine(),
                                       billingAddress.getCity(), billingAddress.getState(), billingAddress.getZip(),

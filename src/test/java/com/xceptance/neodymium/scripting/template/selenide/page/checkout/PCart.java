@@ -237,12 +237,26 @@ public class PCart extends BasicPage
         return page(PProduct.class);
     }
 
+    private void clickCheckoutButton()
+    {
+        $("#btnStartCheckout").click();
+    }
+
     /**
      * 
      */
-    public PNewShippingAddress openCheckoutPage()
+    public PNewShippingAddress openNewShippingPage()
     {
-        $("#btnStartCheckout").click();
+        clickCheckoutButton();
         return page(PNewShippingAddress.class);
+    }
+
+    /**
+     * 
+     */
+    public PShippingAddress openShippingPage()
+    {
+        clickCheckoutButton();
+        return page(PShippingAddress.class);
     }
 }

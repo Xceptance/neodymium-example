@@ -47,7 +47,6 @@ public class PriceHelper
      */
     public static String addCurrency(String price)
     {
-        // TODO Auto-generated method stub
         return CURRENCY + price;
     }
 }

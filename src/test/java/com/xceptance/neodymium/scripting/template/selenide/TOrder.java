@@ -13,11 +13,11 @@ import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
 import com.xceptance.neodymium.scripting.template.selenide.page.PCategory;
 import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
 import com.xceptance.neodymium.scripting.template.selenide.page.PProduct;
+import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PBillingAddress;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PCart;
-import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PNewBillingAddress;
-import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PNewShippingAddress;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PPayment;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PPlaceOrder;
+import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PShippingAddress;
 import com.xceptance.neodymium.scripting.template.selenide.page.user.PLogin;
 
 /**
@@ -38,8 +38,8 @@ public class TOrder extends BasicTest
         PCategory categoryPage;
         PProduct productPage;
         PCart cartPage;
-        PNewShippingAddress shippingAddressPage;
-        PNewBillingAddress billingAddressPage;
+        PShippingAddress shippingAddressPage;
+        PBillingAddress billingAddressPage;
         PPayment paymentPage;
         PPlaceOrder placeOrderPage;
 
@@ -86,33 +86,32 @@ public class TOrder extends BasicTest
         cartPage.validateCartItem(0, product);
         cartPage.validateSubAndLineItemTotalAfterAdd(0, oldSubtotal, "$0.00");
 
-        // TODO Change some steps form here on
-        // setup checkout data
-        final Address shippingAddress = new Address("Jimmy Blue", "Ochsenknecht Records", "6 Wall St", "Burlington", "Massachusetts", "01803", "United States");
-        final boolean sameBillingAddress = false;
-        final Address billingAddress = new Address("Jimmy Blue", "Ochsenknecht Records", "6 Wall St", "Burlington", "Massachusetts", "01803", "United States");
-        final CreditCard creditcard = new CreditCard("Jimmy Blue", "4111111111111111", "xxxx xxxx xxxx 1111", "04", "2018");
         // Goto shipping address and validate
-        shippingAddressPage = cartPage.openCheckoutPage();
+        shippingAddressPage = cartPage.openShippingPage();
         shippingAddressPage.validateStructure();
 
         // Send shipping address and validate billing form
-        billingAddressPage = shippingAddressPage.sendShippingAddressForm(shippingAddress, sameBillingAddress);
+        billingAddressPage = shippingAddressPage.selectShippingAddress(0);
         billingAddressPage.validateStructure();
 
         // Send billing address and validate payment form
-        paymentPage = billingAddressPage.sendBillingAddressForm(billingAddress);
+        paymentPage = billingAddressPage.selectBillingAddress(0);
         paymentPage.validateStructure();
 
+        // setup checkout data for validation
+        final Address shippingAddress = new Address("John Doe", "John Doe Inc.", "5-7 John Doe street", "New York", "NY", "12345", "United States");
+        final Address billingAddress = new Address("John Doe", "John Doe Inc.", "5-7 John Doe street", "New York", "NY", "12345", "United States");
+        final CreditCard creditcard = new CreditCard("John Doe", "4111111111111111", "xxxx xxxx xxxx 1111", "08", "2022");
+
         // Send payment data and validate place order page
-        placeOrderPage = paymentPage.sendPaymentForm(creditcard);
+        placeOrderPage = paymentPage.selectCreditCard(0);
         placeOrderPage.validateStructure();
         placeOrderPage.validateProduct(0, product.getName(), product.getAmount(), product.getStyle(), product.getSize());
         placeOrderPage.validateAddressAndPayment(shippingAddress, billingAddress, creditcard);
 
         // Place order
         homePage = placeOrderPage.placeOrder();
-        // Validate oorder confirmation on Homepage
+        // Validate order confirmation on Homepage
         homePage.validate();
         homePage.validateSuccessfulOrder();
     }

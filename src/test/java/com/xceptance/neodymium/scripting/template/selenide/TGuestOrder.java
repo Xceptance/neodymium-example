@@ -15,7 +15,7 @@ import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
 import com.xceptance.neodymium.scripting.template.selenide.page.PProduct;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PNewBillingAddress;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PCart;
-import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PPayment;
+import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PNewPayment;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PPlaceOrder;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PNewShippingAddress;
 
@@ -38,7 +38,7 @@ public class TGuestOrder extends BasicTest
         PCart cartPage;
         PNewShippingAddress shippingAddressPage;
         PNewBillingAddress billingAddressPage;
-        PPayment paymentPage;
+        PNewPayment paymentPage;
         PPlaceOrder placeOrderPage;
 
         // total product count will be updated throughout the test
@@ -83,7 +83,7 @@ public class TGuestOrder extends BasicTest
         final Address billingAddress = new Address("Jimmy Blue", "Ochsenknecht Records", "6 Wall St", "Burlington", "Massachusetts", "01803", "United States");
         final CreditCard creditcard = new CreditCard("Jimmy Blue", "4111111111111111", "xxxx xxxx xxxx 1111", "04", "2018");
         // Goto shipping address and validate
-        shippingAddressPage = cartPage.openCheckoutPage();
+        shippingAddressPage = cartPage.openNewShippingPage();
         shippingAddressPage.validateStructure();
 
         // Send shipping address and validate billing form
