@@ -2,11 +2,11 @@ package com.xceptance.neodymium.scripting.template.selenide;
 
 import org.junit.Test;
 
-import com.xceptance.multibrowser.TestTargets;
+import com.xceptance.multibrowser.Browser;
 import com.xceptance.neodymium.scripting.template.selenide.flow.FOpenHomepage;
 import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
 
-@TestTargets(
+@Browser(
 {
   "Chrome_1024x768", "FF_1024x768"
 })

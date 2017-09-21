@@ -5,7 +5,7 @@ package com.xceptance.neodymium.scripting.template.selenide;
 
 import org.junit.Test;
 
-import com.xceptance.multibrowser.TestTargets;
+import com.xceptance.multibrowser.Browser;
 import com.xceptance.neodymium.scripting.template.selenide.flow.FOpenHomepage;
 import com.xceptance.neodymium.scripting.template.selenide.objects.Address;
 import com.xceptance.neodymium.scripting.template.selenide.objects.CreditCard;
@@ -13,16 +13,16 @@ import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
 import com.xceptance.neodymium.scripting.template.selenide.page.PCategory;
 import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
 import com.xceptance.neodymium.scripting.template.selenide.page.PProduct;
-import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PNewBillingAddress;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PCart;
+import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PNewBillingAddress;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PNewPayment;
-import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PPlaceOrder;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PNewShippingAddress;
+import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PPlaceOrder;
 
 /**
  * @author pfotenhauer
  */
-@TestTargets(
+@Browser(
 {
   "Chrome_1024x768"
 })
