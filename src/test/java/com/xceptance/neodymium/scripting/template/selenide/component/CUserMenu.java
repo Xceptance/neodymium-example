@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
+import com.xceptance.neodymium.scripting.template.selenide.page.user.PAccountOverView;
 import com.xceptance.neodymium.scripting.template.selenide.page.user.PLogin;
 import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
@@ -68,5 +69,15 @@ public class CUserMenu extends BasicComponent
         openUserMenu();
         $("#userMenu .goToLogin").click();
         return page(PLogin.class);
+    }
+
+    /**
+     * 
+     */
+    public PAccountOverView openAccountOverview()
+    {
+        openUserMenu();
+        $("#userMenu .goToAccountOverview").click();
+        return page(PAccountOverView.class);
     }
 }

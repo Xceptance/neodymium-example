@@ -7,6 +7,8 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.xceptance.neodymium.scripting.template.selenide.objects.User;
+
 public class PHome extends BasicPage
 {
 
@@ -81,5 +83,26 @@ public class PHome extends BasicPage
         // Makes sure the mini menu element has the "logged" class active instead of the "not-logged" class.
         $("#showUserMenu .logged").shouldHave(exactText(""));
 
+    }
+
+    /**
+     * @param user
+     */
+    public void validateSuccessfulLogin(User user)
+    {
+        validateSuccessfulLogin(user.getFirstName());
+    }
+
+    /**
+     * 
+     */
+    public void validateSuccessfulDeletedAccount()
+    {
+        // Wait until javascript makes the success message visible
+        // Waits until javascript makes the success message visible.
+        // Verify that the correct message is displayed
+        $("#successMessage").shouldBe(visible);
+        // The message displays the correct text.
+        $("#successMessage").shouldHave(exactText("× Your account has been deleted. We hope to see you soon again!"));
     }
 }

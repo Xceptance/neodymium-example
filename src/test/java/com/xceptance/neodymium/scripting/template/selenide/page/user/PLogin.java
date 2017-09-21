@@ -4,11 +4,13 @@
 package com.xceptance.neodymium.scripting.template.selenide.page.user;
 
 import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exactValue;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
+import com.xceptance.neodymium.scripting.template.selenide.objects.User;
 import com.xceptance.neodymium.scripting.template.selenide.page.BasicPage;
 import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
 
@@ -69,6 +71,12 @@ public class PLogin extends BasicPage
      */
     public PHome sendLoginform(String email, String password)
     {
+        sendFormWithData(email, password);
+        return page(PHome.class);
+    }
+
+    private void sendFormWithData(String email, String password)
+    {
         // Input email
         // Fill the email field with the parameter.
         $("#email").val(email);
@@ -78,8 +86,59 @@ public class PLogin extends BasicPage
         // Log in and open the homepage
         // Click on the Sign In button.
         $("#btnSignIn").click();
-
-        return page(PHome.class);
     }
 
+    /**
+     * @return
+     */
+    public PRegister openRegister()
+    {
+        $("#linkRegister").click();
+        return page(PRegister.class);
+    }
+
+    /**
+     * 
+     */
+    public void validateSuccessfulLRegistration()
+    {
+        // Wait until javascript makes the success message visible
+        // Waits until javascript makes the success message visible.
+        $("#successMessage").shouldBe(visible);
+        // The message displays the correct text.
+        $("#successMessage").shouldHave(exactText("× Your account has been created. Log in with your email address and password."));
+    }
+
+    /**
+     * @param user
+     * @return
+     */
+    public PHome sendLoginform(User user)
+    {
+        return sendLoginform(user.getEMail(), user.getPassword());
+    }
+
+    /**
+     * @param eMail
+     */
+    public void validateWrongEmail(String eMail)
+    {
+        // Wait until javascript makes the error message visible
+        // Waits until javascript makes the error message visible.
+        $("#errorMessage").shouldBe(visible);
+        // Makes sure the correct text is displayed.
+        $("#errorMessage").shouldHave(exactText("× The email address you entered doesn't exist. Please try again."));
+        // Verify that the email address is still there
+        // Asserts the email field contains the parameter.
+        $("#email").shouldHave(exactValue(eMail));
+    }
+
+    /**
+     * @param user
+     */
+    public PLogin sendFalseLoginform(User user)
+    {
+        sendFormWithData(user.getEMail(), user.getPassword());
+        return page(PLogin.class);
+    }
 }
