@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selenide.page;
 
 import com.xceptance.neodymium.scripting.template.selenide.page.user.PAccountOverView;
 import com.xceptance.neodymium.scripting.template.selenide.page.user.PLogin;
+import com.xceptance.neodymium.scripting.template.selenide.page.user.PRegister;
 import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
 /**
@@ -79,5 +80,15 @@ public class CUserMenu extends BasicComponent
         openUserMenu();
         $("#userMenu .goToAccountOverview").click();
         return page(PAccountOverView.class);
+    }
+
+    /**
+     * @return
+     */
+    public PRegister openRegister()
+    {
+        openUserMenu();
+        $("#userMenu a.goToRegistration").click();
+        return page(PRegister.class);
     }
 }
