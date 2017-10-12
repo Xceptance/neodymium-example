@@ -2,7 +2,7 @@ package com.xceptance.neodymium.scripting.template.selenide;
 
 import org.junit.Test;
 
-import com.xceptance.multibrowser.Browser;
+import com.xceptance.neodymium.multibrowser.Browser;
 import com.xceptance.neodymium.scripting.template.selenide.flow.FOpenHomepage;
 import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
 import com.xceptance.neodymium.scripting.template.selenide.page.PCategory;
