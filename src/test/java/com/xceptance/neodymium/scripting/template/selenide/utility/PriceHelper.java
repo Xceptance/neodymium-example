@@ -4,6 +4,8 @@
 package com.xceptance.neodymium.scripting.template.selenide.utility;
 
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 
 /**
  * @author pfotenhauer
@@ -31,6 +33,7 @@ public class PriceHelper
     private static String format(float input)
     {
         DecimalFormat decimalFormat = new DecimalFormat();
+        decimalFormat.setDecimalFormatSymbols(new DecimalFormatSymbols(Locale.US));
         decimalFormat.setMinimumFractionDigits(2);
         decimalFormat.setMaximumFractionDigits(2);
         return addCurrency(decimalFormat.format(input));
