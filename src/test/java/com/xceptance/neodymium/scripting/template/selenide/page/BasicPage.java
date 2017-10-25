@@ -30,11 +30,11 @@ public abstract class BasicPage implements PageObject
         if (Settings.IMPLICITVALIDATION)
         {
             validatePage();
-            validateBasiComponents();
+            validateBasicComponents();
         }
     }
 
-    private void validateBasiComponents()
+    private void validateBasicComponents()
     {
         header();
         footer();
