@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.xceptance.neodymium.scripting.template.selenide;
+package com.xceptance.neodymium.scripting.template.selenide.tests.smoke;
 
 import org.junit.Test;
 
@@ -10,6 +10,7 @@ import com.xceptance.neodymium.scripting.template.selenide.flow.FOpenHomepage;
 import com.xceptance.neodymium.scripting.template.selenide.page.PCategory;
 import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
 import com.xceptance.neodymium.scripting.template.selenide.page.PProduct;
+import com.xceptance.neodymium.scripting.template.selenide.tests.BasicTest;
 
 /**
  * @author pfotenhauer

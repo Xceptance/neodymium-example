@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.xceptance.neodymium.scripting.template.selenide;
+package com.xceptance.neodymium.scripting.template.selenide.tests.smoke;
 
 import org.junit.Test;
 
@@ -19,6 +19,7 @@ import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PPaymen
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PPlaceOrder;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PShippingAddress;
 import com.xceptance.neodymium.scripting.template.selenide.page.user.PLogin;
+import com.xceptance.neodymium.scripting.template.selenide.tests.BasicTest;
 
 /**
  * @author pfotenhauer
