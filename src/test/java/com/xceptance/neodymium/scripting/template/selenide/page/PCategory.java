@@ -79,6 +79,30 @@ public class PCategory extends BasicPage
     }
 
     /**
+     * @param index
+     * @return
+     */
+    public PProduct clickProductByIndex(int index)
+    {
+        // Open the product detail page
+        // Click on the product's image and open the product overview page
+        // Click the product link to open the product detail page
+        $("#product" + index + " img").click();
+        return page(PProduct.class);
+
+    }
+
+    /**
+     * @param index
+     * @return
+     */
+    public String getProductNameByIndex(int index)
+    {
+        // Get the product name
+        return $("#product" + index + " .pInfo .pName").text();
+    }
+
+    /**
      * @param searchTerm
      * @param searchTermExpectedCount
      */
