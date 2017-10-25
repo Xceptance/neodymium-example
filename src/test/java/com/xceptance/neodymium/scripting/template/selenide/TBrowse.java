@@ -39,8 +39,8 @@ public class TBrowse extends BasicTest
         categoryPage.validate(categoryName);
 
         // Goto product page
-        final String productName = categoryPage.getProducNametByIndex(1, 1);
-        productPage = categoryPage.clickProductByIndex(1, 1);
+        final String productName = categoryPage.getProductNameByPosition(1, 1);
+        productPage = categoryPage.clickProductByPosition(1, 1);
         productPage.validate(productName);
 
         // Goto category
@@ -49,8 +49,8 @@ public class TBrowse extends BasicTest
         categoryPage.validate(categoryName2);
 
         // Goto product page
-        final String productName2 = categoryPage.getProducNametByIndex(2, 2);
-        productPage = categoryPage.clickProductByIndex(2, 2);
+        final String productName2 = categoryPage.getProductNameByPosition(2, 2);
+        productPage = categoryPage.clickProductByPosition(2, 2);
         productPage.validate(productName2);
 
         // Goto category
@@ -59,8 +59,8 @@ public class TBrowse extends BasicTest
         categoryPage.validate(categoryName3);
 
         // Goto product page
-        final String productName3 = categoryPage.getProducNametByIndex(2, 3);
-        productPage = categoryPage.clickProductByIndex(2, 3);
+        final String productName3 = categoryPage.getProductNameByPosition(2, 3);
+        productPage = categoryPage.clickProductByPosition(2, 3);
         productPage.validate(productName3);
 
     }

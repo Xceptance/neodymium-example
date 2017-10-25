@@ -60,7 +60,7 @@ public class PCategory extends BasicPage
      * @param column
      * @return
      */
-    public PProduct clickProductByIndex(int row, int column)
+    public PProduct clickProductByPosition(int row, int column)
     {
         // Open the product detail page
         // Clicks a product by index. Because of the html code, this requires x and y coordinates.
@@ -69,9 +69,11 @@ public class PCategory extends BasicPage
     }
 
     /**
+     * @param row
+     * @param column
      * @return
      */
-    public String getProducNametByIndex(int row, int column)
+    public String getProductNameByPosition(int row, int column)
     {
         return $("#productOverview > .row:nth-child(" + row + ") li:nth-of-type(" + column + ") h4.pName").text();
     }

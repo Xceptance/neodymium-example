@@ -70,8 +70,8 @@ public class TOrder extends BasicTest
         categoryPage.validate(categoryName);
 
         // Goto product page
-        final String productName = categoryPage.getProducNametByIndex(2, 1);
-        productPage = categoryPage.clickProductByIndex(2, 1);
+        final String productName = categoryPage.getProductNameByPosition(2, 1);
+        productPage = categoryPage.clickProductByPosition(2, 1);
         productPage.validate(productName);
 
         productPage.addToCart("32 x 24 in", "matte");

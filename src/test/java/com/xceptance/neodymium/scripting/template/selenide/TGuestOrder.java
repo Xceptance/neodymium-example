@@ -61,8 +61,8 @@ public class TGuestOrder extends BasicTest
         categoryPage.validate(categoryName);
 
         // Goto product page
-        final String productName = categoryPage.getProducNametByIndex(1, 1);
-        productPage = categoryPage.clickProductByIndex(1, 1);
+        final String productName = categoryPage.getProductNameByPosition(1, 1);
+        productPage = categoryPage.clickProductByPosition(1, 1);
         productPage.validate(productName);
 
         productPage.addToCart("64 x 48 in", "gloss");

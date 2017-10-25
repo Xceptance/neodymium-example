@@ -8,7 +8,7 @@ import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
 
 @Browser(
 {
-  "Chrome_1024x768", "FF_1024x768"
+  "Chrome_1024x768"
 })
 public class TVisit extends BasicTest
 {
