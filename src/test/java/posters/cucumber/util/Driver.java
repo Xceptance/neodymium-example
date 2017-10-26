@@ -52,6 +52,7 @@ public class Driver
         if (webDriverProperties.reuseWebDriver())
         {
             WebDriverCache.getIntance().putWebDriverForTag(Driver.browser, driver);
+            driver = null;
         }
         else
         {
