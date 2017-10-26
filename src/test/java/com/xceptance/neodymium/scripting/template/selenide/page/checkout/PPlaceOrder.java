@@ -143,7 +143,7 @@ public class PPlaceOrder extends CheckoutPage
     {
         // Opens the homepage
         // Clicks the Order button
-        $("#btnOrder").click();
+        $("#btnOrder").scrollTo().click();
 
         return page(PHome.class);
     }

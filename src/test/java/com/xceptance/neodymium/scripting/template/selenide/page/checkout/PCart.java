@@ -194,7 +194,7 @@ public class PCart extends BasicPage
         // Stores the new amount in an outside variable
         // Click the update button
         // Clicks the update button for the product
-        $("#product" + index + " .btnUpdateProduct").click();
+        $("#product" + index + " .btnUpdateProduct").scrollTo().click();
     }
 
     /**
@@ -204,13 +204,13 @@ public class PCart extends BasicPage
     {
         // Click delete button
         // Click on the delete button for the product
-        $("#btnRemoveProdCount" + index).click();
+        $("#btnRemoveProdCount" + index).scrollTo().click();
         // Wait for the second delete button to appear
         // Wait until the confirmation button is visible
         $("#buttonDelete").waitUntil(visible, Settings.timeout);
         // Click delete button
         // Click the confirmation button
-        $("#buttonDelete").click();
+        $("#buttonDelete").scrollTo().click();
         // Wait until the confirmation button is gone
         $("#buttonDelete").waitUntil(hidden, Settings.timeout);
         // Reload page to let IDs adjust to the deletion
@@ -233,13 +233,13 @@ public class PCart extends BasicPage
      */
     public PProduct openProductPage(int index)
     {
-        $("#product" + index + " img").click();
+        $("#product" + index + " img").scrollTo().click();
         return page(PProduct.class);
     }
 
     private void clickCheckoutButton()
     {
-        $("#btnStartCheckout").click();
+        $("#btnStartCheckout").scrollTo().click();
     }
 
     /**

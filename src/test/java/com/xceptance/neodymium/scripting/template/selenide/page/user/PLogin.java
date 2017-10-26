@@ -85,7 +85,7 @@ public class PLogin extends BasicPage
         $("#password").val(password);
         // Log in and open the homepage
         // Click on the Sign In button.
-        $("#btnSignIn").click();
+        $("#btnSignIn").scrollTo().click();
     }
 
     /**
@@ -93,7 +93,7 @@ public class PLogin extends BasicPage
      */
     public PRegister openRegister()
     {
-        $("#linkRegister").click();
+        $("#linkRegister").scrollTo().click();
         return page(PRegister.class);
     }
 

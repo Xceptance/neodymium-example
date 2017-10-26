@@ -42,7 +42,7 @@ public class CUserMenu extends BasicComponent
     public void openUserMenu()
     {
         // Click the mini cart icon
-        $("#showUserMenu").click();
+        $("#showUserMenu").scrollTo().click();
         // Wait for mini cart to appear
         // Wait for the mini cart to show
         $("#userMenu").waitUntil(visible, Settings.timeout);
@@ -54,7 +54,7 @@ public class CUserMenu extends BasicComponent
     public void closeUserMenu()
     {
         // Click the mini cart icon again
-        $("#showUserMenu").click();
+        $("#showUserMenu").scrollTo().click();
         // Move the mouse out of the area
         $("a#brand").hover();
         // Wait for mini cart to disappear
@@ -68,7 +68,7 @@ public class CUserMenu extends BasicComponent
     public PLogin openLogin()
     {
         openUserMenu();
-        $("#userMenu .goToLogin").click();
+        $("#userMenu .goToLogin").scrollTo().click();
         return page(PLogin.class);
     }
 
@@ -78,7 +78,7 @@ public class CUserMenu extends BasicComponent
     public PAccountOverView openAccountOverview()
     {
         openUserMenu();
-        $("#userMenu .goToAccountOverview").click();
+        $("#userMenu .goToAccountOverview").scrollTo().click();
         return page(PAccountOverView.class);
     }
 
@@ -88,7 +88,7 @@ public class CUserMenu extends BasicComponent
     public PRegister openRegister()
     {
         openUserMenu();
-        $("#userMenu a.goToRegistration").click();
+        $("#userMenu a.goToRegistration").scrollTo().click();
         return page(PRegister.class);
     }
 }

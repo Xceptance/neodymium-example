@@ -64,7 +64,8 @@ public class PCategory extends BasicPage
     {
         // Open the product detail page
         // Clicks a product by index. Because of the html code, this requires x and y coordinates.
-        $("#productOverview > .row:nth-child(" + row + ") li:nth-of-type(" + column + ") h4.pName").click();
+
+        $("#productOverview > .row:nth-child(" + row + ") li:nth-of-type(" + column + ") h4.pName").scrollTo().click();
         return page(PProduct.class);
     }
 
@@ -87,7 +88,7 @@ public class PCategory extends BasicPage
         // Open the product detail page
         // Click on the product's image and open the product overview page
         // Click the product link to open the product detail page
-        $("#product" + index + " img").click();
+        $("#product" + index + " img").scrollTo().click();
         return page(PProduct.class);
 
     }

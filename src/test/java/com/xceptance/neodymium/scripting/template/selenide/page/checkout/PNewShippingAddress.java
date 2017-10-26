@@ -107,7 +107,7 @@ public class PNewShippingAddress extends CheckoutPage
      *            Decision whether or not use the same billing address
      */
     public PNewBillingAddress sendShippingAddressForm(String name, String company, String address, String city,
-                                                   String state, String zip, String country, boolean sameBillingAddress)
+                                                      String state, String zip, String country, boolean sameBillingAddress)
     {
         // Name
         // Enter the name parameter
@@ -134,15 +134,15 @@ public class PNewShippingAddress extends CheckoutPage
         // Click the radio button for Yes or No
         if (sameBillingAddress)
         {
-            $("#billEqualShipp-Yes").click();
+            $("#billEqualShipp-Yes").scrollTo().click();
         }
         else
         {
-            $("#billEqualShipp-No").click();
+            $("#billEqualShipp-No").scrollTo().click();
         }
         // Open the billing addresses or payment options page, depending on which radio button you checked
         // Click on Continue
-        $("#btnAddDelAddr").click();
+        $("#btnAddDelAddr").scrollTo().click();
 
         return page(PNewBillingAddress.class);
     }

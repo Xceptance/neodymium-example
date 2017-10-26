@@ -90,7 +90,7 @@ public class PNewPayment extends CheckoutPage
         $("#expirationDateYear").selectOption(year);
         // Opens the order overview page
         // Clicks the Continue button
-        $("#btnAddPayment").click();
+        $("#btnAddPayment").scrollTo().click();
 
         return page(PPlaceOrder.class);
     }

@@ -100,7 +100,7 @@ public class PNewBillingAddress extends CheckoutPage
      *            The country you want to use, currently only United States or Germany
      */
     public PNewPayment sendBillingAddressForm(String name, String company, String address, String city,
-                                           String state, String zip, String country)
+                                              String state, String zip, String country)
     {
         // Name
         // Enter the name parameter
@@ -125,7 +125,7 @@ public class PNewBillingAddress extends CheckoutPage
         $("#country").selectOption(country);
         // Open the billing addresses or payment options page, depending on which radio button you checked
         // Click on Continue
-        $("#btnAddBillAddr").click();
+        $("#btnAddBillAddr").scrollTo().click();
 
         return page(PNewPayment.class);
     }

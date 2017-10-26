@@ -59,7 +59,7 @@ public class PDeleteAccount extends BasicPage
         $("#password").setValue(password);
         // Delete account and open the homepage
         // click the confirmation button
-        $("#btnDeleteAccount").click();
+        $("#btnDeleteAccount").scrollTo().click();
 
         return page(PHome.class);
     }
