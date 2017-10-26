@@ -18,6 +18,8 @@ import com.xceptance.neodymium.scripting.template.selenide.objects.User;
 import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
 import com.xceptance.neodymium.scripting.template.selenide.page.user.PLogin;
 import com.xceptance.neodymium.scripting.template.selenide.page.user.PRegister;
+import com.xceptance.neodymium.scripting.template.selenide.tests.BasicTest;
+import com.xceptance.neodymium.scripting.template.selenide.tests.BasicTest;
 import com.xceptance.neodymium.testdata.GenericFileReader;
 
 /**
