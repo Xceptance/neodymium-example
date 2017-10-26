@@ -6,9 +6,7 @@ package com.xceptance.neodymium.scripting.template.selenide;
 import org.junit.After;
 import org.junit.Test;
 
-import com.xceptance.neodymium.datapool.core.SourceDataPool;
 import com.xceptance.neodymium.multibrowser.Browser;
-import com.xceptance.neodymium.scripting.template.datapool.UserPool;
 import com.xceptance.neodymium.scripting.template.selenide.flow.FDeleteUser;
 import com.xceptance.neodymium.scripting.template.selenide.flow.FOpenHomepage;
 import com.xceptance.neodymium.scripting.template.selenide.objects.User;
@@ -25,7 +23,7 @@ import com.xceptance.neodymium.scripting.template.selenide.page.user.PRegister;
 })
 public class TRegisterV2 extends BasicTest
 {
-    @SourceDataPool(UserPool.class)
+    // @SourceDataPool(UserPool.class)
     public User user;
 
     @Test
