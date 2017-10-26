@@ -119,6 +119,15 @@ public class PLogin extends BasicPage
     }
 
     /**
+     * @param user
+     */
+    public PLogin sendFalseLoginform(User user)
+    {
+        sendFormWithData(user.getEMail(), user.getPassword());
+        return page(PLogin.class);
+    }
+
+    /**
      * @param eMail
      */
     public void validateWrongEmail(String eMail)
@@ -134,11 +143,18 @@ public class PLogin extends BasicPage
     }
 
     /**
-     * @param user
+     * @param eMail
      */
-    public PLogin sendFalseLoginform(User user)
+    public void validateWrongPassword(String eMail)
     {
-        sendFormWithData(user.getEMail(), user.getPassword());
-        return page(PLogin.class);
+        // Wait until javascript makes the error message visible
+        // Waits until javascript makes the error message visible.
+        $("#errorMessage").shouldBe(visible);
+        // Makes sure the correct text is displayed.
+        $("#errorMessage").shouldHave(exactText("× The password you entered is incorrect. Please try again."));
+        // Verify that the email address is still there
+        // Asserts the email field contains the parameter.
+        $("#email").shouldHave(exactValue(eMail));
     }
+
 }

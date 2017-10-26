@@ -141,4 +141,13 @@ public abstract class BasicPage implements PageObject
         }
         return userMenu;
     }
+
+    /**
+     * 
+     */
+    public void validateNoErrorMessageOnPage()
+    {
+        // Check that the error message is not visible.
+        $("#errorMessage").shouldNotBe(visible);
+    }
 }
