@@ -87,7 +87,7 @@ public class PRegister extends BasicPage
         $("#passwordAgain").val(password);
         // Register and open the login page if successful
         // Click on the Register Button
-        $("#btnRegister").click();
+        $("#btnRegister").scrollTo().click();
 
         return page(PLogin.class);
     }

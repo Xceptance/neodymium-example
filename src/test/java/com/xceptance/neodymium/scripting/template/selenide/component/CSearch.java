@@ -35,6 +35,6 @@ public class CSearch extends BasicComponent
 
     public void openSearch()
     {
-        $("#header-search-trigger").click();
+        $("#header-search-trigger").scrollTo().click();
     }
 }

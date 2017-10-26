@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.xceptance.neodymium.scripting.template.selenide;
+package com.xceptance.neodymium.scripting.template.selenide.tests.smoke;
 
 import org.junit.Test;
 
@@ -19,6 +19,7 @@ import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PPaymen
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PPlaceOrder;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PShippingAddress;
 import com.xceptance.neodymium.scripting.template.selenide.page.user.PLogin;
+import com.xceptance.neodymium.scripting.template.selenide.tests.BasicTest;
 
 /**
  * @author pfotenhauer
@@ -70,8 +71,8 @@ public class TOrder extends BasicTest
         categoryPage.validate(categoryName);
 
         // Goto product page
-        final String productName = categoryPage.getProducNametByIndex(2, 1);
-        productPage = categoryPage.clickProductByIndex(2, 1);
+        final String productName = categoryPage.getProductNameByPosition(2, 1);
+        productPage = categoryPage.clickProductByPosition(2, 1);
         productPage.validate(productName);
 
         productPage.addToCart("32 x 24 in", "matte");

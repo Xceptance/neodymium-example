@@ -1,5 +1,9 @@
 package com.xceptance.neodymium.scripting.template.selenide.page;
 
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
+
 import org.junit.Assert;
 
 import com.xceptance.neodymium.scripting.template.selenide.component.CFooter;
@@ -30,11 +34,11 @@ public abstract class BasicPage implements PageObject
         if (Settings.IMPLICITVALIDATION)
         {
             validatePage();
-            validateBasiComponents();
+            validateBasicComponents();
         }
     }
 
-    private void validateBasiComponents()
+    private void validateBasicComponents()
     {
         header();
         footer();
@@ -140,5 +144,32 @@ public abstract class BasicPage implements PageObject
             userMenu.validateComponent();
         }
         return userMenu;
+    }
+
+    protected void validateSuccessMessage(String message)
+    {
+        // Wait until javascript makes the success message visible
+        // Waits until javascript makes the success message visible.
+        $("#successMessage").shouldBe(visible);
+        // Makes sure the correct text is displayed.
+        $("#successMessage").shouldHave(exactText("× " + message));
+    }
+
+    protected void validateErrorMessage(String message)
+    {
+        // Wait until javascript makes the error message visible
+        // Waits until javascript makes the error message visible.
+        $("#errorMessage").shouldBe(visible);
+        // Makes sure the correct text is displayed.
+        $("#errorMessage").shouldHave(exactText("× " + message));
+    }
+
+    /**
+     * 
+     */
+    public void validateNoErrorMessageOnPage()
+    {
+        // Check that the error message is not visible.
+        $("#errorMessage").shouldNotBe(visible);
     }
 }

@@ -32,7 +32,7 @@ public class CTopNav extends BasicComponent
      */
     public PCategory clickCategory(String categoryName)
     {
-        $(By.linkText(categoryName)).click();
+        $(By.linkText(categoryName)).scrollTo().click();
         return page(PCategory.class);
     }
 

@@ -50,12 +50,7 @@ public class PHome extends BasicPage
 
     public void validateSuccessfulOrder()
     {
-        // Wait until javascript makes the success message visible
-        // Waits until javascript makes the success message visible.
-        // Verify that the correct message is displayed
-        $("#successMessage").shouldBe(visible);
-        // The message displays the correct text.
-        $("#successMessage").shouldHave(exactText("× Thank you for shopping with us!"));
+        validateSuccessMessage("Thank you for shopping with us!");
         // Verify that the mini cart is empty again
         miniCart().validateTotalCount(0);
         miniCart().validateSubtotal("$0.00");
@@ -67,11 +62,7 @@ public class PHome extends BasicPage
      */
     public void validateSuccessfulLogin(String firstName)
     {
-        // Wait until javascript makes the success message visible
-        // Waits until javascript makes the success message visible.
-        $("#successMessage").shouldBe(visible);
-        // The message displays the correct text.
-        $("#successMessage").shouldHave(exactText("× Login successful. Have fun in our shop!"));
+        validateSuccessMessage("Login successful. Have fun in our shop!");
         // Verify that the user menu shows your first name
         // Click on the mini user menu symbol
         userMenu().openUserMenu();
@@ -98,11 +89,6 @@ public class PHome extends BasicPage
      */
     public void validateSuccessfulDeletedAccount()
     {
-        // Wait until javascript makes the success message visible
-        // Waits until javascript makes the success message visible.
-        // Verify that the correct message is displayed
-        $("#successMessage").shouldBe(visible);
-        // The message displays the correct text.
-        $("#successMessage").shouldHave(exactText("× Your account has been deleted. We hope to see you soon again!"));
+        validateSuccessMessage("Your account has been deleted. We hope to see you soon again!");
     }
 }

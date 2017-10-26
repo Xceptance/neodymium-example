@@ -1,4 +1,4 @@
-package com.xceptance.neodymium.scripting.template.selenide;
+package com.xceptance.neodymium.scripting.template.selenide.tests.smoke;
 
 import org.junit.Test;
 
@@ -9,6 +9,7 @@ import com.xceptance.neodymium.scripting.template.selenide.page.PCategory;
 import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
 import com.xceptance.neodymium.scripting.template.selenide.page.PProduct;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PCart;
+import com.xceptance.neodymium.scripting.template.selenide.tests.BasicTest;
 
 @Browser(
 {
@@ -44,8 +45,8 @@ public class TAddToCart extends BasicTest
         categoryPage2.validateStructure();
 
         // Goto product page and add to cart
-        final String productName = categoryPage2.getProducNametByIndex(1, 1);
-        PProduct productPage = categoryPage2.clickProductByIndex(1, 1);
+        final String productName = categoryPage2.getProductNameByPosition(1, 1);
+        PProduct productPage = categoryPage2.clickProductByPosition(1, 1);
         productPage.validateStructure();
         productPage.validateProductName(productName);
         productPage.addToCart("16 x 12 in", "matte");
@@ -69,10 +70,10 @@ public class TAddToCart extends BasicTest
         // TODO Discuss reuse of variable or new instance
         PCategory categoryPage3 = cartPage.search().categoryPageResult(searchTerm);
         categoryPage3.validateSearchHits(searchTerm, searchTermExpectedCount);
-        final String productName2 = categoryPage3.getProducNametByIndex(1, 1);
+        final String productName2 = categoryPage3.getProductNameByPosition(1, 1);
 
         // Goto product page and add to cart
-        PProduct productPage2 = categoryPage3.clickProductByIndex(1, 1);
+        PProduct productPage2 = categoryPage3.clickProductByPosition(1, 1);
         productPage2.validateStructure();
         productPage2.validateProductName(productName2);
         productPage2.addToCart("64 x 48 in", "gloss");

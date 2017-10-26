@@ -33,7 +33,7 @@ public class CMiniCart extends BasicComponent
     public void openMiniCart()
     {
         // Click the mini cart icon
-        $("#headerCartOverview").click();
+        $("#headerCartOverview").scrollTo().click();
         // Wait for mini cart to appear
         // Wait for the mini cart to show
         $("#miniCartMenu").waitUntil(visible, Settings.timeout);
@@ -42,7 +42,7 @@ public class CMiniCart extends BasicComponent
     public void closeMiniCart()
     {
         // Click the mini cart icon again
-        $("#headerCartOverview").click();
+        $("#headerCartOverview").scrollTo().click();
         // Move the mouse out of the area
         $("a#brand").hover();
         // Wait for mini cart to disappear
@@ -73,7 +73,7 @@ public class CMiniCart extends BasicComponent
     {
         // Open the cart
         // Click on the button to go to the Cart
-        $("#miniCartMenu .goToCart").click();
+        $("#miniCartMenu .goToCart").scrollTo().click();
         return page(PCart.class);
     }
 

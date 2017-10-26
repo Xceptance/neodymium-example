@@ -85,7 +85,7 @@ public class PLogin extends BasicPage
         $("#password").val(password);
         // Log in and open the homepage
         // Click on the Sign In button.
-        $("#btnSignIn").click();
+        $("#btnSignIn").scrollTo().click();
     }
 
     /**
@@ -93,7 +93,7 @@ public class PLogin extends BasicPage
      */
     public PRegister openRegister()
     {
-        $("#linkRegister").click();
+        $("#linkRegister").scrollTo().click();
         return page(PRegister.class);
     }
 
@@ -102,11 +102,7 @@ public class PLogin extends BasicPage
      */
     public void validateSuccessfulLRegistration()
     {
-        // Wait until javascript makes the success message visible
-        // Waits until javascript makes the success message visible.
-        $("#successMessage").shouldBe(visible);
-        // The message displays the correct text.
-        $("#successMessage").shouldHave(exactText("× Your account has been created. Log in with your email address and password."));
+        validateSuccessMessage("Your account has been created. Log in with your email address and password.");
     }
 
     /**
@@ -119,21 +115,6 @@ public class PLogin extends BasicPage
     }
 
     /**
-     * @param eMail
-     */
-    public void validateWrongEmail(String eMail)
-    {
-        // Wait until javascript makes the error message visible
-        // Waits until javascript makes the error message visible.
-        $("#errorMessage").shouldBe(visible);
-        // Makes sure the correct text is displayed.
-        $("#errorMessage").shouldHave(exactText("× The email address you entered doesn't exist. Please try again."));
-        // Verify that the email address is still there
-        // Asserts the email field contains the parameter.
-        $("#email").shouldHave(exactValue(eMail));
-    }
-
-    /**
      * @param user
      */
     public PLogin sendFalseLoginform(User user)
@@ -141,4 +122,23 @@ public class PLogin extends BasicPage
         sendFormWithData(user.getEMail(), user.getPassword());
         return page(PLogin.class);
     }
+
+    /**
+     * @param eMail
+     */
+    public void validateWrongEmail(String eMail)
+    {
+        validateErrorMessage("The email address you entered doesn't exist. Please try again.");
+        $("#email").shouldHave(exactValue(eMail));
+    }
+
+    /**
+     * @param eMail
+     */
+    public void validateWrongPassword(String eMail)
+    {
+        validateErrorMessage("The password you entered is incorrect. Please try again.");
+        $("#email").shouldHave(exactValue(eMail));
+    }
+
 }

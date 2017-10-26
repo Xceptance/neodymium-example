@@ -60,7 +60,7 @@ public class PProduct extends BasicPage
         $("#selectSize").selectOptionContainingText(size);
         // Click the Add to cart button
         // click("css= #btnAddToCart");
-        $("#btnAddToCart").click();
+        $("#btnAddToCart").scrollTo().click();
     }
 
     public String getProductName()

@@ -50,10 +50,10 @@ public class PShippingAddress extends CheckoutPage
     {
         // Select address
         // Checks the radio button belonging to the delivery address with index @{index}
-        $("#delAddr" + index + " input").click();
+        $("#delAddr" + index + " input").scrollTo().click();
         // Open the billing address page in the checkout process
         // Clicks the continue button
-        $("#btnUseAddressContinue").click();
+        $("#btnUseAddressContinue").scrollTo().click();
 
         return page(PBillingAddress.class);
     }

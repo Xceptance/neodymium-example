@@ -60,20 +60,47 @@ public class PCategory extends BasicPage
      * @param column
      * @return
      */
-    public PProduct clickProductByIndex(int row, int column)
+    public PProduct clickProductByPosition(int row, int column)
     {
         // Open the product detail page
         // Clicks a product by index. Because of the html code, this requires x and y coordinates.
-        $("#productOverview > .row:nth-child(" + row + ") li:nth-of-type(" + column + ") h4.pName").click();
+
+        $("#productOverview > .row:nth-child(" + row + ") li:nth-of-type(" + column + ") h4.pName").scrollTo().click();
         return page(PProduct.class);
     }
 
     /**
+     * @param row
+     * @param column
      * @return
      */
-    public String getProducNametByIndex(int row, int column)
+    public String getProductNameByPosition(int row, int column)
     {
         return $("#productOverview > .row:nth-child(" + row + ") li:nth-of-type(" + column + ") h4.pName").text();
+    }
+
+    /**
+     * @param index
+     * @return
+     */
+    public PProduct clickProductByIndex(int index)
+    {
+        // Open the product detail page
+        // Click on the product's image and open the product overview page
+        // Click the product link to open the product detail page
+        $("#product" + index + " img").scrollTo().click();
+        return page(PProduct.class);
+
+    }
+
+    /**
+     * @param index
+     * @return
+     */
+    public String getProductNameByIndex(int index)
+    {
+        // Get the product name
+        return $("#product" + index + " .pInfo .pName").text();
     }
 
     /**

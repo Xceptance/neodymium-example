@@ -50,10 +50,10 @@ public class PPayment extends CheckoutPage
     {
         // Select address
         // Checks the radio button belonging to the delivery address with index @{index}
-        $("#payment" + index + " input").click();
+        $("#payment" + index + " input").scrollTo().click();
         // Open the billing address page in the checkout process
         // Clicks the continue button
-        $("#btnUsePayment").click();
+        $("#btnUsePayment").scrollTo().click();
 
         return page(PPlaceOrder.class);
     }

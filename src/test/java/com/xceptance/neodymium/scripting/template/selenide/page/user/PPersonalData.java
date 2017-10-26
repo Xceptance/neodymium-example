@@ -52,7 +52,7 @@ public class PPersonalData extends BasicPage
     {
         // Open the delete account page
         // Clicks the button to get to the Delete Account page
-        $("#btnDeleteAccount").click();
+        $("#btnDeleteAccount").scrollTo().click();
         return page(PDeleteAccount.class);
     }
 }

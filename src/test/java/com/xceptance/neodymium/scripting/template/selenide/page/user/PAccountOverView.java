@@ -57,7 +57,7 @@ public class PAccountOverView extends BasicPage
     {
         // Open the personal data page
         // Click on the link to Personal Data
-        $("#linkPersonalData").click();
+        $("#linkPersonalData").scrollTo().click();
         return page(PPersonalData.class);
     }
 }

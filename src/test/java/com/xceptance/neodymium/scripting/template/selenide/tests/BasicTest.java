@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.xceptance.neodymium.scripting.template.selenide;
+package com.xceptance.neodymium.scripting.template.selenide.tests;
 
 import org.junit.runner.RunWith;
 
@@ -13,6 +13,6 @@ import com.xceptance.neodymium.NeodymiumRunner;
 @RunWith(NeodymiumRunner.class)
 public class BasicTest
 {
-    static final String SHIPPINGCOSTS = "$7.00";
+    protected static final String SHIPPINGCOSTS = "$7.00";
 
 }
