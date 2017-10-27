@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Selenide.page;
 import com.xceptance.neodymium.scripting.template.selenide.page.PCategory;
 import com.xceptance.neodymium.scripting.template.selenide.page.PNoHits;
 
-public class CSearch extends BasicComponent
+public class Search extends AbstractComponent
 {
 
     @Override

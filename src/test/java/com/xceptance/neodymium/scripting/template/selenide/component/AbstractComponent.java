@@ -2,11 +2,9 @@ package com.xceptance.neodymium.scripting.template.selenide.component;
 
 import org.junit.Assert;
 
-public abstract class BasicComponent
+public abstract class AbstractComponent
 {
-
-    // TODO rename Components
-    public BasicComponent()
+    public AbstractComponent()
     {
         validateComponent();
     }

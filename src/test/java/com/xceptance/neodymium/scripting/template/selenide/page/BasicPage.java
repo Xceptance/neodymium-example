@@ -6,29 +6,29 @@ import static com.codeborne.selenide.Selenide.$;
 
 import org.junit.Assert;
 
-import com.xceptance.neodymium.scripting.template.selenide.component.CFooter;
-import com.xceptance.neodymium.scripting.template.selenide.component.CHeader;
-import com.xceptance.neodymium.scripting.template.selenide.component.CMiniCart;
-import com.xceptance.neodymium.scripting.template.selenide.component.CSearch;
-import com.xceptance.neodymium.scripting.template.selenide.component.CTopNav;
-import com.xceptance.neodymium.scripting.template.selenide.component.CUserMenu;
+import com.xceptance.neodymium.scripting.template.selenide.component.Footer;
+import com.xceptance.neodymium.scripting.template.selenide.component.Header;
+import com.xceptance.neodymium.scripting.template.selenide.component.MiniCart;
+import com.xceptance.neodymium.scripting.template.selenide.component.Search;
+import com.xceptance.neodymium.scripting.template.selenide.component.TopNavigation;
+import com.xceptance.neodymium.scripting.template.selenide.component.UserMenu;
 import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
 // TODO rename Pages
 public abstract class BasicPage implements PageObject
 {
 
-    private CHeader header;
+    private Header header;
 
-    private CFooter footer;
+    private Footer footer;
 
-    private CMiniCart miniCart;
+    private MiniCart miniCart;
 
-    private CSearch search;
+    private Search search;
 
-    private CTopNav topNav;
+    private TopNavigation topNav;
 
-    private CUserMenu userMenu;
+    private UserMenu userMenu;
 
     public BasicPage()
     {
@@ -54,11 +54,11 @@ public abstract class BasicPage implements PageObject
         Assert.assertTrue("The current page doesn't match the expected page", isExpectedPage());
     }
 
-    public CFooter footer()
+    public Footer footer()
     {
         if (footer == null)
         {
-            footer = new CFooter();
+            footer = new Footer();
         }
         // TODO Discuss a way to implement an implicit basic validation for components
         if (Settings.IMPLICITVALIDATION)
@@ -69,11 +69,11 @@ public abstract class BasicPage implements PageObject
         return footer;
     }
 
-    public CHeader header()
+    public Header header()
     {
         if (header == null)
         {
-            header = new CHeader();
+            header = new Header();
         }
         // TODO Discuss a way to implement an implicit basic validation for components
         if (Settings.IMPLICITVALIDATION)
@@ -84,11 +84,11 @@ public abstract class BasicPage implements PageObject
         return header;
     }
 
-    public CMiniCart miniCart()
+    public MiniCart miniCart()
     {
         if (miniCart == null)
         {
-            miniCart = new CMiniCart();
+            miniCart = new MiniCart();
         }
         // TODO Discuss a way to implement an implicit basic validation for components
         if (Settings.IMPLICITVALIDATION)
@@ -99,11 +99,11 @@ public abstract class BasicPage implements PageObject
         return miniCart;
     }
 
-    public CSearch search()
+    public Search search()
     {
         if (search == null)
         {
-            search = new CSearch();
+            search = new Search();
         }
         // TODO Discuss a way to implement an implicit basic validation for components
         if (Settings.IMPLICITVALIDATION)
@@ -114,11 +114,11 @@ public abstract class BasicPage implements PageObject
         return search;
     }
 
-    public CTopNav topNav()
+    public TopNavigation topNav()
     {
         if (topNav == null)
         {
-            topNav = new CTopNav();
+            topNav = new TopNavigation();
         }
         // TODO Discuss a way to implement an implicit basic validation for components
         if (Settings.IMPLICITVALIDATION)
@@ -132,11 +132,11 @@ public abstract class BasicPage implements PageObject
     /**
      * @return
      */
-    public CUserMenu userMenu()
+    public UserMenu userMenu()
     {
         if (userMenu == null)
         {
-            userMenu = new CUserMenu();
+            userMenu = new UserMenu();
         }
         // TODO Discuss a way to implement an implicit basic validation for components
         if (Settings.IMPLICITVALIDATION)

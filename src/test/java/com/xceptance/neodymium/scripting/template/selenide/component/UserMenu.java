@@ -17,7 +17,7 @@ import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 /**
  * @author pfotenhauer
  */
-public class CUserMenu extends BasicComponent
+public class UserMenu extends AbstractComponent
 {
 
     /*

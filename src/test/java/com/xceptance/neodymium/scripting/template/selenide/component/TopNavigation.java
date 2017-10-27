@@ -13,7 +13,7 @@ import com.xceptance.neodymium.scripting.template.selenide.page.PCategory;
 /**
  * @author pfotenhauer
  */
-public class CTopNav extends BasicComponent
+public class TopNavigation extends AbstractComponent
 {
 
     /*

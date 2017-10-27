@@ -16,7 +16,7 @@ import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 /**
  * @author pfotenhauer
  */
-public class CMiniCart extends BasicComponent
+public class MiniCart extends AbstractComponent
 {
 
     /*

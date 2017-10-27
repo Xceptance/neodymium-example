@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.$;
 /**
  * @author pfotenhauer
  */
-public class CCheckoutHeader extends BasicComponent
+public class CheckoutHeader extends AbstractComponent
 {
 
     /*

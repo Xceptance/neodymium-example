@@ -2,7 +2,7 @@ package com.xceptance.neodymium.scripting.template.selenide.component;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class CHeader extends BasicComponent
+public class Header extends AbstractComponent
 {
 
     @Override

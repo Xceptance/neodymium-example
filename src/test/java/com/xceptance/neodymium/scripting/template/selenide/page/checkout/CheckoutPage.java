@@ -5,9 +5,9 @@ package com.xceptance.neodymium.scripting.template.selenide.page.checkout;
 
 import org.junit.Assert;
 
-import com.xceptance.neodymium.scripting.template.selenide.component.CCheckoutHeader;
-import com.xceptance.neodymium.scripting.template.selenide.component.CFooter;
-import com.xceptance.neodymium.scripting.template.selenide.component.CUserMenu;
+import com.xceptance.neodymium.scripting.template.selenide.component.CheckoutHeader;
+import com.xceptance.neodymium.scripting.template.selenide.component.Footer;
+import com.xceptance.neodymium.scripting.template.selenide.component.UserMenu;
 import com.xceptance.neodymium.scripting.template.selenide.page.PageObject;
 import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
@@ -17,11 +17,11 @@ import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 public abstract class CheckoutPage implements PageObject
 {
 
-    private CCheckoutHeader header;
+    private CheckoutHeader header;
 
-    private CFooter footer;
+    private Footer footer;
 
-    private CUserMenu userMenu;
+    private UserMenu userMenu;
 
     public CheckoutPage()
     {
@@ -47,11 +47,11 @@ public abstract class CheckoutPage implements PageObject
     /**
      * @return
      */
-    public CUserMenu userMenu()
+    public UserMenu userMenu()
     {
         if (userMenu == null)
         {
-            userMenu = new CUserMenu();
+            userMenu = new UserMenu();
         }
         // TODO Discuss a way to implement an implicit basic validation for components
         if (Settings.IMPLICITVALIDATION)
@@ -62,11 +62,11 @@ public abstract class CheckoutPage implements PageObject
         return userMenu;
     }
 
-    public CFooter footer()
+    public Footer footer()
     {
         if (footer == null)
         {
-            footer = new CFooter();
+            footer = new Footer();
         }
         // TODO Discuss a way to implement an implicit basic validation for components
         if (Settings.IMPLICITVALIDATION)
@@ -77,11 +77,11 @@ public abstract class CheckoutPage implements PageObject
         return footer;
     }
 
-    public CCheckoutHeader header()
+    public CheckoutHeader header()
     {
         if (header == null)
         {
-            header = new CCheckoutHeader();
+            header = new CheckoutHeader();
         }
         // TODO Discuss a way to implement an implicit basic validation for components
         if (Settings.IMPLICITVALIDATION)
