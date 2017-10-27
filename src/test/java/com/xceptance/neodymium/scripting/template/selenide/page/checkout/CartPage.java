@@ -16,14 +16,14 @@ import org.junit.Assert;
 
 import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
 import com.xceptance.neodymium.scripting.template.selenide.page.browsing.AbstractBrowsingPage;
-import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PProduct;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.ProductdetailPage;
 import com.xceptance.neodymium.scripting.template.selenide.utility.PriceHelper;
 import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
 /**
  * @author pfotenhauer
  */
-public class PCart extends AbstractBrowsingPage
+public class CartPage extends AbstractBrowsingPage
 {
 
     /*
@@ -231,10 +231,10 @@ public class PCart extends AbstractBrowsingPage
     /**
      * @param index
      */
-    public PProduct openProductPage(int index)
+    public ProductdetailPage openProductPage(int index)
     {
         $("#product" + index + " img").scrollTo().click();
-        return page(PProduct.class);
+        return page(ProductdetailPage.class);
     }
 
     private void clickCheckoutButton()
@@ -245,18 +245,18 @@ public class PCart extends AbstractBrowsingPage
     /**
      * 
      */
-    public PNewShippingAddress openNewShippingPage()
+    public NewShippingAddressPage openNewShippingPage()
     {
         clickCheckoutButton();
-        return page(PNewShippingAddress.class);
+        return page(NewShippingAddressPage.class);
     }
 
     /**
      * 
      */
-    public PShippingAddress openShippingPage()
+    public ShippingAddressPage openShippingPage()
     {
         clickCheckoutButton();
-        return page(PShippingAddress.class);
+        return page(ShippingAddressPage.class);
     }
 }

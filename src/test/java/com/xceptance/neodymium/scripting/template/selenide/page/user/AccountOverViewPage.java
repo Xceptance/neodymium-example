@@ -12,7 +12,7 @@ import com.xceptance.neodymium.scripting.template.selenide.page.browsing.Abstrac
 /**
  * @author pfotenhauer
  */
-public class PAccountOverView extends AbstractBrowsingPage
+public class AccountOverViewPage extends AbstractBrowsingPage
 {
     /*
      * (non-Javadoc)
@@ -53,11 +53,11 @@ public class PAccountOverView extends AbstractBrowsingPage
     /**
      * @return
      */
-    public PPersonalData openPersonalData()
+    public PersonalDataPage openPersonalData()
     {
         // Open the personal data page
         // Click on the link to Personal Data
         $("#linkPersonalData").scrollTo().click();
-        return page(PPersonalData.class);
+        return page(PersonalDataPage.class);
     }
 }

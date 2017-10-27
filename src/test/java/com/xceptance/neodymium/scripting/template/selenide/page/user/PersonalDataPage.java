@@ -13,7 +13,7 @@ import com.xceptance.neodymium.scripting.template.selenide.page.browsing.Abstrac
 /**
  * @author pfotenhauer
  */
-public class PPersonalData extends AbstractBrowsingPage
+public class PersonalDataPage extends AbstractBrowsingPage
 {
     /*
      * (non-Javadoc)
@@ -48,11 +48,11 @@ public class PPersonalData extends AbstractBrowsingPage
     /**
      * @return
      */
-    public PDeleteAccount openDeleteAccount()
+    public DeleteAccountPage openDeleteAccount()
     {
         // Open the delete account page
         // Clicks the button to get to the Delete Account page
         $("#btnDeleteAccount").scrollTo().click();
-        return page(PDeleteAccount.class);
+        return page(DeleteAccountPage.class);
     }
 }

@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.page;
 
 import com.xceptance.neodymium.scripting.template.selenide.objects.Address;
@@ -15,9 +14,8 @@ import com.xceptance.neodymium.scripting.template.selenide.objects.Address;
 /**
  * @author pfotenhauer
  */
-public class PNewShippingAddress extends AbstractCheckoutPage
+public class NewBillingAddressPage extends AbstractCheckoutPage
 {
-
     /*
      * (non-Javadoc)
      * 
@@ -28,10 +26,10 @@ public class PNewShippingAddress extends AbstractCheckoutPage
     {
         // Headline
         // Assert the headline is there and starts with a capital letter
-        $("#titleDelAddr").should(matchText("[A-Z].{3,}"));
+        $("#titleBillAddr").should(matchText("[A-Z].{3,}"));
         // Form
         // Asserts the form is there at all
-        $("#formAddDelAddr").shouldBe(visible);
+        $("#formAddBillAddr").shouldBe(visible);
         // Name
         // Asserts the label next to the name field shows the right text
         $("label[for=\"fullName\"]").shouldHave(exactText("Full name*"));
@@ -67,12 +65,9 @@ public class PNewShippingAddress extends AbstractCheckoutPage
         $("label[for=\"country\"]").shouldHave(exactText("Country*"));
         // Asserts the country field is there
         $("#country").shouldBe(visible);
-        // Radio Button
-        // Assert the radio buttons are there
-        $$(".col-sm-1 input[type=\"radio\"]").shouldHaveSize(2);
         // Continue Button
         // Asserts the Continue button is there
-        $("#btnAddDelAddr").shouldBe(visible);
+        $("#btnAddBillAddr").shouldBe(visible);
     }
 
     /*
@@ -83,7 +78,7 @@ public class PNewShippingAddress extends AbstractCheckoutPage
     @Override
     public boolean isExpectedPage()
     {
-        return $("#titleDelAddr").exists();
+        return $("#titleBillAddr").exists();
     }
 
     /**
@@ -103,11 +98,9 @@ public class PNewShippingAddress extends AbstractCheckoutPage
      *            The Zip you want to use, has to be in numbers format
      * @param country
      *            The country you want to use, currently only United States or Germany
-     * @param sameBillingAddress
-     *            Decision whether or not use the same billing address
      */
-    public PNewBillingAddress sendShippingAddressForm(String name, String company, String address, String city,
-                                                      String state, String zip, String country, boolean sameBillingAddress)
+    public NewPaymentPage sendBillingAddressForm(String name, String company, String address, String city,
+                                              String state, String zip, String country)
     {
         // Name
         // Enter the name parameter
@@ -130,32 +123,21 @@ public class PNewShippingAddress extends AbstractCheckoutPage
         // Country
         // Select the country whose label equals the parameter
         $("#country").selectOption(country);
-        // Radio Button
-        // Click the radio button for Yes or No
-        if (sameBillingAddress)
-        {
-            $("#billEqualShipp-Yes").scrollTo().click();
-        }
-        else
-        {
-            $("#billEqualShipp-No").scrollTo().click();
-        }
         // Open the billing addresses or payment options page, depending on which radio button you checked
         // Click on Continue
-        $("#btnAddDelAddr").scrollTo().click();
+        $("#btnAddBillAddr").scrollTo().click();
 
-        return page(PNewBillingAddress.class);
+        return page(NewPaymentPage.class);
     }
 
     /**
-     * @param shippingAddress
-     * @param sameBillingAddress
+     * @param billingAddress
      * @return
      */
-    public PNewBillingAddress sendShippingAddressForm(Address shippingAddress, boolean sameBillingAddress)
+    public NewPaymentPage sendBillingAddressForm(Address billingAddress)
     {
-        return sendShippingAddressForm(shippingAddress.getFullName(), shippingAddress.getCompany(), shippingAddress.getAddressLine(),
-                                       shippingAddress.getCity(), shippingAddress.getState(), shippingAddress.getZip(),
-                                       shippingAddress.getCountry(), sameBillingAddress);
+        return sendBillingAddressForm(billingAddress.getFullName(), billingAddress.getCompany(), billingAddress.getAddressLine(),
+                                      billingAddress.getCity(), billingAddress.getState(), billingAddress.getZip(),
+                                      billingAddress.getCountry());
     }
 }

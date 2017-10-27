@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.page;
 /**
  * @author pfotenhauer
  */
-public class PShippingAddress extends AbstractCheckoutPage
+public class PaymentPage extends AbstractCheckoutPage
 {
 
     /*
@@ -23,11 +23,11 @@ public class PShippingAddress extends AbstractCheckoutPage
     public void validateStructure()
     {
         // Headline
-        // Assert the headline is there and starts with a capital letter
-        $("#titleDelAddr").should(matchText("[A-Z].{3,}"));
-        // First address
-        // Makes sure at least one address is visible
-        $("#delAddr0").shouldBe(visible);
+        // Makes sure the headline is there and starts with a capital letter
+        $("#titlePayment").should(matchText("[A-Z].{3,}"));
+        // First credit card
+        // Makes sure at least one credit card is saved
+        $("#payment0").shouldBe(visible);
     }
 
     /*
@@ -35,25 +35,26 @@ public class PShippingAddress extends AbstractCheckoutPage
      * 
      * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#isExpectedPage()
      */
+    @Override
     public boolean isExpectedPage()
     {
-        return $("#titleDelAddr").exists();
+        return $("#titlePayment").exists();
     }
 
     /**
      * @param index
-     *            Index of the shipping address
-     * @return PBillingAddress
+     *            The index of the credit card you want to select
+     * @return PPlaceOrder
      */
-    public PBillingAddress selectShippingAddress(int index)
+    public PlaceOrderPlace selectCreditCard(int index)
     {
         // Select address
         // Checks the radio button belonging to the delivery address with index @{index}
-        $("#delAddr" + index + " input").scrollTo().click();
+        $("#payment" + index + " input").scrollTo().click();
         // Open the billing address page in the checkout process
         // Clicks the continue button
-        $("#btnUseAddressContinue").scrollTo().click();
+        $("#btnUsePayment").scrollTo().click();
 
-        return page(PBillingAddress.class);
+        return page(PlaceOrderPlace.class);
     }
 }

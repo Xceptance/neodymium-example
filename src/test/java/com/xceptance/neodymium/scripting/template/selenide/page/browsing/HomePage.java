@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import com.xceptance.neodymium.scripting.template.selenide.objects.User;
 
-public class PHome extends AbstractBrowsingPage
+public class HomePage extends AbstractBrowsingPage
 {
 
     /*

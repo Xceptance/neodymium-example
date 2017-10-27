@@ -9,9 +9,9 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-import com.xceptance.neodymium.scripting.template.selenide.page.user.PAccountOverView;
-import com.xceptance.neodymium.scripting.template.selenide.page.user.PLogin;
-import com.xceptance.neodymium.scripting.template.selenide.page.user.PRegister;
+import com.xceptance.neodymium.scripting.template.selenide.page.user.AccountOverViewPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.user.LoginPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.user.RegisterPage;
 import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
 /**
@@ -65,30 +65,30 @@ public class UserMenu extends AbstractComponent
     /**
      * 
      */
-    public PLogin openLogin()
+    public LoginPage openLogin()
     {
         openUserMenu();
         $("#userMenu .goToLogin").scrollTo().click();
-        return page(PLogin.class);
+        return page(LoginPage.class);
     }
 
     /**
      * 
      */
-    public PAccountOverView openAccountOverview()
+    public AccountOverViewPage openAccountOverview()
     {
         openUserMenu();
         $("#userMenu .goToAccountOverview").scrollTo().click();
-        return page(PAccountOverView.class);
+        return page(AccountOverViewPage.class);
     }
 
     /**
      * @return
      */
-    public PRegister openRegister()
+    public RegisterPage openRegister()
     {
         openUserMenu();
         $("#userMenu a.goToRegistration").scrollTo().click();
-        return page(PRegister.class);
+        return page(RegisterPage.class);
     }
 }

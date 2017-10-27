@@ -7,9 +7,9 @@ import org.junit.Test;
 
 import com.xceptance.neodymium.multibrowser.Browser;
 import com.xceptance.neodymium.scripting.template.selenide.flow.OpenHomePageFlow;
-import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PCategory;
-import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PHome;
-import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PProduct;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.CategoryPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.HomePage;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.ProductdetailPage;
 import com.xceptance.neodymium.scripting.template.selenide.tests.BasicTest;
 
 /**
@@ -26,9 +26,9 @@ public class TSearch extends BasicTest
     {
         // TODO put in place of first usage
         // Page types to use
-        PHome homePage;
-        PCategory categoryPage;
-        PProduct productPage;
+        HomePage homePage;
+        CategoryPage categoryPage;
+        ProductdetailPage productPage;
 
         // Goto homepage
         homePage = new OpenHomePageFlow().flow();

@@ -15,7 +15,7 @@ import com.xceptance.neodymium.scripting.template.selenide.page.browsing.Abstrac
 /**
  * @author pfotenhauer
  */
-public class PRegister extends AbstractBrowsingPage
+public class RegisterPage extends AbstractBrowsingPage
 {
 
     /*
@@ -72,7 +72,7 @@ public class PRegister extends AbstractBrowsingPage
      * @param password
      *            The password of the account you want to log into
      */
-    public PLogin sendRegisterForm(String firstName, String lastName, String email, String password, String passwordRepeat)
+    public LoginPage sendRegisterForm(String firstName, String lastName, String email, String password, String passwordRepeat)
     {
         // Fill out the registration form
         // Type the last name parameter into the last name field.
@@ -89,7 +89,7 @@ public class PRegister extends AbstractBrowsingPage
         // Click on the Register Button
         $("#btnRegister").scrollTo().click();
 
-        return page(PLogin.class);
+        return page(LoginPage.class);
     }
 
     /**
@@ -97,7 +97,7 @@ public class PRegister extends AbstractBrowsingPage
      * @param passwordRepeat
      * @return
      */
-    public PLogin sendRegisterForm(User user, String passwordRepeat)
+    public LoginPage sendRegisterForm(User user, String passwordRepeat)
     {
         return sendRegisterForm(user.getFirstName(), user.getLastName(), user.getEMail(), user.getPassword(), passwordRepeat);
     }

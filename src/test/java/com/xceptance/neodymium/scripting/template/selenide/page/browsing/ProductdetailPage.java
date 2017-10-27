@@ -12,7 +12,7 @@ import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
 /**
  * @author pfotenhauer
  */
-public class PProduct extends AbstractBrowsingPage
+public class ProductdetailPage extends AbstractBrowsingPage
 {
 
     public boolean isExpectedPage()

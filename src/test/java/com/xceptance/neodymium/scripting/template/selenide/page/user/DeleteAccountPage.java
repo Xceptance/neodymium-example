@@ -10,12 +10,12 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
 import com.xceptance.neodymium.scripting.template.selenide.page.browsing.AbstractBrowsingPage;
-import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PHome;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.HomePage;
 
 /**
  * @author pfotenhauer
  */
-public class PDeleteAccount extends AbstractBrowsingPage
+public class DeleteAccountPage extends AbstractBrowsingPage
 {
     /*
      * (non-Javadoc)
@@ -52,7 +52,7 @@ public class PDeleteAccount extends AbstractBrowsingPage
     /**
      * 
      */
-    public PHome deleteAccount(String password)
+    public HomePage deleteAccount(String password)
     {
         // Password
         // Type the parameter into the password field
@@ -61,6 +61,6 @@ public class PDeleteAccount extends AbstractBrowsingPage
         // click the confirmation button
         $("#btnDeleteAccount").scrollTo().click();
 
-        return page(PHome.class);
+        return page(HomePage.class);
     }
 }

@@ -6,16 +6,16 @@ package com.xceptance.neodymium.scripting.template.selenide.flow;
 import static com.codeborne.selenide.Selenide.page;
 
 import com.xceptance.neodymium.scripting.template.selenide.objects.User;
-import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PHome;
-import com.xceptance.neodymium.scripting.template.selenide.page.user.PAccountOverView;
-import com.xceptance.neodymium.scripting.template.selenide.page.user.PDeleteAccount;
-import com.xceptance.neodymium.scripting.template.selenide.page.user.PLogin;
-import com.xceptance.neodymium.scripting.template.selenide.page.user.PPersonalData;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.HomePage;
+import com.xceptance.neodymium.scripting.template.selenide.page.user.AccountOverViewPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.user.DeleteAccountPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.user.LoginPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.user.PersonalDataPage;
 
 /**
  * @author pfotenhauer
  */
-public class DeleteUserFlow extends AbstractFlow<PLogin>
+public class DeleteUserFlow extends AbstractFlow<LoginPage>
 {
 
     private User user;
@@ -34,13 +34,13 @@ public class DeleteUserFlow extends AbstractFlow<PLogin>
      * @see com.xceptance.neodymium.scripting.template.selenide.flow.BasicFlow#flow()
      */
     @Override
-    public PLogin flow()
+    public LoginPage flow()
     {
-        PHome homePage = page(PHome.class);
-        PAccountOverView accountOverviewPage;
-        PPersonalData personalDataPage;
-        PDeleteAccount deleteAccountPage;
-        PLogin loginPage;
+        HomePage homePage = page(HomePage.class);
+        AccountOverViewPage accountOverviewPage;
+        PersonalDataPage personalDataPage;
+        DeleteAccountPage deleteAccountPage;
+        LoginPage loginPage;
 
         accountOverviewPage = homePage.userMenu().openAccountOverview();
         accountOverviewPage.validateStructure();

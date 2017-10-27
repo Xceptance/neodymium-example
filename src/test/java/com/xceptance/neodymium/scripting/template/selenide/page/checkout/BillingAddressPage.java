@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.page;
 /**
  * @author pfotenhauer
  */
-public class PBillingAddress extends AbstractCheckoutPage
+public class BillingAddressPage extends AbstractCheckoutPage
 {
 
     /*
@@ -46,7 +46,7 @@ public class PBillingAddress extends AbstractCheckoutPage
      *            The index of the billing address you want to choose
      * @return PPayment
      */
-    public PPayment selectBillingAddress(int index)
+    public PaymentPage selectBillingAddress(int index)
     {
         // Select address
         // Checks the radio button belonging to the delivery address with index @{index}
@@ -55,6 +55,6 @@ public class PBillingAddress extends AbstractCheckoutPage
         // Clicks the continue button
         $("#btnUseBillAddress").scrollTo().click();
 
-        return page(PPayment.class);
+        return page(PaymentPage.class);
     }
 }

@@ -12,12 +12,12 @@ import static com.codeborne.selenide.Selenide.page;
 
 import com.xceptance.neodymium.scripting.template.selenide.objects.User;
 import com.xceptance.neodymium.scripting.template.selenide.page.browsing.AbstractBrowsingPage;
-import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PHome;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.HomePage;
 
 /**
  * @author pfotenhauer
  */
-public class PLogin extends AbstractBrowsingPage
+public class LoginPage extends AbstractBrowsingPage
 {
 
     /*
@@ -69,10 +69,10 @@ public class PLogin extends AbstractBrowsingPage
      * @param password
      *            The password of the account you want to log into
      */
-    public PHome sendLoginform(String email, String password)
+    public HomePage sendLoginform(String email, String password)
     {
         sendFormWithData(email, password);
-        return page(PHome.class);
+        return page(HomePage.class);
     }
 
     private void sendFormWithData(String email, String password)
@@ -91,10 +91,10 @@ public class PLogin extends AbstractBrowsingPage
     /**
      * @return
      */
-    public PRegister openRegister()
+    public RegisterPage openRegister()
     {
         $("#linkRegister").scrollTo().click();
-        return page(PRegister.class);
+        return page(RegisterPage.class);
     }
 
     /**
@@ -109,7 +109,7 @@ public class PLogin extends AbstractBrowsingPage
      * @param user
      * @return
      */
-    public PHome sendLoginform(User user)
+    public HomePage sendLoginform(User user)
     {
         return sendLoginform(user.getEMail(), user.getPassword());
     }
@@ -117,10 +117,10 @@ public class PLogin extends AbstractBrowsingPage
     /**
      * @param user
      */
-    public PLogin sendFalseLoginform(User user)
+    public LoginPage sendFalseLoginform(User user)
     {
         sendFormWithData(user.getEMail(), user.getPassword());
-        return page(PLogin.class);
+        return page(LoginPage.class);
     }
 
     /**

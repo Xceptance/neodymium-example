@@ -8,8 +8,8 @@ import org.junit.Test;
 import com.xceptance.neodymium.multibrowser.Browser;
 import com.xceptance.neodymium.scripting.template.selenide.flow.OpenLoginPageFlow;
 import com.xceptance.neodymium.scripting.template.selenide.objects.User;
-import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PHome;
-import com.xceptance.neodymium.scripting.template.selenide.page.user.PLogin;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.HomePage;
+import com.xceptance.neodymium.scripting.template.selenide.page.user.LoginPage;
 import com.xceptance.neodymium.scripting.template.selenide.tests.BasicTest;
 
 /**
@@ -26,8 +26,8 @@ public class TLogin extends BasicTest
     public void testSuccessfullLogin()
     {
         // Page types to use
-        PHome homePage;
-        PLogin loginPage;
+        HomePage homePage;
+        LoginPage loginPage;
 
         final User user = new User("John", "Doe", "john@doe.com", "topsecret");
 
@@ -46,7 +46,7 @@ public class TLogin extends BasicTest
     public void testLoginWithWrongPassword()
     {
         // Page types to use
-        PLogin loginPage;
+        LoginPage loginPage;
 
         final User user = new User("John", "Doe", "john@doe.com", "notsecret");
 
@@ -65,7 +65,7 @@ public class TLogin extends BasicTest
     public void testLoginWithExtendedPassword()
     {
         // Page types to use
-        PLogin loginPage;
+        LoginPage loginPage;
 
         final User user = new User("John", "Doe", "john@doe.com", "topsecret123");
 
@@ -84,7 +84,7 @@ public class TLogin extends BasicTest
     public void testLoginWithExtendedEmail()
     {
         // Page types to use
-        PLogin loginPage;
+        LoginPage loginPage;
 
         final User user = new User("John", "Doe", "john@doe.company", "topsecret");
 
@@ -103,7 +103,7 @@ public class TLogin extends BasicTest
     public void testLoginWithNoEmail()
     {
         // Page types to use
-        PLogin loginPage;
+        LoginPage loginPage;
 
         final User user = new User("John", "Doe", "", "topsecret");
 
@@ -122,7 +122,7 @@ public class TLogin extends BasicTest
     public void testLoginWithNoPassword()
     {
         // Page types to use
-        PLogin loginPage;
+        LoginPage loginPage;
 
         final User user = new User("John", "Doe", "john@doe.com", "");
 
@@ -141,7 +141,7 @@ public class TLogin extends BasicTest
     public void testLoginWithUnregisteredUser()
     {
         // Page types to use
-        PLogin loginPage;
+        LoginPage loginPage;
 
         final User user = new User("Jane", "Doe", "jane@doe.com", "topsecret");
 

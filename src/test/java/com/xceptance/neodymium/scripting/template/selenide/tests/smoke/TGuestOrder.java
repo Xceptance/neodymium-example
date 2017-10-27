@@ -10,14 +10,14 @@ import com.xceptance.neodymium.scripting.template.selenide.flow.OpenHomePageFlow
 import com.xceptance.neodymium.scripting.template.selenide.objects.Address;
 import com.xceptance.neodymium.scripting.template.selenide.objects.CreditCard;
 import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
-import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PCategory;
-import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PHome;
-import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PProduct;
-import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PCart;
-import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PNewBillingAddress;
-import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PNewPayment;
-import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PNewShippingAddress;
-import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PPlaceOrder;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.CategoryPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.HomePage;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.ProductdetailPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.checkout.CartPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.checkout.NewBillingAddressPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.checkout.NewPaymentPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.checkout.NewShippingAddressPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PlaceOrderPlace;
 import com.xceptance.neodymium.scripting.template.selenide.tests.BasicTest;
 
 /**
@@ -34,14 +34,14 @@ public class TGuestOrder extends BasicTest
     {
         // TODO put in place of first usage
         // Page types to use
-        PHome homePage;
-        PCategory categoryPage;
-        PProduct productPage;
-        PCart cartPage;
-        PNewShippingAddress shippingAddressPage;
-        PNewBillingAddress billingAddressPage;
-        PNewPayment paymentPage;
-        PPlaceOrder placeOrderPage;
+        HomePage homePage;
+        CategoryPage categoryPage;
+        ProductdetailPage productPage;
+        CartPage cartPage;
+        NewShippingAddressPage shippingAddressPage;
+        NewBillingAddressPage billingAddressPage;
+        NewPaymentPage paymentPage;
+        PlaceOrderPlace placeOrderPage;
 
         // total product count will be updated throughout the test
         int totalCount = 0;

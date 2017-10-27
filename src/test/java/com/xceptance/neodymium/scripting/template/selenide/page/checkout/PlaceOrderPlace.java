@@ -11,12 +11,12 @@ import static com.codeborne.selenide.Selenide.page;
 
 import com.xceptance.neodymium.scripting.template.selenide.objects.Address;
 import com.xceptance.neodymium.scripting.template.selenide.objects.CreditCard;
-import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PHome;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.HomePage;
 
 /**
  * @author pfotenhauer
  */
-public class PPlaceOrder extends AbstractCheckoutPage
+public class PlaceOrderPlace extends AbstractCheckoutPage
 {
 
     /*
@@ -139,12 +139,12 @@ public class PPlaceOrder extends AbstractCheckoutPage
         return $("#totalCosts").text();
     }
 
-    public PHome placeOrder()
+    public HomePage placeOrder()
     {
         // Opens the homepage
         // Clicks the Order button
         $("#btnOrder").scrollTo().click();
 
-        return page(PHome.class);
+        return page(HomePage.class);
     }
 }

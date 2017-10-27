@@ -5,10 +5,10 @@ import org.junit.Test;
 import com.xceptance.neodymium.multibrowser.Browser;
 import com.xceptance.neodymium.scripting.template.selenide.flow.OpenHomePageFlow;
 import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
-import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PCategory;
-import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PHome;
-import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PProduct;
-import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PCart;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.CategoryPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.HomePage;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.ProductdetailPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.checkout.CartPage;
 import com.xceptance.neodymium.scripting.template.selenide.tests.BasicTest;
 
 @Browser(
@@ -26,7 +26,7 @@ public class TAddToCart extends BasicTest
         // TODO adapt shorter style
 
         // Goto homepage
-        PHome homePage = new OpenHomePageFlow().flow();
+        HomePage homePage = new OpenHomePageFlow().flow();
         homePage.validateStructure();
         homePage.footer().validate();
         homePage.miniCart().validateTotalCount(totalCount);
@@ -35,26 +35,26 @@ public class TAddToCart extends BasicTest
 
         // Go to a top category page
         final String topCatName = "World of Nature";
-        PCategory categoryPage = homePage.topNav().clickCategory(topCatName);
+        CategoryPage categoryPage = homePage.topNav().clickCategory(topCatName);
         categoryPage.validateCategoryName(topCatName);
 
         // TODO Discuss indexes natural vs. array !!! Implement natural
         // Goto sub category page
         final String categoryName = categoryPage.topNav().getSubCategoryNameByIndex(1, 1);
-        PCategory categoryPage2 = categoryPage.topNav().clickSubCategoryByIndex(1, 1);
+        CategoryPage categoryPage2 = categoryPage.topNav().clickSubCategoryByIndex(1, 1);
         categoryPage2.validateCategoryName(categoryName);
         categoryPage2.validateStructure();
 
         // Goto product page and add to cart
         final String productName = categoryPage2.getProductNameByPosition(1, 1);
-        PProduct productPage = categoryPage2.clickProductByPosition(1, 1);
+        ProductdetailPage productPage = categoryPage2.clickProductByPosition(1, 1);
         productPage.validateStructure();
         productPage.validateProductName(productName);
         productPage.addToCart("16 x 12 in", "matte");
 
         // Goto cart and validate
         final Product product = productPage.getProduct();
-        PCart cartPage = productPage.miniCart().openCartPage();
+        CartPage cartPage = productPage.miniCart().openCartPage();
         cartPage.validateStructure();
         cartPage.validateShippingCosts(SHIPPINGCOSTS);
         cartPage.miniCart().validateMiniCart(1, product);
@@ -69,19 +69,19 @@ public class TAddToCart extends BasicTest
         final String searchTerm = "pizza";
         final int searchTermExpectedCount = 1;
         // TODO Discuss reuse of variable or new instance !!! Reuse and declare in place
-        PCategory categoryPage3 = cartPage.search().categoryPageResult(searchTerm);
+        CategoryPage categoryPage3 = cartPage.search().categoryPageResult(searchTerm);
         categoryPage3.validateSearchHits(searchTerm, searchTermExpectedCount);
         final String productName2 = categoryPage3.getProductNameByPosition(1, 1);
 
         // Goto product page and add to cart
-        PProduct productPage2 = categoryPage3.clickProductByPosition(1, 1);
+        ProductdetailPage productPage2 = categoryPage3.clickProductByPosition(1, 1);
         productPage2.validateStructure();
         productPage2.validateProductName(productName2);
         productPage2.addToCart("64 x 48 in", "gloss");
         final Product product2 = productPage.getProduct();
 
         // Goto cart and validate
-        PCart cartPage2 = productPage2.miniCart().openCartPage();
+        CartPage cartPage2 = productPage2.miniCart().openCartPage();
         cartPage2.validateStructure();
         cartPage2.validateShippingCosts(SHIPPINGCOSTS);
 
@@ -119,10 +119,10 @@ public class TAddToCart extends BasicTest
         cartPage2.miniCart().validateTotalCount(totalCount);
 
         Product productFromCartPage = cartPage2.getProduct(0);
-        PProduct productPage3 = cartPage2.openProductPage(0);
+        ProductdetailPage productPage3 = cartPage2.openProductPage(0);
         productPage3.validateProductName(productFromCartPage.getName());
         productPage3.addToCart(productFromCartPage.getSize(), productFromCartPage.getStyle());
-        PCart cartPage3 = productPage3.miniCart().openCartPage();
+        CartPage cartPage3 = productPage3.miniCart().openCartPage();
 
         cartPage3.validateCartItem(0, productFromCartPage, 2);
         cartPage3.miniCart().validateTotalCount(++totalCount);

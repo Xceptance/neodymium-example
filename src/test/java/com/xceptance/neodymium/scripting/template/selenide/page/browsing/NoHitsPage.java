@@ -1,6 +1,6 @@
 package com.xceptance.neodymium.scripting.template.selenide.page.browsing;
 
-public class PNoHits extends AbstractBrowsingPage
+public class NoHitsPage extends AbstractBrowsingPage
 {
 
     /*

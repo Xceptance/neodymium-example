@@ -17,7 +17,7 @@ import static com.codeborne.selenide.Selenide.page;
 /**
  * @author pfotenhauer
  */
-public class PCategory extends AbstractBrowsingPage
+public class CategoryPage extends AbstractBrowsingPage
 {
 
     /*
@@ -59,13 +59,13 @@ public class PCategory extends AbstractBrowsingPage
      * @param column
      * @return
      */
-    public PProduct clickProductByPosition(int row, int column)
+    public ProductdetailPage clickProductByPosition(int row, int column)
     {
         // Open the product detail page
         // Clicks a product by index. Because of the html code, this requires x and y coordinates.
 
         $("#productOverview > .row:nth-child(" + row + ") li:nth-of-type(" + column + ") h4.pName").scrollTo().click();
-        return page(PProduct.class);
+        return page(ProductdetailPage.class);
     }
 
     /**
@@ -82,13 +82,13 @@ public class PCategory extends AbstractBrowsingPage
      * @param index
      * @return
      */
-    public PProduct clickProductByIndex(int index)
+    public ProductdetailPage clickProductByIndex(int index)
     {
         // Open the product detail page
         // Click on the product's image and open the product overview page
         // Click the product link to open the product detail page
         $("#product" + index + " img").scrollTo().click();
-        return page(PProduct.class);
+        return page(ProductdetailPage.class);
 
     }
 

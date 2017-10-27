@@ -15,7 +15,7 @@ import com.xceptance.neodymium.scripting.template.selenide.objects.CreditCard;
 /**
  * @author pfotenhauer
  */
-public class PNewPayment extends AbstractCheckoutPage
+public class NewPaymentPage extends AbstractCheckoutPage
 {
 
     /*
@@ -75,7 +75,7 @@ public class PNewPayment extends AbstractCheckoutPage
      * @param year
      *            Expiration year
      */
-    public PPlaceOrder sendPaymentForm(String number, String name, String month, String year)
+    public PlaceOrderPlace sendPaymentForm(String number, String name, String month, String year)
     {
         // Credit Card Number
         // Fills the card number field with the parameter
@@ -92,14 +92,14 @@ public class PNewPayment extends AbstractCheckoutPage
         // Clicks the Continue button
         $("#btnAddPayment").scrollTo().click();
 
-        return page(PPlaceOrder.class);
+        return page(PlaceOrderPlace.class);
     }
 
     /**
      * @param creditcard
      * @return
      */
-    public PPlaceOrder sendPaymentForm(CreditCard creditcard)
+    public PlaceOrderPlace sendPaymentForm(CreditCard creditcard)
     {
         return sendPaymentForm(creditcard.getCardNumber(), creditcard.getFullName(), creditcard.getExpDateMonth(), creditcard.getExpDateYear());
     }
