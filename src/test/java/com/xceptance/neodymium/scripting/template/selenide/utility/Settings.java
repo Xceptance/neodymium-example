@@ -8,7 +8,6 @@ package com.xceptance.neodymium.scripting.template.selenide.utility;
  */
 public class Settings
 {
-
-    // TODO implement in neodymium libary
-    public static final long timeout = 1500;
+    // standard timeout for selenide interaction
+    protected static final long timeout = 1500;
 }
