@@ -6,7 +6,7 @@ package com.xceptance.neodymium.scripting.template.selenide.tests.smoke;
 import org.junit.Test;
 
 import com.xceptance.neodymium.multibrowser.Browser;
-import com.xceptance.neodymium.scripting.template.selenide.flow.FOpenHomepage;
+import com.xceptance.neodymium.scripting.template.selenide.flow.OpenHomePageFlow;
 import com.xceptance.neodymium.scripting.template.selenide.objects.Address;
 import com.xceptance.neodymium.scripting.template.selenide.objects.CreditCard;
 import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
@@ -47,7 +47,7 @@ public class TGuestOrder extends BasicTest
         int totalCount = 0;
 
         // Goto homepage
-        homePage = new FOpenHomepage().flow();
+        homePage = new OpenHomePageFlow().flow();
         homePage.validate();
 
         // Assure not logged in status

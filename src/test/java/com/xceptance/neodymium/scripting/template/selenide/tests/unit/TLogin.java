@@ -6,7 +6,7 @@ package com.xceptance.neodymium.scripting.template.selenide.tests.unit;
 import org.junit.Test;
 
 import com.xceptance.neodymium.multibrowser.Browser;
-import com.xceptance.neodymium.scripting.template.selenide.flow.FOpenLoginPage;
+import com.xceptance.neodymium.scripting.template.selenide.flow.OpenLoginPageFlow;
 import com.xceptance.neodymium.scripting.template.selenide.objects.User;
 import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
 import com.xceptance.neodymium.scripting.template.selenide.page.user.PLogin;
@@ -32,7 +32,7 @@ public class TLogin extends BasicTest
         final User user = new User("John", "Doe", "john@doe.com", "topsecret");
 
         // Goto homepage
-        loginPage = new FOpenLoginPage().flow();
+        loginPage = new OpenLoginPageFlow().flow();
         loginPage.validateStructure();
 
         // Assure not logged in status
@@ -51,7 +51,7 @@ public class TLogin extends BasicTest
         final User user = new User("John", "Doe", "john@doe.com", "notsecret");
 
         // Goto homepage
-        loginPage = new FOpenLoginPage().flow();
+        loginPage = new OpenLoginPageFlow().flow();
         loginPage.validateStructure();
 
         // Assure not logged in status
@@ -70,7 +70,7 @@ public class TLogin extends BasicTest
         final User user = new User("John", "Doe", "john@doe.com", "topsecret123");
 
         // Goto homepage
-        loginPage = new FOpenLoginPage().flow();
+        loginPage = new OpenLoginPageFlow().flow();
         loginPage.validateStructure();
 
         // Assure not logged in status
@@ -89,7 +89,7 @@ public class TLogin extends BasicTest
         final User user = new User("John", "Doe", "john@doe.company", "topsecret");
 
         // Goto homepage
-        loginPage = new FOpenLoginPage().flow();
+        loginPage = new OpenLoginPageFlow().flow();
         loginPage.validateStructure();
 
         // Assure not logged in status
@@ -108,7 +108,7 @@ public class TLogin extends BasicTest
         final User user = new User("John", "Doe", "", "topsecret");
 
         // Goto homepage
-        loginPage = new FOpenLoginPage().flow();
+        loginPage = new OpenLoginPageFlow().flow();
         loginPage.validateStructure();
 
         // Assure not logged in status
@@ -127,7 +127,7 @@ public class TLogin extends BasicTest
         final User user = new User("John", "Doe", "john@doe.com", "");
 
         // Goto homepage
-        loginPage = new FOpenLoginPage().flow();
+        loginPage = new OpenLoginPageFlow().flow();
         loginPage.validateStructure();
 
         // Assure not logged in status
@@ -146,7 +146,7 @@ public class TLogin extends BasicTest
         final User user = new User("Jane", "Doe", "jane@doe.com", "topsecret");
 
         // Goto homepage
-        loginPage = new FOpenLoginPage().flow();
+        loginPage = new OpenLoginPageFlow().flow();
         loginPage.validateStructure();
 
         // Assure not logged in status

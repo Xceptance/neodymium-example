@@ -5,13 +5,13 @@ import static com.codeborne.selenide.Selenide.page;
 import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
 import com.xceptance.neodymium.scripting.template.selenide.page.user.PLogin;
 
-public class FOpenLoginPage implements BasicFlow<PLogin>
+public class OpenLoginPageFlow extends AbstractFlow<PLogin>
 {
 
     @Override
     public PLogin flow()
     {
-        PHome homePage = new FOpenHomepage().flow();
+        PHome homePage = new OpenHomePageFlow().flow();
         homePage.userMenu().openLogin();
         return page(PLogin.class);
     };

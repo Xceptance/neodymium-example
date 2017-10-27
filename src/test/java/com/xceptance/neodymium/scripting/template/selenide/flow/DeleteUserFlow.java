@@ -15,7 +15,7 @@ import com.xceptance.neodymium.scripting.template.selenide.page.user.PPersonalDa
 /**
  * @author pfotenhauer
  */
-public class FDeleteUser implements BasicFlow<PLogin>
+public class DeleteUserFlow extends AbstractFlow<PLogin>
 {
 
     private User user;
@@ -23,7 +23,7 @@ public class FDeleteUser implements BasicFlow<PLogin>
     /**
      * @param user
      */
-    public FDeleteUser(User user)
+    public DeleteUserFlow(User user)
     {
         this.user = user;
     }

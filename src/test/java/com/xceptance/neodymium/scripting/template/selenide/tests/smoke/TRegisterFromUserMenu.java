@@ -7,8 +7,8 @@ import org.junit.After;
 import org.junit.Test;
 
 import com.xceptance.neodymium.multibrowser.Browser;
-import com.xceptance.neodymium.scripting.template.selenide.flow.FDeleteUser;
-import com.xceptance.neodymium.scripting.template.selenide.flow.FOpenHomepage;
+import com.xceptance.neodymium.scripting.template.selenide.flow.DeleteUserFlow;
+import com.xceptance.neodymium.scripting.template.selenide.flow.OpenHomePageFlow;
 import com.xceptance.neodymium.scripting.template.selenide.objects.User;
 import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
 import com.xceptance.neodymium.scripting.template.selenide.page.user.PLogin;
@@ -36,7 +36,7 @@ public class TRegisterFromUserMenu extends BasicTest
         PRegister registerPage;
 
         // Goto homepage
-        homePage = new FOpenHomepage().flow();
+        homePage = new OpenHomePageFlow().flow();
         homePage.validate();
 
         // Assure not logged in status
@@ -57,6 +57,6 @@ public class TRegisterFromUserMenu extends BasicTest
     @After
     public void after()
     {
-        new FDeleteUser(user).flow();
+        new DeleteUserFlow(user).flow();
     }
 }

@@ -3,7 +3,7 @@ package com.xceptance.neodymium.scripting.template.selenide.tests.smoke;
 import org.junit.Test;
 
 import com.xceptance.neodymium.multibrowser.Browser;
-import com.xceptance.neodymium.scripting.template.selenide.flow.FOpenHomepage;
+import com.xceptance.neodymium.scripting.template.selenide.flow.OpenHomePageFlow;
 import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
 import com.xceptance.neodymium.scripting.template.selenide.page.PCategory;
 import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
@@ -26,7 +26,7 @@ public class TAddToCart extends BasicTest
         // TODO adapt shorter style
 
         // Goto homepage
-        PHome homePage = new FOpenHomepage().flow();
+        PHome homePage = new OpenHomePageFlow().flow();
         homePage.validateStructure();
         homePage.footer().validate();
         homePage.miniCart().validateTotalCount(totalCount);

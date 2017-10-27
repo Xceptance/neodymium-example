@@ -5,7 +5,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
 
-public class FOpenHomepage implements BasicFlow<PHome>
+public class OpenHomePageFlow extends AbstractFlow<PHome>
 {
 
     @Override
