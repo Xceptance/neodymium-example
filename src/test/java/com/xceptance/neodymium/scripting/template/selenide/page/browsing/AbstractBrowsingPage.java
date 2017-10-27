@@ -13,7 +13,6 @@ import com.xceptance.neodymium.scripting.template.selenide.component.Search;
 import com.xceptance.neodymium.scripting.template.selenide.component.TopNavigation;
 import com.xceptance.neodymium.scripting.template.selenide.component.UserMenu;
 import com.xceptance.neodymium.scripting.template.selenide.page.AbstractPageObject;
-import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
 public abstract class AbstractBrowsingPage extends AbstractPageObject
 {
@@ -32,21 +31,7 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
 
     public AbstractBrowsingPage()
     {
-        if (Settings.IMPLICITVALIDATION)
-        {
-            validatePage();
-            validateBasicComponents();
-        }
-    }
-
-    private void validateBasicComponents()
-    {
-        header();
-        footer();
-        miniCart();
-        search();
-        topNav();
-        userMenu();
+        validatePage();
     }
 
     void validatePage()
@@ -60,12 +45,7 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
         {
             footer = new Footer();
         }
-        // TODO Discuss a way to implement an implicit basic validation for components
-        if (Settings.IMPLICITVALIDATION)
-        {
-            validatePage();
-            footer.validateComponent();
-        }
+        footer.isComponentAvailable();
         return footer;
     }
 
@@ -75,12 +55,7 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
         {
             header = new Header();
         }
-        // TODO Discuss a way to implement an implicit basic validation for components
-        if (Settings.IMPLICITVALIDATION)
-        {
-            validatePage();
-            header.validateComponent();
-        }
+        header.isComponentAvailable();
         return header;
     }
 
@@ -90,12 +65,7 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
         {
             miniCart = new MiniCart();
         }
-        // TODO Discuss a way to implement an implicit basic validation for components
-        if (Settings.IMPLICITVALIDATION)
-        {
-            validatePage();
-            miniCart.validateComponent();
-        }
+        miniCart.isComponentAvailable();
         return miniCart;
     }
 
@@ -105,12 +75,7 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
         {
             search = new Search();
         }
-        // TODO Discuss a way to implement an implicit basic validation for components
-        if (Settings.IMPLICITVALIDATION)
-        {
-            validatePage();
-            search.validateComponent();
-        }
+        search.isComponentAvailable();
         return search;
     }
 
@@ -120,12 +85,7 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
         {
             topNav = new TopNavigation();
         }
-        // TODO Discuss a way to implement an implicit basic validation for components
-        if (Settings.IMPLICITVALIDATION)
-        {
-            validatePage();
-            topNav.validateComponent();
-        }
+        topNav.isComponentAvailable();
         return topNav;
     }
 
@@ -138,12 +98,7 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
         {
             userMenu = new UserMenu();
         }
-        // TODO Discuss a way to implement an implicit basic validation for components
-        if (Settings.IMPLICITVALIDATION)
-        {
-            validatePage();
-            userMenu.validateComponent();
-        }
+        userMenu.isComponentAvailable();
         return userMenu;
     }
 

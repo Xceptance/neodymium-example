@@ -10,7 +10,7 @@ public class Search extends AbstractComponent
 {
 
     @Override
-    protected boolean isComponentAvailable()
+    protected boolean exists()
     {
         return $("#searchForm > #s").exists();
     }

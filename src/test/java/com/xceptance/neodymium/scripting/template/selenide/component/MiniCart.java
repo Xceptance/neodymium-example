@@ -25,7 +25,7 @@ public class MiniCart extends AbstractComponent
      * @see com.xceptance.scripting.selenide.component.BasicComponent#isComponentAvailable()
      */
     @Override
-    protected boolean isComponentAvailable()
+    protected boolean exists()
     {
         return $("#btnCartOverviewForm").exists();
     }

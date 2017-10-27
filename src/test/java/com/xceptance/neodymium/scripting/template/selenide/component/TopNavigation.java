@@ -22,7 +22,7 @@ public class TopNavigation extends AbstractComponent
      * @see com.xceptance.scripting.selenide.component.BasicComponent#isComponentAvailable()
      */
     @Override
-    protected boolean isComponentAvailable()
+    protected boolean exists()
     {
         return $("#categoryMenu").exists();
     }

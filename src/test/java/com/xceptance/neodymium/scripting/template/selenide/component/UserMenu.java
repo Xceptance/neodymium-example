@@ -26,7 +26,7 @@ public class UserMenu extends AbstractComponent
      * @see com.xceptance.neodymium.scripting.template.selenide.component.BasicComponent#isComponentAvailable()
      */
     @Override
-    protected boolean isComponentAvailable()
+    protected boolean exists()
     {
         return $("#showUserMenu").exists();
     }

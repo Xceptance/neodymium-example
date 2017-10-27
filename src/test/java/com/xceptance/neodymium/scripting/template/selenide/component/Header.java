@@ -6,7 +6,7 @@ public class Header extends AbstractComponent
 {
 
     @Override
-    protected boolean isComponentAvailable()
+    protected boolean exists()
     {
         return $("body > header nav#globalNavigation").exists();
     }

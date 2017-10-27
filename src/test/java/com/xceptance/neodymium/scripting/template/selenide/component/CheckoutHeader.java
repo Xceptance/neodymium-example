@@ -17,7 +17,7 @@ public class CheckoutHeader extends AbstractComponent
      * @see com.xceptance.neodymium.scripting.template.selenide.component.BasicComponent#isComponentAvailable()
      */
     @Override
-    protected boolean isComponentAvailable()
+    protected boolean exists()
     {
         return $("body > header nav#headerCheckout").exists();
     }

@@ -9,7 +9,6 @@ import com.xceptance.neodymium.scripting.template.selenide.component.CheckoutHea
 import com.xceptance.neodymium.scripting.template.selenide.component.Footer;
 import com.xceptance.neodymium.scripting.template.selenide.component.UserMenu;
 import com.xceptance.neodymium.scripting.template.selenide.page.AbstractPageObject;
-import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
 /**
  * @author pfotenhauer
@@ -25,18 +24,7 @@ public abstract class AbstractCheckoutPage extends AbstractPageObject
 
     public AbstractCheckoutPage()
     {
-        if (Settings.IMPLICITVALIDATION)
-        {
-            validatePage();
-            validateBasicComponents();
-        }
-    }
-
-    private void validateBasicComponents()
-    {
-        header();
-        footer();
-        userMenu();
+        validatePage();
     }
 
     void validatePage()
@@ -53,12 +41,7 @@ public abstract class AbstractCheckoutPage extends AbstractPageObject
         {
             userMenu = new UserMenu();
         }
-        // TODO Discuss a way to implement an implicit basic validation for components
-        if (Settings.IMPLICITVALIDATION)
-        {
-            validatePage();
-            userMenu.validateComponent();
-        }
+        userMenu.isComponentAvailable();
         return userMenu;
     }
 
@@ -68,12 +51,7 @@ public abstract class AbstractCheckoutPage extends AbstractPageObject
         {
             footer = new Footer();
         }
-        // TODO Discuss a way to implement an implicit basic validation for components
-        if (Settings.IMPLICITVALIDATION)
-        {
-            validatePage();
-            footer.validateComponent();
-        }
+        footer.isComponentAvailable();
         return footer;
     }
 
@@ -83,12 +61,7 @@ public abstract class AbstractCheckoutPage extends AbstractPageObject
         {
             header = new CheckoutHeader();
         }
-        // TODO Discuss a way to implement an implicit basic validation for components
-        if (Settings.IMPLICITVALIDATION)
-        {
-            validatePage();
-            header.validateComponent();
-        }
+        header.isComponentAvailable();
         return header;
     }
 }
