@@ -29,24 +29,18 @@ public class TRegisterFromUserMenu extends BasicTest
     @Test
     public void test()
     {
-        // TODO put in place of first usage
-        // Page types to use
-        HomePage homePage;
-        LoginPage loginPage;
-        RegisterPage registerPage;
-
         // Goto homepage
-        homePage = new OpenHomePageFlow().flow();
+        HomePage homePage = new OpenHomePageFlow().flow();
         homePage.validate();
 
         // Assure not logged in status
         homePage.userMenu().validateNotLoggedIn();
 
         // Goto register form
-        registerPage = homePage.userMenu().openRegister();
+        RegisterPage registerPage = homePage.userMenu().openRegister();
         registerPage.validateStructure();
 
-        loginPage = registerPage.sendRegisterForm(user, user.getPassword());
+        LoginPage loginPage = registerPage.sendRegisterForm(user, user.getPassword());
         loginPage.validateSuccessfulLRegistration();
         loginPage.validateStructure();
 

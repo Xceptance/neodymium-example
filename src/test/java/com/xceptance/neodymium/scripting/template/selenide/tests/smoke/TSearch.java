@@ -24,24 +24,18 @@ public class TSearch extends BasicTest
     @Test
     public void test()
     {
-        // TODO put in place of first usage
-        // Page types to use
-        HomePage homePage;
-        CategoryPage categoryPage;
-        ProductdetailPage productPage;
-
         // Goto homepage
-        homePage = new OpenHomePageFlow().flow();
+        HomePage homePage = new OpenHomePageFlow().flow();
         homePage.validate();
 
         // Search
         final String searchTerm = "bear";
         final int searchTermExpectedCount = 3;
-        categoryPage = homePage.search().categoryPageResult(searchTerm);
+        CategoryPage categoryPage = homePage.search().categoryPageResult(searchTerm);
         categoryPage.validateSearchHits(searchTerm, searchTermExpectedCount);
 
         final String productName = categoryPage.getProductNameByIndex(0);
-        productPage = categoryPage.clickProductByIndex(0);
+        ProductdetailPage productPage = categoryPage.clickProductByIndex(0);
         productPage.validate(productName);
     }
 }

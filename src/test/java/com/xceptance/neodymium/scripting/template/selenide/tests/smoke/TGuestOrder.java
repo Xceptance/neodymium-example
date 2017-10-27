@@ -32,22 +32,11 @@ public class TGuestOrder extends BasicTest
     @Test
     public void test()
     {
-        // TODO put in place of first usage
-        // Page types to use
-        HomePage homePage;
-        CategoryPage categoryPage;
-        ProductdetailPage productPage;
-        CartPage cartPage;
-        NewShippingAddressPage shippingAddressPage;
-        NewBillingAddressPage billingAddressPage;
-        NewPaymentPage paymentPage;
-        PlaceOrderPlace placeOrderPage;
-
         // total product count will be updated throughout the test
         int totalCount = 0;
 
         // Goto homepage
-        homePage = new OpenHomePageFlow().flow();
+        HomePage homePage = new OpenHomePageFlow().flow();
         homePage.validate();
 
         // Assure not logged in status
@@ -59,19 +48,19 @@ public class TGuestOrder extends BasicTest
 
         // Goto category
         final String categoryName = homePage.topNav().getSubCategoryNameByIndex(3, 2);
-        categoryPage = homePage.topNav().clickSubCategoryByIndex(3, 2);
+        CategoryPage categoryPage = homePage.topNav().clickSubCategoryByIndex(3, 2);
         categoryPage.validate(categoryName);
 
         // Goto product page
         final String productName = categoryPage.getProductNameByPosition(1, 1);
-        productPage = categoryPage.clickProductByPosition(1, 1);
+        ProductdetailPage productPage = categoryPage.clickProductByPosition(1, 1);
         productPage.validate(productName);
 
         productPage.addToCart("64 x 48 in", "gloss");
 
         // Goto cart and validate
         final Product product = productPage.getProduct();
-        cartPage = productPage.miniCart().openCartPage();
+        CartPage cartPage = productPage.miniCart().openCartPage();
         cartPage.validateStructure();
         cartPage.validateShippingCosts(SHIPPINGCOSTS);
         cartPage.miniCart().validateMiniCart(1, product);
@@ -85,26 +74,26 @@ public class TGuestOrder extends BasicTest
         final Address billingAddress = new Address("Jimmy Blue", "Ochsenknecht Records", "6 Wall St", "Burlington", "Massachusetts", "01803", "United States");
         final CreditCard creditcard = new CreditCard("Jimmy Blue", "4111111111111111", "xxxx xxxx xxxx 1111", "04", "2018");
         // Goto shipping address and validate
-        shippingAddressPage = cartPage.openNewShippingPage();
+        NewShippingAddressPage shippingAddressPage = cartPage.openNewShippingPage();
         shippingAddressPage.validateStructure();
 
         // Send shipping address and validate billing form
-        billingAddressPage = shippingAddressPage.sendShippingAddressForm(shippingAddress, sameBillingAddress);
+        NewBillingAddressPage billingAddressPage = shippingAddressPage.sendShippingAddressForm(shippingAddress, sameBillingAddress);
         billingAddressPage.validateStructure();
 
         // Send billing address and validate payment form
-        paymentPage = billingAddressPage.sendBillingAddressForm(billingAddress);
+        NewPaymentPage paymentPage = billingAddressPage.sendBillingAddressForm(billingAddress);
         paymentPage.validateStructure();
 
         // Send payment data and validate place order page
-        placeOrderPage = paymentPage.sendPaymentForm(creditcard);
+        PlaceOrderPlace placeOrderPage = paymentPage.sendPaymentForm(creditcard);
         placeOrderPage.validateStructure();
         placeOrderPage.validateProduct(0, product.getName(), product.getAmount(), product.getStyle(), product.getSize());
         placeOrderPage.validateAddressAndPayment(shippingAddress, billingAddress, creditcard);
 
         // Place order
         homePage = placeOrderPage.placeOrder();
-        // Validate oorder confirmation on Homepage
+        // Validate order confirmation on home page
         homePage.validate();
         homePage.validateSuccessfulOrder();
     }

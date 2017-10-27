@@ -24,26 +24,20 @@ public class TBrowse extends BasicTest
     @Test
     public void test()
     {
-        // TODO put in place of first usage
-        // Page types to use
-        HomePage homePage;
-        CategoryPage categoryPage;
-        ProductdetailPage productPage;
-
         // Goto homepage
-        homePage = new OpenHomePageFlow().flow();
+        HomePage homePage = new OpenHomePageFlow().flow();
         homePage.validate();
 
         // Goto category
         final String categoryName = homePage.topNav().getSubCategoryNameByIndex(1, 1);
-        categoryPage = homePage.topNav().clickSubCategoryByIndex(1, 1);
+        CategoryPage categoryPage = homePage.topNav().clickSubCategoryByIndex(1, 1);
         // TODO Discuss validations style lot of one liners or specific ones (one per line see TAddToCart) one liners
         // where appropriate
         categoryPage.validate(categoryName);
 
         // Goto product page
         final String productName = categoryPage.getProductNameByPosition(1, 1);
-        productPage = categoryPage.clickProductByPosition(1, 1);
+        ProductdetailPage productPage = categoryPage.clickProductByPosition(1, 1);
         productPage.validate(productName);
 
         // Goto category
@@ -65,6 +59,5 @@ public class TBrowse extends BasicTest
         final String productName3 = categoryPage.getProductNameByPosition(2, 3);
         productPage = categoryPage.clickProductByPosition(2, 3);
         productPage.validate(productName3);
-
     }
 }

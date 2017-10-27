@@ -29,25 +29,19 @@ public class TRegister extends BasicTest
     @Test
     public void test()
     {
-        // TODO put in place of first usage
-        // Page types to use
-        HomePage homePage;
-        LoginPage loginPage;
-        RegisterPage registerPage;
-
         // Goto homepage
-        homePage = new OpenHomePageFlow().flow();
+        HomePage homePage = new OpenHomePageFlow().flow();
         homePage.validate();
 
         // Assure not logged in status
         homePage.userMenu().validateNotLoggedIn();
 
         // Goto login form
-        loginPage = homePage.userMenu().openLogin();
+        LoginPage loginPage = homePage.userMenu().openLogin();
         loginPage.validateStructure();
 
         // Goto register form
-        registerPage = loginPage.openRegister();
+        RegisterPage registerPage = loginPage.openRegister();
         registerPage.validateStructure();
 
         loginPage = registerPage.sendRegisterForm(user, user.getPassword());

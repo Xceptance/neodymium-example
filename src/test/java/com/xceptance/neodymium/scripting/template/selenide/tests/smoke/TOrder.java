@@ -33,23 +33,11 @@ public class TOrder extends BasicTest
     @Test
     public void test()
     {
-        // TODO put in place of first usage
-        // Page types to use
-        HomePage homePage;
-        LoginPage loginPage;
-        CategoryPage categoryPage;
-        ProductdetailPage productPage;
-        CartPage cartPage;
-        ShippingAddressPage shippingAddressPage;
-        BillingAddressPage billingAddressPage;
-        PaymentPage paymentPage;
-        PlaceOrderPlace placeOrderPage;
-
         // total product count will be updated throughout the test
         int totalCount = 0;
 
         // Goto homepage
-        homePage = new OpenHomePageFlow().flow();
+        HomePage homePage = new OpenHomePageFlow().flow();
         homePage.validate();
 
         // Assure not logged in status
@@ -60,7 +48,7 @@ public class TOrder extends BasicTest
         final String oldSubtotal = homePage.miniCart().getSubtotal();
 
         // Goto login form
-        loginPage = homePage.userMenu().openLogin();
+        LoginPage loginPage = homePage.userMenu().openLogin();
         loginPage.validateStructure();
         homePage = loginPage.sendLoginform("john@doe.com", "topsecret");
 
@@ -68,19 +56,19 @@ public class TOrder extends BasicTest
 
         // Goto category
         final String categoryName = homePage.topNav().getSubCategoryNameByIndex(2, 3);
-        categoryPage = homePage.topNav().clickSubCategoryByIndex(2, 3);
+        CategoryPage categoryPage = homePage.topNav().clickSubCategoryByIndex(2, 3);
         categoryPage.validate(categoryName);
 
         // Goto product page
         final String productName = categoryPage.getProductNameByPosition(2, 1);
-        productPage = categoryPage.clickProductByPosition(2, 1);
+        ProductdetailPage productPage = categoryPage.clickProductByPosition(2, 1);
         productPage.validate(productName);
 
         productPage.addToCart("32 x 24 in", "matte");
 
         // Goto cart and validate
         final Product product = productPage.getProduct();
-        cartPage = productPage.miniCart().openCartPage();
+        CartPage cartPage = productPage.miniCart().openCartPage();
         cartPage.validateStructure();
         cartPage.validateShippingCosts(SHIPPINGCOSTS);
         cartPage.miniCart().validateMiniCart(1, product);
@@ -89,15 +77,15 @@ public class TOrder extends BasicTest
         cartPage.validateSubAndLineItemTotalAfterAdd(0, oldSubtotal, "$0.00");
 
         // Goto shipping address and validate
-        shippingAddressPage = cartPage.openShippingPage();
+        ShippingAddressPage shippingAddressPage = cartPage.openShippingPage();
         shippingAddressPage.validateStructure();
 
         // Send shipping address and validate billing form
-        billingAddressPage = shippingAddressPage.selectShippingAddress(0);
+        BillingAddressPage billingAddressPage = shippingAddressPage.selectShippingAddress(0);
         billingAddressPage.validateStructure();
 
         // Send billing address and validate payment form
-        paymentPage = billingAddressPage.selectBillingAddress(0);
+        PaymentPage paymentPage = billingAddressPage.selectBillingAddress(0);
         paymentPage.validateStructure();
 
         // setup checkout data for validation
@@ -106,7 +94,7 @@ public class TOrder extends BasicTest
         final CreditCard creditcard = new CreditCard("John Doe", "4111111111111111", "xxxx xxxx xxxx 1111", "08", "2022");
 
         // Send payment data and validate place order page
-        placeOrderPage = paymentPage.selectCreditCard(0);
+        PlaceOrderPlace placeOrderPage = paymentPage.selectCreditCard(0);
         placeOrderPage.validateStructure();
         placeOrderPage.validateProduct(0, product.getName(), product.getAmount(), product.getStyle(), product.getSize());
         placeOrderPage.validateAddressAndPayment(shippingAddress, billingAddress, creditcard);

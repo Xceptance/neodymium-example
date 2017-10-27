@@ -37,21 +37,16 @@ public class DeleteUserFlow extends AbstractFlow<LoginPage>
     public LoginPage flow()
     {
         HomePage homePage = page(HomePage.class);
-        AccountOverViewPage accountOverviewPage;
-        PersonalDataPage personalDataPage;
-        DeleteAccountPage deleteAccountPage;
-        LoginPage loginPage;
-
-        accountOverviewPage = homePage.userMenu().openAccountOverview();
+        AccountOverViewPage accountOverviewPage = homePage.userMenu().openAccountOverview();
         accountOverviewPage.validateStructure();
-        personalDataPage = accountOverviewPage.openPersonalData();
+        PersonalDataPage personalDataPage = accountOverviewPage.openPersonalData();
 
         personalDataPage.validateStructure();
-        deleteAccountPage = personalDataPage.openDeleteAccount();
+        DeleteAccountPage deleteAccountPage = personalDataPage.openDeleteAccount();
         homePage = deleteAccountPage.deleteAccount(user.getPassword());
         homePage.validateSuccessfulDeletedAccount();
 
-        loginPage = homePage.userMenu().openLogin();
+        LoginPage loginPage = homePage.userMenu().openLogin();
         loginPage.validateStructure();
         loginPage.sendFalseLoginform(user);
         loginPage.validateWrongEmail(user.getEMail());
