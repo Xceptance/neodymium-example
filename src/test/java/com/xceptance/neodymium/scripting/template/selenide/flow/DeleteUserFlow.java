@@ -6,7 +6,7 @@ package com.xceptance.neodymium.scripting.template.selenide.flow;
 import static com.codeborne.selenide.Selenide.page;
 
 import com.xceptance.neodymium.scripting.template.selenide.objects.User;
-import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PHome;
 import com.xceptance.neodymium.scripting.template.selenide.page.user.PAccountOverView;
 import com.xceptance.neodymium.scripting.template.selenide.page.user.PDeleteAccount;
 import com.xceptance.neodymium.scripting.template.selenide.page.user.PLogin;

@@ -8,7 +8,7 @@ import org.junit.Test;
 import com.xceptance.neodymium.multibrowser.Browser;
 import com.xceptance.neodymium.scripting.template.selenide.flow.OpenLoginPageFlow;
 import com.xceptance.neodymium.scripting.template.selenide.objects.User;
-import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PHome;
 import com.xceptance.neodymium.scripting.template.selenide.page.user.PLogin;
 import com.xceptance.neodymium.scripting.template.selenide.tests.BasicTest;
 

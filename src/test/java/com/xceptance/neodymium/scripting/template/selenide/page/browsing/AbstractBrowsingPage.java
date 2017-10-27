@@ -1,4 +1,4 @@
-package com.xceptance.neodymium.scripting.template.selenide.page;
+package com.xceptance.neodymium.scripting.template.selenide.page.browsing;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
@@ -12,10 +12,10 @@ import com.xceptance.neodymium.scripting.template.selenide.component.MiniCart;
 import com.xceptance.neodymium.scripting.template.selenide.component.Search;
 import com.xceptance.neodymium.scripting.template.selenide.component.TopNavigation;
 import com.xceptance.neodymium.scripting.template.selenide.component.UserMenu;
+import com.xceptance.neodymium.scripting.template.selenide.page.AbstractPageObject;
 import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
-// TODO rename Pages
-public abstract class BasicPage implements PageObject
+public abstract class AbstractBrowsingPage extends AbstractPageObject
 {
 
     private Header header;
@@ -30,7 +30,7 @@ public abstract class BasicPage implements PageObject
 
     private UserMenu userMenu;
 
-    public BasicPage()
+    public AbstractBrowsingPage()
     {
         if (Settings.IMPLICITVALIDATION)
         {

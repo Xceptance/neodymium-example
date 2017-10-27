@@ -3,8 +3,8 @@ package com.xceptance.neodymium.scripting.template.selenide.component;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-import com.xceptance.neodymium.scripting.template.selenide.page.PCategory;
-import com.xceptance.neodymium.scripting.template.selenide.page.PNoHits;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PCategory;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PNoHits;
 
 public class Search extends AbstractComponent
 {

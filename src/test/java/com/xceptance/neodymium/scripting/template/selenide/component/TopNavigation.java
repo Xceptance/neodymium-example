@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.page;
 
 import org.openqa.selenium.By;
 
-import com.xceptance.neodymium.scripting.template.selenide.page.PCategory;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PCategory;
 
 /**
  * @author pfotenhauer

@@ -15,7 +15,7 @@ import com.xceptance.neodymium.scripting.template.selenide.objects.CreditCard;
 /**
  * @author pfotenhauer
  */
-public class PNewPayment extends CheckoutPage
+public class PNewPayment extends AbstractCheckoutPage
 {
 
     /*

@@ -12,7 +12,7 @@ import com.xceptance.neodymium.scripting.template.datapool.UserPool;
 import com.xceptance.neodymium.scripting.template.selenide.flow.DeleteUserFlow;
 import com.xceptance.neodymium.scripting.template.selenide.flow.OpenHomePageFlow;
 import com.xceptance.neodymium.scripting.template.selenide.objects.User;
-import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PHome;
 import com.xceptance.neodymium.scripting.template.selenide.page.user.PLogin;
 import com.xceptance.neodymium.scripting.template.selenide.page.user.PRegister;
 import com.xceptance.neodymium.scripting.template.selenide.tests.BasicTest;

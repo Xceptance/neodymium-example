@@ -1,4 +1,4 @@
-package com.xceptance.neodymium.scripting.template.selenide.page;
+package com.xceptance.neodymium.scripting.template.selenide.page.browsing;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.exactText;
@@ -9,16 +9,25 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import com.xceptance.neodymium.scripting.template.selenide.objects.User;
 
-public class PHome extends BasicPage
+public class PHome extends AbstractBrowsingPage
 {
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.xceptance.scripting.selenide.page.AbstractPage()
+     */
     @Override
     public boolean isExpectedPage()
     {
         return $("#titleIndex").exists();
     }
 
-    @Override
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.xceptance.scripting.selenide.page.AbstractPage()
+     */
     public void validateStructure()
     {
         // Verifies the company Logo and name are visible.

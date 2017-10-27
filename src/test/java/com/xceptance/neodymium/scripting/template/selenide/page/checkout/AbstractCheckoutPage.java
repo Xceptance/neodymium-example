@@ -8,13 +8,13 @@ import org.junit.Assert;
 import com.xceptance.neodymium.scripting.template.selenide.component.CheckoutHeader;
 import com.xceptance.neodymium.scripting.template.selenide.component.Footer;
 import com.xceptance.neodymium.scripting.template.selenide.component.UserMenu;
-import com.xceptance.neodymium.scripting.template.selenide.page.PageObject;
+import com.xceptance.neodymium.scripting.template.selenide.page.AbstractPageObject;
 import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
 /**
  * @author pfotenhauer
  */
-public abstract class CheckoutPage implements PageObject
+public abstract class AbstractCheckoutPage extends AbstractPageObject
 {
 
     private CheckoutHeader header;
@@ -23,7 +23,7 @@ public abstract class CheckoutPage implements PageObject
 
     private UserMenu userMenu;
 
-    public CheckoutPage()
+    public AbstractCheckoutPage()
     {
         if (Settings.IMPLICITVALIDATION)
         {

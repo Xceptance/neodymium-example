@@ -10,12 +10,12 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
 import com.xceptance.neodymium.scripting.template.selenide.objects.User;
-import com.xceptance.neodymium.scripting.template.selenide.page.BasicPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.AbstractBrowsingPage;
 
 /**
  * @author pfotenhauer
  */
-public class PRegister extends BasicPage
+public class PRegister extends AbstractBrowsingPage
 {
 
     /*

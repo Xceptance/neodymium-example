@@ -9,13 +9,13 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-import com.xceptance.neodymium.scripting.template.selenide.page.BasicPage;
-import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.AbstractBrowsingPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PHome;
 
 /**
  * @author pfotenhauer
  */
-public class PDeleteAccount extends BasicPage
+public class PDeleteAccount extends AbstractBrowsingPage
 {
     /*
      * (non-Javadoc)

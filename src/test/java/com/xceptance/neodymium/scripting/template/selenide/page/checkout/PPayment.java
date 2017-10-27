@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.page;
 /**
  * @author pfotenhauer
  */
-public class PPayment extends CheckoutPage
+public class PPayment extends AbstractCheckoutPage
 {
 
     /*

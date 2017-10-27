@@ -7,9 +7,9 @@ import org.junit.Test;
 
 import com.xceptance.neodymium.multibrowser.Browser;
 import com.xceptance.neodymium.scripting.template.selenide.flow.OpenHomePageFlow;
-import com.xceptance.neodymium.scripting.template.selenide.page.PCategory;
-import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
-import com.xceptance.neodymium.scripting.template.selenide.page.PProduct;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PCategory;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PHome;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PProduct;
 import com.xceptance.neodymium.scripting.template.selenide.tests.BasicTest;
 
 /**

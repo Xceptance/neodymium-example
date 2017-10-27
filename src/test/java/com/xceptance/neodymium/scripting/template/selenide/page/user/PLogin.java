@@ -11,13 +11,13 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
 import com.xceptance.neodymium.scripting.template.selenide.objects.User;
-import com.xceptance.neodymium.scripting.template.selenide.page.BasicPage;
-import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.AbstractBrowsingPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PHome;
 
 /**
  * @author pfotenhauer
  */
-public class PLogin extends BasicPage
+public class PLogin extends AbstractBrowsingPage
 {
 
     /*

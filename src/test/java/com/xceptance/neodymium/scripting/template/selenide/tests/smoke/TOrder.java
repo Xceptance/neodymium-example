@@ -10,9 +10,9 @@ import com.xceptance.neodymium.scripting.template.selenide.flow.OpenHomePageFlow
 import com.xceptance.neodymium.scripting.template.selenide.objects.Address;
 import com.xceptance.neodymium.scripting.template.selenide.objects.CreditCard;
 import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
-import com.xceptance.neodymium.scripting.template.selenide.page.PCategory;
-import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
-import com.xceptance.neodymium.scripting.template.selenide.page.PProduct;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PCategory;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PHome;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PProduct;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PBillingAddress;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PCart;
 import com.xceptance.neodymium.scripting.template.selenide.page.checkout.PPayment;

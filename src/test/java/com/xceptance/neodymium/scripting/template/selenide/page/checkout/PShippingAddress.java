@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.page;
 /**
  * @author pfotenhauer
  */
-public class PShippingAddress extends CheckoutPage
+public class PShippingAddress extends AbstractCheckoutPage
 {
 
     /*
@@ -35,7 +35,6 @@ public class PShippingAddress extends CheckoutPage
      * 
      * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#isExpectedPage()
      */
-    @Override
     public boolean isExpectedPage()
     {
         return $("#titleDelAddr").exists();

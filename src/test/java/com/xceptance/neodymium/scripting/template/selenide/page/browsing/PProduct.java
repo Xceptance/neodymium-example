@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.xceptance.neodymium.scripting.template.selenide.page;
+package com.xceptance.neodymium.scripting.template.selenide.page.browsing;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.matchText;
@@ -12,10 +12,9 @@ import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
 /**
  * @author pfotenhauer
  */
-public class PProduct extends BasicPage
+public class PProduct extends AbstractBrowsingPage
 {
 
-    @Override
     public boolean isExpectedPage()
     {
         return $("#addToCartForm").exists();
@@ -24,9 +23,8 @@ public class PProduct extends BasicPage
     /*
      * (non-Javadoc)
      * 
-     * @see com.xceptance.scripting.selenide.page.BasicPage#validate()
+     * @see com.xceptance.scripting.selenide.page.AbstractPage()
      */
-    @Override
     public void validateStructure()
     {
         // Title

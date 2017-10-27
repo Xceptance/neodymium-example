@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import com.xceptance.neodymium.multibrowser.Browser;
 import com.xceptance.neodymium.scripting.template.selenide.flow.OpenHomePageFlow;
-import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PHome;
 import com.xceptance.neodymium.scripting.template.selenide.tests.BasicTest;
 
 @Browser(

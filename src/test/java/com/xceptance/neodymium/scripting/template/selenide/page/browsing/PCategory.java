@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.xceptance.neodymium.scripting.template.selenide.page;
+package com.xceptance.neodymium.scripting.template.selenide.page.browsing;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.exactText;
@@ -17,13 +17,13 @@ import static com.codeborne.selenide.Selenide.page;
 /**
  * @author pfotenhauer
  */
-public class PCategory extends BasicPage
+public class PCategory extends AbstractBrowsingPage
 {
 
     /*
      * (non-Javadoc)
      * 
-     * @see com.xceptance.scripting.selenide.page.BasicPage#isAwaitedPage()
+     * @see com.xceptance.scripting.selenide.page.AbstractPage()
      */
     @Override
     public boolean isExpectedPage()
@@ -41,9 +41,8 @@ public class PCategory extends BasicPage
     /*
      * (non-Javadoc)
      * 
-     * @see com.xceptance.scripting.selenide.page.BasicPage#validate()
+     * @see com.xceptance.scripting.selenide.page.AbstractPage()
      */
-    @Override
     public void validateStructure()
     {
         // Amount of results

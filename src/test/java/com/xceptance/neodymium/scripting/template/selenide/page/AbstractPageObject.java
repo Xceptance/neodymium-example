@@ -6,11 +6,11 @@ package com.xceptance.neodymium.scripting.template.selenide.page;
 /**
  * @author pfotenhauer
  */
-public interface PageObject
+public abstract class AbstractPageObject
 {
-    public void validateStructure();
+    abstract public void validateStructure();
 
-    default boolean isExpectedPage()
+    protected boolean isExpectedPage()
     {
         return true;
     }

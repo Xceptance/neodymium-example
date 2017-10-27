@@ -15,7 +15,7 @@ import com.xceptance.neodymium.scripting.template.selenide.objects.Address;
 /**
  * @author pfotenhauer
  */
-public class PNewShippingAddress extends CheckoutPage
+public class PNewShippingAddress extends AbstractCheckoutPage
 {
 
     /*

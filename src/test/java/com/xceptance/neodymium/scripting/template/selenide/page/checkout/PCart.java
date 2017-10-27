@@ -15,15 +15,15 @@ import static com.codeborne.selenide.Selenide.page;
 import org.junit.Assert;
 
 import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
-import com.xceptance.neodymium.scripting.template.selenide.page.BasicPage;
-import com.xceptance.neodymium.scripting.template.selenide.page.PProduct;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.AbstractBrowsingPage;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PProduct;
 import com.xceptance.neodymium.scripting.template.selenide.utility.PriceHelper;
 import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
 /**
  * @author pfotenhauer
  */
-public class PCart extends BasicPage
+public class PCart extends AbstractBrowsingPage
 {
 
     /*

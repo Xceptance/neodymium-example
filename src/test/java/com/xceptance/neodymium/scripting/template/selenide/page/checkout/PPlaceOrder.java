@@ -11,12 +11,12 @@ import static com.codeborne.selenide.Selenide.page;
 
 import com.xceptance.neodymium.scripting.template.selenide.objects.Address;
 import com.xceptance.neodymium.scripting.template.selenide.objects.CreditCard;
-import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PHome;
 
 /**
  * @author pfotenhauer
  */
-public class PPlaceOrder extends CheckoutPage
+public class PPlaceOrder extends AbstractCheckoutPage
 {
 
     /*

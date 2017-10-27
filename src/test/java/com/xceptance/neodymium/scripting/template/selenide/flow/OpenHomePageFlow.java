@@ -3,7 +3,7 @@ package com.xceptance.neodymium.scripting.template.selenide.flow;
 import static com.codeborne.selenide.Selenide.clearBrowserCookies;
 import static com.codeborne.selenide.Selenide.open;
 
-import com.xceptance.neodymium.scripting.template.selenide.page.PHome;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.PHome;
 
 public class OpenHomePageFlow extends AbstractFlow<PHome>
 {
