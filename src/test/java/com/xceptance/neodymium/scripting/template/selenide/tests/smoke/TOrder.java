@@ -33,6 +33,7 @@ public class TOrder extends BasicTest
     @Test
     public void test()
     {
+        // TODO put in place of first usage
         // Page types to use
         PHome homePage;
         PLogin loginPage;

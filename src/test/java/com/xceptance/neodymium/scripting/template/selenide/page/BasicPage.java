@@ -14,6 +14,7 @@ import com.xceptance.neodymium.scripting.template.selenide.component.CTopNav;
 import com.xceptance.neodymium.scripting.template.selenide.component.CUserMenu;
 import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
+// TODO rename Pages
 public abstract class BasicPage implements PageObject
 {
 

@@ -23,7 +23,8 @@ public class TAddToCart extends BasicTest
     {
         int totalCount = 0;
 
-        // TODO Discuss static call (PageHelper) vs. OO (PageObject), Not the pattern anymore?
+        // TODO adapt shorter style
+
         // Goto homepage
         PHome homePage = new FOpenHomepage().flow();
         homePage.validateStructure();
@@ -37,7 +38,7 @@ public class TAddToCart extends BasicTest
         PCategory categoryPage = homePage.topNav().clickCategory(topCatName);
         categoryPage.validateCategoryName(topCatName);
 
-        // TODO Discuss indexes natural vs. array
+        // TODO Discuss indexes natural vs. array !!! Implement natural
         // Goto sub category page
         final String categoryName = categoryPage.topNav().getSubCategoryNameByIndex(1, 1);
         PCategory categoryPage2 = categoryPage.topNav().clickSubCategoryByIndex(1, 1);
@@ -67,7 +68,7 @@ public class TAddToCart extends BasicTest
         // Search for product on cart page
         final String searchTerm = "pizza";
         final int searchTermExpectedCount = 1;
-        // TODO Discuss reuse of variable or new instance
+        // TODO Discuss reuse of variable or new instance !!! Reuse and declare in place
         PCategory categoryPage3 = cartPage.search().categoryPageResult(searchTerm);
         categoryPage3.validateSearchHits(searchTerm, searchTermExpectedCount);
         final String productName2 = categoryPage3.getProductNameByPosition(1, 1);

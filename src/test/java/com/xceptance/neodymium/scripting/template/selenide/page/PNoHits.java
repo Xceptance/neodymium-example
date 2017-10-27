@@ -11,8 +11,6 @@ public class PNoHits extends BasicPage
     @Override
     public void validateStructure()
     {
-        // TODO Auto-generated method stub
-
     }
 
 }

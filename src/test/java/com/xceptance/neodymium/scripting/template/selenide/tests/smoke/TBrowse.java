@@ -24,6 +24,7 @@ public class TBrowse extends BasicTest
     @Test
     public void test()
     {
+        // TODO put in place of first usage
         // Page types to use
         PHome homePage;
         PCategory categoryPage;
@@ -36,7 +37,8 @@ public class TBrowse extends BasicTest
         // Goto category
         final String categoryName = homePage.topNav().getSubCategoryNameByIndex(1, 1);
         categoryPage = homePage.topNav().clickSubCategoryByIndex(1, 1);
-        // TODO Discuss validations style lot of one liners or specific ones (one per line see TAddToCart)
+        // TODO Discuss validations style lot of one liners or specific ones (one per line see TAddToCart) one liners
+        // where appropriate
         categoryPage.validate(categoryName);
 
         // Goto product page

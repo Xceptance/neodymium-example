@@ -5,6 +5,7 @@ import org.junit.Assert;
 public abstract class BasicComponent
 {
 
+    // TODO rename Components
     public BasicComponent()
     {
         validateComponent();
