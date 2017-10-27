@@ -1,12 +1,11 @@
 /**
  * 
  */
-package com.xceptance.neodymium.scripting.template.selenide;
+package com.xceptance.neodymium.scripting.template.selenide.tests;
 
 import org.junit.Before;
 
 import com.codeborne.selenide.Configuration;
-import com.xceptance.neodymium.scripting.template.selenide.utility.Settings;
 
 /**
  * @author pfotenhauer
@@ -32,6 +31,6 @@ public class PureSelenideTest
         Configuration.browser = _browser;
         Configuration.browserSize = _browserSize;
         Configuration.holdBrowserOpen = _holdBrowserOpen;
-        Configuration.timeout = Settings.timeout;
+        Configuration.timeout = 1500;
     }
 }
