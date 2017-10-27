@@ -5,7 +5,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class Footer extends AbstractComponent
 {
-    static String footerText = "Copyright (c) 2016 Xceptance Software Technologies -- This software is for demo purposes only and not meant to be used in production.";
+    final static String footerText = "Copyright (c) 2016 Xceptance Software Technologies -- This software is for demo purposes only and not meant to be used in production.";
 
     @Override
     protected boolean exists()
