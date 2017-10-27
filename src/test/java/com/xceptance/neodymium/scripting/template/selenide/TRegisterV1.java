@@ -19,7 +19,6 @@ import com.xceptance.neodymium.scripting.template.selenide.page.browsing.HomePag
 import com.xceptance.neodymium.scripting.template.selenide.page.user.LoginPage;
 import com.xceptance.neodymium.scripting.template.selenide.page.user.RegisterPage;
 import com.xceptance.neodymium.scripting.template.selenide.tests.BasicTest;
-import com.xceptance.neodymium.scripting.template.selenide.tests.BasicTest;
 import com.xceptance.neodymium.testdata.GenericFileReader;
 
 /**
