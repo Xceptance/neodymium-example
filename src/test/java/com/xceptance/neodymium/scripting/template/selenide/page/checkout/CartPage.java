@@ -68,6 +68,15 @@ public class CartPage extends AbstractBrowsingPage
     }
 
     /**
+     * @param shippingcosts
+     */
+    public void validate(String shippingCosts)
+    {
+        validateStructure();
+        validateShippingCosts(shippingCosts);
+    }
+
+    /**
      * @param index
      * @param product
      */

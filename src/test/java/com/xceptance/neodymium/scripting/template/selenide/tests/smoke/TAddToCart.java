@@ -23,12 +23,10 @@ public class TAddToCart extends BasicTest
     {
         int totalCount = 0;
 
-        // TODO adapt shorter style
-
         // Goto homepage
         HomePage homePage = new OpenHomePageFlow().flow();
-        homePage.validateStructure();
-        homePage.footer().validate();
+        homePage.validate();
+
         homePage.miniCart().validateTotalCount(totalCount);
         homePage.miniCart().validateSubtotal("$0.00");
         final String oldSubtotal = homePage.miniCart().getSubtotal();
@@ -41,22 +39,19 @@ public class TAddToCart extends BasicTest
         // TODO Discuss indexes natural vs. array !!! Implement natural
         // Goto sub category page
         final String categoryName = categoryPage.topNav().getSubCategoryNameByIndex(1, 1);
-        CategoryPage categoryPage2 = categoryPage.topNav().clickSubCategoryByIndex(1, 1);
-        categoryPage2.validateCategoryName(categoryName);
-        categoryPage2.validateStructure();
+        categoryPage = categoryPage.topNav().clickSubCategoryByIndex(1, 1);
+        categoryPage.validate(categoryName);
 
         // Goto product page and add to cart
-        final String productName = categoryPage2.getProductNameByPosition(1, 1);
-        ProductdetailPage productPage = categoryPage2.clickProductByPosition(1, 1);
-        productPage.validateStructure();
-        productPage.validateProductName(productName);
+        final String productName = categoryPage.getProductNameByPosition(1, 1);
+        ProductdetailPage productPage = categoryPage.clickProductByPosition(1, 1);
+        productPage.validate(productName);
         productPage.addToCart("16 x 12 in", "matte");
 
         // Goto cart and validate
         final Product product = productPage.getProduct();
         CartPage cartPage = productPage.miniCart().openCartPage();
-        cartPage.validateStructure();
-        cartPage.validateShippingCosts(SHIPPINGCOSTS);
+        cartPage.validate(SHIPPINGCOSTS);
         cartPage.miniCart().validateMiniCart(1, product);
         cartPage.validateCartItem(0, product);
 
@@ -68,63 +63,60 @@ public class TAddToCart extends BasicTest
         // Search for product on cart page
         final String searchTerm = "pizza";
         final int searchTermExpectedCount = 1;
-        // TODO Discuss reuse of variable or new instance !!! Reuse and declare in place
-        CategoryPage categoryPage3 = cartPage.search().categoryPageResult(searchTerm);
-        categoryPage3.validateSearchHits(searchTerm, searchTermExpectedCount);
-        final String productName2 = categoryPage3.getProductNameByPosition(1, 1);
+        categoryPage = cartPage.search().categoryPageResult(searchTerm);
+        categoryPage.validateSearchHits(searchTerm, searchTermExpectedCount);
+        final String productName2 = categoryPage.getProductNameByPosition(1, 1);
 
         // Goto product page and add to cart
-        ProductdetailPage productPage2 = categoryPage3.clickProductByPosition(1, 1);
-        productPage2.validateStructure();
-        productPage2.validateProductName(productName2);
-        productPage2.addToCart("64 x 48 in", "gloss");
+        productPage = categoryPage.clickProductByPosition(1, 1);
+        productPage.validate(productName2);
+        productPage.addToCart("64 x 48 in", "gloss");
         final Product product2 = productPage.getProduct();
 
         // Goto cart and validate
-        CartPage cartPage2 = productPage2.miniCart().openCartPage();
-        cartPage2.validateStructure();
-        cartPage2.validateShippingCosts(SHIPPINGCOSTS);
+        cartPage = productPage.miniCart().openCartPage();
+        cartPage.validate(SHIPPINGCOSTS);
 
-        cartPage2.miniCart().validateMiniCart(1, product2);
+        cartPage.miniCart().validateMiniCart(1, product2);
 
-        cartPage2.miniCart().validateTotalCount(++totalCount);
-        cartPage2.validateCartItem(0, product2);
-        cartPage2.validateSubAndLineItemTotalAfterAdd(0, oldSubtotal2, "$0.00");
+        cartPage.miniCart().validateTotalCount(++totalCount);
+        cartPage.validateCartItem(0, product2);
+        cartPage.validateSubAndLineItemTotalAfterAdd(0, oldSubtotal2, "$0.00");
 
         int productToUpdateIndex = 0;
         int newProductAmount = 3;
-        final String oldSubtotal3 = cartPage2.miniCart().getSubtotal();
-        Product productBeforeUpdate = cartPage2.getProduct(productToUpdateIndex);
+        final String oldSubtotal3 = cartPage.miniCart().getSubtotal();
+        Product productBeforeUpdate = cartPage.getProduct(productToUpdateIndex);
 
         // Update amount of product on cart page
-        cartPage2.updateProductCount(productToUpdateIndex, newProductAmount);
-        cartPage2.validateProductAmount(productToUpdateIndex, newProductAmount);
+        cartPage.updateProductCount(productToUpdateIndex, newProductAmount);
+        cartPage.validateProductAmount(productToUpdateIndex, newProductAmount);
 
         final String newLinItemPrice = cartPage.getProductTotalUnitPrice(productToUpdateIndex);
-        cartPage2.validateSubAndLineItemTotalAfterAdd(productToUpdateIndex,
-                                                      oldSubtotal3,
-                                                      productBeforeUpdate.getTotalUnitPrice());
-        cartPage2.validateCartItem(0, productBeforeUpdate, newProductAmount);
-        cartPage2.miniCart().validateMiniCart(1, productBeforeUpdate, newProductAmount, newLinItemPrice);
+        cartPage.validateSubAndLineItemTotalAfterAdd(productToUpdateIndex,
+                                                     oldSubtotal3,
+                                                     productBeforeUpdate.getTotalUnitPrice());
+        cartPage.validateCartItem(0, productBeforeUpdate, newProductAmount);
+        cartPage.miniCart().validateMiniCart(1, productBeforeUpdate, newProductAmount, newLinItemPrice);
         totalCount = totalCount + newProductAmount - 1;
-        cartPage2.miniCart().validateTotalCount(totalCount);
+        cartPage.miniCart().validateTotalCount(totalCount);
 
         final String oldLineItemTotal = cartPage.getProductTotalUnitPrice(productToUpdateIndex);
-        final String oldSubTotal4 = cartPage2.miniCart().getSubtotal();
+        final String oldSubTotal4 = cartPage.miniCart().getSubtotal();
 
         // Remove product on cart page
-        cartPage2.removeProduct(productToUpdateIndex);
-        cartPage2.validateSubAndLineItemTotalAfterRemove(oldSubTotal4, oldLineItemTotal);
+        cartPage.removeProduct(productToUpdateIndex);
+        cartPage.validateSubAndLineItemTotalAfterRemove(oldSubTotal4, oldLineItemTotal);
         totalCount = totalCount - newProductAmount;
-        cartPage2.miniCart().validateTotalCount(totalCount);
+        cartPage.miniCart().validateTotalCount(totalCount);
 
-        Product productFromCartPage = cartPage2.getProduct(0);
-        ProductdetailPage productPage3 = cartPage2.openProductPage(0);
-        productPage3.validateProductName(productFromCartPage.getName());
-        productPage3.addToCart(productFromCartPage.getSize(), productFromCartPage.getStyle());
-        CartPage cartPage3 = productPage3.miniCart().openCartPage();
+        Product productFromCartPage = cartPage.getProduct(0);
+        productPage = cartPage.openProductPage(0);
+        productPage.validate(productFromCartPage.getName());
+        productPage.addToCart(productFromCartPage.getSize(), productFromCartPage.getStyle());
+        cartPage = productPage.miniCart().openCartPage();
 
-        cartPage3.validateCartItem(0, productFromCartPage, 2);
-        cartPage3.miniCart().validateTotalCount(++totalCount);
+        cartPage.validateCartItem(0, productFromCartPage, 2);
+        cartPage.miniCart().validateTotalCount(++totalCount);
     }
 }
