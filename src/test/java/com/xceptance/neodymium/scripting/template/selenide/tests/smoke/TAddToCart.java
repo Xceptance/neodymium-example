@@ -53,9 +53,9 @@ public class TAddToCart extends BasicTest
         CartPage cartPage = productPage.miniCart().openCartPage();
         cartPage.validate(SHIPPINGCOSTS);
         cartPage.miniCart().validateMiniCart(1, product);
-        cartPage.validateCartItem(0, product);
+        cartPage.validateCartItem(1, product);
 
-        cartPage.validateSubAndLineItemTotalAfterAdd(0, oldSubtotal, "$0.00");
+        cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, "$0.00");
 
         final String oldSubtotal2 = cartPage.miniCart().getSubtotal();
         cartPage.miniCart().validateTotalCount(++totalCount);
@@ -80,10 +80,10 @@ public class TAddToCart extends BasicTest
         cartPage.miniCart().validateMiniCart(1, product2);
 
         cartPage.miniCart().validateTotalCount(++totalCount);
-        cartPage.validateCartItem(0, product2);
-        cartPage.validateSubAndLineItemTotalAfterAdd(0, oldSubtotal2, "$0.00");
+        cartPage.validateCartItem(1, product2);
+        cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal2, "$0.00");
 
-        int productToUpdateIndex = 0;
+        int productToUpdateIndex = 1;
         int newProductAmount = 3;
         final String oldSubtotal3 = cartPage.miniCart().getSubtotal();
         Product productBeforeUpdate = cartPage.getProduct(productToUpdateIndex);
@@ -96,7 +96,7 @@ public class TAddToCart extends BasicTest
         cartPage.validateSubAndLineItemTotalAfterAdd(productToUpdateIndex,
                                                      oldSubtotal3,
                                                      productBeforeUpdate.getTotalUnitPrice());
-        cartPage.validateCartItem(0, productBeforeUpdate, newProductAmount);
+        cartPage.validateCartItem(1, productBeforeUpdate, newProductAmount);
         cartPage.miniCart().validateMiniCart(1, productBeforeUpdate, newProductAmount, newLinItemPrice);
         totalCount = totalCount + newProductAmount - 1;
         cartPage.miniCart().validateTotalCount(totalCount);
@@ -110,13 +110,13 @@ public class TAddToCart extends BasicTest
         totalCount = totalCount - newProductAmount;
         cartPage.miniCart().validateTotalCount(totalCount);
 
-        Product productFromCartPage = cartPage.getProduct(0);
-        productPage = cartPage.openProductPage(0);
+        Product productFromCartPage = cartPage.getProduct(1);
+        productPage = cartPage.openProductPage(1);
         productPage.validate(productFromCartPage.getName());
         productPage.addToCart(productFromCartPage.getSize(), productFromCartPage.getStyle());
         cartPage = productPage.miniCart().openCartPage();
 
-        cartPage.validateCartItem(0, productFromCartPage, 2);
+        cartPage.validateCartItem(1, productFromCartPage, 2);
         cartPage.miniCart().validateTotalCount(++totalCount);
     }
 }

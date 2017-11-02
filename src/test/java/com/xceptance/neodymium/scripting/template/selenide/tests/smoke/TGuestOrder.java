@@ -65,8 +65,8 @@ public class TGuestOrder extends BasicTest
         cartPage.validateShippingCosts(SHIPPINGCOSTS);
         cartPage.miniCart().validateMiniCart(1, product);
         cartPage.miniCart().validateTotalCount(++totalCount);
-        cartPage.validateCartItem(0, product);
-        cartPage.validateSubAndLineItemTotalAfterAdd(0, oldSubtotal, "$0.00");
+        cartPage.validateCartItem(1, product);
+        cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, "$0.00");
 
         // setup checkout data
         final Address shippingAddress = new Address("Jimmy Blue", "Ochsenknecht Records", "6 Wall St", "Burlington", "Massachusetts", "01803", "United States");

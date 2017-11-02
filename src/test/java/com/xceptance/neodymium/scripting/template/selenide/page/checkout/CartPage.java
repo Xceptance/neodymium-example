@@ -77,35 +77,36 @@ public class CartPage extends AbstractBrowsingPage
     }
 
     /**
-     * @param index
+     * @param position
      * @param product
      */
-    public void validateCartItem(int index, Product product)
+    public void validateCartItem(int position, Product product)
     {
-        validateCartItem(index, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), product.getUnitPrice());
+        validateCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), product.getUnitPrice());
     }
 
     /**
-     * @param index
+     * @param position
      * @param product
      * @param productAmount
      */
-    public void validateCartItem(int index, Product product, int productAmount)
+    public void validateCartItem(int position, Product product, int productAmount)
     {
-        validateCartItem(index, product.getName(), product.getStyle(), product.getSize(), productAmount, product.getUnitPrice());
+        validateCartItem(position, product.getName(), product.getStyle(), product.getSize(), productAmount, product.getUnitPrice());
     }
 
-    private void validateCartItem(int index, String productName, String productStyle, String productSize, int productAmount, String productPrice)
+    private void validateCartItem(int position, String productName, String productStyle, String productSize, int productAmount, String productPrice)
     {
+        final int index = position - 1;
         // Visibility
         // Makes sure a product at the specified index exists and is visible
-        $("#product" + index).shouldBe(visible);
+        $("#product" + (index)).shouldBe(visible);
         // Name
         // Compares the displayed name with the parameter
         $("#product" + index + " .productName").shouldHave(exactText(productName));
         // Count
         // Compares the displayed amount with the parameter
-        validateProductAmount(index, productAmount);
+        validateProductAmount(position, productAmount);
         // Style
         // Compares the displayed style with the parameter
         $("#product" + index + " .productStyle").shouldHave(exactText(productStyle));
@@ -117,9 +118,9 @@ public class CartPage extends AbstractBrowsingPage
         $("#product" + index + " .productUnitPrice").shouldHave(exactText(productPrice));
     }
 
-    public void validateSubAndLineItemTotalAfterAdd(int index, String oldSubTotal, String oldLineItemTotal)
+    public void validateSubAndLineItemTotalAfterAdd(int position, String oldSubTotal, String oldLineItemTotal)
     {
-
+        final int index = position - 1;
         // Store unit price (without $ sign)
         // Takes the pricer per 1 unit of the specified item
         String unitPriceShort_varDynamic = $("#product" + index + " td .unitPriceShort").text();
@@ -145,59 +146,67 @@ public class CartPage extends AbstractBrowsingPage
         Assert.assertEquals(price, price2);
     }
 
-    public void validateProductAmount(int index, int amount)
+    public void validateProductAmount(int position, int amount)
     {
+        final int index = position - 1;
         // Makes sure the amount of the item with index @{index} in the cart equals the parameter
         $("#product" + index + " .productCount").shouldHave(exactValue(Integer.toString(amount)));
     }
 
-    public String getProductName(int index)
+    public String getProductName(int position)
     {
+        final int index = position - 1;
         // Get the product name to enable usage outside this module.
         return $("#product" + index + " .productName").text();
     }
 
-    public String getProductStyle(int index)
+    public String getProductStyle(int position)
     {
+        final int index = position - 1;
         // Get the style to enable usage outside this module.
         return $("#product" + index + " .productStyle").text();
     }
 
-    public String getProductSize(int index)
+    public String getProductSize(int position)
     {
+        final int index = position - 1;
         // Get the size to enable usage outside this module.
         return $("#product" + index + " .productSize").text();
     }
 
-    public String getProductCount(int index)
+    public String getProductCount(int position)
     {
+        final int index = position - 1;
         // Get the size to enable usage outside this module.
         return $("#product" + index + " .productCount").val();
     }
 
-    public String getProductUnitPrice(int index)
+    public String getProductUnitPrice(int position)
     {
+        final int index = position - 1;
         // Get the product price to enable usage outside this module.
         return $("#product" + index + " .productUnitPrice").text();
     }
 
-    public String getProductTotalUnitPrice(int index)
+    public String getProductTotalUnitPrice(int position)
     {
+        final int index = position - 1;
         // Get the product price to enable usage outside this module.
         return $("#product" + index + " .productTotalUnitPrice").text();
     }
 
-    public Product getProduct(int index)
+    public Product getProduct(int position)
     {
-        return new Product(getProductName(index), getProductUnitPrice(index), getProductTotalUnitPrice(index), getProductStyle(index), getProductSize(index), Integer.parseInt(getProductCount(index)));
+        return new Product(getProductName(position), getProductUnitPrice(position), getProductTotalUnitPrice(position), getProductStyle(position), getProductSize(position), Integer.parseInt(getProductCount(position)));
     };
 
     /**
      * @param index
      * @param amount
      */
-    public void updateProductCount(int index, int amount)
+    public void updateProductCount(int position, int amount)
     {
+        final int index = position - 1;
         // Type in the specified amount
         $("#product" + index + " .productCount").setValue(Integer.toString(amount));
         // Stores the new amount in an outside variable
@@ -207,10 +216,11 @@ public class CartPage extends AbstractBrowsingPage
     }
 
     /**
-     * @param index
+     * @param position
      */
-    public void removeProduct(int index)
+    public void removeProduct(int position)
     {
+        final int index = position - 1;
         // Click delete button
         // Click on the delete button for the product
         $("#btnRemoveProdCount" + index).scrollTo().click();
@@ -240,8 +250,9 @@ public class CartPage extends AbstractBrowsingPage
     /**
      * @param index
      */
-    public ProductdetailPage openProductPage(int index)
+    public ProductdetailPage openProductPage(int position)
     {
+        final int index = position - 1;
         $("#product" + index + " img").scrollTo().click();
         return page(ProductdetailPage.class);
     }

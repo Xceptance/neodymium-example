@@ -73,8 +73,8 @@ public class TOrder extends BasicTest
         cartPage.validateShippingCosts(SHIPPINGCOSTS);
         cartPage.miniCart().validateMiniCart(1, product);
         cartPage.miniCart().validateTotalCount(++totalCount);
-        cartPage.validateCartItem(0, product);
-        cartPage.validateSubAndLineItemTotalAfterAdd(0, oldSubtotal, "$0.00");
+        cartPage.validateCartItem(1, product);
+        cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, "$0.00");
 
         // Goto shipping address and validate
         ShippingAddressPage shippingAddressPage = cartPage.openShippingPage();
