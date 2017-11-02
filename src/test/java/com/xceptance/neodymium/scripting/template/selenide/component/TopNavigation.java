@@ -36,18 +36,18 @@ public class TopNavigation extends AbstractComponent
         return page(CategoryPage.class);
     }
 
-    public String getSubCategoryNameByIndex(int categoryIndex, int subCategoryIndex)
+    public String getSubCategoryNameByPosition(int categoryPosition, int subCategoryPosition)
     {
-        return $("#categoryMenu > ul > li:nth-of-type(" + categoryIndex
-                 + ") ul.dropdown-menu li:nth-of-type(" + subCategoryIndex + ") a").attr("title");
+        return $("#categoryMenu > ul > li:nth-of-type(" + categoryPosition
+                 + ") ul.dropdown-menu li:nth-of-type(" + subCategoryPosition + ") a").attr("title");
     }
 
-    public CategoryPage clickSubCategoryByIndex(int categoryIndex, int subCategoryIndex)
+    public CategoryPage clickSubCategoryByPosition(int categoryPosition, int subCategoryPosition)
     {
         // Open the category page
-        $("#categoryMenu > ul > li:nth-of-type(" + categoryIndex + ") a").hover();
+        $("#categoryMenu > ul > li:nth-of-type(" + categoryPosition + ") a").hover();
         // Clicks the subcategory with index @{subcategoryIndex} belonging to the category with index @{categoryIndex}
-        $("#categoryMenu > ul > li:nth-of-type(" + categoryIndex + ") ul.dropdown-menu li:nth-of-type(" + subCategoryIndex + ") a").click();
+        $("#categoryMenu > ul > li:nth-of-type(" + categoryPosition + ") ul.dropdown-menu li:nth-of-type(" + subCategoryPosition + ") a").click();
         return page(CategoryPage.class);
     }
 }

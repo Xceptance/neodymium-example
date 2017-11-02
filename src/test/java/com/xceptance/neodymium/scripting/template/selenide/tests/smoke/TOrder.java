@@ -55,8 +55,8 @@ public class TOrder extends BasicTest
         homePage.validateSuccessfulLogin("John");
 
         // Goto category
-        final String categoryName = homePage.topNav().getSubCategoryNameByIndex(2, 3);
-        CategoryPage categoryPage = homePage.topNav().clickSubCategoryByIndex(2, 3);
+        final String categoryName = homePage.topNav().getSubCategoryNameByPosition(2, 3);
+        CategoryPage categoryPage = homePage.topNav().clickSubCategoryByPosition(2, 3);
         categoryPage.validate(categoryName);
 
         // Goto product page

@@ -47,8 +47,8 @@ public class TGuestOrder extends BasicTest
         final String oldSubtotal = homePage.miniCart().getSubtotal();
 
         // Goto category
-        final String categoryName = homePage.topNav().getSubCategoryNameByIndex(3, 2);
-        CategoryPage categoryPage = homePage.topNav().clickSubCategoryByIndex(3, 2);
+        final String categoryName = homePage.topNav().getSubCategoryNameByPosition(3, 2);
+        CategoryPage categoryPage = homePage.topNav().clickSubCategoryByPosition(3, 2);
         categoryPage.validate(categoryName);
 
         // Goto product page

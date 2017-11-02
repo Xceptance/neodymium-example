@@ -38,8 +38,8 @@ public class TAddToCart extends BasicTest
 
         // TODO Discuss indexes natural vs. array !!! Implement natural
         // Goto sub category page
-        final String categoryName = categoryPage.topNav().getSubCategoryNameByIndex(1, 1);
-        categoryPage = categoryPage.topNav().clickSubCategoryByIndex(1, 1);
+        final String categoryName = categoryPage.topNav().getSubCategoryNameByPosition(1, 1);
+        categoryPage = categoryPage.topNav().clickSubCategoryByPosition(1, 1);
         categoryPage.validate(categoryName);
 
         // Goto product page and add to cart

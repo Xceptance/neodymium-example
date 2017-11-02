@@ -29,8 +29,8 @@ public class TBrowse extends BasicTest
         homePage.validate();
 
         // Goto category
-        final String categoryName = homePage.topNav().getSubCategoryNameByIndex(1, 1);
-        CategoryPage categoryPage = homePage.topNav().clickSubCategoryByIndex(1, 1);
+        final String categoryName = homePage.topNav().getSubCategoryNameByPosition(1, 1);
+        CategoryPage categoryPage = homePage.topNav().clickSubCategoryByPosition(1, 1);
         // TODO Discuss validations style lot of one liners or specific ones (one per line see TAddToCart) one liners
         // where appropriate
         categoryPage.validate(categoryName);
@@ -41,8 +41,8 @@ public class TBrowse extends BasicTest
         productPage.validate(productName);
 
         // Goto category
-        final String categoryName2 = productPage.topNav().getSubCategoryNameByIndex(2, 2);
-        categoryPage = productPage.topNav().clickSubCategoryByIndex(2, 2);
+        final String categoryName2 = productPage.topNav().getSubCategoryNameByPosition(2, 2);
+        categoryPage = productPage.topNav().clickSubCategoryByPosition(2, 2);
         categoryPage.validate(categoryName2);
 
         // Goto product page
@@ -51,8 +51,8 @@ public class TBrowse extends BasicTest
         productPage.validate(productName2);
 
         // Goto category
-        final String categoryName3 = productPage.topNav().getSubCategoryNameByIndex(2, 3);
-        categoryPage = productPage.topNav().clickSubCategoryByIndex(2, 3);
+        final String categoryName3 = productPage.topNav().getSubCategoryNameByPosition(2, 3);
+        categoryPage = productPage.topNav().clickSubCategoryByPosition(2, 3);
         categoryPage.validate(categoryName3);
 
         // Goto product page
