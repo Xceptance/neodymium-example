@@ -31,8 +31,6 @@ public class TBrowse extends BasicTest
         // Goto category
         final String categoryName = homePage.topNav().getSubCategoryNameByPosition(1, 1);
         CategoryPage categoryPage = homePage.topNav().clickSubCategoryByPosition(1, 1);
-        // TODO Discuss validations style lot of one liners or specific ones (one per line see TAddToCart) one liners
-        // where appropriate
         categoryPage.validate(categoryName);
 
         // Goto product page
