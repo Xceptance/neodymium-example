@@ -81,11 +81,11 @@ public class TOrder extends BasicTest
         shippingAddressPage.validateStructure();
 
         // Send shipping address and validate billing form
-        BillingAddressPage billingAddressPage = shippingAddressPage.selectShippingAddress(0);
+        BillingAddressPage billingAddressPage = shippingAddressPage.selectShippingAddress(1);
         billingAddressPage.validateStructure();
 
         // Send billing address and validate payment form
-        PaymentPage paymentPage = billingAddressPage.selectBillingAddress(0);
+        PaymentPage paymentPage = billingAddressPage.selectBillingAddress(1);
         paymentPage.validateStructure();
 
         // setup checkout data for validation
@@ -94,9 +94,9 @@ public class TOrder extends BasicTest
         final CreditCard creditcard = new CreditCard("John Doe", "4111111111111111", "xxxx xxxx xxxx 1111", "08", "2022");
 
         // Send payment data and validate place order page
-        PlaceOrderPlace placeOrderPage = paymentPage.selectCreditCard(0);
+        PlaceOrderPlace placeOrderPage = paymentPage.selectCreditCard(1);
         placeOrderPage.validateStructure();
-        placeOrderPage.validateProduct(0, product.getName(), product.getAmount(), product.getStyle(), product.getSize());
+        placeOrderPage.validateProduct(1, product.getName(), product.getAmount(), product.getStyle(), product.getSize());
         placeOrderPage.validateAddressAndPayment(shippingAddress, billingAddress, creditcard);
 
         // Place order

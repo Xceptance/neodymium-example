@@ -34,8 +34,8 @@ public class TSearch extends BasicTest
         CategoryPage categoryPage = homePage.search().categoryPageResult(searchTerm);
         categoryPage.validateSearchHits(searchTerm, searchTermExpectedCount);
 
-        final String productName = categoryPage.getProductNameByIndex(0);
-        ProductdetailPage productPage = categoryPage.clickProductByIndex(0);
+        final String productName = categoryPage.getProductNameByPosition(1);
+        ProductdetailPage productPage = categoryPage.clickProductByPosition(1);
         productPage.validate(productName);
     }
 }

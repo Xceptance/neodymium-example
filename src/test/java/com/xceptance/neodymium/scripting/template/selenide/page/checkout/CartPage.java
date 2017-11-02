@@ -201,7 +201,7 @@ public class CartPage extends AbstractBrowsingPage
     };
 
     /**
-     * @param index
+     * @param position
      * @param amount
      */
     public void updateProductCount(int position, int amount)

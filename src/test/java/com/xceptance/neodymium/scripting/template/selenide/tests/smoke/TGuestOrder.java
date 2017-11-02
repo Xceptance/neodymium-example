@@ -88,7 +88,7 @@ public class TGuestOrder extends BasicTest
         // Send payment data and validate place order page
         PlaceOrderPlace placeOrderPage = paymentPage.sendPaymentForm(creditcard);
         placeOrderPage.validateStructure();
-        placeOrderPage.validateProduct(0, product.getName(), product.getAmount(), product.getStyle(), product.getSize());
+        placeOrderPage.validateProduct(1, product.getName(), product.getAmount(), product.getStyle(), product.getSize());
         placeOrderPage.validateAddressAndPayment(shippingAddress, billingAddress, creditcard);
 
         // Place order

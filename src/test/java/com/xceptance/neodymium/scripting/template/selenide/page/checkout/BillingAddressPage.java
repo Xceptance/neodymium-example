@@ -42,12 +42,13 @@ public class BillingAddressPage extends AbstractCheckoutPage
     }
 
     /**
-     * @param index
-     *            The index of the billing address you want to choose
+     * @param position
+     *            The position of the billing address you want to choose
      * @return PPayment
      */
-    public PaymentPage selectBillingAddress(int index)
+    public PaymentPage selectBillingAddress(int position)
     {
+        final int index = position - 1;
         // Select address
         // Checks the radio button belonging to the delivery address with index @{index}
         $("#billAddr" + index + " input").scrollTo().click();

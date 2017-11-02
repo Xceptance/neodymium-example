@@ -44,8 +44,8 @@ public class PlaceOrderPlace extends AbstractCheckoutPage
     }
 
     /**
-     * @param index
-     *            The index of the product you want to check
+     * @param position
+     *            The position of the product you want to check
      * @param productName
      *            The Product name of that product
      * @param productCount
@@ -55,8 +55,9 @@ public class PlaceOrderPlace extends AbstractCheckoutPage
      * @param productSize
      *            The size
      */
-    public void validateProduct(int index, String productName, int productCount, String productStyle, String productSize)
+    public void validateProduct(int position, String productName, int productCount, String productStyle, String productSize)
     {
+        final int index = position - 1;
         // Item info evaluation
         // The product at index @{index} exists
         $("#checkoutOverviewTable tr#product" + index).should(exist);

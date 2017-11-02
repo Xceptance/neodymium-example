@@ -41,12 +41,13 @@ public class ShippingAddressPage extends AbstractCheckoutPage
     }
 
     /**
-     * @param index
-     *            Index of the shipping address
+     * @param position
+     *            position of the shipping address
      * @return PBillingAddress
      */
-    public BillingAddressPage selectShippingAddress(int index)
+    public BillingAddressPage selectShippingAddress(int position)
     {
+        final int index = position - 1;
         // Select address
         // Checks the radio button belonging to the delivery address with index @{index}
         $("#delAddr" + index + " input").scrollTo().click();

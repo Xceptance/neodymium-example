@@ -78,11 +78,12 @@ public class CategoryPage extends AbstractBrowsingPage
     }
 
     /**
-     * @param index
+     * @param position
      * @return
      */
-    public ProductdetailPage clickProductByIndex(int index)
+    public ProductdetailPage clickProductByPosition(int position)
     {
+        final int index = position - 1;
         // Open the product detail page
         // Click on the product's image and open the product overview page
         // Click the product link to open the product detail page
@@ -92,11 +93,12 @@ public class CategoryPage extends AbstractBrowsingPage
     }
 
     /**
-     * @param index
+     * @param position
      * @return
      */
-    public String getProductNameByIndex(int index)
+    public String getProductNameByPosition(int position)
     {
+        final int index = position - 1;
         // Get the product name
         return $("#product" + index + " .pInfo .pName").text();
     }

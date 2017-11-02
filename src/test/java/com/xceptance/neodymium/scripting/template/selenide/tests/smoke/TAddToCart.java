@@ -36,7 +36,6 @@ public class TAddToCart extends BasicTest
         CategoryPage categoryPage = homePage.topNav().clickCategory(topCatName);
         categoryPage.validateCategoryName(topCatName);
 
-        // TODO Discuss indexes natural vs. array !!! Implement natural
         // Goto sub category page
         final String categoryName = categoryPage.topNav().getSubCategoryNameByPosition(1, 1);
         categoryPage = categoryPage.topNav().clickSubCategoryByPosition(1, 1);
@@ -83,17 +82,17 @@ public class TAddToCart extends BasicTest
         cartPage.validateCartItem(1, product2);
         cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal2, "$0.00");
 
-        int productToUpdateIndex = 1;
+        int productToUpdatePosition = 1;
         int newProductAmount = 3;
         final String oldSubtotal3 = cartPage.miniCart().getSubtotal();
-        Product productBeforeUpdate = cartPage.getProduct(productToUpdateIndex);
+        Product productBeforeUpdate = cartPage.getProduct(productToUpdatePosition);
 
         // Update amount of product on cart page
-        cartPage.updateProductCount(productToUpdateIndex, newProductAmount);
-        cartPage.validateProductAmount(productToUpdateIndex, newProductAmount);
+        cartPage.updateProductCount(productToUpdatePosition, newProductAmount);
+        cartPage.validateProductAmount(productToUpdatePosition, newProductAmount);
 
-        final String newLinItemPrice = cartPage.getProductTotalUnitPrice(productToUpdateIndex);
-        cartPage.validateSubAndLineItemTotalAfterAdd(productToUpdateIndex,
+        final String newLinItemPrice = cartPage.getProductTotalUnitPrice(productToUpdatePosition);
+        cartPage.validateSubAndLineItemTotalAfterAdd(productToUpdatePosition,
                                                      oldSubtotal3,
                                                      productBeforeUpdate.getTotalUnitPrice());
         cartPage.validateCartItem(1, productBeforeUpdate, newProductAmount);
@@ -101,11 +100,11 @@ public class TAddToCart extends BasicTest
         totalCount = totalCount + newProductAmount - 1;
         cartPage.miniCart().validateTotalCount(totalCount);
 
-        final String oldLineItemTotal = cartPage.getProductTotalUnitPrice(productToUpdateIndex);
+        final String oldLineItemTotal = cartPage.getProductTotalUnitPrice(productToUpdatePosition);
         final String oldSubTotal4 = cartPage.miniCart().getSubtotal();
 
         // Remove product on cart page
-        cartPage.removeProduct(productToUpdateIndex);
+        cartPage.removeProduct(productToUpdatePosition);
         cartPage.validateSubAndLineItemTotalAfterRemove(oldSubTotal4, oldLineItemTotal);
         totalCount = totalCount - newProductAmount;
         cartPage.miniCart().validateTotalCount(totalCount);

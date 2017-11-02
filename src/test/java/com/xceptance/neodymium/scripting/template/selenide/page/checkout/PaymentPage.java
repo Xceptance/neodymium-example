@@ -42,12 +42,13 @@ public class PaymentPage extends AbstractCheckoutPage
     }
 
     /**
-     * @param index
-     *            The index of the credit card you want to select
+     * @param position
+     *            The position of the credit card you want to select
      * @return PPlaceOrder
      */
-    public PlaceOrderPlace selectCreditCard(int index)
+    public PlaceOrderPlace selectCreditCard(int position)
     {
+        final int index = position - 1;
         // Select address
         // Checks the radio button belonging to the delivery address with index @{index}
         $("#payment" + index + " input").scrollTo().click();
