@@ -42,7 +42,7 @@
 
                     <!-- our test case naming does not follow Maven naming conventions -->
                     <includes>
-                        <include>com/xceptance/neodymium/scripting/template/selenide/T*.java</include>
+						<include>com/xceptance/neodymium/scripting/template/selenide/**/T*.java</include>
                     </includes>
                 </configuration>
             </plugin>
