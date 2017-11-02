@@ -95,45 +95,45 @@ public class MiniCart extends AbstractComponent
     }
 
     /**
-     * @param index
+     * @param position
      * @param product
      */
-    public void validateMiniCart(int index, Product product)
+    public void validateMiniCart(int position, Product product)
     {
-        validateMiniCart(index, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), product.getTotalUnitPrice());
+        validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), product.getTotalUnitPrice());
     }
 
     /**
-     * @param index
+     * @param position
      * @param product
      * @param productAmount
      * @param productTotalPrice
      */
-    public void validateMiniCart(int index, Product product, int productAmount, String productTotalPrice)
+    public void validateMiniCart(int position, Product product, int productAmount, String productTotalPrice)
     {
-        validateMiniCart(index, product.getName(), product.getStyle(), product.getSize(), productAmount, productTotalPrice);
+        validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), productAmount, productTotalPrice);
     }
 
-    private void validateMiniCart(int index, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
+    private void validateMiniCart(int position, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
     {
         // Open the mini cart
         openMiniCart();
         // Validate data of specified item
         // Product Name
-        // Compares the name of the cart item at index @{index} to the parameter
-        $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodName").shouldHave(exactText(productName));
+        // Compares the name of the cart item at position @{position} to the parameter
+        $("ul.cartMiniElementList li:nth-child(" + position + ") ul.cartItems .prodName").shouldHave(exactText(productName));
         // Product Style
-        // Compares the style of the cart item at index @{index} to the parameter
-        $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodStyle").shouldHave(exactText(productStyle));
+        // Compares the style of the cart item at position @{position} to the parameter
+        $("ul.cartMiniElementList li:nth-child(" + position + ") ul.cartItems .prodStyle").shouldHave(exactText(productStyle));
         // Product Size
-        // Compares the style of the cart item at index @{index} to the parameter
-        $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodSize").shouldHave(exactText(productSize));
+        // Compares the style of the cart item at position @{position} to the parameter
+        $("ul.cartMiniElementList li:nth-child(" + position + ") ul.cartItems .prodSize").shouldHave(exactText(productSize));
         // Amount
-        // Compares the amount of the cart item at index @{index} to the parameter
-        $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodCount").shouldHave(exactText(Integer.toString(productCount)));
+        // Compares the amount of the cart item at position @{position} to the parameter
+        $("ul.cartMiniElementList li:nth-child(" + position + ") ul.cartItems .prodCount").shouldHave(exactText(Integer.toString(productCount)));
         // Price
-        // Compares the price of the cart item at index @{index} to the parameter
-        $("ul.cartMiniElementList li:nth-child(" + index + ") ul.cartItems .prodPrice").shouldHave(exactText(prodTotalPrice));
+        // Compares the price of the cart item at position @{position} to the parameter
+        $("ul.cartMiniElementList li:nth-child(" + position + ") ul.cartItems .prodPrice").shouldHave(exactText(prodTotalPrice));
         // Close mini cart
         closeMiniCart();
     }

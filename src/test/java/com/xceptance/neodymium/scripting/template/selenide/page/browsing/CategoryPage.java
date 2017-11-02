@@ -51,7 +51,6 @@ public class CategoryPage extends AbstractBrowsingPage
         // Results
         // Assures there's at least one product shown
         $("#product0").shouldBe(visible);
-
     }
 
     /**
@@ -62,7 +61,7 @@ public class CategoryPage extends AbstractBrowsingPage
     public ProductdetailPage clickProductByPosition(int row, int column)
     {
         // Open the product detail page
-        // Clicks a product by index. Because of the html code, this requires x and y coordinates.
+        // Clicks a product by position. Because of the html code, this requires x and y coordinates.
 
         $("#productOverview > .row:nth-child(" + row + ") li:nth-of-type(" + column + ") h4.pName").scrollTo().click();
         return page(ProductdetailPage.class);

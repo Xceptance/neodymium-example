@@ -46,7 +46,8 @@ public class TopNavigation extends AbstractComponent
     {
         // Open the category page
         $("#categoryMenu > ul > li:nth-of-type(" + categoryPosition + ") a").hover();
-        // Clicks the subcategory with index @{subcategoryIndex} belonging to the category with index @{categoryIndex}
+        // Clicks the subcategory with position @{subCategoryPosition}
+        // belonging to the category with position @{categoryPosition}
         $("#categoryMenu > ul > li:nth-of-type(" + categoryPosition + ") ul.dropdown-menu li:nth-of-type(" + subCategoryPosition + ") a").click();
         return page(CategoryPage.class);
     }
