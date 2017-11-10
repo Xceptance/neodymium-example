@@ -3,6 +3,8 @@
  */
 package com.xceptance.neodymium.scripting.template.selenide.objects;
 
+import java.util.Map;
+
 /**
  * @author pfotenhauer
  */
@@ -25,6 +27,14 @@ public class User
         this.lastName = lastName;
         this.eMail = eMail;
         this.password = password;
+    }
+
+    public User(Map<String, String> data)
+    {
+        this.firstName = data.get("firstName");
+        this.lastName = data.get("lastName");
+        this.eMail = data.get("eMail");
+        this.password = data.get("password");
     }
 
     /**

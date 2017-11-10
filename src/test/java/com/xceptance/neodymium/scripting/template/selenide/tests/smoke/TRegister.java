@@ -4,6 +4,7 @@
 package com.xceptance.neodymium.scripting.template.selenide.tests.smoke;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.xceptance.neodymium.multibrowser.Browser;
@@ -24,7 +25,13 @@ import com.xceptance.neodymium.scripting.template.selenide.tests.BasicTest;
 })
 public class TRegister extends BasicTest
 {
-    final User user = new User("Jane", "Doe", "jane@doe.com", "topsecret");
+    User user;
+
+    @Before
+    public void setup()
+    {
+        user = new User(data);
+    }
 
     @Test
     public void test()
