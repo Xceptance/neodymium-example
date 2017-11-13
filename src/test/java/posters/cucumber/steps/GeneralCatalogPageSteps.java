@@ -1,6 +1,6 @@
 package posters.cucumber.steps;
 
-import static com.codeborne.selenide.Selenide.$;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.HomePage;
 
 import cucumber.api.java8.En;
 
@@ -9,9 +9,7 @@ public class GeneralCatalogPageSteps implements En
     public GeneralCatalogPageSteps()
     {
         When("^I search for \"([^\"]*)\"$", (String searchTerm) -> {
-            $("#header-search-trigger").click();
-            $("#s").sendKeys(searchTerm);
-            $("#btnSearch").click();
+            new HomePage().search().search(searchTerm);
         });
     }
 }
