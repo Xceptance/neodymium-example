@@ -36,6 +36,8 @@ public class DeleteAccountPage extends AbstractBrowsingPage
     @Override
     public void validateStructure()
     {
+        super.validateStructure();
+
         // Headline
         // Asserts the headline is there and starts with a capital letter
         $("#formDeleteAccount .h2").should(matchText("[A-Z].{3,}"));

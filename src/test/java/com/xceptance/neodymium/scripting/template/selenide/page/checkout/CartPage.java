@@ -45,6 +45,8 @@ public class CartPage extends AbstractBrowsingPage
     @Override
     public void validateStructure()
     {
+        super.validateStructure();
+
         // Headline
         // Makes sure the headline is there and starts with a capital letter
         $("#titleCart").shouldBe(matchText("[A-Z].{3,}"));

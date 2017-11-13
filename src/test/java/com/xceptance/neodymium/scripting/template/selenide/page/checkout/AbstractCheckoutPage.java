@@ -22,12 +22,13 @@ public abstract class AbstractCheckoutPage extends AbstractPageObject
 
     private UserMenu userMenu;
 
-    public AbstractCheckoutPage()
-    {
-        validatePage();
-    }
-
-    void validatePage()
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.xceptance.neodymium.scripting.template.selenide.page.AbstractPageObject#validateStructure()
+     */
+    @Override
+    public void validateStructure()
     {
         Assert.assertTrue("The current page doesn't match the expected page", isExpectedPage());
     }

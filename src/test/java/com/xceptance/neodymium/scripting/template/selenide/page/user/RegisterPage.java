@@ -37,6 +37,8 @@ public class RegisterPage extends AbstractBrowsingPage
     @Override
     public void validateStructure()
     {
+        super.validateStructure();
+
         // Login headline
         // Make sure the Headline is there and starts with a capital letter followed by at least 3 more symbols.
         $("#formRegister .h2").should(matchText("[A-Z].{3,}"));

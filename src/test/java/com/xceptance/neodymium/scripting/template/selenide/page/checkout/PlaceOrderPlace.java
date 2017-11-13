@@ -27,6 +27,8 @@ public class PlaceOrderPlace extends AbstractCheckoutPage
     @Override
     public void validateStructure()
     {
+        super.validateStructure();
+
         // Headline
         // Headline is there and starts with a capital letter
         $("#titleOrderOverview").should(matchText("[A-Z].{3,}"));

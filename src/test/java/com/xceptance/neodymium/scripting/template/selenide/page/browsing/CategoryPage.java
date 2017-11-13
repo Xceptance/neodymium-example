@@ -45,6 +45,8 @@ public class CategoryPage extends AbstractBrowsingPage
      */
     public void validateStructure()
     {
+        super.validateStructure();
+
         // Amount of results
         // Assures the amount of posters displayed in the headline is not 0.
         $("#totalProductCount").shouldNotBe(exactText("0"));

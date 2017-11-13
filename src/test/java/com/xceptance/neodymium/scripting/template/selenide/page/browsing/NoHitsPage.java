@@ -10,6 +10,7 @@ public class NoHitsPage extends AbstractBrowsingPage
      */
     public void validateStructure()
     {
+        super.validateStructure();
     }
 
     /**

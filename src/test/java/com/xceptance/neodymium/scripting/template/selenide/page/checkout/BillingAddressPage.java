@@ -33,6 +33,8 @@ public class BillingAddressPage extends AbstractCheckoutPage
     @Override
     public void validateStructure()
     {
+        super.validateStructure();
+
         // Headline
         // Assert the headline is there and starts with a capital letter
         $("#titleBillAddr").should(matchText("[A-Z].{3,}"));

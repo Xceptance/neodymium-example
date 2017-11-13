@@ -24,6 +24,8 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
     @Override
     public void validateStructure()
     {
+        super.validateStructure();
+
         // Headline
         // Assert the headline is there and starts with a capital letter
         $("#titleBillAddr").should(matchText("[A-Z].{3,}"));
@@ -100,7 +102,7 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
      *            The country you want to use, currently only United States or Germany
      */
     public NewPaymentPage sendBillingAddressForm(String name, String company, String address, String city,
-                                              String state, String zip, String country)
+                                                 String state, String zip, String country)
     {
         // Name
         // Enter the name parameter
