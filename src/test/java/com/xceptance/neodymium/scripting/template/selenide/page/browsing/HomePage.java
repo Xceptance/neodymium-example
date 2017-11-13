@@ -30,6 +30,8 @@ public class HomePage extends AbstractBrowsingPage
      */
     public void validateStructure()
     {
+        super.validateStructure();
+
         // Verifies the company Logo and name are visible.
         $("a#brand").shouldBe(visible);
 

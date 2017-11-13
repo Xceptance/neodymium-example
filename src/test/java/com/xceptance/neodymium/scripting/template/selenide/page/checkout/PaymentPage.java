@@ -22,6 +22,8 @@ public class PaymentPage extends AbstractCheckoutPage
     @Override
     public void validateStructure()
     {
+        super.validateStructure();
+
         // Headline
         // Makes sure the headline is there and starts with a capital letter
         $("#titlePayment").should(matchText("[A-Z].{3,}"));

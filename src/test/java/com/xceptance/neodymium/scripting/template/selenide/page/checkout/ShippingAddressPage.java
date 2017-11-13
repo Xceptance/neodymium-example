@@ -22,6 +22,8 @@ public class ShippingAddressPage extends AbstractCheckoutPage
     @Override
     public void validateStructure()
     {
+        super.validateStructure();
+
         // Headline
         // Assert the headline is there and starts with a capital letter
         $("#titleDelAddr").should(matchText("[A-Z].{3,}"));

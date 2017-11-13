@@ -10,6 +10,14 @@ public class NoHitsPage extends AbstractBrowsingPage
      */
     public void validateStructure()
     {
+        super.validateStructure();
     }
 
+    /**
+     * 
+     */
+    public void validateNoProductsfound()
+    {
+        validateErrorMessage("Sorry! No results found matching your search. Please try again.");
+    }
 }

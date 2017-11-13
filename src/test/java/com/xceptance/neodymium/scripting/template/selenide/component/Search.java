@@ -27,7 +27,7 @@ public class Search extends AbstractComponent
         return page(CategoryPage.class);
     }
 
-    private void search(String searchTerm)
+    public void search(String searchTerm)
     {
         openSearch();
         $("#searchForm > #s").val(searchTerm).pressEnter();

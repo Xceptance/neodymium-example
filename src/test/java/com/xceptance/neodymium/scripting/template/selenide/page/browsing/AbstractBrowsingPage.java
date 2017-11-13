@@ -3,6 +3,7 @@ package com.xceptance.neodymium.scripting.template.selenide.page.browsing;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.title;
 
 import org.junit.Assert;
 
@@ -29,12 +30,13 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
 
     private UserMenu userMenu;
 
-    public AbstractBrowsingPage()
-    {
-        validatePage();
-    }
-
-    void validatePage()
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.xceptance.neodymium.scripting.template.selenide.page.AbstractPageObject#validateStructure()
+     */
+    @Override
+    public void validateStructure()
     {
         Assert.assertTrue("The current page doesn't match the expected page", isExpectedPage());
     }
@@ -102,7 +104,7 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
         return userMenu;
     }
 
-    protected void validateSuccessMessage(String message)
+    public void validateSuccessMessage(String message)
     {
         // Wait until javascript makes the success message visible
         // Waits until javascript makes the success message visible.
@@ -111,7 +113,7 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
         $("#successMessage").shouldHave(exactText("× " + message));
     }
 
-    protected void validateErrorMessage(String message)
+    public void validateErrorMessage(String message)
     {
         // Wait until javascript makes the error message visible
         // Waits until javascript makes the error message visible.
@@ -127,5 +129,10 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
     {
         // Check that the error message is not visible.
         $("#errorMessage").shouldNotBe(visible);
+    }
+
+    public void validateTitle(String title)
+    {
+        Assert.assertEquals(title, title());
     }
 }

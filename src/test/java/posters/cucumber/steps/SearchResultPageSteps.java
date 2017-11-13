@@ -1,7 +1,6 @@
 package posters.cucumber.steps;
 
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.conditions.Text;
+import com.xceptance.neodymium.scripting.template.selenide.page.browsing.CategoryPage;
 
 import cucumber.api.java8.En;
 
@@ -11,8 +10,7 @@ public class SearchResultPageSteps implements En
     {
         // validate search result text
         Then("^the search result text should be \"([^\"]*)\"$", (String resultText) -> {
-
-            Selenide.$("#titleSearchText").shouldHave(new Text(resultText));
+            new CategoryPage().validateSearchHits(resultText);
         });
     }
 }

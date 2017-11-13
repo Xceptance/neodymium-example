@@ -27,6 +27,8 @@ public class ProductdetailPage extends AbstractBrowsingPage
      */
     public void validateStructure()
     {
+        super.validateStructure();
+
         // Title
         // Make sure we have the proper headline and it is not empty, at least 4 characters, starting with uppercase
         // letter,

@@ -26,6 +26,8 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
     @Override
     public void validateStructure()
     {
+        super.validateStructure();
+
         // Headline
         // Assert the headline is there and starts with a capital letter
         $("#titleDelAddr").should(matchText("[A-Z].{3,}"));
@@ -107,7 +109,7 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
      *            Decision whether or not use the same billing address
      */
     public NewBillingAddressPage sendShippingAddressForm(String name, String company, String address, String city,
-                                                      String state, String zip, String country, boolean sameBillingAddress)
+                                                         String state, String zip, String country, boolean sameBillingAddress)
     {
         // Name
         // Enter the name parameter

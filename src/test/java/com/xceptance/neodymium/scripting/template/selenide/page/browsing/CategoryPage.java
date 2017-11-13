@@ -45,6 +45,8 @@ public class CategoryPage extends AbstractBrowsingPage
      */
     public void validateStructure()
     {
+        super.validateStructure();
+
         // Amount of results
         // Assures the amount of posters displayed in the headline is not 0.
         $("#totalProductCount").shouldNotBe(exactText("0"));
@@ -89,7 +91,6 @@ public class CategoryPage extends AbstractBrowsingPage
         // Click the product link to open the product detail page
         $("#product" + index + " img").scrollTo().click();
         return page(ProductdetailPage.class);
-
     }
 
     /**
@@ -130,6 +131,14 @@ public class CategoryPage extends AbstractBrowsingPage
         // Verify that there is the specified amount of results
         // The amount of products shown in the headline matches the expected value
         $("#totalProductCount").shouldHave(exactText(Integer.toString(searchTermExpectedCount)));
+    }
+
+    /**
+     * @param resultText
+     */
+    public void validateSearchHits(String resultText)
+    {
+        $("#titleSearchText").shouldHave(exactText(resultText));
     }
 
     /**

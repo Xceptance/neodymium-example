@@ -33,6 +33,8 @@ public class AccountOverViewPage extends AbstractBrowsingPage
     @Override
     public void validateStructure()
     {
+        super.validateStructure();
+
         // Headline
         // Make sure the headline is there and start with a capital letter
         $("#titleAccountOverview").should(matchText("[A-Z].{3,}"));

@@ -34,6 +34,8 @@ public class PersonalDataPage extends AbstractBrowsingPage
     @Override
     public void validateStructure()
     {
+        super.validateStructure();
+
         // Headline
         // Makes sure the headline is there and starts with a capital letter
         $("#titlePersonalData").should(matchText("[A-Z].{3,}"));
