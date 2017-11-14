@@ -4,6 +4,7 @@
 package com.xceptance.neodymium.scripting.template.selenide.component;
 
 import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -24,10 +25,9 @@ public class MiniCart extends AbstractComponent
      * 
      * @see com.xceptance.scripting.selenide.component.BasicComponent#isComponentAvailable()
      */
-    @Override
-    protected boolean exists()
+    public void isComponentAvailable()
     {
-        return $("#btnCartOverviewForm").exists();
+        $("#btnCartOverviewForm").should(exist);
     }
 
     public void openMiniCart()

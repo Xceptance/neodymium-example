@@ -26,9 +26,9 @@ public class CategoryPage extends AbstractBrowsingPage
      * @see com.xceptance.scripting.selenide.page.AbstractPage()
      */
     @Override
-    public boolean isExpectedPage()
+    public void isExpectedPage()
     {
-        return $("#productOverview").exists();
+        $("#productOverview").should(exist);
     }
 
     public void validateCategoryName(String categoryName)

@@ -3,8 +3,6 @@
  */
 package com.xceptance.neodymium.scripting.template.selenide.page.checkout;
 
-import org.junit.Assert;
-
 import com.xceptance.neodymium.scripting.template.selenide.component.CheckoutHeader;
 import com.xceptance.neodymium.scripting.template.selenide.component.Footer;
 import com.xceptance.neodymium.scripting.template.selenide.component.UserMenu;
@@ -30,7 +28,7 @@ public abstract class AbstractCheckoutPage extends AbstractPageObject
     @Override
     public void validateStructure()
     {
-        Assert.assertTrue("The current page doesn't match the expected page", isExpectedPage());
+        isExpectedPage();
     }
 
     /**

@@ -10,8 +10,7 @@ public abstract class AbstractPageObject
 {
     abstract public void validateStructure();
 
-    protected boolean isExpectedPage()
+    public void isExpectedPage()
     {
-        return true;
     }
 }

@@ -12,6 +12,8 @@ public class OpenHomePageFlow extends AbstractFlow<HomePage>
     public HomePage flow()
     {
         clearBrowserCookies();
-        return open("https://localhost:8443/posters/", HomePage.class);
+        HomePage homePage = open("https://localhost:8443/posters/", HomePage.class);
+        homePage.isExpectedPage();
+        return homePage;
     };
 }

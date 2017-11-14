@@ -1,5 +1,6 @@
 package com.xceptance.neodymium.scripting.template.selenide.component;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
@@ -8,11 +9,9 @@ import com.xceptance.neodymium.scripting.template.selenide.page.browsing.NoHitsP
 
 public class Search extends AbstractComponent
 {
-
-    @Override
-    protected boolean exists()
+    public void isComponentAvailable()
     {
-        return $("#searchForm > #s").exists();
+        $("#searchForm > #s").should(exist);
     }
 
     public NoHitsPage noResult(String searchTerm)

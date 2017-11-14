@@ -3,6 +3,7 @@
  */
 package com.xceptance.neodymium.scripting.template.selenide.page.checkout;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -37,9 +38,9 @@ public class ShippingAddressPage extends AbstractCheckoutPage
      * 
      * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#isExpectedPage()
      */
-    public boolean isExpectedPage()
+    public void isExpectedPage()
     {
-        return $("#titleDelAddr").exists();
+        $("#titleDelAddr").should(exist);
     }
 
     /**

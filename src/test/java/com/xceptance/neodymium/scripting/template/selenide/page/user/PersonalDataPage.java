@@ -3,6 +3,7 @@
  */
 package com.xceptance.neodymium.scripting.template.selenide.page.user;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -21,9 +22,9 @@ public class PersonalDataPage extends AbstractBrowsingPage
      * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#isExpectedPage()
      */
     @Override
-    public boolean isExpectedPage()
+    public void isExpectedPage()
     {
-        return $("#titlePersonalData").exists();
+        $("#titlePersonalData").should(exist);
     }
 
     /*

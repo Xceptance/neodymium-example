@@ -3,6 +3,7 @@
  */
 package com.xceptance.neodymium.scripting.template.selenide.page.user;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
@@ -20,9 +21,9 @@ public class AccountOverViewPage extends AbstractBrowsingPage
      * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#isExpectedPage()
      */
     @Override
-    public boolean isExpectedPage()
+    public void isExpectedPage()
     {
-        return $("#titleAccountOverview").exists();
+        $("#titleAccountOverview").should(exist);
     }
 
     /*

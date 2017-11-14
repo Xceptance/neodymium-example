@@ -5,6 +5,7 @@ package com.xceptance.neodymium.scripting.template.selenide.page.user;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exactValue;
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -26,9 +27,9 @@ public class LoginPage extends AbstractBrowsingPage
      * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#isExpectedPage()
      */
     @Override
-    public boolean isExpectedPage()
+    public void isExpectedPage()
     {
-        return $("#formLogin").exists();
+        $("#formLogin").should(exist);
     }
 
     /*

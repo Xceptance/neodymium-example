@@ -3,6 +3,7 @@
  */
 package com.xceptance.neodymium.scripting.template.selenide.component;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
 
 /**
@@ -16,9 +17,8 @@ public class CheckoutHeader extends AbstractComponent
      * 
      * @see com.xceptance.neodymium.scripting.template.selenide.component.BasicComponent#isComponentAvailable()
      */
-    @Override
-    protected boolean exists()
+    public void isComponentAvailable()
     {
-        return $("body > header nav#headerCheckout").exists();
+        $("body > header nav#headerCheckout").should(exist);
     }
 }

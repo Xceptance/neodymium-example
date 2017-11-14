@@ -4,6 +4,7 @@
 package com.xceptance.neodymium.scripting.template.selenide.page.browsing;
 
 import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -15,9 +16,9 @@ import com.xceptance.neodymium.scripting.template.selenide.objects.Product;
 public class ProductdetailPage extends AbstractBrowsingPage
 {
 
-    public boolean isExpectedPage()
+    public void isExpectedPage()
     {
-        return $("#addToCartForm").exists();
+        $("#addToCartForm").should(exist);
     }
 
     /*

@@ -32,9 +32,9 @@ public class CartPage extends AbstractBrowsingPage
      * @see com.xceptance.scripting.selenide.page.BasicPage#isAwaitedPage()
      */
     @Override
-    public boolean isExpectedPage()
+    public void isExpectedPage()
     {
-        return $("#cartOverviewTable").exists();
+        $("#cartOverviewTable").should(exist);
     }
 
     /*

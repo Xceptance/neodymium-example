@@ -2,6 +2,7 @@ package com.xceptance.neodymium.scripting.template.selenide.page.browsing;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -18,9 +19,9 @@ public class HomePage extends AbstractBrowsingPage
      * @see com.xceptance.scripting.selenide.page.AbstractPage()
      */
     @Override
-    public boolean isExpectedPage()
+    public void isExpectedPage()
     {
-        return $("#titleIndex").exists();
+        $("#titleIndex").should(exist);
     }
 
     /*

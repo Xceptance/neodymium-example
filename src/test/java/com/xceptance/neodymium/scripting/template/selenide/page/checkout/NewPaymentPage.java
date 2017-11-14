@@ -62,9 +62,9 @@ public class NewPaymentPage extends AbstractCheckoutPage
      * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#isExpectedPage()
      */
     @Override
-    public boolean isExpectedPage()
+    public void isExpectedPage()
     {
-        return $("#titlePayment").exists();
+        $("#titlePayment").should(exist);
     }
 
     /**

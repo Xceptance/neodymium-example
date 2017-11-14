@@ -3,6 +3,7 @@
  */
 package com.xceptance.neodymium.scripting.template.selenide.component;
 
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
@@ -21,10 +22,9 @@ public class TopNavigation extends AbstractComponent
      * 
      * @see com.xceptance.scripting.selenide.component.BasicComponent#isComponentAvailable()
      */
-    @Override
-    protected boolean exists()
+    public void isComponentAvailable()
     {
-        return $("#categoryMenu").exists();
+        $("#categoryMenu").should(exist);
     }
 
     /**

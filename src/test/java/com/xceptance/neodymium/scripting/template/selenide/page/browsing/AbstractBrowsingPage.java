@@ -38,7 +38,7 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
     @Override
     public void validateStructure()
     {
-        Assert.assertTrue("The current page doesn't match the expected page", isExpectedPage());
+        isExpectedPage();
     }
 
     public Footer footer()
