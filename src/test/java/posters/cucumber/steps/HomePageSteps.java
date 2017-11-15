@@ -1,10 +1,9 @@
 package posters.cucumber.steps;
 
-import com.xceptance.neodymium.scripting.template.selenide.flow.OpenHomePageFlow;
-import com.xceptance.neodymium.scripting.template.selenide.page.browsing.HomePage;
-
 import cucumber.api.java8.En;
 import posters.cucumber.util.Driver;
+import posters.neodymium.flow.OpenHomePageFlow;
+import posters.pageObjects.pages.browsing.HomePage;
 
 public class HomePageSteps implements En
 {

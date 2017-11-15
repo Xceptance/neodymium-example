@@ -1,8 +1,7 @@
 package posters.cucumber.steps;
 
-import com.xceptance.neodymium.scripting.template.selenide.page.browsing.CategoryPage;
-
 import cucumber.api.java8.En;
+import posters.pageObjects.pages.browsing.CategoryPage;
 
 public class SearchResultPageSteps implements En
 {
