@@ -10,7 +10,7 @@ public class OpenHomePageFlow extends AbstractFlow<HomePage>
 {
 
     @Override
-    @And("^I am on the homepage of the Posters shop")
+    @And("^I am on the homepage of the Posters shop$")
     public HomePage flow()
     {
         clearBrowserCookies();
