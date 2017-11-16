@@ -10,6 +10,8 @@ import org.junit.runner.RunWith;
 import com.xceptance.neodymium.NeodymiumRunner;
 import com.xceptance.neodymium.TestData;
 
+import io.qameta.allure.Step;
+
 /**
  * @author pfotenhauer
  */
@@ -20,4 +22,9 @@ public class BasicTest
 
     @TestData
     public Map<String, String> data;
+
+    @Step("\"{stepName}\" step")
+    public void step(String stepName)
+    {
+    }
 }
