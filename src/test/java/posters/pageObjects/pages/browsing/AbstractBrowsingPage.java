@@ -1,13 +1,13 @@
 package posters.pageObjects.pages.browsing;
 
-import posters.pageObjects.component.ErrorMessage;
-import posters.pageObjects.component.Footer;
-import posters.pageObjects.component.Header;
-import posters.pageObjects.component.MiniCart;
-import posters.pageObjects.component.Search;
-import posters.pageObjects.component.SuccessMessage;
-import posters.pageObjects.component.TopNavigation;
-import posters.pageObjects.component.UserMenu;
+import posters.pageObjects.components.ErrorMessage;
+import posters.pageObjects.components.Footer;
+import posters.pageObjects.components.Header;
+import posters.pageObjects.components.MiniCart;
+import posters.pageObjects.components.Search;
+import posters.pageObjects.components.SuccessMessage;
+import posters.pageObjects.components.TopNavigation;
+import posters.pageObjects.components.UserMenu;
 import posters.pageObjects.pages.AbstractPageObject;
 
 public abstract class AbstractBrowsingPage extends AbstractPageObject

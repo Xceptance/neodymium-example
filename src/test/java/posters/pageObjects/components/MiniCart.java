@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.pageObjects.component;
+package posters.pageObjects.components;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
@@ -10,9 +10,9 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-import posters.pageObjects.objects.Product;
+import posters.neodymium.dataObjects.Product;
+import posters.neodymium.settings.Settings;
 import posters.pageObjects.pages.checkout.CartPage;
-import posters.pageObjects.utility.Settings;
 
 /**
  * @author pfotenhauer

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.pageObjects.objects;
+package posters.neodymium.dataObjects;
 
 /**
  * @author pfotenhauer

@@ -3,9 +3,9 @@
  */
 package posters.pageObjects.pages.checkout;
 
-import posters.pageObjects.component.CheckoutHeader;
-import posters.pageObjects.component.Footer;
-import posters.pageObjects.component.UserMenu;
+import posters.pageObjects.components.CheckoutHeader;
+import posters.pageObjects.components.Footer;
+import posters.pageObjects.components.UserMenu;
 import posters.pageObjects.pages.AbstractPageObject;
 
 /**

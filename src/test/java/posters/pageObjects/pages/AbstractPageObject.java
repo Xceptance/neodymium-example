@@ -3,7 +3,7 @@
  */
 package posters.pageObjects.pages;
 
-import posters.pageObjects.component.Title;
+import posters.pageObjects.components.Title;
 
 /**
  * @author pfotenhauer

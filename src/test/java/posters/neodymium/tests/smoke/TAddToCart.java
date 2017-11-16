@@ -5,8 +5,8 @@ import org.junit.Test;
 import com.xceptance.neodymium.multibrowser.Browser;
 
 import posters.flows.OpenHomePageFlow;
+import posters.neodymium.dataObjects.Product;
 import posters.neodymium.tests.BasicTest;
-import posters.pageObjects.objects.Product;
 import posters.pageObjects.pages.browsing.CategoryPage;
 import posters.pageObjects.pages.browsing.HomePage;
 import posters.pageObjects.pages.browsing.ProductdetailPage;

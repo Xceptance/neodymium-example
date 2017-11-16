@@ -8,10 +8,10 @@ import org.junit.Test;
 import com.xceptance.neodymium.multibrowser.Browser;
 
 import posters.flows.OpenHomePageFlow;
+import posters.neodymium.dataObjects.Address;
+import posters.neodymium.dataObjects.CreditCard;
+import posters.neodymium.dataObjects.Product;
 import posters.neodymium.tests.BasicTest;
-import posters.pageObjects.objects.Address;
-import posters.pageObjects.objects.CreditCard;
-import posters.pageObjects.objects.Product;
 import posters.pageObjects.pages.browsing.CategoryPage;
 import posters.pageObjects.pages.browsing.HomePage;
 import posters.pageObjects.pages.browsing.ProductdetailPage;

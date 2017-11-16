@@ -1,4 +1,4 @@
-package posters.pageObjects.component;
+package posters.pageObjects.components;
 
 import static com.codeborne.selenide.Selenide.title;
 

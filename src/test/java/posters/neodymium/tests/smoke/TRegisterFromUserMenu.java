@@ -10,8 +10,8 @@ import com.xceptance.neodymium.multibrowser.Browser;
 
 import posters.flows.DeleteUserFlow;
 import posters.flows.OpenHomePageFlow;
+import posters.neodymium.dataObjects.User;
 import posters.neodymium.tests.BasicTest;
-import posters.pageObjects.objects.User;
 import posters.pageObjects.pages.browsing.HomePage;
 import posters.pageObjects.pages.user.LoginPage;
 import posters.pageObjects.pages.user.RegisterPage;

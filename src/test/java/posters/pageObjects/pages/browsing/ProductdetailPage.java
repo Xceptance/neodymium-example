@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Selenide.$;
 
-import posters.pageObjects.objects.Product;
+import posters.neodymium.dataObjects.Product;
 
 /**
  * @author pfotenhauer

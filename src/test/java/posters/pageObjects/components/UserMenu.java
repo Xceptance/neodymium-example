@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.pageObjects.component;
+package posters.pageObjects.components;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.not;
@@ -9,10 +9,10 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
+import posters.neodymium.settings.Settings;
 import posters.pageObjects.pages.user.AccountOverViewPage;
 import posters.pageObjects.pages.user.LoginPage;
 import posters.pageObjects.pages.user.RegisterPage;
-import posters.pageObjects.utility.Settings;
 
 /**
  * @author pfotenhauer

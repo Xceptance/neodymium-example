@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.pageObjects.utility;
+package posters.neodymium.settings;
 
 /**
  * @author pfotenhauer
