@@ -1,19 +1,18 @@
 /**
  * 
  */
-package com.xceptance.neodymium.scripting.template.selenide.tests.smoke;
+package posters.neodymium.tests.smoke;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.xceptance.neodymium.multibrowser.Browser;
-import com.xceptance.neodymium.scripting.template.selenide.tests.BasicTest;
 
-import io.qameta.allure.Step;
 import posters.flows.DeleteUserFlow;
 import posters.flows.OpenHomePageFlow;
 import posters.neodymium.dataObjects.User;
+import posters.neodymium.tests.BasicTest;
 import posters.pageObjects.pages.browsing.HomePage;
 import posters.pageObjects.pages.user.LoginPage;
 import posters.pageObjects.pages.user.RegisterPage;
@@ -23,7 +22,7 @@ import posters.pageObjects.pages.user.RegisterPage;
  */
 @Browser(
 {
-  "Chrome_1024x768"// , "FF_1024x768"
+  "Chrome_1024x768"
 })
 public class TRegister extends BasicTest
 {
@@ -36,8 +35,7 @@ public class TRegister extends BasicTest
     }
 
     @Test
-    @Step("Register")
-    public void testRegister()
+    public void test()
     {
         // Goto homepage
         step("Goto homepage");
