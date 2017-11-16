@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import com.xceptance.neodymium.multibrowser.Browser;
 
-import posters.neodymium.flow.OpenHomePageFlow;
+import posters.flows.OpenHomePageFlow;
 import posters.neodymium.tests.BasicTest;
 import posters.pageObjects.pages.browsing.HomePage;
 

@@ -1,4 +1,4 @@
-package posters.neodymium.flow;
+package posters.flows;
 
 import static com.codeborne.selenide.Selenide.page;
 

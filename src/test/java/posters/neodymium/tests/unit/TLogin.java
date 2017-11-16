@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.xceptance.neodymium.multibrowser.Browser;
 
-import posters.neodymium.flow.OpenLoginPageFlow;
+import posters.flows.OpenLoginPageFlow;
 import posters.neodymium.tests.BasicTest;
 import posters.pageObjects.objects.User;
 import posters.pageObjects.pages.browsing.HomePage;
@@ -116,7 +116,7 @@ public class TLogin extends BasicTest
         loginPage.userMenu().validateNotLoggedIn();
 
         loginPage.sendFalseLoginform(user);
-        loginPage.validateNoErrorMessageOnPage();
+        loginPage.errorMessage().validateNoErrorMessageOnPage();
     }
 
     @Test
@@ -135,7 +135,7 @@ public class TLogin extends BasicTest
         loginPage.userMenu().validateNotLoggedIn();
 
         loginPage.sendFalseLoginform(user);
-        loginPage.validateNoErrorMessageOnPage();
+        loginPage.errorMessage().validateNoErrorMessageOnPage();
     }
 
     @Test

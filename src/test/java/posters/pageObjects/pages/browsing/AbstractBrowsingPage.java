@@ -1,16 +1,11 @@
 package posters.pageObjects.pages.browsing;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.title;
-
-import org.junit.Assert;
-
+import posters.pageObjects.component.ErrorMessage;
 import posters.pageObjects.component.Footer;
 import posters.pageObjects.component.Header;
 import posters.pageObjects.component.MiniCart;
 import posters.pageObjects.component.Search;
+import posters.pageObjects.component.SuccessMessage;
 import posters.pageObjects.component.TopNavigation;
 import posters.pageObjects.component.UserMenu;
 import posters.pageObjects.pages.AbstractPageObject;
@@ -29,6 +24,10 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
     private TopNavigation topNav;
 
     private UserMenu userMenu;
+
+    private SuccessMessage successMessage;
+
+    private ErrorMessage errorMessage;
 
     /*
      * (non-Javadoc)
@@ -104,35 +103,23 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
         return userMenu;
     }
 
-    public void validateSuccessMessage(String message)
+    public SuccessMessage successMessage()
     {
-        // Wait until javascript makes the success message visible
-        // Waits until javascript makes the success message visible.
-        $("#successMessage").shouldBe(visible);
-        // Makes sure the correct text is displayed.
-        $("#successMessage").shouldHave(exactText("× " + message));
+        if (successMessage == null)
+        {
+            successMessage = new SuccessMessage();
+        }
+        successMessage.isComponentAvailable();
+        return successMessage;
     }
 
-    public void validateErrorMessage(String message)
+    public ErrorMessage errorMessage()
     {
-        // Wait until javascript makes the error message visible
-        // Waits until javascript makes the error message visible.
-        $("#errorMessage").shouldBe(visible);
-        // Makes sure the correct text is displayed.
-        $("#errorMessage").shouldHave(exactText("× " + message));
-    }
-
-    /**
-     * 
-     */
-    public void validateNoErrorMessageOnPage()
-    {
-        // Check that the error message is not visible.
-        $("#errorMessage").shouldNotBe(visible);
-    }
-
-    public void validateTitle(String title)
-    {
-        Assert.assertEquals(title, title());
+        if (errorMessage == null)
+        {
+            errorMessage = new ErrorMessage();
+        }
+        errorMessage.isComponentAvailable();
+        return errorMessage;
     }
 }

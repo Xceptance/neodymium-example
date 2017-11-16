@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.neodymium.flow;
+package posters.flows;
 
 import posters.pageObjects.pages.AbstractPageObject;
 

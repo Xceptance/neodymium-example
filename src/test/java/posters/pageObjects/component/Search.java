@@ -4,6 +4,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
+import cucumber.api.java.en.When;
 import posters.pageObjects.pages.browsing.CategoryPage;
 import posters.pageObjects.pages.browsing.NoHitsPage;
 
@@ -26,6 +27,7 @@ public class Search extends AbstractComponent
         return page(CategoryPage.class);
     }
 
+    @When("^I search for \"([^\"]*)\"$")
     public void search(String searchTerm)
     {
         openSearch();

@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import cucumber.api.java.en.Then;
 import posters.pageObjects.objects.User;
 
 public class HomePage extends AbstractBrowsingPage
@@ -29,6 +30,7 @@ public class HomePage extends AbstractBrowsingPage
      * 
      * @see com.xceptance.scripting.selenide.page.AbstractPage()
      */
+    @Then("^I want see the logo, the carousel and some hot products")
     public void validateStructure()
     {
         super.validateStructure();
@@ -62,7 +64,7 @@ public class HomePage extends AbstractBrowsingPage
 
     public void validateSuccessfulOrder()
     {
-        validateSuccessMessage("Thank you for shopping with us!");
+        successMessage().validateSuccessMessage("Thank you for shopping with us!");
         // Verify that the mini cart is empty again
         miniCart().validateTotalCount(0);
         miniCart().validateSubtotal("$0.00");
@@ -74,7 +76,7 @@ public class HomePage extends AbstractBrowsingPage
      */
     public void validateSuccessfulLogin(String firstName)
     {
-        validateSuccessMessage("Login successful. Have fun in our shop!");
+        successMessage().validateSuccessMessage("Login successful. Have fun in our shop!");
         // Verify that the user menu shows your first name
         // Click on the mini user menu symbol
         userMenu().openUserMenu();
@@ -101,6 +103,6 @@ public class HomePage extends AbstractBrowsingPage
      */
     public void validateSuccessfulDeletedAccount()
     {
-        validateSuccessMessage("Your account has been deleted. We hope to see you soon again!");
+        successMessage().validateSuccessMessage("Your account has been deleted. We hope to see you soon again!");
     }
 }

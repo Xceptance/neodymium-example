@@ -11,6 +11,7 @@ import com.xceptance.neodymium.multibrowser.configuration.MultibrowserConfigurat
 import com.xceptance.neodymium.multibrowser.configuration.WebDriverProperties;
 
 import cucumber.api.java.After;
+import cucumber.api.java.en.Given;
 
 public class Driver
 {
@@ -18,6 +19,7 @@ public class Driver
 
     private static String browser;
 
+    @Given("^The browser \"([^\"]*)\" is open$")
     public static void setUp(String browser)
     {
         Driver.browser = browser;

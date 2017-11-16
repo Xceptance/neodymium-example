@@ -14,6 +14,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.page;
 
+import cucumber.api.java.en.Then;
+
 /**
  * @author pfotenhauer
  */
@@ -136,6 +138,7 @@ public class CategoryPage extends AbstractBrowsingPage
     /**
      * @param resultText
      */
+    @Then("^the search result text should be \"([^\"]*)\"$")
     public void validateSearchHits(String resultText)
     {
         $("#titleSearchText").shouldHave(exactText(resultText));
