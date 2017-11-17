@@ -47,7 +47,7 @@ public class Driver
         }
     }
 
-    @After
+    @After(order = 100)
     public void tearDown()
     {
         WebDriverProperties webDriverProperties = MultibrowserConfiguration.getInstance().getWebDriverProperties();
