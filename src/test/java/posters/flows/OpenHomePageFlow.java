@@ -6,10 +6,9 @@ import static com.codeborne.selenide.Selenide.open;
 import cucumber.api.java.en.And;
 import posters.pageObjects.pages.browsing.HomePage;
 
-public class OpenHomePageFlow extends AbstractFlow<HomePage>
+public class OpenHomePageFlow
 {
 
-    @Override
     @And("^I am on the homepage of the Posters shop$")
     public HomePage flow()
     {

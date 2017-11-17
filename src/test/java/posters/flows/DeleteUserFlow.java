@@ -15,7 +15,7 @@ import posters.pageObjects.pages.user.PersonalDataPage;
 /**
  * @author pfotenhauer
  */
-public class DeleteUserFlow extends AbstractFlow<LoginPage>
+public class DeleteUserFlow
 {
 
     private User user;
@@ -33,10 +33,16 @@ public class DeleteUserFlow extends AbstractFlow<LoginPage>
      * 
      * @see com.xceptance.neodymium.scripting.template.selenide.flow.BasicFlow#flow()
      */
-    @Override
     public LoginPage flow()
     {
         HomePage homePage = page(HomePage.class);
+        LoginPage loginPage;
+        if (!homePage.isLoggedIn())
+        {
+            loginPage = homePage.userMenu().openLogin();
+            homePage = loginPage.sendLoginform(user);
+        }
+
         AccountOverViewPage accountOverviewPage = homePage.userMenu().openAccountOverview();
         accountOverviewPage.validateStructure();
         PersonalDataPage personalDataPage = accountOverviewPage.openPersonalData();
@@ -46,7 +52,7 @@ public class DeleteUserFlow extends AbstractFlow<LoginPage>
         homePage = deleteAccountPage.deleteAccount(user.getPassword());
         homePage.validateSuccessfulDeletedAccount();
 
-        LoginPage loginPage = homePage.userMenu().openLogin();
+        loginPage = homePage.userMenu().openLogin();
         loginPage.validateStructure();
         loginPage.sendFalseLoginform(user);
         loginPage.validateWrongEmail(user.getEMail());
