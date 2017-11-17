@@ -42,7 +42,8 @@
 
 					<!-- our test case naming does not follow Maven naming conventions -->
 					<includes>
-						<include>com/xceptance/neodymium/scripting/template/selenide/**/T*.java</include>
+						<include>posters/neodymium/tests/**/T*.java</include>
+						<include>posters/cucumber/tests/**/RunAllFeatureTest.java</include>
 					</includes>
 				</configuration>
 			</plugin>

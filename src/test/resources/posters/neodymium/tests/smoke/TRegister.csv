@@ -1,11 +1,12 @@
-#Beware john@doe.com is a preset user in the DB 
 firstName,lastName,eMail,password,ID
 Jane,Doe,jane@doe.com,topsecret,Jane's test
 Simon,Doe,simon@doe.com,topsecret,Simons's test
-#John,Doe,john@doe.com,topsecret,John's test
 #James,Doe,james@doe.com,topsecret,Janes' test
 #Josh,Doe,josh@doe.com,topsecret,Josh's test
 #Jim,Doe,jim@doe.com,topsecret,Jimmy's test
 #Judas,Doe,judas@doe.com,topsecret,Judas' test
 #Joel,Doe,joel@doe.com,topsecret,Joel's test
 #Jeremiah,Doe,jeremiah@doe.com,topsecret,Jeremiah's test
+
+#Beware john@doe.com is a preset user in the DB uncomment will lead to a fail
+#John,Doe,john@doe.com,topsecret,John's test

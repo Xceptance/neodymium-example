@@ -10,6 +10,8 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import posters.neodymium.dataObjects.User;
 import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
 
@@ -36,6 +38,7 @@ public class RegisterPage extends AbstractBrowsingPage
      * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#validateStructure()
      */
     @Override
+    @Then("^I want to be on the register page$")
     public void validateStructure()
     {
         super.validateStructure();
@@ -75,6 +78,7 @@ public class RegisterPage extends AbstractBrowsingPage
      * @param password
      *            The password of the account you want to log into
      */
+    @When("^I fill the register form with \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" and send it$")
     public LoginPage sendRegisterForm(String firstName, String lastName, String email, String password, String passwordRepeat)
     {
         // Fill out the registration form
