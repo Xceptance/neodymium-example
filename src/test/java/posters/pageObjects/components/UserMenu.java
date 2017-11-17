@@ -9,6 +9,8 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.When;
 import posters.neodymium.settings.Settings;
 import posters.pageObjects.pages.user.AccountOverViewPage;
 import posters.pageObjects.pages.user.LoginPage;
@@ -33,6 +35,7 @@ public class UserMenu extends AbstractComponent
     /**
      * 
      */
+    @And("^I am not logged in$")
     public void validateNotLoggedIn()
     {
         $("#userMenu .goToLogin").should(exist);
@@ -64,6 +67,7 @@ public class UserMenu extends AbstractComponent
     /**
      * 
      */
+    @When("^I click the login button$")
     public LoginPage openLogin()
     {
         openUserMenu();

@@ -30,7 +30,7 @@ public class HomePage extends AbstractBrowsingPage
      * 
      * @see com.xceptance.scripting.selenide.page.AbstractPage()
      */
-    @Then("^I want see the logo, the carousel and some hot products")
+    @Then("^I want see the logo, the carousel and some hot products$")
     public void validateStructure()
     {
         super.validateStructure();
@@ -74,6 +74,7 @@ public class HomePage extends AbstractBrowsingPage
      * @param firstName
      *            The name should be shown in the mini User Menu
      */
+    @Then("^I want to be logged in successfully with \"([^\"]*)\"")
     public void validateSuccessfulLogin(String firstName)
     {
         successMessage().validateSuccessMessage("Login successful. Have fun in our shop!");
@@ -104,5 +105,13 @@ public class HomePage extends AbstractBrowsingPage
     public void validateSuccessfulDeletedAccount()
     {
         successMessage().validateSuccessMessage("Your account has been deleted. We hope to see you soon again!");
+    }
+
+    /**
+     * @return
+     */
+    public boolean isLoggedIn()
+    {
+        return $("#userMenu .goToAccountOverview").exists();
     }
 }

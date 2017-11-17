@@ -15,7 +15,7 @@ public class Footer extends AbstractComponent
         $("body > footer#footer").should(exist);
     }
 
-    @Then("^the footer should be visible")
+    @Then("^the footer should be visible$")
     public void validate()
     {
         isComponentAvailable();
