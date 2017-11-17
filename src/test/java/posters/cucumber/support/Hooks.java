@@ -15,7 +15,7 @@ public class Hooks
 {
 
     @After("@Register")
-    public void afterSuccessfulRegistration(Scenario scenario)
+    public void afterRegistration(Scenario scenario)
     {
         User user = new User("Jane", "Doe", "jane@doe.com", "topsecret");
         new DeleteUserFlow(user).flow();
