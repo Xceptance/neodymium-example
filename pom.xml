@@ -42,8 +42,8 @@
 
 					<!-- our test case naming does not follow Maven naming conventions -->
 					<includes>
-						<include>posters/neodymium/**/T*.java</include>
-						<include>posters/cucumber/**/RunAllFeatureTest.java</include>
+						<include>posters/neodymium/tests/**/T*.java</include>
+						<include>posters/cucumber/tests/**/RunAllFeatureTest.java</include>
 					</includes>
 				</configuration>
 			</plugin>
