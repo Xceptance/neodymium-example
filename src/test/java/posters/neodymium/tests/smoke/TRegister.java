@@ -38,17 +38,21 @@ public class TRegister extends BasicTest
     public void test()
     {
         // Goto homepage
+        step("Goto homepage");
         HomePage homePage = new OpenHomePageFlow().flow();
         homePage.validate();
 
         // Assure not logged in status
+        step("Assure not logged in status");
         homePage.userMenu().validateNotLoggedIn();
 
         // Goto login form
+        step("Goto login form");
         LoginPage loginPage = homePage.userMenu().openLogin();
         loginPage.validateStructure();
 
         // Goto register form
+        step("Goto register form");
         RegisterPage registerPage = loginPage.openRegister();
         registerPage.validateStructure();
 
@@ -63,6 +67,7 @@ public class TRegister extends BasicTest
     @After
     public void after()
     {
+        step("After Register - Delete User");
         new DeleteUserFlow(user).flow();
     }
 }
