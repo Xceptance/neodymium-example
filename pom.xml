@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
@@ -27,6 +26,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<aspectj.version>1.8.10</aspectj.version>
 	</properties>
 
 	<build>
@@ -43,14 +43,106 @@
 					<!-- our test case naming does not follow Maven naming conventions -->
 					<includes>
 						<include>posters/neodymium/tests/**/T*.java</include>
-						<include>posters/cucumber/tests/**/RunAllFeatureTest.java</include>
 					</includes>
+					<testFailureIgnore>true</testFailureIgnore>
+					<argLine>
+						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+					</argLine>
+					<argLine>-Dcucumber.options="plugin io.qameta.allure.cucumberjvm.AllureCucumberJvm"</argLine>
+					<properties>
+						<property>
+							<name>listener</name>
+							<value>io.qameta.allure.junit4.AllureJunit4</value>
+						</property>
+					</properties>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjweaver</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>io.qameta.allure</groupId>
+				<artifactId>allure-maven</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<reportVersion>2.4.1</reportVersion>
+					<reportDirectory>allure-report</reportDirectory>
+					<resultsDirectory>../allure-results</resultsDirectory>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
 
+	<!-- <build> -->
+	<!-- <plugins> -->
+	<!-- <plugin> -->
+	<!-- <groupId>org.apache.maven.plugins</groupId> -->
+	<!-- <artifactId>maven-surefire-plugin</artifactId> -->
+	<!-- <version>2.20</version> -->
+	<!-- <configuration> -->
+	<!-- parallel test execution does not work reliably -->
+	<!-- <parallel>classesAndMethods</parallel> -->
+	<!-- <threadCount>8</threadCount> -->
+	<!-- our test case naming does not follow Maven naming conventions -->
+	<!-- <includes> -->
+	<!-- <include>posters/cucumber/**/*Test.java</include> -->
+	<!-- </includes> -->
+	<!-- <testFailureIgnore>true</testFailureIgnore> -->
+	<!-- <argLine>-javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar</argLine> -->
+	<!-- <argLine>-Dcucumber.options="plugin io.qameta.allure.cucumberjvm.AllureCucumberJvm"</argLine> -->
+	<!-- <properties> -->
+	<!-- <property> -->
+	<!-- <name>listener</name> -->
+	<!-- <value>io.qameta.allure.junit4.AllureJunit4</value> -->
+	<!-- </property> -->
+	<!-- </properties> -->
+	<!-- </configuration> -->
+	<!-- <dependencies> -->
+	<!-- <dependency> -->
+	<!-- <groupId>org.aspectj</groupId> -->
+	<!-- <artifactId>aspectjweaver</artifactId> -->
+	<!-- <version>${aspectj.version}</version> -->
+	<!-- </dependency> -->
+	<!-- </dependencies> -->
+	<!-- </plugin> -->
+	<!-- <plugin> -->
+	<!-- <groupId>io.qameta.allure</groupId> -->
+	<!-- <artifactId>allure-maven</artifactId> -->
+	<!-- <version>2.9</version> -->
+	<!-- <configuration> -->
+	<!-- <reportVersion>2.4.1</reportVersion> -->
+	<!-- <reportDirectory>allure-report</reportDirectory> -->
+	<!-- <resultsDirectory>../allure-results</resultsDirectory> -->
+	<!-- </configuration> -->
+	<!-- </plugin> -->
+	<!-- </plugins> -->
+	<!-- </build> -->
+
 	<dependencies>
+		<!-- start cucumber only -->
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-cucumber-jvm</artifactId>
+			<version>2.0-BETA19</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>1.2.5</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-java8</artifactId>
+			<version>1.2.5</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- end cucumber only -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -60,7 +152,7 @@
 		<dependency>
 			<groupId>com.codeborne</groupId>
 			<artifactId>selenide</artifactId>
-			<version>4.5.1</version>
+			<version>4.8</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -85,18 +177,6 @@
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 			<version>2.9.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>cucumber-junit</artifactId>
-			<version>1.2.5</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>cucumber-java8</artifactId>
-			<version>1.2.5</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
