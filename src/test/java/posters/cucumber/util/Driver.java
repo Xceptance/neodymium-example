@@ -47,6 +47,7 @@ public class Driver
         }
     }
 
+    // have a lower order number than default in order to shut down the driver after the test case specific after hooks
     @After(order = 100)
     public void tearDown()
     {
