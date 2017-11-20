@@ -88,6 +88,7 @@ public class UserMenu extends AbstractComponent
     /**
      * @return
      */
+    @When("^I click the register button in the header$")
     public RegisterPage openRegister()
     {
         openUserMenu();

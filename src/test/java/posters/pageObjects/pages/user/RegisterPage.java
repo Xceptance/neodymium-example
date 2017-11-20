@@ -13,6 +13,7 @@ import static com.codeborne.selenide.Selenide.page;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import posters.neodymium.dataObjects.User;
+import posters.neodymium.dataObjects.World;
 import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
 
 /**
@@ -20,6 +21,17 @@ import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
  */
 public class RegisterPage extends AbstractBrowsingPage
 {
+
+    private World world;
+
+    public RegisterPage()
+    {
+    }
+
+    public RegisterPage(World world)
+    {
+        this.world = world;
+    }
 
     /*
      * (non-Javadoc)
@@ -73,21 +85,26 @@ public class RegisterPage extends AbstractBrowsingPage
     }
 
     /**
-     * @param email
+     * @param eMail
      *            The email of the account you want to log into
      * @param password
      *            The password of the account you want to log into
      */
     @When("^I fill the register form with \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" and send it$")
-    public LoginPage sendRegisterForm(String firstName, String lastName, String email, String password, String passwordRepeat)
+    public LoginPage sendRegisterForm(String firstName, String lastName, String eMail, String password, String passwordRepeat)
     {
+        if (world != null)
+        {
+            world.user = new User(firstName, lastName, eMail, passwordRepeat);
+        }
+
         // Fill out the registration form
         // Type the last name parameter into the last name field.
         $("#lastName").val(lastName);
         // Type the first name parameter into the first name field.
         $("#firstName").val(firstName);
         // Type the email parameter into the email field.
-        $("#eMail").val(email);
+        $("#eMail").val(eMail);
         // Type the password parameter into the password field.
         $("#password").val(password);
         // Type the second password parameter into the second password field.
