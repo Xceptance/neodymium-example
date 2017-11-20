@@ -1,23 +1,27 @@
 Feature: Searching for products
 
-  Scenario Outline: Searching for an existing product
-    Given The browser "<browser>" is open
-    And I am on the homepage of the Posters shop
-    When I search for "<searchTerm>"
-    Then the search result text should be "<title>"
-
-    Examples: 
-      | searchTerm | title                                            | browser         | 
-      | bear       | Your results for your search: 'bear' (3 posters) | Chrome_1024x768 |
-      | bee        | Your results for your search: 'bee' (9 posters)  | FF_1024x768     |
-
-  Scenario Outline: Searching for a non-existing product
-    Given The browser "<browser>" is open
-    And I am on the homepage of the Posters shop
-    When I search for "Foobar"
-    Then a message with text "Sorry! No results found matching your search. Please try again." should appear
+Scenario Outline: Searching for an existing product
+  Given The browser "<browser>" is open
+  And I am on the homepage of the Posters shop
+  Then I want see the logo, the carousel and some hot products
+  And the footer should be visible
     
-    Examples:
-      | browser         |
-      | Chrome_1024x768 |
-      | FF_1024x768     |
+  When I search for "<searchTerm>"
+  Then the search result text should be "<title>"
+
+  Examples: 
+    | searchTerm | title                                            | browser         | 
+    | bear       | Your results for your search: 'bear' (3 posters) | Chrome_1024x768 |
+    | bee        | Your results for your search: 'bee' (9 posters)  | FF_1024x768     |
+
+Scenario Outline: Searching for a non-existing product
+  Given The browser "<browser>" is open
+  And I am on the homepage of the Posters shop
+
+  When I search for "Foobar"
+  Then a message with text "Sorry! No results found matching your search. Please try again." should appear
+  
+  Examples:
+    | browser         |
+    | Chrome_1024x768 |
+    | FF_1024x768     |
