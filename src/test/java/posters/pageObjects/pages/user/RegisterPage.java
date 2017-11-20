@@ -13,7 +13,6 @@ import static com.codeborne.selenide.Selenide.page;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import posters.neodymium.dataObjects.User;
-import posters.neodymium.dataObjects.World;
 import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
 
 /**
@@ -21,17 +20,6 @@ import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
  */
 public class RegisterPage extends AbstractBrowsingPage
 {
-
-    private World world;
-
-    public RegisterPage()
-    {
-    }
-
-    public RegisterPage(World world)
-    {
-        this.world = world;
-    }
 
     /*
      * (non-Javadoc)
@@ -93,11 +81,6 @@ public class RegisterPage extends AbstractBrowsingPage
     @When("^I fill the register form with \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\", \"([^\"]*)\" and send it$")
     public LoginPage sendRegisterForm(String firstName, String lastName, String eMail, String password, String passwordRepeat)
     {
-        if (world != null)
-        {
-            world.user = new User(firstName, lastName, eMail, passwordRepeat);
-        }
-
         // Fill out the registration form
         // Type the last name parameter into the last name field.
         $("#lastName").val(lastName);

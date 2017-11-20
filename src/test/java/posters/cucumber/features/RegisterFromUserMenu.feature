@@ -5,6 +5,7 @@ Scenario Outline: Register a new customer with "<email>" and "<password>" via us
   Given The browser "<browser>" is open
   And I am on the homepage of the Posters shop
   And I am not logged in
+  And the user will have: "<firstName>", "<lastName>", "<email>", "<password>"
   When I click the register button in the header
   Then I want to be on the register page
   When I fill the register form with "<firstName>", "<lastName>", "<email>", "<password>", "<password>" and send it  

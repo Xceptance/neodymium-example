@@ -8,9 +8,9 @@ import java.util.regex.Pattern;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
+import posters.cucumber.dataHelper.GlobalStorage;
 import posters.flows.DeleteUserFlow;
 import posters.neodymium.dataObjects.User;
-import posters.neodymium.dataObjects.World;
 
 /**
  * @author pfotenhauer
@@ -18,17 +18,19 @@ import posters.neodymium.dataObjects.World;
 public class RegisterHooks
 {
 
-    private World world;
+    private GlobalStorage storage;
 
-    public RegisterHooks(World world)
+    public RegisterHooks(GlobalStorage storage)
     {
-        this.world = world;
+        // The storage is passed via dependency injection
+        this.storage = storage;
     }
 
     @After("@RegisterFromUserMenu")
     public void afterRegisterFromUserMenu(Scenario scenario)
     {
-        new DeleteUserFlow(world.user).flow();
+        // use the user coming from dependency injection
+        new DeleteUserFlow(storage.user).flow();
     }
 
     @After("@Register")
