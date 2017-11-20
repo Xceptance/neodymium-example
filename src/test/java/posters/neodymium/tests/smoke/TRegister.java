@@ -35,7 +35,7 @@ public class TRegister extends BasicTest
     }
 
     @Test
-    public void test()
+    public void testRegistering()
     {
         // Goto homepage
         step("Goto homepage");

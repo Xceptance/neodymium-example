@@ -32,7 +32,7 @@ import posters.pageObjects.pages.user.LoginPage;
 public class TOrder extends BasicTest
 {
     @Test
-    public void test()
+    public void testOrderingAsRegisteredUser()
     {
         // total product count will be updated throughout the test
         int totalCount = 0;

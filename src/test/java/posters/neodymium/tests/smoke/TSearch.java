@@ -23,7 +23,7 @@ import posters.pageObjects.pages.browsing.ProductdetailPage;
 public class TSearch extends BasicTest
 {
     @Test
-    public void test()
+    public void testSearching()
     {
         // Goto homepage
         HomePage homePage = new OpenHomePageFlow().flow();

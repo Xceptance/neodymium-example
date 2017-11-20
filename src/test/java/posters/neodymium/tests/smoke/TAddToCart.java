@@ -20,7 +20,7 @@ public class TAddToCart extends BasicTest
 {
 
     @Test
-    public void test()
+    public void testAddProductsToCart()
     {
         int totalCount = 0;
 

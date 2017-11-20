@@ -31,7 +31,7 @@ import posters.pageObjects.pages.checkout.PlaceOrderPlace;
 public class TGuestOrder extends BasicTest
 {
     @Test
-    public void test()
+    public void testOrderingAsGuest()
     {
         // total product count will be updated throughout the test
         int totalCount = 0;

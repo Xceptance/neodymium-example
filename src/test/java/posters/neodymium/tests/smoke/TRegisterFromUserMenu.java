@@ -28,7 +28,7 @@ public class TRegisterFromUserMenu extends BasicTest
     final User user = new User("Jane", "Doe", "jane@doe.com", "topsecret");
 
     @Test
-    public void test()
+    public void testRegisteringFromUserMenu()
     {
         // Goto homepage
         HomePage homePage = new OpenHomePageFlow().flow();
