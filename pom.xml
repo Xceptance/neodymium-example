@@ -49,7 +49,7 @@
 					   -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
 					</argLine>
 					<argLine>
-					   -Dcucumber.options="plugin io.qameta.allure.cucumberjvm.AllureCucumberJvm"
+					   -Dcucumber.options="--plugin io.qameta.allure.cucumberjvm.AllureCucumberJvm"
 					</argLine>
 					<properties>
 						<property>
