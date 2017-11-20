@@ -1,4 +1,5 @@
 Feature: Register from user menu
+Description: Show case clean up steps implementation using dependency injection for more complex data passing
     
 @RegisterFromUserMenu
 Scenario Outline: Register a new customer with "<email>" and "<password>" via user menu

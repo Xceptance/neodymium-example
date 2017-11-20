@@ -1,5 +1,7 @@
 @Smoke
 Feature: Register 
+Description: Show case clean up steps implementation using regex and scenario name for simple data passing
+
 
 @Register
 Scenario Outline: Register a new customer with "<email>" and "<password>"
