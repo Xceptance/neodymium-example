@@ -20,14 +20,9 @@ public class RegisterHooks
     @After("@Register")
     public void afterRegistration(Scenario scenario)
     {
-        String name = scenario.getName();
-        Pattern pattern = Pattern.compile("\"([^\"]*)\"");
-        Matcher matcher = pattern.matcher(name);
+        Matcher matcher = Pattern.compile("\"([^\"]*)\" and \"([^\"]*)\"").matcher(scenario.getName());
         matcher.find();
-        String email = matcher.group(1);
-        matcher.find();
-        String password = matcher.group(1);
-        User user = new User("", "", email, password);
+        User user = new User("", "", matcher.group(1), matcher.group(2));
         new DeleteUserFlow(user).flow();
     }
 }
