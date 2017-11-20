@@ -1,5 +1,6 @@
+@Smoke
 Feature: Register 
-    
+
 @Register
 Scenario Outline: Register a new customer with "<email>" and "<password>"
   Given The browser "<browser>" is open
@@ -14,7 +15,7 @@ Scenario Outline: Register a new customer with "<email>" and "<password>"
   And I want to be on the login page
   When I fill the register form with "<email>" and "<password>" and send it
   Then I want to be logged in successfully with "<firstName>"
-  
+   
   Examples:
     | browser         | firstName | lastName | email          | password  |
     | Chrome_1024x768 | Jane      | Doe      | jane@doe.com   | topsecret |
