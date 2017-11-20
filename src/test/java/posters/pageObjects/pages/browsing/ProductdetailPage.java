@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Selenide.$;
 
+import cucumber.api.java.en.Then;
 import posters.neodymium.dataObjects.Product;
 
 /**
@@ -96,6 +97,7 @@ public class ProductdetailPage extends AbstractBrowsingPage
     /**
      * @param productName
      */
+    @Then("^I want to be on the product detail page of \"([^\"]*)\"$")
     public void validate(String productName)
     {
         validateStructure();
