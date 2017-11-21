@@ -23,7 +23,7 @@ import posters.pageObjects.pages.browsing.ProductdetailPage;
 public class TBrowse extends BasicTest
 {
     @Test
-    public void test()
+    public void testBrowsing()
     {
         // Goto homepage
         HomePage homePage = new OpenHomePageFlow().flow();

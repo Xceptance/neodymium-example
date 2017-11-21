@@ -15,7 +15,7 @@ import posters.pageObjects.pages.browsing.HomePage;
 public class TVisit extends BasicTest
 {
     @Test
-    public void test()
+    public void testVisitingHomepage()
     {
         HomePage homePage = new OpenHomePageFlow().flow();
         homePage.validateStructure();

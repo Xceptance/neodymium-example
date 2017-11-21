@@ -15,6 +15,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.page;
 
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 
 /**
  * @author pfotenhauer
@@ -45,6 +46,7 @@ public class CategoryPage extends AbstractBrowsingPage
      * 
      * @see com.xceptance.scripting.selenide.page.AbstractPage()
      */
+    @Then("^I want to be on a category page$")
     public void validateStructure()
     {
         super.validateStructure();
@@ -85,6 +87,7 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param position
      * @return
      */
+    @When("^I click on the product number \"([^\"]*)\"$")
     public ProductdetailPage clickProductByPosition(int position)
     {
         final int index = position - 1;
@@ -110,6 +113,7 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param searchTerm
      * @param searchTermExpectedCount
      */
+    @Then("^the page should show for the searchterm \"([^\"]*)\" \"([^\"]*)\" products$")
     public void validateSearchHits(String searchTerm, int searchTermExpectedCount)
     {
         $("#titleSearchText").should(exist);
@@ -133,15 +137,6 @@ public class CategoryPage extends AbstractBrowsingPage
         // Verify that there is the specified amount of results
         // The amount of products shown in the headline matches the expected value
         $("#totalProductCount").shouldHave(exactText(Integer.toString(searchTermExpectedCount)));
-    }
-
-    /**
-     * @param resultText
-     */
-    @Then("^the search result text should be \"([^\"]*)\"$")
-    public void validateSearchHits(String resultText)
-    {
-        $("#titleSearchText").shouldHave(exactText(resultText));
     }
 
     /**

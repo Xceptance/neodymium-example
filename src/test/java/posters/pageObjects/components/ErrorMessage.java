@@ -5,8 +5,6 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-import cucumber.api.java.en.Then;
-
 public class ErrorMessage extends AbstractComponent
 {
 
@@ -15,7 +13,6 @@ public class ErrorMessage extends AbstractComponent
         $("#errorMessage").should(exist);
     }
 
-    @Then("^a message with text \"([^\"]*)\" should appear$")
     public void validateErrorMessage(String message)
     {
         // Wait until javascript makes the error message visible

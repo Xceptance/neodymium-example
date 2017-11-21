@@ -1,3 +1,4 @@
+@Smoke
 Feature: Homepage 
 
 Scenario Outline: Visting the homepage
@@ -5,7 +6,7 @@ Scenario Outline: Visting the homepage
   And I am on the homepage of the Posters shop
   Then the page title should be "Posters - The Ultimate Online Shop"
   Then I want see the logo, the carousel and some hot products
-  Then the footer should be visible
+  And the footer should be visible
   
   Examples:
     | browser         |
