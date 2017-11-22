@@ -42,7 +42,8 @@
 
 					<!-- our test case naming does not follow Maven naming conventions -->
 					<includes>
-						<include>posters/neodymium/tests/**/T*.java</include>
+ 						<include>posters/neodymium/tests/**/T*.java</include>
+						<include>posters/cucumber/tests/RunAllFeaturesTest.java</include>
 					</includes>
 					<testFailureIgnore>true</testFailureIgnore>
 					<argLine>
