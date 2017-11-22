@@ -58,6 +58,12 @@
 							<value>io.qameta.allure.junit4.AllureJunit4</value>
 						</property>
 					</properties>
+					<systemProperties>
+						<property>
+							<name>allure.results.directory</name>
+							<value>${project.build.directory}/allure-results</value>
+						</property>
+					</systemProperties>
 				</configuration>
 				<dependencies>
 					<dependency>
@@ -73,8 +79,6 @@
 				<version>2.9</version>
 				<configuration>
 					<reportVersion>2.4.1</reportVersion>
-					<reportDirectory>allure-report</reportDirectory>
-					<resultsDirectory>../allure-results</resultsDirectory>
 				</configuration>
 			</plugin>
 		</plugins>
