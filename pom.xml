@@ -46,12 +46,7 @@
 						<include>posters/cucumber/tests/RunAllFeaturesTest.java</include>
 					</includes>
 					<testFailureIgnore>true</testFailureIgnore>
-					<argLine>
-					   -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-					</argLine>
-					<argLine>
-					   -Dcucumber.options="--plugin io.qameta.allure.cucumberjvm.AllureCucumberJvm"
-					</argLine>
+					<argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
 					<properties>
 						<property>
 							<name>listener</name>
@@ -62,6 +57,10 @@
 						<property>
 							<name>allure.results.directory</name>
 							<value>${project.build.directory}/allure-results</value>
+						</property>
+						<property>
+							<name>cucumber.options</name>
+							<value>--plugin io.qameta.allure.cucumberjvm.AllureCucumberJvm</value>
 						</property>
 					</systemProperties>
 				</configuration>
