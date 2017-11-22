@@ -52,8 +52,7 @@ public class TSearch extends BasicTest
         // Search
         final String searchTerm = "Foobar";
         NoHitsPage noHitsPage = homePage.search().noResult(searchTerm);
-        noHitsPage.validateStructure();
-        noHitsPage.validateNoProductsFound();
+        noHitsPage.validate();
     }
 
 }

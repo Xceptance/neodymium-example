@@ -3,6 +3,8 @@ Feature: Register
 Description: Show case clean up steps implementation using regex and scenario name for simple data passing
 
 
+#The parameters within the scenario outline cause an error in allure report that leads to not generating data for this feature
+#see: https://github.com/allure-framework/allure-cucumberjvm/issues/52
 @Register
 Scenario Outline: Register a new customer with "<email>" and "<password>"
   Given The browser "<browser>" is open

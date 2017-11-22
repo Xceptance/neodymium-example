@@ -2,7 +2,7 @@ Feature: Register from user menu
 Description: Show case clean up steps implementation using dependency injection for more complex data passing
     
 @RegisterFromUserMenu
-Scenario Outline: Register a new customer with "<email>" and "<password>" via user menu
+Scenario Outline: Register a new customer via user menu
   Given The browser "<browser>" is open
   And I am on the homepage of the Posters shop
   And I am not logged in
