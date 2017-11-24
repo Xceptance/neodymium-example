@@ -97,7 +97,7 @@ public class ProductdetailPage extends AbstractBrowsingPage
     /**
      * @param productName
      */
-    @Then("^I want to be on the product detail page of \"([^\"]*)\"$")
+    @Then("^I want to be on a product detail page and see the \"([^\"]*)\" as headline$")
     public void validate(String productName)
     {
         validateStructure();

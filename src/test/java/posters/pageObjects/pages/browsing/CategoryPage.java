@@ -102,6 +102,20 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param position
      * @return
      */
+    @When("^I click on the product \"([^\"]*)\"$")
+    public ProductdetailPage clickProductByName(String productName)
+    {
+        // Open the product detail page
+        // Click on the product's image and open the product overview page
+        // Click the product link to open the product detail page
+        $("#productOverview .thumbnails .thumbnail a > img.pImage[title='" + productName + "']").scrollTo().click();
+        return page(ProductdetailPage.class);
+    }
+
+    /**
+     * @param position
+     * @return
+     */
     public String getProductNameByPosition(int position)
     {
         final int index = position - 1;
@@ -142,6 +156,7 @@ public class CategoryPage extends AbstractBrowsingPage
     /**
      * @param categoryName
      */
+    @Then("^I want to be on a category page and see the \"([^\"]*)\" as headline")
     public void validate(String categoryName)
     {
         validateStructure();

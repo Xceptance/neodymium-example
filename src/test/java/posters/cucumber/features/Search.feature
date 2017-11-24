@@ -11,7 +11,7 @@ Scenario Outline: Searching for an existing product
   And the page should show for the searchterm "<searchTerm>" "<expectedCount>" products 
 
   When I click on the product number "<productPosition>"
-  Then I want to be on the product detail page of "<productName>"
+  Then I want to be on a product detail page and see the "<productName>" as headline
 
   Examples: 
     | searchTerm | expectedCount | productPosition | productName                 | browser         | 
