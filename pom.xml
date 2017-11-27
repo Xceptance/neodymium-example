@@ -131,42 +131,12 @@
 	<dependencies>
 		<!-- start cucumber only -->
 		<dependency>
-			<groupId>io.qameta.allure</groupId>
-			<artifactId>allure-cucumber-jvm</artifactId>
-			<version>2.0-BETA19</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>cucumber-junit</artifactId>
-			<version>1.2.5</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>cucumber-java8</artifactId>
-			<version>1.2.5</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-picocontainer</artifactId>
 			<version>1.2.5</version>
 			<scope>test</scope>
 		</dependency>
 		<!-- end cucumber only -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.codeborne</groupId>
-			<artifactId>selenide</artifactId>
-			<version>4.8</version>
-			<scope>test</scope>
-		</dependency>
 		<dependency>
 			<groupId>com.xceptance</groupId>
 			<artifactId>neodymium-library</artifactId>
@@ -189,12 +159,6 @@
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 			<version>2.9.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.qameta.allure</groupId>
-			<artifactId>allure-junit4</artifactId>
-			<version>2.0-BETA19</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
