@@ -7,8 +7,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>neodymium-template</name>
-	<url>https://github.com/Xceptance/neodymium-template</url>
+	<name>neodymium-example</name>
+	<url>https://github.com/Xceptance/neodymium-example</url>
 	<organization>
 		<name>Xceptance Software Technologies</name>
 		<url>https://www.xceptance.com/</url>
