@@ -281,4 +281,12 @@ public class CartPage extends AbstractBrowsingPage
         clickCheckoutButton();
         return page(ShippingAddressPage.class);
     }
+
+    /**
+     * @return
+     */
+    public boolean hasProductsInCart()
+    {
+        return $("#btnRemoveProdCount0").exists();
+    }
 }

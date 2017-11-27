@@ -3,10 +3,12 @@
  */
 package posters.neodymium.tests.smoke;
 
+import org.junit.After;
 import org.junit.Test;
 
 import com.xceptance.neodymium.multibrowser.Browser;
 
+import posters.flows.CartCleanUpFlow;
 import posters.flows.OpenHomePageFlow;
 import posters.neodymium.dataObjects.Address;
 import posters.neodymium.dataObjects.CreditCard;
@@ -105,5 +107,11 @@ public class TOrder extends BasicTest
         // Validate order confirmation on Homepage
         homePage.validate();
         homePage.validateSuccessfulOrder();
+    }
+
+    @After
+    public void after()
+    {
+        new CartCleanUpFlow().flow();
     }
 }
