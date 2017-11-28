@@ -4,9 +4,8 @@
 package posters.neodymium.tests.smoke;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
-
-import com.xceptance.neodymium.multibrowser.Browser;
 
 import posters.flows.DeleteUserFlow;
 import posters.flows.OpenHomePageFlow;
@@ -19,29 +18,39 @@ import posters.pageObjects.pages.user.RegisterPage;
 /**
  * @author pfotenhauer
  */
-@Browser(
+public class RegisterTest extends BasicTest
 {
-  "Chrome_1024x768"
-})
-public class TRegisterFromUserMenu extends BasicTest
-{
-    final User user = new User("Jane", "Doe", "jane@doe.com", "topsecret");
+    User user;
+
+    @Before
+    public void setup()
+    {
+        user = new User(data);
+    }
 
     @Test
-    public void testRegisteringFromUserMenu()
+    public void testRegistering()
     {
         // Goto homepage
+        step("Goto homepage");
         HomePage homePage = new OpenHomePageFlow().flow();
         homePage.validate();
 
         // Assure not logged in status
+        step("Assure not logged in status");
         homePage.userMenu().validateNotLoggedIn();
 
+        // Goto login form
+        step("Goto login form");
+        LoginPage loginPage = homePage.userMenu().openLogin();
+        loginPage.validateStructure();
+
         // Goto register form
-        RegisterPage registerPage = homePage.userMenu().openRegister();
+        step("Goto register form");
+        RegisterPage registerPage = loginPage.openRegister();
         registerPage.validateStructure();
 
-        LoginPage loginPage = registerPage.sendRegisterForm(user, user.getPassword());
+        loginPage = registerPage.sendRegisterForm(user, user.getPassword());
         loginPage.validateSuccessfulLRegistration();
         loginPage.validateStructure();
 
@@ -52,6 +61,7 @@ public class TRegisterFromUserMenu extends BasicTest
     @After
     public void after()
     {
+        step("After Register - Delete User");
         new DeleteUserFlow(user).flow();
     }
 }

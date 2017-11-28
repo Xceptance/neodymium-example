@@ -2,8 +2,6 @@ package posters.neodymium.tests.smoke;
 
 import org.junit.Test;
 
-import com.xceptance.neodymium.multibrowser.Browser;
-
 import posters.flows.OpenHomePageFlow;
 import posters.neodymium.dataObjects.Product;
 import posters.neodymium.tests.BasicTest;
@@ -11,12 +9,9 @@ import posters.pageObjects.pages.browsing.CategoryPage;
 import posters.pageObjects.pages.browsing.HomePage;
 import posters.pageObjects.pages.browsing.ProductdetailPage;
 import posters.pageObjects.pages.checkout.CartPage;
+import posters.settings.Settings;
 
-@Browser(
-{
-  "Chrome_1024x768"
-})
-public class TAddToCart extends BasicTest
+public class AddToCartTest extends BasicTest
 {
 
     @Test
@@ -51,7 +46,7 @@ public class TAddToCart extends BasicTest
         // Goto cart and validate
         final Product product = productPage.getProduct();
         CartPage cartPage = productPage.miniCart().openCartPage();
-        cartPage.validate(SHIPPINGCOSTS);
+        cartPage.validate(Settings.shippingCosts);
         cartPage.miniCart().validateMiniCart(1, product);
         cartPage.validateCartItem(1, product);
 
@@ -75,7 +70,7 @@ public class TAddToCart extends BasicTest
 
         // Goto cart and validate
         cartPage = productPage.miniCart().openCartPage();
-        cartPage.validate(SHIPPINGCOSTS);
+        cartPage.validate(Settings.shippingCosts);
 
         cartPage.miniCart().validateMiniCart(1, product2);
 

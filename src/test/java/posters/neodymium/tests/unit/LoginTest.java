@@ -18,9 +18,10 @@ import posters.pageObjects.pages.user.LoginPage;
  */
 @Browser(
 {
-  "Chrome_1024x768"
+  "Chrome_1024x768",
+  "FF_1024x768"
 })
-public class TLogin extends BasicTest
+public class LoginTest extends BasicTest
 {
 
     @Test

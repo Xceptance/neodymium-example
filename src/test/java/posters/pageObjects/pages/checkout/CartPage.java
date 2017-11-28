@@ -15,10 +15,10 @@ import static com.codeborne.selenide.Selenide.page;
 import org.junit.Assert;
 
 import posters.neodymium.dataObjects.Product;
-import posters.neodymium.settings.Settings;
 import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageObjects.pages.browsing.ProductdetailPage;
 import posters.pageObjects.utility.PriceHelper;
+import posters.settings.Settings;
 
 /**
  * @author pfotenhauer

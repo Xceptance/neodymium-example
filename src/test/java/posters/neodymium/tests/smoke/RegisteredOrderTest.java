@@ -6,8 +6,6 @@ package posters.neodymium.tests.smoke;
 import org.junit.After;
 import org.junit.Test;
 
-import com.xceptance.neodymium.multibrowser.Browser;
-
 import posters.flows.CartCleanUpFlow;
 import posters.flows.OpenHomePageFlow;
 import posters.neodymium.dataObjects.Address;
@@ -23,15 +21,12 @@ import posters.pageObjects.pages.checkout.PaymentPage;
 import posters.pageObjects.pages.checkout.PlaceOrderPlace;
 import posters.pageObjects.pages.checkout.ShippingAddressPage;
 import posters.pageObjects.pages.user.LoginPage;
+import posters.settings.Settings;
 
 /**
  * @author pfotenhauer
  */
-@Browser(
-{
-  "Chrome_1024x768"
-})
-public class TOrder extends BasicTest
+public class RegisteredOrderTest extends BasicTest
 {
     @Test
     public void testOrderingAsRegisteredUser()
@@ -73,7 +68,7 @@ public class TOrder extends BasicTest
         final Product product = productPage.getProduct();
         CartPage cartPage = productPage.miniCart().openCartPage();
         cartPage.validateStructure();
-        cartPage.validateShippingCosts(SHIPPINGCOSTS);
+        cartPage.validateShippingCosts(Settings.shippingCosts);
         cartPage.miniCart().validateMiniCart(1, product);
         cartPage.miniCart().validateTotalCount(++totalCount);
         cartPage.validateCartItem(1, product);

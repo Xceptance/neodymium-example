@@ -11,10 +11,10 @@ import static com.codeborne.selenide.Selenide.page;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
-import posters.neodymium.settings.Settings;
 import posters.pageObjects.pages.user.AccountOverViewPage;
 import posters.pageObjects.pages.user.LoginPage;
 import posters.pageObjects.pages.user.RegisterPage;
+import posters.settings.Settings;
 
 /**
  * @author pfotenhauer

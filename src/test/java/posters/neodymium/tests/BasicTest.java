@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import com.xceptance.neodymium.NeodymiumRunner;
 import com.xceptance.neodymium.TestData;
+import com.xceptance.neodymium.multibrowser.Browser;
 
 import io.qameta.allure.Step;
 
@@ -18,11 +19,13 @@ import io.qameta.allure.Step;
  * @author pfotenhauer
  */
 @RunWith(NeodymiumRunner.class)
+@Browser(
+{
+  "Chrome_1024x768"
+})
 public class BasicTest
 {
     protected static final Logger LOGGER = LoggerFactory.getLogger(BasicTest.class);
-
-    protected static final String SHIPPINGCOSTS = "$7.00";
 
     @TestData
     public Map<String, String> data;

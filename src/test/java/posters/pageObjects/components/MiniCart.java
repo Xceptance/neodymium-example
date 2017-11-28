@@ -11,8 +11,8 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
 import posters.neodymium.dataObjects.Product;
-import posters.neodymium.settings.Settings;
 import posters.pageObjects.pages.checkout.CartPage;
+import posters.settings.Settings;
 
 /**
  * @author pfotenhauer

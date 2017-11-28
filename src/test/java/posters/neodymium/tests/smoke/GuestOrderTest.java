@@ -5,8 +5,6 @@ package posters.neodymium.tests.smoke;
 
 import org.junit.Test;
 
-import com.xceptance.neodymium.multibrowser.Browser;
-
 import posters.flows.OpenHomePageFlow;
 import posters.neodymium.dataObjects.Address;
 import posters.neodymium.dataObjects.CreditCard;
@@ -20,15 +18,12 @@ import posters.pageObjects.pages.checkout.NewBillingAddressPage;
 import posters.pageObjects.pages.checkout.NewPaymentPage;
 import posters.pageObjects.pages.checkout.NewShippingAddressPage;
 import posters.pageObjects.pages.checkout.PlaceOrderPlace;
+import posters.settings.Settings;
 
 /**
  * @author pfotenhauer
  */
-@Browser(
-{
-  "Chrome_1024x768"
-})
-public class TGuestOrder extends BasicTest
+public class GuestOrderTest extends BasicTest
 {
     @Test
     public void testOrderingAsGuest()
@@ -63,7 +58,7 @@ public class TGuestOrder extends BasicTest
         final Product product = productPage.getProduct();
         CartPage cartPage = productPage.miniCart().openCartPage();
         cartPage.validateStructure();
-        cartPage.validateShippingCosts(SHIPPINGCOSTS);
+        cartPage.validateShippingCosts(Settings.shippingCosts);
         cartPage.miniCart().validateMiniCart(1, product);
         cartPage.miniCart().validateTotalCount(++totalCount);
         cartPage.validateCartItem(1, product);

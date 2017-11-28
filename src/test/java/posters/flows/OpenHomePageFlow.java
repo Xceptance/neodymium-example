@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 import cucumber.api.java.en.And;
 import posters.pageObjects.pages.browsing.HomePage;
+import posters.settings.Settings;
 
 public class OpenHomePageFlow
 {
@@ -13,7 +14,7 @@ public class OpenHomePageFlow
     public HomePage flow()
     {
         clearBrowserCookies();
-        HomePage homePage = open("https://localhost:8443/posters/", HomePage.class);
+        HomePage homePage = open(Settings.homePageUrl, HomePage.class);
         homePage.isExpectedPage();
         return homePage;
     };
