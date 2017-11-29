@@ -59,6 +59,10 @@
 							<value>${project.build.directory}/allure-results</value>
 						</property>
 						<property>
+							<name>selenide.reports</name>
+							<value>${project.build.directory}/selenide-results</value>
+						</property>
+						<property>
 							<name>cucumber.options</name>
 							<value>--plugin io.qameta.allure.cucumberjvm.AllureCucumberJvm</value>
 						</property>
