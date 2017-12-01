@@ -51,7 +51,7 @@ public class RegisterTest extends BasicTest
         registerPage.validateStructure();
 
         loginPage = registerPage.sendRegisterForm(user, user.getPassword());
-        loginPage.validateSuccessfulLRegistration();
+        loginPage.validateSuccessfullRegistration();
         loginPage.validateStructure();
 
         homePage = loginPage.sendLoginform(user);

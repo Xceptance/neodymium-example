@@ -109,7 +109,7 @@ public class LoginPage extends AbstractBrowsingPage
      * 
      */
     @Then("^I want to be registered successfully$")
-    public void validateSuccessfulLRegistration()
+    public void validateSuccessfullRegistration()
     {
         successMessage().validateSuccessMessage("Your account has been created. Log in with your email address and password.");
     }

@@ -36,7 +36,7 @@ public class RegisterFromUserMenuTest extends BasicTest
         registerPage.validateStructure();
 
         LoginPage loginPage = registerPage.sendRegisterForm(user, user.getPassword());
-        loginPage.validateSuccessfulLRegistration();
+        loginPage.validateSuccessfullRegistration();
         loginPage.validateStructure();
 
         homePage = loginPage.sendLoginform(user);
