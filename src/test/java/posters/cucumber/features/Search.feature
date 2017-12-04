@@ -1,3 +1,4 @@
+@Smoke
 Feature: Searching for products
 
   Scenario Outline: Searching for an existing product

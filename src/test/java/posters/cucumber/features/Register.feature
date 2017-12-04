@@ -1,4 +1,4 @@
-@Smoke
+@Smoke @Skip
 Feature: Register
   Description: Show case clean up steps implementation using regex and scenario name for simple data passing
 
