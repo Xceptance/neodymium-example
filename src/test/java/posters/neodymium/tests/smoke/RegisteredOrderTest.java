@@ -21,7 +21,6 @@ import posters.pageObjects.pages.checkout.PaymentPage;
 import posters.pageObjects.pages.checkout.PlaceOrderPlace;
 import posters.pageObjects.pages.checkout.ShippingAddressPage;
 import posters.pageObjects.pages.user.LoginPage;
-import posters.settings.Settings;
 
 /**
  * @author pfotenhauer
@@ -33,6 +32,7 @@ public class RegisteredOrderTest extends BasicTest
     {
         // total product count will be updated throughout the test
         int totalCount = 0;
+        final String shippingCosts = data.get("shippingCosts");
 
         // Goto homepage
         HomePage homePage = new OpenHomePageFlow().flow();
@@ -48,9 +48,12 @@ public class RegisteredOrderTest extends BasicTest
         // Goto login form
         LoginPage loginPage = homePage.userMenu().openLogin();
         loginPage.validateStructure();
-        homePage = loginPage.sendLoginform("john@doe.com", "topsecret");
+        final String email = data.get("email");
+        final String password = data.get("password");
+        homePage = loginPage.sendLoginform(email, password);
 
-        homePage.validateSuccessfulLogin("John");
+        final String firstname = data.get("firstname");
+        homePage.validateSuccessfulLogin(firstname);
 
         // Goto category
         final String categoryName = homePage.topNav().getSubCategoryNameByPosition(2, 3);
@@ -68,7 +71,7 @@ public class RegisteredOrderTest extends BasicTest
         final Product product = productPage.getProduct();
         CartPage cartPage = productPage.miniCart().openCartPage();
         cartPage.validateStructure();
-        cartPage.validateShippingCosts(Settings.shippingCosts);
+        cartPage.validateShippingCosts(shippingCosts);
         cartPage.miniCart().validateMiniCart(1, product);
         cartPage.miniCart().validateTotalCount(++totalCount);
         cartPage.validateCartItem(1, product);
@@ -86,9 +89,17 @@ public class RegisteredOrderTest extends BasicTest
         PaymentPage paymentPage = billingAddressPage.selectBillingAddress(1);
         paymentPage.validateStructure();
 
+        final String name = firstname + " " + data.get("lastname");
+        final String company = data.get("company");
+        final String street = data.get("street");
+        final String city = data.get("city");
+        final String state = data.get("state");
+        final String zip = data.get("zip");
+        final String country = data.get("country");
+
         // setup checkout data for validation
-        final Address shippingAddress = new Address("John Doe", "John Doe Inc.", "5-7 John Doe street", "New York", "NY", "12345", "United States");
-        final Address billingAddress = new Address("John Doe", "John Doe Inc.", "5-7 John Doe street", "New York", "NY", "12345", "United States");
+        final Address shippingAddress = new Address(name, company, street, city, state, zip, country);
+        final Address billingAddress = new Address(name, company, street, city, state, zip, country);
         final CreditCard creditcard = new CreditCard("John Doe", "4111111111111111", "xxxx xxxx xxxx 1111", "08", "2022");
 
         // Send payment data and validate place order page

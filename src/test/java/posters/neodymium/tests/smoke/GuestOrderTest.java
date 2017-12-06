@@ -18,7 +18,6 @@ import posters.pageObjects.pages.checkout.NewBillingAddressPage;
 import posters.pageObjects.pages.checkout.NewPaymentPage;
 import posters.pageObjects.pages.checkout.NewShippingAddressPage;
 import posters.pageObjects.pages.checkout.PlaceOrderPlace;
-import posters.settings.Settings;
 
 /**
  * @author pfotenhauer
@@ -30,6 +29,7 @@ public class GuestOrderTest extends BasicTest
     {
         // total product count will be updated throughout the test
         int totalCount = 0;
+        final String shippingCosts = data.get("shippingCosts");
 
         // Goto homepage
         HomePage homePage = new OpenHomePageFlow().flow();
@@ -58,16 +58,23 @@ public class GuestOrderTest extends BasicTest
         final Product product = productPage.getProduct();
         CartPage cartPage = productPage.miniCart().openCartPage();
         cartPage.validateStructure();
-        cartPage.validateShippingCosts(Settings.shippingCosts);
+        cartPage.validateShippingCosts(shippingCosts);
         cartPage.miniCart().validateMiniCart(1, product);
         cartPage.miniCart().validateTotalCount(++totalCount);
         cartPage.validateCartItem(1, product);
         cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, "$0.00");
 
+        final String name = data.get("name");
+        final String company = data.get("company");
+        final String street = data.get("street");
+        final String city = data.get("city");
+        final String state = data.get("state");
+        final String zip = data.get("zip");
+        final String country = data.get("country");
         // setup checkout data
-        final Address shippingAddress = new Address("Jimmy Blue", "Ochsenknecht Records", "6 Wall St", "Burlington", "Massachusetts", "01803", "United States");
+        final Address shippingAddress = new Address(name, company, street, city, state, zip, country);
         final boolean sameBillingAddress = false;
-        final Address billingAddress = new Address("Jimmy Blue", "Ochsenknecht Records", "6 Wall St", "Burlington", "Massachusetts", "01803", "United States");
+        final Address billingAddress = new Address(name, company, street, city, state, zip, country);
         final CreditCard creditcard = new CreditCard("Jimmy Blue", "4111111111111111", "xxxx xxxx xxxx 1111", "04", "2018");
         // Goto shipping address and validate
         NewShippingAddressPage shippingAddressPage = cartPage.openNewShippingPage();

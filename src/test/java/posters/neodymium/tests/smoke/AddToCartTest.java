@@ -9,7 +9,6 @@ import posters.pageObjects.pages.browsing.CategoryPage;
 import posters.pageObjects.pages.browsing.HomePage;
 import posters.pageObjects.pages.browsing.ProductdetailPage;
 import posters.pageObjects.pages.checkout.CartPage;
-import posters.settings.Settings;
 
 public class AddToCartTest extends BasicTest
 {
@@ -17,6 +16,7 @@ public class AddToCartTest extends BasicTest
     @Test
     public void testAddProductsToCart()
     {
+        final String shippingCosts = data.get("shippingCosts");
         int totalCount = 0;
 
         // Goto homepage
@@ -28,7 +28,7 @@ public class AddToCartTest extends BasicTest
         final String oldSubtotal = homePage.miniCart().getSubtotal();
 
         // Go to a top category page
-        final String topCatName = "World of Nature";
+        final String topCatName = data.get("topCatName");
         CategoryPage categoryPage = homePage.topNav().clickCategory(topCatName);
         categoryPage.validateCategoryName(topCatName);
 
@@ -46,7 +46,7 @@ public class AddToCartTest extends BasicTest
         // Goto cart and validate
         final Product product = productPage.getProduct();
         CartPage cartPage = productPage.miniCart().openCartPage();
-        cartPage.validate(Settings.shippingCosts);
+        cartPage.validate(shippingCosts);
         cartPage.miniCart().validateMiniCart(1, product);
         cartPage.validateCartItem(1, product);
 
@@ -56,7 +56,7 @@ public class AddToCartTest extends BasicTest
         cartPage.miniCart().validateTotalCount(++totalCount);
 
         // Search for product on cart page
-        final String searchTerm = "pizza";
+        final String searchTerm = data.get("searchTerm");
         final int searchTermExpectedCount = 1;
         categoryPage = cartPage.search().categoryPageResult(searchTerm);
         categoryPage.validateSearchHits(searchTerm, searchTermExpectedCount);
@@ -70,7 +70,7 @@ public class AddToCartTest extends BasicTest
 
         // Goto cart and validate
         cartPage = productPage.miniCart().openCartPage();
-        cartPage.validate(Settings.shippingCosts);
+        cartPage.validate(shippingCosts);
 
         cartPage.miniCart().validateMiniCart(1, product2);
 

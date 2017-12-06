@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datafile>
+    <dataset>
+        <data key="email">john@doe.com</data>
+        <data key="password">topsecret</data>
+        <data key="firstname">John</data>
+        <data key="lastname">Doe</data>
+        <data key="company">John Doe Inc.</data>
+        <data key="street">5-7 John Doe street</data>
+        <data key="city">New York</data>
+        <data key="state">NY</data>
+        <data key="zip">12345</data>
+        <data key="country">United States</data>
+    </dataset>
+</datafile>
