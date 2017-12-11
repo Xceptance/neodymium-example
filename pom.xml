@@ -31,6 +31,16 @@
 	</properties>
 
 	<build>
+		<resources>
+			<resource>
+				<!-- copy all none java files from src/test/java to target/test-classes -->
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+				<directory>${project.build.testSourceDirectory}</directory>
+				<targetPath>${project.build.testOutputDirectory}</targetPath>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -148,12 +158,12 @@
 			<version>0.0.1-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.10.0</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>2.10.0</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<reporting>
