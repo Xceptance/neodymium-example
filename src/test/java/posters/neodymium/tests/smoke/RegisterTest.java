@@ -7,9 +7,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import posters.dataObjects.User;
 import posters.flows.DeleteUserFlow;
 import posters.flows.OpenHomePageFlow;
-import posters.neodymium.dataObjects.User;
 import posters.neodymium.tests.BasicTest;
 import posters.pageObjects.pages.browsing.HomePage;
 import posters.pageObjects.pages.user.LoginPage;

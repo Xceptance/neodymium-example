@@ -5,7 +5,7 @@ package posters.flows;
 
 import static com.codeborne.selenide.Selenide.page;
 
-import posters.neodymium.dataObjects.User;
+import posters.dataObjects.User;
 import posters.pageObjects.pages.browsing.HomePage;
 import posters.pageObjects.pages.user.AccountOverViewPage;
 import posters.pageObjects.pages.user.DeleteAccountPage;

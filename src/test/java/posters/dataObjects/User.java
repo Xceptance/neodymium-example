@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.neodymium.dataObjects;
+package posters.dataObjects;
 
 import java.util.Map;
 

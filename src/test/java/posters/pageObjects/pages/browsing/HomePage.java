@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import cucumber.api.java.en.Then;
-import posters.neodymium.dataObjects.User;
+import posters.dataObjects.User;
 
 public class HomePage extends AbstractBrowsingPage
 {

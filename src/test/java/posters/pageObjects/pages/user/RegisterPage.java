@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Selenide.page;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import posters.neodymium.dataObjects.User;
+import posters.dataObjects.User;
 import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
 
 /**

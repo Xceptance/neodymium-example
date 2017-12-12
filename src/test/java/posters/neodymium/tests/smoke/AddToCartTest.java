@@ -2,8 +2,8 @@ package posters.neodymium.tests.smoke;
 
 import org.junit.Test;
 
+import posters.dataObjects.Product;
 import posters.flows.OpenHomePageFlow;
-import posters.neodymium.dataObjects.Product;
 import posters.neodymium.tests.BasicTest;
 import posters.pageObjects.pages.browsing.CategoryPage;
 import posters.pageObjects.pages.browsing.HomePage;

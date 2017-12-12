@@ -4,7 +4,7 @@
 package posters.cucumber.dataHelper;
 
 import cucumber.api.java.en.And;
-import posters.neodymium.dataObjects.User;
+import posters.dataObjects.User;
 
 /**
  * @author pfotenhauer
