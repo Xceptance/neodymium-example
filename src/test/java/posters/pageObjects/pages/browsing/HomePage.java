@@ -8,7 +8,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import cucumber.api.java.en.Then;
 import posters.dataObjects.User;
 
 public class HomePage extends AbstractBrowsingPage
@@ -30,7 +29,6 @@ public class HomePage extends AbstractBrowsingPage
      * 
      * @see com.xceptance.scripting.selenide.page.AbstractPage()
      */
-    @Then("^I want see the logo, the carousel and some hot products$")
     public void validateStructure()
     {
         super.validateStructure();
@@ -74,7 +72,6 @@ public class HomePage extends AbstractBrowsingPage
      * @param firstName
      *            The name should be shown in the mini User Menu
      */
-    @Then("^I want to be logged in successfully with \"([^\"]*)\"")
     public void validateSuccessfulLogin(String firstName)
     {
         successMessage().validateSuccessMessage("Login successful. Have fun in our shop!");

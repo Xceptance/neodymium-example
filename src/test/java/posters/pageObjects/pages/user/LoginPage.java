@@ -11,8 +11,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
 
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import posters.dataObjects.User;
 import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageObjects.pages.browsing.HomePage;
@@ -40,7 +38,6 @@ public class LoginPage extends AbstractBrowsingPage
      * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#validateStructure()
      */
     @Override
-    @Then("^I want to be on the login page$")
     public void validateStructure()
     {
         super.validateStructure();
@@ -81,7 +78,6 @@ public class LoginPage extends AbstractBrowsingPage
         return page(HomePage.class);
     }
 
-    @When("^I fill the register form with \"([^\"]*)\" and \"([^\"]*)\" and send it$")
     public void sendFormWithData(String email, String password)
     {
         // Input email
@@ -98,7 +94,6 @@ public class LoginPage extends AbstractBrowsingPage
     /**
      * @return
      */
-    @When("^I click the register button$")
     public RegisterPage openRegister()
     {
         $("#linkRegister").scrollTo().click();
@@ -108,7 +103,6 @@ public class LoginPage extends AbstractBrowsingPage
     /**
      * 
      */
-    @Then("^I want to be registered successfully$")
     public void validateSuccessfullRegistration()
     {
         successMessage().validateSuccessMessage("Your account has been created. Log in with your email address and password.");

@@ -14,9 +14,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.page;
 
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
-
 /**
  * @author pfotenhauer
  */
@@ -46,7 +43,6 @@ public class CategoryPage extends AbstractBrowsingPage
      * 
      * @see com.xceptance.scripting.selenide.page.AbstractPage()
      */
-    @Then("^I want to be on a category page$")
     public void validateStructure()
     {
         super.validateStructure();
@@ -87,7 +83,6 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param position
      * @return
      */
-    @When("^I click on the product number \"([^\"]*)\"$")
     public ProductdetailPage clickProductByPosition(int position)
     {
         final int index = position - 1;
@@ -102,7 +97,6 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param position
      * @return
      */
-    @When("^I click on the product \"([^\"]*)\"$")
     public ProductdetailPage clickProductByName(String productName)
     {
         // Open the product detail page
@@ -127,7 +121,6 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param searchTerm
      * @param searchTermExpectedCount
      */
-    @Then("^the page should show for the searchterm \"([^\"]*)\" \"([^\"]*)\" products$")
     public void validateSearchHits(String searchTerm, int searchTermExpectedCount)
     {
         $("#titleSearchText").should(exist);
@@ -156,7 +149,6 @@ public class CategoryPage extends AbstractBrowsingPage
     /**
      * @param categoryName
      */
-    @Then("^I want to be on a category page and see the \"([^\"]*)\" as headline")
     public void validate(String categoryName)
     {
         validateStructure();
