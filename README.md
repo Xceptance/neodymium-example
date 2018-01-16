@@ -1,5 +1,5 @@
 # Introduction
-This repository demonstrates how to use our [Neodymium library](https://github.com/Xceptance/neodymium-library) to set up a maintainable and well structured test automation project. Furthermore we use the [Wiki](https://github.com/Xceptance/neodymium-template/wiki) on this project to show and explain how to use the features from the Neodymiun library. We also give insight how we think a test automation project should be structured and what results you should get out of it.
+This repository demonstrates how to use our [Neodymium library](https://github.com/Xceptance/neodymium-library) to set up a maintainable and well structured test automation project. Furthermore we use the [Wiki](https://github.com/Xceptance/neodymium-library/wiki) on the Neodymium library project to show and explain how to use features from Neodymium library. We also give insight how we think a test automation project should be structured and what results you should get out of it.
 
 ## Selenide
 Within this example project we demonstrate how to set up and implement a test automation project using Selenide. You can find information about Selenide within our [Wiki](https://github.com/Xceptance/neodymium-library/wiki/Selenide).
