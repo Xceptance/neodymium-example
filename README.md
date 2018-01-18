@@ -10,10 +10,10 @@ This will be a short introduction how to get it running.
 ### Prerequisites
 You will need the following technologies available to try it out:
 * Git
-* Maven
-* JDK
+* Maven 3+
+* JDK 8
 * IDE of your choice 
-* Browsers of your choice and their respective WebDrivers
+* Web browser's of your choice and their respective [WebDrivers](https://github.com/Xceptance/neodymium-library/wiki/How-to-set-up-a-WebDriver)
 
 ### Get and run Posters
 Posters is a web shop for demo purposes build by [Xceptance](https://www.xceptance.com/en/). We use it throughout all our software products to demonstrate their capabilities within a simple and stable environment. 
