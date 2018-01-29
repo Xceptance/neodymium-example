@@ -3,8 +3,6 @@
  */
 package posters.flows;
 
-import static com.codeborne.selenide.Selenide.page;
-
 import posters.dataObjects.User;
 import posters.pageObjects.pages.browsing.HomePage;
 import posters.pageObjects.pages.user.AccountOverViewPage;
@@ -22,7 +20,7 @@ public class DeleteUserFlow
      */
     public static LoginPage flow(User user)
     {
-        HomePage homePage = page(HomePage.class);
+        HomePage homePage = new HomePage();
         // ensure that the user is logged in
         LoginPage loginPage;
         if (!homePage.isLoggedIn())

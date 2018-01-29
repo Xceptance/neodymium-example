@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
 
 /**
  * @author pfotenhauer
@@ -59,6 +58,6 @@ public class BillingAddressPage extends AbstractCheckoutPage
         // Clicks the continue button
         $("#btnUseBillAddress").scrollTo().click();
 
-        return page(PaymentPage.class);
+        return new PaymentPage();
     }
 }

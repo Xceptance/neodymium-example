@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
 
 import posters.pageObjects.pages.user.AccountOverViewPage;
 import posters.pageObjects.pages.user.LoginPage;
@@ -68,7 +67,7 @@ public class UserMenu extends AbstractComponent
     {
         openUserMenu();
         $("#userMenu .goToLogin").scrollTo().click();
-        return page(LoginPage.class);
+        return new LoginPage();
     }
 
     /**
@@ -78,7 +77,7 @@ public class UserMenu extends AbstractComponent
     {
         openUserMenu();
         $("#userMenu .goToAccountOverview").scrollTo().click();
-        return page(AccountOverViewPage.class);
+        return new AccountOverViewPage();
     }
 
     /**
@@ -88,6 +87,6 @@ public class UserMenu extends AbstractComponent
     {
         openUserMenu();
         $("#userMenu a.goToRegistration").scrollTo().click();
-        return page(RegisterPage.class);
+        return new RegisterPage();
     }
 }

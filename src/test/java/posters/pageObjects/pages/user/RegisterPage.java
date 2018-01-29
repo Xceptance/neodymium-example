@@ -8,7 +8,6 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
 
 import posters.dataObjects.User;
 import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
@@ -92,7 +91,7 @@ public class RegisterPage extends AbstractBrowsingPage
         // Click on the Register Button
         $("#btnRegister").scrollTo().click();
 
-        return page(LoginPage.class);
+        return new LoginPage();
     }
 
     /**

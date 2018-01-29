@@ -8,7 +8,6 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
 
 import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageObjects.pages.browsing.HomePage;
@@ -64,6 +63,6 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         // click the confirmation button
         $("#btnDeleteAccount").scrollTo().click();
 
-        return page(HomePage.class);
+        return new HomePage();
     }
 }

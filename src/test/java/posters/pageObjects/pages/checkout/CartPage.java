@@ -10,7 +10,6 @@ import static com.codeborne.selenide.Condition.hidden;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
 
 import org.junit.Assert;
 
@@ -256,7 +255,7 @@ public class CartPage extends AbstractBrowsingPage
     {
         final int index = position - 1;
         $("#product" + index + " img").scrollTo().click();
-        return page(ProductdetailPage.class);
+        return new ProductdetailPage();
     }
 
     private void clickCheckoutButton()
@@ -270,7 +269,7 @@ public class CartPage extends AbstractBrowsingPage
     public NewShippingAddressPage openNewShippingPage()
     {
         clickCheckoutButton();
-        return page(NewShippingAddressPage.class);
+        return new NewShippingAddressPage();
     }
 
     /**
@@ -279,7 +278,7 @@ public class CartPage extends AbstractBrowsingPage
     public ShippingAddressPage openShippingPage()
     {
         clickCheckoutButton();
-        return page(ShippingAddressPage.class);
+        return new ShippingAddressPage();
     }
 
     /**

@@ -8,7 +8,6 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
 
 import posters.dataObjects.CreditCard;
 
@@ -94,7 +93,7 @@ public class NewPaymentPage extends AbstractCheckoutPage
         // Clicks the Continue button
         $("#btnAddPayment").scrollTo().click();
 
-        return page(PlaceOrderPlace.class);
+        return new PlaceOrderPlace();
     }
 
     /**

@@ -2,7 +2,6 @@ package posters.pageObjects.components;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
 
 import posters.pageObjects.pages.browsing.CategoryPage;
 import posters.pageObjects.pages.browsing.NoHitsPage;
@@ -17,13 +16,13 @@ public class Search extends AbstractComponent
     public NoHitsPage noResult(String searchTerm)
     {
         search(searchTerm);
-        return page(NoHitsPage.class);
+        return new NoHitsPage();
     }
 
     public CategoryPage categoryPageResult(String searchTerm)
     {
         search(searchTerm);
-        return page(CategoryPage.class);
+        return new CategoryPage();
     }
 
     public void search(String searchTerm)

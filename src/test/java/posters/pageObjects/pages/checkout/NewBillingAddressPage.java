@@ -8,7 +8,6 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
 
 import posters.dataObjects.Address;
 
@@ -130,7 +129,7 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
         // Click on Continue
         $("#btnAddBillAddr").scrollTo().click();
 
-        return page(NewPaymentPage.class);
+        return new NewPaymentPage();
     }
 
     /**

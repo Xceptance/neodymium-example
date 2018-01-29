@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
 
 import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
 
@@ -56,6 +55,6 @@ public class PersonalDataPage extends AbstractBrowsingPage
         // Open the delete account page
         // Clicks the button to get to the Delete Account page
         $("#btnDeleteAccount").scrollTo().click();
-        return page(DeleteAccountPage.class);
+        return new DeleteAccountPage();
     }
 }

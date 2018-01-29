@@ -9,7 +9,6 @@ import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.page;
 
 import posters.dataObjects.Address;
 
@@ -147,7 +146,7 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
         // Click on Continue
         $("#btnAddDelAddr").scrollTo().click();
 
-        return page(NewBillingAddressPage.class);
+        return new NewBillingAddressPage();
     }
 
     /**

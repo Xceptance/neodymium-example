@@ -61,6 +61,6 @@ public class AccountOverViewPage extends AbstractBrowsingPage
         // Open the personal data page
         // Click on the link to Personal Data
         $("#linkPersonalData").scrollTo().click();
-        return page(PersonalDataPage.class);
+        return new PersonalDataPage();
     }
 }

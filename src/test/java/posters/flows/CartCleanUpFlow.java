@@ -4,7 +4,6 @@
 package posters.flows;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
 
 import posters.pageObjects.pages.browsing.HomePage;
 import posters.pageObjects.pages.checkout.CartPage;
@@ -23,7 +22,7 @@ public class CartCleanUpFlow
         $("#globalNavigation #brand").click();
 
         // open the minicart
-        HomePage homePage = page(HomePage.class);
+        HomePage homePage = new HomePage();
         homePage.miniCart().openMiniCart();
 
         // goto cart page

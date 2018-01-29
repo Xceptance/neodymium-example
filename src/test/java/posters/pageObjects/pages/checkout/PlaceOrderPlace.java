@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
 
 import posters.dataObjects.Address;
 import posters.dataObjects.CreditCard;
@@ -148,6 +147,6 @@ public class PlaceOrderPlace extends AbstractCheckoutPage
         // Clicks the Order button
         $("#btnOrder").scrollTo().click();
 
-        return page(HomePage.class);
+        return new HomePage();
     }
 }

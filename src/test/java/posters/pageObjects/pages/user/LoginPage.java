@@ -9,7 +9,6 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
 
 import posters.dataObjects.User;
 import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
@@ -75,7 +74,7 @@ public class LoginPage extends AbstractBrowsingPage
     public HomePage sendLoginform(String email, String password)
     {
         sendFormWithData(email, password);
-        return page(HomePage.class);
+        return new HomePage();
     }
 
     public void sendFormWithData(String email, String password)
@@ -97,7 +96,7 @@ public class LoginPage extends AbstractBrowsingPage
     public RegisterPage openRegister()
     {
         $("#linkRegister").scrollTo().click();
-        return page(RegisterPage.class);
+        return new RegisterPage();
     }
 
     /**
@@ -123,7 +122,7 @@ public class LoginPage extends AbstractBrowsingPage
     public LoginPage sendFalseLoginform(User user)
     {
         sendFormWithData(user.getEMail(), user.getPassword());
-        return page(LoginPage.class);
+        return new LoginPage();
     }
 
     /**

@@ -5,7 +5,6 @@ package posters.pageObjects.components;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
 
 import org.openqa.selenium.By;
 
@@ -33,7 +32,7 @@ public class TopNavigation extends AbstractComponent
     public CategoryPage clickCategory(String categoryName)
     {
         $(By.linkText(categoryName)).scrollTo().click();
-        return page(CategoryPage.class);
+        return new CategoryPage();
     }
 
     public String getSubCategoryNameByPosition(int categoryPosition, int subCategoryPosition)
@@ -49,7 +48,7 @@ public class TopNavigation extends AbstractComponent
         // Clicks the subcategory with position @{subCategoryPosition}
         // belonging to the category with position @{categoryPosition}
         $("#categoryMenu > ul > li:nth-of-type(" + categoryPosition + ") ul.dropdown-menu li:nth-of-type(" + subCategoryPosition + ") a").click();
-        return page(CategoryPage.class);
+        return CategoryPage();
     }
 
     public CategoryPage clickSubCategoryByName(String categoryName, String subCategoryName)
@@ -59,7 +58,7 @@ public class TopNavigation extends AbstractComponent
         // Clicks the subcategory with position @{subCategoryPosition}
         // belonging to the category with position @{categoryPosition}
         $("#categoryMenu > ul > li ul.dropdown-menu li > a[title='" + subCategoryName + "']").click();
-        return page(CategoryPage.class);
+        return new CategoryPage();
     }
 
 }

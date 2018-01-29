@@ -12,7 +12,6 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.Selenide.page;
 
 /**
  * @author pfotenhauer
@@ -66,7 +65,7 @@ public class CategoryPage extends AbstractBrowsingPage
         // Clicks a product by position. Because of the html code, this requires x and y coordinates.
 
         $("#productOverview > .row:nth-child(" + row + ") li:nth-of-type(" + column + ") h4.pName").scrollTo().click();
-        return page(ProductdetailPage.class);
+        return new ProductdetailPage();
     }
 
     /**
@@ -90,7 +89,7 @@ public class CategoryPage extends AbstractBrowsingPage
         // Click on the product's image and open the product overview page
         // Click the product link to open the product detail page
         $("#product" + index + " img").scrollTo().click();
-        return page(ProductdetailPage.class);
+        return new ProductdetailPage();
     }
 
     /**
@@ -103,7 +102,7 @@ public class CategoryPage extends AbstractBrowsingPage
         // Click on the product's image and open the product overview page
         // Click the product link to open the product detail page
         $("#productOverview .thumbnails .thumbnail a > img.pImage[title='" + productName + "']").scrollTo().click();
-        return page(ProductdetailPage.class);
+        return new ProductdetailPage();
     }
 
     /**
