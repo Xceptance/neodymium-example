@@ -21,7 +21,7 @@ public class SearchTest extends BasicTest
     public void testSearching()
     {
         // Goto homepage
-        HomePage homePage = new OpenHomePageFlow().flow();
+        HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Search
@@ -40,7 +40,7 @@ public class SearchTest extends BasicTest
     public void testSearchingWithoutResult()
     {
         // Goto homepage
-        HomePage homePage = new OpenHomePageFlow().flow();
+        HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Search

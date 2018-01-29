@@ -34,7 +34,7 @@ public class LoginTest extends BasicTest
         final User user = new User("John", "Doe", "john@doe.com", "topsecret");
 
         // Goto homepage
-        loginPage = new OpenLoginPageFlow().flow();
+        loginPage = OpenLoginPageFlow.flow();
         loginPage.validateStructure();
 
         // Assure not logged in status
@@ -53,7 +53,7 @@ public class LoginTest extends BasicTest
         final User user = new User("John", "Doe", "john@doe.com", "notsecret");
 
         // Goto homepage
-        loginPage = new OpenLoginPageFlow().flow();
+        loginPage = OpenLoginPageFlow.flow();
         loginPage.validateStructure();
 
         // Assure not logged in status
@@ -72,7 +72,7 @@ public class LoginTest extends BasicTest
         final User user = new User("John", "Doe", "john@doe.com", "topsecret123");
 
         // Goto homepage
-        loginPage = new OpenLoginPageFlow().flow();
+        loginPage = OpenLoginPageFlow.flow();
         loginPage.validateStructure();
 
         // Assure not logged in status
@@ -91,7 +91,7 @@ public class LoginTest extends BasicTest
         final User user = new User("John", "Doe", "john@doe.company", "topsecret");
 
         // Goto homepage
-        loginPage = new OpenLoginPageFlow().flow();
+        loginPage = OpenLoginPageFlow.flow();
         loginPage.validateStructure();
 
         // Assure not logged in status
@@ -110,7 +110,7 @@ public class LoginTest extends BasicTest
         final User user = new User("John", "Doe", "", "topsecret");
 
         // Goto homepage
-        loginPage = new OpenLoginPageFlow().flow();
+        loginPage = OpenLoginPageFlow.flow();
         loginPage.validateStructure();
 
         // Assure not logged in status
@@ -129,7 +129,7 @@ public class LoginTest extends BasicTest
         final User user = new User("John", "Doe", "john@doe.com", "");
 
         // Goto homepage
-        loginPage = new OpenLoginPageFlow().flow();
+        loginPage = OpenLoginPageFlow.flow();
         loginPage.validateStructure();
 
         // Assure not logged in status
@@ -148,7 +148,7 @@ public class LoginTest extends BasicTest
         final User user = new User("Jane", "Doe", "jane@doe.com", "topsecret");
 
         // Goto homepage
-        loginPage = new OpenLoginPageFlow().flow();
+        loginPage = OpenLoginPageFlow.flow();
         loginPage.validateStructure();
 
         // Assure not logged in status

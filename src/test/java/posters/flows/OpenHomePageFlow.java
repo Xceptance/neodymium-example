@@ -8,10 +8,12 @@ import posters.settings.Settings;
 
 public class OpenHomePageFlow
 {
-
-    public HomePage flow()
+    public static HomePage flow()
     {
+        // clear cookies to ensure a new session
         clearBrowserCookies();
+
+        // open home page
         HomePage homePage = open(Settings.homePageUrl, HomePage.class);
         homePage.isExpectedPage();
         return homePage;

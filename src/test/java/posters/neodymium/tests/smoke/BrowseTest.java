@@ -20,7 +20,7 @@ public class BrowseTest extends BasicTest
     public void testBrowsing()
     {
         // Goto homepage
-        HomePage homePage = new OpenHomePageFlow().flow();
+        HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Goto category

@@ -14,20 +14,23 @@ import posters.pageObjects.pages.checkout.CartPage;
  */
 public class CartCleanUpFlow
 {
-
     /**
      * 
      */
-    public void flow()
+    public static void flow()
     {
+        // click on the shop logo to ensure a home page afterwards
         $("#globalNavigation #brand").click();
 
+        // open the minicart
         HomePage homePage = page(HomePage.class);
         homePage.miniCart().openMiniCart();
 
+        // goto cart page
         CartPage cartPage = homePage.miniCart().openCartPage();
         while (cartPage.hasProductsInCart())
         {
+            // remove the first product as long as one is available
             cartPage.removeProduct(1);
         }
     }

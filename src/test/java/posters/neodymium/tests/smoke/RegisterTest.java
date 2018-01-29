@@ -33,7 +33,7 @@ public class RegisterTest extends BasicTest
     {
         // Goto homepage
         step("Goto homepage");
-        HomePage homePage = new OpenHomePageFlow().flow();
+        HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Assure not logged in status
@@ -62,6 +62,6 @@ public class RegisterTest extends BasicTest
     public void after()
     {
         step("After Register - Delete User");
-        new DeleteUserFlow(user).flow();
+        DeleteUserFlow.flow(user);
     }
 }

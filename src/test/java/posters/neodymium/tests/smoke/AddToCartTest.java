@@ -20,7 +20,7 @@ public class AddToCartTest extends BasicTest
         int totalCount = 0;
 
         // Goto homepage
-        HomePage homePage = new OpenHomePageFlow().flow();
+        HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         homePage.miniCart().validateTotalCount(totalCount);

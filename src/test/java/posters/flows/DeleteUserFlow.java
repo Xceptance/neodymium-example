@@ -17,25 +17,13 @@ import posters.pageObjects.pages.user.PersonalDataPage;
  */
 public class DeleteUserFlow
 {
-
-    private User user;
-
     /**
      * @param user
      */
-    public DeleteUserFlow(User user)
-    {
-        this.user = user;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.flow.BasicFlow#flow()
-     */
-    public LoginPage flow()
+    public static LoginPage flow(User user)
     {
         HomePage homePage = page(HomePage.class);
+        // ensure that the user is logged in
         LoginPage loginPage;
         if (!homePage.isLoggedIn())
         {
@@ -43,15 +31,22 @@ public class DeleteUserFlow
             homePage = loginPage.sendLoginform(user);
         }
 
+        // goto account page
         AccountOverViewPage accountOverviewPage = homePage.userMenu().openAccountOverview();
         accountOverviewPage.validateStructure();
-        PersonalDataPage personalDataPage = accountOverviewPage.openPersonalData();
 
+        // goto personal data page
+        PersonalDataPage personalDataPage = accountOverviewPage.openPersonalData();
         personalDataPage.validateStructure();
+
+        // goto account deletion page
         DeleteAccountPage deleteAccountPage = personalDataPage.openDeleteAccount();
+
+        // delete the account
         homePage = deleteAccountPage.deleteAccount(user.getPassword());
         homePage.validateSuccessfulDeletedAccount();
 
+        // verify that the account is not available anymore
         loginPage = homePage.userMenu().openLogin();
         loginPage.validateStructure();
         loginPage.sendFalseLoginform(user);

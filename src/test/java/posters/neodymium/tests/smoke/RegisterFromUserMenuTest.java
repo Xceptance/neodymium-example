@@ -25,7 +25,7 @@ public class RegisterFromUserMenuTest extends BasicTest
     public void testRegisteringFromUserMenu()
     {
         // Goto homepage
-        HomePage homePage = new OpenHomePageFlow().flow();
+        HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Assure not logged in status
@@ -46,6 +46,6 @@ public class RegisterFromUserMenuTest extends BasicTest
     @After
     public void after()
     {
-        new DeleteUserFlow(user).flow();
+        DeleteUserFlow.flow(user);
     }
 }

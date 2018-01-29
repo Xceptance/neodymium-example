@@ -32,7 +32,7 @@ public class GuestOrderTest extends BasicTest
         final String shippingCosts = data.get("shippingCosts");
 
         // Goto homepage
-        HomePage homePage = new OpenHomePageFlow().flow();
+        HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Assure not logged in status
