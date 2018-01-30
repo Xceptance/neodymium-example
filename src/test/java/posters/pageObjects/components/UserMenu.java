@@ -3,10 +3,13 @@
  */
 package posters.pageObjects.components;
 
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+
+import com.codeborne.selenide.SelenideElement;
 
 import posters.pageObjects.pages.user.AccountOverViewPage;
 import posters.pageObjects.pages.user.LoginPage;
@@ -85,5 +88,25 @@ public class UserMenu extends AbstractComponent
         openUserMenu();
         $("#userMenu a.goToRegistration").scrollTo().click();
         return new RegisterPage();
+    }
+
+    /**
+     * @param firstName
+     */
+    public void validateLoggedInName(String firstName)
+    {
+        // Click on the mini user menu symbol
+        openUserMenu();
+        // Asserts the Menu shows your first name.
+        $("#userMenu .firstName").shouldHave(exactText(firstName));
+        closeUserMenu();
+    }
+
+    /**
+     * @return
+     */
+    public boolean isLoggedIn()
+    {
+        return $("#userMenu .goToAccountOverview").exists();
     }
 }

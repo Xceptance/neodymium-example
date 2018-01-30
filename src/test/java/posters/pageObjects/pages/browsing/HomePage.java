@@ -65,12 +65,7 @@ public class HomePage extends AbstractBrowsingPage
     {
         successMessage.validateSuccessMessage("Login successful. Have fun in our shop!");
         // Verify that the user menu shows your first name
-        // Click on the mini user menu symbol
-        userMenu.openUserMenu();
-        // Asserts the Menu shows your first name.
-        $("#userMenu .firstName").shouldHave(exactText(firstName));
-        userMenu.closeUserMenu();
-
+        userMenu.validateLoggedInName(firstName);
         // Verify that you are logged in
         // Makes sure the mini menu element has the "logged" class active instead of the "not-logged" class.
         $("#showUserMenu .logged").shouldHave(exactText(""));
@@ -91,13 +86,5 @@ public class HomePage extends AbstractBrowsingPage
     public void validateSuccessfulDeletedAccount()
     {
         successMessage.validateSuccessMessage("Your account has been deleted. We hope to see you soon again!");
-    }
-
-    /**
-     * @return
-     */
-    public boolean isLoggedIn()
-    {
-        return $("#userMenu .goToAccountOverview").exists();
     }
 }

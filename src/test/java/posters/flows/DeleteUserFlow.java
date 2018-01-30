@@ -23,7 +23,7 @@ public class DeleteUserFlow
         HomePage homePage = new HomePage();
         // ensure that the user is logged in
         LoginPage loginPage;
-        if (!homePage.isLoggedIn())
+        if (!homePage.userMenu.isLoggedIn())
         {
             loginPage = homePage.userMenu.openLogin();
             homePage = loginPage.sendLoginform(user);
