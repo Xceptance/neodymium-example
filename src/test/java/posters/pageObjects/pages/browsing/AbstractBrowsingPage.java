@@ -29,11 +29,6 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
 
     public ErrorMessage errorMessage = new ErrorMessage();
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.AbstractPageObject#validateStructure()
-     */
     @Override
     public void validateStructure()
     {

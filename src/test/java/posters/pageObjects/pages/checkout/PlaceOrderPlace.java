@@ -17,12 +17,6 @@ import posters.pageObjects.pages.browsing.HomePage;
  */
 public class PlaceOrderPlace extends AbstractCheckoutPage
 {
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#validateStructure()
-     */
     @Override
     public void validateStructure()
     {
@@ -33,11 +27,6 @@ public class PlaceOrderPlace extends AbstractCheckoutPage
         $("#titleOrderOverview").should(matchText("[A-Z].{3,}"));
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#isExpectedPage()
-     */
     @Override
     public void isExpectedPage()
     {

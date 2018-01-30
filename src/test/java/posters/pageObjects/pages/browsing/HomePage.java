@@ -12,23 +12,12 @@ import posters.dataObjects.User;
 
 public class HomePage extends AbstractBrowsingPage
 {
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.scripting.selenide.page.AbstractPage()
-     */
     @Override
     public void isExpectedPage()
     {
         $("#titleIndex").should(exist);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.scripting.selenide.page.AbstractPage()
-     */
     public void validateStructure()
     {
         super.validateStructure();

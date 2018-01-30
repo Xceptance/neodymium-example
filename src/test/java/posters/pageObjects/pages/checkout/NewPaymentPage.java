@@ -16,12 +16,6 @@ import posters.dataObjects.CreditCard;
  */
 public class NewPaymentPage extends AbstractCheckoutPage
 {
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#validateStructure()
-     */
     @Override
     public void validateStructure()
     {
@@ -55,11 +49,6 @@ public class NewPaymentPage extends AbstractCheckoutPage
         $("#btnAddPayment").should(exist);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#isExpectedPage()
-     */
     @Override
     public void isExpectedPage()
     {

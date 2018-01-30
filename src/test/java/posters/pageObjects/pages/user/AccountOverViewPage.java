@@ -6,7 +6,6 @@ package posters.pageObjects.pages.user;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.page;
 
 import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
 
@@ -15,22 +14,12 @@ import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
  */
 public class AccountOverViewPage extends AbstractBrowsingPage
 {
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#isExpectedPage()
-     */
     @Override
     public void isExpectedPage()
     {
         $("#titleAccountOverview").should(exist);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#validateStructure()
-     */
     @Override
     public void validateStructure()
     {

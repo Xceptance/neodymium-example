@@ -19,23 +19,12 @@ import posters.pageObjects.pages.browsing.HomePage;
  */
 public class LoginPage extends AbstractBrowsingPage
 {
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#isExpectedPage()
-     */
     @Override
     public void isExpectedPage()
     {
         $("#formLogin").should(exist);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#validateStructure()
-     */
     @Override
     public void validateStructure()
     {

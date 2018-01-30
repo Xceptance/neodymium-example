@@ -17,23 +17,12 @@ import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
  */
 public class RegisterPage extends AbstractBrowsingPage
 {
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#isExpectedPage()
-     */
     @Override
     public void isExpectedPage()
     {
         $("#formRegister").should(exist);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#validateStructure()
-     */
     @Override
     public void validateStructure()
     {

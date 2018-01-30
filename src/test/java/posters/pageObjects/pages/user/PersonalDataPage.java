@@ -15,22 +15,12 @@ import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
  */
 public class PersonalDataPage extends AbstractBrowsingPage
 {
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#isExpectedPage()
-     */
     @Override
     public void isExpectedPage()
     {
         $("#titlePersonalData").should(exist);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#validateStructure()
-     */
     @Override
     public void validateStructure()
     {

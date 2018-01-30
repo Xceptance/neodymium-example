@@ -16,11 +16,6 @@ import posters.dataObjects.Address;
  */
 public class NewBillingAddressPage extends AbstractCheckoutPage
 {
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#validateStructure()
-     */
     @Override
     public void validateStructure()
     {
@@ -72,11 +67,6 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
         $("#btnAddBillAddr").shouldBe(visible);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#isExpectedPage()
-     */
     @Override
     public void isExpectedPage()
     {

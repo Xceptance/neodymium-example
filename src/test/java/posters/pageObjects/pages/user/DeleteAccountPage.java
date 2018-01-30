@@ -17,22 +17,12 @@ import posters.pageObjects.pages.browsing.HomePage;
  */
 public class DeleteAccountPage extends AbstractBrowsingPage
 {
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#isExpectedPage()
-     */
     @Override
     public void isExpectedPage()
     {
         $("#formDeleteAccount").should(exist);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#validateStructure()
-     */
     @Override
     public void validateStructure()
     {

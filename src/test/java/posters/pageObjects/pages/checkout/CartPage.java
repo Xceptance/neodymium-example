@@ -24,23 +24,12 @@ import posters.settings.Settings;
  */
 public class CartPage extends AbstractBrowsingPage
 {
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.scripting.selenide.page.BasicPage#isAwaitedPage()
-     */
     @Override
     public void isExpectedPage()
     {
         $("#cartOverviewTable").should(exist);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.scripting.selenide.page.BasicPage#validate()
-     */
     @Override
     public void validateStructure()
     {

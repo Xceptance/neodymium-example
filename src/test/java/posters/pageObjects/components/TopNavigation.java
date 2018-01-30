@@ -15,12 +15,6 @@ import posters.pageObjects.pages.browsing.CategoryPage;
  */
 public class TopNavigation extends AbstractComponent
 {
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.scripting.selenide.component.BasicComponent#isComponentAvailable()
-     */
     public void isComponentAvailable()
     {
         $("#categoryMenu").should(exist);

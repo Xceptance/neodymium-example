@@ -15,17 +15,11 @@ import posters.dataObjects.Product;
  */
 public class ProductdetailPage extends AbstractBrowsingPage
 {
-
     public void isExpectedPage()
     {
         $("#addToCartForm").should(exist);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.scripting.selenide.page.AbstractPage()
-     */
     public void validateStructure()
     {
         super.validateStructure();

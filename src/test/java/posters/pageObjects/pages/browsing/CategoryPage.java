@@ -18,12 +18,6 @@ import static com.codeborne.selenide.Selenide.$$;
  */
 public class CategoryPage extends AbstractBrowsingPage
 {
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.scripting.selenide.page.AbstractPage()
-     */
     @Override
     public void isExpectedPage()
     {
@@ -37,11 +31,6 @@ public class CategoryPage extends AbstractBrowsingPage
         $("#titleCategoryName").shouldBe(text(categoryName));
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.scripting.selenide.page.AbstractPage()
-     */
     public void validateStructure()
     {
         super.validateStructure();

@@ -19,11 +19,8 @@ import posters.settings.Settings;
 public class UserMenu extends AbstractComponent
 {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.component.BasicComponent#isComponentAvailable()
-     */
+    private final SelenideElement titleIndex = $("#titleIndex");
+
     public void isComponentAvailable()
     {
         $("#showUserMenu").should(exist);

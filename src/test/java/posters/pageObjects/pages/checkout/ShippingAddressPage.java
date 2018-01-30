@@ -13,12 +13,6 @@ import static com.codeborne.selenide.Selenide.$;
  */
 public class ShippingAddressPage extends AbstractCheckoutPage
 {
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#validateStructure()
-     */
     @Override
     public void validateStructure()
     {
@@ -32,11 +26,6 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         $("#delAddr0").shouldBe(visible);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.xceptance.neodymium.scripting.template.selenide.page.PageObject#isExpectedPage()
-     */
     public void isExpectedPage()
     {
         $("#titleDelAddr").should(exist);
