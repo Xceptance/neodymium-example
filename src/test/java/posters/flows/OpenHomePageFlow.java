@@ -14,7 +14,8 @@ public class OpenHomePageFlow
         clearBrowserCookies();
 
         // open home page
-        HomePage homePage = open(Settings.homePageUrl, HomePage.class);
+        open(Settings.homePageUrl);
+        HomePage homePage = new HomePage();
         homePage.isExpectedPage();
         return homePage;
     };
