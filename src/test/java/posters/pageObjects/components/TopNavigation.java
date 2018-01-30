@@ -48,7 +48,7 @@ public class TopNavigation extends AbstractComponent
         // Clicks the subcategory with position @{subCategoryPosition}
         // belonging to the category with position @{categoryPosition}
         $("#categoryMenu > ul > li:nth-of-type(" + categoryPosition + ") ul.dropdown-menu li:nth-of-type(" + subCategoryPosition + ") a").click();
-        return CategoryPage();
+        return new CategoryPage();
     }
 
     public CategoryPage clickSubCategoryByName(String categoryName, String subCategoryName)
