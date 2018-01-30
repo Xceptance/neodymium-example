@@ -145,7 +145,7 @@ public class LoginTest extends BasicTest
         // Page types to use
         LoginPage loginPage;
 
-        final User user = new User("Jane", "Doe", "jane@doe.com", "topsecret");
+        final User user = new User("Jens", "Doe", "jens@doe.com", "topsecret");
 
         // Goto homepage
         loginPage = OpenLoginPageFlow.flow();

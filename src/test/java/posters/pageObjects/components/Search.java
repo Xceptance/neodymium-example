@@ -3,14 +3,18 @@ package posters.pageObjects.components;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.SelenideElement;
+
 import posters.pageObjects.pages.browsing.CategoryPage;
 import posters.pageObjects.pages.browsing.NoHitsPage;
 
 public class Search extends AbstractComponent
 {
+    private SelenideElement searchField = $("#searchForm > #s");
+
     public void isComponentAvailable()
     {
-        $("#searchForm > #s").should(exist);
+        searchField.should(exist);
     }
 
     public NoHitsPage noResult(String searchTerm)
@@ -28,7 +32,7 @@ public class Search extends AbstractComponent
     public void search(String searchTerm)
     {
         openSearch();
-        $("#searchForm > #s").val(searchTerm).pressEnter();
+        searchField.val(searchTerm).pressEnter();
     }
 
     public void openSearch()

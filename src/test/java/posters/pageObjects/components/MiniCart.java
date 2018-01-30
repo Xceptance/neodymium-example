@@ -9,6 +9,8 @@ import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.SelenideElement;
+
 import posters.dataObjects.Product;
 import posters.pageObjects.pages.checkout.CartPage;
 import posters.settings.Settings;
@@ -18,6 +20,14 @@ import posters.settings.Settings;
  */
 public class MiniCart extends AbstractComponent
 {
+    private SelenideElement headerCart = $("#headerCartOverview");
+
+    private SelenideElement miniCart = $("#miniCartMenu");
+
+    private SelenideElement subOrderPrice = miniCart.find(".subOrderPrice");
+
+    private SelenideElement totalCountElement = $("#btnCartOverviewForm .headerCartProductCount");
+
     public void isComponentAvailable()
     {
         $("#btnCartOverviewForm").should(exist);
@@ -26,21 +36,39 @@ public class MiniCart extends AbstractComponent
     public void openMiniCart()
     {
         // Click the mini cart icon
-        $("#headerCartOverview").scrollTo().click();
+        headerCart.scrollTo().click();
         // Wait for mini cart to appear
         // Wait for the mini cart to show
-        $("#miniCartMenu").waitUntil(visible, Settings.timeout);
+        miniCart.waitUntil(visible, Settings.timeout);
     }
 
     public void closeMiniCart()
     {
         // Click the mini cart icon again
-        $("#headerCartOverview").scrollTo().click();
+        headerCart.scrollTo().click();
         // Move the mouse out of the area
         $("a#brand").hover();
         // Wait for mini cart to disappear
         // Wait for the mini cart to disappear
-        $("#miniCartMenu").waitUntil(not(visible), Settings.timeout);
+        miniCart.waitUntil(not(visible), Settings.timeout);
+    }
+
+    public CartPage openCartPage()
+    {
+        // Open the cart
+        // Click on the button to go to the Cart
+        miniCart.find(".goToCart").scrollTo().click();
+        return new CartPage();
+    }
+
+    public int getTotalCount()
+    {
+        return Integer.parseInt(totalCountElement.text());
+    }
+
+    public void validateTotalCount(int totalCount)
+    {
+        totalCountElement.shouldHave(exactText(Integer.toString(totalCount)));
     }
 
     public String getSubtotal()
@@ -50,29 +78,11 @@ public class MiniCart extends AbstractComponent
         // Open mini cart
         openMiniCart();
         // Store subtotal in oldSubTotal
-        String subtotal = $("#miniCartMenu .subOrderPrice").text();
+        String subtotal = subOrderPrice.text();
         // Close mini cart
         closeMiniCart();
 
         return subtotal;
-    }
-
-    public int getTotalCount()
-    {
-        return Integer.parseInt($("#btnCartOverviewForm .headerCartProductCount").text());
-    }
-
-    public CartPage openCartPage()
-    {
-        // Open the cart
-        // Click on the button to go to the Cart
-        $("#miniCartMenu .goToCart").scrollTo().click();
-        return new CartPage();
-    }
-
-    public void validateTotalCount(int totalCount)
-    {
-        $("#btnCartOverviewForm .headerCartProductCount").shouldHave(exactText(Integer.toString(totalCount)));
     }
 
     public void validateSubtotal(String subtotal)
@@ -82,7 +92,7 @@ public class MiniCart extends AbstractComponent
         openMiniCart();
         // Verify subtotal equals specified subtotal
         // Compare the subTotal to the parameter
-        $("#miniCartMenu .subOrderPrice").shouldHave(exactText(subtotal));
+        subOrderPrice.shouldHave(exactText(subtotal));
         // Close Mini Cart
         closeMiniCart();
     }
@@ -113,20 +123,21 @@ public class MiniCart extends AbstractComponent
         openMiniCart();
         // Validate data of specified item
         // Product Name
+        SelenideElement miniCartItems = $("ul.cartMiniElementList li:nth-child(" + position + ") ul.cartItems");
         // Compares the name of the cart item at position @{position} to the parameter
-        $("ul.cartMiniElementList li:nth-child(" + position + ") ul.cartItems .prodName").shouldHave(exactText(productName));
+        miniCartItems.find(".prodName").shouldHave(exactText(productName));
         // Product Style
         // Compares the style of the cart item at position @{position} to the parameter
-        $("ul.cartMiniElementList li:nth-child(" + position + ") ul.cartItems .prodStyle").shouldHave(exactText(productStyle));
+        miniCartItems.find(".prodStyle").shouldHave(exactText(productStyle));
         // Product Size
         // Compares the style of the cart item at position @{position} to the parameter
-        $("ul.cartMiniElementList li:nth-child(" + position + ") ul.cartItems .prodSize").shouldHave(exactText(productSize));
+        miniCartItems.find(".prodSize").shouldHave(exactText(productSize));
         // Amount
         // Compares the amount of the cart item at position @{position} to the parameter
-        $("ul.cartMiniElementList li:nth-child(" + position + ") ul.cartItems .prodCount").shouldHave(exactText(Integer.toString(productCount)));
+        miniCartItems.find(".prodCount").shouldHave(exactText(Integer.toString(productCount)));
         // Price
         // Compares the price of the cart item at position @{position} to the parameter
-        $("ul.cartMiniElementList li:nth-child(" + position + ") ul.cartItems .prodPrice").shouldHave(exactText(prodTotalPrice));
+        miniCartItems.find(".prodPrice").shouldHave(exactText(prodTotalPrice));
         // Close mini cart
         closeMiniCart();
     }

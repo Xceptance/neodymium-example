@@ -31,8 +31,7 @@ public class TopNavigation extends AbstractComponent
 
     public String getSubCategoryNameByPosition(int categoryPosition, int subCategoryPosition)
     {
-        return $("#categoryMenu > ul > li:nth-of-type(" + categoryPosition
-                 + ") ul.dropdown-menu li:nth-of-type(" + subCategoryPosition + ") a").attr("title");
+        return $("#categoryMenu > ul > li:nth-of-type(" + categoryPosition + ") ul.dropdown-menu li:nth-of-type(" + subCategoryPosition + ") a").attr("title");
     }
 
     public CategoryPage clickSubCategoryByPosition(int categoryPosition, int subCategoryPosition)

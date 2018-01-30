@@ -22,11 +22,13 @@ import posters.settings.Settings;
 public class UserMenu extends AbstractComponent
 {
 
-    private final SelenideElement titleIndex = $("#titleIndex");
+    private final SelenideElement userMenu = $("#userMenu");
+
+    private final SelenideElement showUserMenu = $("#showUserMenu");
 
     public void isComponentAvailable()
     {
-        $("#showUserMenu").should(exist);
+        showUserMenu.should(exist);
     }
 
     /**
@@ -40,10 +42,10 @@ public class UserMenu extends AbstractComponent
     public void openUserMenu()
     {
         // Click the mini cart icon
-        $("#showUserMenu").scrollTo().click();
+        showUserMenu.scrollTo().click();
         // Wait for mini cart to appear
         // Wait for the mini cart to show
-        $("#userMenu").waitUntil(visible, Settings.timeout);
+        userMenu.waitUntil(visible, Settings.timeout);
     }
 
     /**
@@ -52,12 +54,12 @@ public class UserMenu extends AbstractComponent
     public void closeUserMenu()
     {
         // Click the mini cart icon again
-        $("#showUserMenu").scrollTo().click();
+        showUserMenu.scrollTo().click();
         // Move the mouse out of the area
         $("a#brand").hover();
         // Wait for mini cart to disappear
         // Wait for the mini cart to disappear
-        $("#userMenu").waitUntil(not(visible), Settings.timeout);
+        userMenu.waitUntil(not(visible), Settings.timeout);
     }
 
     /**
@@ -66,7 +68,7 @@ public class UserMenu extends AbstractComponent
     public LoginPage openLogin()
     {
         openUserMenu();
-        $("#userMenu .goToLogin").scrollTo().click();
+        userMenu.find(".goToLogin").scrollTo().click();
         return new LoginPage();
     }
 
@@ -76,7 +78,7 @@ public class UserMenu extends AbstractComponent
     public AccountOverViewPage openAccountOverview()
     {
         openUserMenu();
-        $("#userMenu .goToAccountOverview").scrollTo().click();
+        userMenu.find(".goToAccountOverview").scrollTo().click();
         return new AccountOverViewPage();
     }
 
@@ -86,7 +88,7 @@ public class UserMenu extends AbstractComponent
     public RegisterPage openRegister()
     {
         openUserMenu();
-        $("#userMenu a.goToRegistration").scrollTo().click();
+        userMenu.find("a.goToRegistration").scrollTo().click();
         return new RegisterPage();
     }
 
@@ -98,7 +100,7 @@ public class UserMenu extends AbstractComponent
         // Click on the mini user menu symbol
         openUserMenu();
         // Asserts the Menu shows your first name.
-        $("#userMenu .firstName").shouldHave(exactText(firstName));
+        userMenu.find(".firstName").shouldHave(exactText(firstName));
         closeUserMenu();
     }
 
@@ -107,6 +109,6 @@ public class UserMenu extends AbstractComponent
      */
     public boolean isLoggedIn()
     {
-        return $("#userMenu .goToAccountOverview").exists();
+        return userMenu.find(".goToAccountOverview").exists();
     }
 }
