@@ -38,7 +38,7 @@ public class LoginTest extends BasicTest
         loginPage.validateStructure();
 
         // Assure not logged in status
-        loginPage.userMenu().validateNotLoggedIn();
+        loginPage.userMenu.validateNotLoggedIn();
 
         homePage = loginPage.sendLoginform(user);
         homePage.validateSuccessfulLogin(user);
@@ -57,7 +57,7 @@ public class LoginTest extends BasicTest
         loginPage.validateStructure();
 
         // Assure not logged in status
-        loginPage.userMenu().validateNotLoggedIn();
+        loginPage.userMenu.validateNotLoggedIn();
 
         loginPage.sendFalseLoginform(user);
         loginPage.validateWrongPassword(user.getEMail());
@@ -76,7 +76,7 @@ public class LoginTest extends BasicTest
         loginPage.validateStructure();
 
         // Assure not logged in status
-        loginPage.userMenu().validateNotLoggedIn();
+        loginPage.userMenu.validateNotLoggedIn();
 
         loginPage.sendFalseLoginform(user);
         loginPage.validateWrongPassword(user.getEMail());
@@ -95,7 +95,7 @@ public class LoginTest extends BasicTest
         loginPage.validateStructure();
 
         // Assure not logged in status
-        loginPage.userMenu().validateNotLoggedIn();
+        loginPage.userMenu.validateNotLoggedIn();
 
         loginPage.sendFalseLoginform(user);
         loginPage.validateWrongEmail(user.getEMail());
@@ -114,10 +114,10 @@ public class LoginTest extends BasicTest
         loginPage.validateStructure();
 
         // Assure not logged in status
-        loginPage.userMenu().validateNotLoggedIn();
+        loginPage.userMenu.validateNotLoggedIn();
 
         loginPage.sendFalseLoginform(user);
-        loginPage.errorMessage().validateNoErrorMessageOnPage();
+        loginPage.errorMessage.validateNoErrorMessageOnPage();
     }
 
     @Test
@@ -133,10 +133,10 @@ public class LoginTest extends BasicTest
         loginPage.validateStructure();
 
         // Assure not logged in status
-        loginPage.userMenu().validateNotLoggedIn();
+        loginPage.userMenu.validateNotLoggedIn();
 
         loginPage.sendFalseLoginform(user);
-        loginPage.errorMessage().validateNoErrorMessageOnPage();
+        loginPage.errorMessage.validateNoErrorMessageOnPage();
     }
 
     @Test
@@ -152,7 +152,7 @@ public class LoginTest extends BasicTest
         loginPage.validateStructure();
 
         // Assure not logged in status
-        loginPage.userMenu().validateNotLoggedIn();
+        loginPage.userMenu.validateNotLoggedIn();
 
         loginPage.sendFalseLoginform(user);
         loginPage.validateWrongEmail(user.getEMail());

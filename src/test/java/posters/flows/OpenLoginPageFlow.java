@@ -11,7 +11,7 @@ public class OpenLoginPageFlow
         HomePage homePage = OpenHomePageFlow.flow();
 
         // open login page and check for expected page
-        LoginPage loginPage = homePage.userMenu().openLogin();
+        LoginPage loginPage = homePage.userMenu.openLogin();
         loginPage.isExpectedPage();
 
         return loginPage;

@@ -23,10 +23,10 @@ public class CartCleanUpFlow
 
         // open the minicart
         HomePage homePage = new HomePage();
-        homePage.miniCart().openMiniCart();
+        homePage.miniCart.openMiniCart();
 
         // goto cart page
-        CartPage cartPage = homePage.miniCart().openCartPage();
+        CartPage cartPage = homePage.miniCart.openCartPage();
         while (cartPage.hasProductsInCart())
         {
             // remove the first product as long as one is available

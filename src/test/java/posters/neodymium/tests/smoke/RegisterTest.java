@@ -38,11 +38,11 @@ public class RegisterTest extends BasicTest
 
         // Assure not logged in status
         step("Assure not logged in status");
-        homePage.userMenu().validateNotLoggedIn();
+        homePage.userMenu.validateNotLoggedIn();
 
         // Goto login form
         step("Goto login form");
-        LoginPage loginPage = homePage.userMenu().openLogin();
+        LoginPage loginPage = homePage.userMenu.openLogin();
         loginPage.validateStructure();
 
         // Goto register form

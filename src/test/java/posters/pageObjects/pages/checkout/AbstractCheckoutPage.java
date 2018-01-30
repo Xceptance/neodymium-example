@@ -14,11 +14,11 @@ import posters.pageObjects.pages.AbstractPageObject;
 public abstract class AbstractCheckoutPage extends AbstractPageObject
 {
 
-    private CheckoutHeader header;
+    public CheckoutHeader header = new CheckoutHeader();
 
-    private Footer footer;
+    public Footer footer = new Footer();
 
-    private UserMenu userMenu;
+    public UserMenu userMenu = new UserMenu();
 
     /*
      * (non-Javadoc)
@@ -29,38 +29,5 @@ public abstract class AbstractCheckoutPage extends AbstractPageObject
     public void validateStructure()
     {
         isExpectedPage();
-    }
-
-    /**
-     * @return
-     */
-    public UserMenu userMenu()
-    {
-        if (userMenu == null)
-        {
-            userMenu = new UserMenu();
-        }
-        userMenu.isComponentAvailable();
-        return userMenu;
-    }
-
-    public Footer footer()
-    {
-        if (footer == null)
-        {
-            footer = new Footer();
-        }
-        footer.isComponentAvailable();
-        return footer;
-    }
-
-    public CheckoutHeader header()
-    {
-        if (header == null)
-        {
-            header = new CheckoutHeader();
-        }
-        header.isComponentAvailable();
-        return header;
     }
 }

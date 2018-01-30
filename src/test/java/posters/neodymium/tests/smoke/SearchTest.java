@@ -27,7 +27,7 @@ public class SearchTest extends BasicTest
         // Search
         final String searchTerm = "bear";
         final int searchTermExpectedCount = 3;
-        CategoryPage categoryPage = homePage.search().categoryPageResult(searchTerm);
+        CategoryPage categoryPage = homePage.search.categoryPageResult(searchTerm);
         categoryPage.validateStructure();
         categoryPage.validateSearchHits(searchTerm, searchTermExpectedCount);
 
@@ -45,7 +45,7 @@ public class SearchTest extends BasicTest
 
         // Search
         final String searchTerm = "Foobar";
-        NoHitsPage noHitsPage = homePage.search().noResult(searchTerm);
+        NoHitsPage noHitsPage = homePage.search.noResult(searchTerm);
         noHitsPage.validate();
     }
 

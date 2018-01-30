@@ -57,15 +57,15 @@ public class HomePage extends AbstractBrowsingPage
     public void validate()
     {
         validateStructure();
-        footer().validate();
+        footer.validate();
     }
 
     public void validateSuccessfulOrder()
     {
-        successMessage().validateSuccessMessage("Thank you for shopping with us!");
+        successMessage.validateSuccessMessage("Thank you for shopping with us!");
         // Verify that the mini cart is empty again
-        miniCart().validateTotalCount(0);
-        miniCart().validateSubtotal("$0.00");
+        miniCart.validateTotalCount(0);
+        miniCart.validateSubtotal("$0.00");
     }
 
     /**
@@ -74,13 +74,13 @@ public class HomePage extends AbstractBrowsingPage
      */
     public void validateSuccessfulLogin(String firstName)
     {
-        successMessage().validateSuccessMessage("Login successful. Have fun in our shop!");
+        successMessage.validateSuccessMessage("Login successful. Have fun in our shop!");
         // Verify that the user menu shows your first name
         // Click on the mini user menu symbol
-        userMenu().openUserMenu();
+        userMenu.openUserMenu();
         // Asserts the Menu shows your first name.
         $("#userMenu .firstName").shouldHave(exactText(firstName));
-        userMenu().closeUserMenu();
+        userMenu.closeUserMenu();
 
         // Verify that you are logged in
         // Makes sure the mini menu element has the "logged" class active instead of the "not-logged" class.
@@ -101,7 +101,7 @@ public class HomePage extends AbstractBrowsingPage
      */
     public void validateSuccessfulDeletedAccount()
     {
-        successMessage().validateSuccessMessage("Your account has been deleted. We hope to see you soon again!");
+        successMessage.validateSuccessMessage("Your account has been deleted. We hope to see you soon again!");
     }
 
     /**

@@ -25,12 +25,12 @@ public class DeleteUserFlow
         LoginPage loginPage;
         if (!homePage.isLoggedIn())
         {
-            loginPage = homePage.userMenu().openLogin();
+            loginPage = homePage.userMenu.openLogin();
             homePage = loginPage.sendLoginform(user);
         }
 
         // goto account page
-        AccountOverViewPage accountOverviewPage = homePage.userMenu().openAccountOverview();
+        AccountOverViewPage accountOverviewPage = homePage.userMenu.openAccountOverview();
         accountOverviewPage.validateStructure();
 
         // goto personal data page
@@ -45,7 +45,7 @@ public class DeleteUserFlow
         homePage.validateSuccessfulDeletedAccount();
 
         // verify that the account is not available anymore
-        loginPage = homePage.userMenu().openLogin();
+        loginPage = homePage.userMenu.openLogin();
         loginPage.validateStructure();
         loginPage.sendFalseLoginform(user);
         loginPage.validateWrongEmail(user.getEMail());

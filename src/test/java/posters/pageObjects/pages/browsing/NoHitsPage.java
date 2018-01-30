@@ -17,7 +17,7 @@ public class NoHitsPage extends AbstractBrowsingPage
      */
     public void validateNoProductsFound()
     {
-        errorMessage().validateErrorMessage("Sorry! No results found matching your search. Please try again.");
+        errorMessage.validateErrorMessage("Sorry! No results found matching your search. Please try again.");
     }
 
     public void validate()

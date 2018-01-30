@@ -10,20 +10,11 @@ import posters.pageObjects.components.Title;
  */
 public abstract class AbstractPageObject
 {
-    private Title title;
+    public Title title = new Title();
 
     abstract public void validateStructure();
 
     public void isExpectedPage()
     {
-    }
-
-    public Title title()
-    {
-        if (title == null)
-        {
-            title = new Title();
-        }
-        return title;
     }
 }

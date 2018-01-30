@@ -16,6 +16,6 @@ public class HomePageTest extends BasicTest
     {
         HomePage homePage = OpenHomePageFlow.flow();
         homePage.validateStructure();
-        homePage.footer().validate();
+        homePage.footer.validate();
     }
 }

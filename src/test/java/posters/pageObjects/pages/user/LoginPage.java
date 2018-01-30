@@ -104,7 +104,7 @@ public class LoginPage extends AbstractBrowsingPage
      */
     public void validateSuccessfullRegistration()
     {
-        successMessage().validateSuccessMessage("Your account has been created. Log in with your email address and password.");
+        successMessage.validateSuccessMessage("Your account has been created. Log in with your email address and password.");
     }
 
     /**
@@ -130,7 +130,7 @@ public class LoginPage extends AbstractBrowsingPage
      */
     public void validateWrongEmail(String eMail)
     {
-        errorMessage().validateErrorMessage("The email address you entered doesn't exist. Please try again.");
+        errorMessage.validateErrorMessage("The email address you entered doesn't exist. Please try again.");
         $("#email").shouldHave(exactValue(eMail));
     }
 
@@ -139,7 +139,7 @@ public class LoginPage extends AbstractBrowsingPage
      */
     public void validateWrongPassword(String eMail)
     {
-        errorMessage().validateErrorMessage("The password you entered is incorrect. Please try again.");
+        errorMessage.validateErrorMessage("The password you entered is incorrect. Please try again.");
         $("#email").shouldHave(exactValue(eMail));
     }
 

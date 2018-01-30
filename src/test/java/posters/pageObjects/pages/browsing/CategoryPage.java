@@ -128,7 +128,7 @@ public class CategoryPage extends AbstractBrowsingPage
         $("#titleSearchText").should(matchText("Your results for your search: '" + searchTerm + "' \\(" + searchTermExpectedCount + ".*\\)"));
         // Verify that the correct search term is displayed
         // Validate the entered search phrase is still visible in the input
-        this.search().openSearch();
+        search.openSearch();
         // Validate the entered search phrase is still visible in the input
         $("#searchForm #s").should(visible);
         // Validate the entered search phrase is still visible in the input

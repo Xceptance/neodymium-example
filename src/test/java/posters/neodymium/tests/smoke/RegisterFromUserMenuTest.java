@@ -29,10 +29,10 @@ public class RegisterFromUserMenuTest extends BasicTest
         homePage.validate();
 
         // Assure not logged in status
-        homePage.userMenu().validateNotLoggedIn();
+        homePage.userMenu.validateNotLoggedIn();
 
         // Goto register form
-        RegisterPage registerPage = homePage.userMenu().openRegister();
+        RegisterPage registerPage = homePage.userMenu.openRegister();
         registerPage.validateStructure();
 
         LoginPage loginPage = registerPage.sendRegisterForm(user, user.getPassword());

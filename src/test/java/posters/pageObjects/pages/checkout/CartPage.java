@@ -234,8 +234,8 @@ public class CartPage extends AbstractBrowsingPage
         // Wait until the confirmation button is gone
         $("#buttonDelete").waitUntil(hidden, Settings.timeout);
         // Reload page to let IDs adjust to the deletion
-        miniCart().openMiniCart();
-        miniCart().openCartPage();
+        miniCart.openMiniCart();
+        miniCart.openCartPage();
     }
 
     /**
