@@ -5,13 +5,14 @@ package posters.pageObjects.pages.browsing;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.exactValue;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+
+import com.xceptance.neodymium.util.Context;
 
 /**
  * @author pfotenhauer
@@ -114,14 +115,11 @@ public class CategoryPage extends AbstractBrowsingPage
         $("#titleSearchText").should(exist);
         // Validate the headline contains the search phrase
         // \\(" + searchTermExpectedCount + " *\\)
-        $("#titleSearchText").should(matchText("Your results for your search: '" + searchTerm + "' \\(" + searchTermExpectedCount + ".*\\)"));
+        $("#titleSearchText").should(matchText(Context.localizedText("search.results.text") + ": '" + searchTerm + "' \\(" + searchTermExpectedCount
+                                               + ".*\\)"));
         // Verify that the correct search term is displayed
         // Validate the entered search phrase is still visible in the input
-        search.openSearch();
-        // Validate the entered search phrase is still visible in the input
-        $("#searchForm #s").should(visible);
-        // Validate the entered search phrase is still visible in the input
-        $("#searchForm #s").should(exactValue(searchTerm));
+        search.validateSearchTerm(searchTerm);
         // Assert the Headline displays the search term.
         $(".header-container #searchTextValue").shouldHave(exactText(searchTerm));
         // Verify there are search results

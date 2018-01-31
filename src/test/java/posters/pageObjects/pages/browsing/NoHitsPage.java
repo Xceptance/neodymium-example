@@ -1,5 +1,7 @@
 package posters.pageObjects.pages.browsing;
 
+import com.xceptance.neodymium.util.Context;
+
 public class NoHitsPage extends AbstractBrowsingPage
 {
     public void validateStructure()
@@ -12,7 +14,7 @@ public class NoHitsPage extends AbstractBrowsingPage
      */
     public void validateNoProductsFound()
     {
-        errorMessage.validateErrorMessage("Sorry! No results found matching your search. Please try again.");
+        errorMessage.validateErrorMessage(Context.localizedText("NoHitsPage.validation.noProductsFound"));
     }
 
     public void validate()

@@ -1,12 +1,13 @@
 package posters.pageObjects.pages.browsing;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+
+import com.xceptance.neodymium.util.Context;
 
 import posters.dataObjects.User;
 
@@ -51,7 +52,7 @@ public class HomePage extends AbstractBrowsingPage
 
     public void validateSuccessfulOrder()
     {
-        successMessage.validateSuccessMessage("Thank you for shopping with us!");
+        successMessage.validateSuccessMessage(Context.localizedText("HomePage.validation.successfulOrder"));
         // Verify that the mini cart is empty again
         miniCart.validateTotalCount(0);
         miniCart.validateSubtotal("$0.00");
@@ -63,12 +64,10 @@ public class HomePage extends AbstractBrowsingPage
      */
     public void validateSuccessfulLogin(String firstName)
     {
-        successMessage.validateSuccessMessage("Login successful. Have fun in our shop!");
+        // Verify that you are logged in
+        successMessage.validateSuccessMessage(Context.localizedText("HomePage.validation.successfulLogin"));
         // Verify that the user menu shows your first name
         userMenu.validateLoggedInName(firstName);
-        // Verify that you are logged in
-        // Makes sure the mini menu element has the "logged" class active instead of the "not-logged" class.
-        $("#showUserMenu .logged").shouldHave(exactText(""));
 
     }
 
@@ -85,6 +84,6 @@ public class HomePage extends AbstractBrowsingPage
      */
     public void validateSuccessfulDeletedAccount()
     {
-        successMessage.validateSuccessMessage("Your account has been deleted. We hope to see you soon again!");
+        successMessage.validateSuccessMessage(Context.localizedText("HomePage.validation.successfulAccountDeletion"));
     }
 }

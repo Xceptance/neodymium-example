@@ -3,6 +3,7 @@
  */
 package posters.pageObjects.components;
 
+import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.not;
@@ -102,6 +103,8 @@ public class UserMenu extends AbstractComponent
         // Asserts the Menu shows your first name.
         userMenu.find(".firstName").shouldHave(exactText(firstName));
         closeUserMenu();
+        // Makes sure the mini menu element has the "logged" class active instead of the "not-logged" class.
+        showUserMenu.find("span.glyphicon").shouldHave(cssClass("logged")).shouldHave(exactText(""));
     }
 
     /**

@@ -1,6 +1,8 @@
 package posters.pageObjects.components;
 
+import static com.codeborne.selenide.Condition.exactValue;
 import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
@@ -38,5 +40,15 @@ public class Search extends AbstractComponent
     public void openSearch()
     {
         $("#header-search-trigger").scrollTo().click();
+    }
+
+    public void validateSearchTerm(String searchTerm)
+    {
+        // Validate the entered search phrase is still visible in the input
+        openSearch();
+        // Validate the entered search phrase is still visible in the input
+        searchField.should(visible);
+        // Validate the entered search phrase is still visible in the input
+        searchField.should(exactValue(searchTerm));
     }
 }
