@@ -48,7 +48,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire.version}</version>
                 <configuration>
-                    <forkCount>4</forkCount>
+                    <forkCount>2</forkCount>
                     <!-- our test case naming does not follow Maven naming conventions -->
                     <includes>
                         <include>posters/neodymium/tests/**/*Test.java</include>
