@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
 
-import posters.dataObjects.Product;
+import posters.dataobjects.Product;
 
 /**
  * @author pfotenhauer

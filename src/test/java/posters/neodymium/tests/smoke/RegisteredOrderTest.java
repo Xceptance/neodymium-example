@@ -6,9 +6,9 @@ package posters.neodymium.tests.smoke;
 import org.junit.After;
 import org.junit.Test;
 
-import posters.dataObjects.Address;
-import posters.dataObjects.CreditCard;
-import posters.dataObjects.Product;
+import posters.dataobjects.Address;
+import posters.dataobjects.CreditCard;
+import posters.dataobjects.Product;
 import posters.flows.CartCleanUpFlow;
 import posters.flows.OpenHomePageFlow;
 import posters.neodymium.tests.BasicTest;

@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import com.xceptance.neodymium.multibrowser.Browser;
 
-import posters.dataObjects.User;
+import posters.dataobjects.User;
 import posters.flows.OpenLoginPageFlow;
 import posters.neodymium.tests.BasicTest;
 import posters.pageObjects.pages.browsing.HomePage;

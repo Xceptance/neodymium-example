@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.dataObjects;
+package posters.dataobjects;
 
 import java.util.Map;
 

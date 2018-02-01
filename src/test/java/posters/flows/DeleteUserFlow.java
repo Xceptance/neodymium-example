@@ -3,7 +3,7 @@
  */
 package posters.flows;
 
-import posters.dataObjects.User;
+import posters.dataobjects.User;
 import posters.pageObjects.pages.browsing.HomePage;
 import posters.pageObjects.pages.user.AccountOverViewPage;
 import posters.pageObjects.pages.user.DeleteAccountPage;

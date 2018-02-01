@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
 
-import posters.dataObjects.Address;
+import posters.dataobjects.Address;
 
 /**
  * @author pfotenhauer

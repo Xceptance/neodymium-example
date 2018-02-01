@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import com.xceptance.neodymium.util.Context;
 
-import posters.dataObjects.User;
+import posters.dataobjects.User;
 
 public class HomePage extends AbstractBrowsingPage
 {

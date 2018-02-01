@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
 
-import posters.dataObjects.Product;
+import posters.dataobjects.Product;
 import posters.pageObjects.pages.checkout.CartPage;
 import posters.settings.Settings;
 

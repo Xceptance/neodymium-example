@@ -10,8 +10,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
 
-import posters.dataObjects.Address;
-import posters.dataObjects.CreditCard;
+import posters.dataobjects.Address;
+import posters.dataobjects.CreditCard;
 import posters.pageObjects.pages.browsing.HomePage;
 
 /**
