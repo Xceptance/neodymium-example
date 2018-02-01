@@ -5,6 +5,8 @@ package posters.neodymium.tests.smoke;
 
 import org.junit.Test;
 
+import com.xceptance.neodymium.util.Context;
+
 import posters.dataobjects.Address;
 import posters.dataobjects.CreditCard;
 import posters.dataobjects.Product;
@@ -29,7 +31,7 @@ public class GuestOrderTest extends BasicTest
     {
         // total product count will be updated throughout the test
         int totalCount = 0;
-        final String shippingCosts = data.get("shippingCosts");
+        final String shippingCosts = Context.get().data.get("shippingCosts");
 
         // Goto homepage
         HomePage homePage = OpenHomePageFlow.flow();
@@ -64,13 +66,13 @@ public class GuestOrderTest extends BasicTest
         cartPage.validateCartItem(1, product);
         cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, "$0.00");
 
-        final String name = data.get("name");
-        final String company = data.get("company");
-        final String street = data.get("street");
-        final String city = data.get("city");
-        final String state = data.get("state");
-        final String zip = data.get("zip");
-        final String country = data.get("country");
+        final String name = Context.get().data.get("name");
+        final String company = Context.get().data.get("company");
+        final String street = Context.get().data.get("street");
+        final String city = Context.get().data.get("city");
+        final String state = Context.get().data.get("state");
+        final String zip = Context.get().data.get("zip");
+        final String country = Context.get().data.get("country");
         // setup checkout data
         final Address shippingAddress = new Address(name, company, street, city, state, zip, country);
         final boolean sameBillingAddress = false;

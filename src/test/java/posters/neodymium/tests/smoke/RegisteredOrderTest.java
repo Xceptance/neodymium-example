@@ -6,6 +6,8 @@ package posters.neodymium.tests.smoke;
 import org.junit.After;
 import org.junit.Test;
 
+import com.xceptance.neodymium.util.Context;
+
 import posters.dataobjects.Address;
 import posters.dataobjects.CreditCard;
 import posters.dataobjects.Product;
@@ -32,7 +34,7 @@ public class RegisteredOrderTest extends BasicTest
     {
         // total product count will be updated throughout the test
         int totalCount = 0;
-        final String shippingCosts = data.get("shippingCosts");
+        final String shippingCosts = Context.get().data.get("shippingCosts");
 
         // Goto homepage
         HomePage homePage = OpenHomePageFlow.flow();
@@ -48,11 +50,11 @@ public class RegisteredOrderTest extends BasicTest
         // Goto login form
         LoginPage loginPage = homePage.userMenu.openLogin();
         loginPage.validateStructure();
-        final String email = data.get("email");
-        final String password = data.get("password");
+        final String email = Context.get().data.get("email");
+        final String password = Context.get().data.get("password");
         homePage = loginPage.sendLoginform(email, password);
 
-        final String firstname = data.get("firstname");
+        final String firstname = Context.get().data.get("firstname");
         homePage.validateSuccessfulLogin(firstname);
 
         // Goto category
@@ -89,13 +91,13 @@ public class RegisteredOrderTest extends BasicTest
         PaymentPage paymentPage = billingAddressPage.selectBillingAddress(1);
         paymentPage.validateStructure();
 
-        final String name = firstname + " " + data.get("lastname");
-        final String company = data.get("company");
-        final String street = data.get("street");
-        final String city = data.get("city");
-        final String state = data.get("state");
-        final String zip = data.get("zip");
-        final String country = data.get("country");
+        final String name = firstname + " " + Context.get().data.get("lastname");
+        final String company = Context.get().data.get("company");
+        final String street = Context.get().data.get("street");
+        final String city = Context.get().data.get("city");
+        final String state = Context.get().data.get("state");
+        final String zip = Context.get().data.get("zip");
+        final String country = Context.get().data.get("country");
 
         // setup checkout data for validation
         final Address shippingAddress = new Address(name, company, street, city, state, zip, country);
