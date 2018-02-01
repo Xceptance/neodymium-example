@@ -10,8 +10,8 @@ import com.xceptance.neodymium.multibrowser.Browser;
 import posters.dataobjects.User;
 import posters.flows.OpenLoginPageFlow;
 import posters.neodymium.tests.BasicTest;
-import posters.pageObjects.pages.browsing.HomePage;
-import posters.pageObjects.pages.user.LoginPage;
+import posters.pageobjects.pages.browsing.HomePage;
+import posters.pageobjects.pages.user.LoginPage;
 
 /**
  * @author pfotenhauer

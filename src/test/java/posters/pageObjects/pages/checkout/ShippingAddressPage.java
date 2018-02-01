@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.pageObjects.pages.checkout;
+package posters.pageobjects.pages.checkout;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;

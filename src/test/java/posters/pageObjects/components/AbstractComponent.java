@@ -1,4 +1,4 @@
-package posters.pageObjects.components;
+package posters.pageobjects.components;
 
 public abstract class AbstractComponent
 {

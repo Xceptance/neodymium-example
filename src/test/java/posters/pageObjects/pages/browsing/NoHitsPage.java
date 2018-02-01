@@ -1,4 +1,4 @@
-package posters.pageObjects.pages.browsing;
+package posters.pageobjects.pages.browsing;
 
 import com.xceptance.neodymium.util.Context;
 

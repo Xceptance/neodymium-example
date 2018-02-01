@@ -1,4 +1,4 @@
-package posters.pageObjects.components;
+package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;

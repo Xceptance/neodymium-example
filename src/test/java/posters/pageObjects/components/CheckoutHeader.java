@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.pageObjects.components;
+package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;

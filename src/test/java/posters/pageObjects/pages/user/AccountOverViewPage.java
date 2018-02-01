@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.pageObjects.pages.user;
+package posters.pageobjects.pages.user;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
 
-import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
+import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
 /**
  * @author pfotenhauer

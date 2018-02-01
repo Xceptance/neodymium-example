@@ -4,11 +4,11 @@
 package posters.flows;
 
 import posters.dataobjects.User;
-import posters.pageObjects.pages.browsing.HomePage;
-import posters.pageObjects.pages.user.AccountOverViewPage;
-import posters.pageObjects.pages.user.DeleteAccountPage;
-import posters.pageObjects.pages.user.LoginPage;
-import posters.pageObjects.pages.user.PersonalDataPage;
+import posters.pageobjects.pages.browsing.HomePage;
+import posters.pageobjects.pages.user.AccountOverViewPage;
+import posters.pageobjects.pages.user.DeleteAccountPage;
+import posters.pageobjects.pages.user.LoginPage;
+import posters.pageobjects.pages.user.PersonalDataPage;
 
 /**
  * @author pfotenhauer

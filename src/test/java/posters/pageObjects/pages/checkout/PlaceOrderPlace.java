@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.pageObjects.pages.checkout;
+package posters.pageobjects.pages.checkout;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
@@ -12,7 +12,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import posters.dataobjects.Address;
 import posters.dataobjects.CreditCard;
-import posters.pageObjects.pages.browsing.HomePage;
+import posters.pageobjects.pages.browsing.HomePage;
 
 /**
  * @author pfotenhauer

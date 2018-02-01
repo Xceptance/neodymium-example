@@ -1,12 +1,12 @@
 /**
  * 
  */
-package posters.pageObjects.pages.checkout;
+package posters.pageobjects.pages.checkout;
 
-import posters.pageObjects.components.CheckoutHeader;
-import posters.pageObjects.components.Footer;
-import posters.pageObjects.components.UserMenu;
-import posters.pageObjects.pages.AbstractPageObject;
+import posters.pageobjects.components.CheckoutHeader;
+import posters.pageobjects.components.Footer;
+import posters.pageobjects.components.UserMenu;
+import posters.pageobjects.pages.AbstractPageObject;
 
 /**
  * @author pfotenhauer

@@ -7,9 +7,9 @@ import org.junit.Test;
 
 import posters.flows.OpenHomePageFlow;
 import posters.neodymium.tests.BasicTest;
-import posters.pageObjects.pages.browsing.CategoryPage;
-import posters.pageObjects.pages.browsing.HomePage;
-import posters.pageObjects.pages.browsing.ProductdetailPage;
+import posters.pageobjects.pages.browsing.CategoryPage;
+import posters.pageobjects.pages.browsing.HomePage;
+import posters.pageobjects.pages.browsing.ProductdetailPage;
 
 /**
  * @author pfotenhauer

@@ -1,14 +1,14 @@
 /**
  * 
  */
-package posters.pageObjects.components;
+package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
 
 import org.openqa.selenium.By;
 
-import posters.pageObjects.pages.browsing.CategoryPage;
+import posters.pageobjects.pages.browsing.CategoryPage;
 
 /**
  * @author pfotenhauer

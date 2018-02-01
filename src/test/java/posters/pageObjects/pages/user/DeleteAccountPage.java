@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.pageObjects.pages.user;
+package posters.pageobjects.pages.user;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
@@ -12,8 +12,8 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
 
-import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
-import posters.pageObjects.pages.browsing.HomePage;
+import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
+import posters.pageobjects.pages.browsing.HomePage;
 
 /**
  * @author pfotenhauer

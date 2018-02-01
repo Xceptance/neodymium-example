@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.pageObjects.utility;
+package posters.pageobjects.utility;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;

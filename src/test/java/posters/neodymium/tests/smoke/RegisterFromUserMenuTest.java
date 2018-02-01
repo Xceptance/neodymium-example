@@ -10,9 +10,9 @@ import posters.dataobjects.User;
 import posters.flows.DeleteUserFlow;
 import posters.flows.OpenHomePageFlow;
 import posters.neodymium.tests.BasicTest;
-import posters.pageObjects.pages.browsing.HomePage;
-import posters.pageObjects.pages.user.LoginPage;
-import posters.pageObjects.pages.user.RegisterPage;
+import posters.pageobjects.pages.browsing.HomePage;
+import posters.pageobjects.pages.user.LoginPage;
+import posters.pageobjects.pages.user.RegisterPage;
 
 /**
  * @author pfotenhauer

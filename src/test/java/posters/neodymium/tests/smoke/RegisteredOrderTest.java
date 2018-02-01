@@ -12,15 +12,15 @@ import posters.dataobjects.Product;
 import posters.flows.CartCleanUpFlow;
 import posters.flows.OpenHomePageFlow;
 import posters.neodymium.tests.BasicTest;
-import posters.pageObjects.pages.browsing.CategoryPage;
-import posters.pageObjects.pages.browsing.HomePage;
-import posters.pageObjects.pages.browsing.ProductdetailPage;
-import posters.pageObjects.pages.checkout.BillingAddressPage;
-import posters.pageObjects.pages.checkout.CartPage;
-import posters.pageObjects.pages.checkout.PaymentPage;
-import posters.pageObjects.pages.checkout.PlaceOrderPlace;
-import posters.pageObjects.pages.checkout.ShippingAddressPage;
-import posters.pageObjects.pages.user.LoginPage;
+import posters.pageobjects.pages.browsing.CategoryPage;
+import posters.pageobjects.pages.browsing.HomePage;
+import posters.pageobjects.pages.browsing.ProductdetailPage;
+import posters.pageobjects.pages.checkout.BillingAddressPage;
+import posters.pageobjects.pages.checkout.CartPage;
+import posters.pageobjects.pages.checkout.PaymentPage;
+import posters.pageobjects.pages.checkout.PlaceOrderPlace;
+import posters.pageobjects.pages.checkout.ShippingAddressPage;
+import posters.pageobjects.pages.user.LoginPage;
 
 /**
  * @author pfotenhauer

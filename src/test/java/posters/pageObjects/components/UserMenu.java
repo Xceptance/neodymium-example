@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.pageObjects.components;
+package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Condition.exactText;
@@ -12,9 +12,9 @@ import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
 
-import posters.pageObjects.pages.user.AccountOverViewPage;
-import posters.pageObjects.pages.user.LoginPage;
-import posters.pageObjects.pages.user.RegisterPage;
+import posters.pageobjects.pages.user.AccountOverViewPage;
+import posters.pageobjects.pages.user.LoginPage;
+import posters.pageobjects.pages.user.RegisterPage;
 import posters.settings.Settings;
 
 /**

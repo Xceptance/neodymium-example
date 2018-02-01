@@ -1,9 +1,9 @@
 /**
  * 
  */
-package posters.pageObjects.pages;
+package posters.pageobjects.pages;
 
-import posters.pageObjects.components.Title;
+import posters.pageobjects.components.Title;
 
 /**
  * @author pfotenhauer

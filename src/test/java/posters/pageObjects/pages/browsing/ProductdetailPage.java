@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.pageObjects.pages.browsing;
+package posters.pageobjects.pages.browsing;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;

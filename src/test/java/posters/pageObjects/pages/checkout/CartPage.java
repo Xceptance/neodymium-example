@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.pageObjects.pages.checkout;
+package posters.pageobjects.pages.checkout;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exactValue;
@@ -16,9 +16,9 @@ import org.junit.Assert;
 import com.codeborne.selenide.SelenideElement;
 
 import posters.dataobjects.Product;
-import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
-import posters.pageObjects.pages.browsing.ProductdetailPage;
-import posters.pageObjects.utility.PriceHelper;
+import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
+import posters.pageobjects.pages.browsing.ProductdetailPage;
+import posters.pageobjects.utility.PriceHelper;
 import posters.settings.Settings;
 
 /**

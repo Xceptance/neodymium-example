@@ -1,4 +1,4 @@
-package posters.pageObjects.components;
+package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.exactValue;
 import static com.codeborne.selenide.Condition.exist;
@@ -7,8 +7,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
 
-import posters.pageObjects.pages.browsing.CategoryPage;
-import posters.pageObjects.pages.browsing.NoHitsPage;
+import posters.pageobjects.pages.browsing.CategoryPage;
+import posters.pageobjects.pages.browsing.NoHitsPage;
 
 public class Search extends AbstractComponent
 {

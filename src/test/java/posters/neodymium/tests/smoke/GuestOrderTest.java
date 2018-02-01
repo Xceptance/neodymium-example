@@ -10,14 +10,14 @@ import posters.dataobjects.CreditCard;
 import posters.dataobjects.Product;
 import posters.flows.OpenHomePageFlow;
 import posters.neodymium.tests.BasicTest;
-import posters.pageObjects.pages.browsing.CategoryPage;
-import posters.pageObjects.pages.browsing.HomePage;
-import posters.pageObjects.pages.browsing.ProductdetailPage;
-import posters.pageObjects.pages.checkout.CartPage;
-import posters.pageObjects.pages.checkout.NewBillingAddressPage;
-import posters.pageObjects.pages.checkout.NewPaymentPage;
-import posters.pageObjects.pages.checkout.NewShippingAddressPage;
-import posters.pageObjects.pages.checkout.PlaceOrderPlace;
+import posters.pageobjects.pages.browsing.CategoryPage;
+import posters.pageobjects.pages.browsing.HomePage;
+import posters.pageobjects.pages.browsing.ProductdetailPage;
+import posters.pageobjects.pages.checkout.CartPage;
+import posters.pageobjects.pages.checkout.NewBillingAddressPage;
+import posters.pageobjects.pages.checkout.NewPaymentPage;
+import posters.pageobjects.pages.checkout.NewShippingAddressPage;
+import posters.pageobjects.pages.checkout.PlaceOrderPlace;
 
 /**
  * @author pfotenhauer

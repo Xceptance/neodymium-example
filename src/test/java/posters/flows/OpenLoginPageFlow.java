@@ -1,7 +1,7 @@
 package posters.flows;
 
-import posters.pageObjects.pages.browsing.HomePage;
-import posters.pageObjects.pages.user.LoginPage;
+import posters.pageobjects.pages.browsing.HomePage;
+import posters.pageobjects.pages.user.LoginPage;
 
 public class OpenLoginPageFlow
 {
