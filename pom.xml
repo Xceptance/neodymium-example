@@ -61,16 +61,10 @@
                             <value>io.qameta.allure.junit4.AllureJunit4</value>
                         </property>
                     </properties>
-                    <systemProperties>
-                        <property>
-                            <name>allure.results.directory</name>
-                            <value>${project.build.directory}/allure-results</value>
-                        </property>
-                        <property>
-                            <name>selenide.reports</name>
-                            <value>${project.build.directory}/selenide-results</value>
-                        </property>
-                    </systemProperties>
+                    <systemPropertyVariables>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                        <selenide.reports>${project.build.directory}/selenide-results</selenide.reports>
+                    </systemPropertyVariables>
                 </configuration>
                 <dependencies>
                     <dependency>
