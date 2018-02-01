@@ -18,7 +18,7 @@ public class AddToCartTest extends BasicTest
     @Test
     public void testAddProductsToCart()
     {
-        final String shippingCosts = Context.get().data.get("shippingCosts");
+        final String shippingCosts = Context.dataValue("shippingCosts");
         int totalCount = 0;
 
         // Goto homepage
@@ -30,7 +30,7 @@ public class AddToCartTest extends BasicTest
         final String oldSubtotal = homePage.miniCart.getSubtotal();
 
         // Go to a top category page
-        final String topCatName = Context.get().data.get("topCatName");
+        final String topCatName = Context.dataValue("topCatName");
         CategoryPage categoryPage = homePage.topNav.clickCategory(topCatName);
         categoryPage.validateCategoryName(topCatName);
 
@@ -58,7 +58,7 @@ public class AddToCartTest extends BasicTest
         cartPage.miniCart.validateTotalCount(++totalCount);
 
         // Search for product on cart page
-        final String searchTerm = Context.get().data.get("searchTerm");
+        final String searchTerm = Context.dataValue("searchTerm");
         final int searchTermExpectedCount = 1;
         categoryPage = cartPage.search.categoryPageResult(searchTerm);
         categoryPage.validateSearchHits(searchTerm, searchTermExpectedCount);

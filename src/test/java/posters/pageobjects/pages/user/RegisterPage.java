@@ -108,6 +108,6 @@ public class RegisterPage extends AbstractBrowsingPage
      */
     public LoginPage sendRegisterForm(User user, String passwordRepeat)
     {
-        return sendRegisterForm(user.getFirstName(), user.getLastName(), user.getEMail(), user.getPassword(), passwordRepeat);
+        return sendRegisterForm(user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), passwordRepeat);
     }
 }

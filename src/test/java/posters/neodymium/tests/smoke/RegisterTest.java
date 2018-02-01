@@ -7,7 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.xceptance.neodymium.util.Context;
+import com.xceptance.neodymium.util.DataUtils;
 
 import posters.dataobjects.User;
 import posters.flows.DeleteUserFlow;
@@ -27,7 +27,7 @@ public class RegisterTest extends BasicTest
     @Before
     public void setup()
     {
-        user = new User(Context.get().data);
+        user = DataUtils.get(User.class);
     }
 
     @Test

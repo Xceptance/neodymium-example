@@ -1,4 +1,4 @@
-firstName,lastName,eMail,password,ID
+firstName,lastName,email,password,ID
 Jane,Doe,jane@doe.com,topsecret,Jane's test
 Simon,Doe,simon@doe.com,topsecret,Simons's test
 #James,Doe,james@doe.com,topsecret,Janes' test

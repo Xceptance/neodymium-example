@@ -48,7 +48,7 @@ public class DeleteUserFlow
         loginPage = homePage.userMenu.openLogin();
         loginPage.validateStructure();
         loginPage.sendFalseLoginform(user);
-        loginPage.validateWrongEmail(user.getEMail());
+        loginPage.validateWrongEmail(user.getEmail());
 
         return loginPage;
     }

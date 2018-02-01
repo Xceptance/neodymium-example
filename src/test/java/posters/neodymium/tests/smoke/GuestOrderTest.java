@@ -31,7 +31,7 @@ public class GuestOrderTest extends BasicTest
     {
         // total product count will be updated throughout the test
         int totalCount = 0;
-        final String shippingCosts = Context.get().data.get("shippingCosts");
+        final String shippingCosts = Context.dataValue("shippingCosts");
 
         // Goto homepage
         HomePage homePage = OpenHomePageFlow.flow();
@@ -66,13 +66,13 @@ public class GuestOrderTest extends BasicTest
         cartPage.validateCartItem(1, product);
         cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, "$0.00");
 
-        final String name = Context.get().data.get("name");
-        final String company = Context.get().data.get("company");
-        final String street = Context.get().data.get("street");
-        final String city = Context.get().data.get("city");
-        final String state = Context.get().data.get("state");
-        final String zip = Context.get().data.get("zip");
-        final String country = Context.get().data.get("country");
+        final String name = Context.dataValue("name");
+        final String company = Context.dataValue("company");
+        final String street = Context.dataValue("street");
+        final String city = Context.dataValue("city");
+        final String state = Context.dataValue("state");
+        final String zip = Context.dataValue("zip");
+        final String country = Context.dataValue("country");
         // setup checkout data
         final Address shippingAddress = new Address(name, company, street, city, state, zip, country);
         final boolean sameBillingAddress = false;

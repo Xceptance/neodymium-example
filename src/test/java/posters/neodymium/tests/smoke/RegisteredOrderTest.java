@@ -34,7 +34,7 @@ public class RegisteredOrderTest extends BasicTest
     {
         // total product count will be updated throughout the test
         int totalCount = 0;
-        final String shippingCosts = Context.get().data.get("shippingCosts");
+        final String shippingCosts = Context.dataValue("shippingCosts");
 
         // Goto homepage
         HomePage homePage = OpenHomePageFlow.flow();
@@ -50,11 +50,11 @@ public class RegisteredOrderTest extends BasicTest
         // Goto login form
         LoginPage loginPage = homePage.userMenu.openLogin();
         loginPage.validateStructure();
-        final String email = Context.get().data.get("email");
-        final String password = Context.get().data.get("password");
+        final String email = Context.dataValue("email");
+        final String password = Context.dataValue("password");
         homePage = loginPage.sendLoginform(email, password);
 
-        final String firstname = Context.get().data.get("firstname");
+        final String firstname = Context.dataValue("firstname");
         homePage.validateSuccessfulLogin(firstname);
 
         // Goto category
@@ -91,13 +91,13 @@ public class RegisteredOrderTest extends BasicTest
         PaymentPage paymentPage = billingAddressPage.selectBillingAddress(1);
         paymentPage.validateStructure();
 
-        final String name = firstname + " " + Context.get().data.get("lastname");
-        final String company = Context.get().data.get("company");
-        final String street = Context.get().data.get("street");
-        final String city = Context.get().data.get("city");
-        final String state = Context.get().data.get("state");
-        final String zip = Context.get().data.get("zip");
-        final String country = Context.get().data.get("country");
+        final String name = firstname + " " + Context.dataValue("lastname");
+        final String company = Context.dataValue("company");
+        final String street = Context.dataValue("street");
+        final String city = Context.dataValue("city");
+        final String state = Context.dataValue("state");
+        final String zip = Context.dataValue("zip");
+        final String country = Context.dataValue("country");
 
         // setup checkout data for validation
         final Address shippingAddress = new Address(name, company, street, city, state, zip, country);

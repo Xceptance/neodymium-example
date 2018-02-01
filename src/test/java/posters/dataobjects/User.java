@@ -3,8 +3,6 @@
  */
 package posters.dataobjects;
 
-import java.util.Map;
-
 /**
  * @author pfotenhauer
  */
@@ -14,27 +12,24 @@ public class User
 
     String lastName;
 
-    String eMail;
+    String email;
 
     String password;
 
     /**
      * 
      */
-    public User(String firstName, String lastName, String eMail, String password)
+    public User()
+    {
+
+    }
+
+    public User(String firstName, String lastName, String email, String password)
     {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.eMail = eMail;
+        this.email = email;
         this.password = password;
-    }
-
-    public User(Map<String, String> data)
-    {
-        this.firstName = data.get("firstName");
-        this.lastName = data.get("lastName");
-        this.eMail = data.get("eMail");
-        this.password = data.get("password");
     }
 
     /**
@@ -72,20 +67,20 @@ public class User
     }
 
     /**
-     * @return the eMail
+     * @return the email
      */
-    public String getEMail()
+    public String getEmail()
     {
-        return eMail;
+        return email;
     }
 
     /**
-     * @param eMail
-     *            the eMail to set
+     * @param email
+     *            the email to set
      */
-    public void seteMail(String eMail)
+    public void setEmail(String email)
     {
-        this.eMail = eMail;
+        this.email = email;
     }
 
     /**
@@ -103,5 +98,11 @@ public class User
     public void setPassword(String password)
     {
         this.password = password;
+    }
+
+    @Override
+    public String toString()
+    {
+        return String.format("User [firstName()=%s, lastName()=%s, email()=%s, password()=%s]", getFirstName(), getLastName(), getEmail(), getPassword());
     }
 }

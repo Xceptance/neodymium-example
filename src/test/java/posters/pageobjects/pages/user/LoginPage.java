@@ -115,7 +115,7 @@ public class LoginPage extends AbstractBrowsingPage
      */
     public HomePage sendLoginform(User user)
     {
-        return sendLoginform(user.getEMail(), user.getPassword());
+        return sendLoginform(user.getEmail(), user.getPassword());
     }
 
     /**
@@ -123,7 +123,7 @@ public class LoginPage extends AbstractBrowsingPage
      */
     public LoginPage sendFalseLoginform(User user)
     {
-        sendFormWithData(user.getEMail(), user.getPassword());
+        sendFormWithData(user.getEmail(), user.getPassword());
         return new LoginPage();
     }
 

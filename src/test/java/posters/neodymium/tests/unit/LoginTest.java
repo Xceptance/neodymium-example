@@ -60,7 +60,7 @@ public class LoginTest extends BasicTest
         loginPage.userMenu.validateNotLoggedIn();
 
         loginPage.sendFalseLoginform(user);
-        loginPage.validateWrongPassword(user.getEMail());
+        loginPage.validateWrongPassword(user.getEmail());
     }
 
     @Test
@@ -79,7 +79,7 @@ public class LoginTest extends BasicTest
         loginPage.userMenu.validateNotLoggedIn();
 
         loginPage.sendFalseLoginform(user);
-        loginPage.validateWrongPassword(user.getEMail());
+        loginPage.validateWrongPassword(user.getEmail());
     }
 
     @Test
@@ -98,7 +98,7 @@ public class LoginTest extends BasicTest
         loginPage.userMenu.validateNotLoggedIn();
 
         loginPage.sendFalseLoginform(user);
-        loginPage.validateWrongEmail(user.getEMail());
+        loginPage.validateWrongEmail(user.getEmail());
     }
 
     @Test
@@ -155,7 +155,7 @@ public class LoginTest extends BasicTest
         loginPage.userMenu.validateNotLoggedIn();
 
         loginPage.sendFalseLoginform(user);
-        loginPage.validateWrongEmail(user.getEMail());
+        loginPage.validateWrongEmail(user.getEmail());
     }
 
 }
