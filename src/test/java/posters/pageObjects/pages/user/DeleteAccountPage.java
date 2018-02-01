@@ -9,6 +9,9 @@ import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Context;
+
 import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageObjects.pages.browsing.HomePage;
 
@@ -17,10 +20,16 @@ import posters.pageObjects.pages.browsing.HomePage;
  */
 public class DeleteAccountPage extends AbstractBrowsingPage
 {
+    private SelenideElement deleteForm = $("#formDeleteAccount");
+
+    private SelenideElement passwordField = $("#password");
+
+    private SelenideElement deleteButton = $("#btnDeleteAccount");
+
     @Override
     public void isExpectedPage()
     {
-        $("#formDeleteAccount").should(exist);
+        deleteForm.should(exist);
     }
 
     @Override
@@ -30,15 +39,15 @@ public class DeleteAccountPage extends AbstractBrowsingPage
 
         // Headline
         // Asserts the headline is there and starts with a capital letter
-        $("#formDeleteAccount .h2").should(matchText("[A-Z].{3,}"));
+        deleteForm.find(".h2").should(matchText("[A-Z].{3,}"));
         // Password field
         // Asserts the label belonging to the password field displays the correct text
-        $("label[for=\"password\"]").shouldBe(exactText("Your password*"));
+        $("label[for=\"password\"]").shouldBe(exactText(Context.localizedText("AccountPages.password")));
         // Asserts the field to enter your password is there
-        $("#password").shouldBe(visible);
+        passwordField.shouldBe(visible);
         // Button
         // Asserts the delete button is there
-        $("#btnDeleteAccount").shouldBe(visible);
+        deleteButton.shouldBe(visible);
     }
 
     /**
@@ -48,10 +57,10 @@ public class DeleteAccountPage extends AbstractBrowsingPage
     {
         // Password
         // Type the parameter into the password field
-        $("#password").setValue(password);
+        passwordField.setValue(password);
         // Delete account and open the homepage
         // click the confirmation button
-        $("#btnDeleteAccount").scrollTo().click();
+        deleteButton.scrollTo().click();
 
         return new HomePage();
     }

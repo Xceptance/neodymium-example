@@ -7,6 +7,8 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.SelenideElement;
+
 import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
 
 /**
@@ -14,10 +16,14 @@ import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
  */
 public class AccountOverViewPage extends AbstractBrowsingPage
 {
+    private SelenideElement headline = $("#titleAccountOverview");
+
+    private SelenideElement personalDataLink = $("#linkPersonalData");
+
     @Override
     public void isExpectedPage()
     {
-        $("#titleAccountOverview").should(exist);
+        headline.should(exist);
     }
 
     @Override
@@ -27,7 +33,7 @@ public class AccountOverViewPage extends AbstractBrowsingPage
 
         // Headline
         // Make sure the headline is there and start with a capital letter
-        $("#titleAccountOverview").should(matchText("[A-Z].{3,}"));
+        headline.should(matchText("[A-Z].{3,}"));
         // Order Overview Link
         // Make sure the link to the order history is there and the text starts with a capital letter
         $("#linkOrderOverview").should(matchText("[A-Z].{3,}"));
@@ -39,7 +45,7 @@ public class AccountOverViewPage extends AbstractBrowsingPage
         $("#linkPaymentOverview").should(matchText("[A-Z].{3,}"));
         // Personal Data Link
         // Make sure the link to the Personal Data page is there and the text starts with a capital letter
-        $("#linkPersonalData").should(matchText("[A-Z].{3,}"));
+        personalDataLink.should(matchText("[A-Z].{3,}"));
     }
 
     /**
@@ -49,7 +55,7 @@ public class AccountOverViewPage extends AbstractBrowsingPage
     {
         // Open the personal data page
         // Click on the link to Personal Data
-        $("#linkPersonalData").scrollTo().click();
+        personalDataLink.scrollTo().click();
         return new PersonalDataPage();
     }
 }

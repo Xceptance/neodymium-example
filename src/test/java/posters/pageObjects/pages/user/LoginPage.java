@@ -10,6 +10,9 @@ import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Context;
+
 import posters.dataObjects.User;
 import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageObjects.pages.browsing.HomePage;
@@ -19,10 +22,20 @@ import posters.pageObjects.pages.browsing.HomePage;
  */
 public class LoginPage extends AbstractBrowsingPage
 {
+    private SelenideElement loginForm = $("#formLogin");
+
+    private SelenideElement emailField = $("#email");
+
+    private SelenideElement passwordField = $("#password");
+
+    private SelenideElement signInButton = $("#btnSignIn");
+
+    private SelenideElement registerLink = $("#linkRegister");
+
     @Override
     public void isExpectedPage()
     {
-        $("#formLogin").should(exist);
+        loginForm.should(exist);
     }
 
     @Override
@@ -32,26 +45,26 @@ public class LoginPage extends AbstractBrowsingPage
 
         // Login headline
         // Make sure the Headline is there and starts with a capital letter followed by at least 3 more symbols.
-        $("#formLogin h2").should(matchText("[A-Z].{3,}"));
+        loginForm.find("h2").should(matchText("[A-Z].{3,}"));
         // Email field
         // Asserts the Email field has a label displaying the value.
-        $("#formLogin label.control-label[for=email]").shouldHave(exactText("Your email*"));
+        loginForm.find("label.control-label[for=email]").shouldHave(exactText(Context.localizedText("AccountPages.yourEmail")));
         // Asserts the email field is present.
-        $("#email").shouldBe(visible);
+        emailField.shouldBe(visible);
         // Password field
         // Verifies the password field has a label displaying the value.
-        $("#formLogin label.control-label[for=password]").shouldHave(exactText("Your password*"));
+        loginForm.find("label.control-label[for=password]").shouldHave(exactText(Context.localizedText("AccountPages.yourPassword")));
         // Asserts the password field is there.
-        $("#password").shouldBe(visible);
+        passwordField.shouldBe(visible);
         // Login button
         // asserts the login button displays the value.
-        $("#btnSignIn").shouldHave(exactText("Sign in"));
+        signInButton.shouldHave(exactText(Context.localizedText("AccountPages.signIn")));
         // Register headline
         // Asserts the Headline for the Registration is there.
-        $("#main .h3").shouldHave(exactText("New customer"));
+        $("#main .h3").shouldHave(exactText(Context.localizedText("AccountPages.newCustomer")));
         // Registration page link
         // Asserts the Register link is there and shows the correct text.
-        $("#linkRegister").shouldHave(exactText("Create new Account"));
+        registerLink.shouldHave(exactText(Context.localizedText("AccountPages.createNewAccount")));
     }
 
     /**
@@ -70,13 +83,13 @@ public class LoginPage extends AbstractBrowsingPage
     {
         // Input email
         // Fill the email field with the parameter.
-        $("#email").val(email);
+        emailField.val(email);
         // Input password
         // Fill the password field with the parameter.
-        $("#password").val(password);
+        passwordField.val(password);
         // Log in and open the homepage
         // Click on the Sign In button.
-        $("#btnSignIn").scrollTo().click();
+        signInButton.scrollTo().click();
     }
 
     /**
@@ -84,7 +97,7 @@ public class LoginPage extends AbstractBrowsingPage
      */
     public RegisterPage openRegister()
     {
-        $("#linkRegister").scrollTo().click();
+        registerLink.scrollTo().click();
         return new RegisterPage();
     }
 
@@ -93,7 +106,7 @@ public class LoginPage extends AbstractBrowsingPage
      */
     public void validateSuccessfullRegistration()
     {
-        successMessage.validateSuccessMessage("Your account has been created. Log in with your email address and password.");
+        successMessage.validateSuccessMessage(Context.localizedText("AccountPages.validation.successfulAccountCreation"));
     }
 
     /**
@@ -119,8 +132,8 @@ public class LoginPage extends AbstractBrowsingPage
      */
     public void validateWrongEmail(String eMail)
     {
-        errorMessage.validateErrorMessage("The email address you entered doesn't exist. Please try again.");
-        $("#email").shouldHave(exactValue(eMail));
+        errorMessage.validateErrorMessage(Context.localizedText("AccountPages.validation.emailDoesNotExistError"));
+        emailField.shouldHave(exactValue(eMail));
     }
 
     /**
@@ -128,8 +141,7 @@ public class LoginPage extends AbstractBrowsingPage
      */
     public void validateWrongPassword(String eMail)
     {
-        errorMessage.validateErrorMessage("The password you entered is incorrect. Please try again.");
-        $("#email").shouldHave(exactValue(eMail));
+        errorMessage.validateErrorMessage(Context.localizedText("AccountPages.validation.incorrectPasswordError"));
+        emailField.shouldHave(exactValue(eMail));
     }
-
 }

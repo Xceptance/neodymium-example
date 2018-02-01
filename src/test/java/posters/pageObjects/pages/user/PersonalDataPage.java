@@ -8,6 +8,8 @@ import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.SelenideElement;
+
 import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
 
 /**
@@ -15,10 +17,14 @@ import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
  */
 public class PersonalDataPage extends AbstractBrowsingPage
 {
+    private SelenideElement headline = $("#titlePersonalData");
+
+    private SelenideElement deleteButton = $("#btnDeleteAccount");
+
     @Override
     public void isExpectedPage()
     {
-        $("#titlePersonalData").should(exist);
+        headline.should(exist);
     }
 
     @Override
@@ -28,13 +34,13 @@ public class PersonalDataPage extends AbstractBrowsingPage
 
         // Headline
         // Makes sure the headline is there and starts with a capital letter
-        $("#titlePersonalData").should(matchText("[A-Z].{3,}"));
+        headline.should(matchText("[A-Z].{3,}"));
         // Data
         // Makes sure the form with your user Data is there
         $("#main > div > div.col-sm-12").shouldBe(visible);
         // Delete Account Button
         // Make sure the button to delete your account is there
-        $("#btnDeleteAccount").shouldBe(visible);
+        deleteButton.shouldBe(visible);
     }
 
     /**
@@ -44,7 +50,7 @@ public class PersonalDataPage extends AbstractBrowsingPage
     {
         // Open the delete account page
         // Clicks the button to get to the Delete Account page
-        $("#btnDeleteAccount").scrollTo().click();
+        deleteButton.scrollTo().click();
         return new DeleteAccountPage();
     }
 }

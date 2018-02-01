@@ -15,6 +15,22 @@ default:
     ProductdetailPage:
         addToCartButton:
             text: Add to cart
+    AccountPages:
+        email: Email address*
+        firstname: First name*
+        lastname: Last name*
+        password: Password*
+        passwordRepeat: Repeat password*
+        yourEmail: Your email*
+        yourPassword: Your password*
+        signIn: Sign in
+        newCustomer: New customer
+        createAccount: Create account
+        createNewAccount: Create new Account
+        validation:
+            successfulAccountCreation: Your account has been created. Log in with your email address and password.
+            emailDoesNotExistError: The email address you entered doesn't exist. Please try again.
+            incorrectPasswordError: The password you entered is incorrect. Please try again.
     General:
         addresses:
             fullname: Full name*

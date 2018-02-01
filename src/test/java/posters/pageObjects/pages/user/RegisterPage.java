@@ -9,6 +9,9 @@ import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Context;
+
 import posters.dataObjects.User;
 import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
 
@@ -17,10 +20,25 @@ import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
  */
 public class RegisterPage extends AbstractBrowsingPage
 {
+
+    private SelenideElement registerForm = $("#formRegister");
+
+    private SelenideElement firstnameField = $("#firstName");
+
+    private SelenideElement lastnameField = $("#lastName");
+
+    private SelenideElement emailField = $("#eMail");
+
+    private SelenideElement passwordField = $("#password");
+
+    private SelenideElement passwordRepeatField = $("#passwordAgain");
+
+    private SelenideElement registerButton = $("#btnRegister");
+
     @Override
     public void isExpectedPage()
     {
-        $("#formRegister").should(exist);
+        registerForm.should(exist);
     }
 
     @Override
@@ -30,31 +48,31 @@ public class RegisterPage extends AbstractBrowsingPage
 
         // Login headline
         // Make sure the Headline is there and starts with a capital letter followed by at least 3 more symbols.
-        $("#formRegister .h2").should(matchText("[A-Z].{3,}"));
+        registerForm.find(".h2").should(matchText("[A-Z].{3,}"));
         // Form
         // Asserts the label belonging to the last name field displays the correct text
-        $("label[for=\"lastName\"]").shouldHave(exactText("Last name*"));
+        $("label[for=\"lastName\"]").shouldHave(exactText(Context.localizedText("AccountPages.lastname")));
         // Make sure the field to type in the last name is visible.
-        $("#lastName").shouldBe(visible);
+        lastnameField.shouldBe(visible);
         // Asserts the label belonging to the first name field displays the correct text
-        $("label[for=\"firstName\"]").shouldHave(exactText("First name*"));
+        $("label[for=\"firstName\"]").shouldHave(exactText(Context.localizedText("AccountPages.firstname")));
         // Make sure the field to type in the first name is visible.
-        $("#firstName").shouldBe(visible);
+        firstnameField.shouldBe(visible);
         // Asserts the label belonging to the email field displays the correct text
-        $("label[for=\"eMail\"]").shouldHave(exactText("Email address*"));
+        $("label[for=\"eMail\"]").shouldHave(exactText(Context.localizedText("AccountPages.email")));
         // Make sure the field to type in the e-Mail is visible.
-        $("#eMail").shouldBe(visible);
+        emailField.shouldBe(visible);
         // Asserts the label belonging to the password field displays the correct text
-        $("label[for=\"password\"]").shouldHave(exactText("Password*"));
+        $("label[for=\"password\"]").shouldHave(exactText(Context.localizedText("AccountPages.password")));
         // Make sure the field to type in the password is visible.
-        $("#password").shouldBe(visible);
+        passwordField.shouldBe(visible);
         // Asserts the label belonging to the second password field displays the correct text
-        $("label[for=\"passwordAgain\"]").shouldHave(exactText("Repeat password*"));
-        // Make sure the field to type in the password aggain is visible.
-        $("#passwordAgain").shouldBe(visible);
+        $("label[for=\"passwordAgain\"]").shouldHave(exactText(Context.localizedText("AccountPages.passwordRepeat")));
+        // Make sure the field to type in the password again is visible.
+        passwordRepeatField.shouldBe(visible);
         // Register button
         // Make sure the Registration button displays the correct text.
-        $("#btnRegister").shouldHave(exactText("Create account"));
+        registerButton.shouldHave(exactText(Context.localizedText("AccountPages.createAccount")));
     }
 
     /**
@@ -67,18 +85,18 @@ public class RegisterPage extends AbstractBrowsingPage
     {
         // Fill out the registration form
         // Type the last name parameter into the last name field.
-        $("#lastName").val(lastName);
+        lastnameField.val(lastName);
         // Type the first name parameter into the first name field.
-        $("#firstName").val(firstName);
+        firstnameField.val(firstName);
         // Type the email parameter into the email field.
-        $("#eMail").val(eMail);
+        emailField.val(eMail);
         // Type the password parameter into the password field.
-        $("#password").val(password);
+        passwordField.val(password);
         // Type the second password parameter into the second password field.
-        $("#passwordAgain").val(password);
+        passwordRepeatField.val(password);
         // Register and open the login page if successful
         // Click on the Register Button
-        $("#btnRegister").scrollTo().click();
+        registerButton.scrollTo().click();
 
         return new LoginPage();
     }
