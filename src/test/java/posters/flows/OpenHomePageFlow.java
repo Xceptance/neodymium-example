@@ -3,8 +3,9 @@ package posters.flows;
 import static com.codeborne.selenide.Selenide.clearBrowserCookies;
 import static com.codeborne.selenide.Selenide.open;
 
+import com.xceptance.neodymium.util.Context;
+
 import posters.pageobjects.pages.browsing.HomePage;
-import posters.settings.Settings;
 
 public class OpenHomePageFlow
 {
@@ -14,7 +15,7 @@ public class OpenHomePageFlow
         clearBrowserCookies();
 
         // open home page
-        open(Settings.homePageUrl);
+        open(Context.get().configuration.url());
         HomePage homePage = new HomePage();
         homePage.isExpectedPage();
         return homePage;

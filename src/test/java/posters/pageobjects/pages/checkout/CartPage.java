@@ -14,12 +14,12 @@ import static com.codeborne.selenide.Selenide.$;
 import org.junit.Assert;
 
 import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Context;
 
 import posters.dataobjects.Product;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.ProductdetailPage;
 import posters.pageobjects.utility.PriceHelper;
-import posters.settings.Settings;
 
 /**
  * @author pfotenhauer
@@ -222,12 +222,12 @@ public class CartPage extends AbstractBrowsingPage
         $("#btnRemoveProdCount" + index).scrollTo().click();
         // Wait for the second delete button to appear
         // Wait until the confirmation button is visible
-        $("#buttonDelete").waitUntil(visible, Settings.timeout);
+        $("#buttonDelete").waitUntil(visible, Context.get().configuration.timeout());
         // Click delete button
         // Click the confirmation button
         $("#buttonDelete").scrollTo().click();
         // Wait until the confirmation button is gone
-        $("#buttonDelete").waitUntil(hidden, Settings.timeout);
+        $("#buttonDelete").waitUntil(hidden, Context.get().configuration.timeout());
         // Reload page to let IDs adjust to the deletion
         miniCart.openMiniCart();
         miniCart.openCartPage();

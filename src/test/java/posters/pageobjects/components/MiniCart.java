@@ -10,10 +10,10 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Context;
 
 import posters.dataobjects.Product;
 import posters.pageobjects.pages.checkout.CartPage;
-import posters.settings.Settings;
 
 /**
  * @author pfotenhauer
@@ -39,7 +39,7 @@ public class MiniCart extends AbstractComponent
         headerCart.scrollTo().click();
         // Wait for mini cart to appear
         // Wait for the mini cart to show
-        miniCart.waitUntil(visible, Settings.timeout);
+        miniCart.waitUntil(visible, Context.get().configuration.timeout());
     }
 
     public void closeMiniCart()
@@ -50,7 +50,7 @@ public class MiniCart extends AbstractComponent
         $("a#brand").hover();
         // Wait for mini cart to disappear
         // Wait for the mini cart to disappear
-        miniCart.waitUntil(not(visible), Settings.timeout);
+        miniCart.waitUntil(not(visible), Context.get().configuration.timeout());
     }
 
     public CartPage openCartPage()

@@ -11,11 +11,11 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Context;
 
 import posters.pageobjects.pages.user.AccountOverViewPage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.pageobjects.pages.user.RegisterPage;
-import posters.settings.Settings;
 
 /**
  * @author pfotenhauer
@@ -46,7 +46,7 @@ public class UserMenu extends AbstractComponent
         showUserMenu.scrollTo().click();
         // Wait for mini cart to appear
         // Wait for the mini cart to show
-        userMenu.waitUntil(visible, Settings.timeout);
+        userMenu.waitUntil(visible, Context.get().configuration.timeout());
     }
 
     /**
@@ -60,7 +60,7 @@ public class UserMenu extends AbstractComponent
         $("a#brand").hover();
         // Wait for mini cart to disappear
         // Wait for the mini cart to disappear
-        userMenu.waitUntil(not(visible), Settings.timeout);
+        userMenu.waitUntil(not(visible), Context.get().configuration.timeout());
     }
 
     /**
