@@ -13,6 +13,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 import org.junit.Assert;
 
+import com.codeborne.selenide.SelenideElement;
+
 import posters.dataObjects.Product;
 import posters.pageObjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageObjects.pages.browsing.ProductdetailPage;
@@ -24,10 +26,14 @@ import posters.settings.Settings;
  */
 public class CartPage extends AbstractBrowsingPage
 {
+    private SelenideElement cartTable = $("#cartOverviewTable");
+
+    private SelenideElement subTotal = $("#orderSubTotalValue");
+
     @Override
     public void isExpectedPage()
     {
-        $("#cartOverviewTable").should(exist);
+        cartTable.should(exist);
     }
 
     @Override
@@ -40,7 +46,7 @@ public class CartPage extends AbstractBrowsingPage
         $("#titleCart").shouldBe(matchText("[A-Z].{3,}"));
         // Assert there is an item list with at least one item present
         // Makes sure the list of cart items is there
-        $("#cartOverviewTable").shouldBe(visible);
+        cartTable.shouldBe(visible);
         // Makes sure there's at least one product in the item list
         $("#product0").shouldBe(visible);
         // Assert the cart summary is visible
@@ -128,7 +134,7 @@ public class CartPage extends AbstractBrowsingPage
         // Stores the subtotal with the new item present
         // Remove "$" symbol from price to be able to use it in a calculation
         // Cuts off the first character from the string, which is the "$" symbol
-        String newSubTotal = $("#orderSubTotalValue").text();
+        String newSubTotal = subTotal.text();
         // New Total - Old Total = Price of item you just added
         String price = PriceHelper.subtractFromPrice(newSubTotal, oldSubTotal);
         String price2 = PriceHelper.subtractFromPrice(subOrderPrice, oldLineItemTotal);
@@ -234,7 +240,7 @@ public class CartPage extends AbstractBrowsingPage
     public void validateSubAndLineItemTotalAfterRemove(String oldSubTotal, String oldLineItemTotal)
     {
         String newSubTotal = PriceHelper.subtractFromPrice(oldSubTotal, oldLineItemTotal);
-        $("#orderSubTotalValue").shouldHave(exactText(newSubTotal));
+        subTotal.shouldHave(exactText(newSubTotal));
     }
 
     /**

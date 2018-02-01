@@ -8,11 +8,15 @@ import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.SelenideElement;
+
 /**
  * @author pfotenhauer
  */
 public class ShippingAddressPage extends AbstractCheckoutPage
 {
+    private SelenideElement headline = $("#titleDelAddr");
+
     @Override
     public void validateStructure()
     {
@@ -20,7 +24,7 @@ public class ShippingAddressPage extends AbstractCheckoutPage
 
         // Headline
         // Assert the headline is there and starts with a capital letter
-        $("#titleDelAddr").should(matchText("[A-Z].{3,}"));
+        headline.should(matchText("[A-Z].{3,}"));
         // First address
         // Makes sure at least one address is visible
         $("#delAddr0").shouldBe(visible);
@@ -28,7 +32,7 @@ public class ShippingAddressPage extends AbstractCheckoutPage
 
     public void isExpectedPage()
     {
-        $("#titleDelAddr").should(exist);
+        headline.should(exist);
     }
 
     /**

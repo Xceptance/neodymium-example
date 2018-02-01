@@ -10,6 +10,9 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Context;
+
 import posters.dataObjects.Address;
 
 /**
@@ -17,6 +20,24 @@ import posters.dataObjects.Address;
  */
 public class NewShippingAddressPage extends AbstractCheckoutPage
 {
+    private SelenideElement headline = $("#titleDelAddr");
+
+    private SelenideElement nameField = $("#fullName");
+
+    private SelenideElement companyField = $("#company");
+
+    private SelenideElement addressField = $("#addressLine");
+
+    private SelenideElement cityField = $("#city");
+
+    private SelenideElement stateField = $("#state");
+
+    private SelenideElement zipField = $("#zip");
+
+    private SelenideElement countryField = $("#country");
+
+    private SelenideElement addShippingButton = $("#btnAddDelAddr");
+
     @Override
     public void validateStructure()
     {
@@ -24,57 +45,57 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
 
         // Headline
         // Assert the headline is there and starts with a capital letter
-        $("#titleDelAddr").should(matchText("[A-Z].{3,}"));
+        headline.should(matchText("[A-Z].{3,}"));
         // Form
         // Asserts the form is there at all
         $("#formAddDelAddr").shouldBe(visible);
         // Name
         // Asserts the label next to the name field shows the right text
-        $("label[for=\"fullName\"]").shouldHave(exactText("Full name*"));
+        $("label[for=\"fullName\"]").shouldHave(exactText(Context.localizedText("General.addresses.fullname")));
         // Asserts the name field is there
-        $("#fullName").shouldBe(visible);
+        nameField.shouldBe(visible);
         // Company
         // Asserts the label next to the company field shows the right text
-        $("label[for=\"company\"]").shouldHave(exactText("Company"));
+        $("label[for=\"company\"]").shouldHave(exactText(Context.localizedText("General.addresses.company")));
         // Asserts the company field is there
-        $("#company").shouldBe(visible);
+        companyField.shouldBe(visible);
         // Address
         // Asserts the label next to the address field shows the right text
-        $("label[for=\"addressLine\"]").shouldHave(exactText("Address*"));
+        $("label[for=\"addressLine\"]").shouldHave(exactText(Context.localizedText("General.addresses.address")));
         // Asserts the address field is there
-        $("#addressLine").shouldBe(visible);
+        addressField.shouldBe(visible);
         // City
         // Asserts the label next to the city field shows the right text
-        $("label[for=\"city\"]").shouldHave(exactText("City*"));
+        $("label[for=\"city\"]").shouldHave(exactText(Context.localizedText("General.addresses.city")));
         // Asserts the city field is there
-        $("#city").shouldBe(visible);
+        cityField.shouldBe(visible);
         // State
         // Asserts the label next to the state field shows the right text
-        $("label[for=\"state\"]").shouldHave(exactText("State/Province*"));
+        $("label[for=\"state\"]").shouldHave(exactText(Context.localizedText("General.addresses.state")));
         // Asserts the state field is there
-        $("#state").shouldBe(visible);
+        stateField.shouldBe(visible);
         // Zip
         // Asserts the label next to the zip field shows the right text
-        $("label[for=\"zip\"]").shouldHave(exactText("ZIP/Postal code*"));
+        $("label[for=\"zip\"]").shouldHave(exactText(Context.localizedText("General.addresses.zip")));
         // Asserts the zip field is there
-        $("#zip").shouldBe(visible);
+        zipField.shouldBe(visible);
         // Country
         // Asserts the label next to the country field shows the right text
-        $("label[for=\"country\"]").shouldHave(exactText("Country*"));
+        $("label[for=\"country\"]").shouldHave(exactText(Context.localizedText("General.addresses.country")));
         // Asserts the country field is there
-        $("#country").shouldBe(visible);
+        countryField.shouldBe(visible);
         // Radio Button
         // Assert the radio buttons are there
         $$(".col-sm-1 input[type=\"radio\"]").shouldHaveSize(2);
         // Continue Button
         // Asserts the Continue button is there
-        $("#btnAddDelAddr").shouldBe(visible);
+        addShippingButton.shouldBe(visible);
     }
 
     @Override
     public void isExpectedPage()
     {
-        $("#titleDelAddr").should(exist);
+        headline.should(exist);
     }
 
     /**
@@ -102,25 +123,25 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
     {
         // Name
         // Enter the name parameter
-        $("#fullName").val(name);
+        nameField.val(name);
         // Company
         // Enter the company parameter
-        $("#company").val(company);
+        companyField.val(company);
         // Address
         // Enter the address parameter
-        $("#addressLine").val(address);
+        addressField.val(address);
         // City
         // Enter the city parameter
-        $("#city").val(city);
+        cityField.val(city);
         // State
         // Enter the state parameter
-        $("#state").val(state);
+        stateField.val(state);
         // Zip
         // Enter the zip parameter
-        $("#zip").val(zip);
+        zipField.val(zip);
         // Country
         // Select the country whose label equals the parameter
-        $("#country").selectOption(country);
+        countryField.selectOption(country);
         // Radio Button
         // Click the radio button for Yes or No
         if (sameBillingAddress)
@@ -133,7 +154,7 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
         }
         // Open the billing addresses or payment options page, depending on which radio button you checked
         // Click on Continue
-        $("#btnAddDelAddr").scrollTo().click();
+        addShippingButton.scrollTo().click();
 
         return new NewBillingAddressPage();
     }

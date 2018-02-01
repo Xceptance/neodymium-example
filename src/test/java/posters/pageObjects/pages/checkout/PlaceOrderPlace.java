@@ -8,6 +8,8 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.SelenideElement;
+
 import posters.dataObjects.Address;
 import posters.dataObjects.CreditCard;
 import posters.pageObjects.pages.browsing.HomePage;
@@ -17,6 +19,8 @@ import posters.pageObjects.pages.browsing.HomePage;
  */
 public class PlaceOrderPlace extends AbstractCheckoutPage
 {
+    private SelenideElement headline = $("#titleOrderOverview");
+
     @Override
     public void validateStructure()
     {
@@ -24,13 +28,13 @@ public class PlaceOrderPlace extends AbstractCheckoutPage
 
         // Headline
         // Headline is there and starts with a capital letter
-        $("#titleOrderOverview").should(matchText("[A-Z].{3,}"));
+        headline.should(matchText("[A-Z].{3,}"));
     }
 
     @Override
     public void isExpectedPage()
     {
-        $("#titleOrderOverview").should(exist);
+        headline.should(exist);
     }
 
     /**

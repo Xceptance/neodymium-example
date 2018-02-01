@@ -9,6 +9,9 @@ import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Context;
+
 import posters.dataObjects.CreditCard;
 
 /**
@@ -16,6 +19,18 @@ import posters.dataObjects.CreditCard;
  */
 public class NewPaymentPage extends AbstractCheckoutPage
 {
+    private SelenideElement headline = $("#titlePayment");
+
+    private SelenideElement creditCardNumber = $("#creditCardNumber");
+
+    private SelenideElement creditCardName = $("#name");
+
+    private SelenideElement expirationMonth = $("#expirationDateMonth");
+
+    private SelenideElement expirationYear = $("#expirationDateYear");
+
+    private SelenideElement addPaymentButton = $("#btnAddPayment");
+
     @Override
     public void validateStructure()
     {
@@ -23,36 +38,36 @@ public class NewPaymentPage extends AbstractCheckoutPage
 
         // Headline
         // Makes sure the headline is there and starts with a capital letter
-        $("#titlePayment").should(matchText("[A-Z].{3,}"));
+        headline.should(matchText("[A-Z].{3,}"));
         // Form
         // Make sure the form is there to begin with
         $("#formAddPayment").should(exist);
         // Credit Card Number
         // Makes sure the label next to the card number field shows the correct text
-        $("label[for=\"creditCardNumber\"]").shouldHave(exactText("Card number*"));
+        $("label[for=\"creditCardNumber\"]").shouldHave(exactText(Context.localizedText("General.payment.cardnumber")));
         // Makes sure the card number field is there
-        $("#creditCardNumber").shouldBe(visible);
+        creditCardNumber.shouldBe(visible);
         // Name
         // Makes sure the label next to the card holder field shows the correct text
-        $("label[for=\"name\"]").shouldHave(exactText("Cardholder's name*"));
+        $("label[for=\"name\"]").shouldHave(exactText(Context.localizedText("General.payment.cardholdername")));
         // Makes sure the card holder field is there
-        $("#name").shouldBe(visible);
+        creditCardName.shouldBe(visible);
         // Expiration
         // Makes sure the label next to the expiration date fields shows the correct text
-        $("label[for=\"expirationDateMonth\"]").shouldHave(exactText("Expiration date*"));
+        $("label[for=\"expirationDateMonth\"]").shouldHave(exactText(Context.localizedText("General.payment.expirationdate")));
         // Makes sure the expiration month field is there
-        $("#expirationDateMonth").shouldBe(visible);
+        expirationMonth.shouldBe(visible);
         // Makes sure the expiration year field is there
-        $("#expirationDateYear").shouldBe(visible);
+        expirationYear.shouldBe(visible);
         // Continue Button
         // Makes sure the continue button is there
-        $("#btnAddPayment").should(exist);
+        addPaymentButton.should(exist);
     }
 
     @Override
     public void isExpectedPage()
     {
-        $("#titlePayment").should(exist);
+        headline.should(exist);
     }
 
     /**
@@ -69,18 +84,18 @@ public class NewPaymentPage extends AbstractCheckoutPage
     {
         // Credit Card Number
         // Fills the card number field with the parameter
-        $("#creditCardNumber").val(number);
+        creditCardNumber.val(number);
         // Name
         // Fills the card holder field with the parameter
-        $("#name").val(name);
+        creditCardName.val(name);
         // Expiration
         // Chooses the expiration month matching the parameter
-        $("#expirationDateMonth").selectOption(month);
+        expirationMonth.selectOption(month);
         // Chooses the expiration year matching the parameter
-        $("#expirationDateYear").selectOption(year);
+        expirationYear.selectOption(year);
         // Opens the order overview page
         // Clicks the Continue button
-        $("#btnAddPayment").scrollTo().click();
+        addPaymentButton.scrollTo().click();
 
         return new PlaceOrderPlace();
     }

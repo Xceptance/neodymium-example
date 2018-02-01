@@ -8,11 +8,15 @@ import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.SelenideElement;
+
 /**
  * @author pfotenhauer
  */
 public class PaymentPage extends AbstractCheckoutPage
 {
+    private SelenideElement headline = $("#titlePayment");
+
     @Override
     public void validateStructure()
     {
@@ -20,7 +24,7 @@ public class PaymentPage extends AbstractCheckoutPage
 
         // Headline
         // Makes sure the headline is there and starts with a capital letter
-        $("#titlePayment").should(matchText("[A-Z].{3,}"));
+        headline.should(matchText("[A-Z].{3,}"));
         // First credit card
         // Makes sure at least one credit card is saved
         $("#payment0").shouldBe(visible);
@@ -29,7 +33,7 @@ public class PaymentPage extends AbstractCheckoutPage
     @Override
     public void isExpectedPage()
     {
-        $("#titlePayment").should(exist);
+        headline.should(exist);
     }
 
     /**
