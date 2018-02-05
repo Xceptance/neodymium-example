@@ -7,6 +7,6 @@ public class Header extends AbstractComponent
 {
     public void isComponentAvailable()
     {
-        $("body > header nav#globalNavigation").should(exist);
+        $("#globalNavigation").should(exist);
     }
 }

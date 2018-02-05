@@ -9,7 +9,7 @@ import com.xceptance.neodymium.util.Context;
 
 public class Footer extends AbstractComponent
 {
-    private SelenideElement footer = $("body > footer#footer");
+    private SelenideElement footer = $("#footer");
 
     public void isComponentAvailable()
     {

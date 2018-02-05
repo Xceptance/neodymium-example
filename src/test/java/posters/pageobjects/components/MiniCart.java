@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
@@ -123,21 +124,22 @@ public class MiniCart extends AbstractComponent
         openMiniCart();
         // Validate data of specified item
         // Product Name
-        SelenideElement miniCartItems = $("ul.cartMiniElementList li:nth-child(" + position + ") ul.cartItems");
+        // ul.cartMiniElementList li:nth-child(" + position + ") ul.cartItems
+        SelenideElement miniCartItem = $$("#miniCartMenu .cartItems").get(position - 1);
         // Compares the name of the cart item at position @{position} to the parameter
-        miniCartItems.find(".prodName").shouldHave(exactText(productName));
+        miniCartItem.find(".prodName").shouldHave(exactText(productName));
         // Product Style
         // Compares the style of the cart item at position @{position} to the parameter
-        miniCartItems.find(".prodStyle").shouldHave(exactText(productStyle));
+        miniCartItem.find(".prodStyle").shouldHave(exactText(productStyle));
         // Product Size
         // Compares the style of the cart item at position @{position} to the parameter
-        miniCartItems.find(".prodSize").shouldHave(exactText(productSize));
+        miniCartItem.find(".prodSize").shouldHave(exactText(productSize));
         // Amount
         // Compares the amount of the cart item at position @{position} to the parameter
-        miniCartItems.find(".prodCount").shouldHave(exactText(Integer.toString(productCount)));
+        miniCartItem.find(".prodCount").shouldHave(exactText(Integer.toString(productCount)));
         // Price
         // Compares the price of the cart item at position @{position} to the parameter
-        miniCartItems.find(".prodPrice").shouldHave(exactText(prodTotalPrice));
+        miniCartItem.find(".prodPrice").shouldHave(exactText(prodTotalPrice));
         // Close mini cart
         closeMiniCart();
     }

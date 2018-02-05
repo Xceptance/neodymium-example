@@ -37,7 +37,7 @@ public class UserMenu extends AbstractComponent
      */
     public void validateNotLoggedIn()
     {
-        $("#userMenu .goToLogin").should(exist);
+        userMenu.find(".goToLogin").should(exist);
     }
 
     public void openUserMenu()
@@ -89,7 +89,7 @@ public class UserMenu extends AbstractComponent
     public RegisterPage openRegister()
     {
         openUserMenu();
-        userMenu.find("a.goToRegistration").scrollTo().click();
+        userMenu.find(".goToRegistration").scrollTo().click();
         return new RegisterPage();
     }
 

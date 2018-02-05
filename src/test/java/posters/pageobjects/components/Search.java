@@ -12,7 +12,7 @@ import posters.pageobjects.pages.browsing.NoHitsPage;
 
 public class Search extends AbstractComponent
 {
-    private SelenideElement searchField = $("#searchForm > #s");
+    private SelenideElement searchField = $("#s");
 
     public void isComponentAvailable()
     {

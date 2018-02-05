@@ -5,8 +5,11 @@ package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 import org.openqa.selenium.By;
+
+import com.codeborne.selenide.SelenideElement;
 
 import posters.pageobjects.pages.browsing.CategoryPage;
 
@@ -37,20 +40,21 @@ public class TopNavigation extends AbstractComponent
     public CategoryPage clickSubCategoryByPosition(int categoryPosition, int subCategoryPosition)
     {
         // Open the category page
-        $("#categoryMenu > ul > li:nth-of-type(" + categoryPosition + ") a").hover();
+        SelenideElement topCat = $$("#categoryMenu .header-menu-item").get(categoryPosition - 1);
+        topCat.hover();
         // Clicks the subcategory with position @{subCategoryPosition}
         // belonging to the category with position @{categoryPosition}
-        $("#categoryMenu > ul > li:nth-of-type(" + categoryPosition + ") ul.dropdown-menu li:nth-of-type(" + subCategoryPosition + ") a").click();
+        topCat.find(".dropdown-menu a", subCategoryPosition - 1).click();
         return new CategoryPage();
     }
 
     public CategoryPage clickSubCategoryByName(String categoryName, String subCategoryName)
     {
         // Open the category page
-        $("#categoryMenu > ul > li > div[title='" + categoryName + "']").hover();
+        $(By.linkText(categoryName)).hover();
         // Clicks the subcategory with position @{subCategoryPosition}
         // belonging to the category with position @{categoryPosition}
-        $("#categoryMenu > ul > li ul.dropdown-menu li > a[title='" + subCategoryName + "']").click();
+        $(By.linkText(subCategoryName)).click();
         return new CategoryPage();
     }
 
