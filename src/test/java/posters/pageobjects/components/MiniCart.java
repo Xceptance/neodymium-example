@@ -48,7 +48,7 @@ public class MiniCart extends AbstractComponent
         // Click the mini cart icon again
         headerCart.scrollTo().click();
         // Move the mouse out of the area
-        $("a#brand").hover();
+        $("#brand").hover();
         // Wait for mini cart to disappear
         // Wait for the mini cart to disappear
         miniCart.waitUntil(not(visible), Context.get().configuration.timeout());

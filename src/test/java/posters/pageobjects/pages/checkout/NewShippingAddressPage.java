@@ -86,7 +86,7 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
         countryField.shouldBe(visible);
         // Radio Button
         // Assert the radio buttons are there
-        $$(".col-sm-1 input[type=\"radio\"]").shouldHaveSize(2);
+        $$("input[name=\"billEqualShipp\"]").shouldHaveSize(2);
         // Continue Button
         // Asserts the Continue button is there
         addShippingButton.shouldBe(visible);
