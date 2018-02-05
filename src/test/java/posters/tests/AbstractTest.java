@@ -3,8 +3,6 @@
  */
 package posters.tests;
 
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,9 +24,9 @@ import io.qameta.allure.Step;
  */
 @RunWith(NeodymiumRunner.class)
 @Browser(
-{
-  "Chrome_1024x768"
-})
+    {
+        "Chrome_1024x768"
+    })
 public class AbstractTest
 {
     protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractTest.class);
@@ -45,8 +43,7 @@ public class AbstractTest
     public void before()
     {
         Context.create(data);
-        Context.get().driver = getWebDriver();
-
+        
         Configuration.timeout = Context.get().configuration.timeout();
         Configuration.collectionsTimeout = 2 * Configuration.timeout;
     }
