@@ -10,9 +10,9 @@ import posters.pageobjects.pages.browsing.CategoryPage;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.browsing.ProductdetailPage;
 import posters.pageobjects.pages.checkout.CartPage;
-import posters.tests.BasicTest;
+import posters.tests.AbstractTest;
 
-public class AddToCartTest extends BasicTest
+public class AddToCartTest extends AbstractTest
 {
 
     @Test

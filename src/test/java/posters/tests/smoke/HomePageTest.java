@@ -4,12 +4,12 @@ import org.junit.Test;
 
 import posters.flows.OpenHomePageFlow;
 import posters.pageobjects.pages.browsing.HomePage;
-import posters.tests.BasicTest;
+import posters.tests.AbstractTest;
 
 /**
  * @author pfotenhauer
  */
-public class HomePageTest extends BasicTest
+public class HomePageTest extends AbstractTest
 {
     @Test
     public void testVisitingHomepage()

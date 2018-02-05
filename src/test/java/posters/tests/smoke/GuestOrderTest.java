@@ -19,12 +19,12 @@ import posters.pageobjects.pages.checkout.NewBillingAddressPage;
 import posters.pageobjects.pages.checkout.NewPaymentPage;
 import posters.pageobjects.pages.checkout.NewShippingAddressPage;
 import posters.pageobjects.pages.checkout.PlaceOrderPlace;
-import posters.tests.BasicTest;
+import posters.tests.AbstractTest;
 
 /**
  * @author pfotenhauer
  */
-public class GuestOrderTest extends BasicTest
+public class GuestOrderTest extends AbstractTest
 {
     @Test
     public void testOrderingAsGuest()

@@ -12,12 +12,12 @@ import posters.flows.OpenHomePageFlow;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.pageobjects.pages.user.RegisterPage;
-import posters.tests.BasicTest;
+import posters.tests.AbstractTest;
 
 /**
  * @author pfotenhauer
  */
-public class RegisterFromUserMenuTest extends BasicTest
+public class RegisterFromUserMenuTest extends AbstractTest
 {
     final User user = new User("Jane", "Doe", "jane@doe.com", "topsecret");
 

@@ -9,12 +9,12 @@ import posters.flows.OpenHomePageFlow;
 import posters.pageobjects.pages.browsing.CategoryPage;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.browsing.ProductdetailPage;
-import posters.tests.BasicTest;
+import posters.tests.AbstractTest;
 
 /**
  * @author pfotenhauer
  */
-public class BrowseTest extends BasicTest
+public class BrowseTest extends AbstractTest
 {
     @Test
     public void testBrowsing()

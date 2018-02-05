@@ -29,9 +29,9 @@ import io.qameta.allure.Step;
 {
   "Chrome_1024x768"
 })
-public class BasicTest
+public class AbstractTest
 {
-    protected static final Logger LOGGER = LoggerFactory.getLogger(BasicTest.class);
+    protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractTest.class);
 
     // reads the test data from test data file, can't be final
     // because it needs to be readable

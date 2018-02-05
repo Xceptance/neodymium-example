@@ -10,12 +10,12 @@ import posters.pageobjects.pages.browsing.CategoryPage;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.browsing.NoHitsPage;
 import posters.pageobjects.pages.browsing.ProductdetailPage;
-import posters.tests.BasicTest;
+import posters.tests.AbstractTest;
 
 /**
  * @author pfotenhauer
  */
-public class SearchTest extends BasicTest
+public class SearchTest extends AbstractTest
 {
     @Test
     public void testSearching()

@@ -15,12 +15,12 @@ import posters.flows.OpenHomePageFlow;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.pageobjects.pages.user.RegisterPage;
-import posters.tests.BasicTest;
+import posters.tests.AbstractTest;
 
 /**
  * @author pfotenhauer
  */
-public class RegisterTest extends BasicTest
+public class RegisterTest extends AbstractTest
 {
     User user;
 

@@ -11,7 +11,7 @@ import posters.dataobjects.User;
 import posters.flows.OpenLoginPageFlow;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.user.LoginPage;
-import posters.tests.BasicTest;
+import posters.tests.AbstractTest;
 
 /**
  * @author pfotenhauer
@@ -21,7 +21,7 @@ import posters.tests.BasicTest;
   "Chrome_1024x768",
   "FF_1024x768"
 })
-public class LoginTest extends BasicTest
+public class LoginTest extends AbstractTest
 {
 
     @Test

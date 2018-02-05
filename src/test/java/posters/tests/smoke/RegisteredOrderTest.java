@@ -22,12 +22,12 @@ import posters.pageobjects.pages.checkout.PaymentPage;
 import posters.pageobjects.pages.checkout.PlaceOrderPlace;
 import posters.pageobjects.pages.checkout.ShippingAddressPage;
 import posters.pageobjects.pages.user.LoginPage;
-import posters.tests.BasicTest;
+import posters.tests.AbstractTest;
 
 /**
  * @author pfotenhauer
  */
-public class RegisteredOrderTest extends BasicTest
+public class RegisteredOrderTest extends AbstractTest
 {
     @Test
     public void testOrderingAsRegisteredUser()
