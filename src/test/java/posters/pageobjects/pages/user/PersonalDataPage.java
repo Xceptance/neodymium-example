@@ -37,7 +37,8 @@ public class PersonalDataPage extends AbstractBrowsingPage
         headline.should(matchText("[A-Z].{3,}"));
         // Data
         // Makes sure the form with your user Data is there
-        $("#main > div > div.col-sm-12").shouldBe(visible);
+        $("#customerName").shouldBe(visible);
+        $("#customerEmail").shouldBe(visible);
         // Delete Account Button
         // Make sure the button to delete your account is there
         deleteButton.shouldBe(visible);

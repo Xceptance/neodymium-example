@@ -24,15 +24,15 @@ public class HomePage extends AbstractBrowsingPage
         super.validateStructure();
 
         // Verifies the company Logo and name are visible.
-        $("a#brand").shouldBe(visible);
+        $("#brand").shouldBe(visible);
 
         // Verifies the Navigation bar is visible
         $("#categoryMenu .nav").shouldBe(visible);
         // Asserts there's categories in the nav bar.
-        $$("#categoryMenu .nav > li.dropdown.header-menu-item").shouldHave(sizeGreaterThan(0));
+        $$("#categoryMenu .header-menu-item").shouldHave(sizeGreaterThan(0));
 
         // Asserts the first headline is there.
-        $("#titleIndex.h2").shouldBe(matchText("[A-Z].{3,}"));
+        $("#titleIndex").shouldBe(matchText("[A-Z].{3,}"));
         // Asserts the animated poster rotation is there.
         $("#pShopCarousel").shouldBe(visible);
 
@@ -41,7 +41,7 @@ public class HomePage extends AbstractBrowsingPage
         // Asserts there's a list of items under "Hot Products".
         $("#productList").shouldBe(visible);
         // Asserts there's at least 1 item in the list.
-        $$("#productList > li").shouldHave(sizeGreaterThan(0));
+        $$("#productList .thumbnail").shouldHave(sizeGreaterThan(0));
     }
 
     public void validate()

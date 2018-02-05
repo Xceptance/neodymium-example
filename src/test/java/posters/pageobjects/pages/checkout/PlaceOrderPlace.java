@@ -6,6 +6,7 @@ package posters.pageobjects.pages.checkout;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
@@ -21,6 +22,14 @@ public class PlaceOrderPlace extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleOrderOverview");
 
+    private SelenideElement shippingAddressForm = $("#shippingAddr");
+
+    private SelenideElement billingAddressForm = $("#billingAddr");
+
+    private SelenideElement paymentForm = $("#payment");
+
+    private SelenideElement orderButton = $("#btnOrder");
+
     @Override
     public void validateStructure()
     {
@@ -29,6 +38,10 @@ public class PlaceOrderPlace extends AbstractCheckoutPage
         // Headline
         // Headline is there and starts with a capital letter
         headline.should(matchText("[A-Z].{3,}"));
+        shippingAddressForm.shouldBe(visible);
+        billingAddressForm.shouldBe(visible);
+        paymentForm.shouldBe(visible);
+        orderButton.shouldBe(visible);
     }
 
     @Override
@@ -54,79 +67,81 @@ public class PlaceOrderPlace extends AbstractCheckoutPage
         final int index = position - 1;
         // Item info evaluation
         // The product at index @{index} exists
-        $("#checkoutOverviewTable tr#product" + index).should(exist);
+        SelenideElement productContainer = $("#checkoutOverviewTable #product" + index);
+        productContainer.should(exist);
         // Name
         // The name equals the parameter
-        $("tr#product" + index + " .pName").shouldHave(exactText(productName));
+        productContainer.find(".pName").shouldHave(exactText(productName));
         // Amount
         // The amount equals the parameter
-        $("tr#product" + index + " td.pCount").shouldHave(exactText(Integer.toString(productCount)));
+        productContainer.find(".pCount").shouldHave(exactText(Integer.toString(productCount)));
         // Style
         // The style equals the parameter
-        $("tr#product" + index + " .pStyle").shouldHave(exactText(productStyle));
+        productContainer.find(".pStyle").shouldHave(exactText(productStyle));
         // Size
         // The size equals the parameter
-        $("tr#product" + index + " .pSize").shouldHave(exactText(productSize));
+        productContainer.find(".pSize").shouldHave(exactText(productSize));
     }
 
     public void validateAddressAndPayment(Address shippingAddress, Address billingAddress, CreditCard creditcard)
     {
+
         // Shipping address
         // Name
         // Makes sure the shipping address name matches the parameter
-        $("#shippingAddr .name").shouldHave(exactText(shippingAddress.getFullName()));
+        shippingAddressForm.find(".name").shouldHave(exactText(shippingAddress.getFullName()));
         // Company
         // Makes sure the shipping address company matches the parameter
-        $("#shippingAddr .company").shouldHave(exactText(shippingAddress.getCompany()));
+        shippingAddressForm.find(".company").shouldHave(exactText(shippingAddress.getCompany()));
         // Address
         // Makes sure the shipping address matches the parameter
-        $("#shippingAddr .addressLine").shouldHave(exactText(shippingAddress.getAddressLine()));
+        shippingAddressForm.find(".addressLine").shouldHave(exactText(shippingAddress.getAddressLine()));
         // City
         // Makes sure the shipping address city matches the parameter
-        $("#shippingAddr .city").shouldHave(exactText(shippingAddress.getCity()));
+        shippingAddressForm.find(".city").shouldHave(exactText(shippingAddress.getCity()));
         // State
         // Makes sure the shipping address state matches the parameter
-        $("#shippingAddr .state").shouldHave(exactText(shippingAddress.getState()));
+        shippingAddressForm.find(".state").shouldHave(exactText(shippingAddress.getState()));
         // ZIP
         // Makes sure the shipping address ZIP matches the parameter
-        $("#shippingAddr .zip").shouldHave(exactText(" " + shippingAddress.getZip()));
+        shippingAddressForm.find(".zip").shouldHave(exactText(" " + shippingAddress.getZip()));
         // Country
         // Makes sure the shipping address country matches the parameter
-        $("#shippingAddr .country").shouldHave(exactText(shippingAddress.getCountry()));
+        shippingAddressForm.find(".country").shouldHave(exactText(shippingAddress.getCountry()));
         // Billing address
         // Name
         // Makes sure the billing address name matches the parameter
-        $("#billingAddr .name").shouldHave(exactText(billingAddress.getFullName()));
+        billingAddressForm.find(".name").shouldHave(exactText(billingAddress.getFullName()));
         // Company
         // Makes sure the billing address company matches the parameter
-        $("#billingAddr .company").shouldHave(exactText(billingAddress.getCompany()));
+        billingAddressForm.find(".company").shouldHave(exactText(billingAddress.getCompany()));
         // Address
         // Makes sure the billing address matches the parameter
-        $("#billingAddr .addressLine").shouldHave(exactText(billingAddress.getAddressLine()));
+        billingAddressForm.find(".addressLine").shouldHave(exactText(billingAddress.getAddressLine()));
         // City
         // Makes sure the billing address city matches the parameter
-        $("#billingAddr .city").shouldHave(exactText(billingAddress.getCity()));
+        billingAddressForm.find(".city").shouldHave(exactText(billingAddress.getCity()));
         // State
         // Makes sure the billing address state matches the parameter
-        $("#billingAddr .state").shouldHave(exactText(billingAddress.getState()));
+        billingAddressForm.find(".state").shouldHave(exactText(billingAddress.getState()));
         // ZIP
         // Makes sure the billing address ZIP matches the parameter
-        $("#billingAddr .zip").shouldHave(exactText(billingAddress.getZip()));
+        billingAddressForm.find(".zip").shouldHave(exactText(billingAddress.getZip()));
         // Country
         // Makes sure the billing address country matches the parameter
-        $("#billingAddr .country").shouldHave(exactText(billingAddress.getCountry()));
+        billingAddressForm.find(".country").shouldHave(exactText(billingAddress.getCountry()));
         // Payment
         // Name
         // Makes sure the credit card holder matches the parameter
-        $("#payment .name .value").shouldHave(exactText(creditcard.getFullName()));
+        paymentForm.find(" .name .value").shouldHave(exactText(creditcard.getFullName()));
         // Credit Card Number
         // Makes sure the anonymized credit card number matches the parameter
-        $("#payment .cardNumber .value").shouldHave(exactText(creditcard.getCrypticCardNumber()));
+        paymentForm.find(" .cardNumber .value").shouldHave(exactText(creditcard.getCrypticCardNumber()));
         // Expiration
         // Makes sure the credit card expiration month matches the parameter
-        $("#payment .exp .month").shouldHave(exactText(creditcard.getExpDateMonth()));
+        paymentForm.find(" .exp .month").shouldHave(exactText(creditcard.getExpDateMonth()));
         // Makes sure the credit card expiration year matches the parameter
-        $("#payment .exp .year").shouldHave(exactText(creditcard.getExpDateYear()));
+        paymentForm.find(" .exp .year").shouldHave(exactText(creditcard.getExpDateYear()));
     }
 
     public String getTotalCosts()
@@ -138,7 +153,7 @@ public class PlaceOrderPlace extends AbstractCheckoutPage
     {
         // Opens the homepage
         // Clicks the Order button
-        $("#btnOrder").scrollTo().click();
+        orderButton.scrollTo().click();
 
         return new HomePage();
     }
