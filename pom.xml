@@ -51,7 +51,7 @@
                     <forkCount>2</forkCount>
                     <!-- our test case naming does not follow Maven naming conventions -->
                     <includes>
-                        <include>posters/neodymium/tests/**/*Test.java</include>
+                        <include>posters/tests/**/*Test.java</include>
                     </includes>
                     <testFailureIgnore>true</testFailureIgnore>
                     <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
