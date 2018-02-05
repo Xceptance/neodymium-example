@@ -1,4 +1,4 @@
-package posters.neodymium.tests.smoke;
+package posters.tests.smoke;
 
 import org.junit.Test;
 
@@ -6,11 +6,11 @@ import com.xceptance.neodymium.util.Context;
 
 import posters.dataobjects.Product;
 import posters.flows.OpenHomePageFlow;
-import posters.neodymium.tests.BasicTest;
 import posters.pageobjects.pages.browsing.CategoryPage;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.browsing.ProductdetailPage;
 import posters.pageobjects.pages.checkout.CartPage;
+import posters.tests.BasicTest;
 
 public class AddToCartTest extends BasicTest
 {

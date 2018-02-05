@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.neodymium.tests.unit;
+package posters.tests.unit;
 
 import org.junit.Test;
 
@@ -9,9 +9,9 @@ import com.xceptance.neodymium.multibrowser.Browser;
 
 import posters.dataobjects.User;
 import posters.flows.OpenLoginPageFlow;
-import posters.neodymium.tests.BasicTest;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.user.LoginPage;
+import posters.tests.BasicTest;
 
 /**
  * @author pfotenhauer

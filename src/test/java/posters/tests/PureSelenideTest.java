@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.neodymium.tests;
+package posters.tests;
 
 import org.junit.Before;
 

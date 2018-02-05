@@ -1,10 +1,10 @@
-package posters.neodymium.tests.smoke;
+package posters.tests.smoke;
 
 import org.junit.Test;
 
 import posters.flows.OpenHomePageFlow;
-import posters.neodymium.tests.BasicTest;
 import posters.pageobjects.pages.browsing.HomePage;
+import posters.tests.BasicTest;
 
 /**
  * @author pfotenhauer

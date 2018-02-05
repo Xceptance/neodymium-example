@@ -1,41 +1,58 @@
 /**
  * 
  */
-package posters.neodymium.tests.smoke;
+package posters.tests.smoke;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+
+import com.xceptance.neodymium.util.DataUtils;
 
 import posters.dataobjects.User;
 import posters.flows.DeleteUserFlow;
 import posters.flows.OpenHomePageFlow;
-import posters.neodymium.tests.BasicTest;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.pageobjects.pages.user.RegisterPage;
+import posters.tests.BasicTest;
 
 /**
  * @author pfotenhauer
  */
-public class RegisterFromUserMenuTest extends BasicTest
+public class RegisterTest extends BasicTest
 {
-    final User user = new User("Jane", "Doe", "jane@doe.com", "topsecret");
+    User user;
+
+    @Before
+    public void setup()
+    {
+        user = DataUtils.get(User.class);
+    }
 
     @Test
-    public void testRegisteringFromUserMenu()
+    public void testRegistering()
     {
         // Goto homepage
+        step("Goto homepage");
         HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Assure not logged in status
+        step("Assure not logged in status");
         homePage.userMenu.validateNotLoggedIn();
 
+        // Goto login form
+        step("Goto login form");
+        LoginPage loginPage = homePage.userMenu.openLogin();
+        loginPage.validateStructure();
+
         // Goto register form
-        RegisterPage registerPage = homePage.userMenu.openRegister();
+        step("Goto register form");
+        RegisterPage registerPage = loginPage.openRegister();
         registerPage.validateStructure();
 
-        LoginPage loginPage = registerPage.sendRegisterForm(user, user.getPassword());
+        loginPage = registerPage.sendRegisterForm(user, user.getPassword());
         loginPage.validateSuccessfullRegistration();
         loginPage.validateStructure();
 
@@ -46,6 +63,7 @@ public class RegisterFromUserMenuTest extends BasicTest
     @After
     public void after()
     {
+        step("After Register - Delete User");
         DeleteUserFlow.flow(user);
     }
 }

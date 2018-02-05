@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.neodymium.tests;
+package posters.tests;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 

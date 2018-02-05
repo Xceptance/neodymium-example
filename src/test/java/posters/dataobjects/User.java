@@ -21,7 +21,6 @@ public class User
      */
     public User()
     {
-
     }
 
     public User(String firstName, String lastName, String email, String password)
