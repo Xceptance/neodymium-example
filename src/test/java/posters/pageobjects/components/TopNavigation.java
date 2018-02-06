@@ -11,6 +11,7 @@ import org.openqa.selenium.By;
 
 import com.codeborne.selenide.SelenideElement;
 
+import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.CategoryPage;
 
 /**
@@ -23,20 +24,13 @@ public class TopNavigation extends AbstractComponent
         $("#categoryMenu").should(exist);
     }
 
-    /**
-     * @return
-     */
-    public CategoryPage clickCategory(String categoryName)
-    {
-        $(By.linkText(categoryName)).scrollTo().click();
-        return new CategoryPage();
-    }
-
+    @Step("get the subcategory name")
     public String getSubCategoryNameByPosition(int categoryPosition, int subCategoryPosition)
     {
         return $("#categoryMenu > ul > li:nth-of-type(" + categoryPosition + ") ul.dropdown-menu li:nth-of-type(" + subCategoryPosition + ") a").attr("title");
     }
 
+    @Step("click a subcategory")
     public CategoryPage clickSubCategoryByPosition(int categoryPosition, int subCategoryPosition)
     {
         // Open the category page
@@ -48,6 +42,14 @@ public class TopNavigation extends AbstractComponent
         return new CategoryPage();
     }
 
+    @Step("click on \"{categoryName}\" category")
+    public CategoryPage clickCategory(String categoryName)
+    {
+        $(By.linkText(categoryName)).scrollTo().click();
+        return new CategoryPage();
+    }
+
+    @Step("click on a \"{subCategoryName}\" subcategory within \"{categoryName}\"")
     public CategoryPage clickSubCategoryByName(String categoryName, String subCategoryName)
     {
         // Open the category page
@@ -57,5 +59,4 @@ public class TopNavigation extends AbstractComponent
         $(By.linkText(subCategoryName)).click();
         return new CategoryPage();
     }
-
 }

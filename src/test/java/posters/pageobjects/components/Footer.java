@@ -7,6 +7,8 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
 
+import io.qameta.allure.Step;
+
 public class Footer extends AbstractComponent
 {
     private SelenideElement footer = $("#footer");
@@ -16,6 +18,7 @@ public class Footer extends AbstractComponent
         footer.should(exist);
     }
 
+    @Step("validate the footer")
     public void validate()
     {
         isComponentAvailable();

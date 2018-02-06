@@ -13,6 +13,7 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
 
+import io.qameta.allure.Step;
 import posters.pageobjects.pages.user.AccountOverViewPage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.pageobjects.pages.user.RegisterPage;
@@ -32,14 +33,7 @@ public class UserMenu extends AbstractComponent
         showUserMenu.should(exist);
     }
 
-    /**
-     * 
-     */
-    public void validateNotLoggedIn()
-    {
-        userMenu.find(".goToLogin").should(exist);
-    }
-
+    @Step("open user menu")
     public void openUserMenu()
     {
         // Click the mini cart icon
@@ -49,9 +43,7 @@ public class UserMenu extends AbstractComponent
         userMenu.waitUntil(visible, Context.get().configuration.timeout());
     }
 
-    /**
-     * 
-     */
+    @Step("close user menu")
     public void closeUserMenu()
     {
         // Click the mini cart icon again
@@ -63,9 +55,7 @@ public class UserMenu extends AbstractComponent
         userMenu.waitUntil(not(visible), Context.get().configuration.timeout());
     }
 
-    /**
-     * 
-     */
+    @Step("open login page from user menu")
     public LoginPage openLogin()
     {
         openUserMenu();
@@ -73,9 +63,7 @@ public class UserMenu extends AbstractComponent
         return new LoginPage();
     }
 
-    /**
-     * 
-     */
+    @Step("open account page from user menu")
     public AccountOverViewPage openAccountOverview()
     {
         openUserMenu();
@@ -83,9 +71,7 @@ public class UserMenu extends AbstractComponent
         return new AccountOverViewPage();
     }
 
-    /**
-     * @return
-     */
+    @Step("open register page from user menu")
     public RegisterPage openRegister()
     {
         openUserMenu();
@@ -96,6 +82,7 @@ public class UserMenu extends AbstractComponent
     /**
      * @param firstName
      */
+    @Step("validate that \"{firstName}\" is logged in")
     public void validateLoggedInName(String firstName)
     {
         // Click on the mini user menu symbol
@@ -107,9 +94,13 @@ public class UserMenu extends AbstractComponent
         showUserMenu.find("span.glyphicon").shouldHave(cssClass("logged")).shouldHave(exactText(""));
     }
 
-    /**
-     * @return
-     */
+    @Step("validate that nobody is looged in")
+    public void validateNotLoggedIn()
+    {
+        userMenu.find(".goToLogin").should(exist);
+    }
+
+    @Step("validate that somebody is looged in")
     public boolean isLoggedIn()
     {
         return userMenu.find(".goToAccountOverview").exists();

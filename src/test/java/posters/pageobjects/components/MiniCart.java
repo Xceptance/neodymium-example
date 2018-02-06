@@ -13,6 +13,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
 
+import io.qameta.allure.Step;
 import posters.dataobjects.Product;
 import posters.pageobjects.pages.checkout.CartPage;
 
@@ -34,6 +35,7 @@ public class MiniCart extends AbstractComponent
         $("#btnCartOverviewForm").should(exist);
     }
 
+    @Step("open the mini cart")
     public void openMiniCart()
     {
         // Click the mini cart icon
@@ -43,6 +45,7 @@ public class MiniCart extends AbstractComponent
         miniCart.waitUntil(visible, Context.get().configuration.timeout());
     }
 
+    @Step("close the mini cart")
     public void closeMiniCart()
     {
         // Click the mini cart icon again
@@ -54,6 +57,7 @@ public class MiniCart extends AbstractComponent
         miniCart.waitUntil(not(visible), Context.get().configuration.timeout());
     }
 
+    @Step("open the cart page")
     public CartPage openCartPage()
     {
         // Open the cart
@@ -62,16 +66,19 @@ public class MiniCart extends AbstractComponent
         return new CartPage();
     }
 
+    @Step("get the total product count from mini cart")
     public int getTotalCount()
     {
         return Integer.parseInt(totalCountElement.text());
     }
 
+    @Step("validate the mini cart total product count")
     public void validateTotalCount(int totalCount)
     {
         totalCountElement.shouldHave(exactText(Integer.toString(totalCount)));
     }
 
+    @Step("get the subtotal price from mini cart")
     public String getSubtotal()
     {
 
@@ -86,6 +93,7 @@ public class MiniCart extends AbstractComponent
         return subtotal;
     }
 
+    @Step("validate the mini cart subtotal price")
     public void validateSubtotal(String subtotal)
     {
         // Verify the mini cart shows the specified subtotal
@@ -102,6 +110,7 @@ public class MiniCart extends AbstractComponent
      * @param position
      * @param product
      */
+    @Step("validate \"{product}\" in the mini cart")
     public void validateMiniCart(int position, Product product)
     {
         validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), product.getTotalUnitPrice());
@@ -113,6 +122,7 @@ public class MiniCart extends AbstractComponent
      * @param productAmount
      * @param productTotalPrice
      */
+    @Step("validate \"{product}\" in the mini cart")
     public void validateMiniCart(int position, Product product, int productAmount, String productTotalPrice)
     {
         validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), productAmount, productTotalPrice);
@@ -143,5 +153,4 @@ public class MiniCart extends AbstractComponent
         // Close mini cart
         closeMiniCart();
     }
-
 }

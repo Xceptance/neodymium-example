@@ -139,4 +139,11 @@ public class Product
     {
         this.amount = amount;
     }
+
+    @Override
+    public String toString()
+    {
+        return String.format("Product [name()=%s, size()=%s, style()=%s, price()=%s]", getName(), getSize(), getStyle(), getUnitPrice());
+    }
+
 }

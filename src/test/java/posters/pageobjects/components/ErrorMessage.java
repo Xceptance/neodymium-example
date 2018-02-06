@@ -7,6 +7,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
 
+import io.qameta.allure.Step;
+
 public class ErrorMessage extends AbstractComponent
 {
     private SelenideElement errorMessage = $("#errorMessage");
@@ -16,6 +18,7 @@ public class ErrorMessage extends AbstractComponent
         errorMessage.should(exist);
     }
 
+    @Step("validate that the error message {message} is visible")
     public void validateErrorMessage(String message)
     {
         // Wait until javascript makes the error message visible
@@ -25,9 +28,7 @@ public class ErrorMessage extends AbstractComponent
         errorMessage.shouldHave(exactText("× " + message));
     }
 
-    /**
-     * 
-     */
+    @Step("validate that no error message is visible")
     public void validateNoErrorMessageOnPage()
     {
         // Check that the error message is not visible.

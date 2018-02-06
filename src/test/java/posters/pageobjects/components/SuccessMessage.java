@@ -7,6 +7,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
 
+import io.qameta.allure.Step;
+
 public class SuccessMessage extends AbstractComponent
 {
     private SelenideElement successMessage = $("#successMessage");
@@ -16,6 +18,7 @@ public class SuccessMessage extends AbstractComponent
         successMessage.should(exist);
     }
 
+    @Step("validate that the success message \"{message}\" is visible")
     public void validateSuccessMessage(String message)
     {
         // Wait until javascript makes the success message visible
