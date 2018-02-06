@@ -145,5 +145,4 @@ public class Product
     {
         return String.format("Product [name()=%s, size()=%s, style()=%s, price()=%s]", getName(), getSize(), getStyle(), getUnitPrice());
     }
-
 }

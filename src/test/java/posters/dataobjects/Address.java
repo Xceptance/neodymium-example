@@ -154,4 +154,11 @@ public class Address
     {
         this.country = country;
     }
+
+    @Override
+    public String toString()
+    {
+        return String.format("Address [fullName()=%s, company()=%s, adressLine()=%s, zip()=%s, city()=%s, state()=%s, country()=%s]",
+                             getFullName(), getCompany(), getAddressLine(), getZip(), getCity(), getState(), getCountry());
+    }
 }
