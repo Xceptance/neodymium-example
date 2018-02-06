@@ -33,5 +33,14 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
     public void validateStructure()
     {
         isExpectedPage();
+
+        header.isComponentAvailable();
+        footer.isComponentAvailable();
+        miniCart.isComponentAvailable();
+        search.isComponentAvailable();
+        topNav.isComponentAvailable();
+        userMenu.isComponentAvailable();
+        successMessage.isComponentAvailable();
+        errorMessage.isComponentAvailable();
     }
 }

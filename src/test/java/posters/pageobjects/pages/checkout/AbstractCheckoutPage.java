@@ -23,5 +23,9 @@ public abstract class AbstractCheckoutPage extends AbstractPageObject
     public void validateStructure()
     {
         isExpectedPage();
+
+        header.isComponentAvailable();
+        footer.isComponentAvailable();
+        userMenu.isComponentAvailable();
     }
 }
