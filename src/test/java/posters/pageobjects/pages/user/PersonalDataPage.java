@@ -23,6 +23,7 @@ public class PersonalDataPage extends AbstractBrowsingPage
     private SelenideElement deleteButton = $("#btnDeleteAccount");
 
     @Override
+    @Step("ensure this is a personal data page")
     public void isExpectedPage()
     {
         headline.should(exist);

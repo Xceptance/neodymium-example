@@ -20,6 +20,7 @@ public class BillingAddressPage extends AbstractCheckoutPage
     private SelenideElement headline = $("#titleBillAddr");
 
     @Override
+    @Step("ensure this is a billing address page")
     public void isExpectedPage()
     {
         headline.should(exist);

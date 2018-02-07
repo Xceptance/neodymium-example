@@ -33,6 +33,7 @@ public class NewPaymentPage extends AbstractCheckoutPage
     private SelenideElement addPaymentButton = $("#btnAddPayment");
 
     @Override
+    @Step("ensure this is a new payment page")
     public void isExpectedPage()
     {
         headline.should(exist);

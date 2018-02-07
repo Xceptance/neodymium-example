@@ -23,6 +23,7 @@ import io.qameta.allure.Step;
 public class CategoryPage extends AbstractBrowsingPage
 {
     @Override
+    @Step("ensure this is a category page")
     public void isExpectedPage()
     {
         $("#productOverview").should(exist);

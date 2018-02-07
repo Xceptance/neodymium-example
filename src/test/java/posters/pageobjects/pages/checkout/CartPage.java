@@ -32,6 +32,7 @@ public class CartPage extends AbstractBrowsingPage
     private SelenideElement subTotal = $("#orderSubTotalValue");
 
     @Override
+    @Step("ensure this is a cart page")
     public void isExpectedPage()
     {
         cartTable.should(exist);

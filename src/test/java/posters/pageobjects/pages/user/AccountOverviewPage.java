@@ -19,6 +19,7 @@ public class AccountOverviewPage extends AbstractBrowsingPage
     private SelenideElement personalDataLink = $("#linkPersonalData");
 
     @Override
+    @Step("ensure this is an account overview page")
     public void isExpectedPage()
     {
         headline.should(exist);

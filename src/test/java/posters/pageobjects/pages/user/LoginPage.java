@@ -34,6 +34,7 @@ public class LoginPage extends AbstractBrowsingPage
     private SelenideElement registerLink = $("#linkRegister");
 
     @Override
+    @Step("ensure this is a login page")
     public void isExpectedPage()
     {
         loginForm.should(exist);

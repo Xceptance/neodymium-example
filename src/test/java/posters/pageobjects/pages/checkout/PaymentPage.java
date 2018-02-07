@@ -20,6 +20,7 @@ public class PaymentPage extends AbstractCheckoutPage
     private SelenideElement headline = $("#titlePayment");
 
     @Override
+    @Step("ensure this is a payment page")
     public void isExpectedPage()
     {
         headline.should(exist);

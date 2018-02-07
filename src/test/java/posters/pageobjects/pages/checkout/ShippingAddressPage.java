@@ -19,6 +19,8 @@ public class ShippingAddressPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleDelAddr");
 
+    @Override
+    @Step("ensure this is a shipping address page")
     public void isExpectedPage()
     {
         headline.should(exist);

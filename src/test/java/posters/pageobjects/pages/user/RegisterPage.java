@@ -37,6 +37,7 @@ public class RegisterPage extends AbstractBrowsingPage
     private SelenideElement registerButton = $("#btnRegister");
 
     @Override
+    @Step("ensure this is a register page")
     public void isExpectedPage()
     {
         registerForm.should(exist);

@@ -32,6 +32,7 @@ public class PlaceOrderPlace extends AbstractCheckoutPage
     private SelenideElement orderButton = $("#btnOrder");
 
     @Override
+    @Step("ensure this is a place order page")
     public void isExpectedPage()
     {
         headline.should(exist);

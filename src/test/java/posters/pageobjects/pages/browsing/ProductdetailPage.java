@@ -27,6 +27,8 @@ public class ProductdetailPage extends AbstractBrowsingPage
 
     private SelenideElement productSize = $("#selectSize");
 
+    @Override
+    @Step("ensure this is a product detail page")
     public void isExpectedPage()
     {
         $("#addToCartForm").should(exist);

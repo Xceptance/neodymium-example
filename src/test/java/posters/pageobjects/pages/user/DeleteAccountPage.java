@@ -28,6 +28,7 @@ public class DeleteAccountPage extends AbstractBrowsingPage
     private SelenideElement deleteButton = $("#btnDeleteAccount");
 
     @Override
+    @Step("ensure this is a delete account page")
     public void isExpectedPage()
     {
         deleteForm.should(exist);

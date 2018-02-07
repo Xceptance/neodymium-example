@@ -40,6 +40,7 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
     private SelenideElement addShippingButton = $("#btnAddDelAddr");
 
     @Override
+    @Step("ensure this is a new shipping address page")
     public void isExpectedPage()
     {
         headline.should(exist);

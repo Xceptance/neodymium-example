@@ -39,6 +39,7 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
     private SelenideElement addBillingButton = $("#btnAddBillAddr");
 
     @Override
+    @Step("ensure this is a new billing address page")
     public void isExpectedPage()
     {
         headline.should(exist);

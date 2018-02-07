@@ -15,6 +15,7 @@ import posters.dataobjects.User;
 public class HomePage extends AbstractBrowsingPage
 {
     @Override
+    @Step("ensure this is a home page")
     public void isExpectedPage()
     {
         $("#titleIndex").should(exist);
