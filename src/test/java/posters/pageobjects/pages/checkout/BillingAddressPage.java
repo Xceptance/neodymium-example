@@ -10,6 +10,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
 
+import io.qameta.allure.Step;
+
 /**
  * @author pfotenhauer
  */
@@ -24,6 +26,7 @@ public class BillingAddressPage extends AbstractCheckoutPage
     }
 
     @Override
+    @Step("validate billing address page structure")
     public void validateStructure()
     {
         super.validateStructure();
@@ -39,8 +42,9 @@ public class BillingAddressPage extends AbstractCheckoutPage
     /**
      * @param position
      *            The position of the billing address you want to choose
-     * @return PPayment
+     * @return PaymentPage
      */
+    @Step("select a billing address")
     public PaymentPage selectBillingAddress(int position)
     {
         final int index = position - 1;

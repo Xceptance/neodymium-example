@@ -16,6 +16,7 @@ import org.junit.Assert;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
 
+import io.qameta.allure.Step;
 import posters.dataobjects.Product;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.ProductdetailPage;
@@ -37,6 +38,7 @@ public class CartPage extends AbstractBrowsingPage
     }
 
     @Override
+    @Step("validate cart page structure")
     public void validateStructure()
     {
         super.validateStructure();
@@ -57,6 +59,7 @@ public class CartPage extends AbstractBrowsingPage
         $("#btnStartCheckout").should(exist);
     }
 
+    @Step("validate shipping costs on cart page")
     public void validateShippingCosts(String shippingCosts)
     {
         // Assert the correct shipping price is shown
@@ -66,6 +69,7 @@ public class CartPage extends AbstractBrowsingPage
     /**
      * @param shippingcosts
      */
+    @Step("validate cart page with shipping costs: \"{shippingCosts}\"")
     public void validate(String shippingCosts)
     {
         validateStructure();
@@ -76,6 +80,7 @@ public class CartPage extends AbstractBrowsingPage
      * @param position
      * @param product
      */
+    @Step("validate \"{product}\" in on the cart page")
     public void validateCartItem(int position, Product product)
     {
         validateCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), product.getUnitPrice());
@@ -86,6 +91,7 @@ public class CartPage extends AbstractBrowsingPage
      * @param product
      * @param productAmount
      */
+    @Step("validate \"{product}\" in on the cart page")
     public void validateCartItem(int position, Product product, int productAmount)
     {
         validateCartItem(position, product.getName(), product.getStyle(), product.getSize(), productAmount, product.getUnitPrice());
@@ -114,6 +120,7 @@ public class CartPage extends AbstractBrowsingPage
         productContainer.find(".productUnitPrice").shouldHave(exactText(productPrice));
     }
 
+    @Step("validate sub total and line item total after adding on the cart page")
     public void validateSubAndLineItemTotalAfterAdd(int position, String oldSubTotal, String oldLineItemTotal)
     {
         SelenideElement productContainer = $("#product" + (position - 1));
@@ -142,48 +149,56 @@ public class CartPage extends AbstractBrowsingPage
         Assert.assertEquals(price, price2);
     }
 
+    @Step("validate line item amount on the cart page")
     public void validateProductAmount(int position, int amount)
     {
         // Makes sure the amount of the item with index @{index} in the cart equals the parameter
         $("#product" + (position - 1) + " .productCount").shouldHave(exactValue(Integer.toString(amount)));
     }
 
+    @Step("get product name from line item on the cart page")
     public String getProductName(int position)
     {
         // Get the product name to enable usage outside this module.
         return $("#product" + (position - 1) + " .productName").text();
     }
 
+    @Step("get product style from line item on the cart page")
     public String getProductStyle(int position)
     {
         // Get the style to enable usage outside this module.
         return $("#product" + (position - 1) + " .productStyle").text();
     }
 
+    @Step("get product size from line item on the cart page")
     public String getProductSize(int position)
     {
         // Get the size to enable usage outside this module.
         return $("#product" + (position - 1) + " .productSize").text();
     }
 
+    @Step("get product count from line item on the cart page")
     public String getProductCount(int position)
     {
         // Get the size to enable usage outside this module.
         return $("#product" + (position - 1) + " .productCount").val();
     }
 
+    @Step("get product unit price from line item on the cart page")
     public String getProductUnitPrice(int position)
     {
         // Get the product price to enable usage outside this module.
         return $("#product" + (position - 1) + " .productUnitPrice").text();
     }
 
+    @Step("get product total price from line item on the cart page")
     public String getProductTotalUnitPrice(int position)
     {
         // Get the product price to enable usage outside this module.
         return $("#product" + (position - 1) + " .productTotalUnitPrice").text();
     }
 
+    @Step("get product from line item on the cart page")
     public Product getProduct(int position)
     {
         return new Product(getProductName(position), getProductUnitPrice(position), getProductTotalUnitPrice(position), getProductStyle(position), getProductSize(position), Integer.parseInt(getProductCount(position)));
@@ -193,6 +208,7 @@ public class CartPage extends AbstractBrowsingPage
      * @param position
      * @param amount
      */
+    @Step("update product count on the cart page")
     public void updateProductCount(int position, int amount)
     {
         SelenideElement productContainer = $("#product" + (position - 1));
@@ -207,6 +223,7 @@ public class CartPage extends AbstractBrowsingPage
     /**
      * @param position
      */
+    @Step("remove product on the cart page")
     public void removeProduct(int position)
     {
         // Click delete button
@@ -229,6 +246,7 @@ public class CartPage extends AbstractBrowsingPage
      * @param oldSubTotal
      * @param oldLineItemTotal
      */
+    @Step("validate sub total and line item total after removing on the cart page")
     public void validateSubAndLineItemTotalAfterRemove(String oldSubTotal, String oldLineItemTotal)
     {
         String newSubTotal = PriceHelper.subtractFromPrice(oldSubTotal, oldLineItemTotal);
@@ -238,6 +256,7 @@ public class CartPage extends AbstractBrowsingPage
     /**
      * @param index
      */
+    @Step("click on a product on the cart page")
     public ProductdetailPage openProductPage(int position)
     {
         $("#product" + (position - 1) + " img").scrollTo().click();
@@ -249,18 +268,14 @@ public class CartPage extends AbstractBrowsingPage
         $("#btnStartCheckout").scrollTo().click();
     }
 
-    /**
-     * 
-     */
+    @Step("open new shipping address from the cart page")
     public NewShippingAddressPage openNewShippingPage()
     {
         clickCheckoutButton();
         return new NewShippingAddressPage();
     }
 
-    /**
-     * 
-     */
+    @Step("open shipping address from the cart page")
     public ShippingAddressPage openShippingPage()
     {
         clickCheckoutButton();
@@ -270,6 +285,7 @@ public class CartPage extends AbstractBrowsingPage
     /**
      * @return
      */
+    @Step("check if ther are product on the cart page")
     public boolean hasProductsInCart()
     {
         return $("#btnRemoveProdCount0").exists();

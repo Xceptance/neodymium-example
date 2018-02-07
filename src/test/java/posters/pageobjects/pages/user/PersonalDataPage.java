@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
 
+import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
 /**
@@ -28,6 +29,7 @@ public class PersonalDataPage extends AbstractBrowsingPage
     }
 
     @Override
+    @Step("validate personal data page structure")
     public void validateStructure()
     {
         super.validateStructure();
@@ -47,6 +49,7 @@ public class PersonalDataPage extends AbstractBrowsingPage
     /**
      * @return
      */
+    @Step("open delete account page from personal data page")
     public DeleteAccountPage openDeleteAccount()
     {
         // Open the delete account page

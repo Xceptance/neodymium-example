@@ -12,6 +12,7 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
 
+import io.qameta.allure.Step;
 import posters.dataobjects.User;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
@@ -42,6 +43,7 @@ public class RegisterPage extends AbstractBrowsingPage
     }
 
     @Override
+    @Step("validate register page structure")
     public void validateStructure()
     {
         super.validateStructure();
@@ -81,6 +83,7 @@ public class RegisterPage extends AbstractBrowsingPage
      * @param password
      *            The password of the account you want to log into
      */
+    @Step("fill and send register form")
     public LoginPage sendRegisterForm(String firstName, String lastName, String eMail, String password, String passwordRepeat)
     {
         // Fill out the registration form
@@ -106,6 +109,7 @@ public class RegisterPage extends AbstractBrowsingPage
      * @param passwordRepeat
      * @return
      */
+    @Step("send register form for {user}")
     public LoginPage sendRegisterForm(User user, String passwordRepeat)
     {
         return sendRegisterForm(user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), passwordRepeat);

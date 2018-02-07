@@ -13,6 +13,7 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
 
+import io.qameta.allure.Step;
 import posters.dataobjects.User;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.HomePage;
@@ -39,6 +40,7 @@ public class LoginPage extends AbstractBrowsingPage
     }
 
     @Override
+    @Step("validate login page structure")
     public void validateStructure()
     {
         super.validateStructure();
@@ -67,18 +69,7 @@ public class LoginPage extends AbstractBrowsingPage
         registerLink.shouldHave(exactText(Context.localizedText("AccountPages.createNewAccount")));
     }
 
-    /**
-     * @param email
-     *            The email of the account you want to log into
-     * @param password
-     *            The password of the account you want to log into
-     */
-    public HomePage sendLoginform(String email, String password)
-    {
-        sendFormWithData(email, password);
-        return new HomePage();
-    }
-
+    @Step("send login form")
     public void sendFormWithData(String email, String password)
     {
         // Input email
@@ -93,26 +84,23 @@ public class LoginPage extends AbstractBrowsingPage
     }
 
     /**
-     * @return
+     * @param email
+     *            The email of the account you want to log into
+     * @param password
+     *            The password of the account you want to log into
      */
-    public RegisterPage openRegister()
+    @Step("send login form with valid data")
+    public HomePage sendLoginform(String email, String password)
     {
-        registerLink.scrollTo().click();
-        return new RegisterPage();
-    }
-
-    /**
-     * 
-     */
-    public void validateSuccessfullRegistration()
-    {
-        successMessage.validateSuccessMessage(Context.localizedText("AccountPages.validation.successfulAccountCreation"));
+        sendFormWithData(email, password);
+        return new HomePage();
     }
 
     /**
      * @param user
      * @return
      */
+    @Step("send login form with valid user data")
     public HomePage sendLoginform(User user)
     {
         return sendLoginform(user.getEmail(), user.getPassword());
@@ -121,6 +109,7 @@ public class LoginPage extends AbstractBrowsingPage
     /**
      * @param user
      */
+    @Step("send login form with erroneous user data")
     public LoginPage sendFalseLoginform(User user)
     {
         sendFormWithData(user.getEmail(), user.getPassword());
@@ -128,8 +117,25 @@ public class LoginPage extends AbstractBrowsingPage
     }
 
     /**
+     * @return
+     */
+    @Step("open register page from login page")
+    public RegisterPage openRegister()
+    {
+        registerLink.scrollTo().click();
+        return new RegisterPage();
+    }
+
+    @Step("validate successful registration message")
+    public void validateSuccessfulRegistration()
+    {
+        successMessage.validateSuccessMessage(Context.localizedText("AccountPages.validation.successfulAccountCreation"));
+    }
+
+    /**
      * @param eMail
      */
+    @Step("validate invalid email for login error message")
     public void validateWrongEmail(String eMail)
     {
         errorMessage.validateErrorMessage(Context.localizedText("AccountPages.validation.emailDoesNotExistError"));
@@ -139,6 +145,7 @@ public class LoginPage extends AbstractBrowsingPage
     /**
      * @param eMail
      */
+    @Step("validate invalid password for login error message")
     public void validateWrongPassword(String eMail)
     {
         errorMessage.validateErrorMessage(Context.localizedText("AccountPages.validation.incorrectPasswordError"));

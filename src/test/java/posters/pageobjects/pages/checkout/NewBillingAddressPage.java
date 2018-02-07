@@ -12,6 +12,7 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
 
+import io.qameta.allure.Step;
 import posters.dataobjects.Address;
 
 /**
@@ -38,6 +39,13 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
     private SelenideElement addBillingButton = $("#btnAddBillAddr");
 
     @Override
+    public void isExpectedPage()
+    {
+        headline.should(exist);
+    }
+
+    @Override
+    @Step("validate new billing address page structure")
     public void validateStructure()
     {
         super.validateStructure();
@@ -88,12 +96,6 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
         addBillingButton.shouldBe(visible);
     }
 
-    @Override
-    public void isExpectedPage()
-    {
-        headline.should(exist);
-    }
-
     /**
      * //
      * 
@@ -112,6 +114,7 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
      * @param country
      *            The country you want to use, currently only United States or Germany
      */
+    @Step("fill and send new billing address form")
     public NewPaymentPage sendBillingAddressForm(String name, String company, String address, String city,
                                                  String state, String zip, String country)
     {

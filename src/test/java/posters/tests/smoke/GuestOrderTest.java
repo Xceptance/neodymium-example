@@ -94,7 +94,7 @@ public class GuestOrderTest extends AbstractTest
         PlaceOrderPlace placeOrderPage = paymentPage.sendPaymentForm(creditcard);
         placeOrderPage.validateStructure();
         placeOrderPage.validateProduct(1, product.getName(), product.getAmount(), product.getStyle(), product.getSize());
-        placeOrderPage.validateAddressAndPayment(shippingAddress, billingAddress, creditcard);
+        placeOrderPage.validateAddressesAndPayment(shippingAddress, billingAddress, creditcard);
 
         // Place order
         homePage = placeOrderPage.placeOrder();

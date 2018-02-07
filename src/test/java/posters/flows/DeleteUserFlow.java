@@ -3,9 +3,10 @@
  */
 package posters.flows;
 
+import io.qameta.allure.Step;
 import posters.dataobjects.User;
 import posters.pageobjects.pages.browsing.HomePage;
-import posters.pageobjects.pages.user.AccountOverViewPage;
+import posters.pageobjects.pages.user.AccountOverviewPage;
 import posters.pageobjects.pages.user.DeleteAccountPage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.pageobjects.pages.user.PersonalDataPage;
@@ -18,6 +19,7 @@ public class DeleteUserFlow
     /**
      * @param user
      */
+    @Step("delete user flow")
     public static LoginPage flow(User user)
     {
         HomePage homePage = new HomePage();
@@ -30,7 +32,7 @@ public class DeleteUserFlow
         }
 
         // goto account page
-        AccountOverViewPage accountOverviewPage = homePage.userMenu.openAccountOverview();
+        AccountOverviewPage accountOverviewPage = homePage.userMenu.openAccountOverview();
         accountOverviewPage.validateStructure();
 
         // goto personal data page

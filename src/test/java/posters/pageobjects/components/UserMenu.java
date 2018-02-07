@@ -14,7 +14,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
 
 import io.qameta.allure.Step;
-import posters.pageobjects.pages.user.AccountOverViewPage;
+import posters.pageobjects.pages.user.AccountOverviewPage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.pageobjects.pages.user.RegisterPage;
 
@@ -64,11 +64,11 @@ public class UserMenu extends AbstractComponent
     }
 
     @Step("open account page from user menu")
-    public AccountOverViewPage openAccountOverview()
+    public AccountOverviewPage openAccountOverview()
     {
         openUserMenu();
         userMenu.find(".goToAccountOverview").scrollTo().click();
-        return new AccountOverViewPage();
+        return new AccountOverviewPage();
     }
 
     @Step("open register page from user menu")

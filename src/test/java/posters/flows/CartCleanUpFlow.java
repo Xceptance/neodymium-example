@@ -5,6 +5,7 @@ package posters.flows;
 
 import static com.codeborne.selenide.Selenide.$;
 
+import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.checkout.CartPage;
 
@@ -13,9 +14,7 @@ import posters.pageobjects.pages.checkout.CartPage;
  */
 public class CartCleanUpFlow
 {
-    /**
-     * 
-     */
+    @Step("cart clean up flow")
     public static void flow()
     {
         // click on the shop logo to ensure a home page afterwards

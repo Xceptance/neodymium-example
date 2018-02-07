@@ -10,6 +10,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
 
+import io.qameta.allure.Step;
+
 /**
  * @author pfotenhauer
  */
@@ -17,7 +19,13 @@ public class ShippingAddressPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleDelAddr");
 
+    public void isExpectedPage()
+    {
+        headline.should(exist);
+    }
+
     @Override
+    @Step("validate shipping address page structure")
     public void validateStructure()
     {
         super.validateStructure();
@@ -30,16 +38,12 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         $("#delAddr0").shouldBe(visible);
     }
 
-    public void isExpectedPage()
-    {
-        headline.should(exist);
-    }
-
     /**
      * @param position
      *            position of the shipping address
-     * @return PBillingAddress
+     * @return BillingAddressPage
      */
+    @Step("select a shipping address")
     public BillingAddressPage selectShippingAddress(int position)
     {
         final int index = position - 1;

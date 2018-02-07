@@ -12,6 +12,7 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
 
+import io.qameta.allure.Step;
 import posters.dataobjects.CreditCard;
 
 /**
@@ -32,6 +33,13 @@ public class NewPaymentPage extends AbstractCheckoutPage
     private SelenideElement addPaymentButton = $("#btnAddPayment");
 
     @Override
+    public void isExpectedPage()
+    {
+        headline.should(exist);
+    }
+
+    @Override
+    @Step("validate new payment page structure")
     public void validateStructure()
     {
         super.validateStructure();
@@ -64,12 +72,6 @@ public class NewPaymentPage extends AbstractCheckoutPage
         addPaymentButton.should(exist);
     }
 
-    @Override
-    public void isExpectedPage()
-    {
-        headline.should(exist);
-    }
-
     /**
      * @param number
      *            The credit card number, has to be 16 numbers
@@ -80,6 +82,7 @@ public class NewPaymentPage extends AbstractCheckoutPage
      * @param year
      *            Expiration year
      */
+    @Step("fill and send new payment form")
     public PlaceOrderPlace sendPaymentForm(String number, String name, String month, String year)
     {
         // Credit Card Number

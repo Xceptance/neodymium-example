@@ -12,6 +12,7 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
 
+import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.HomePage;
 
@@ -33,6 +34,7 @@ public class DeleteAccountPage extends AbstractBrowsingPage
     }
 
     @Override
+    @Step("validate delete account page structure")
     public void validateStructure()
     {
         super.validateStructure();
@@ -50,9 +52,7 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         deleteButton.shouldBe(visible);
     }
 
-    /**
-     * 
-     */
+    @Step("delete account")
     public HomePage deleteAccount(String password)
     {
         // Password
@@ -61,7 +61,6 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         // Delete account and open the homepage
         // click the confirmation button
         deleteButton.scrollTo().click();
-
         return new HomePage();
     }
 }

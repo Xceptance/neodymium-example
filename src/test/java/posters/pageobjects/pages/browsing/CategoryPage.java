@@ -15,6 +15,8 @@ import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
 
+import io.qameta.allure.Step;
+
 /**
  * @author pfotenhauer
  */
@@ -26,6 +28,7 @@ public class CategoryPage extends AbstractBrowsingPage
         $("#productOverview").should(exist);
     }
 
+    @Step("validate category name \"{categoryName}\" on category page")
     public void validateCategoryName(String categoryName)
     {
         // Category name
@@ -33,6 +36,7 @@ public class CategoryPage extends AbstractBrowsingPage
         $("#titleCategoryName").shouldBe(text(categoryName));
     }
 
+    @Step("validate category page structure")
     public void validateStructure()
     {
         super.validateStructure();
@@ -50,6 +54,7 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param column
      * @return
      */
+    @Step("click on a product by position in grid")
     public ProductdetailPage clickProductByPosition(int row, int column)
     {
         // Open the product detail page
@@ -64,6 +69,7 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param column
      * @return
      */
+    @Step("get a product name by position in grid")
     public String getProductNameByPosition(int row, int column)
     {
         SelenideElement rowContainer = $$("#productOverview > .row").get(row - 1);
@@ -74,6 +80,7 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param position
      * @return
      */
+    @Step("click on a product by position")
     public ProductdetailPage clickProductByPosition(int position)
     {
         final int index = position - 1;
@@ -88,6 +95,7 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param position
      * @return
      */
+    @Step("click on a product by name \"{productName}\"")
     public ProductdetailPage clickProductByName(String productName)
     {
         // Open the product detail page
@@ -101,6 +109,7 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param position
      * @return
      */
+    @Step("get a product name by position")
     public String getProductNameByPosition(int position)
     {
         final int index = position - 1;
@@ -112,6 +121,7 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param searchTerm
      * @param searchTermExpectedCount
      */
+    @Step("validate search results for \"{searchTerm}\" on category page")
     public void validateSearchHits(String searchTerm, int searchTermExpectedCount)
     {
         $("#titleSearchText").should(exist);
@@ -137,6 +147,7 @@ public class CategoryPage extends AbstractBrowsingPage
     /**
      * @param categoryName
      */
+    @Step("validate category page of category \"{categoryName}\"")
     public void validate(String categoryName)
     {
         validateStructure();

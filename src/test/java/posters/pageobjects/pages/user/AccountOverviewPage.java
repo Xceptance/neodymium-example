@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.pages.user;
 
 import static com.codeborne.selenide.Condition.exist;
@@ -9,12 +6,13 @@ import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
 
+import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
 /**
  * @author pfotenhauer
  */
-public class AccountOverViewPage extends AbstractBrowsingPage
+public class AccountOverviewPage extends AbstractBrowsingPage
 {
     private SelenideElement headline = $("#titleAccountOverview");
 
@@ -27,6 +25,7 @@ public class AccountOverViewPage extends AbstractBrowsingPage
     }
 
     @Override
+    @Step("validate account overview page structure")
     public void validateStructure()
     {
         super.validateStructure();
@@ -51,6 +50,7 @@ public class AccountOverViewPage extends AbstractBrowsingPage
     /**
      * @return
      */
+    @Step("open personal data page")
     public PersonalDataPage openPersonalData()
     {
         // Open the personal data page

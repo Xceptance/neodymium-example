@@ -10,6 +10,8 @@ import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
 
+import io.qameta.allure.Step;
+
 /**
  * @author pfotenhauer
  */
@@ -18,6 +20,13 @@ public class PaymentPage extends AbstractCheckoutPage
     private SelenideElement headline = $("#titlePayment");
 
     @Override
+    public void isExpectedPage()
+    {
+        headline.should(exist);
+    }
+
+    @Override
+    @Step("validate payment page structure")
     public void validateStructure()
     {
         super.validateStructure();
@@ -30,17 +39,12 @@ public class PaymentPage extends AbstractCheckoutPage
         $("#payment0").shouldBe(visible);
     }
 
-    @Override
-    public void isExpectedPage()
-    {
-        headline.should(exist);
-    }
-
     /**
      * @param position
      *            The position of the credit card you want to select
      * @return PPlaceOrder
      */
+    @Step("select a payment")
     public PlaceOrderPlace selectCreditCard(int position)
     {
         final int index = position - 1;

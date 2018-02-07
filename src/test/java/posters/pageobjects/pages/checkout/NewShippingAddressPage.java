@@ -13,6 +13,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
 
+import io.qameta.allure.Step;
 import posters.dataobjects.Address;
 
 /**
@@ -39,6 +40,13 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
     private SelenideElement addShippingButton = $("#btnAddDelAddr");
 
     @Override
+    public void isExpectedPage()
+    {
+        headline.should(exist);
+    }
+
+    @Override
+    @Step("validate new shipping address page structure")
     public void validateStructure()
     {
         super.validateStructure();
@@ -92,12 +100,6 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
         addShippingButton.shouldBe(visible);
     }
 
-    @Override
-    public void isExpectedPage()
-    {
-        headline.should(exist);
-    }
-
     /**
      * //
      * 
@@ -118,6 +120,7 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
      * @param sameBillingAddress
      *            Decision whether or not use the same billing address
      */
+    @Step("fill and send new shipping address form")
     public NewBillingAddressPage sendShippingAddressForm(String name, String company, String address, String city,
                                                          String state, String zip, String country, boolean sameBillingAddress)
     {

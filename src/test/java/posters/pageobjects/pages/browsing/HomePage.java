@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import com.xceptance.neodymium.util.Context;
 
+import io.qameta.allure.Step;
 import posters.dataobjects.User;
 
 public class HomePage extends AbstractBrowsingPage
@@ -19,6 +20,7 @@ public class HomePage extends AbstractBrowsingPage
         $("#titleIndex").should(exist);
     }
 
+    @Step("validate home page structure")
     public void validateStructure()
     {
         super.validateStructure();
@@ -44,12 +46,14 @@ public class HomePage extends AbstractBrowsingPage
         $$("#productList .thumbnail").shouldHave(sizeGreaterThan(0));
     }
 
+    @Step("validate home page")
     public void validate()
     {
         validateStructure();
         footer.validate();
     }
 
+    @Step("validate sucessful order on home page")
     public void validateSuccessfulOrder()
     {
         successMessage.validateSuccessMessage(Context.localizedText("HomePage.validation.successfulOrder"));
@@ -62,6 +66,7 @@ public class HomePage extends AbstractBrowsingPage
      * @param firstName
      *            The name should be shown in the mini User Menu
      */
+    @Step("validate sucessful login on home page")
     public void validateSuccessfulLogin(String firstName)
     {
         // Verify that you are logged in
@@ -74,14 +79,13 @@ public class HomePage extends AbstractBrowsingPage
     /**
      * @param user
      */
+    @Step("validate sucessful user login on home page")
     public void validateSuccessfulLogin(User user)
     {
         validateSuccessfulLogin(user.getFirstName());
     }
 
-    /**
-     * 
-     */
+    @Step("validate sucessful account deletion on home page")
     public void validateSuccessfulDeletedAccount()
     {
         successMessage.validateSuccessMessage(Context.localizedText("HomePage.validation.successfulAccountDeletion"));

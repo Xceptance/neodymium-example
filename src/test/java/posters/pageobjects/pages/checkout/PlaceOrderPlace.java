@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
 
+import io.qameta.allure.Step;
 import posters.dataobjects.Address;
 import posters.dataobjects.CreditCard;
 import posters.pageobjects.pages.browsing.HomePage;
@@ -31,6 +32,13 @@ public class PlaceOrderPlace extends AbstractCheckoutPage
     private SelenideElement orderButton = $("#btnOrder");
 
     @Override
+    public void isExpectedPage()
+    {
+        headline.should(exist);
+    }
+
+    @Override
+    @Step("validate place order page structure")
     public void validateStructure()
     {
         super.validateStructure();
@@ -42,12 +50,6 @@ public class PlaceOrderPlace extends AbstractCheckoutPage
         billingAddressForm.shouldBe(visible);
         paymentForm.shouldBe(visible);
         orderButton.shouldBe(visible);
-    }
-
-    @Override
-    public void isExpectedPage()
-    {
-        headline.should(exist);
     }
 
     /**
@@ -62,6 +64,7 @@ public class PlaceOrderPlace extends AbstractCheckoutPage
      * @param productSize
      *            The size
      */
+    @Step("validate product \"{productName}\" on place order page")
     public void validateProduct(int position, String productName, int productCount, String productStyle, String productSize)
     {
         final int index = position - 1;
@@ -83,9 +86,9 @@ public class PlaceOrderPlace extends AbstractCheckoutPage
         productContainer.find(".pSize").shouldHave(exactText(productSize));
     }
 
-    public void validateAddressAndPayment(Address shippingAddress, Address billingAddress, CreditCard creditcard)
+    @Step("validate adresses and payment on place order page")
+    public void validateAddressesAndPayment(Address shippingAddress, Address billingAddress, CreditCard creditcard)
     {
-
         // Shipping address
         // Name
         // Makes sure the shipping address name matches the parameter
@@ -144,11 +147,13 @@ public class PlaceOrderPlace extends AbstractCheckoutPage
         paymentForm.find(" .exp .year").shouldHave(exactText(creditcard.getExpDateYear()));
     }
 
+    @Step("get order total costs frome place order page")
     public String getTotalCosts()
     {
         return $("#totalCosts").text();
     }
 
+    @Step("place the order")
     public HomePage placeOrder()
     {
         // Opens the homepage
