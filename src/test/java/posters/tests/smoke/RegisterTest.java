@@ -34,21 +34,17 @@ public class RegisterTest extends AbstractTest
     public void testRegistering()
     {
         // Goto homepage
-        step("Goto homepage");
         HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Assure not logged in status
-        step("Assure not logged in status");
         homePage.userMenu.validateNotLoggedIn();
 
         // Goto login form
-        step("Goto login form");
         LoginPage loginPage = homePage.userMenu.openLogin();
         loginPage.validateStructure();
 
         // Goto register form
-        step("Goto register form");
         RegisterPage registerPage = loginPage.openRegister();
         registerPage.validateStructure();
 
@@ -63,7 +59,6 @@ public class RegisterTest extends AbstractTest
     @After
     public void after()
     {
-        step("After Register - Delete User");
         DeleteUserFlow.flow(user);
     }
 }
