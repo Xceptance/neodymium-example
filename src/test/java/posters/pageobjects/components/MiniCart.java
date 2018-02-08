@@ -24,11 +24,11 @@ public class MiniCart extends AbstractComponent
 {
     private SelenideElement headerCart = $("#headerCartOverview");
 
-    private final static String miniCartLoc = "#miniCartMenu";
+    private final static String miniCartSelector = "#miniCartMenu";
 
-    private SelenideElement miniCart = $(miniCartLoc);
+    private SelenideElement miniCart = $(miniCartSelector);
 
-    private SelenideElement subOrderPrice = $(miniCartLoc + " .subOrderPrice");
+    private SelenideElement subOrderPrice = $(miniCartSelector + " .subOrderPrice");
 
     private SelenideElement totalCountElement = $("#btnCartOverviewForm .headerCartProductCount");
 
