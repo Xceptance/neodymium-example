@@ -23,7 +23,7 @@ Posters is a web shop for demo purposes build by [Xceptance](https://www.xceptan
 4. Goto [https://localhost:8443/posters/](https://localhost:8443/posters/) to check if it is running
 
 ### Get yourself a free copy
-Simply clone or for this project.
+Simply clone or fork this project.
 
 ### IDE way of doing
 1. Import the project as Maven project
