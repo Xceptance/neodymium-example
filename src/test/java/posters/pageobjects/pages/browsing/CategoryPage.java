@@ -146,6 +146,15 @@ public class CategoryPage extends AbstractBrowsingPage
     }
 
     /**
+     * @param productName
+     */
+    @Step("validate product \"{productName}\" is visible on category page")
+    public void validateProductVisible(String productName)
+    {
+        $("#productOverview .thumbnails .thumbnail a > img.pImage[title='" + productName + "']").shouldBe(visible);
+    }
+
+    /**
      * @param categoryName
      */
     @Step("validate category page of category \"{categoryName}\"")
