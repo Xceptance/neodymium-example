@@ -18,10 +18,10 @@ import com.xceptance.neodymium.util.Context;
  */
 @RunWith(NeodymiumRunner.class)
 @Browser(
-{
-  "Chrome_1024x768"
-})
-public class AbstractTest
+    {
+        "Chrome_1024x768"
+    })
+public abstract class AbstractTest
 {
     protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractTest.class);
 
