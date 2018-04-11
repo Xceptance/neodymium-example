@@ -79,7 +79,7 @@
 				<artifactId>allure-maven</artifactId>
 				<version>2.9</version>
 				<configuration>
-					<reportVersion>2.5.0</reportVersion>
+					<reportVersion>2.6.0</reportVersion>
 				</configuration>
 			</plugin>
 		</plugins>
