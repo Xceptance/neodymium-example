@@ -9,6 +9,10 @@ import org.junit.Test;
 
 import com.xceptance.neodymium.util.DataUtils;
 
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.junit4.Tag;
 import posters.dataobjects.User;
 import posters.flows.DeleteUserFlow;
 import posters.flows.OpenHomePageFlow;
@@ -20,6 +24,10 @@ import posters.tests.AbstractTest;
 /**
  * @author pfotenhauer
  */
+@Owner("Lisa Smith")
+@Severity(SeverityLevel.CRITICAL)
+@Tag("smoke")
+@Tag("registered")
 public class RegisterTest extends AbstractTest
 {
     User user;

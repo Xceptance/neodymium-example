@@ -7,6 +7,10 @@ import org.junit.Test;
 
 import com.xceptance.neodymium.multibrowser.Browser;
 
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.junit4.Tag;
 import posters.dataobjects.User;
 import posters.flows.OpenLoginPageFlow;
 import posters.pageobjects.pages.browsing.HomePage;
@@ -21,6 +25,10 @@ import posters.tests.AbstractTest;
   "Chrome_1024x768",
   "FF_1024x768"
 })
+@Owner("Tim Brown")
+@Severity(SeverityLevel.NORMAL)
+@Tag("functionality")
+@Tag("registered")
 public class LoginTest extends AbstractTest
 {
 

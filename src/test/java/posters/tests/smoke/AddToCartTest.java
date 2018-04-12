@@ -4,6 +4,10 @@ import org.junit.Test;
 
 import com.xceptance.neodymium.util.Context;
 
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.junit4.Tag;
 import posters.dataobjects.Product;
 import posters.flows.OpenHomePageFlow;
 import posters.pageobjects.pages.browsing.CategoryPage;
@@ -12,9 +16,11 @@ import posters.pageobjects.pages.browsing.ProductdetailPage;
 import posters.pageobjects.pages.checkout.CartPage;
 import posters.tests.AbstractTest;
 
+@Owner("Joe Fix")
+@Severity(SeverityLevel.CRITICAL)
+@Tag("smoke")
 public class AddToCartTest extends AbstractTest
 {
-
     @Test
     public void testAddProductsToCart()
     {

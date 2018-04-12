@@ -6,6 +6,10 @@ package posters.tests.smoke;
 import org.junit.After;
 import org.junit.Test;
 
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.junit4.Tag;
 import posters.dataobjects.User;
 import posters.flows.DeleteUserFlow;
 import posters.flows.OpenHomePageFlow;
@@ -17,6 +21,10 @@ import posters.tests.AbstractTest;
 /**
  * @author pfotenhauer
  */
+@Owner("Lisa Smith")
+@Severity(SeverityLevel.NORMAL)
+@Tag("smoke")
+@Tag("registered")
 public class RegisterFromUserMenuTest extends AbstractTest
 {
     final User user = new User("Jane", "Doe", "jane@doe.com", "topsecret");

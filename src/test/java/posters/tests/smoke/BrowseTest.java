@@ -5,6 +5,10 @@ package posters.tests.smoke;
 
 import org.junit.Test;
 
+import io.qameta.allure.Owner;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.pageobjects.pages.browsing.CategoryPage;
 import posters.pageobjects.pages.browsing.HomePage;
@@ -14,6 +18,9 @@ import posters.tests.AbstractTest;
 /**
  * @author pfotenhauer
  */
+@Owner("Tim Brown")
+@Severity(SeverityLevel.NORMAL)
+@Tag("smoke")
 public class BrowseTest extends AbstractTest
 {
     @Test
