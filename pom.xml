@@ -63,6 +63,8 @@
 					</properties>
 					<systemPropertyVariables>
 						<allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+						<allure.link.issue.pattern>https://ask.xceptance.de/t/{}</allure.link.issue.pattern>
+						<allure.link.tms.pattern>https://ask.xceptance.de/t/{}</allure.link.tms.pattern>
 						<selenide.reports>${project.build.directory}/selenide-results</selenide.reports>
 					</systemPropertyVariables>
 				</configuration>
