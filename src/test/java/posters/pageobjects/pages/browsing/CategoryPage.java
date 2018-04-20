@@ -14,6 +14,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
+import com.xceptance.neodymium.visual.ai.AI;
 
 import io.qameta.allure.Step;
 
@@ -162,5 +163,7 @@ public class CategoryPage extends AbstractBrowsingPage
     {
         validateStructure();
         validateCategoryName(categoryName);
+
+        new AI().execute(Context.get().driver, "CategoryPage", "validateCategoryPage");
     }
 }
