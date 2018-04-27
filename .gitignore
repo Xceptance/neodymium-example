@@ -27,3 +27,4 @@ allure-results
 .settings
 .project
 /.allure/
+data/ai/training
