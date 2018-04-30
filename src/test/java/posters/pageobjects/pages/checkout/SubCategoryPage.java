@@ -7,6 +7,8 @@ import java.util.Random;
 import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.SelenideElement;
 
+import io.qameta.allure.Step;
+
 /**
  * @author schaefer
  */
@@ -49,6 +51,7 @@ public class SubCategoryPage extends AbstractCheckoutPage
         return productPositionY;
     }
 
+    @Step("choose randomly an int for a (sub)section")
     public void choseCategory()
     {
         // compute random horizontal category position (for posters: random value from 1 to 4)
@@ -73,6 +76,7 @@ public class SubCategoryPage extends AbstractCheckoutPage
 
     }
 
+    @Step("go to a randomly choosen overview page using the pagination")
     public void goToOverviewPage()
     {
         String stringOfPaginationChildren = pagination.getText();
@@ -89,6 +93,7 @@ public class SubCategoryPage extends AbstractCheckoutPage
         chosenSelenideElement.click();
     }
 
+    @Step("choose randomly a product in an overview page")
     public void choseDetailPage()
     {
         productPositionX = random.nextInt(2) + 1;
