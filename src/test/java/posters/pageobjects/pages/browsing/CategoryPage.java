@@ -12,17 +12,22 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.util.Random;
+
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
 import com.xceptance.neodymium.visual.ai.AI;
 
 import io.qameta.allure.Step;
+import posters.pageobjects.components.Pagination;
 
 /**
  * @author pfotenhauer
  */
 public class CategoryPage extends AbstractBrowsingPage
 {
+    public Pagination pagination = new Pagination();
+
     @Override
     @Step("ensure this is a category page")
     public void isExpectedPage()
@@ -42,6 +47,8 @@ public class CategoryPage extends AbstractBrowsingPage
     public void validateStructure()
     {
         super.validateStructure();
+
+        pagination.isComponentAvailable();
 
         // Amount of results
         // Assures the amount of posters displayed in the headline is not 0.
@@ -174,5 +181,12 @@ public class CategoryPage extends AbstractBrowsingPage
         validate(categoryName);
 
         new AI().execute(Context.get().driver, "CategoryPage", "validateCategoryPage");
+    }
+
+    public String getRandomProductDetailPage(Random random)
+    {
+        int productPositionX = random.nextInt(2) + 1;
+        int productPositionY = random.nextInt(2) + 1;
+        return getProductNameByPosition(productPositionX, productPositionY);
     }
 }

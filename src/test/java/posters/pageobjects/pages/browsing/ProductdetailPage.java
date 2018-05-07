@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Context;
+import com.xceptance.neodymium.visual.ai.AI;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.Product;
@@ -118,4 +119,15 @@ public class ProductdetailPage extends AbstractBrowsingPage
         validateStructure();
         validateProductName(productName);
     };
+
+    /**
+     * @param productName
+     */
+    @Step("validate the product detail page of \"{productName}\" and assert visually")
+    public void validateAndVisualAssert(String productName)
+    {
+        validate(productName);
+
+        new AI().execute(Context.get().driver, "ProductDetailPage", "validateProductDetailPage");
+    }
 }

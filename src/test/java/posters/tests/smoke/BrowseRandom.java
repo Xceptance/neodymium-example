@@ -3,6 +3,8 @@
  */
 package posters.tests.smoke;
 
+import java.util.Random;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +18,6 @@ import posters.flows.OpenHomePageFlow;
 import posters.pageobjects.pages.browsing.CategoryPage;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.browsing.ProductdetailPage;
-import posters.pageobjects.pages.checkout.SubCategoryPage;
 import posters.tests.AbstractTest;
 
 /**
@@ -29,43 +30,35 @@ public class BrowseRandom extends AbstractTest
 {
     private static int numberOfProductDetailPages;
 
-    private SubCategoryPage subCategoryPage;
+    private static Random random;
 
     @Before
     public void setup()
     {
         numberOfProductDetailPages = DataUtils.asInt("numberOfProductDetailPages");
-        subCategoryPage = new SubCategoryPage(DataUtils.asLong("seed"));
+        random = new Random(DataUtils.asLong("seed"));
     }
 
     @Test
-    public void searchProductDetailPage()
+    public void browseRandomCategoriesAndProducts()
     {
+        CategoryPage categoryPage;
+        ProductdetailPage productPage;
+
         for (int i = 1; i <= numberOfProductDetailPages; i++)
         {
             // Goto homepage
             HomePage homePage = OpenHomePageFlow.flow();
             homePage.validate();
 
-            // Goto subcategory
-            subCategoryPage.choseCategory();
-            final String categoryName = homePage.topNav.getSubCategoryNameByPosition(subCategoryPage.getCategoryPositionX(),
-                                                                                     subCategoryPage.getCategoryPositionY());
-            CategoryPage categoryPage = homePage.topNav.clickSubCategoryByPosition(subCategoryPage.getCategoryPositionX(),
-                                                                                   subCategoryPage.getCategoryPositionY());
-            categoryPage.validate(categoryName);
+            // Goto category
+            categoryPage = homePage.topNav.getRandomSubcategoryAndValidateAndVisualAssert(random);
+            categoryPage.pagination.clickOnRandomSite(random);
 
-            // Goto any product overview page
-            subCategoryPage.goToOverviewPage();
-
-            // Goto product detail page
-            subCategoryPage.choseDetailPage();
-            final String productName = categoryPage.getProductNameByPosition(subCategoryPage.getProductPositionX(),
-                                                                             subCategoryPage.getProductPositionY());
-            ProductdetailPage productPage = categoryPage.clickProductByPosition(subCategoryPage.getProductPositionX(),
-                                                                                subCategoryPage.getProductPositionY());
-            productPage.validate(productName);
+            // Goto any product detail page
+            String productName = categoryPage.getRandomProductDetailPage(random);
+            productPage = categoryPage.clickProductByName(productName);
+            productPage.validateAndVisualAssert(productName);
         }
-
     }
 }

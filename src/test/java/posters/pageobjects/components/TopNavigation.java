@@ -7,6 +7,8 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.util.Random;
+
 import org.openqa.selenium.By;
 
 import com.codeborne.selenide.SelenideElement;
@@ -57,6 +59,43 @@ public class TopNavigation extends AbstractComponent
         // Clicks the subcategory with position @{subCategoryPosition}
         // belonging to the category with position @{categoryPosition}
         $(By.linkText(subCategoryName)).click();
+        return new CategoryPage();
+    }
+
+    @Step("get a random subcategory")
+    public CategoryPage getRandomSubcategoryAndValidateAndVisualAssert(Random random)
+    {
+        // compute random horizontal category position (for posters: random value from 1 to 4)
+        // ["World of nature", "Dining", "Transportation", "Panoramas"]
+        int categoryPositionX = random.nextInt(3) + 1;
+
+        // compute random vertical category position (for posters: random value from 1 to 4)
+        // if (categoryPositionX == 4) == true then categoryPositionY has range from 1 to 4
+        // otherwise from 1 to 3, because any category has 3 subcategories instead of category 4, which has 4
+        int categoryPositionY;
+        if (categoryPositionX == 4)
+            categoryPositionY = random.nextInt(3) + 1;
+        else
+            categoryPositionY = random.nextInt(2) + 1;
+
+        String categoryName = getSubCategoryNameByPosition(categoryPositionX, categoryPositionY);
+        CategoryPage categoryPage = clickSubCategoryByPosition(categoryPositionX, categoryPositionY);
+        categoryPage.validateAndVisualAssert(categoryName);
+
+        return categoryPage;
+    }
+
+    /**
+     * @param position
+     * @return
+     */
+    @Step("click on a product by name \"{productName}\"")
+    public CategoryPage getSubcategoryByName(String categoryName)
+    {
+        // Open the product detail page
+        // Click on the product's image and open the product overview page
+        // Click the product link to open the product detail page
+        $(".dropdown-menu li > a[title='" + categoryName + "']").scrollTo().click();
         return new CategoryPage();
     }
 }
