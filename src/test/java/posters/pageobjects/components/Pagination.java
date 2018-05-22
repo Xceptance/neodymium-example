@@ -33,11 +33,13 @@ public class Pagination extends AbstractComponent
     }
 
     @Step("click on any link represented by a number")
-    public void clickOnRandomSite(Random random)
+    public String clickOnRandomSite(Random random)
     {
         String stringChosenElementValue = Integer.toString(random.nextInt(getNumberOfSites()));
         SelenideElement chosenPaginationLink = getSite(stringChosenElementValue);
         chosenPaginationLink.scrollTo();
         chosenPaginationLink.click();
+
+        return stringChosenElementValue;
     }
 }

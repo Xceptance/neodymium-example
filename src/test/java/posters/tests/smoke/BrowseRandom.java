@@ -52,8 +52,9 @@ public class BrowseRandom extends AbstractTest
             homePage.validate();
 
             // Goto category
-            categoryPage = homePage.topNav.getRandomSubcategoryAndValidateAndVisualAssert(random);
-            categoryPage.pagination.clickOnRandomSite(random);
+            categoryPage = homePage.topNav.getRandomSubcategory(random);
+            String categoryName = categoryPage.pagination.clickOnRandomSite(random);
+            categoryPage.validateAndVisualAssert(categoryName);
 
             // Goto any product detail page
             String productName = categoryPage.getRandomProductDetailPage(random);

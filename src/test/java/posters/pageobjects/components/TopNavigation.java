@@ -63,7 +63,7 @@ public class TopNavigation extends AbstractComponent
     }
 
     @Step("get a random subcategory")
-    public CategoryPage getRandomSubcategoryAndValidateAndVisualAssert(Random random)
+    public CategoryPage getRandomSubcategory(Random random)
     {
         // compute random horizontal category position (for posters: random value from 1 to 4)
         // ["World of nature", "Dining", "Transportation", "Panoramas"]
@@ -78,9 +78,7 @@ public class TopNavigation extends AbstractComponent
         else
             categoryPositionY = random.nextInt(2) + 1;
 
-        String categoryName = getSubCategoryNameByPosition(categoryPositionX, categoryPositionY);
         CategoryPage categoryPage = clickSubCategoryByPosition(categoryPositionX, categoryPositionY);
-        categoryPage.validateAndVisualAssert(categoryName);
 
         return categoryPage;
     }
