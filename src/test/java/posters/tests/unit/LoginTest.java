@@ -5,7 +5,7 @@ package posters.tests.unit;
 
 import org.junit.Test;
 
-import com.xceptance.neodymium.multibrowser.Browser;
+import com.xceptance.neodymium.module.statement.browser.multibrowser.Browser;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
@@ -20,11 +20,8 @@ import posters.tests.AbstractTest;
 /**
  * @author pfotenhauer
  */
-@Browser(
-{
-  "Chrome_1024x768",
-  "FF_1024x768"
-})
+@Browser("Chrome_1024x768")
+@Browser("FF_1024x768")
 @Owner("Tim Brown")
 @Severity(SeverityLevel.NORMAL)
 @Tag("functionality")
