@@ -22,7 +22,7 @@ import posters.pageobjects.pages.checkout.CartPage;
 import posters.pageobjects.pages.checkout.NewBillingAddressPage;
 import posters.pageobjects.pages.checkout.NewPaymentPage;
 import posters.pageobjects.pages.checkout.NewShippingAddressPage;
-import posters.pageobjects.pages.checkout.PlaceOrderPlace;
+import posters.pageobjects.pages.checkout.PlaceOrderPage;
 import posters.tests.AbstractTest;
 
 /**
@@ -72,7 +72,7 @@ public class GuestOrderTest extends AbstractTest
         cartPage.miniCart.validateMiniCart(1, product);
         cartPage.miniCart.validateTotalCount(++totalCount);
         cartPage.validateCartItem(1, product);
-        cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, "$0.00");
+        cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, 0.00);
 
         final String name = Context.dataValue("name");
         final String company = Context.dataValue("company");
@@ -99,7 +99,7 @@ public class GuestOrderTest extends AbstractTest
         paymentPage.validateStructure();
 
         // Send payment data and validate place order page
-        PlaceOrderPlace placeOrderPage = paymentPage.sendPaymentForm(creditcard);
+        PlaceOrderPage placeOrderPage = paymentPage.sendPaymentForm(creditcard);
         placeOrderPage.validateStructure();
         placeOrderPage.validateProduct(1, product.getName(), product.getAmount(), product.getStyle(), product.getSize());
         placeOrderPage.validateAddressesAndPayment(shippingAddress, billingAddress, creditcard);

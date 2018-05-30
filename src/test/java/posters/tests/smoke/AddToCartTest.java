@@ -58,7 +58,7 @@ public class AddToCartTest extends AbstractTest
         cartPage.miniCart.validateMiniCart(1, product);
         cartPage.validateCartItem(1, product);
 
-        cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, "$0.00");
+        cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, 0.00);
 
         final String oldSubtotal2 = cartPage.miniCart.getSubtotal();
         cartPage.miniCart.validateTotalCount(++totalCount);
@@ -84,7 +84,7 @@ public class AddToCartTest extends AbstractTest
 
         cartPage.miniCart.validateTotalCount(++totalCount);
         cartPage.validateCartItem(1, product2);
-        cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal2, "$0.00");
+        cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal2, 0.00);
 
         int productToUpdatePosition = 1;
         int newProductAmount = 3;
@@ -98,7 +98,7 @@ public class AddToCartTest extends AbstractTest
         final String newLinItemPrice = cartPage.getProductTotalUnitPrice(productToUpdatePosition);
         cartPage.validateSubAndLineItemTotalAfterAdd(productToUpdatePosition,
                                                      oldSubtotal3,
-                                                     productBeforeUpdate.getTotalUnitPrice());
+                                                     productBeforeUpdate.getTotalPrice());
         cartPage.validateCartItem(1, productBeforeUpdate, newProductAmount);
         cartPage.miniCart.validateMiniCart(1, productBeforeUpdate, newProductAmount, newLinItemPrice);
         totalCount = totalCount + newProductAmount - 1;

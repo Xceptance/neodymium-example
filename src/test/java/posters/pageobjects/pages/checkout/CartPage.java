@@ -148,7 +148,7 @@ public class CartPage extends AbstractBrowsingPage
     }
 
     @Step("validate sub total and line item total after adding on the cart page")
-    public void validateSubAndLineItemTotalAfterAdd(int position, String oldSubTotal, String oldLineItemTotal)
+    public void validateSubAndLineItemTotalAfterAdd(int position, String oldSubTotal, double totalPrice)
     {
         SelenideElement productContainer = $("#product" + (position - 1));
         // Store unit price (without $ sign)
@@ -171,7 +171,7 @@ public class CartPage extends AbstractBrowsingPage
         String newSubTotal = subTotal.text();
         // New Total - Old Total = Price of item you just added
         String price = PriceHelper.subtractFromPrice(newSubTotal, oldSubTotal);
-        String price2 = PriceHelper.subtractFromPrice(subOrderPrice, oldLineItemTotal);
+        String price2 = PriceHelper.subtractFromPrice(subOrderPrice, PriceHelper.format(totalPrice));
 
         Assert.assertEquals(price, price2);
     }

@@ -23,7 +23,7 @@ import posters.pageobjects.pages.browsing.ProductdetailPage;
 import posters.pageobjects.pages.checkout.BillingAddressPage;
 import posters.pageobjects.pages.checkout.CartPage;
 import posters.pageobjects.pages.checkout.PaymentPage;
-import posters.pageobjects.pages.checkout.PlaceOrderPlace;
+import posters.pageobjects.pages.checkout.PlaceOrderPage;
 import posters.pageobjects.pages.checkout.ShippingAddressPage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.tests.AbstractTest;
@@ -85,7 +85,7 @@ public class RegisteredOrderTest extends AbstractTest
         cartPage.miniCart.validateMiniCart(1, product);
         cartPage.miniCart.validateTotalCount(++totalCount);
         cartPage.validateCartItem(1, product);
-        cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, "$0.00");
+        cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, 0.00);
 
         // Goto shipping address and validate
         ShippingAddressPage shippingAddressPage = cartPage.openShippingPage();
@@ -113,7 +113,7 @@ public class RegisteredOrderTest extends AbstractTest
         final CreditCard creditcard = new CreditCard("John Doe", "4111111111111111", "xxxx xxxx xxxx 1111", "08", "2022");
 
         // Send payment data and validate place order page
-        PlaceOrderPlace placeOrderPage = paymentPage.selectCreditCard(1);
+        PlaceOrderPage placeOrderPage = paymentPage.selectCreditCard(1);
         placeOrderPage.validateStructure();
         placeOrderPage.validateProduct(1, product.getName(), product.getAmount(), product.getStyle(), product.getSize());
         placeOrderPage.validateAddressesAndPayment(shippingAddress, billingAddress, creditcard);
