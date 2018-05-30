@@ -3,9 +3,13 @@
  */
 package posters.tests.unit;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.xceptance.neodymium.module.statement.browser.multibrowser.Browser;
+import com.xceptance.neodymium.module.statement.testdata.DataSet;
+import com.xceptance.neodymium.module.statement.testdata.SuppressDataSets;
+import com.xceptance.neodymium.util.DataUtils;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
@@ -29,138 +33,80 @@ import posters.tests.AbstractTest;
 public class LoginTest extends AbstractTest
 {
 
+    private User user;
+
+    @Before
+    public void setup()
+    {
+        user = DataUtils.get(User.class);
+    }
+
     @Test
+    @DataSet(1)
     public void testSuccessfullLogin()
     {
-        // Page types to use
-        HomePage homePage;
-        LoginPage loginPage;
+        LoginPage loginPage = prepareTest();
 
-        final User user = new User("John", "Doe", "john@doe.com", "topsecret");
-
-        // Goto homepage
-        loginPage = OpenLoginPageFlow.flow();
-        loginPage.validateStructure();
-
-        // Assure not logged in status
-        loginPage.userMenu.validateNotLoggedIn();
-
-        homePage = loginPage.sendLoginform(user);
+        HomePage homePage = loginPage.sendLoginform(user);
         homePage.validateSuccessfulLogin(user);
     }
 
     @Test
-    public void testLoginWithWrongPassword()
+    @DataSet(2)
+    @DataSet(3)
+    public void testLoginWithPasswordFailure()
     {
-        // Page types to use
-        LoginPage loginPage;
-
-        final User user = new User("John", "Doe", "john@doe.com", "notsecret");
-
-        // Goto homepage
-        loginPage = OpenLoginPageFlow.flow();
-        loginPage.validateStructure();
-
-        // Assure not logged in status
-        loginPage.userMenu.validateNotLoggedIn();
+        LoginPage loginPage = prepareTest();
 
         loginPage.sendFalseLoginform(user);
         loginPage.validateWrongPassword(user.getEmail());
     }
 
     @Test
-    public void testLoginWithExtendedPassword()
+    @DataSet(4)
+    public void testLoginWithEmailFailure()
     {
-        // Page types to use
-        LoginPage loginPage;
-
-        final User user = new User("John", "Doe", "john@doe.com", "topsecret123");
-
-        // Goto homepage
-        loginPage = OpenLoginPageFlow.flow();
-        loginPage.validateStructure();
-
-        // Assure not logged in status
-        loginPage.userMenu.validateNotLoggedIn();
-
-        loginPage.sendFalseLoginform(user);
-        loginPage.validateWrongPassword(user.getEmail());
-    }
-
-    @Test
-    public void testLoginWithExtendedEmail()
-    {
-        // Page types to use
-        LoginPage loginPage;
-
-        final User user = new User("John", "Doe", "john@doe.company", "topsecret");
-
-        // Goto homepage
-        loginPage = OpenLoginPageFlow.flow();
-        loginPage.validateStructure();
-
-        // Assure not logged in status
-        loginPage.userMenu.validateNotLoggedIn();
+        LoginPage loginPage = prepareTest();
 
         loginPage.sendFalseLoginform(user);
         loginPage.validateWrongEmail(user.getEmail());
     }
 
     @Test
-    public void testLoginWithNoEmail()
+    @DataSet(5)
+    @DataSet(6)
+    public void testLoginWithoutRequiredFields()
     {
-        // Page types to use
-        LoginPage loginPage;
-
-        final User user = new User("John", "Doe", "", "topsecret");
-
-        // Goto homepage
-        loginPage = OpenLoginPageFlow.flow();
-        loginPage.validateStructure();
-
-        // Assure not logged in status
-        loginPage.userMenu.validateNotLoggedIn();
+        LoginPage loginPage = prepareTest();
 
         loginPage.sendFalseLoginform(user);
         loginPage.errorMessage.validateNoErrorMessageOnPage();
     }
 
     @Test
-    public void testLoginWithNoPassword()
-    {
-        // Page types to use
-        LoginPage loginPage;
-
-        final User user = new User("John", "Doe", "john@doe.com", "");
-
-        // Goto homepage
-        loginPage = OpenLoginPageFlow.flow();
-        loginPage.validateStructure();
-
-        // Assure not logged in status
-        loginPage.userMenu.validateNotLoggedIn();
-
-        loginPage.sendFalseLoginform(user);
-        loginPage.errorMessage.validateNoErrorMessageOnPage();
-    }
-
-    @Test
+    @SuppressDataSets
     public void testLoginWithUnregisteredUser()
     {
+        final User user = new User("Jens", "Doe", "jens@doe.com", "topsecret");
+
+        LoginPage loginPage = prepareTest();
+
+        loginPage.sendFalseLoginform(user);
+        loginPage.validateWrongEmail(user.getEmail());
+    }
+
+    private LoginPage prepareTest()
+    {
         // Page types to use
         LoginPage loginPage;
 
-        final User user = new User("Jens", "Doe", "jens@doe.com", "topsecret");
-
-        // Goto homepage
+        // Goto login page
         loginPage = OpenLoginPageFlow.flow();
         loginPage.validateStructure();
 
         // Assure not logged in status
         loginPage.userMenu.validateNotLoggedIn();
 
-        loginPage.sendFalseLoginform(user);
-        loginPage.validateWrongEmail(user.getEmail());
+        return loginPage;
     }
-
 }

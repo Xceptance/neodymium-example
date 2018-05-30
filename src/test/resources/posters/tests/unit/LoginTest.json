@@ -1,0 +1,44 @@
+[
+	{
+		"firstName": "John",
+		"lastName": "Doe",
+		"email": "john@doe.com",
+		"password": "topsecret",
+		"testId": "happy path"
+	},
+	{
+		"firstName": "John",
+		"lastName": "Doe",
+		"email": "john@doe.com",
+		"password": "notsecret",
+		"testId": "wrong password"
+	},
+	{
+		"firstName": "John",
+		"lastName": "Doe",
+		"email": "john@doe.com",
+		"password": "topsecret123",
+		"testId": "extended password"
+	},
+	{
+		"firstName": "John",
+		"lastName": "Doe",
+		"email": "john@doe.company",
+		"password": "topsecret",
+		"testId": "extended email"
+	},
+	{
+		"firstName": "John",
+		"lastName": "Doe",
+		"email": "",
+		"password": "topsecret",
+		"testId": "missing email"
+	},
+	{
+		"firstName": "John",
+		"lastName": "Doe",
+		"email": "john@doe.com",
+		"password": "",
+		"testId": "missing password"
+	}
+]
