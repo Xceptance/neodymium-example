@@ -7,6 +7,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.xceptance.neodymium.module.statement.testdata.DataSet;
 import com.xceptance.neodymium.util.DataUtils;
 
 import io.qameta.allure.Owner;
@@ -39,6 +40,9 @@ public class RegisterTest extends AbstractTest
     }
 
     @Test
+    @DataSet(2)
+    @DataSet(4)
+    @DataSet(id = "Judas' test")
     public void testRegistering()
     {
         // Goto homepage
