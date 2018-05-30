@@ -44,5 +44,8 @@ default:
             cardnumber: Card number*
             cardholdername: Cardholder's name*
             expirationdate: Expiration date*
-            
+        product:
+          style: style
+          size: size
+          quantity: Quantity
             

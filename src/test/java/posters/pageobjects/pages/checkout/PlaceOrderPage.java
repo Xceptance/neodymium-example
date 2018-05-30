@@ -6,20 +6,24 @@ package posters.pageobjects.pages.checkout;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.SelenideElement;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.Address;
 import posters.dataobjects.CreditCard;
+import posters.dataobjects.Product;
 import posters.pageobjects.pages.browsing.HomePage;
+import posters.pageobjects.utility.PriceHelper;
 
 /**
  * @author pfotenhauer
  */
-public class PlaceOrderPlace extends AbstractCheckoutPage
+public class PlaceOrderPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleOrderOverview");
 
@@ -65,6 +69,26 @@ public class PlaceOrderPlace extends AbstractCheckoutPage
      * @param productSize
      *            The size
      */
+    @Step("validate order contains product \"{product.name}\"")
+    public void validateContainsProduct(Product product)
+    {
+        SelenideElement productContainer = $$("div.hidden-xs").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
+                                                              .parent().parent();
+
+        productContainer.find(".pName").shouldHave(exactText(product.getName()));
+        productContainer.find(".pSize").shouldHave(exactText(product.getSize()));
+        productContainer.find(".pStyle").shouldHave(exactText(product.getStyle()));
+        productContainer.find(".pCount").shouldHave(exactText(Integer.toString(product.getAmount())));
+        productContainer.find(".pPrice").shouldHave(exactText(product.getUnitPrice()));
+        productContainer.find(".productLineItemPrice").shouldHave(exactText(PriceHelper.format(product.getTotalPrice())));
+    }
+
+    @Step("validate subtotal on the place order page")
+    public void validateSubtotal(String subtotal)
+    {
+        $$("#checkoutSummaryList li").findBy(text("Subtotal")).find(".text-right").shouldBe(exactText(subtotal));
+    }
+
     @Step("validate product \"{productName}\" on place order page")
     public void validateProduct(int position, String productName, int productCount, String productStyle, String productSize)
     {

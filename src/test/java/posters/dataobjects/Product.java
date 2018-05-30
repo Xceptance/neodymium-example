@@ -3,6 +3,10 @@
  */
 package posters.dataobjects;
 
+import com.xceptance.neodymium.util.Context;
+
+import posters.pageobjects.utility.PriceHelper;
+
 /**
  * @author pfotenhauer
  */
@@ -11,8 +15,6 @@ public class Product
     String name;
 
     String unitPrice;
-
-    String totalUnitPrice;
 
     String style;
 
@@ -28,11 +30,10 @@ public class Product
      * @param size
      * @param amount
      */
-    public Product(String name, String unitPrice, String totalUnitPrice, String style, String size, int amount)
+    public Product(String name, String unitPrice, String style, String size, int amount)
     {
         this.name = name;
         this.unitPrice = unitPrice;
-        this.totalUnitPrice = totalUnitPrice;
         this.style = style;
         this.size = size;
         this.amount = amount;
@@ -56,14 +57,6 @@ public class Product
     }
 
     /**
-     * @return the price
-     */
-    public String getUnitPrice()
-    {
-        return unitPrice;
-    }
-
-    /**
      * @param price
      *            the price to set
      */
@@ -73,20 +66,11 @@ public class Product
     }
 
     /**
-     * @return the totalUnitPrice
+     * @return the unitPrice
      */
-    public String getTotalUnitPrice()
+    public String getUnitPrice()
     {
-        return totalUnitPrice;
-    }
-
-    /**
-     * @param totalUnitPrice
-     *            the totalUnitPrice to set
-     */
-    public void setTotalUnitPrice(String totalUnitPrice)
-    {
-        this.totalUnitPrice = totalUnitPrice;
+        return unitPrice;
     }
 
     /**
@@ -124,7 +108,7 @@ public class Product
     }
 
     /**
-     * @return the amount
+     * @return the size
      */
     public int getAmount()
     {
@@ -132,8 +116,8 @@ public class Product
     }
 
     /**
-     * @param amount
-     *            the amount to set
+     * @param size
+     *            the size to set
      */
     public void setAmount(int amount)
     {
@@ -143,6 +127,48 @@ public class Product
     @Override
     public String toString()
     {
-        return String.format("Product [name()=%s, size()=%s, style()=%s, price()=%s]", getName(), getSize(), getStyle(), getUnitPrice());
+        return String.format("Product [name()=%s, size()=%s, style()=%s, price()=%s]", getName(), getSize(), getStyle(), getUnitPrice(), getAmount());
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        Product other = (Product) obj;
+        if (name.equals(other.name) && unitPrice.equals(other.unitPrice) && style.equals(other.style) && size.equals(other.size))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public String getRowRegex()
+    {
+        return getName()
+               + "\\n[a-zA-Z\\s\\.\\,0-9\\!]+\\n"
+               + Context.localizedText("General.product.style")
+               + "\\:\\s" + getStyle()
+               + "\\n"
+               + Context.localizedText("General.product.size")
+               + "\\:\\s" + getSize();
+    }
+
+    public String getCartRowRegex()
+    {
+        return getName()
+               + "\\n"
+               + Context.localizedText("General.product.quantity")
+               + ":\\s" + "\\d+\\s\\(" + getStyle()
+               + ",\\s" + getSize()
+               + "\\s\\)\\n\\$\\d+\\.\\d+";
+    }
+
+    private double getUnitPriceDouble()
+    {
+        return Double.parseDouble(PriceHelper.removeCurrency(unitPrice));
+    }
+
+    public double getTotalPrice()
+    {
+        return amount * getUnitPriceDouble();
     }
 }

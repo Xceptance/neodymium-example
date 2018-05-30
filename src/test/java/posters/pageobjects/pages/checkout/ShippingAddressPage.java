@@ -19,6 +19,22 @@ public class ShippingAddressPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleDelAddr");
 
+    private SelenideElement nameField = $("#fullName");
+
+    private SelenideElement companyField = $("#company");
+
+    private SelenideElement addressField = $("#addressLine");
+
+    private SelenideElement cityField = $("#city");
+
+    private SelenideElement stateField = $("#state");
+
+    private SelenideElement zipField = $("#zip");
+
+    private SelenideElement countryField = $("#country");
+
+    private SelenideElement addShippingButton = $("#btnAddDelAddr");
+
     @Override
     @Step("ensure this is a shipping address page")
     public void isExpectedPage()
@@ -55,6 +71,48 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         // Open the billing address page in the checkout process
         // Clicks the continue button
         $("#btnUseAddressContinue").scrollTo().click();
+
+        return new BillingAddressPage();
+    }
+
+    @Step("fill and send shipping address form")
+    public BillingAddressPage sendShippingAddressForm(String name, String company, String address, String city,
+                                                      String state, String zip, String country, boolean sameBillingAddress)
+    {
+        // Name
+        // Enter the name parameter
+        nameField.val(name);
+        // Company
+        // Enter the company parameter
+        companyField.val(company);
+        // Address
+        // Enter the address parameter
+        addressField.val(address);
+        // City
+        // Enter the city parameter
+        cityField.val(city);
+        // State
+        // Enter the state parameter
+        stateField.val(state);
+        // Zip
+        // Enter the zip parameter
+        zipField.val(zip);
+        // Country
+        // Select the country whose label equals the parameter
+        countryField.selectOption(country);
+        // Radio Button
+        // Click the radio button for Yes or No
+        if (sameBillingAddress)
+        {
+            $("#billEqualShipp-Yes").scrollTo().click();
+        }
+        else
+        {
+            $("#billEqualShipp-No").scrollTo().click();
+        }
+        // Open the billing addresses or payment options page, depending on which radio button you checked
+        // Click on Continue
+        addShippingButton.scrollTo().click();
 
         return new BillingAddressPage();
     }

@@ -45,7 +45,7 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         deleteForm.find(".h2").should(matchText("[A-Z].{3,}"));
         // Password field
         // Asserts the label belonging to the password field displays the correct text
-        $("label[for=\"password\"]").shouldBe(exactText(Context.localizedText("AccountPages.password")));
+        $("label[for=\"password\"]").shouldBe(exactText(Context.localizedText("AccountPages.yourPassword")));
         // Asserts the field to enter your password is there
         passwordField.shouldBe(visible);
         // Button

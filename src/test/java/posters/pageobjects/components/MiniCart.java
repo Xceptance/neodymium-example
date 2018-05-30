@@ -5,6 +5,7 @@ package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -16,6 +17,7 @@ import com.xceptance.neodymium.util.Context;
 import io.qameta.allure.Step;
 import posters.dataobjects.Product;
 import posters.pageobjects.pages.checkout.CartPage;
+import posters.pageobjects.utility.PriceHelper;
 
 /**
  * @author pfotenhauer
@@ -112,10 +114,24 @@ public class MiniCart extends AbstractComponent
      * @param position
      * @param product
      */
+
     @Step("validate \"{product}\" in the mini cart")
     public void validateMiniCart(int position, Product product)
     {
-        validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), product.getTotalUnitPrice());
+        validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(),
+                         PriceHelper.format(product.getTotalPrice()));
+    }
+
+    @Step("validate \"{product}\" in the mini cart by name")
+    public void validateMiniCartByProduct(Product product)
+    {
+        SelenideElement productContainer = $$(".cartItems").filter(matchText(product.getCartRowRegex())).shouldHaveSize(1).first();
+
+        productContainer.find(".prodName").shouldHave(exactText(product.getName()));
+        productContainer.find(".prodStyle").shouldHave(exactText(product.getStyle()));
+        productContainer.find(".prodSize").shouldHave(exactText(product.getSize()));
+        productContainer.find(".prodCount").shouldHave(exactText(Integer.toString(product.getAmount())));
+        productContainer.find(".prodPrice").shouldHave(exactText(PriceHelper.format(product.getTotalPrice())));
     }
 
     /**

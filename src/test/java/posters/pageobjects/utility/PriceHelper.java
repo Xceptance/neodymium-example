@@ -14,11 +14,13 @@ public class PriceHelper
 {
     public final static String CURRENCY = "$";
 
+    private final static DecimalFormat decimalFormat = new DecimalFormat("##0.00", new DecimalFormatSymbols(Locale.US));
+
     // Calculate units * price per unit
     // calculates price per 1 unit * amount, rounds it to 2 decimals (to avoid things like 19.9 instead of 19.90)
     public static String computeRowPrice(String unitPrice, String quantity)
     {
-        float res = (float) (Math.round(Float.valueOf(removeCurrency(unitPrice)) * Float.valueOf(quantity) * 100)) / 100;
+        double res = (double) (Math.round(Double.valueOf(removeCurrency(unitPrice)) * Double.valueOf(quantity) * 100)) / 100;
         return format(res);
     }
 
@@ -26,16 +28,12 @@ public class PriceHelper
     // instead of 19.90) and compares it to the price of the new item
     public static String subtractFromPrice(String from, String value)
     {
-        float res = (float) (Math.round((Float.valueOf(removeCurrency(from)) - Float.valueOf(removeCurrency(value))) * 100)) / 100;
+        double res = (double) (Math.round((Double.valueOf(removeCurrency(from)) - Double.valueOf(removeCurrency(value))) * 100)) / 100;
         return format(res);
     }
 
-    private static String format(float input)
+    public static String format(double input)
     {
-        DecimalFormat decimalFormat = new DecimalFormat();
-        decimalFormat.setDecimalFormatSymbols(new DecimalFormatSymbols(Locale.US));
-        decimalFormat.setMinimumFractionDigits(2);
-        decimalFormat.setMaximumFractionDigits(2);
         return addCurrency(decimalFormat.format(input));
     }
 

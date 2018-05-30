@@ -59,4 +59,10 @@ public class AccountOverviewPage extends AbstractBrowsingPage
         personalDataLink.scrollTo().click();
         return new PersonalDataPage();
     }
+
+    public OrderHistoryPage openOrderHistory()
+    {
+        $("#linkOrderOverview").scrollTo().click();
+        return new OrderHistoryPage();
+    }
 }

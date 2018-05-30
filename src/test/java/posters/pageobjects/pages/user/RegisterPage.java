@@ -97,7 +97,7 @@ public class RegisterPage extends AbstractBrowsingPage
         // Type the password parameter into the password field.
         passwordField.val(password);
         // Type the second password parameter into the second password field.
-        passwordRepeatField.val(password);
+        passwordRepeatField.val(passwordRepeat);
         // Register and open the login page if successful
         // Click on the Register Button
         registerButton.scrollTo().click();

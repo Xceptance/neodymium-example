@@ -84,7 +84,7 @@ public class NewPaymentPage extends AbstractCheckoutPage
      *            Expiration year
      */
     @Step("fill and send new payment form")
-    public PlaceOrderPlace sendPaymentForm(String number, String name, String month, String year)
+    public PlaceOrderPage sendPaymentForm(String number, String name, String month, String year)
     {
         // Credit Card Number
         // Fills the card number field with the parameter
@@ -101,14 +101,14 @@ public class NewPaymentPage extends AbstractCheckoutPage
         // Clicks the Continue button
         addPaymentButton.scrollTo().click();
 
-        return new PlaceOrderPlace();
+        return new PlaceOrderPage();
     }
 
     /**
      * @param creditcard
      * @return
      */
-    public PlaceOrderPlace sendPaymentForm(CreditCard creditcard)
+    public PlaceOrderPage sendPaymentForm(CreditCard creditcard)
     {
         return sendPaymentForm(creditcard.getCardNumber(), creditcard.getFullName(), creditcard.getExpDateMonth(), creditcard.getExpDateYear());
     }
