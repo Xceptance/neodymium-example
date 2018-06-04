@@ -138,4 +138,15 @@ public class ProductdetailPage extends AbstractBrowsingPage
         validateStructure();
         validateProductName(productName);
     };
+
+    /**
+     * @param productName
+     * @param string
+     */
+    @Step("validate the product detail page of \"{productName}\" and assert visually")
+    public void validateAndVisualAssert(String productName)
+    {
+        validateStructureAndVisual();
+        validateProductName(productName);
+    }
 }

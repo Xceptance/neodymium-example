@@ -8,7 +8,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import com.xceptance.neodymium.util.Context;
-import com.xceptance.neodymium.visual.ai.AI;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.User;
@@ -93,8 +92,9 @@ public class HomePage extends AbstractBrowsingPage
         successMessage.validateSuccessMessage(Context.localizedText("HomePage.validation.successfulAccountDeletion"));
     }
 
-    public void validateVisual(String testCaseName)
+    public void validateAndVisualAssert()
     {
-        new AI().execute(Context.get().driver, testCaseName, "validateHomepage");
+        validateStructureAndVisual();
+        footer.validate();
     }
 }

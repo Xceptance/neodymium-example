@@ -29,6 +29,5 @@ public class HomePageTest extends AbstractTest
     {
         HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
-        homePage.validateVisual(this.getClass().getSimpleName());
     }
 }
