@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.xceptance.neodymium.module.statement.browser.multibrowser.Browser;
 import com.xceptance.neodymium.util.DataUtils;
 
 import io.qameta.allure.Owner;
@@ -27,7 +28,7 @@ import posters.tests.AbstractTest;
 @Owner("Tim Brown")
 @Severity(SeverityLevel.NORMAL)
 @Tag("smoke")
-// @Browser("Chrome_headless")
+@Browser("Firefox_headless")
 @Ignore
 public class BrowseRandomVisualAssertTest extends AbstractTest
 {
