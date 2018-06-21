@@ -32,7 +32,6 @@ import posters.tests.AbstractTest;
 @Tag("registered")
 public class LoginTest extends AbstractTest
 {
-
     private User user;
 
     @Before
