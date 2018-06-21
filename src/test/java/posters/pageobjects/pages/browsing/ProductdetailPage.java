@@ -91,7 +91,6 @@ public class ProductdetailPage extends AbstractBrowsingPage
         // Selects the chosen size.
         setSize(size);
         // Click the Add to cart button
-        // click("css= #btnAddToCart");
         addToCart();
     }
 
