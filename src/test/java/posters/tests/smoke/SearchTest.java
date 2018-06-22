@@ -3,7 +3,11 @@
  */
 package posters.tests.smoke;
 
+import org.junit.Before;
 import org.junit.Test;
+
+import com.xceptance.neodymium.module.statement.testdata.DataSet;
+import com.xceptance.neodymium.util.DataUtils;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
@@ -24,7 +28,22 @@ import posters.tests.AbstractTest;
 @Tag("smoke")
 public class SearchTest extends AbstractTest
 {
+    String searchTerm;
+
+    int position;
+
+    int searchTermExpectedCount;
+
+    @Before
+    public void setup()
+    {
+        searchTerm = DataUtils.asString("searchTerm");
+        position = DataUtils.asInt("position", 0);
+        searchTermExpectedCount = DataUtils.asInt("searchTermExpectedCount", 0);
+    }
+
     @Test
+    @DataSet(1)
     public void testSearching()
     {
         // Goto homepage
@@ -32,18 +51,17 @@ public class SearchTest extends AbstractTest
         homePage.validate();
 
         // Search
-        final String searchTerm = "bear";
-        final int searchTermExpectedCount = 3;
         CategoryPage categoryPage = homePage.search.categoryPageResult(searchTerm);
         categoryPage.validateStructure();
         categoryPage.validateSearchHits(searchTerm, searchTermExpectedCount);
 
-        final String productName = categoryPage.getProductNameByPosition(1);
-        ProductdetailPage productPage = categoryPage.clickProductByPosition(1);
+        final String productName = categoryPage.getProductNameByPosition(position);
+        ProductdetailPage productPage = categoryPage.clickProductByPosition(position);
         productPage.validate(productName);
     }
 
     @Test
+    @DataSet(2)
     public void testSearchingWithoutResult()
     {
         // Goto homepage
@@ -51,7 +69,6 @@ public class SearchTest extends AbstractTest
         homePage.validate();
 
         // Search
-        final String searchTerm = "Foobar";
         NoHitsPage noHitsPage = homePage.search.noResult(searchTerm);
         noHitsPage.validate();
     }
