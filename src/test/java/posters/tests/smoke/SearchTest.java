@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
+import com.xceptance.neodymium.module.statement.testdata.SuppressDataSets;
 import com.xceptance.neodymium.util.DataUtils;
 
 import io.qameta.allure.Owner;
@@ -26,13 +27,14 @@ import posters.tests.AbstractTest;
 @Owner("Tim Brown")
 @Severity(SeverityLevel.MINOR)
 @Tag("smoke")
+@SuppressDataSets
 public class SearchTest extends AbstractTest
 {
-    String searchTerm;
+    private String searchTerm;
 
-    int position;
+    private int position;
 
-    int searchTermExpectedCount;
+    private int searchTermExpectedCount;
 
     @Before
     public void setup()
