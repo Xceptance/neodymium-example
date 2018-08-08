@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
-import com.xceptance.neodymium.util.Context;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.CreditCard;
@@ -53,17 +53,17 @@ public class NewPaymentPage extends AbstractCheckoutPage
         $("#formAddPayment").should(exist);
         // Credit Card Number
         // Makes sure the label next to the card number field shows the correct text
-        $("label[for=\"creditCardNumber\"]").shouldHave(exactText(Context.localizedText("General.payment.cardnumber")));
+        $("label[for=\"creditCardNumber\"]").shouldHave(exactText(Neodymium.localizedText("General.payment.cardnumber")));
         // Makes sure the card number field is there
         creditCardNumber.shouldBe(visible);
         // Name
         // Makes sure the label next to the card holder field shows the correct text
-        $("label[for=\"name\"]").shouldHave(exactText(Context.localizedText("General.payment.cardholdername")));
+        $("label[for=\"name\"]").shouldHave(exactText(Neodymium.localizedText("General.payment.cardholdername")));
         // Makes sure the card holder field is there
         creditCardName.shouldBe(visible);
         // Expiration
         // Makes sure the label next to the expiration date fields shows the correct text
-        $("label[for=\"expirationDateMonth\"]").shouldHave(exactText(Context.localizedText("General.payment.expirationdate")));
+        $("label[for=\"expirationDateMonth\"]").shouldHave(exactText(Neodymium.localizedText("General.payment.expirationdate")));
         // Makes sure the expiration month field is there
         expirationMonth.shouldBe(visible);
         // Makes sure the expiration year field is there

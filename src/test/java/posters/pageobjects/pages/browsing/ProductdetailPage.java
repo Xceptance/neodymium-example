@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
-import com.xceptance.neodymium.util.Context;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.Product;
@@ -50,7 +50,7 @@ public class ProductdetailPage extends AbstractBrowsingPage
         productPrice.shouldBe(matchText("\\$(\\d{1,3})(,\\d{3})*\\.\\d{2}$"));
         // Add to cart button
         // Make sure we got an add to cart button and the text matches.
-        addToCartButton.shouldHave(exactText(Context.localizedText("ProductdetailPage.addToCartButton.text")));
+        addToCartButton.shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.addToCartButton.text")));
     }
 
     @Step("validate product name on product detail page")

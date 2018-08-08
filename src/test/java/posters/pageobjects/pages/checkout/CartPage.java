@@ -17,7 +17,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import org.junit.Assert;
 
 import com.codeborne.selenide.SelenideElement;
-import com.xceptance.neodymium.util.Context;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.Product;
@@ -288,12 +288,12 @@ public class CartPage extends AbstractBrowsingPage
         $("#btnRemoveProdCount" + (position - 1)).scrollTo().click();
         // Wait for the second delete button to appear
         // Wait until the confirmation button is visible
-        $("#buttonDelete").waitUntil(visible, Context.get().configuration.timeout());
+        $("#buttonDelete").waitUntil(visible, Neodymium.configuration().selenideTimeout());
         // Click delete button
         // Click the confirmation button
         $("#buttonDelete").scrollTo().click();
         // Wait until the confirmation button is gone
-        $("#buttonDelete").waitUntil(hidden, Context.get().configuration.timeout());
+        $("#buttonDelete").waitUntil(hidden, Neodymium.configuration().selenideTimeout());
         // Reload page to let IDs adjust to the deletion
         miniCart.openMiniCart();
         miniCart.openCartPage();

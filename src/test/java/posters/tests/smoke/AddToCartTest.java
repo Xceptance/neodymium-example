@@ -2,7 +2,7 @@ package posters.tests.smoke;
 
 import org.junit.Test;
 
-import com.xceptance.neodymium.util.Context;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
@@ -24,7 +24,7 @@ public class AddToCartTest extends AbstractTest
     @Test
     public void testAddProductsToCart()
     {
-        final String shippingCosts = Context.dataValue("shippingCosts");
+        final String shippingCosts = Neodymium.dataValue("shippingCosts");
         int totalCount = 0;
 
         // Goto homepage
@@ -36,7 +36,7 @@ public class AddToCartTest extends AbstractTest
         final String oldSubtotal = homePage.miniCart.getSubtotal();
 
         // Go to a top category page
-        final String topCatName = Context.dataValue("topCatName");
+        final String topCatName = Neodymium.dataValue("topCatName");
         CategoryPage categoryPage = homePage.topNav.clickCategory(topCatName);
         categoryPage.validateCategoryName(topCatName);
 
@@ -64,7 +64,7 @@ public class AddToCartTest extends AbstractTest
         cartPage.miniCart.validateTotalCount(++totalCount);
 
         // Search for product on cart page
-        final String searchTerm = Context.dataValue("searchTerm");
+        final String searchTerm = Neodymium.dataValue("searchTerm");
         final int searchTermExpectedCount = 1;
         categoryPage = cartPage.search.categoryPageResult(searchTerm);
         categoryPage.validateSearchHits(searchTerm, searchTermExpectedCount);

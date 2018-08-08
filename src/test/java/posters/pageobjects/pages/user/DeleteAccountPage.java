@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
-import com.xceptance.neodymium.util.Context;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
@@ -45,7 +45,7 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         deleteForm.find(".h2").should(matchText("[A-Z].{3,}"));
         // Password field
         // Asserts the label belonging to the password field displays the correct text
-        $("label[for=\"password\"]").shouldBe(exactText(Context.localizedText("AccountPages.yourPassword")));
+        $("label[for=\"password\"]").shouldBe(exactText(Neodymium.localizedText("AccountPages.yourPassword")));
         // Asserts the field to enter your password is there
         passwordField.shouldBe(visible);
         // Button

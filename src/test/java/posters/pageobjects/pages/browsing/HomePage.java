@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import com.xceptance.neodymium.util.Context;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.User;
@@ -58,7 +58,7 @@ public class HomePage extends AbstractBrowsingPage
     @Step("validate sucessful order on home page")
     public void validateSuccessfulOrder()
     {
-        successMessage.validateSuccessMessage(Context.localizedText("HomePage.validation.successfulOrder"));
+        successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulOrder"));
         // Verify that the mini cart is empty again
         miniCart.validateTotalCount(0);
         miniCart.validateSubtotal("$0.00");
@@ -72,7 +72,7 @@ public class HomePage extends AbstractBrowsingPage
     public void validateSuccessfulLogin(String firstName)
     {
         // Verify that you are logged in
-        successMessage.validateSuccessMessage(Context.localizedText("HomePage.validation.successfulLogin"));
+        successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulLogin"));
         // Verify that the user menu shows your first name
         userMenu.validateLoggedInName(firstName);
 
@@ -90,7 +90,7 @@ public class HomePage extends AbstractBrowsingPage
     @Step("validate sucessful account deletion on home page")
     public void validateSuccessfulDeletedAccount()
     {
-        successMessage.validateSuccessMessage(Context.localizedText("HomePage.validation.successfulAccountDeletion"));
+        successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulAccountDeletion"));
     }
 
     public void validateAndVisualAssert()

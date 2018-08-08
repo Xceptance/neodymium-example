@@ -5,7 +5,7 @@ package posters.tests.smoke;
 
 import org.junit.Test;
 
-import com.xceptance.neodymium.util.Context;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
@@ -39,7 +39,7 @@ public class GuestOrderTest extends AbstractTest
     {
         // total product count will be updated throughout the test
         int totalCount = 0;
-        final String shippingCosts = Context.dataValue("shippingCosts");
+        final String shippingCosts = Neodymium.dataValue("shippingCosts");
 
         // Goto homepage
         HomePage homePage = OpenHomePageFlow.flow();
@@ -74,13 +74,13 @@ public class GuestOrderTest extends AbstractTest
         cartPage.validateCartItem(1, product);
         cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, 0.00);
 
-        final String name = Context.dataValue("name");
-        final String company = Context.dataValue("company");
-        final String street = Context.dataValue("street");
-        final String city = Context.dataValue("city");
-        final String state = Context.dataValue("state");
-        final String zip = Context.dataValue("zip");
-        final String country = Context.dataValue("country");
+        final String name = Neodymium.dataValue("name");
+        final String company = Neodymium.dataValue("company");
+        final String street = Neodymium.dataValue("street");
+        final String city = Neodymium.dataValue("city");
+        final String state = Neodymium.dataValue("state");
+        final String zip = Neodymium.dataValue("zip");
+        final String country = Neodymium.dataValue("country");
         // setup checkout data
         final Address shippingAddress = new Address(name, company, street, city, state, zip, country);
         final boolean sameBillingAddress = false;

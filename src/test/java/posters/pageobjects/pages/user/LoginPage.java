@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
-import com.xceptance.neodymium.util.Context;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.User;
@@ -51,23 +51,23 @@ public class LoginPage extends AbstractBrowsingPage
         loginForm.find("h2").should(matchText("[A-Z].{3,}"));
         // Email field
         // Asserts the Email field has a label displaying the value.
-        loginForm.find("label.control-label[for=email]").shouldHave(exactText(Context.localizedText("AccountPages.yourEmail")));
+        loginForm.find("label.control-label[for=email]").shouldHave(exactText(Neodymium.localizedText("AccountPages.yourEmail")));
         // Asserts the email field is present.
         emailField.shouldBe(visible);
         // Password field
         // Verifies the password field has a label displaying the value.
-        loginForm.find("label.control-label[for=password]").shouldHave(exactText(Context.localizedText("AccountPages.yourPassword")));
+        loginForm.find("label.control-label[for=password]").shouldHave(exactText(Neodymium.localizedText("AccountPages.yourPassword")));
         // Asserts the password field is there.
         passwordField.shouldBe(visible);
         // Login button
         // asserts the login button displays the value.
-        signInButton.shouldHave(exactText(Context.localizedText("AccountPages.signIn")));
+        signInButton.shouldHave(exactText(Neodymium.localizedText("AccountPages.signIn")));
         // Register headline
         // Asserts the Headline for the Registration is there.
-        $("#main .h3").shouldHave(exactText(Context.localizedText("AccountPages.newCustomer")));
+        $("#main .h3").shouldHave(exactText(Neodymium.localizedText("AccountPages.newCustomer")));
         // Registration page link
         // Asserts the Register link is there and shows the correct text.
-        registerLink.shouldHave(exactText(Context.localizedText("AccountPages.createNewAccount")));
+        registerLink.shouldHave(exactText(Neodymium.localizedText("AccountPages.createNewAccount")));
     }
 
     @Step("send login form")
@@ -130,7 +130,7 @@ public class LoginPage extends AbstractBrowsingPage
     @Step("validate successful registration message")
     public void validateSuccessfulRegistration()
     {
-        successMessage.validateSuccessMessage(Context.localizedText("AccountPages.validation.successfulAccountCreation"));
+        successMessage.validateSuccessMessage(Neodymium.localizedText("AccountPages.validation.successfulAccountCreation"));
     }
 
     /**
@@ -139,7 +139,7 @@ public class LoginPage extends AbstractBrowsingPage
     @Step("validate invalid email for login error message")
     public void validateWrongEmail(String eMail)
     {
-        errorMessage.validateErrorMessage(Context.localizedText("AccountPages.validation.emailDoesNotExistError"));
+        errorMessage.validateErrorMessage(Neodymium.localizedText("AccountPages.validation.emailDoesNotExistError"));
         emailField.shouldHave(exactValue(eMail));
     }
 
@@ -149,7 +149,7 @@ public class LoginPage extends AbstractBrowsingPage
     @Step("validate invalid password for login error message")
     public void validateWrongPassword(String eMail)
     {
-        errorMessage.validateErrorMessage(Context.localizedText("AccountPages.validation.incorrectPasswordError"));
+        errorMessage.validateErrorMessage(Neodymium.localizedText("AccountPages.validation.incorrectPasswordError"));
         emailField.shouldHave(exactValue(eMail));
     }
 }

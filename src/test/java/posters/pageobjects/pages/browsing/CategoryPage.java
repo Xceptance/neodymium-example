@@ -16,7 +16,7 @@ import java.util.Random;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import com.xceptance.neodymium.util.Context;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.pageobjects.components.Pagination;
@@ -136,7 +136,7 @@ public class CategoryPage extends AbstractBrowsingPage
         $("#titleSearchText").should(exist);
         // Validate the headline contains the search phrase
         // \\(" + searchTermExpectedCount + " *\\)
-        $("#titleSearchText").should(matchText(Context.localizedText("search.results.text") + ": '" + searchTerm + "' \\(" + searchTermExpectedCount
+        $("#titleSearchText").should(matchText(Neodymium.localizedText("search.results.text") + ": '" + searchTerm + "' \\(" + searchTermExpectedCount
                                                + ".*\\)"));
         // Verify that the correct search term is displayed
         // Validate the entered search phrase is still visible in the input

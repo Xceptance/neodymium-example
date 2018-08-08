@@ -3,7 +3,7 @@
  */
 package posters.dataobjects;
 
-import com.xceptance.neodymium.util.Context;
+import com.xceptance.neodymium.util.Neodymium;
 
 import posters.pageobjects.utility.PriceHelper;
 
@@ -145,10 +145,10 @@ public class Product
     {
         return getName()
                + "\\n[a-zA-Z\\s\\.\\,0-9\\!]+\\n"
-               + Context.localizedText("General.product.style")
+               + Neodymium.localizedText("General.product.style")
                + "\\:\\s" + getStyle()
                + "\\n"
-               + Context.localizedText("General.product.size")
+               + Neodymium.localizedText("General.product.size")
                + "\\:\\s" + getSize();
     }
 
@@ -156,7 +156,7 @@ public class Product
     {
         return getName()
                + "\\n"
-               + Context.localizedText("General.product.quantity")
+               + Neodymium.localizedText("General.product.quantity")
                + ":\\s" + "\\d+\\s\\(" + getStyle()
                + ",\\s" + getSize()
                + "\\s\\)\\n\\$\\d+\\.\\d+";

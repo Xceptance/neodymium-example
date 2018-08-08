@@ -6,7 +6,7 @@ package posters.tests.smoke;
 import org.junit.After;
 import org.junit.Test;
 
-import com.xceptance.neodymium.util.Context;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
@@ -42,7 +42,7 @@ public class RegisteredOrderTest extends AbstractTest
     {
         // total product count will be updated throughout the test
         int totalCount = 0;
-        final String shippingCosts = Context.dataValue("shippingCosts");
+        final String shippingCosts = Neodymium.dataValue("shippingCosts");
 
         // Goto homepage
         HomePage homePage = OpenHomePageFlow.flow();
@@ -58,11 +58,11 @@ public class RegisteredOrderTest extends AbstractTest
         // Goto login form
         LoginPage loginPage = homePage.userMenu.openLogin();
         loginPage.validateStructure();
-        final String email = Context.dataValue("email");
-        final String password = Context.dataValue("password");
+        final String email = Neodymium.dataValue("email");
+        final String password = Neodymium.dataValue("password");
         homePage = loginPage.sendLoginform(email, password);
 
-        final String firstname = Context.dataValue("firstname");
+        final String firstname = Neodymium.dataValue("firstname");
         homePage.validateSuccessfulLogin(firstname);
 
         // Goto category
@@ -99,13 +99,13 @@ public class RegisteredOrderTest extends AbstractTest
         PaymentPage paymentPage = billingAddressPage.selectBillingAddress(1);
         paymentPage.validateStructure();
 
-        final String name = firstname + " " + Context.dataValue("lastname");
-        final String company = Context.dataValue("company");
-        final String street = Context.dataValue("street");
-        final String city = Context.dataValue("city");
-        final String state = Context.dataValue("state");
-        final String zip = Context.dataValue("zip");
-        final String country = Context.dataValue("country");
+        final String name = firstname + " " + Neodymium.dataValue("lastname");
+        final String company = Neodymium.dataValue("company");
+        final String street = Neodymium.dataValue("street");
+        final String city = Neodymium.dataValue("city");
+        final String state = Neodymium.dataValue("state");
+        final String zip = Neodymium.dataValue("zip");
+        final String country = Neodymium.dataValue("country");
 
         // setup checkout data for validation
         final Address shippingAddress = new Address(name, company, street, city, state, zip, country);

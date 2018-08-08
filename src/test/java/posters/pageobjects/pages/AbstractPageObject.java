@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.xceptance.neodymium.util.Context;
+import com.xceptance.neodymium.util.Neodymium;
 import com.xceptance.neodymium.visual.ai.AI;
 
 import posters.pageobjects.components.Title;
@@ -29,11 +29,11 @@ public abstract class AbstractPageObject
     {
         if (StringUtils.isAllEmpty(testCaseName))
         {
-            new AI().execute(Context.get().driver, this.getClass().getSimpleName(), "validate" + this.getClass().getSimpleName());
+            new AI().execute(Neodymium.getDriver(), this.getClass().getSimpleName(), "validate" + this.getClass().getSimpleName());
         }
         else
         {
-            new AI().execute(Context.get().driver, testCaseName, "validate" + this.getClass().getSimpleName());
+            new AI().execute(Neodymium.getDriver(), testCaseName, "validate" + this.getClass().getSimpleName());
         }
     }
 

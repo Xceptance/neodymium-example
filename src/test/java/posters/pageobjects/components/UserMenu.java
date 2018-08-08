@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
-import com.xceptance.neodymium.util.Context;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.user.AccountOverviewPage;
@@ -40,7 +40,7 @@ public class UserMenu extends AbstractComponent
         showUserMenu.scrollTo().click();
         // Wait for mini cart to appear
         // Wait for the mini cart to show
-        userMenu.waitUntil(visible, Context.get().configuration.timeout());
+        userMenu.waitUntil(visible, Neodymium.configuration().selenideTimeout());
     }
 
     @Step("close user menu")
@@ -52,7 +52,7 @@ public class UserMenu extends AbstractComponent
         $("#brand").hover();
         // Wait for mini cart to disappear
         // Wait for the mini cart to disappear
-        userMenu.waitUntil(not(visible), Context.get().configuration.timeout());
+        userMenu.waitUntil(not(visible), Neodymium.configuration().selenideTimeout());
     }
 
     @Step("open login page from user menu")
