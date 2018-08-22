@@ -5,6 +5,7 @@ default:
         results:
             text: Your results for your search
     HomePage:
+        title: Posters - The Ultimate Online Shop
         validation:
             successfulOrder: Thank you for shopping with us!
             successfulLogin: Login successful. Have fun in our shop!

@@ -2,6 +2,8 @@ package posters.tests.smoke;
 
 import org.junit.Test;
 
+import com.xceptance.neodymium.util.Neodymium;
+
 import io.qameta.allure.Issue;
 import io.qameta.allure.Link;
 import io.qameta.allure.Owner;
@@ -29,5 +31,6 @@ public class HomePageTest extends AbstractTest
     {
         HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
+        homePage.title.validateTitle(Neodymium.localizedText("HomePage.title"));
     }
 }
