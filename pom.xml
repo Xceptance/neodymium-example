@@ -3,7 +3,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.xceptance.neodymium</groupId>
+	<groupId>com.xceptance.neodymium.project</groupId>
 	<artifactId>neodymium-example</artifactId>
 	<version>2.1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
