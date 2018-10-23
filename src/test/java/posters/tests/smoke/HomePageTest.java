@@ -2,6 +2,7 @@ package posters.tests.smoke;
 
 import org.junit.Test;
 
+import com.xceptance.neodymium.util.AllureAddons;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Description;
@@ -33,6 +34,7 @@ public class HomePageTest extends AbstractTest
     @Description(value = "A basic description for home page validation.")
     public void testVisitingHomepage()
     {
+        AllureAddons.addToReport("Find me in the report", "Some additional content. Could be the toString method of an complex object.");
         HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
         homePage.title.validateTitle(Neodymium.localizedText("HomePage.title"));

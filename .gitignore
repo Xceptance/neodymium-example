@@ -28,3 +28,4 @@ allure-results
 .project
 /.allure/
 data/ai/training
+dev-*.properties
