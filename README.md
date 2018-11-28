@@ -34,7 +34,7 @@ Simply clone or fork this project.
 ### Get into the Console
 1. Open a console of your choice
 2. Goto the project folder
-3. Run `mvn clean compile`
+3. Run `mvn clean test`
 
 ### Test out Allure reports
 Please check our [Wiki](https://github.com/Xceptance/neodymium-library/wiki/Allure-reports) to get all info you need.
