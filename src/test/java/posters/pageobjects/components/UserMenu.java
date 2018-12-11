@@ -94,7 +94,7 @@ public class UserMenu extends AbstractComponent
         showUserMenu.find("span.glyphicon").shouldHave(cssClass("logged")).shouldHave(exactText(""));
     }
 
-    @Step("validate that nobody is looged in")
+    @Step("validate that nobody is logged in")
     public void validateNotLoggedIn()
     {
         userMenu.find(".goToLogin").should(exist);

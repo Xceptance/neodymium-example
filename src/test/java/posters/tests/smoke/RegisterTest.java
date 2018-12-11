@@ -7,8 +7,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.xceptance.neodymium.module.statement.browser.multibrowser.Browser;
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
 import com.xceptance.neodymium.util.DataUtils;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
@@ -29,6 +31,8 @@ import posters.tests.AbstractTest;
 @Severity(SeverityLevel.CRITICAL)
 @Tag("smoke")
 @Tag("registered")
+@Browser("Chrome_1024x768")
+@Browser("Firefox_1024x768")
 public class RegisterTest extends AbstractTest
 {
     User user;
@@ -42,14 +46,14 @@ public class RegisterTest extends AbstractTest
     @Test
     @DataSet(2)
     @DataSet(4)
-    @DataSet(id = "Judas' test")
+    @DataSet(id = "Jim's test")
     public void testRegistering()
     {
         // Goto homepage
         HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
-        // Assure not logged in status
+        // Assure that nobody is logged in
         homePage.userMenu.validateNotLoggedIn();
 
         // Goto login form
