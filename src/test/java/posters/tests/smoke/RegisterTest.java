@@ -10,7 +10,6 @@ import org.junit.Test;
 import com.xceptance.neodymium.module.statement.browser.multibrowser.Browser;
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
 import com.xceptance.neodymium.util.DataUtils;
-import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;

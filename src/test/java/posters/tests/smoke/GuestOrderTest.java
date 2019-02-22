@@ -85,7 +85,7 @@ public class GuestOrderTest extends AbstractTest
         final Address shippingAddress = new Address(name, company, street, city, state, zip, country);
         final boolean sameBillingAddress = false;
         final Address billingAddress = new Address(name, company, street, city, state, zip, country);
-        final CreditCard creditcard = new CreditCard("Jimmy Blue", "4111111111111111", "xxxx xxxx xxxx 1111", "04", "2018");
+        final CreditCard creditcard = new CreditCard("Jimmy Blue", "4111111111111111", "xxxx xxxx xxxx 1111", "04", "2022");
         // Goto shipping address and validate
         NewShippingAddressPage shippingAddressPage = cartPage.openNewShippingPage();
         shippingAddressPage.validateStructure();
