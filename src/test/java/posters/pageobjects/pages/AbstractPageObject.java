@@ -27,13 +27,15 @@ public abstract class AbstractPageObject
 
     public void validateVisual(String testCaseName)
     {
+    	String className = this.getClass().getSimpleName();
+    	
         if (StringUtils.isAllEmpty(testCaseName))
         {
-            new AI().execute(Neodymium.getDriver(), this.getClass().getSimpleName(), "validate" + this.getClass().getSimpleName());
+            new AI().execute(Neodymium.getDriver(), className, "validate" + className);
         }
         else
         {
-            new AI().execute(Neodymium.getDriver(), testCaseName, "validate" + this.getClass().getSimpleName());
+            new AI().execute(Neodymium.getDriver(), testCaseName, "validate" + className);
         }
     }
 
