@@ -34,7 +34,7 @@ public class PosterSlider extends AbstractComponent {
 	 */
 	@Step("Open a slide using its position in the carousel")
 	public void selectSlide(int position) {
-		carouselIndicators.get(getSlideIdx(position)).click();
+		carouselIndicators.get(getSlideIndex(position)).click();
 	}
 
 	@Step("Go to the previous slide")
@@ -52,7 +52,7 @@ public class PosterSlider extends AbstractComponent {
 	 * @param position of the slide
 	 * @return
 	 */
-	private int getSlideIdx(int position) {
+	private int getSlideIndex(int position) {
 		return Math.floorMod(--position, NUM_SLIDES);
 	}
 
@@ -80,12 +80,12 @@ public class PosterSlider extends AbstractComponent {
 	 */
 	@Step("Validate the given slide is currently visible")
 	public void validateSlideIsVisible(int position) {
-		int positionIdx = getSlideIdx(position);
-		SelenideElement slide = carouselSlides.get(positionIdx);
+		int index = getSlideIndex(position);
+		SelenideElement slide = carouselSlides.get(index);
 
 		slide.shouldBe(visible);
 		slide.shouldHave(cssClass(ACTIVE_CLASS));
-		carouselIndicators.get(positionIdx).shouldHave(cssClass(ACTIVE_CLASS));
+		carouselIndicators.get(index).shouldHave(cssClass(ACTIVE_CLASS));
 	}
 
 	@Step("Validate the title of the poster slider")
