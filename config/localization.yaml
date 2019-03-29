@@ -12,8 +12,6 @@ default:
             successfulAccountDeletion: Your account has been deleted. We hope to see you soon again!
         posterSlider:
             title: Check out our new panorama posters
-            numSlides: 4
-            activeSlideClass: active
     NoHitsPage:
         validation:
             noProductsFound: Sorry! No results found matching your search. Please try again.

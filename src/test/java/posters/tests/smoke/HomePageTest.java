@@ -41,17 +41,17 @@ public class HomePageTest extends AbstractTest
 
         // Validate slide navigation by position for poster slider
         int slidePosition = 4;
-        homePage.posterSlider.goToSlide(slidePosition);
+        homePage.posterSlider.selectSlide(slidePosition);
         homePage.posterSlider.validateSlideIsVisible(slidePosition);
 
         // Validate poster slider navigate to previous slide
         slidePosition = homePage.posterSlider.getCurrentSlidePosition();
-        homePage.posterSlider.goToPrevSlide();
+        homePage.posterSlider.previousSlide();
         homePage.posterSlider.validateSlideIsVisible(slidePosition - 1);
 
         // Validate poster slider navigate to next slide
         slidePosition = homePage.posterSlider.getCurrentSlidePosition();
-        homePage.posterSlider.goToNextSlide();
+        homePage.posterSlider.nextSlide();
         homePage.posterSlider.validateSlideIsVisible(slidePosition + 1);
     }
 }

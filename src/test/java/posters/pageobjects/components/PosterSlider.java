@@ -13,9 +13,9 @@ import io.qameta.allure.*;
 public class PosterSlider extends AbstractComponent {
 
 	// The slides in the carousel are indexed from 1 to NUM_SLIDES
-	private static final int NUM_SLIDES = Integer.parseInt(Neodymium.localizedText("HomePage.posterSlider.numSlides"));
+	private static final int NUM_SLIDES = 4;
 	private static final String TITLE_TEXT = Neodymium.localizedText("HomePage.posterSlider.title");
-	private static final String ACTIVE_CLASS = Neodymium.localizedText("HomePage.posterSlider.activeSlideClass");
+	private static final String ACTIVE_CLASS = "active";
 	
 	private ElementsCollection carouselIndicators = $$("#pShopCarousel > ol.carousel-indicators > li");
 	private ElementsCollection carouselSlides = $$("#pShopCarousel > div.carousel-inner > div[id^='pShopCarouselItem']");
@@ -33,18 +33,17 @@ public class PosterSlider extends AbstractComponent {
 	 * @param position the position of the slide to navigate to
 	 */
 	@Step("Open a slide using its position in the carousel")
-	public void goToSlide(int position) {
-		int positionIdx = getSlideIdx(position);
-		carouselIndicators.get(positionIdx).click();
+	public void selectSlide(int position) {
+		carouselIndicators.get(getSlideIdx(position)).click();
 	}
 
 	@Step("Go to the previous slide")
-	public void goToPrevSlide() {
+	public void previousSlide() {
 		prevSlideBtn.click();
 	}
 
 	@Step("Go to the next slide")
-	public void goToNextSlide() {
+	public void nextSlide() {
 		nextSlideBtn.click();
 	}
 
@@ -61,7 +60,7 @@ public class PosterSlider extends AbstractComponent {
 	 * Get the position of the currently visible slide
 	 * @return slide's position in range 1 to NUM_SLIDES
 	 */
-	@Step("Validate exactly 1 slide is visible at the instant and get its position")
+	@Step("Get the position of the currently visible slide")
 	public int getCurrentSlidePosition() {
 		// Validate that there is exactly 1 visible slide in the carousel
 		carouselSlides.filter(visible).shouldHaveSize(1);
