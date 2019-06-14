@@ -28,7 +28,8 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<surefire.version>2.22.1</surefire.version>
-		<aspectj.version>1.8.13</aspectj.version>
+		<aspectj.version>1.9.2</aspectj.version>
+		<allure.version>2.10.0</allure.version>
 		<neodymium.version>3.3.1</neodymium.version>
 	</properties>
 
@@ -70,9 +71,9 @@
 			<plugin>
 				<groupId>io.qameta.allure</groupId>
 				<artifactId>allure-maven</artifactId>
-				<version>2.10.0</version>
+				<version>${allure.version}</version>
 				<configuration>
-					<reportVersion>2.10.0</reportVersion>
+					<reportVersion>${allure.version}</reportVersion>
 				</configuration>
 			</plugin>
 		</plugins>
