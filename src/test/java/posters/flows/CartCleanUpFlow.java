@@ -24,7 +24,7 @@ public class CartCleanUpFlow
         HomePage homePage = new HomePage();
         homePage.miniCart.openMiniCart();
 
-        // goto cart page
+        // go to cart page
         CartPage cartPage = homePage.miniCart.openCartPage();
         while (cartPage.hasProductsInCart())
         {

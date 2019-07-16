@@ -48,7 +48,7 @@ public class SearchTest extends AbstractTest
     @DataSet(1)
     public void testSearching()
     {
-        // Goto homepage
+        // Go to homepage
         HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
@@ -66,7 +66,7 @@ public class SearchTest extends AbstractTest
     @DataSet(2)
     public void testSearchingWithoutResult()
     {
-        // Goto homepage
+        // Go to homepage
         HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
 

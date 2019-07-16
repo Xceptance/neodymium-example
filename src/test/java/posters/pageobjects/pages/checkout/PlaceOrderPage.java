@@ -111,7 +111,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         productContainer.find(".pSize").shouldHave(exactText(productSize));
     }
 
-    @Step("validate adresses and payment on place order page")
+    @Step("validate addresses and payment on place order page")
     public void validateAddressesAndPayment(Address shippingAddress, Address billingAddress, CreditCard creditcard)
     {
         // Shipping address
@@ -172,7 +172,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         paymentForm.find(" .exp .year").shouldHave(exactText(creditcard.getExpDateYear()));
     }
 
-    @Step("get order total costs frome place order page")
+    @Step("get order total costs from place order page")
     public String getTotalCosts()
     {
         return $("#totalCosts").text();

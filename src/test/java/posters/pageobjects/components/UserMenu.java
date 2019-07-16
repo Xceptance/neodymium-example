@@ -100,7 +100,7 @@ public class UserMenu extends AbstractComponent
         userMenu.find(".goToLogin").should(exist);
     }
 
-    @Step("validate that somebody is looged in")
+    @Step("validate that somebody is logged in")
     public boolean isLoggedIn()
     {
         return userMenu.find(".goToAccountOverview").exists();

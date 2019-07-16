@@ -18,9 +18,9 @@ You will need the following technologies available to try it out:
 ### Get and run Posters
 Posters is a web shop for demo purposes build by [Xceptance](https://www.xceptance.com/en/). We use it throughout all our software products to demonstrate their capabilities within a simple and stable environment. 
 1. Download latest XLT [here](https://www.xceptance.com/en/xlt/download.html).
-2. Goto [downloadPathXlt]/samples/app-server/bin/
+2. Go to [downloadPathXlt]/samples/app-server/bin/
 3. Start with: ./start.sh
-4. Goto [https://localhost:8443/posters/](https://localhost:8443/posters/) to check if it is running
+4. Go to [https://localhost:8443/posters/](https://localhost:8443/posters/) to check if it is running
 
 ### Get yourself a free copy
 Simply clone or fork this project.
@@ -28,12 +28,12 @@ Simply clone or fork this project.
 ### IDE way of doing
 1. Import the project as Maven project
 2. Set up your [WebDrivers](https://github.com/Xceptance/neodymium-library/wiki/How-to-set-up-a-WebDriver)
-3. Goto `posters.neodymium.tests.smoke`
+3. Go to `posters.neodymium.tests.smoke`
 4. Run `HomePageTest.java` as JUnit test.
 
 ### Get into the Console
 1. Open a console of your choice
-2. Goto the project folder
+2. Go to the project folder
 3. Run `mvn clean test`
 
 ### Test out Allure reports

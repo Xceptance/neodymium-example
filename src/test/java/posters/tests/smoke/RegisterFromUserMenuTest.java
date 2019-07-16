@@ -32,14 +32,14 @@ public class RegisterFromUserMenuTest extends AbstractTest
     @Test
     public void testRegisteringFromUserMenu()
     {
-        // Goto homepage
+        // Go to homepage
         HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Assure not logged in status
         homePage.userMenu.validateNotLoggedIn();
 
-        // Goto register form
+        // Go to register form
         RegisterPage registerPage = homePage.userMenu.openRegister();
         registerPage.validateStructure();
 
