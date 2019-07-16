@@ -41,7 +41,7 @@ public class CartPage extends AbstractBrowsingPage
         cartTable.should(exist);
     }
 
-    @Step("valiadte subtotal in the cart")
+    @Step("validate subtotal in the cart")
     public void validateSubtotal(String subtotal)
     {
         $$("#cartSummaryList li").findBy(text("Subtotal")).find(".text-right").shouldHave(exactText(subtotal));
@@ -152,7 +152,7 @@ public class CartPage extends AbstractBrowsingPage
     {
         SelenideElement productContainer = $("#product" + (position - 1));
         // Store unit price (without $ sign)
-        // Takes the pricer per 1 unit of the specified item
+        // Takes the price per 1 unit of the specified item
         String unitPriceShort_varDynamic = productContainer.find(".unitPriceShort").text();
         // Store product count
         // Takes the amount of the specified item
@@ -342,7 +342,7 @@ public class CartPage extends AbstractBrowsingPage
     /**
      * @return
      */
-    @Step("check if ther are product on the cart page")
+    @Step("check if there are product on the cart page")
     public boolean hasProductsInCart()
     {
         return $("#btnRemoveProdCount0").exists();

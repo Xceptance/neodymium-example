@@ -42,7 +42,7 @@ public class LoginTest extends AbstractTest
 
     @Test
     @DataSet(1)
-    public void testSuccessfullLogin()
+    public void testSuccessfulLogin()
     {
         LoginPage loginPage = prepareTest();
 
@@ -99,7 +99,7 @@ public class LoginTest extends AbstractTest
         // Page types to use
         LoginPage loginPage;
 
-        // Goto login page
+        // Go to login page
         loginPage = OpenLoginPageFlow.flow();
         loginPage.validateStructure();
 

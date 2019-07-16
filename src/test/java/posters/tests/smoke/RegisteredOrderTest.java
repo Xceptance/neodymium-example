@@ -44,7 +44,7 @@ public class RegisteredOrderTest extends AbstractTest
         int totalCount = 0;
         final String shippingCosts = Neodymium.dataValue("shippingCosts");
 
-        // Goto homepage
+        // Go to homepage
         HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
@@ -55,7 +55,7 @@ public class RegisteredOrderTest extends AbstractTest
         homePage.miniCart.validateSubtotal("$0.00");
         final String oldSubtotal = homePage.miniCart.getSubtotal();
 
-        // Goto login form
+        // Go to login form
         LoginPage loginPage = homePage.userMenu.openLogin();
         loginPage.validateStructure();
         final String email = Neodymium.dataValue("email");
@@ -65,19 +65,19 @@ public class RegisteredOrderTest extends AbstractTest
         final String firstname = Neodymium.dataValue("firstname");
         homePage.validateSuccessfulLogin(firstname);
 
-        // Goto category
+        // Go to category
         final String categoryName = homePage.topNav.getSubCategoryNameByPosition(2, 3);
         CategoryPage categoryPage = homePage.topNav.clickSubCategoryByPosition(2, 3);
         categoryPage.validate(categoryName);
 
-        // Goto product page
+        // Go to product page
         final String productName = categoryPage.getProductNameByPosition(2, 1);
         ProductdetailPage productPage = categoryPage.clickProductByPosition(2, 1);
         productPage.validate(productName);
 
         productPage.addToCart("32 x 24 in", "matte");
 
-        // Goto cart and validate
+        // Go to cart and validate
         final Product product = productPage.getProduct();
         CartPage cartPage = productPage.miniCart.openCartPage();
         cartPage.validateStructure();
@@ -87,7 +87,7 @@ public class RegisteredOrderTest extends AbstractTest
         cartPage.validateCartItem(1, product);
         cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, 0.00);
 
-        // Goto shipping address and validate
+        // Go to shipping address and validate
         ShippingAddressPage shippingAddressPage = cartPage.openShippingPage();
         shippingAddressPage.validateStructure();
 

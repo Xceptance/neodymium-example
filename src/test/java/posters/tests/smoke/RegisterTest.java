@@ -48,18 +48,18 @@ public class RegisterTest extends AbstractTest
     @DataSet(id = "Jim's test")
     public void testRegistering()
     {
-        // Goto homepage
+        // Go to homepage
         HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Assure that nobody is logged in
         homePage.userMenu.validateNotLoggedIn();
 
-        // Goto login form
+        // Go to login form
         LoginPage loginPage = homePage.userMenu.openLogin();
         loginPage.validateStructure();
 
-        // Goto register form
+        // Go to register form
         RegisterPage registerPage = loginPage.openRegister();
         registerPage.validateStructure();
 

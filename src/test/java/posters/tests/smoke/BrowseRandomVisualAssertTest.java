@@ -66,12 +66,12 @@ public class BrowseRandomVisualAssertTest extends AbstractTest
 
         for (int i = 1; i <= numberOfProductDetailPages; i++)
         {
-            // Goto homepage
+            // Go to homepage
             LOGGER.info("Homepage");
             HomePage homePage = OpenHomePageFlow.flow();
             homePage.validateAndVisualAssert();
 
-            // Goto category
+            // Go to category
             LOGGER.info("Category page");
             String categoryName = homePage.topNav.getRandomSubcategoryName(random);
             categoryPage = homePage.topNav.clickSubcategoryByName(categoryName);
@@ -81,7 +81,7 @@ public class BrowseRandomVisualAssertTest extends AbstractTest
             categoryPage.scrollToTop();
             categoryPage.validateAndVisualAssert(categoryName);
 
-            // Goto any product detail page
+            // Go to any product detail page
             LOGGER.info("Product detail page");
             String productName = categoryPage.getRandomProductDetailName(random);
             productPage = categoryPage.clickProductByName(productName);

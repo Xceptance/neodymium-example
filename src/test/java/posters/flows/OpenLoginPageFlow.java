@@ -9,7 +9,7 @@ public class OpenLoginPageFlow
     @Step("open login page flow")
     public static LoginPage flow()
     {
-        // initialize the session and goto home page
+        // initialize the session and go to home page
         HomePage homePage = OpenHomePageFlow.flow();
 
         // open login page and check for expected page

@@ -27,7 +27,7 @@ public class AddToCartTest extends AbstractTest
         final String shippingCosts = Neodymium.dataValue("shippingCosts");
         int totalCount = 0;
 
-        // Goto homepage
+        // Go to homepage
         HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
@@ -40,18 +40,18 @@ public class AddToCartTest extends AbstractTest
         CategoryPage categoryPage = homePage.topNav.clickCategory(topCatName);
         categoryPage.validateCategoryName(topCatName);
 
-        // Goto sub category page
+        // Go to sub category page
         final String categoryName = categoryPage.topNav.getSubCategoryNameByPosition(1, 1);
         categoryPage = categoryPage.topNav.clickSubCategoryByPosition(1, 1);
         categoryPage.validate(categoryName);
 
-        // Goto product page and add to cart
+        // Go to product page and add to cart
         final String productName = categoryPage.getProductNameByPosition(1, 1);
         ProductdetailPage productPage = categoryPage.clickProductByPosition(1, 1);
         productPage.validate(productName);
         productPage.addToCart("16 x 12 in", "matte");
 
-        // Goto cart and validate
+        // Go to cart and validate
         final Product product = productPage.getProduct();
         CartPage cartPage = productPage.miniCart.openCartPage();
         cartPage.validate(shippingCosts);
@@ -70,13 +70,13 @@ public class AddToCartTest extends AbstractTest
         categoryPage.validateSearchHits(searchTerm, searchTermExpectedCount);
         final String productName2 = categoryPage.getProductNameByPosition(1, 1);
 
-        // Goto product page and add to cart
+        // Go to product page and add to cart
         productPage = categoryPage.clickProductByPosition(1, 1);
         productPage.validate(productName2);
         productPage.addToCart("64 x 48 in", "gloss");
         final Product product2 = productPage.getProduct();
 
-        // Goto cart and validate
+        // Go to cart and validate
         cartPage = productPage.miniCart.openCartPage();
         cartPage.validate(shippingCosts);
 

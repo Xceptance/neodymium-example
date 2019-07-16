@@ -31,15 +31,15 @@ public class DeleteUserFlow
             homePage = loginPage.sendLoginform(user);
         }
 
-        // goto account page
+        // go to account page
         AccountOverviewPage accountOverviewPage = homePage.userMenu.openAccountOverview();
         accountOverviewPage.validateStructure();
 
-        // goto personal data page
+        // go to personal data page
         PersonalDataPage personalDataPage = accountOverviewPage.openPersonalData();
         personalDataPage.validateStructure();
 
-        // goto account deletion page
+        // go to account deletion page
         DeleteAccountPage deleteAccountPage = personalDataPage.openDeleteAccount();
 
         // delete the account

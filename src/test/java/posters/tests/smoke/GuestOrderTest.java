@@ -41,7 +41,7 @@ public class GuestOrderTest extends AbstractTest
         int totalCount = 0;
         final String shippingCosts = Neodymium.dataValue("shippingCosts");
 
-        // Goto homepage
+        // Go to homepage
         HomePage homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
@@ -52,7 +52,7 @@ public class GuestOrderTest extends AbstractTest
         homePage.miniCart.validateSubtotal("$0.00");
         final String oldSubtotal = homePage.miniCart.getSubtotal();
 
-        // Goto category
+        // Go to category
         final String categoryName = homePage.topNav.getSubCategoryNameByPosition(3, 2);
         CategoryPage categoryPage = homePage.topNav.clickSubCategoryByPosition(3, 2);
         categoryPage.validate(categoryName);
@@ -64,7 +64,7 @@ public class GuestOrderTest extends AbstractTest
 
         productPage.addToCart("64 x 48 in", "gloss");
 
-        // Goto cart and validate
+        // Go to cart and validate
         final Product product = productPage.getProduct();
         CartPage cartPage = productPage.miniCart.openCartPage();
         cartPage.validateStructure();
@@ -86,7 +86,7 @@ public class GuestOrderTest extends AbstractTest
         final boolean sameBillingAddress = false;
         final Address billingAddress = new Address(name, company, street, city, state, zip, country);
         final CreditCard creditcard = new CreditCard("Jimmy Blue", "4111111111111111", "xxxx xxxx xxxx 1111", "04", "2022");
-        // Goto shipping address and validate
+        // Go to shipping address and validate
         NewShippingAddressPage shippingAddressPage = cartPage.openNewShippingPage();
         shippingAddressPage.validateStructure();
 
