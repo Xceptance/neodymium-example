@@ -25,10 +25,10 @@ public class Title extends AbstractComponent
         });
 
         Logger logger = LoggerFactory.getLogger(getClass());
-        logger.trace("trace");
-        logger.debug("debug");
-        logger.info("info");
-        logger.warn("warn");
-        logger.error("error");
+        logger.trace("This is a logging example with severity: 'trace'. Can be found in posters.pageobjects.components.Title class.");
+        logger.debug("This is a logging example with severity: 'debug'. Can be found in posters.pageobjects.components.Title class.");
+        logger.info("This is a logging example with severity: 'info'. Can be found in posters.pageobjects.components.Title class.");
+        logger.warn("This is a logging example with severity: 'warn'. Can be found in posters.pageobjects.components.Title class.");
+        logger.error("This is a logging example with severity: 'error'. Can be found in posters.pageobjects.components.Title class.");
     }
 }
