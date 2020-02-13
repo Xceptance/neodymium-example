@@ -14,7 +14,7 @@ import io.qameta.allure.junit4.Tag;
 import posters.dataobjects.Address;
 import posters.dataobjects.CreditCard;
 import posters.dataobjects.Product;
-import posters.flows.OpenHomePageFlow;
+import posters.flows.OpenPageFlow;
 import posters.pageobjects.pages.browsing.CategoryPage;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.browsing.ProductdetailPage;
@@ -42,7 +42,7 @@ public class GuestOrderTest extends AbstractTest
         final String shippingCosts = Neodymium.dataValue("shippingCosts");
 
         // Go to homepage
-        HomePage homePage = OpenHomePageFlow.flow();
+        HomePage homePage = OpenPageFlow.openHomePage();
         homePage.validate();
 
         // Assure not logged in status

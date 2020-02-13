@@ -16,7 +16,7 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
-import posters.flows.OpenHomePageFlow;
+import posters.flows.OpenPageFlow;
 import posters.pageobjects.pages.browsing.CategoryPage;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.browsing.ProductdetailPage;
@@ -68,7 +68,7 @@ public class BrowseRandomVisualAssertTest extends AbstractTest
         {
             // Go to homepage
             LOGGER.info("Homepage");
-            HomePage homePage = OpenHomePageFlow.flow();
+            HomePage homePage = OpenPageFlow.openHomePage();
             homePage.validateAndVisualAssert();
 
             // Go to category

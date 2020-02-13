@@ -10,7 +10,7 @@ public class OpenLoginPageFlow
     public static LoginPage flow()
     {
         // initialize the session and go to home page
-        HomePage homePage = OpenHomePageFlow.flow();
+        HomePage homePage = OpenPageFlow.openHomePage();
 
         // open login page and check for expected page
         LoginPage loginPage = homePage.userMenu.openLogin();

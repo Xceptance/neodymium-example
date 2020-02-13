@@ -9,7 +9,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.dataobjects.Product;
-import posters.flows.OpenHomePageFlow;
+import posters.flows.OpenPageFlow;
 import posters.pageobjects.pages.browsing.CategoryPage;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.browsing.ProductdetailPage;
@@ -28,7 +28,7 @@ public class AddToCartTest extends AbstractTest
         int totalCount = 0;
 
         // Go to homepage
-        HomePage homePage = OpenHomePageFlow.flow();
+        HomePage homePage = OpenPageFlow.openHomePage();
         homePage.validate();
 
         homePage.miniCart.validateTotalCount(totalCount);

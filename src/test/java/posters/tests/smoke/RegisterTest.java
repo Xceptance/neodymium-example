@@ -17,7 +17,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.dataobjects.User;
 import posters.flows.DeleteUserFlow;
-import posters.flows.OpenHomePageFlow;
+import posters.flows.OpenPageFlow;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.pageobjects.pages.user.RegisterPage;
@@ -49,7 +49,7 @@ public class RegisterTest extends AbstractTest
     public void testRegistering()
     {
         // Go to homepage
-        HomePage homePage = OpenHomePageFlow.flow();
+        HomePage homePage = OpenPageFlow.openHomePage();
         homePage.validate();
 
         // Assure that nobody is logged in

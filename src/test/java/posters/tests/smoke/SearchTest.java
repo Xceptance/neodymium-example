@@ -14,7 +14,7 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
-import posters.flows.OpenHomePageFlow;
+import posters.flows.OpenPageFlow;
 import posters.pageobjects.pages.browsing.CategoryPage;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.browsing.NoHitsPage;
@@ -49,7 +49,7 @@ public class SearchTest extends AbstractTest
     public void testSearching()
     {
         // Go to homepage
-        HomePage homePage = OpenHomePageFlow.flow();
+        HomePage homePage = OpenPageFlow.openHomePage();
         homePage.validate();
 
         // Search
@@ -67,7 +67,7 @@ public class SearchTest extends AbstractTest
     public void testSearchingWithoutResult()
     {
         // Go to homepage
-        HomePage homePage = OpenHomePageFlow.flow();
+        HomePage homePage = OpenPageFlow.openHomePage();
         homePage.validate();
 
         // Search

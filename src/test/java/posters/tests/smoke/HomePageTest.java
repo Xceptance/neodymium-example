@@ -14,7 +14,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.TmsLink;
 import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.junit4.Tag;
-import posters.flows.OpenHomePageFlow;
+import posters.flows.OpenPageFlow;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.tests.AbstractTest;
 
@@ -35,7 +35,7 @@ public class HomePageTest extends AbstractTest
     public void testVisitingHomepage()
     {
         AllureAddons.addToReport("Find me in the report", "Some additional content. Could be the toString method of an complex object.");
-        HomePage homePage = OpenHomePageFlow.flow();
+        HomePage homePage = OpenPageFlow.openHomePage();
         homePage.validate();
         homePage.title.validateTitle(Neodymium.localizedText("HomePage.title"));
     }
