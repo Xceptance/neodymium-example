@@ -247,32 +247,32 @@ public class CartPage extends AbstractBrowsingPage
         productContainer.find(".btnUpdateProduct").scrollTo().click();
     }
 
-    private SelenideElement findProductContainer(String productName, String style, String size)
+    private SelenideElement findProductContainer(Product product)
     {
-        SelenideElement productContainer = $$("div.hidden-xs").filter(text(productName)).first().parent().parent();
-        for (int i = 0; i < $$("div.hidden-xs").filter(text(productName)).size(); i++)
+        SelenideElement productContainer = $$("div.hidden-xs").filter(text(product.getName())).first().parent().parent();
+        for (int i = 0; i < $$("div.hidden-xs").filter(text(product.getName())).size(); i++)
         {
-            SelenideElement product = $$("div.hidden-xs").filter(text(productName)).get(i);
-            if (product.find(".productStyle").text().equals(style) && product.find(".productSize").text().equals(size))
+            SelenideElement productCard = $$("div.hidden-xs").filter(text(product.getName())).get(i);
+            if (productCard.find(".productStyle").text().equals(product.getStyle()) && productCard.find(".productSize").text().equals(product.getSize()))
             {
-                productContainer = product.parent().parent();
+                productContainer = productCard.parent().parent();
             }
         }
         return productContainer;
     }
 
     @Step("update product count by the name")
-    public void updateProductCountByName(String productName, String style, String size, int amount)
+    public void updateProductCountByName(Product product, int amount)
     {
-        SelenideElement productContainer = findProductContainer(productName, style, size);
+        SelenideElement productContainer = findProductContainer(product);
         productContainer.find(".productCount").setValue(Integer.toString(amount));
         productContainer.find(".btnUpdateProduct").scrollTo().click();
     }
 
     @Step("remove product by name")
-    public void removeProductByName(String productName, String style, String size)
+    public void removeProductByName(Product product)
     {
-        SelenideElement productContainer = findProductContainer(productName, style, size);
+        SelenideElement productContainer = findProductContainer(product);
         productContainer.find(".btnRemoveProduct").click();
         $("#buttonDelete").click();
     }
