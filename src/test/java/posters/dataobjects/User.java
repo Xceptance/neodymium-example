@@ -3,6 +3,8 @@
  */
 package posters.dataobjects;
 
+import com.xceptance.neodymium.util.DataUtils;
+
 /**
  * @author pfotenhauer
  */
@@ -97,6 +99,21 @@ public class User
     public void setPassword(String password)
     {
         this.password = password;
+    }
+
+    public void setRandomEmail()
+    {
+        this.setEmail(DataUtils.randomEmail());
+    }
+
+    public static User createRandomUser()
+    {
+        User user = new User();
+        user.setFirstName("Johnny");
+        user.setLastName("Brennan");
+        user.setPassword("xc99-XC99!");
+        user.setRandomEmail();
+        return user;
     }
 
     @Override

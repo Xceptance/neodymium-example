@@ -1,0 +1,10 @@
+[
+	{
+		"testId": "search test with results",
+		"searchTerm": "Bear"
+	},
+	{
+		"testId": "search test with no results",
+		"searchTerm": "Foobar"
+	}
+]

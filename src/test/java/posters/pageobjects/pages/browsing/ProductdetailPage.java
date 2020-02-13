@@ -10,8 +10,10 @@ import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
+import com.xceptance.neodymium.util.SelenideAddons;
 
 import io.qameta.allure.Step;
+import junit.framework.Assert;
 import posters.dataobjects.Product;
 
 /**
@@ -147,5 +149,25 @@ public class ProductdetailPage extends AbstractBrowsingPage
     {
         validateStructureAndVisual();
         validateProductName(productName);
+    }
+
+    @Step("validate selected size is {size}")
+    public void validateSelectedSize(String size)
+    {
+        $("#selectSize").getSelectedOption().shouldHave(exactText(size));
+    }
+
+    @Step("validate selected style is {style}")
+    public void validateSelectedStyle(String style)
+    {
+        SelenideAddons.wrapAssertionError(() -> {
+            Assert.assertEquals($("#selectStyle input[checked='checked']").getValue(), style);
+        });
+    }
+
+    @Step("validate unit price is equal to price")
+    public void validateUnitPrice(String price)
+    {
+        $("#prodPrice").shouldHave(exactText(price));
     }
 }

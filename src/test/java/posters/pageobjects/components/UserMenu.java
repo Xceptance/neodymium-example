@@ -14,6 +14,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
+import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.user.AccountOverviewPage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.pageobjects.pages.user.RegisterPage;
@@ -104,5 +105,15 @@ public class UserMenu extends AbstractComponent
     public boolean isLoggedIn()
     {
         return userMenu.find(".goToAccountOverview").exists();
+    }
+
+    @Step("logout")
+    public HomePage logout()
+    {
+        openUserMenu();
+        $(".goToLogout").click();
+        HomePage homePage = new HomePage();
+        homePage.isExpectedPage();
+        return homePage;
     }
 }

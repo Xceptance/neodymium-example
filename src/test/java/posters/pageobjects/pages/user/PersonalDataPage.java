@@ -3,14 +3,17 @@
  */
 package posters.pageobjects.pages.user;
 
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
+import posters.dataobjects.User;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
 /**
@@ -57,5 +60,38 @@ public class PersonalDataPage extends AbstractBrowsingPage
         // Clicks the button to get to the Delete Account page
         deleteButton.scrollTo().click();
         return new DeleteAccountPage();
+    }
+
+    @Step("validate user data matches {user}")
+    public void validateUserData(User user)
+    {
+        $("#customerFirstName").shouldHave(exactText(user.getFirstName()));
+        $("#customerLastName").shouldHave(exactText(user.getLastName()));
+        $("#customerEmail").shouldHave(exactText(user.getEmail()));
+    }
+
+    @Step("change user name and email to {user}")
+    public void changeNameOrEmail(User user)
+    {
+        $("#btnChangeNameEmail").click();
+        $("#lastName").setValue(user.getLastName());
+        $("#firstName").setValue(user.getFirstName());
+        $("#eMail").setValue(user.getEmail());
+        $("#password").setValue(user.getPassword());
+    }
+
+    @Step("validate error message tells such account already exists")
+    public void validateErrorMessageAccountExists()
+    {
+        this.errorMessage.validateErrorMessage(Neodymium.localizedText("AccountPages.validation.accountExistsError"));
+    }
+
+    @Step("change password from {oldPassword} to {newPassword}")
+    public void changePassword(String newPassword, String oldPassword)
+    {
+        $("#btnChangePassword").click();
+        $("#oldPassword").setValue(oldPassword);
+        $("#password").setValue(newPassword);
+        $("#passwordAgain").setValue(newPassword);
     }
 }

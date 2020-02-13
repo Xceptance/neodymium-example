@@ -347,4 +347,10 @@ public class CartPage extends AbstractBrowsingPage
     {
         return $("#btnRemoveProdCount0").exists();
     }
+
+    @Step("validate cart is empty")
+    public void validateIsEmpty()
+    {
+        $("#errorCartMessage").shouldHave(exactText(Neodymium.localizedText("CartPage.emptyCartInfo")));
+    }
 }

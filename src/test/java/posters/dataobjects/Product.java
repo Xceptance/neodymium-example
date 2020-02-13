@@ -12,6 +12,8 @@ import posters.pageobjects.utility.PriceHelper;
  */
 public class Product
 {
+    String relativeUrl;
+
     String name;
 
     String unitPrice;
@@ -124,21 +126,32 @@ public class Product
         this.amount = amount;
     }
 
+    public String getRelativeUrl()
+    {
+        return relativeUrl;
+    }
+
+    public void setRelativeUrl(String relativUrl)
+    {
+        this.relativeUrl = relativUrl;
+    }
+
     @Override
     public String toString()
     {
-        return String.format("Product [name()=%s, size()=%s, style()=%s, price()=%s]", getName(), getSize(), getStyle(), getUnitPrice(), getAmount());
+        return "Product [relativeUrl=" + relativeUrl + ", name=" + name + ", unitPrice=" + unitPrice + ", style=" + style + ", size=" + size + ", amount="
+               + amount + "]";
     }
 
     @Override
     public boolean equals(Object obj)
     {
-    	if(!this.getClass().isInstance(obj))
-    	{
-    		System.out.println("Found incompatible type for comparison");
-    		return false;
-    	}
-    	
+        if (!this.getClass().isInstance(obj))
+        {
+            System.out.println("Found incompatible type for comparison");
+            return false;
+        }
+
         Product other = (Product) obj;
         if (name.equals(other.name) && unitPrice.equals(other.unitPrice) && style.equals(other.style) && size.equals(other.size))
         {

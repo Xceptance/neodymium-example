@@ -12,10 +12,12 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.AllureAddons;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.Address;
 import posters.dataobjects.CreditCard;
+import posters.dataobjects.OrderData;
 import posters.dataobjects.Product;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.utility.PriceHelper;
@@ -136,28 +138,31 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         // Country
         // Makes sure the shipping address country matches the parameter
         shippingAddressForm.find(".country").shouldHave(exactText(shippingAddress.getCountry()));
-        // Billing address
-        // Name
-        // Makes sure the billing address name matches the parameter
-        billingAddressForm.find(".name").shouldHave(exactText(billingAddress.getFullName()));
-        // Company
-        // Makes sure the billing address company matches the parameter
-        billingAddressForm.find(".company").shouldHave(exactText(billingAddress.getCompany()));
-        // Address
-        // Makes sure the billing address matches the parameter
-        billingAddressForm.find(".addressLine").shouldHave(exactText(billingAddress.getAddressLine()));
-        // City
-        // Makes sure the billing address city matches the parameter
-        billingAddressForm.find(".city").shouldHave(exactText(billingAddress.getCity()));
-        // State
-        // Makes sure the billing address state matches the parameter
-        billingAddressForm.find(".state").shouldHave(exactText(billingAddress.getState()));
-        // ZIP
-        // Makes sure the billing address ZIP matches the parameter
-        billingAddressForm.find(".zip").shouldHave(exactText(billingAddress.getZip()));
-        // Country
-        // Makes sure the billing address country matches the parameter
-        billingAddressForm.find(".country").shouldHave(exactText(billingAddress.getCountry()));
+        if (billingAddress != null)
+        {
+            // Billing address
+            // Name
+            // Makes sure the billing address name matches the parameter
+            billingAddressForm.find(".name").shouldHave(exactText(billingAddress.getFullName()));
+            // Company
+            // Makes sure the billing address company matches the parameter
+            billingAddressForm.find(".company").shouldHave(exactText(billingAddress.getCompany()));
+            // Address
+            // Makes sure the billing address matches the parameter
+            billingAddressForm.find(".addressLine").shouldHave(exactText(billingAddress.getAddressLine()));
+            // City
+            // Makes sure the billing address city matches the parameter
+            billingAddressForm.find(".city").shouldHave(exactText(billingAddress.getCity()));
+            // State
+            // Makes sure the billing address state matches the parameter
+            billingAddressForm.find(".state").shouldHave(exactText(billingAddress.getState()));
+            // ZIP
+            // Makes sure the billing address ZIP matches the parameter
+            billingAddressForm.find(".zip").shouldHave(exactText(billingAddress.getZip()));
+            // Country
+            // Makes sure the billing address country matches the parameter
+            billingAddressForm.find(".country").shouldHave(exactText(billingAddress.getCountry()));
+        }
         // Payment
         // Name
         // Makes sure the credit card holder matches the parameter
@@ -186,5 +191,36 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         orderButton.scrollTo().click();
 
         return new HomePage();
+    }
+
+    @Step("validate shipping costs are equal {shippingCosts}")
+    public void validateShippingCosts(String shippingCosts)
+    {
+        $("#shippingCosts").shouldHave(exactText(shippingCosts));
+    }
+
+    @Step("validate order tax value matches {taxValue}")
+    public void validateOrderTax(String taxValue)
+    {
+        $("#subTotalTaxValue").shouldHave(exactText(taxValue));
+    }
+
+    @Step("validate order total price is {orderTotalPrice}")
+    public void validateOrderTotal(String orderTotalPrice)
+    {
+        $("#totalCosts").shouldHave(exactText(orderTotalPrice));
+    }
+
+    @Step("valiadate order data on place order page")
+    public void validateOrder(OrderData orderData)
+    {
+        AllureAddons.addToReport("order data", orderData);
+        orderData.getProducts().getProducts().forEach(product -> validateContainsProduct(product));
+        validateAddressesAndPayment(orderData.getShippingAddress(), orderData.getBillingAddress(), orderData.getPayment());
+        validateSubtotal(orderData.getProducts().getProductsTotalPrice());
+        validateShippingCosts(orderData.getShippingCost());
+        validateOrderTax(PriceHelper.format(orderData.getOrderTax()));
+        validateOrderTotal(orderData.getOrderTotal());
+
     }
 }

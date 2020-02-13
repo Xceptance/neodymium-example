@@ -131,6 +131,32 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param searchTermExpectedCount
      */
     @Step("validate search results for \"{searchTerm}\" on category page")
+    public void validateSearchHits(String searchTerm)
+    {
+        $("#titleSearchText").should(exist);
+        // Validate the headline contains the search phrase
+        // \\(" + searchTermExpectedCount + " *\\)
+        $("#titleSearchText").should(matchText(Neodymium.localizedText("search.results.text") + ": '" + searchTerm + "' \\(\\d+.*\\)"));
+        // Verify that the correct search term is displayed
+        // Validate the entered search phrase is still visible in the input
+        search.validateSearchTerm(searchTerm);
+        // Assert the Headline displays the search term.
+        $(".header-container #searchTextValue").shouldHave(exactText(searchTerm));
+        // Verify there are search results
+        // There is at least one row of results
+        $("#productOverview ul.row").shouldBe(exist);
+        // There is at least one product in the results
+        $$("#productOverview li").shouldHave(sizeGreaterThan(0));
+        // Verify that there is the specified amount of results
+        // The amount of products shown in the headline matches the expected value
+        $("#totalProductCount").shouldHave(matchText("\\d+"));
+    }
+
+    /**
+     * @param searchTerm
+     * @param searchTermExpectedCount
+     */
+    @Step("validate search results for \"{searchTerm}\" on category page")
     public void validateSearchHits(String searchTerm, int searchTermExpectedCount)
     {
         $("#titleSearchText").should(exist);

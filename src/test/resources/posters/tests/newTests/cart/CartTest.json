@@ -1,0 +1,14 @@
+[
+	{
+		"testId": "Cart Test",
+		"products":[
+			{
+				"name": "Grizzly Bear",
+				"unitPrice": "$17.00",
+				"style": "matte",
+				"size": "16 x 12 in",
+				"relativeUrl": "productDetail/Grizzly%20Bear?productId=1"
+			}
+		]
+	}
+]

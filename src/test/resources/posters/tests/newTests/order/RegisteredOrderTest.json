@@ -1,0 +1,73 @@
+[
+	{
+		"testId": "Registered-Order-Test",
+		"products":{
+			"products":[
+				{
+					"name": "Grizzly Bear",
+					"unitPrice": "$17.00",
+					"style": "matte",
+					"size": "16 x 12 in",
+					"relativeUrl": "productDetail/Grizzly%20Bear?productId=1"
+				}
+			]
+		},
+		"shippingAddress":{
+			"fullName": "Jimmy Blue", 
+			"company": "Ochsenknecht Records",
+			"addressLine":"6 Wall St",
+			"city":"Burlington",
+			"state":"Massachusetts",
+			"zip":"01803",
+			"country":"United States"
+		},
+		"payment":{
+			"fullName": "Jimmy Blue",
+			"cardNumber": "4111111111111111",
+			"expDateMonth": "04",
+			"expDateYear": "2024"
+		},
+		"shippingCost": "$7.00",
+		"orderTaxRate": "6.0"
+	},
+	{
+		"testId": "Guest-Checkout-Test-billing",
+		"products":{
+			"products":[
+				{
+					"name": "Grizzly Bear",
+					"unitPrice": "$17.00",
+					"style": "matte",
+					"size": "16 x 12 in",
+					"relativeUrl": "productDetail/Grizzly%20Bear?productId=1"
+				}
+			]
+		},
+		"shippingAddress":{
+			"fullName": "Jimmy Blue", 
+			"company": "Ochsenknecht Records",
+			"addressLine":"6 Wall St",
+			"city":"Burlington",
+			"state":"Massachusetts",
+			"zip":"01803",
+			"country":"United States"
+		},
+		"billingAddress":{
+			"fullName": "John Dorian", 
+			"company": "Monster Corporation",
+			"addressLine":"6 Wall St",
+			"city":"North Tonawada",
+			"state":"New York",
+			"zip":"14120",
+			"country":"United States"
+		},
+		"payment":{
+			"fullName": "Jimmy Blue",
+			"cardNumber": "4111111111111111",
+			"expDateMonth": "04",
+			"expDateYear": "2024"
+		},
+		"shippingCost": "$7.00",
+		"orderTaxRate": "6.0"
+	}
+]

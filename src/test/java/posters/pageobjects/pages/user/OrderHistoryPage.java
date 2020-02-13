@@ -7,8 +7,10 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.AllureAddons;
 
 import io.qameta.allure.Step;
+import posters.dataobjects.OrderData;
 import posters.dataobjects.Product;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
@@ -33,5 +35,13 @@ public class OrderHistoryPage extends AbstractBrowsingPage
         productContainer.find(".productStyle").shouldBe(exactText(product.getStyle()));
         productContainer.find(".productSize").shouldBe(exactText(product.getSize()));
         productContainer.find(".orderCount").shouldBe(exactText(Integer.toString(product.getAmount()) + "x"));
+    }
+
+    @Step("validate order history contains ordered products and order total matches")
+    public void validateOrder(OrderData orderData)
+    {
+        AllureAddons.addToReport("order data", orderData);
+        orderData.getProducts().getProducts().forEach(product -> validateContainsProduct(product));
+        $("#orderTotalCosts").shouldHave(exactText(orderData.getOrderTotal()));
     }
 }
