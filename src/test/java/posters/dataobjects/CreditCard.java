@@ -12,17 +12,14 @@ public class CreditCard
 
     String cardNumber;
 
-    String crypticCardNumber;
-
     String expDateMonth;
 
     String expDateYear;
 
-    public CreditCard(String fullName, String cardNumber, String crypticCardNumber, String expDateMonth, String expDateYear)
+    public CreditCard(String fullName, String cardNumber, String expDateMonth, String expDateYear)
     {
         this.fullName = fullName;
         this.cardNumber = cardNumber;
-        this.crypticCardNumber = crypticCardNumber;
         this.expDateMonth = expDateMonth;
         this.expDateYear = expDateYear;
     }
@@ -66,16 +63,7 @@ public class CreditCard
      */
     public String getCrypticCardNumber()
     {
-        return crypticCardNumber;
-    }
-
-    /**
-     * @param crypticCardNumber
-     *            the crypticCardNumber to set
-     */
-    public void setCrypticCardNumber(String crypticCardNumber)
-    {
-        this.crypticCardNumber = crypticCardNumber;
+        return "xxxx xxxx xxxx " + cardNumber.substring(12);
     }
 
     /**

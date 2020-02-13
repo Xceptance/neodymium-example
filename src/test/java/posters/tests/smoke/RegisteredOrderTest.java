@@ -110,7 +110,7 @@ public class RegisteredOrderTest extends AbstractTest
         // setup checkout data for validation
         final Address shippingAddress = new Address(name, company, street, city, state, zip, country);
         final Address billingAddress = new Address(name, company, street, city, state, zip, country);
-        final CreditCard creditcard = new CreditCard("John Doe", "4111111111111111", "xxxx xxxx xxxx 1111", "08", "2022");
+        final CreditCard creditcard = new CreditCard("John Doe", "4111111111111111", "08", "2022");
 
         // Send payment data and validate place order page
         PlaceOrderPage placeOrderPage = paymentPage.selectCreditCard(1);
