@@ -78,6 +78,7 @@ public class PersonalDataPage extends AbstractBrowsingPage
         $("#firstName").setValue(user.getFirstName());
         $("#eMail").setValue(user.getEmail());
         $("#password").setValue(user.getPassword());
+        $("#btnChangeNameEmail").click();
     }
 
     @Step("validate error message tells such account already exists")
@@ -93,5 +94,6 @@ public class PersonalDataPage extends AbstractBrowsingPage
         $("#oldPassword").setValue(oldPassword);
         $("#password").setValue(newPassword);
         $("#passwordAgain").setValue(newPassword);
+        $("#btnChangePassword").click();
     }
 }

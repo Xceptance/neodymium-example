@@ -114,7 +114,7 @@ public class Product
      */
     public int getAmount()
     {
-        return amount;
+        return amount < 1 ? 1 : amount;
     }
 
     /**
@@ -188,6 +188,6 @@ public class Product
 
     public double getTotalPrice()
     {
-        return amount * getUnitPriceDouble();
+        return getAmount() * getUnitPriceDouble();
     }
 }
