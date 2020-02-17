@@ -22,61 +22,7 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
-	<profiles>
-			<profile>
-				<id>integration</id>
-				<activation>
-					<activeByDefault>true</activeByDefault>
-				</activation>
-				<build>
-					<plugins>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-surefire-plugin</artifactId>
-							<configuration>
-								<includes>
-									<include>posters/tests/newTests/**/*Test.java</include>
-								</includes>
-							</configuration>
-						</plugin>
-					</plugins>
-				</build>
-			</profile>
-			<profile>
-				<id>smoke</id>
-				<build>
-					<plugins>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-surefire-plugin</artifactId>
-							<configuration>
-								<includes>
-									<include>posters/tests/newTests/smoke/**/*Test.java</include>
-								 	<include>posters/tests/newTests/cart/**/*Test.java</include>
-								 	<include>posters/tests/newTests/order/**/*Test.java</include>
-								</includes>
-							</configuration>
-						</plugin>
-					</plugins>
-				</build>
-			</profile>
-			<profile>
-				<id>custom</id>
-				<build>
-					<plugins>
-						<plugin>
-							<groupId>org.apache.maven.plugins</groupId>
-							<artifactId>maven-surefire-plugin</artifactId>
-							<configuration>
-								<includes>
-								 	<include>posters/tests/newTests/cart/**/*Test.java</include>
-								</includes>
-							</configuration>
-						</plugin>
-					</plugins>
-				</build>
-			</profile>
-	</profiles>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -95,10 +41,6 @@
 				<version>${surefire.version}</version>
 				<configuration>
 					<forkCount>2</forkCount>
-					<!-- our test case naming does not follow Maven naming conventions -->
-					<includes>
-						<include>posters/tests/**/*Test.java</include>
-					</includes>
 					<testFailureIgnore>true</testFailureIgnore>
 					<argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
 					<properties>
@@ -141,7 +83,62 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
+	
+	<profiles>
+			<profile>
+				<id>integration</id>
+				<activation>
+					<activeByDefault>true</activeByDefault>
+				</activation>
+				<build>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-surefire-plugin</artifactId>
+							<configuration>
+								<includes>
+									<include>posters/tests/newTests/**/*Test.java</include>
+								</includes>
+							</configuration>
+						</plugin>
+					</plugins>
+				</build>
+			</profile>
+			<profile>
+				<id>smoke</id>
+				<build>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-surefire-plugin</artifactId>
+							<configuration>
+								<includes>
+									<include>posters/tests/newTests/smoke/**/*Test.java</include>
+								 	<include>posters/tests/newTests/order/**/*Test.java</include>
+								</includes>
+							</configuration>
+						</plugin>
+					</plugins>
+				</build>
+			</profile>
+			<profile>
+				<id>custom</id>
+				<build>
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-surefire-plugin</artifactId>
+							<configuration>
+								<includes>
+								 	<include>posters/tests/newTests/cart/**/*Test.java</include>
+								</includes>
+							</configuration>
+						</plugin>
+					</plugins>
+				</build>
+			</profile>
+	</profiles>
+	
 	<reporting>
 		<plugins>
 			<plugin>
