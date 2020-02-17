@@ -30,6 +30,8 @@ public class PersonalDataTest extends AbstractTest
         personalDataPage.validateUserData(user);
 
         user = User.createRandomUser();
+        user.setFirstName("John");
+        user.setLastName("Dorian");
 
         personalDataPage.changeNameOrEmail(user);
         personalDataPage.validateUserData(user);
