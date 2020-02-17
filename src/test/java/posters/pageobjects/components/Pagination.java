@@ -43,4 +43,16 @@ public class Pagination extends AbstractComponent
 
         return new CategoryPage();
     }
+
+    @Step("click on link represented by the number {number}")
+    public CategoryPage clickOnSite(int number)
+    {
+        SelenideElement chosenPaginationLink = getSite(Integer.toString(number));
+        chosenPaginationLink.scrollTo();
+        chosenPaginationLink.click();
+
+        CategoryPage categoryPage = new CategoryPage();
+        categoryPage.isExpectedPage();
+        return categoryPage;
+    }
 }

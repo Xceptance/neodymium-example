@@ -1,7 +1,5 @@
 package posters.tests.newTests.smoke;
 
-import java.util.Random;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -43,6 +41,10 @@ public class CategoryTest extends AbstractTest
         categoryPage.validateCategoryName(subCategoryName != null ? subCategoryName : mainCategoryName);
 
         int pagination = categoryPage.pagination.getNumberOfSites();
-        categoryPage.pagination.clickOnRandomSite(new Random(pagination));
+
+        for (int i = 1; i <= pagination; i++)
+        {
+            categoryPage.pagination.clickOnSite(i);
+        }
     }
 }
