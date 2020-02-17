@@ -20,13 +20,14 @@ public class OrderHistoryPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is an order history page")
-    public void isExpectedPage()
+    public OrderHistoryPage isExpectedPage()
     {
         headline.should(exist);
+        return this;
     }
 
     @Step("validate product is in the order")
-    public void validateContainsProduct(Product product)
+    public OrderHistoryPage validateContainsProduct(Product product)
     {
         SelenideElement productContainer = $$(".productInfo").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
                                                              .parent();
@@ -35,13 +36,15 @@ public class OrderHistoryPage extends AbstractBrowsingPage
         productContainer.find(".productStyle").shouldBe(exactText(product.getStyle()));
         productContainer.find(".productSize").shouldBe(exactText(product.getSize()));
         productContainer.find(".orderCount").shouldBe(exactText(Integer.toString(product.getAmount()) + "x"));
+        return this;
     }
 
     @Step("validate order history contains ordered products and order total matches")
-    public void validateOrder(OrderData orderData)
+    public OrderHistoryPage validateOrder(OrderData orderData)
     {
         AllureAddons.addToReport("order data", orderData);
         orderData.getProducts().getAll().forEach(product -> validateContainsProduct(product));
         $(".orderTotalCosts").shouldHave(exactText(orderData.getOrderTotal()));
+        return this;
     }
 }

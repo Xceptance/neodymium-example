@@ -6,23 +6,34 @@ import io.qameta.allure.Step;
 
 public class NoHitsPage extends AbstractBrowsingPage
 {
+    @Override
+    public NoHitsPage isExpectedPage()
+    {
+        new HomePage().isExpectedPage();
+        return this;
+    }
 
+    @Override
     @Step("validate no hits page structure")
-    public void validateStructure()
+    public NoHitsPage validateStructure()
     {
         super.validateStructure();
+        return this;
     }
 
     @Step("validate that no products are on no hits page")
-    public void validateNoProductsFound()
+    public NoHitsPage validateNoProductsFound()
     {
         errorMessage.validateErrorMessage(Neodymium.localizedText("NoHitsPage.validation.noProductsFound"));
+        return this;
     }
 
     @Step("validate no hits page")
-    public void validate()
+    public NoHitsPage validate()
     {
         validateStructure();
         validateNoProductsFound();
+        return this;
     }
+
 }

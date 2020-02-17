@@ -40,14 +40,15 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a new billing address page")
-    public void isExpectedPage()
+    public NewBillingAddressPage isExpectedPage()
     {
         headline.should(exist);
+        return this;
     }
 
     @Override
     @Step("validate new billing address page structure")
-    public void validateStructure()
+    public NewBillingAddressPage validateStructure()
     {
         super.validateStructure();
 
@@ -95,6 +96,7 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
         // Continue Button
         // Asserts the Continue button is there
         addBillingButton.shouldBe(visible);
+        return this;
     }
 
     /**
@@ -143,8 +145,9 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
         // Open the billing addresses or payment options page, depending on which radio button you checked
         // Click on Continue
         addBillingButton.scrollTo().click();
-
-        return new NewPaymentPage();
+        NewPaymentPage paymentPage = new NewPaymentPage();
+        paymentPage.isExpectedPage();
+        return paymentPage;
     }
 
     /**

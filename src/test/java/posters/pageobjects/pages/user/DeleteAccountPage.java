@@ -29,14 +29,15 @@ public class DeleteAccountPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a delete account page")
-    public void isExpectedPage()
+    public DeleteAccountPage isExpectedPage()
     {
         deleteForm.should(exist);
+        return this;
     }
 
     @Override
     @Step("validate delete account page structure")
-    public void validateStructure()
+    public DeleteAccountPage validateStructure()
     {
         super.validateStructure();
 
@@ -51,6 +52,7 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         // Button
         // Asserts the delete button is there
         deleteButton.shouldBe(visible);
+        return this;
     }
 
     @Step("delete account")
@@ -62,6 +64,8 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         // Delete account and open the homepage
         // click the confirmation button
         deleteButton.scrollTo().click();
-        return new HomePage();
+        HomePage homePage = new HomePage();
+        homePage.isExpectedPage();
+        return homePage;
     }
 }

@@ -32,21 +32,14 @@ public class CategoryPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a category page")
-    public void isExpectedPage()
+    public CategoryPage isExpectedPage()
     {
         productOverview.should(exist);
-    }
-
-    @Step("validate category name \"{categoryName}\" on category page")
-    public void validateCategoryName(String categoryName)
-    {
-        // Category name
-        // Ensures the category headline contains the category name
-        $("#titleCategoryName").shouldBe(text(categoryName));
+        return this;
     }
 
     @Step("validate category page structure")
-    public void validateStructure()
+    public CategoryPage validateStructure()
     {
         super.validateStructure();
 
@@ -56,6 +49,16 @@ public class CategoryPage extends AbstractBrowsingPage
         // Results
         // Assures there's at least one product shown
         $("#product0").shouldBe(visible);
+        return this;
+    }
+
+    @Step("validate category name \"{categoryName}\" on category page")
+    public CategoryPage validateCategoryName(String categoryName)
+    {
+        // Category name
+        // Ensures the category headline contains the category name
+        $("#titleCategoryName").shouldBe(text(categoryName));
+        return this;
     }
 
     /**
@@ -70,7 +73,9 @@ public class CategoryPage extends AbstractBrowsingPage
         // Clicks a product by position. Because of the html code, this requires x and y coordinates.
         SelenideElement rowContainer = $$("#productOverview > .row").get(row - 1);
         rowContainer.find(".thumbnail", column - 1).scrollTo().click();
-        return new ProductdetailPage();
+        ProductdetailPage pdp = new ProductdetailPage();
+        pdp.isExpectedPage();
+        return pdp;
     }
 
     /**
@@ -97,7 +102,9 @@ public class CategoryPage extends AbstractBrowsingPage
         // Click on the product's image and open the product overview page
         // Click the product link to open the product detail page
         $("#product" + index + " img").scrollTo().click();
-        return new ProductdetailPage();
+        ProductdetailPage pdp = new ProductdetailPage();
+        pdp.isExpectedPage();
+        return pdp;
     }
 
     /**
@@ -111,7 +118,9 @@ public class CategoryPage extends AbstractBrowsingPage
         // Click on the product's image and open the product overview page
         // Click the product link to open the product detail page
         $("#productOverview .thumbnails .thumbnail a > img.pImage[title='" + productName + "']").scrollTo().click();
-        return new ProductdetailPage();
+        ProductdetailPage pdp = new ProductdetailPage();
+        pdp.isExpectedPage();
+        return pdp;
     }
 
     /**
@@ -131,7 +140,7 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param searchTermExpectedCount
      */
     @Step("validate search results for \"{searchTerm}\" on category page")
-    public void validateSearchHits(String searchTerm)
+    public CategoryPage validateSearchHits(String searchTerm)
     {
         $("#titleSearchText").should(exist);
         // Validate the headline contains the search phrase
@@ -150,6 +159,7 @@ public class CategoryPage extends AbstractBrowsingPage
         // Verify that there is the specified amount of results
         // The amount of products shown in the headline matches the expected value
         $("#totalProductCount").shouldHave(matchText("\\d+"));
+        return this;
     }
 
     /**
@@ -157,7 +167,7 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param searchTermExpectedCount
      */
     @Step("validate search results for \"{searchTerm}\" on category page")
-    public void validateSearchHits(String searchTerm, int searchTermExpectedCount)
+    public CategoryPage validateSearchHits(String searchTerm, int searchTermExpectedCount)
     {
         $("#titleSearchText").should(exist);
         // Validate the headline contains the search phrase
@@ -177,35 +187,39 @@ public class CategoryPage extends AbstractBrowsingPage
         // Verify that there is the specified amount of results
         // The amount of products shown in the headline matches the expected value
         $("#totalProductCount").shouldHave(exactText(Integer.toString(searchTermExpectedCount)));
+        return this;
     }
 
     /**
      * @param productName
      */
     @Step("validate product \"{productName}\" is visible on category page")
-    public void validateProductVisible(String productName)
+    public CategoryPage validateProductVisible(String productName)
     {
         $("#productOverview .thumbnails .thumbnail a > img.pImage[title='" + productName + "']").shouldBe(visible);
+        return this;
     }
 
     /**
      * @param categoryName
      */
     @Step("validate category page of category \"{categoryName}\"")
-    public void validate(String categoryName)
+    public CategoryPage validate(String categoryName)
     {
         validateStructure();
         validateCategoryName(categoryName);
+        return this;
     }
 
     /**
      * @param categoryName
      */
     @Step("validate category page of category \"{categoryName}\" and assert visually")
-    public void validateAndVisualAssert(String categoryName)
+    public CategoryPage validateAndVisualAssert(String categoryName)
     {
         validateStructureAndVisual();
         validateCategoryName(categoryName);
+        return this;
     }
 
     public String getRandomProductDetailName(Random random)

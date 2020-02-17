@@ -27,14 +27,15 @@ public class PersonalDataPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a personal data page")
-    public void isExpectedPage()
+    public PersonalDataPage isExpectedPage()
     {
         headline.should(exist);
+        return this;
     }
 
     @Override
     @Step("validate personal data page structure")
-    public void validateStructure()
+    public PersonalDataPage validateStructure()
     {
         super.validateStructure();
 
@@ -48,6 +49,7 @@ public class PersonalDataPage extends AbstractBrowsingPage
         // Delete Account Button
         // Make sure the button to delete your account is there
         deleteButton.shouldBe(visible);
+        return this;
     }
 
     /**
@@ -59,19 +61,22 @@ public class PersonalDataPage extends AbstractBrowsingPage
         // Open the delete account page
         // Clicks the button to get to the Delete Account page
         deleteButton.scrollTo().click();
-        return new DeleteAccountPage();
+        DeleteAccountPage deleteAccountPage = new DeleteAccountPage();
+        deleteAccountPage.isExpectedPage();
+        return deleteAccountPage;
     }
 
     @Step("validate user data matches {user}")
-    public void validateUserData(User user)
+    public PersonalDataPage validateUserData(User user)
     {
         $("#customerFirstName").shouldHave(exactText(user.getFirstName()));
         $("#customerLastName").shouldHave(exactText(user.getLastName()));
         $("#customerEmail").shouldHave(exactText(user.getEmail()));
+        return this;
     }
 
     @Step("change user name and email to {user}")
-    public void changeNameOrEmail(User user)
+    public PersonalDataPage changeNameOrEmail(User user)
     {
         $("#btnChangeNameEmail").click();
         $("#lastName").setValue(user.getLastName());
@@ -79,21 +84,24 @@ public class PersonalDataPage extends AbstractBrowsingPage
         $("#eMail").setValue(user.getEmail());
         $("#password").setValue(user.getPassword());
         $("#btnChangeNameEmail").click();
+        return this;
     }
 
     @Step("validate error message tells such account already exists")
-    public void validateErrorMessageAccountExists()
+    public PersonalDataPage validateErrorMessageAccountExists()
     {
         this.errorMessage.validateErrorMessage(Neodymium.localizedText("AccountPages.validation.accountExistsError"));
+        return this;
     }
 
     @Step("change password from {oldPassword} to {newPassword}")
-    public void changePassword(String newPassword, String oldPassword)
+    public PersonalDataPage changePassword(String newPassword, String oldPassword)
     {
         $("#btnChangePassword").click();
         $("#oldPassword").setValue(oldPassword);
         $("#password").setValue(newPassword);
         $("#passwordAgain").setValue(newPassword);
         $("#btnChangePassword").click();
+        return this;
     }
 }

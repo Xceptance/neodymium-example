@@ -41,14 +41,15 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a new shipping address page")
-    public void isExpectedPage()
+    public NewShippingAddressPage isExpectedPage()
     {
         headline.should(exist);
+        return this;
     }
 
     @Override
     @Step("validate new shipping address page structure")
-    public void validateStructure()
+    public NewShippingAddressPage validateStructure()
     {
         super.validateStructure();
 
@@ -99,6 +100,7 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
         // Continue Button
         // Asserts the Continue button is there
         addShippingButton.shouldBe(visible);
+        return this;
     }
 
     /**
@@ -159,7 +161,6 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
         // Open the billing addresses or payment options page, depending on which radio button you checked
         // Click on Continue
         addShippingButton.scrollTo().click();
-
         return new NewBillingAddressPage();
     }
 

@@ -38,14 +38,15 @@ public class RegisterPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a register page")
-    public void isExpectedPage()
+    public RegisterPage isExpectedPage()
     {
         registerForm.should(exist);
+        return this;
     }
 
     @Override
     @Step("validate register page structure")
-    public void validateStructure()
+    public RegisterPage validateStructure()
     {
         super.validateStructure();
 
@@ -76,6 +77,7 @@ public class RegisterPage extends AbstractBrowsingPage
         // Register button
         // Make sure the Registration button displays the correct text.
         registerButton.shouldHave(exactText(Neodymium.localizedText("AccountPages.createAccount")));
+        return this;
     }
 
     /**
@@ -101,8 +103,9 @@ public class RegisterPage extends AbstractBrowsingPage
         // Register and open the login page if successful
         // Click on the Register Button
         registerButton.scrollTo().click();
-
-        return new LoginPage();
+        LoginPage loginPage = new LoginPage();
+        loginPage.isExpectedPage();
+        return loginPage;
     }
 
     /**

@@ -31,13 +31,15 @@ public class ProductdetailPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a product detail page")
-    public void isExpectedPage()
+    public ProductdetailPage isExpectedPage()
     {
         $("#addToCartForm").should(exist);
+        return this;
     }
 
+    @Override
     @Step("validate product detail page structure")
-    public void validateStructure()
+    public ProductdetailPage validateStructure()
     {
         super.validateStructure();
 
@@ -53,38 +55,41 @@ public class ProductdetailPage extends AbstractBrowsingPage
         // Add to cart button
         // Make sure we got an add to cart button and the text matches.
         addToCartButton.shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.addToCartButton.text")));
+        return this;
     }
 
     @Step("validate product name on product detail page")
-    public void validateProductName(String name)
+    public ProductdetailPage validateProductName(String name)
     {
         // Verify product name
         // compares the displayed product name to the given parameter.
         productName.shouldHave(exactText(name));
+        return this;
     }
 
     @Step("select size")
-    public void setSize(String size)
+    public ProductdetailPage setSize(String size)
     {
         productSize.selectOptionContainingText(size);
+        return this;
     }
 
     @Step("select style")
-    public void setStyle(String style)
+    public ProductdetailPage setStyle(String style)
     {
         $(".radio #finish-" + style).selectRadio(style);
-
+        return this;
     }
 
     @Step("add product to the cart")
-    public void addToCart()
+    public ProductdetailPage addToCart()
     {
         addToCartButton.scrollTo().click();
-
+        return this;
     }
 
     @Step("add product with size:\"{size}\" and style:\"{style}\" to cart")
-    public void addToCart(String size, String style)
+    public ProductdetailPage addToCart(String size, String style)
     {
         // Style
         // Checks the chosen style.
@@ -94,6 +99,7 @@ public class ProductdetailPage extends AbstractBrowsingPage
         setSize(size);
         // Click the Add to cart button
         addToCart();
+        return this;
     }
 
     @Step("get product name from product detail page")
@@ -134,10 +140,11 @@ public class ProductdetailPage extends AbstractBrowsingPage
      * @param productName
      */
     @Step("validate the product detail page of \"{productName}\"")
-    public void validate(String productName)
+    public ProductdetailPage validate(String productName)
     {
         validateStructure();
         validateProductName(productName);
+        return this;
     };
 
     /**

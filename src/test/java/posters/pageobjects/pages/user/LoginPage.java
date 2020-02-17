@@ -35,14 +35,15 @@ public class LoginPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a login page")
-    public void isExpectedPage()
+    public LoginPage isExpectedPage()
     {
         loginForm.should(exist);
+        return this;
     }
 
     @Override
     @Step("validate login page structure")
-    public void validateStructure()
+    public LoginPage validateStructure()
     {
         super.validateStructure();
 
@@ -68,10 +69,11 @@ public class LoginPage extends AbstractBrowsingPage
         // Registration page link
         // Asserts the Register link is there and shows the correct text.
         registerLink.shouldHave(exactText(Neodymium.localizedText("AccountPages.createNewAccount")));
+        return this;
     }
 
     @Step("send login form")
-    public void sendFormWithData(String email, String password)
+    public LoginPage sendFormWithData(String email, String password)
     {
         // Input email
         // Fill the email field with the parameter.
@@ -82,6 +84,7 @@ public class LoginPage extends AbstractBrowsingPage
         // Log in and open the homepage
         // Click on the Sign In button.
         signInButton.scrollTo().click();
+        return this;
     }
 
     /**
@@ -94,7 +97,9 @@ public class LoginPage extends AbstractBrowsingPage
     public HomePage sendLoginform(String email, String password)
     {
         sendFormWithData(email, password);
-        return new HomePage();
+        HomePage homePage = new HomePage();
+        homePage.isExpectedPage();
+        return homePage;
     }
 
     /**
@@ -114,7 +119,7 @@ public class LoginPage extends AbstractBrowsingPage
     public LoginPage sendFalseLoginform(User user)
     {
         sendFormWithData(user.getEmail(), user.getPassword());
-        return new LoginPage();
+        return this;
     }
 
     /**
@@ -124,32 +129,37 @@ public class LoginPage extends AbstractBrowsingPage
     public RegisterPage openRegister()
     {
         registerLink.scrollTo().click();
-        return new RegisterPage();
+        RegisterPage registerPage = new RegisterPage();
+        registerPage.isExpectedPage();
+        return registerPage;
     }
 
     @Step("validate successful registration message")
-    public void validateSuccessfulRegistration()
+    public LoginPage validateSuccessfulRegistration()
     {
         successMessage.validateSuccessMessage(Neodymium.localizedText("AccountPages.validation.successfulAccountCreation"));
+        return this;
     }
 
     /**
      * @param eMail
      */
     @Step("validate invalid email for login error message")
-    public void validateWrongEmail(String eMail)
+    public LoginPage validateWrongEmail(String eMail)
     {
         errorMessage.validateErrorMessage(Neodymium.localizedText("AccountPages.validation.emailDoesNotExistError"));
         emailField.shouldHave(exactValue(eMail));
+        return this;
     }
 
     /**
      * @param eMail
      */
     @Step("validate invalid password for login error message")
-    public void validateWrongPassword(String eMail)
+    public LoginPage validateWrongPassword(String eMail)
     {
         errorMessage.validateErrorMessage(Neodymium.localizedText("AccountPages.validation.incorrectPasswordError"));
         emailField.shouldHave(exactValue(eMail));
+        return this;
     }
 }

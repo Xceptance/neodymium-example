@@ -39,14 +39,15 @@ public class PlaceOrderPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a place order page")
-    public void isExpectedPage()
+    public PlaceOrderPage isExpectedPage()
     {
         headline.should(exist);
+        return this;
     }
 
     @Override
     @Step("validate place order page structure")
-    public void validateStructure()
+    public PlaceOrderPage validateStructure()
     {
         super.validateStructure();
 
@@ -57,6 +58,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         billingAddressForm.shouldBe(visible);
         paymentForm.shouldBe(visible);
         orderButton.shouldBe(visible);
+        return this;
     }
 
     /**
@@ -72,7 +74,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
      *            The size
      */
     @Step("validate order contains product \"{product.name}\"")
-    public void validateContainsProduct(Product product)
+    public PlaceOrderPage validateContainsProduct(Product product)
     {
         SelenideElement productContainer = $$("div.hidden-xs").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
                                                               .parent().parent();
@@ -83,16 +85,18 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         productContainer.find(".pCount").shouldHave(exactText(Integer.toString(product.getAmount())));
         productContainer.find(".pPrice").shouldHave(exactText(product.getUnitPrice()));
         productContainer.find(".productLineItemPrice").shouldHave(exactText(PriceHelper.format(product.getTotalPrice())));
+        return this;
     }
 
     @Step("validate subtotal on the place order page")
-    public void validateSubtotal(String subtotal)
+    public PlaceOrderPage validateSubtotal(String subtotal)
     {
         $$("#checkoutSummaryList li").findBy(text("Subtotal")).find(".text-right").shouldBe(exactText(subtotal));
+        return this;
     }
 
     @Step("validate product \"{productName}\" on place order page")
-    public void validateProduct(int position, String productName, int productCount, String productStyle, String productSize)
+    public PlaceOrderPage validateProduct(int position, String productName, int productCount, String productStyle, String productSize)
     {
         final int index = position - 1;
         // Item info evaluation
@@ -111,10 +115,11 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         // Size
         // The size equals the parameter
         productContainer.find(".pSize").shouldHave(exactText(productSize));
+        return this;
     }
 
     @Step("validate addresses and payment on place order page")
-    public void validateAddressesAndPayment(Address shippingAddress, Address billingAddress, CreditCard creditcard)
+    public PlaceOrderPage validateAddressesAndPayment(Address shippingAddress, Address billingAddress, CreditCard creditcard)
     {
         // Shipping address
         // Name
@@ -175,6 +180,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         paymentForm.find(" .exp .month").shouldHave(exactText(creditcard.getExpDateMonth()));
         // Makes sure the credit card expiration year matches the parameter
         paymentForm.find(" .exp .year").shouldHave(exactText(creditcard.getExpDateYear()));
+        return this;
     }
 
     @Step("get order total costs from place order page")
@@ -189,30 +195,34 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         // Opens the homepage
         // Clicks the Order button
         orderButton.scrollTo().click();
-
-        return new HomePage();
+        HomePage homePage = new HomePage();
+        homePage.isExpectedPage();
+        return homePage;
     }
 
     @Step("validate shipping costs are equal {shippingCosts}")
-    public void validateShippingCosts(String shippingCosts)
+    public PlaceOrderPage validateShippingCosts(String shippingCosts)
     {
         $("#shippingCosts").shouldHave(exactText(shippingCosts));
+        return this;
     }
 
     @Step("validate order tax value matches {taxValue}")
-    public void validateOrderTax(String taxValue)
+    public PlaceOrderPage validateOrderTax(String taxValue)
     {
         $("#subTotalTaxValue").shouldHave(exactText(taxValue));
+        return this;
     }
 
     @Step("validate order total price is {orderTotalPrice}")
-    public void validateOrderTotal(String orderTotalPrice)
+    public PlaceOrderPage validateOrderTotal(String orderTotalPrice)
     {
         $("#totalCosts").shouldHave(exactText(orderTotalPrice));
+        return this;
     }
 
     @Step("valiadate order data on place order page")
-    public void validateOrder(OrderData orderData)
+    public PlaceOrderPage validateOrder(OrderData orderData)
     {
         AllureAddons.addToReport("order data", orderData);
         orderData.getProducts().getAll().forEach(product -> validateContainsProduct(product));
@@ -221,6 +231,6 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         validateShippingCosts(orderData.getShippingCost());
         validateOrderTax(PriceHelper.format(orderData.getOrderTax()));
         validateOrderTotal(orderData.getOrderTotal());
-
+        return this;
     }
 }

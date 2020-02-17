@@ -36,21 +36,15 @@ public class CartPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a cart page")
-    public void isExpectedPage()
+    public CartPage isExpectedPage()
     {
         cartTable.should(exist);
-    }
-
-    @Step("validate subtotal in the cart")
-    public void validateSubtotal(String subtotal)
-    {
-        $$("#cartSummaryList li").findBy(text("Subtotal")).find(".text-right").shouldHave(exactText(subtotal));
-
+        return this;
     }
 
     @Override
     @Step("validate cart page structure")
-    public void validateStructure()
+    public CartPage validateStructure()
     {
         super.validateStructure();
 
@@ -68,10 +62,18 @@ public class CartPage extends AbstractBrowsingPage
         // Checkout Button
         // Makes sure the checkout button is there.
         $("#btnStartCheckout").should(exist);
+        return this;
+    }
+
+    @Step("validate subtotal in the cart")
+    public CartPage validateSubtotal(String subtotal)
+    {
+        $$("#cartSummaryList li").findBy(text("Subtotal")).find(".text-right").shouldHave(exactText(subtotal));
+        return this;
     }
 
     @Step("validate product in the cart")
-    public void validateContainsProduct(Product product)
+    public CartPage validateContainsProduct(Product product)
     {
         SelenideElement productContainer = $$("div.hidden-xs").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
                                                               .parent().parent();
@@ -82,23 +84,26 @@ public class CartPage extends AbstractBrowsingPage
         productContainer.find(".productCount").shouldHave(value(Integer.toString(product.getAmount())));
         productContainer.find(".productUnitPrice").shouldHave(exactText(product.getUnitPrice()));
         productContainer.find(".productTotalUnitPrice").shouldHave(exactText(PriceHelper.format(product.getTotalPrice())));
+        return this;
     }
 
     @Step("validate shipping costs on cart page")
-    public void validateShippingCosts(String shippingCosts)
+    public CartPage validateShippingCosts(String shippingCosts)
     {
         // Assert the correct shipping price is shown
         $("#orderShippingCosts").shouldHave(exactText(shippingCosts));
+        return this;
     }
 
     /**
      * @param shippingcosts
      */
     @Step("validate cart page with shipping costs: \"{shippingCosts}\"")
-    public void validate(String shippingCosts)
+    public CartPage validate(String shippingCosts)
     {
         validateStructure();
         validateShippingCosts(shippingCosts);
+        return this;
     }
 
     /**
@@ -106,10 +111,11 @@ public class CartPage extends AbstractBrowsingPage
      * @param product
      */
     @Step("validate \"{product}\" in on the cart page")
-    public void validateCartItem(int position, Product product)
+    public CartPage validateCartItem(int position, Product product)
     {
         validateCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(),
                          product.getUnitPrice());
+        return this;
     }
 
     /**
@@ -118,13 +124,14 @@ public class CartPage extends AbstractBrowsingPage
      * @param productAmount
      */
     @Step("validate \"{product}\" in on the cart page")
-    public void validateCartItem(int position, Product product, int productAmount)
+    public CartPage validateCartItem(int position, Product product, int productAmount)
     {
         validateCartItem(position, product.getName(), product.getStyle(), product.getSize(),
                          productAmount, product.getUnitPrice());
+        return this;
     }
 
-    private void validateCartItem(int position, String productName, String productStyle, String productSize, int productAmount, String productPrice)
+    private CartPage validateCartItem(int position, String productName, String productStyle, String productSize, int productAmount, String productPrice)
     {
         SelenideElement productContainer = $("#product" + (position - 1));
         // Visibility
@@ -145,10 +152,11 @@ public class CartPage extends AbstractBrowsingPage
         // Price
         // Compares the displayed price with the parameter
         productContainer.find(".productUnitPrice").shouldHave(exactText(productPrice));
+        return this;
     }
 
     @Step("validate sub total and line item total after adding on the cart page")
-    public void validateSubAndLineItemTotalAfterAdd(int position, String oldSubTotal, double totalPrice)
+    public CartPage validateSubAndLineItemTotalAfterAdd(int position, String oldSubTotal, double totalPrice)
     {
         SelenideElement productContainer = $("#product" + (position - 1));
         // Store unit price (without $ sign)
@@ -174,13 +182,15 @@ public class CartPage extends AbstractBrowsingPage
         String price2 = PriceHelper.subtractFromPrice(subOrderPrice, PriceHelper.format(totalPrice));
 
         Assert.assertEquals(price, price2);
+        return this;
     }
 
     @Step("validate line item amount on the cart page")
-    public void validateProductAmount(int position, int amount)
+    public CartPage validateProductAmount(int position, int amount)
     {
         // Makes sure the amount of the item with index @{index} in the cart equals the parameter
         $("#product" + (position - 1) + " .productCount").shouldHave(exactValue(Integer.toString(amount)));
+        return this;
     }
 
     @Step("get product name from line item on the cart page")
@@ -236,7 +246,7 @@ public class CartPage extends AbstractBrowsingPage
      * @param amount
      */
     @Step("update product count on the cart page")
-    public void updateProductCount(int position, int amount)
+    public CartPage updateProductCount(int position, int amount)
     {
         SelenideElement productContainer = $("#product" + (position - 1));
         // Type in the specified amount
@@ -245,6 +255,7 @@ public class CartPage extends AbstractBrowsingPage
         // Click the update button
         // Clicks the update button for the product
         productContainer.find(".btnUpdateProduct").scrollTo().click();
+        return this;
     }
 
     private SelenideElement findProductContainer(Product product)
@@ -262,26 +273,28 @@ public class CartPage extends AbstractBrowsingPage
     }
 
     @Step("update product count by the name")
-    public void updateProductCountByName(Product product, int amount)
+    public CartPage updateProductCountByName(Product product, int amount)
     {
         SelenideElement productContainer = findProductContainer(product);
         productContainer.find(".productCount").setValue(Integer.toString(amount));
         productContainer.find(".btnUpdateProduct").scrollTo().click();
+        return this;
     }
 
     @Step("remove product by name")
-    public void removeProductByName(Product product)
+    public CartPage removeProductByName(Product product)
     {
         SelenideElement productContainer = findProductContainer(product);
         productContainer.find(".btnRemoveProduct").click();
         $("#buttonDelete").click();
+        return this;
     }
 
     /**
      * @param position
      */
     @Step("remove product on the cart page")
-    public void removeProduct(int position)
+    public CartPage removeProduct(int position)
     {
         // Click delete button
         // Click on the delete button for the product
@@ -297,6 +310,7 @@ public class CartPage extends AbstractBrowsingPage
         // Reload page to let IDs adjust to the deletion
         miniCart.openMiniCart();
         miniCart.openCartPage();
+        return this;
     }
 
     /**
@@ -304,10 +318,11 @@ public class CartPage extends AbstractBrowsingPage
      * @param oldLineItemTotal
      */
     @Step("validate sub total and line item total after removing on the cart page")
-    public void validateSubAndLineItemTotalAfterRemove(String oldSubTotal, String oldLineItemTotal)
+    public CartPage validateSubAndLineItemTotalAfterRemove(String oldSubTotal, String oldLineItemTotal)
     {
         String newSubTotal = PriceHelper.subtractFromPrice(oldSubTotal, oldLineItemTotal);
         subTotal.shouldHave(exactText(newSubTotal));
+        return this;
     }
 
     /**
@@ -317,26 +332,33 @@ public class CartPage extends AbstractBrowsingPage
     public ProductdetailPage openProductPage(int position)
     {
         $("#product" + (position - 1) + " img").scrollTo().click();
-        return new ProductdetailPage();
+        ProductdetailPage pdp = new ProductdetailPage();
+        pdp.isExpectedPage();
+        return pdp;
     }
 
-    private void clickCheckoutButton()
+    private CartPage clickCheckoutButton()
     {
         $("#btnStartCheckout").scrollTo().click();
+        return this;
     }
 
     @Step("open new shipping address from the cart page")
     public NewShippingAddressPage openNewShippingPage()
     {
         clickCheckoutButton();
-        return new NewShippingAddressPage();
+        NewShippingAddressPage shippingAddressPage = new NewShippingAddressPage();
+        shippingAddressPage.isExpectedPage();
+        return shippingAddressPage;
     }
 
     @Step("open shipping address from the cart page")
     public ShippingAddressPage openShippingPage()
     {
         clickCheckoutButton();
-        return new ShippingAddressPage();
+        ShippingAddressPage shippingAddressPage = new ShippingAddressPage();
+        shippingAddressPage.isExpectedPage();
+        return shippingAddressPage;
     }
 
     /**
@@ -349,8 +371,9 @@ public class CartPage extends AbstractBrowsingPage
     }
 
     @Step("validate cart is empty")
-    public void validateIsEmpty()
+    public CartPage validateIsEmpty()
     {
         $("#errorCartMessage").shouldHave(exactText(Neodymium.localizedText("CartPage.emptyCartInfo")));
+        return this;
     }
 }

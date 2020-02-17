@@ -20,14 +20,15 @@ public class AccountOverviewPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is an account overview page")
-    public void isExpectedPage()
+    public AccountOverviewPage isExpectedPage()
     {
         headline.should(exist);
+        return this;
     }
 
     @Override
     @Step("validate account overview page structure")
-    public void validateStructure()
+    public AccountOverviewPage validateStructure()
     {
         super.validateStructure();
 
@@ -46,6 +47,7 @@ public class AccountOverviewPage extends AbstractBrowsingPage
         // Personal Data Link
         // Make sure the link to the Personal Data page is there and the text starts with a capital letter
         personalDataLink.should(matchText("[A-Z].{3,}"));
+        return this;
     }
 
     /**
@@ -57,12 +59,16 @@ public class AccountOverviewPage extends AbstractBrowsingPage
         // Open the personal data page
         // Click on the link to Personal Data
         personalDataLink.scrollTo().click();
-        return new PersonalDataPage();
+        PersonalDataPage personalDataPage = new PersonalDataPage();
+        personalDataPage.isExpectedPage();
+        return personalDataPage;
     }
 
     public OrderHistoryPage openOrderHistory()
     {
         $("#linkOrderOverview").scrollTo().click();
-        return new OrderHistoryPage();
+        OrderHistoryPage orderHistoryPage = new OrderHistoryPage();
+        orderHistoryPage.isExpectedPage();
+        return orderHistoryPage;
     }
 }

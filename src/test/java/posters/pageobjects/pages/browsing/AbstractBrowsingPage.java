@@ -29,7 +29,7 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
     public ErrorMessage errorMessage = new ErrorMessage();
 
     @Override
-    public void validateStructure()
+    public <T extends AbstractPageObject> T validateStructure()
     {
         isExpectedPage();
 
@@ -41,5 +41,6 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
         userMenu.isComponentAvailable();
         successMessage.isComponentAvailable();
         errorMessage.isComponentAvailable();
+        return (T) this;
     }
 }

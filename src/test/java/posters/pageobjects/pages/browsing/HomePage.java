@@ -17,13 +17,14 @@ public class HomePage extends AbstractBrowsingPage
 {
     @Override
     @Step("ensure this is a home page")
-    public void isExpectedPage()
+    public HomePage isExpectedPage()
     {
         $("#titleIndex").should(exist);
+        return this;
     }
 
     @Step("validate home page structure")
-    public void validateStructure()
+    public HomePage validateStructure()
     {
         super.validateStructure();
 
@@ -46,22 +47,25 @@ public class HomePage extends AbstractBrowsingPage
         $("#productList").shouldBe(visible);
         // Asserts there's at least 1 item in the list.
         $$("#productList .thumbnail").shouldHave(sizeGreaterThan(0));
+        return this;
     }
 
     @Step("validate home page")
-    public void validate()
+    public HomePage validate()
     {
         validateStructure();
         footer.validate();
+        return this;
     }
 
     @Step("validate successful order on home page")
-    public void validateSuccessfulOrder()
+    public HomePage validateSuccessfulOrder()
     {
         successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulOrder"));
         // Verify that the mini cart is empty again
         miniCart.validateTotalCount(0);
         miniCart.validateSubtotal("$0.00");
+        return this;
     }
 
     /**
@@ -69,12 +73,13 @@ public class HomePage extends AbstractBrowsingPage
      *            The name should be shown in the mini User Menu
      */
     @Step("validate successful login on home page")
-    public void validateSuccessfulLogin(String firstName)
+    public HomePage validateSuccessfulLogin(String firstName)
     {
         // Verify that you are logged in
         successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulLogin"));
         // Verify that the user menu shows your first name
         userMenu.validateLoggedInName(firstName);
+        return this;
 
     }
 
@@ -82,21 +87,24 @@ public class HomePage extends AbstractBrowsingPage
      * @param user
      */
     @Step("validate successful user login on home page")
-    public void validateSuccessfulLogin(User user)
+    public HomePage validateSuccessfulLogin(User user)
     {
         validateSuccessfulLogin(user.getFirstName());
+        return this;
     }
 
     @Step("validate successful account deletion on home page")
-    public void validateSuccessfulDeletedAccount()
+    public HomePage validateSuccessfulDeletedAccount()
     {
         successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulAccountDeletion"));
+        return this;
     }
 
-    public void validateAndVisualAssert()
+    public HomePage validateAndVisualAssert()
     {
         validateStructureAndVisual();
         footer.validate();
+        return this;
     }
 
     public ProductdetailPage clickOnPresentedProduct(String productName)

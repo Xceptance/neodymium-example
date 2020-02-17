@@ -37,14 +37,15 @@ public class ShippingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a shipping address page")
-    public void isExpectedPage()
+    public ShippingAddressPage isExpectedPage()
     {
         headline.should(exist);
+        return this;
     }
 
     @Override
     @Step("validate shipping address page structure")
-    public void validateStructure()
+    public ShippingAddressPage validateStructure()
     {
         super.validateStructure();
 
@@ -54,6 +55,7 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         // First address
         // Makes sure at least one address is visible
         $("#delAddr0").shouldBe(visible);
+        return this;
     }
 
     /**
@@ -71,8 +73,9 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         // Open the billing address page in the checkout process
         // Clicks the continue button
         $("#btnUseAddressContinue").scrollTo().click();
-
-        return new BillingAddressPage();
+        BillingAddressPage billingAddressPage = new BillingAddressPage();
+        billingAddressPage.isExpectedPage();
+        return billingAddressPage;
     }
 
     @Step("fill and send shipping address form")
@@ -113,7 +116,8 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         // Open the billing addresses or payment options page, depending on which radio button you checked
         // Click on Continue
         addShippingButton.scrollTo().click();
-
-        return new BillingAddressPage();
+        BillingAddressPage billingAddressPage = new BillingAddressPage();
+        billingAddressPage.isExpectedPage();
+        return billingAddressPage;
     }
 }

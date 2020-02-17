@@ -31,14 +31,15 @@ public class PaymentPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a payment page")
-    public void isExpectedPage()
+    public PaymentPage isExpectedPage()
     {
         headline.should(exist);
+        return this;
     }
 
     @Override
     @Step("validate payment page structure")
-    public void validateStructure()
+    public PaymentPage validateStructure()
     {
         super.validateStructure();
 
@@ -48,6 +49,7 @@ public class PaymentPage extends AbstractCheckoutPage
         // First credit card
         // Makes sure at least one credit card is saved
         $("#payment0").shouldBe(visible);
+        return this;
     }
 
     /**
@@ -65,8 +67,9 @@ public class PaymentPage extends AbstractCheckoutPage
         // Open the billing address page in the checkout process
         // Clicks the continue button
         $("#btnUsePayment").scrollTo().click();
-
-        return new PlaceOrderPage();
+        PlaceOrderPage placeOrderPage = new PlaceOrderPage();
+        placeOrderPage.isExpectedPage();
+        return placeOrderPage;
     }
 
     @Step("fill and send payment form")
@@ -86,7 +89,8 @@ public class PaymentPage extends AbstractCheckoutPage
         // Opens the order overview page
         // Clicks the Continue button
         addPaymentButton.scrollTo().click();
-
-        return new PlaceOrderPage();
+        PlaceOrderPage placeOrderPage = new PlaceOrderPage();
+        placeOrderPage.isExpectedPage();
+        return placeOrderPage;
     }
 }

@@ -34,14 +34,15 @@ public class NewPaymentPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a new payment page")
-    public void isExpectedPage()
+    public NewPaymentPage isExpectedPage()
     {
         headline.should(exist);
+        return this;
     }
 
     @Override
     @Step("validate new payment page structure")
-    public void validateStructure()
+    public NewPaymentPage validateStructure()
     {
         super.validateStructure();
 
@@ -71,6 +72,7 @@ public class NewPaymentPage extends AbstractCheckoutPage
         // Continue Button
         // Makes sure the continue button is there
         addPaymentButton.should(exist);
+        return this;
     }
 
     /**
@@ -100,8 +102,9 @@ public class NewPaymentPage extends AbstractCheckoutPage
         // Opens the order overview page
         // Clicks the Continue button
         addPaymentButton.scrollTo().click();
-
-        return new PlaceOrderPage();
+        PlaceOrderPage placeOrderPage = new PlaceOrderPage();
+        placeOrderPage.isExpectedPage();
+        return placeOrderPage;
     }
 
     /**

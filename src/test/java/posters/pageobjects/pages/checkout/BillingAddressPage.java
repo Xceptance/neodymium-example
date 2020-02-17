@@ -21,14 +21,15 @@ public class BillingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a billing address page")
-    public void isExpectedPage()
+    public BillingAddressPage isExpectedPage()
     {
         headline.should(exist);
+        return this;
     }
 
     @Override
     @Step("validate billing address page structure")
-    public void validateStructure()
+    public BillingAddressPage validateStructure()
     {
         super.validateStructure();
 
@@ -38,6 +39,7 @@ public class BillingAddressPage extends AbstractCheckoutPage
         // First address
         // Makes sure at least one address is visible
         $("#billAddr0").shouldBe(visible);
+        return this;
     }
 
     /**
@@ -55,7 +57,8 @@ public class BillingAddressPage extends AbstractCheckoutPage
         // Open the billing address page in the checkout process
         // Clicks the continue button
         $("#btnUseBillAddress").scrollTo().click();
-
-        return new PaymentPage();
+        PaymentPage paymentPage = new PaymentPage();
+        paymentPage.isExpectedPage();
+        return paymentPage;
     }
 }
