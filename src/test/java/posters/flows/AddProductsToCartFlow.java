@@ -9,7 +9,7 @@ public class AddProductsToCartFlow
     public static ProductdetailPage addToCart(Products products)
     {
         ProductdetailPage pdp = new ProductdetailPage();
-        for (Product product : products.getProducts())
+        for (Product product : products.getAll())
         {
             pdp = OpenPageFlow.openProductPageWithCookies(product.getRelativeUrl());
             pdp.isExpectedPage();

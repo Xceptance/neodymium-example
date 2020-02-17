@@ -215,7 +215,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     public void validateOrder(OrderData orderData)
     {
         AllureAddons.addToReport("order data", orderData);
-        orderData.getProducts().getProducts().forEach(product -> validateContainsProduct(product));
+        orderData.getProducts().getAll().forEach(product -> validateContainsProduct(product));
         validateAddressesAndPayment(orderData.getShippingAddress(), orderData.getBillingAddress(), orderData.getPayment());
         validateSubtotal(orderData.getProducts().getProductsTotalPrice());
         validateShippingCosts(orderData.getShippingCost());

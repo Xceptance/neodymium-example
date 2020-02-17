@@ -28,7 +28,7 @@ public class CartTest extends AbstractTest
         OpenPageFlow.openHomePage();
         ProductdetailPage pdp = AddProductsToCartFlow.addToCart(products);
         CartPage cartPage = pdp.miniCart.openCartPage();
-        products.getProducts().forEach(product -> cartPage.validateContainsProduct(product));
+        products.getAll().forEach(product -> cartPage.validateContainsProduct(product));
         cartPage.validateSubtotal(products.getProductsTotalPrice());
     }
 
@@ -38,7 +38,7 @@ public class CartTest extends AbstractTest
         OpenPageFlow.openHomePage();
         ProductdetailPage pdp = AddProductsToCartFlow.addToCart(products);
         CartPage cartPage = pdp.miniCart.openCartPage();
-        products.getProducts().forEach(product -> {
+        products.getAll().forEach(product -> {
             cartPage.updateProductCountByName(product, 2);
             product.setAmount(2);
             cartPage.validateContainsProduct(product);
@@ -52,7 +52,7 @@ public class CartTest extends AbstractTest
         OpenPageFlow.openHomePage();
         ProductdetailPage pdp = AddProductsToCartFlow.addToCart(products);
         CartPage cartPage = pdp.miniCart.openCartPage();
-        products.getProducts().forEach(product -> {
+        products.getAll().forEach(product -> {
             cartPage.removeProductByName(product);
         });
         cartPage.validateIsEmpty();

@@ -27,7 +27,7 @@ public class MiniCartTest extends AbstractTest
         OpenPageFlow.openHomePage();
         ProductdetailPage pdp = AddProductsToCartFlow.addToCart(products);
         pdp.miniCart.openMiniCart();
-        products.getProducts().forEach(product -> pdp.miniCart.validateMiniCartByProduct(product));
+        products.getAll().forEach(product -> pdp.miniCart.validateMiniCartByProduct(product));
         pdp.miniCart.validateSubtotal(products.getProductsTotalPrice());
     }
 }

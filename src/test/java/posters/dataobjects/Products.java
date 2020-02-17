@@ -8,7 +8,7 @@ public class Products
 {
     private ArrayList<Product> products;
 
-    public ArrayList<Product> getProducts()
+    public ArrayList<Product> getAll()
     {
         return products;
     }
@@ -33,5 +33,4 @@ public class Products
     {
         return "Products [products=" + products + "]";
     }
-
 }

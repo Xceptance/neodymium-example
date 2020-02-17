@@ -41,7 +41,7 @@ public class OrderHistoryPage extends AbstractBrowsingPage
     public void validateOrder(OrderData orderData)
     {
         AllureAddons.addToReport("order data", orderData);
-        orderData.getProducts().getProducts().forEach(product -> validateContainsProduct(product));
+        orderData.getProducts().getAll().forEach(product -> validateContainsProduct(product));
         $(".orderTotalCosts").shouldHave(exactText(orderData.getOrderTotal()));
     }
 }
