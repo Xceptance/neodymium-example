@@ -23,7 +23,7 @@ public abstract class AbstractPageObject
 
     abstract public <T extends AbstractPageObject> T validateStructure();
 
-    public void validateVisual(String testCaseName)
+    public <T extends AbstractPageObject> T validateVisual(String testCaseName)
     {
         String className = this.getClass().getSimpleName();
 
@@ -35,21 +35,25 @@ public abstract class AbstractPageObject
         {
             new AI().execute(Neodymium.getDriver(), testCaseName, "validate" + className);
         }
+        return (T) this;
     }
 
-    public void validateStructureAndVisual()
+    public <T extends AbstractPageObject> T validateStructureAndVisual()
     {
         validateStructureAndVisual(null);
+        return (T) this;
     }
 
-    public void validateStructureAndVisual(String testCaseName)
+    public <T extends AbstractPageObject> T validateStructureAndVisual(String testCaseName)
     {
         validateStructure();
         validateVisual(testCaseName);
+        return (T) this;
     }
 
-    public void scrollToTop()
+    public <T extends AbstractPageObject> T scrollToTop()
     {
         $("body").scrollTo();
+        return (T) this;
     }
 }
