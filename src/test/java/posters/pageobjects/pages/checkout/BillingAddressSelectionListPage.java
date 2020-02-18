@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 
 import io.qameta.allure.Step;
+import posters.pageobjects.components.AddNewAddressFromListPage;
 
 /**
  * This page is only for registered user with saved billing address available
@@ -20,6 +21,8 @@ import io.qameta.allure.Step;
 public class BillingAddressSelectionListPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleBillAddr");
+
+    public AddNewAddressFromListPage addNewAddressFromListPage = new AddNewAddressFromListPage();
 
     @Override
     @Step("ensure this is a billing address page")

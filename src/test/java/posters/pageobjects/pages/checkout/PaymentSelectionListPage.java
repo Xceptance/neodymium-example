@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 
 import io.qameta.allure.Step;
+import posters.dataobjects.CreditCard;
 
 /**
  * This page is only for registered user with saved billing address available
@@ -77,6 +78,7 @@ public class PaymentSelectionListPage extends AbstractCheckoutPage
     @Step("fill and send payment form")
     public PlaceOrderPage sendPaymentForm(String number, String name, String month, String year)
     {
+        $("#addPaymentModal").click();
         // Credit Card Number
         // Fills the card number field with the parameter
         creditCardNumber.val(number);
@@ -94,5 +96,11 @@ public class PaymentSelectionListPage extends AbstractCheckoutPage
         PlaceOrderPage placeOrderPage = new PlaceOrderPage();
         placeOrderPage.isExpectedPage();
         return placeOrderPage;
+    }
+
+    @Step("fill and send payment form with credit card {card}")
+    public PlaceOrderPage sendPaymentForm(CreditCard card)
+    {
+        return sendPaymentForm(card.getCardNumber(), card.getFullName(), card.getExpDateMonth(), card.getExpDateYear());
     }
 }

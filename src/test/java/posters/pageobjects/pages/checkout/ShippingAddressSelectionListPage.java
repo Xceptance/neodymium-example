@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 
 import io.qameta.allure.Step;
+import posters.pageobjects.components.AddNewAddressFromListPage;
 
 /**
  * This page is only for registered user with saved billing address available
@@ -21,21 +22,7 @@ public class ShippingAddressSelectionListPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleDelAddr");
 
-    private SelenideElement nameField = $("#fullName");
-
-    private SelenideElement companyField = $("#company");
-
-    private SelenideElement addressField = $("#addressLine");
-
-    private SelenideElement cityField = $("#city");
-
-    private SelenideElement stateField = $("#state");
-
-    private SelenideElement zipField = $("#zip");
-
-    private SelenideElement countryField = $("#country");
-
-    private SelenideElement addShippingButton = $("#btnAddDelAddr");
+    public AddNewAddressFromListPage addNewAddressFromListPage = new AddNewAddressFromListPage();
 
     @Override
     @Step("ensure this is a shipping address page")
@@ -80,46 +67,4 @@ public class ShippingAddressSelectionListPage extends AbstractCheckoutPage
         return billingAddressPage;
     }
 
-    @Step("fill and send shipping address form")
-    public BillingAddressSelectionListPage sendShippingAddressForm(String name, String company, String address, String city,
-                                                                   String state, String zip, String country, boolean sameBillingAddress)
-    {
-        // Name
-        // Enter the name parameter
-        nameField.val(name);
-        // Company
-        // Enter the company parameter
-        companyField.val(company);
-        // Address
-        // Enter the address parameter
-        addressField.val(address);
-        // City
-        // Enter the city parameter
-        cityField.val(city);
-        // State
-        // Enter the state parameter
-        stateField.val(state);
-        // Zip
-        // Enter the zip parameter
-        zipField.val(zip);
-        // Country
-        // Select the country whose label equals the parameter
-        countryField.selectOption(country);
-        // Radio Button
-        // Click the radio button for Yes or No
-        if (sameBillingAddress)
-        {
-            $("#billEqualShipp-Yes").scrollTo().click();
-        }
-        else
-        {
-            $("#billEqualShipp-No").scrollTo().click();
-        }
-        // Open the billing addresses or payment options page, depending on which radio button you checked
-        // Click on Continue
-        addShippingButton.scrollTo().click();
-        BillingAddressSelectionListPage billingAddressPage = new BillingAddressSelectionListPage();
-        billingAddressPage.isExpectedPage();
-        return billingAddressPage;
-    }
 }
