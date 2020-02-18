@@ -122,18 +122,6 @@ public class LoginPage extends AbstractBrowsingPage
         return this;
     }
 
-    /**
-     * @return
-     */
-    @Step("open register page from login page")
-    public RegisterPage openRegister()
-    {
-        registerLink.scrollTo().click();
-        RegisterPage registerPage = new RegisterPage();
-        registerPage.isExpectedPage();
-        return registerPage;
-    }
-
     @Step("validate successful registration message")
     public LoginPage validateSuccessfulRegistration()
     {
