@@ -20,13 +20,13 @@ public abstract class AbstractCheckoutPage extends AbstractPageObject
     public UserMenu userMenu = new UserMenu();
 
     @Override
-    public <T extends AbstractPageObject> T validateStructure()
+    public AbstractPageObject validateStructure()
     {
         isExpectedPage();
 
         header.isComponentAvailable();
         footer.isComponentAvailable();
         userMenu.isComponentAvailable();
-        return (T) this;
+        return this;
     }
 }

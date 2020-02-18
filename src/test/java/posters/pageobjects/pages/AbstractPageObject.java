@@ -19,11 +19,11 @@ public abstract class AbstractPageObject
 {
     public Title title = new Title();
 
-    abstract public <T extends AbstractPageObject> T isExpectedPage();
+    abstract public AbstractPageObject isExpectedPage();
 
-    abstract public <T extends AbstractPageObject> T validateStructure();
+    abstract public AbstractPageObject validateStructure();
 
-    public <T extends AbstractPageObject> T validateVisual(String testCaseName)
+    public AbstractPageObject validateVisual(String testCaseName)
     {
         String className = this.getClass().getSimpleName();
 
@@ -35,25 +35,25 @@ public abstract class AbstractPageObject
         {
             new AI().execute(Neodymium.getDriver(), testCaseName, "validate" + className);
         }
-        return (T) this;
+        return this;
     }
 
-    public <T extends AbstractPageObject> T validateStructureAndVisual()
+    public AbstractPageObject validateStructureAndVisual()
     {
         validateStructureAndVisual(null);
-        return (T) this;
+        return this;
     }
 
-    public <T extends AbstractPageObject> T validateStructureAndVisual(String testCaseName)
+    public AbstractPageObject validateStructureAndVisual(String testCaseName)
     {
         validateStructure();
         validateVisual(testCaseName);
-        return (T) this;
+        return this;
     }
 
-    public <T extends AbstractPageObject> T scrollToTop()
+    public AbstractPageObject scrollToTop()
     {
         $("body").scrollTo();
-        return (T) this;
+        return this;
     }
 }
