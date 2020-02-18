@@ -16,7 +16,7 @@ import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.Product;
-import posters.pageobjects.pages.checkout.CartPage;
+import posters.pageobjects.pages.browsing.CartPage;
 import posters.pageobjects.utility.PriceHelper;
 
 /**

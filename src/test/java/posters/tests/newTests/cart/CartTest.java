@@ -8,8 +8,8 @@ import com.xceptance.neodymium.util.DataUtils;
 import posters.dataobjects.Products;
 import posters.flows.AddProductsToCartFlow;
 import posters.flows.OpenPageFlow;
+import posters.pageobjects.pages.browsing.CartPage;
 import posters.pageobjects.pages.browsing.ProductdetailPage;
-import posters.pageobjects.pages.checkout.CartPage;
 import posters.tests.AbstractTest;
 
 public class CartTest extends AbstractTest

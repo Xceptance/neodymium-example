@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.pageobjects.pages.checkout;
+package posters.pageobjects.pages.browsing;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
@@ -18,7 +18,8 @@ import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.Product;
-import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
+import posters.pageobjects.pages.checkout.ShippingAddressPage;
+import posters.pageobjects.pages.checkout.ShippingAddressSelectionListPage;
 import posters.pageobjects.utility.PriceHelper;
 
 /**
