@@ -1,7 +1,6 @@
 package posters.pageobjects.pages.browsing;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
@@ -105,13 +104,5 @@ public class HomePage extends AbstractBrowsingPage
         validateStructureAndVisual();
         footer.validate();
         return this;
-    }
-
-    public ProductdetailPage clickOnPresentedProduct(String productName)
-    {
-        $$("#productList .thumbnail .pName").filter(exactText(productName)).shouldHaveSize(1).first().click();
-        ProductdetailPage productdetailPage = new ProductdetailPage();
-        productdetailPage.isExpectedPage();
-        return productdetailPage;
     }
 }
