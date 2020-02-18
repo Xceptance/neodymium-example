@@ -1,4 +1,4 @@
-package posters.tests.smoke;
+package posters.tests.newTests.smoke;
 
 import org.junit.Test;
 
