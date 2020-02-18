@@ -353,10 +353,10 @@ public class CartPage extends AbstractBrowsingPage
     }
 
     @Step("open shipping address from the cart page")
-    public ShippingAddressPage openShippingPage()
+    public NewShippingAddressPage openShippingPage()
     {
         clickCheckoutButton();
-        ShippingAddressPage shippingAddressPage = new ShippingAddressPage();
+        NewShippingAddressPage shippingAddressPage = new NewShippingAddressPage();
         shippingAddressPage.isExpectedPage();
         return shippingAddressPage;
     }
