@@ -95,29 +95,6 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         return this;
     }
 
-    @Step("validate product \"{productName}\" on place order page")
-    public PlaceOrderPage validateProduct(int position, String productName, int productCount, String productStyle, String productSize)
-    {
-        final int index = position - 1;
-        // Item info evaluation
-        // The product at index @{index} exists
-        SelenideElement productContainer = $("#checkoutOverviewTable #product" + index);
-        productContainer.should(exist);
-        // Name
-        // The name equals the parameter
-        productContainer.find(".pName").shouldHave(exactText(productName));
-        // Amount
-        // The amount equals the parameter
-        productContainer.find(".pCount").shouldHave(exactText(Integer.toString(productCount)));
-        // Style
-        // The style equals the parameter
-        productContainer.find(".pStyle").shouldHave(exactText(productStyle));
-        // Size
-        // The size equals the parameter
-        productContainer.find(".pSize").shouldHave(exactText(productSize));
-        return this;
-    }
-
     @Step("validate addresses and payment on place order page")
     public PlaceOrderPage validateAddressesAndPayment(Address shippingAddress, Address billingAddress, CreditCard creditcard)
     {
@@ -181,12 +158,6 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         // Makes sure the credit card expiration year matches the parameter
         paymentForm.find(" .exp .year").shouldHave(exactText(creditcard.getExpDateYear()));
         return this;
-    }
-
-    @Step("get order total costs from place order page")
-    public String getTotalCosts()
-    {
-        return $("#totalCosts").text();
     }
 
     @Step("place the order")
