@@ -12,6 +12,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -25,13 +26,17 @@ public class CategoryPage extends AbstractBrowsingPage
 {
     public Pagination pagination = new Pagination();
 
-    private SelenideElement productOverview = $("#productOverview");
+    private String productOverview = "#productOverview";
+
+    private SelenideElement totalProductCount = $("#totalProductCount");
+
+    private ElementsCollection products = $$("#productOverview li");
 
     @Override
     @Step("ensure this is a category page")
     public CategoryPage isExpectedPage()
     {
-        productOverview.should(exist);
+        $(productOverview).should(exist);
         return this;
     }
 
@@ -42,10 +47,10 @@ public class CategoryPage extends AbstractBrowsingPage
 
         // Amount of results
         // Assures the amount of posters displayed in the headline is not 0.
-        $("#totalProductCount").shouldNotBe(exactText("0"));
+        totalProductCount.shouldNotBe(exactText("0"));
         // Results
         // Assures there's at least one product shown
-        $("#product0").shouldBe(visible);
+        products.shouldHave(sizeGreaterThan(0));
         return this;
     }
 
@@ -68,7 +73,7 @@ public class CategoryPage extends AbstractBrowsingPage
         // Open the product detail page
         // Click on the product's image and open the product overview page
         // Click the product link to open the product detail page
-        $("#productOverview .thumbnails .thumbnail a > img.pImage[title='" + productName + "']").scrollTo().click();
+        $(productOverview + " .thumbnails .thumbnail a > img.pImage[title='" + productName + "']").scrollTo().click();
         ProductdetailPage pdp = new ProductdetailPage();
         pdp.isExpectedPage();
         return pdp;
@@ -83,21 +88,21 @@ public class CategoryPage extends AbstractBrowsingPage
     {
         $("#titleSearchText").should(exist);
         // Validate the headline contains the search phrase
-        // \\(" + searchTermExpectedCount + " *\\)
+
         $("#titleSearchText").should(matchText(Neodymium.localizedText("search.results.text") + ": '" + searchTerm + "' \\(\\d+.*\\)"));
         // Verify that the correct search term is displayed
         // Validate the entered search phrase is still visible in the input
         search.validateSearchTerm(searchTerm);
         // Assert the Headline displays the search term.
         $(".header-container #searchTextValue").shouldHave(exactText(searchTerm));
+
         // Verify there are search results
-        // There is at least one row of results
-        $("#productOverview ul.row").shouldBe(exist);
+
         // There is at least one product in the results
-        $$("#productOverview li").shouldHave(sizeGreaterThan(0));
+        products.shouldHave(sizeGreaterThan(0));
         // Verify that there is the specified amount of results
         // The amount of products shown in the headline matches the expected value
-        $("#totalProductCount").shouldHave(matchText("\\d+"));
+        totalProductCount.shouldHave(matchText("\\d+"));
         return this;
     }
 
@@ -107,7 +112,7 @@ public class CategoryPage extends AbstractBrowsingPage
     @Step("validate product \"{productName}\" is visible on category page")
     public CategoryPage validateProductVisible(String productName)
     {
-        $("#productOverview .thumbnails .thumbnail a > img.pImage[title='" + productName + "']").shouldBe(visible);
+        $(productOverview + " .thumbnails .thumbnail a > img.pImage[title='" + productName + "']").shouldBe(visible);
         return this;
     }
 
