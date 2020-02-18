@@ -14,7 +14,6 @@ import com.xceptance.neodymium.util.SelenideAddons;
 
 import io.qameta.allure.Step;
 import junit.framework.Assert;
-import posters.dataobjects.Product;
 
 /**
  * @author pfotenhauer
@@ -102,40 +101,6 @@ public class ProductdetailPage extends AbstractBrowsingPage
         return this;
     }
 
-    @Step("get product name from product detail page")
-    public String getProductName()
-    {
-        // Get the product name to enable usage outside this module.
-        return productName.text();
-    }
-
-    @Step("get selected product style from product detail page")
-    public String getChosenStyle()
-    {
-        // Get the style to enable usage outside this module.
-        return $(".radio input[name='finish']:checked").val();
-    }
-
-    @Step("get selected product size from product detail page")
-    public String getChosenSize()
-    {
-        // Get the size to enable usage outside this module.
-        return productSize.getSelectedText();
-    }
-
-    @Step("get product price from product detail page")
-    public String getProductPrice()
-    {
-        // Get the product price to enable usage outside this module.
-        return productPrice.text();
-    }
-
-    @Step("get product details from product detail page")
-    public Product getProduct()
-    {
-        return new Product(getProductName(), getProductPrice(), getChosenStyle(), getChosenSize(), 1);
-    }
-
     /**
      * @param productName
      */
@@ -152,29 +117,33 @@ public class ProductdetailPage extends AbstractBrowsingPage
      * @param string
      */
     @Step("validate the product detail page of \"{productName}\" and assert visually")
-    public void validateAndVisualAssert(String productName)
+    public ProductdetailPage validateAndVisualAssert(String productName)
     {
         validateStructureAndVisual();
         validateProductName(productName);
+        return this;
     }
 
     @Step("validate selected size is {size}")
-    public void validateSelectedSize(String size)
+    public ProductdetailPage validateSelectedSize(String size)
     {
         $("#selectSize").getSelectedOption().shouldHave(exactText(size));
+        return this;
     }
 
     @Step("validate selected style is {style}")
-    public void validateSelectedStyle(String style)
+    public ProductdetailPage validateSelectedStyle(String style)
     {
         SelenideAddons.wrapAssertionError(() -> {
             Assert.assertEquals($("#selectStyle input[checked='checked']").getValue(), style);
         });
+        return this;
     }
 
     @Step("validate unit price is equal to price")
-    public void validateUnitPrice(String price)
+    public ProductdetailPage validateUnitPrice(String price)
     {
         $("#prodPrice").shouldHave(exactText(price));
+        return this;
     }
 }
