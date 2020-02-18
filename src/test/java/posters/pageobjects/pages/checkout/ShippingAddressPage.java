@@ -19,7 +19,7 @@ import posters.dataobjects.Address;
 /**
  * @author pfotenhauer
  */
-public class NewShippingAddressPage extends AbstractCheckoutPage
+public class ShippingAddressPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleDelAddr");
 
@@ -41,7 +41,7 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a new shipping address page")
-    public NewShippingAddressPage isExpectedPage()
+    public ShippingAddressPage isExpectedPage()
     {
         headline.should(exist);
         return this;
@@ -49,7 +49,7 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("validate new shipping address page structure")
-    public NewShippingAddressPage validateStructure()
+    public ShippingAddressPage validateStructure()
     {
         super.validateStructure();
 
@@ -124,7 +124,7 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
      *            Decision whether or not use the same billing address
      */
     @Step("fill and send new shipping address form")
-    public NewBillingAddressPage sendShippingAddressForm(String name, String company, String address, String city,
+    public BillingAddressPage sendShippingAddressForm(String name, String company, String address, String city,
                                                          String state, String zip, String country, boolean sameBillingAddress)
     {
         // Name
@@ -161,7 +161,7 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
         // Open the billing addresses or payment options page, depending on which radio button you checked
         // Click on Continue
         addShippingButton.scrollTo().click();
-        return new NewBillingAddressPage();
+        return new BillingAddressPage();
     }
 
     /**
@@ -169,7 +169,7 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
      * @param sameBillingAddress
      * @return
      */
-    public NewBillingAddressPage sendShippingAddressForm(Address shippingAddress, boolean sameBillingAddress)
+    public BillingAddressPage sendShippingAddressForm(Address shippingAddress, boolean sameBillingAddress)
     {
         return sendShippingAddressForm(shippingAddress.getFullName(), shippingAddress.getCompany(), shippingAddress.getAddressLine(),
                                        shippingAddress.getCity(), shippingAddress.getState(), shippingAddress.getZip(),

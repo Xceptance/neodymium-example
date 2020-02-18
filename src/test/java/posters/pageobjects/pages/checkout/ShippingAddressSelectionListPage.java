@@ -13,9 +13,11 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
 /**
+ * This page is only for registered user with saved billing address available
+ * 
  * @author pfotenhauer
  */
-public class ShippingAddressForRegisteredUserPage extends AbstractCheckoutPage
+public class ShippingAddressSelectionListPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleDelAddr");
 
@@ -37,7 +39,7 @@ public class ShippingAddressForRegisteredUserPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a shipping address page")
-    public ShippingAddressForRegisteredUserPage isExpectedPage()
+    public ShippingAddressSelectionListPage isExpectedPage()
     {
         headline.should(exist);
         return this;
@@ -45,7 +47,7 @@ public class ShippingAddressForRegisteredUserPage extends AbstractCheckoutPage
 
     @Override
     @Step("validate shipping address page structure")
-    public ShippingAddressForRegisteredUserPage validateStructure()
+    public ShippingAddressSelectionListPage validateStructure()
     {
         super.validateStructure();
 
@@ -64,7 +66,7 @@ public class ShippingAddressForRegisteredUserPage extends AbstractCheckoutPage
      * @return BillingAddressPage
      */
     @Step("select a shipping address")
-    public BillingAddressForRegisteredUserPage selectShippingAddress(int position)
+    public BillingAddressSelectionListPage selectShippingAddress(int position)
     {
         final int index = position - 1;
         // Select address
@@ -73,14 +75,14 @@ public class ShippingAddressForRegisteredUserPage extends AbstractCheckoutPage
         // Open the billing address page in the checkout process
         // Clicks the continue button
         $("#btnUseAddressContinue").scrollTo().click();
-        BillingAddressForRegisteredUserPage billingAddressPage = new BillingAddressForRegisteredUserPage();
+        BillingAddressSelectionListPage billingAddressPage = new BillingAddressSelectionListPage();
         billingAddressPage.isExpectedPage();
         return billingAddressPage;
     }
 
     @Step("fill and send shipping address form")
-    public BillingAddressForRegisteredUserPage sendShippingAddressForm(String name, String company, String address, String city,
-                                                                       String state, String zip, String country, boolean sameBillingAddress)
+    public BillingAddressSelectionListPage sendShippingAddressForm(String name, String company, String address, String city,
+                                                                   String state, String zip, String country, boolean sameBillingAddress)
     {
         // Name
         // Enter the name parameter
@@ -116,7 +118,7 @@ public class ShippingAddressForRegisteredUserPage extends AbstractCheckoutPage
         // Open the billing addresses or payment options page, depending on which radio button you checked
         // Click on Continue
         addShippingButton.scrollTo().click();
-        BillingAddressForRegisteredUserPage billingAddressPage = new BillingAddressForRegisteredUserPage();
+        BillingAddressSelectionListPage billingAddressPage = new BillingAddressSelectionListPage();
         billingAddressPage.isExpectedPage();
         return billingAddressPage;
     }

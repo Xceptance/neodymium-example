@@ -13,9 +13,11 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
 /**
+ * This page is only for registered user with saved billing address available
+ * 
  * @author pfotenhauer
  */
-public class PaymentForRegisteredUserPage extends AbstractCheckoutPage
+public class PaymentSelectionListPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titlePayment");
 
@@ -31,7 +33,7 @@ public class PaymentForRegisteredUserPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a payment page")
-    public PaymentForRegisteredUserPage isExpectedPage()
+    public PaymentSelectionListPage isExpectedPage()
     {
         headline.should(exist);
         return this;
@@ -39,7 +41,7 @@ public class PaymentForRegisteredUserPage extends AbstractCheckoutPage
 
     @Override
     @Step("validate payment page structure")
-    public PaymentForRegisteredUserPage validateStructure()
+    public PaymentSelectionListPage validateStructure()
     {
         super.validateStructure();
 

@@ -18,7 +18,7 @@ import posters.dataobjects.Address;
 /**
  * @author pfotenhauer
  */
-public class NewBillingAddressPage extends AbstractCheckoutPage
+public class BillingAddressPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleBillAddr");
 
@@ -40,7 +40,7 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a new billing address page")
-    public NewBillingAddressPage isExpectedPage()
+    public BillingAddressPage isExpectedPage()
     {
         headline.should(exist);
         return this;
@@ -48,7 +48,7 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("validate new billing address page structure")
-    public NewBillingAddressPage validateStructure()
+    public BillingAddressPage validateStructure()
     {
         super.validateStructure();
 
@@ -118,7 +118,7 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
      *            The country you want to use, currently only United States or Germany
      */
     @Step("fill and send new billing address form")
-    public NewPaymentPage sendBillingAddressForm(String name, String company, String address, String city,
+    public PaymentPage sendBillingAddressForm(String name, String company, String address, String city,
                                                  String state, String zip, String country)
     {
         // Name
@@ -145,7 +145,7 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
         // Open the billing addresses or payment options page, depending on which radio button you checked
         // Click on Continue
         addBillingButton.scrollTo().click();
-        NewPaymentPage paymentPage = new NewPaymentPage();
+        PaymentPage paymentPage = new PaymentPage();
         paymentPage.isExpectedPage();
         return paymentPage;
     }
@@ -154,7 +154,7 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
      * @param billingAddress
      * @return
      */
-    public NewPaymentPage sendBillingAddressForm(Address billingAddress)
+    public PaymentPage sendBillingAddressForm(Address billingAddress)
     {
         return sendBillingAddressForm(billingAddress.getFullName(), billingAddress.getCompany(), billingAddress.getAddressLine(),
                                       billingAddress.getCity(), billingAddress.getState(), billingAddress.getZip(),

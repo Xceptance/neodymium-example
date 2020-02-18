@@ -6,9 +6,9 @@ import io.qameta.allure.Step;
 import posters.dataobjects.OrderData;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.browsing.ProductdetailPage;
-import posters.pageobjects.pages.checkout.NewBillingAddressPage;
-import posters.pageobjects.pages.checkout.NewPaymentPage;
-import posters.pageobjects.pages.checkout.NewShippingAddressPage;
+import posters.pageobjects.pages.checkout.BillingAddressPage;
+import posters.pageobjects.pages.checkout.PaymentPage;
+import posters.pageobjects.pages.checkout.ShippingAddressPage;
 import posters.pageobjects.pages.checkout.PlaceOrderPage;
 
 public class OrderFlow
@@ -19,16 +19,16 @@ public class OrderFlow
         AllureAddons.addToReport("order data", orderData);
         ProductdetailPage pdp = AddProductsToCartFlow.addToCart(orderData.getProducts());
 
-        NewShippingAddressPage shippingPage = pdp.miniCart.openCartPage().openNewShippingPage();
+        ShippingAddressPage shippingPage = pdp.miniCart.openCartPage().openShippingPage();
         shippingPage.validateStructure();
-        NewBillingAddressPage billingPage = shippingPage.sendShippingAddressForm(orderData.getShippingAddress(), orderData.getBillingAddress() == null);
+        BillingAddressPage billingPage = shippingPage.sendShippingAddressForm(orderData.getShippingAddress(), orderData.getBillingAddress() == null);
         if (orderData.getBillingAddress() != null)
         {
             billingPage.validateStructure();
             billingPage.sendBillingAddressForm(orderData.getBillingAddress());
         }
 
-        NewPaymentPage paymentPage = new NewPaymentPage();
+        PaymentPage paymentPage = new PaymentPage();
         paymentPage.validateStructure();
         PlaceOrderPage placeOrderPage = paymentPage.sendPaymentForm(orderData.getPayment());
 
@@ -43,14 +43,14 @@ public class OrderFlow
         AllureAddons.addToReport("order data", orderData);
         ProductdetailPage pdp = AddProductsToCartFlow.addToCart(orderData.getProducts());
 
-        NewShippingAddressPage shippingPage = pdp.miniCart.openCartPage().openNewShippingPage();
-        NewBillingAddressPage billingPage = shippingPage.sendShippingAddressForm(orderData.getShippingAddress(), orderData.getBillingAddress() == null);
+        ShippingAddressPage shippingPage = pdp.miniCart.openCartPage().openShippingPage();
+        BillingAddressPage billingPage = shippingPage.sendShippingAddressForm(orderData.getShippingAddress(), orderData.getBillingAddress() == null);
         if (orderData.getBillingAddress() != null)
         {
             billingPage.sendBillingAddressForm(orderData.getBillingAddress());
         }
 
-        PlaceOrderPage placeOrderPage = new NewPaymentPage().sendPaymentForm(orderData.getPayment());
+        PlaceOrderPage placeOrderPage = new PaymentPage().sendPaymentForm(orderData.getPayment());
 
         return placeOrderPage.placeOrder();
     }

@@ -13,15 +13,17 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
 /**
+ * This page is only for registered user with saved billing address available
+ * 
  * @author pfotenhauer
  */
-public class BillingAddressForRegisteredUserPage extends AbstractCheckoutPage
+public class BillingAddressSelectionListPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleBillAddr");
 
     @Override
     @Step("ensure this is a billing address page")
-    public BillingAddressForRegisteredUserPage isExpectedPage()
+    public BillingAddressSelectionListPage isExpectedPage()
     {
         headline.should(exist);
         return this;
@@ -29,7 +31,7 @@ public class BillingAddressForRegisteredUserPage extends AbstractCheckoutPage
 
     @Override
     @Step("validate billing address page structure")
-    public BillingAddressForRegisteredUserPage validateStructure()
+    public BillingAddressSelectionListPage validateStructure()
     {
         super.validateStructure();
 
@@ -48,7 +50,7 @@ public class BillingAddressForRegisteredUserPage extends AbstractCheckoutPage
      * @return PaymentPage
      */
     @Step("select a billing address")
-    public PaymentForRegisteredUserPage selectBillingAddress(int position)
+    public PaymentSelectionListPage selectBillingAddress(int position)
     {
         final int index = position - 1;
         // Select address
@@ -57,7 +59,7 @@ public class BillingAddressForRegisteredUserPage extends AbstractCheckoutPage
         // Open the billing address page in the checkout process
         // Clicks the continue button
         $("#btnUseBillAddress").scrollTo().click();
-        PaymentForRegisteredUserPage paymentPage = new PaymentForRegisteredUserPage();
+        PaymentSelectionListPage paymentPage = new PaymentSelectionListPage();
         paymentPage.isExpectedPage();
         return paymentPage;
     }
