@@ -16,7 +16,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.dataobjects.User;
-import posters.flows.OpenLoginPageFlow;
+import posters.flows.OpenPageFlow;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.tests.AbstractTest;
@@ -100,7 +100,7 @@ public class LoginTest extends AbstractTest
         LoginPage loginPage;
 
         // Go to login page
-        loginPage = OpenLoginPageFlow.flow();
+        loginPage = OpenPageFlow.openLoginPage();
         loginPage.validateStructure();
 
         // Assure not logged in status
