@@ -15,7 +15,7 @@ import io.qameta.allure.Step;
 /**
  * @author pfotenhauer
  */
-public class ShippingAddressPage extends AbstractCheckoutPage
+public class ShippingAddressForRegisteredUserPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleDelAddr");
 
@@ -37,7 +37,7 @@ public class ShippingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a shipping address page")
-    public ShippingAddressPage isExpectedPage()
+    public ShippingAddressForRegisteredUserPage isExpectedPage()
     {
         headline.should(exist);
         return this;
@@ -45,7 +45,7 @@ public class ShippingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("validate shipping address page structure")
-    public ShippingAddressPage validateStructure()
+    public ShippingAddressForRegisteredUserPage validateStructure()
     {
         super.validateStructure();
 
@@ -64,7 +64,7 @@ public class ShippingAddressPage extends AbstractCheckoutPage
      * @return BillingAddressPage
      */
     @Step("select a shipping address")
-    public BillingAddressPage selectShippingAddress(int position)
+    public BillingAddressForRegisteredUserPage selectShippingAddress(int position)
     {
         final int index = position - 1;
         // Select address
@@ -73,14 +73,14 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         // Open the billing address page in the checkout process
         // Clicks the continue button
         $("#btnUseAddressContinue").scrollTo().click();
-        BillingAddressPage billingAddressPage = new BillingAddressPage();
+        BillingAddressForRegisteredUserPage billingAddressPage = new BillingAddressForRegisteredUserPage();
         billingAddressPage.isExpectedPage();
         return billingAddressPage;
     }
 
     @Step("fill and send shipping address form")
-    public BillingAddressPage sendShippingAddressForm(String name, String company, String address, String city,
-                                                      String state, String zip, String country, boolean sameBillingAddress)
+    public BillingAddressForRegisteredUserPage sendShippingAddressForm(String name, String company, String address, String city,
+                                                                       String state, String zip, String country, boolean sameBillingAddress)
     {
         // Name
         // Enter the name parameter
@@ -116,7 +116,7 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         // Open the billing addresses or payment options page, depending on which radio button you checked
         // Click on Continue
         addShippingButton.scrollTo().click();
-        BillingAddressPage billingAddressPage = new BillingAddressPage();
+        BillingAddressForRegisteredUserPage billingAddressPage = new BillingAddressForRegisteredUserPage();
         billingAddressPage.isExpectedPage();
         return billingAddressPage;
     }

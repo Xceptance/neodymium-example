@@ -15,13 +15,13 @@ import io.qameta.allure.Step;
 /**
  * @author pfotenhauer
  */
-public class BillingAddressPage extends AbstractCheckoutPage
+public class BillingAddressForRegisteredUserPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleBillAddr");
 
     @Override
     @Step("ensure this is a billing address page")
-    public BillingAddressPage isExpectedPage()
+    public BillingAddressForRegisteredUserPage isExpectedPage()
     {
         headline.should(exist);
         return this;
@@ -29,7 +29,7 @@ public class BillingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("validate billing address page structure")
-    public BillingAddressPage validateStructure()
+    public BillingAddressForRegisteredUserPage validateStructure()
     {
         super.validateStructure();
 
@@ -48,7 +48,7 @@ public class BillingAddressPage extends AbstractCheckoutPage
      * @return PaymentPage
      */
     @Step("select a billing address")
-    public PaymentPage selectBillingAddress(int position)
+    public PaymentForRegisteredUserPage selectBillingAddress(int position)
     {
         final int index = position - 1;
         // Select address
@@ -57,7 +57,7 @@ public class BillingAddressPage extends AbstractCheckoutPage
         // Open the billing address page in the checkout process
         // Clicks the continue button
         $("#btnUseBillAddress").scrollTo().click();
-        PaymentPage paymentPage = new PaymentPage();
+        PaymentForRegisteredUserPage paymentPage = new PaymentForRegisteredUserPage();
         paymentPage.isExpectedPage();
         return paymentPage;
     }

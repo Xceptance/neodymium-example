@@ -15,7 +15,7 @@ import io.qameta.allure.Step;
 /**
  * @author pfotenhauer
  */
-public class PaymentPage extends AbstractCheckoutPage
+public class PaymentForRegisteredUserPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titlePayment");
 
@@ -31,7 +31,7 @@ public class PaymentPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a payment page")
-    public PaymentPage isExpectedPage()
+    public PaymentForRegisteredUserPage isExpectedPage()
     {
         headline.should(exist);
         return this;
@@ -39,7 +39,7 @@ public class PaymentPage extends AbstractCheckoutPage
 
     @Override
     @Step("validate payment page structure")
-    public PaymentPage validateStructure()
+    public PaymentForRegisteredUserPage validateStructure()
     {
         super.validateStructure();
 
