@@ -9,7 +9,6 @@ import com.xceptance.neodymium.util.Neodymium;
 import posters.flows.OpenPageFlow;
 import posters.pageobjects.pages.browsing.CategoryPage;
 import posters.pageobjects.pages.browsing.HomePage;
-import posters.pageobjects.pages.browsing.NoHitsPage;
 import posters.tests.AbstractTest;
 
 public class SearchTest extends AbstractTest
@@ -39,7 +38,7 @@ public class SearchTest extends AbstractTest
     {
         HomePage homePage = OpenPageFlow.openHomePage();
 
-        NoHitsPage noHitsPage = homePage.search.noResult(searchTerm);
-        noHitsPage.validate();
+        homePage = homePage.search.noResult(searchTerm);
+        homePage.errorMessage.validateErrorMessage(Neodymium.localizedText("NoHitsPage.validation.noProductsFound"));
     }
 }

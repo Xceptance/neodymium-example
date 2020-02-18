@@ -9,7 +9,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.CategoryPage;
-import posters.pageobjects.pages.browsing.NoHitsPage;
+import posters.pageobjects.pages.browsing.HomePage;
 
 public class Search extends AbstractComponent
 {
@@ -21,10 +21,12 @@ public class Search extends AbstractComponent
     }
 
     @Step("search for \"{searchTerm}\" without result")
-    public NoHitsPage noResult(String searchTerm)
+    public HomePage noResult(String searchTerm)
     {
         search(searchTerm);
-        return new NoHitsPage();
+        HomePage homePage = new HomePage();
+        homePage.isExpectedPage();
+        return homePage;
     }
 
     @Step("search for \"{searchTerm}\" with result")
