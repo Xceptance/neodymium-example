@@ -7,7 +7,7 @@ import io.qameta.allure.Step;
 import posters.dataobjects.User;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.user.AccountOverviewPage;
-import posters.pageobjects.pages.user.DeleteAccountPage;
+import posters.pageobjects.pages.user.DeleteConfirmationPage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.pageobjects.pages.user.PersonalDataPage;
 
@@ -40,10 +40,10 @@ public class DeleteUserFlow
         personalDataPage.validateStructure();
 
         // go to account deletion page
-        DeleteAccountPage deleteAccountPage = personalDataPage.openDeleteAccount();
+        DeleteConfirmationPage deleteAccountPage = personalDataPage.openDeleteAccount();
 
         // delete the account
-        homePage = deleteAccountPage.deleteAccount(user.getPassword());
+        deleteAccountPage.confirmDelete(user.getPassword());
         homePage.validateSuccessfulDeletedAccount();
 
         // verify that the account is not available anymore
