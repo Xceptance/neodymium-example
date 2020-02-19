@@ -83,7 +83,6 @@ public class NewAddressOverlay extends AbstractComponent
     @Step("fill and send shipping address form")
     public BillingAddresssListPage sendShippingAddressForm(Address address, boolean sameBillingAddress)
     {
-        AllureAddons.addToReport("shipping address", address + " use for billing " + sameBillingAddress);
         sendForm(address.getFullName(), address.getCompany(), address.getAddressLine(), address.getCity(), address.getState(),
                  address.getZip(), address.getCountry(), sameBillingAddress);
         BillingAddresssListPage billingAddressPage = new BillingAddresssListPage();
@@ -94,7 +93,6 @@ public class NewAddressOverlay extends AbstractComponent
     @Step("fill and send billing address form")
     public PaymentListPage sendBillingAddressForm(Address address)
     {
-        AllureAddons.addToReport("billing address", address);
         sendForm(address.getFullName(), address.getCompany(), address.getAddressLine(), address.getCity(), address.getState(),
                  address.getZip(), address.getCountry(), false);
         PaymentListPage paymentPage = new PaymentListPage();
@@ -104,7 +102,7 @@ public class NewAddressOverlay extends AbstractComponent
 
     @Step("fill and send shipping address form")
     public BillingAddresssListPage sendShippingAddressForm(String name, String company, String address, String city,
-                                                                   String state, String zip, String country, boolean sameBillingAddress)
+                                                           String state, String zip, String country, boolean sameBillingAddress)
     {
         sendForm(name, company, address, city, state, zip, country, sameBillingAddress);
         BillingAddresssListPage billingAddressPage = new BillingAddresssListPage();
@@ -114,7 +112,7 @@ public class NewAddressOverlay extends AbstractComponent
 
     @Step("fill and send billing address form")
     public PaymentListPage sendBillingAddressForm(String name, String company, String address, String city,
-                                                           String state, String zip, String country)
+                                                  String state, String zip, String country)
     {
         sendForm(name, company, address, city, state, zip, country, false);
         PaymentListPage paymentPage = new PaymentListPage();

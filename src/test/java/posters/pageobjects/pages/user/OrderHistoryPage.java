@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.SelenideElement;
-import com.xceptance.neodymium.util.AllureAddons;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.OrderData;
@@ -42,7 +41,6 @@ public class OrderHistoryPage extends AbstractBrowsingPage
     @Step("validate order history contains ordered products and order total matches")
     public OrderHistoryPage validateOrder(OrderData orderData)
     {
-        AllureAddons.addToReport("order data", orderData);
         orderData.getProducts().getAll().forEach(product -> validateContainsProduct(product));
         $(".orderTotalCosts").shouldHave(exactText(orderData.getOrderTotal()));
         return this;

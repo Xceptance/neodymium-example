@@ -8,15 +8,14 @@ import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.browsing.ProductdetailPage;
 import posters.pageobjects.pages.checkout.BillingAddressPage;
 import posters.pageobjects.pages.checkout.PaymentPage;
-import posters.pageobjects.pages.checkout.ShippingAddressPage;
 import posters.pageobjects.pages.checkout.PlaceOrderPage;
+import posters.pageobjects.pages.checkout.ShippingAddressPage;
 
 public class OrderFlow
 {
     @Step("place order with validation")
     public static HomePage placeOrderWithValidation(OrderData orderData)
     {
-        AllureAddons.addToReport("order data", orderData);
         ProductdetailPage pdp = AddProductsToCartFlow.addToCart(orderData.getProducts());
 
         ShippingAddressPage shippingPage = pdp.miniCart.openCartPage().openShippingPage();
@@ -40,7 +39,6 @@ public class OrderFlow
     @Step("place order without validation")
     public static HomePage placeOrderWithoutValidation(OrderData orderData)
     {
-        AllureAddons.addToReport("order data", orderData);
         ProductdetailPage pdp = AddProductsToCartFlow.addToCart(orderData.getProducts());
 
         ShippingAddressPage shippingPage = pdp.miniCart.openCartPage().openShippingPage();

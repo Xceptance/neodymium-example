@@ -12,7 +12,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.SelenideElement;
-import com.xceptance.neodymium.util.AllureAddons;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.Address;
@@ -195,7 +194,6 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     @Step("valiadate order data on place order page")
     public PlaceOrderPage validateOrder(OrderData orderData)
     {
-        AllureAddons.addToReport("order data", orderData);
         orderData.getProducts().getAll().forEach(product -> validateContainsProduct(product));
         validateAddressesAndPayment(orderData.getShippingAddress(), orderData.getBillingAddress(), orderData.getPayment());
         validateSubtotal(orderData.getProducts().getProductsTotalPrice());
