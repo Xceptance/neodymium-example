@@ -1,18 +1,19 @@
 package posters.tests.newTests.orderreview;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.xceptance.neodymium.util.DataUtils;
 
 import posters.dataobjects.OrderData;
 import posters.dataobjects.User;
-import posters.flows.OpenPageFlow;
 import posters.flows.OrderFlow;
+import posters.flows.RegisterAndLoginFlow;
 import posters.pageobjects.pages.browsing.HomePage;
-import posters.pageobjects.pages.user.LoginPage;
+import posters.pageobjects.pages.user.MyAddressesPage;
 import posters.pageobjects.pages.user.OrderHistoryPage;
-import posters.pageobjects.pages.user.RegisterPage;
+import posters.pageobjects.pages.user.PaymentSettingsPage;
 import posters.tests.AbstractTest;
 
 public class RegisteredOrderReviewTest extends AbstractTest
@@ -28,18 +29,31 @@ public class RegisteredOrderReviewTest extends AbstractTest
         user = User.createRandomUser();
     }
 
+    @Ignore
     @Test
     public void testRegisteredOrder()
     {
-        RegisterPage registerPage = OpenPageFlow.openRegistrationPage();
-        LoginPage loginPage = registerPage.sendRegisterForm(user, user.getPassword());
-        loginPage.sendLoginform(user);
+        HomePage homepage = RegisterAndLoginFlow.registerAndLogin(user);
 
-        HomePage homepage = OrderFlow.placeOrderWithoutValidation(orderData);
+        homepage = OrderFlow.placeOrderWithoutValidation(orderData);
 
         OrderHistoryPage orderHistoryPage = homepage.userMenu.openAccountOverview().openOrderHistory();
         orderHistoryPage.validateStructure();
         orderHistoryPage.validateOrder(orderData);
+    }
 
+    @Test
+    public void testSavedDataAfterOrder()
+    {
+        HomePage homepage = RegisterAndLoginFlow.registerAndLogin(user);
+
+        homepage = OrderFlow.placeOrderWithoutValidation(orderData);
+
+        MyAddressesPage myAddressesPage = homepage.userMenu.openAccountOverview().openMyAddressesPage();
+        myAddressesPage.validateShippingAddress(orderData.getShippingAddress());
+        myAddressesPage.validateBillingAddress(orderData.getBillingAddress() != null ? orderData.getBillingAddress() : orderData.getShippingAddress());
+
+        PaymentSettingsPage paymentSettingsPage = myAddressesPage.userMenu.openAccountOverview().openPaymentSettings();
+        paymentSettingsPage.validatePayment(orderData.getPayment());
     }
 }
