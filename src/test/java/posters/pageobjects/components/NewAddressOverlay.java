@@ -11,7 +11,7 @@ import posters.dataobjects.Address;
 import posters.pageobjects.pages.checkout.BillingAddressSelectionListPage;
 import posters.pageobjects.pages.checkout.PaymentSelectionListPage;
 
-public class AddNewAddressFromListPage extends AbstractComponent
+public class NewAddressOverlay extends AbstractComponent
 {
 
     private SelenideElement addNewAddressButton = $("#addAdressModal");

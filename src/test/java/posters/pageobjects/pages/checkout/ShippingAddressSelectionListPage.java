@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 
 import io.qameta.allure.Step;
-import posters.pageobjects.components.AddNewAddressFromListPage;
+import posters.pageobjects.components.NewAddressOverlay;
 
 /**
  * This page is only for registered user with saved billing address available
@@ -22,7 +22,7 @@ public class ShippingAddressSelectionListPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleDelAddr");
 
-    public AddNewAddressFromListPage addNewAddressFromListPage = new AddNewAddressFromListPage();
+    public NewAddressOverlay addNewAddressFromListPage = new NewAddressOverlay();
 
     @Override
     @Step("ensure this is a shipping address page")
