@@ -18,6 +18,12 @@ public class AccountOverviewPage extends AbstractBrowsingPage
 
     private SelenideElement personalDataLink = $("#linkPersonalData");
 
+    private SelenideElement orderOverviewLink = $("#linkOrderOverview");
+
+    private SelenideElement myAddressLink = $("#linkAddressOverview");
+
+    private SelenideElement paymentLink = $("#linkPaymentOverview");
+
     @Override
     @Step("ensure this is an account overview page")
     public AccountOverviewPage isExpectedPage()
@@ -37,13 +43,13 @@ public class AccountOverviewPage extends AbstractBrowsingPage
         headline.should(matchText("[A-Z].{3,}"));
         // Order Overview Link
         // Make sure the link to the order history is there and the text starts with a capital letter
-        $("#linkOrderOverview").should(matchText("[A-Z].{3,}"));
+        orderOverviewLink.should(matchText("[A-Z].{3,}"));
         // My Addresses Link
         // Make sure the link to the Addresses page is there and the text starts with a capital letter
-        $("#linkAddressOverview").should(matchText("[A-Z].{3,}"));
+        myAddressLink.should(matchText("[A-Z].{3,}"));
         // Payment Settings Link
         // Make sure the link to the Credit Cards page is there and the text starts with a capital letter
-        $("#linkPaymentOverview").should(matchText("[A-Z].{3,}"));
+        paymentLink.should(matchText("[A-Z].{3,}"));
         // Personal Data Link
         // Make sure the link to the Personal Data page is there and the text starts with a capital letter
         personalDataLink.should(matchText("[A-Z].{3,}"));
@@ -64,11 +70,21 @@ public class AccountOverviewPage extends AbstractBrowsingPage
         return personalDataPage;
     }
 
+    @Step("open order history")
     public OrderHistoryPage openOrderHistory()
     {
-        $("#linkOrderOverview").scrollTo().click();
+        orderOverviewLink.scrollTo().click();
         OrderHistoryPage orderHistoryPage = new OrderHistoryPage();
         orderHistoryPage.isExpectedPage();
         return orderHistoryPage;
+    }
+
+    @Step("open my address page")
+    public MyAddressesPage openMyAddressesPage()
+    {
+        myAddressLink.click();
+        MyAddressesPage myAddressesPage = new MyAddressesPage();
+        myAddressesPage.isExpectedPage();
+        return myAddressesPage;
     }
 }

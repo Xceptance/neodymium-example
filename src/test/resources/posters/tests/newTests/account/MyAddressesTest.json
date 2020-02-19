@@ -1,0 +1,35 @@
+[
+	{
+		"testId":"add/delete shipping/billing",
+		"address":{
+			"fullName": "Jimmy Blue", 
+			"company": "Ochsenknecht Records",
+			"addressLine":"6 Wall St",
+			"city":"Burlington",
+			"state":"Massachusetts",
+			"zip":"01803",
+			"country":"United States"
+		}
+	},
+	{
+		"testId":"edit shipping/billing",
+		"address":{
+			"fullName": "Jimmy Blue", 
+			"company": "Ochsenknecht Records",
+			"addressLine":"6 Wall St",
+			"city":"Burlington",
+			"state":"Massachusetts",
+			"zip":"01803",
+			"country":"United States"
+		},
+		"newAddress":{
+			"fullName": "Mike Wazowski", 
+			"company": "Monster Corporations",
+			"addressLine":"1 Monster Way",
+			"city":"Corona",
+			"state":"California",
+			"zip":"92879",
+			"country":"United States"	
+		}
+	}
+]

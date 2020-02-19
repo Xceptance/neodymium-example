@@ -33,6 +33,7 @@ default:
             emailDoesNotExistError: The email address you entered doesn't exist. Please try again.
             incorrectPasswordError: The password you entered is incorrect. Please try again.
             accountExistsError: An account with this email address already exists.
+            addressDeletedSuccessMessage: Deleting completed.
     CartPage:
         emptyCartInfo: Your cart is empty. Continue shopping.
     General:
