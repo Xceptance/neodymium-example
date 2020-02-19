@@ -31,7 +31,7 @@
 		"orderTaxRate": "6.0"
 	},
 	{
-		"testId": "Guest-Checkout-Test-billing",
+		"testId": "Registered-Checkout-Test-billing",
 		"products":{
 			"products":[
 				{

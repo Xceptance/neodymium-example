@@ -3,15 +3,16 @@ package posters.tests.newTests.order;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.xceptance.neodymium.module.statement.testdata.DataSet;
 import com.xceptance.neodymium.util.DataUtils;
 
 import posters.dataobjects.OrderData;
 import posters.dataobjects.User;
-import posters.flows.OpenPageFlow;
 import posters.flows.OrderFlow;
+import posters.flows.RegisterAndLoginFlow;
+import posters.flows.RegisterUserAndAddAddressFlow;
 import posters.pageobjects.pages.browsing.HomePage;
-import posters.pageobjects.pages.user.LoginPage;
-import posters.pageobjects.pages.user.RegisterPage;
+import posters.pageobjects.pages.user.MyAddressesPage;
 import posters.tests.AbstractTest;
 
 public class RegisteredOrderTest extends AbstractTest
@@ -30,11 +31,22 @@ public class RegisteredOrderTest extends AbstractTest
     @Test
     public void testRegisteredOrder()
     {
-        RegisterPage registerPage = OpenPageFlow.openRegistrationPage();
-        LoginPage loginPage = registerPage.sendRegisterForm(user, user.getPassword());
-        loginPage.sendLoginform(user);
+        HomePage homepage = RegisterAndLoginFlow.registerAndLogin(user);
 
-        HomePage homepage = OrderFlow.placeOrderWithValidation(orderData);
+        homepage = OrderFlow.placeOrderWithValidation(orderData);
+
+        homepage.validateSuccessfulOrder();
+    }
+
+    @DataSet(id = "Registered-Order-Test")
+    @Test
+    public void testOrderForRegisterdeUserWithSavedData()
+    {
+        MyAddressesPage myAddressesPage = RegisterUserAndAddAddressFlow.addShippingAddress(user, orderData.getShippingAddress());
+        myAddressesPage.addNewBillingAddress(orderData.getBillingAddress() != null ? orderData.getBillingAddress() : orderData.getShippingAddress());
+        myAddressesPage.userMenu.openAccountOverview().openPaymentSettings().addPayment(orderData.getPayment());
+
+        HomePage homepage = OrderFlow.placeOrderWithValidationForUserWithSavedData(orderData);
 
         homepage.validateSuccessfulOrder();
     }

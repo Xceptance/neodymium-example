@@ -1,14 +1,15 @@
 package posters.flows;
 
-import com.xceptance.neodymium.util.AllureAddons;
-
 import io.qameta.allure.Step;
 import posters.dataobjects.OrderData;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.browsing.ProductdetailPage;
 import posters.pageobjects.pages.checkout.BillingAddressPage;
+import posters.pageobjects.pages.checkout.BillingAddresssListPage;
+import posters.pageobjects.pages.checkout.PaymentListPage;
 import posters.pageobjects.pages.checkout.PaymentPage;
 import posters.pageobjects.pages.checkout.PlaceOrderPage;
+import posters.pageobjects.pages.checkout.ShippingAddressListPage;
 import posters.pageobjects.pages.checkout.ShippingAddressPage;
 
 public class OrderFlow
@@ -50,6 +51,27 @@ public class OrderFlow
 
         PlaceOrderPage placeOrderPage = new PaymentPage().sendPaymentForm(orderData.getPayment());
 
+        return placeOrderPage.placeOrder();
+    }
+
+    @Step("place order with validation for user with saved data")
+    public static HomePage placeOrderWithValidationForUserWithSavedData(OrderData orderData)
+    {
+
+        ShippingAddressListPage shippingAddressListPage = AddProductsToCartFlow.addToCart(orderData.getProducts()).miniCart.openCartPage()
+                                                                                                                           .openShippingPageForRegisteredUserWithSavedAddress();
+        shippingAddressListPage.validateStructure();
+
+        BillingAddresssListPage billingAddresssListPage = shippingAddressListPage.openBillingAddresssListPage();
+        billingAddresssListPage.validateStructure();
+
+        PaymentListPage paymentListPage = billingAddresssListPage.openPaymentListPage();
+        paymentListPage.validateStructure();
+
+        PlaceOrderPage placeOrderPage = paymentListPage.selectCreditCard(1);
+        placeOrderPage.validateStructure();
+
+        placeOrderPage.validateOrder(orderData);
         return placeOrderPage.placeOrder();
     }
 }

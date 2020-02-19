@@ -53,17 +53,33 @@ public class BillingAddresssListPage extends AbstractCheckoutPage
      * @return PaymentPage
      */
     @Step("select a billing address")
-    public PaymentListPage selectBillingAddress(int position)
+    public BillingAddresssListPage selectBillingAddress(int position)
     {
         final int index = position - 1;
         // Select address
         // Checks the radio button belonging to the delivery address with index @{index}
         $("#billAddr" + index + " input").scrollTo().click();
+        return this;
+    }
+
+    private void proceed()
+    {
         // Open the billing address page in the checkout process
         // Clicks the continue button
         $("#btnUseBillAddress").scrollTo().click();
-        PaymentListPage paymentPage = new PaymentListPage();
-        paymentPage.isExpectedPage();
-        return paymentPage;
+    }
+
+    @Step("open payment page")
+    public PaymentPage openPaymentPage()
+    {
+        proceed();
+        return new PaymentPage().isExpectedPage();
+    }
+
+    @Step("open payment list page")
+    public PaymentListPage openPaymentListPage()
+    {
+        proceed();
+        return new PaymentListPage().isExpectedPage();
     }
 }
