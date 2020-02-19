@@ -1,0 +1,26 @@
+[
+	{
+		"testId": "add/delete payment",
+		"creditCard":{
+			"fullName": "Jimmy Blue",
+			"cardNumber": "4111111111111111",
+			"expDateMonth": "04",
+			"expDateYear": "2024"
+		}
+	},
+	{
+		"testId": "edit payment",
+		"creditCard":{
+			"fullName": "Jimmy Blue",
+			"cardNumber": "4111111111111111",
+			"expDateMonth": "04",
+			"expDateYear": "2024"
+		},
+		"newCreditCard":{
+			"fullName": "John Dorian",
+			"cardNumber": "4539487753998393",
+			"expDateMonth": "06",
+			"expDateYear": "2025"
+		}
+	}
+]

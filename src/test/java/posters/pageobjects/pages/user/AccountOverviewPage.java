@@ -87,4 +87,10 @@ public class AccountOverviewPage extends AbstractBrowsingPage
         myAddressesPage.isExpectedPage();
         return myAddressesPage;
     }
+
+    public PaymentSettingsPage openPaymentSettings()
+    {
+        paymentLink.click();
+        return new PaymentSettingsPage().isExpectedPage();
+    }
 }
