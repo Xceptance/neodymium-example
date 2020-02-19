@@ -18,23 +18,23 @@ import posters.pageobjects.components.NewAddressOverlay;
  * 
  * @author pfotenhauer
  */
-public class ShippingAddressSelectionListPage extends AbstractCheckoutPage
+public class BillingAddresssListPage extends AbstractCheckoutPage
 {
-    private SelenideElement headline = $("#titleDelAddr");
+    private SelenideElement headline = $("#titleBillAddr");
 
     public NewAddressOverlay addNewAddressFromListPage = new NewAddressOverlay();
 
     @Override
-    @Step("ensure this is a shipping address page")
-    public ShippingAddressSelectionListPage isExpectedPage()
+    @Step("ensure this is a billing address page")
+    public BillingAddresssListPage isExpectedPage()
     {
         headline.should(exist);
         return this;
     }
 
     @Override
-    @Step("validate shipping address page structure")
-    public ShippingAddressSelectionListPage validateStructure()
+    @Step("validate billing address page structure")
+    public BillingAddresssListPage validateStructure()
     {
         super.validateStructure();
 
@@ -43,28 +43,27 @@ public class ShippingAddressSelectionListPage extends AbstractCheckoutPage
         headline.should(matchText("[A-Z].{3,}"));
         // First address
         // Makes sure at least one address is visible
-        $("#delAddr0").shouldBe(visible);
+        $("#billAddr0").shouldBe(visible);
         return this;
     }
 
     /**
      * @param position
-     *            position of the shipping address
-     * @return BillingAddressPage
+     *            The position of the billing address you want to choose
+     * @return PaymentPage
      */
-    @Step("select a shipping address")
-    public BillingAddressSelectionListPage selectShippingAddress(int position)
+    @Step("select a billing address")
+    public PaymentListPage selectBillingAddress(int position)
     {
         final int index = position - 1;
         // Select address
         // Checks the radio button belonging to the delivery address with index @{index}
-        $("#delAddr" + index + " input").scrollTo().click();
+        $("#billAddr" + index + " input").scrollTo().click();
         // Open the billing address page in the checkout process
         // Clicks the continue button
-        $("#btnUseAddressContinue").scrollTo().click();
-        BillingAddressSelectionListPage billingAddressPage = new BillingAddressSelectionListPage();
-        billingAddressPage.isExpectedPage();
-        return billingAddressPage;
+        $("#btnUseBillAddress").scrollTo().click();
+        PaymentListPage paymentPage = new PaymentListPage();
+        paymentPage.isExpectedPage();
+        return paymentPage;
     }
-
 }

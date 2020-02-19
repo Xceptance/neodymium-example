@@ -19,7 +19,7 @@ import com.xceptance.neodymium.util.Neodymium;
 import io.qameta.allure.Step;
 import posters.dataobjects.Product;
 import posters.pageobjects.pages.checkout.ShippingAddressPage;
-import posters.pageobjects.pages.checkout.ShippingAddressSelectionListPage;
+import posters.pageobjects.pages.checkout.ShippingAddressListPage;
 import posters.pageobjects.utility.PriceHelper;
 
 /**
@@ -156,10 +156,10 @@ public class CartPage extends AbstractBrowsingPage
     }
 
     @Step("open shipping address for registered user from the cart page")
-    public ShippingAddressSelectionListPage openShippingPageForRegisteredUserWithSavedAddress()
+    public ShippingAddressListPage openShippingPageForRegisteredUserWithSavedAddress()
     {
         clickCheckoutButton();
-        ShippingAddressSelectionListPage shippingAddressPage = new ShippingAddressSelectionListPage();
+        ShippingAddressListPage shippingAddressPage = new ShippingAddressListPage();
         shippingAddressPage.isExpectedPage();
         return shippingAddressPage;
     }

@@ -8,8 +8,8 @@ import com.xceptance.neodymium.util.AllureAddons;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.Address;
-import posters.pageobjects.pages.checkout.BillingAddressSelectionListPage;
-import posters.pageobjects.pages.checkout.PaymentSelectionListPage;
+import posters.pageobjects.pages.checkout.BillingAddresssListPage;
+import posters.pageobjects.pages.checkout.PaymentListPage;
 
 public class NewAddressOverlay extends AbstractComponent
 {
@@ -81,43 +81,43 @@ public class NewAddressOverlay extends AbstractComponent
     }
 
     @Step("fill and send shipping address form")
-    public BillingAddressSelectionListPage sendShippingAddressForm(Address address, boolean sameBillingAddress)
+    public BillingAddresssListPage sendShippingAddressForm(Address address, boolean sameBillingAddress)
     {
         AllureAddons.addToReport("shipping address", address + " use for billing " + sameBillingAddress);
         sendForm(address.getFullName(), address.getCompany(), address.getAddressLine(), address.getCity(), address.getState(),
                  address.getZip(), address.getCountry(), sameBillingAddress);
-        BillingAddressSelectionListPage billingAddressPage = new BillingAddressSelectionListPage();
+        BillingAddresssListPage billingAddressPage = new BillingAddresssListPage();
         billingAddressPage.isExpectedPage();
         return billingAddressPage;
     }
 
     @Step("fill and send billing address form")
-    public PaymentSelectionListPage sendBillingAddressForm(Address address)
+    public PaymentListPage sendBillingAddressForm(Address address)
     {
         AllureAddons.addToReport("billing address", address);
         sendForm(address.getFullName(), address.getCompany(), address.getAddressLine(), address.getCity(), address.getState(),
                  address.getZip(), address.getCountry(), false);
-        PaymentSelectionListPage paymentPage = new PaymentSelectionListPage();
+        PaymentListPage paymentPage = new PaymentListPage();
         paymentPage.isExpectedPage();
         return paymentPage;
     }
 
     @Step("fill and send shipping address form")
-    public BillingAddressSelectionListPage sendShippingAddressForm(String name, String company, String address, String city,
+    public BillingAddresssListPage sendShippingAddressForm(String name, String company, String address, String city,
                                                                    String state, String zip, String country, boolean sameBillingAddress)
     {
         sendForm(name, company, address, city, state, zip, country, sameBillingAddress);
-        BillingAddressSelectionListPage billingAddressPage = new BillingAddressSelectionListPage();
+        BillingAddresssListPage billingAddressPage = new BillingAddresssListPage();
         billingAddressPage.isExpectedPage();
         return billingAddressPage;
     }
 
     @Step("fill and send billing address form")
-    public PaymentSelectionListPage sendBillingAddressForm(String name, String company, String address, String city,
+    public PaymentListPage sendBillingAddressForm(String name, String company, String address, String city,
                                                            String state, String zip, String country)
     {
         sendForm(name, company, address, city, state, zip, country, false);
-        PaymentSelectionListPage paymentPage = new PaymentSelectionListPage();
+        PaymentListPage paymentPage = new PaymentListPage();
         paymentPage.isExpectedPage();
         return paymentPage;
     }

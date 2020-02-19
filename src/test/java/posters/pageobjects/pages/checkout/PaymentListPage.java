@@ -18,7 +18,7 @@ import posters.dataobjects.CreditCard;
  * 
  * @author pfotenhauer
  */
-public class PaymentSelectionListPage extends AbstractCheckoutPage
+public class PaymentListPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titlePayment");
 
@@ -34,7 +34,7 @@ public class PaymentSelectionListPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a payment page")
-    public PaymentSelectionListPage isExpectedPage()
+    public PaymentListPage isExpectedPage()
     {
         headline.should(exist);
         return this;
@@ -42,7 +42,7 @@ public class PaymentSelectionListPage extends AbstractCheckoutPage
 
     @Override
     @Step("validate payment page structure")
-    public PaymentSelectionListPage validateStructure()
+    public PaymentListPage validateStructure()
     {
         super.validateStructure();
 
