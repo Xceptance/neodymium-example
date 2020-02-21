@@ -6,6 +6,7 @@ package posters.pageobjects.pages.checkout;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
+import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -14,12 +15,13 @@ import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
-import posters.dataobjects.Address;
+import posters.dataobjects.AddressContainer;
+import posters.dataobjects.ShippingAddress;
 
 /**
  * @author pfotenhauer
  */
-public class ShippingAddressPage extends AbstractCheckoutPage
+public class ShippingAddressPage extends AbstractEnterAddressPage
 {
     private SelenideElement headline = $("#titleDelAddr");
 
@@ -103,29 +105,8 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         return this;
     }
 
-    /**
-     * //
-     * 
-     * @param name
-     *            First and last name you want to use // T
-     * @param company
-     *            The company you want to use
-     * @param address
-     *            The address you want to use
-     * @param city
-     *            The City you want to use
-     * @param state
-     *            The state you want to use
-     * @param zip
-     *            The Zip you want to use, has to be in numbers format
-     * @param country
-     *            The country you want to use, currently only United States or Germany
-     * @param sameBillingAddress
-     *            Decision whether or not use the same billing address
-     */
-    @Step("fill and send new shipping address form")
-    public BillingAddressPage sendShippingAddressForm(String name, String company, String address, String city,
-                                                         String state, String zip, String country, boolean sameBillingAddress)
+    public ShippingAddressPage fillForm(String name, String company, String address, String city,
+                                        String state, String zip, String country, boolean sameBillingAddress)
     {
         // Name
         // Enter the name parameter
@@ -158,21 +139,91 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         {
             $("#billEqualShipp-No").scrollTo().click();
         }
-        // Open the billing addresses or payment options page, depending on which radio button you checked
-        // Click on Continue
+
+        return this;
+    }
+
+    public ShippingAddressPage fillForm(AddressContainer address)
+    {
+        ShippingAddress shippingAddress = (ShippingAddress) address;
+        return fillForm(shippingAddress.getFullName(), shippingAddress.getCompany(), shippingAddress.getAddressLine(), shippingAddress.getCity(),
+                        shippingAddress.getState(), shippingAddress.getZip(), shippingAddress.getCountry(), shippingAddress.isUseForBilling());
+    }
+
+    @Step("open billing page")
+    public BillingAddressPage openBillingAddressPage()
+    {
         addShippingButton.scrollTo().click();
+        return new BillingAddressPage().isExpectedPage();
+    }
+
+    @Step("open payment page")
+    public PaymentPage openPaymentPage()
+    {
+        addShippingButton.scrollTo().click();
+        return new PaymentPage().isExpectedPage();
+    }
+
+    @Override
+    @Step("send incorrect shipping address")
+    public ShippingAddressPage sendIncorrectForm()
+    {
+        addShippingButton.click();
+        return this;
+    }
+
+    @Override
+    @Step("send correct shipping address")
+    public BillingAddressPage sendCorrectForm()
+    {
+        addShippingButton.click();
         return new BillingAddressPage();
     }
 
-    /**
-     * @param shippingAddress
-     * @param sameBillingAddress
-     * @return
-     */
-    public BillingAddressPage sendShippingAddressForm(Address shippingAddress, boolean sameBillingAddress)
+    @Step("validate entered shipping address")
+    public ShippingAddressPage validateEnteredData(String name, String company, String address, String city,
+                                                   String state, String zip, String country, boolean sameBillingAddress)
     {
-        return sendShippingAddressForm(shippingAddress.getFullName(), shippingAddress.getCompany(), shippingAddress.getAddressLine(),
-                                       shippingAddress.getCity(), shippingAddress.getState(), shippingAddress.getZip(),
-                                       shippingAddress.getCountry(), sameBillingAddress);
+        // Name
+        // Enter the name parameter
+        nameField.shouldHave(value(name));
+        // Company
+        // Enter the company parameter
+        companyField.shouldHave(value(company));
+        // Address
+        // Enter the address parameter
+        addressField.shouldHave(value(address));
+        // City
+        // Enter the city parameter
+        cityField.shouldHave(value(city));
+        // State
+        // Enter the state parameter
+        stateField.shouldHave(value(state));
+        // Zip
+        // Enter the zip parameter
+        zipField.shouldHave(value(zip));
+        // Country
+        // Select the country whose label equals the parameter
+        countryField.getSelectedOption().shouldHave(value(country));
+        // Radio Button
+        // Click the radio button for Yes or No
+        if (sameBillingAddress)
+        {
+            $("#billEqualShipp-Yes[checked='checked']").shouldBe(visible);
+        }
+        else
+        {
+            $("#billEqualShipp-No[checked='checked']").shouldBe(visible);
+        }
+        return this;
+    }
+
+    @Step("validate entered shipping address")
+    public ShippingAddressPage validateEnteredData(AddressContainer address)
+    {
+        ShippingAddress shippingAddress = (ShippingAddress) address;
+        return validateEnteredData(shippingAddress.getFullName(), shippingAddress.getCompany(), shippingAddress.getAddressLine(),
+                                   shippingAddress.getCity(), shippingAddress.getState(), shippingAddress.getZip(), shippingAddress.getCountry(),
+                                   shippingAddress.isUseForBilling());
     }
 }

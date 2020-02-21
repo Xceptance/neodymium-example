@@ -2,6 +2,10 @@ package posters.flows;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.OrderData;
+import posters.flows.command.Command;
+import posters.flows.command.EnterDataAndProceedWithValidation;
+import posters.flows.command.EnterDataAndProceedWithoutValidation;
+import posters.flows.command.GoBackForValidationCommand;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.browsing.ProductdetailPage;
 import posters.pageobjects.pages.checkout.BillingAddressPage;
@@ -17,20 +21,7 @@ public class OrderFlow
     @Step("place order with validation")
     public static HomePage placeOrderWithValidation(OrderData orderData)
     {
-        ProductdetailPage pdp = AddProductsToCartFlow.addToCart(orderData.getProducts());
-
-        ShippingAddressPage shippingPage = pdp.miniCart.openCartPage().openShippingPage();
-        shippingPage.validateStructure();
-        BillingAddressPage billingPage = shippingPage.sendShippingAddressForm(orderData.getShippingAddress(), orderData.getBillingAddress() == null);
-        if (orderData.getBillingAddress() != null)
-        {
-            billingPage.validateStructure();
-            billingPage.sendBillingAddressForm(orderData.getBillingAddress());
-        }
-
-        PaymentPage paymentPage = new PaymentPage();
-        paymentPage.validateStructure();
-        PlaceOrderPage placeOrderPage = paymentPage.sendPaymentForm(orderData.getPayment());
+        PlaceOrderPage placeOrderPage = openPlaceOrderPage(orderData, new EnterDataAndProceedWithValidation());
 
         placeOrderPage.validateStructure();
         placeOrderPage.validateOrder(orderData);
@@ -40,18 +31,30 @@ public class OrderFlow
     @Step("place order without validation")
     public static HomePage placeOrderWithoutValidation(OrderData orderData)
     {
+        return openPlaceOrderPage(orderData, new EnterDataAndProceedWithoutValidation()).placeOrder();
+    }
+
+    @Step("place order without validation")
+    public static PlaceOrderPage openPlaceOrderPageReturningBackAfterEachStep(OrderData orderData)
+    {
+        return openPlaceOrderPage(orderData, new GoBackForValidationCommand());
+    }
+
+    public static PlaceOrderPage openPlaceOrderPage(OrderData orderData, Command flow)
+    {
         ProductdetailPage pdp = AddProductsToCartFlow.addToCart(orderData.getProducts());
 
         ShippingAddressPage shippingPage = pdp.miniCart.openCartPage().openShippingPage();
-        BillingAddressPage billingPage = shippingPage.sendShippingAddressForm(orderData.getShippingAddress(), orderData.getBillingAddress() == null);
+
+        BillingAddressPage billingAddressPage = (BillingAddressPage) flow.execute(shippingPage, orderData.getShippingAddress());
+
+        PaymentPage paymentPage = new PaymentPage();
         if (orderData.getBillingAddress() != null)
         {
-            billingPage.sendBillingAddressForm(orderData.getBillingAddress());
+            paymentPage = (PaymentPage) flow.execute(billingAddressPage, orderData.getBillingAddress());
         }
 
-        PlaceOrderPage placeOrderPage = new PaymentPage().sendPaymentForm(orderData.getPayment());
-
-        return placeOrderPage.placeOrder();
+        return (PlaceOrderPage) flow.execute(paymentPage, orderData.getPayment());
     }
 
     @Step("place order with validation for user with saved data")

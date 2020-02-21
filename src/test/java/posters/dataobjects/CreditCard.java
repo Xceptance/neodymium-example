@@ -6,7 +6,7 @@ package posters.dataobjects;
 /**
  * @author pfotenhauer
  */
-public class CreditCard
+public class CreditCard implements AddressContainer
 {
     String fullName;
 

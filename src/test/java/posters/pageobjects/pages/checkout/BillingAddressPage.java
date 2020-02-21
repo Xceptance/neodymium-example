@@ -6,6 +6,7 @@ package posters.pageobjects.pages.checkout;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
+import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -14,11 +15,12 @@ import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.Address;
+import posters.dataobjects.AddressContainer;
 
 /**
  * @author pfotenhauer
  */
-public class BillingAddressPage extends AbstractCheckoutPage
+public class BillingAddressPage extends AbstractEnterAddressPage
 {
     private SelenideElement headline = $("#titleBillAddr");
 
@@ -121,6 +123,72 @@ public class BillingAddressPage extends AbstractCheckoutPage
     public PaymentPage sendBillingAddressForm(String name, String company, String address, String city,
                                               String state, String zip, String country)
     {
+        fillFrom(name, company, address, city, state, zip, country);
+        // Open the billing addresses or payment options page, depending on which radio button you checked
+        // Click on Continue
+        addBillingButton.scrollTo().click();
+        PaymentPage paymentPage = new PaymentPage();
+        paymentPage.isExpectedPage();
+        return paymentPage;
+    }
+
+    @Step("open payment page")
+    public PaymentPage openPaymentPage()
+    {
+        addBillingButton.scrollTo().click();
+        return new PaymentPage().isExpectedPage();
+    }
+
+    @Step("valiadate entered billing address")
+    public BillingAddressPage validateEnteredData(String name, String company, String address, String city,
+                                                  String state, String zip, String country)
+    {
+        // Name
+        // Enter the name parameter
+        nameField.shouldHave(value(name));
+        // Company
+        // Enter the company parameter
+        companyField.shouldHave(value(company));
+        // Address
+        // Enter the address parameter
+        addressField.shouldHave(value(address));
+        // City
+        // Enter the city parameter
+        cityField.shouldHave(value(city));
+        // State
+        // Enter the state parameter
+        stateField.shouldHave(value(state));
+        // Zip
+        // Enter the zip parameter
+        zipField.shouldHave(value(zip));
+        // Country
+        // Select the country whose label equals the parameter
+        countryField.getSelectedOption().shouldHave(value(country));
+        return this;
+    }
+
+    @Step("validate entered billing address")
+    public BillingAddressPage validateEnteredData(AddressContainer address)
+    {
+        Address billingAddress = (Address) address;
+        return validateEnteredData(billingAddress.getFullName(), billingAddress.getCompany(), billingAddress.getAddressLine(),
+                                   billingAddress.getCity(), billingAddress.getState(), billingAddress.getZip(), billingAddress.getCountry());
+    }
+
+    /**
+     * @param billingAddress
+     * @return
+     */
+    public PaymentPage sendBillingAddressForm(Address billingAddress)
+    {
+        return sendBillingAddressForm(billingAddress.getFullName(), billingAddress.getCompany(), billingAddress.getAddressLine(),
+                                      billingAddress.getCity(), billingAddress.getState(), billingAddress.getZip(),
+                                      billingAddress.getCountry());
+    }
+
+    public BillingAddressPage fillFrom(String name, String company, String address, String city,
+                                       String state, String zip, String country)
+    {
         // Name
         // Enter the name parameter
         nameField.val(name);
@@ -142,22 +210,28 @@ public class BillingAddressPage extends AbstractCheckoutPage
         // Country
         // Select the country whose label equals the parameter
         countryField.selectOption(country);
-        // Open the billing addresses or payment options page, depending on which radio button you checked
-        // Click on Continue
-        addBillingButton.scrollTo().click();
-        PaymentPage paymentPage = new PaymentPage();
-        paymentPage.isExpectedPage();
-        return paymentPage;
+        return this;
     }
 
-    /**
-     * @param billingAddress
-     * @return
-     */
-    public PaymentPage sendBillingAddressForm(Address billingAddress)
+    @Override
+    public BillingAddressPage fillForm(AddressContainer address)
     {
-        return sendBillingAddressForm(billingAddress.getFullName(), billingAddress.getCompany(), billingAddress.getAddressLine(),
-                                      billingAddress.getCity(), billingAddress.getState(), billingAddress.getZip(),
-                                      billingAddress.getCountry());
+        Address billingAddress = (Address) address;
+        return fillFrom(billingAddress.getFullName(), billingAddress.getCompany(), billingAddress.getAddressLine(), billingAddress.getCity(),
+                        billingAddress.getState(), billingAddress.getZip(), billingAddress.getCountry());
+    }
+
+    @Override
+    public PaymentPage sendCorrectForm()
+    {
+        addBillingButton.click();
+        return new PaymentPage().isExpectedPage();
+    }
+
+    @Override
+    public BillingAddressPage sendIncorrectForm()
+    {
+        addBillingButton.click();
+        return this;
     }
 }

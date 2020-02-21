@@ -6,7 +6,7 @@ public class OrderData
 {
     private Products products;
 
-    private Address shippingAddress;
+    private ShippingAddress shippingAddress;
 
     private Address billingAddress;
 
@@ -41,12 +41,13 @@ public class OrderData
         this.products = products;
     }
 
-    public Address getShippingAddress()
+    public ShippingAddress getShippingAddress()
     {
+        this.shippingAddress.setUseForBilling(getBillingAddress() == null);
         return shippingAddress;
     }
 
-    public void setShippingAddress(Address shippingAddress)
+    public void setShippingAddress(ShippingAddress shippingAddress)
     {
         this.shippingAddress = shippingAddress;
     }

@@ -6,7 +6,7 @@ package posters.dataobjects;
 /**
  * @author pfotenhauer
  */
-public class Address
+public class Address implements AddressContainer
 {
     String fullName;
 

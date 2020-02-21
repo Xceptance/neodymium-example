@@ -6,6 +6,7 @@ package posters.pageobjects.pages.checkout;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
+import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -13,12 +14,13 @@ import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
+import posters.dataobjects.AddressContainer;
 import posters.dataobjects.CreditCard;
 
 /**
  * @author pfotenhauer
  */
-public class PaymentPage extends AbstractCheckoutPage
+public class PaymentPage extends AbstractEnterAddressPage
 {
     private SelenideElement headline = $("#titlePayment");
 
@@ -88,6 +90,18 @@ public class PaymentPage extends AbstractCheckoutPage
     @Step("fill and send new payment form")
     public PlaceOrderPage sendPaymentForm(String number, String name, String month, String year)
     {
+        fillForm(number, name, month, year);
+        // Opens the order overview page
+        // Clicks the Continue button
+        addPaymentButton.scrollTo().click();
+        PlaceOrderPage placeOrderPage = new PlaceOrderPage();
+        placeOrderPage.isExpectedPage();
+        return placeOrderPage;
+    }
+
+    @Step("fill payment form")
+    public PaymentPage fillForm(String number, String name, String month, String year)
+    {
         // Credit Card Number
         // Fills the card number field with the parameter
         creditCardNumber.val(number);
@@ -99,12 +113,62 @@ public class PaymentPage extends AbstractCheckoutPage
         expirationMonth.selectOption(month);
         // Chooses the expiration year matching the parameter
         expirationYear.selectOption(year);
-        // Opens the order overview page
+        return this;
+    }
+
+    @Override
+    @Step("fill payment form")
+    public PaymentPage fillForm(AddressContainer address)
+    {
+        CreditCard creditCard = (CreditCard) address;
+        return fillForm(creditCard.getCardNumber(), creditCard.getFullName(), creditCard.getExpDateMonth(), creditCard.getExpDateYear());
+    }
+
+    @Override
+    @Step("send incorrect payment")
+    public PaymentPage sendIncorrectForm()
+    {
+        addPaymentButton.click();
+        return this;
+    }
+
+    @Step("send correct payment")
+    public PlaceOrderPage sendCorrectForm()
+    {
+        addPaymentButton.click();
+        return new PlaceOrderPage().isExpectedPage();
+    }
+
+    @Step("validate entered payment")
+    public PaymentPage validateEnteredData(String number, String name, String month, String year)
+    {
+        // Credit Card Number
+        // Fills the card number field with the parameter
+        creditCardNumber.shouldHave(value(number));
+        // Name
+        // Fills the card holder field with the parameter
+        creditCardName.shouldHave(value(name));
+        // Expiration
+        // Chooses the expiration month matching the parameter
+        expirationMonth.getSelectedOption().shouldHave(value(month));
+        // Chooses the expiration year matching the parameter
+        expirationYear.getSelectedOption().shouldHave(value(year));
+        return this;
+    }
+
+    @Step("validate entered payment")
+    public PaymentPage validateEnteredData(AddressContainer address)
+    {
+        CreditCard creditCard = (CreditCard) address;
+        return validateEnteredData(creditCard.getCardNumber(), creditCard.getFullName(), creditCard.getExpDateMonth(), creditCard.getExpDateYear());
+    }
+
+    @Step("place order")
+    public PlaceOrderPage placeOrder()
+    {
         // Clicks the Continue button
         addPaymentButton.scrollTo().click();
-        PlaceOrderPage placeOrderPage = new PlaceOrderPage();
-        placeOrderPage.isExpectedPage();
-        return placeOrderPage;
+        return new PlaceOrderPage().isExpectedPage();
     }
 
     /**
@@ -115,4 +179,5 @@ public class PaymentPage extends AbstractCheckoutPage
     {
         return sendPaymentForm(creditcard.getCardNumber(), creditcard.getFullName(), creditcard.getExpDateMonth(), creditcard.getExpDateYear());
     }
+
 }
