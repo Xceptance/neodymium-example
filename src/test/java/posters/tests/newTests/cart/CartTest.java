@@ -28,6 +28,8 @@ public class CartTest extends AbstractTest
         OpenPageFlow.openHomePage();
         ProductdetailPage pdp = AddProductsToCartFlow.addToCart(products);
         CartPage cartPage = pdp.miniCart.openCartPage();
+
+        cartPage.validateStructure();
         products.getAll().forEach(product -> cartPage.validateContainsProduct(product));
         cartPage.validateSubtotal(products.getProductsTotalPrice());
     }
