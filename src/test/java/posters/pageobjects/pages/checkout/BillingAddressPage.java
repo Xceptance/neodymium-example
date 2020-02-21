@@ -119,7 +119,7 @@ public class BillingAddressPage extends AbstractCheckoutPage
      */
     @Step("fill and send new billing address form")
     public PaymentPage sendBillingAddressForm(String name, String company, String address, String city,
-                                                 String state, String zip, String country)
+                                              String state, String zip, String country)
     {
         // Name
         // Enter the name parameter

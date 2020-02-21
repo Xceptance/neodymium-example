@@ -1,10 +1,12 @@
 package posters.tests.newTests.account;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
 import com.xceptance.neodymium.util.DataUtils;
+import com.xceptance.neodymium.util.Neodymium;
 
 import posters.dataobjects.Payments;
 import posters.dataobjects.User;
@@ -25,6 +27,7 @@ public class PaymentSettingsTest extends AbstractTest
         user = User.createRandomUser();
     }
 
+    @Ignore
     @DataSet(id = "add/delete payment")
     @Test
     public void testAddPayment()
@@ -34,6 +37,8 @@ public class PaymentSettingsTest extends AbstractTest
         paymentSettingsPage.validatePayment(payments.getCreditCard());
         paymentSettingsPage.validateStructure();
     }
+
+    @Ignore
 
     @DataSet(id = "edit payment")
     @Test
@@ -53,6 +58,7 @@ public class PaymentSettingsTest extends AbstractTest
 
         paymentSettingsPage.deletePayment(payments.getCreditCard().getCardNumber()).confirmDelete(user.getPassword());
 
+        paymentSettingsPage.successMessage.validateSuccessMessage(Neodymium.localizedText("AccountPages.validation.addressDeletedSuccessMessage"));
         paymentSettingsPage.validatePaymentDoesntExist(payments.getCreditCard().getCardNumber());
     }
 }
