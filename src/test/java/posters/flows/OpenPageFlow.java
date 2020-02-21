@@ -7,7 +7,7 @@ import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.HomePage;
-import posters.pageobjects.pages.browsing.ProductdetailPage;
+import posters.pageobjects.pages.browsing.ProductDetailPage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.pageobjects.pages.user.RegisterPage;
 
@@ -27,17 +27,17 @@ public class OpenPageFlow
     };
 
     @Step("open product page with cookies")
-    public static ProductdetailPage openProductPageWithCookies(String relativeUrl)
+    public static ProductDetailPage openProductPageWithCookies(String relativeUrl)
     {
         // open product page
         open(Neodymium.configuration().url() + relativeUrl);
-        ProductdetailPage pdp = new ProductdetailPage();
+        ProductDetailPage pdp = new ProductDetailPage();
         pdp.isExpectedPage();
         return pdp;
     };
 
     @Step("open product page")
-    public static ProductdetailPage openProductPage(String relativeUrl)
+    public static ProductDetailPage openProductPage(String relativeUrl)
     {
         clearBrowserCookies();
         return openProductPageWithCookies(relativeUrl);

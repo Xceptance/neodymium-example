@@ -7,7 +7,7 @@ import posters.flows.command.EnterDataAndProceedWithValidation;
 import posters.flows.command.EnterDataAndProceedWithoutValidation;
 import posters.flows.command.GoBackForValidationCommand;
 import posters.pageobjects.pages.browsing.HomePage;
-import posters.pageobjects.pages.browsing.ProductdetailPage;
+import posters.pageobjects.pages.browsing.ProductDetailPage;
 import posters.pageobjects.pages.checkout.BillingAddressPage;
 import posters.pageobjects.pages.checkout.BillingAddresssListPage;
 import posters.pageobjects.pages.checkout.PaymentListPage;
@@ -42,7 +42,7 @@ public class OrderFlow
 
     public static PlaceOrderPage openPlaceOrderPage(OrderData orderData, Command flow)
     {
-        ProductdetailPage pdp = AddProductsToCartFlow.addToCart(orderData.getProducts());
+        ProductDetailPage pdp = AddProductsToCartFlow.addToCart(orderData.getProducts());
 
         ShippingAddressPage shippingPage = pdp.miniCart.openCartPage().openShippingPage();
 

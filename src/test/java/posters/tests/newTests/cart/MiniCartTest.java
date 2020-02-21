@@ -8,7 +8,7 @@ import com.xceptance.neodymium.util.DataUtils;
 import posters.dataobjects.Products;
 import posters.flows.AddProductsToCartFlow;
 import posters.flows.OpenPageFlow;
-import posters.pageobjects.pages.browsing.ProductdetailPage;
+import posters.pageobjects.pages.browsing.ProductDetailPage;
 import posters.tests.AbstractTest;
 
 public class MiniCartTest extends AbstractTest
@@ -25,7 +25,7 @@ public class MiniCartTest extends AbstractTest
     public void testAddToMiniCart()
     {
         OpenPageFlow.openHomePage();
-        ProductdetailPage pdp = AddProductsToCartFlow.addToCart(products);
+        ProductDetailPage pdp = AddProductsToCartFlow.addToCart(products);
         pdp.miniCart.openMiniCart();
         products.getAll().forEach(product -> pdp.miniCart.validateMiniCartByProduct(product));
         pdp.miniCart.validateSubtotal(products.getProductsTotalPrice());

@@ -9,7 +9,7 @@ import posters.dataobjects.Products;
 import posters.flows.AddProductsToCartFlow;
 import posters.flows.OpenPageFlow;
 import posters.pageobjects.pages.browsing.CartPage;
-import posters.pageobjects.pages.browsing.ProductdetailPage;
+import posters.pageobjects.pages.browsing.ProductDetailPage;
 import posters.tests.AbstractTest;
 
 public class CartTest extends AbstractTest
@@ -26,7 +26,7 @@ public class CartTest extends AbstractTest
     public void testAddToCart()
     {
         OpenPageFlow.openHomePage();
-        ProductdetailPage pdp = AddProductsToCartFlow.addToCart(products);
+        ProductDetailPage pdp = AddProductsToCartFlow.addToCart(products);
         CartPage cartPage = pdp.miniCart.openCartPage();
 
         cartPage.validateStructure();
@@ -38,7 +38,7 @@ public class CartTest extends AbstractTest
     public void testUpdateQuantity()
     {
         OpenPageFlow.openHomePage();
-        ProductdetailPage pdp = AddProductsToCartFlow.addToCart(products);
+        ProductDetailPage pdp = AddProductsToCartFlow.addToCart(products);
         CartPage cartPage = pdp.miniCart.openCartPage();
         products.getAll().forEach(product -> {
             cartPage.updateProductCountByName(product, 2);
@@ -52,7 +52,7 @@ public class CartTest extends AbstractTest
     public void testDeleteProductFromCart()
     {
         OpenPageFlow.openHomePage();
-        ProductdetailPage pdp = AddProductsToCartFlow.addToCart(products);
+        ProductDetailPage pdp = AddProductsToCartFlow.addToCart(products);
         CartPage cartPage = pdp.miniCart.openCartPage();
         products.getAll().forEach(product -> {
             cartPage.removeProductByName(product);

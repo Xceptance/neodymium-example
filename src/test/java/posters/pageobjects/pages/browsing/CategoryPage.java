@@ -68,13 +68,13 @@ public class CategoryPage extends AbstractBrowsingPage
      * @return
      */
     @Step("click on a product by name \"{productName}\"")
-    public ProductdetailPage clickProductByName(String productName)
+    public ProductDetailPage clickProductByName(String productName)
     {
         // Open the product detail page
         // Click on the product's image and open the product overview page
         // Click the product link to open the product detail page
         $(productOverview + " .thumbnails .thumbnail a > img.pImage[title='" + productName + "']").scrollTo().click();
-        ProductdetailPage pdp = new ProductdetailPage();
+        ProductDetailPage pdp = new ProductDetailPage();
         pdp.isExpectedPage();
         return pdp;
     }

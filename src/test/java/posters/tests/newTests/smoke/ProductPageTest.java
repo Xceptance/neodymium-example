@@ -7,7 +7,7 @@ import com.xceptance.neodymium.util.DataUtils;
 
 import posters.dataobjects.Product;
 import posters.flows.OpenPageFlow;
-import posters.pageobjects.pages.browsing.ProductdetailPage;
+import posters.pageobjects.pages.browsing.ProductDetailPage;
 import posters.tests.AbstractTest;
 
 public class ProductPageTest extends AbstractTest
@@ -23,7 +23,7 @@ public class ProductPageTest extends AbstractTest
     @Test
     public void testProductPage()
     {
-        ProductdetailPage pdp = OpenPageFlow.openProductPage(product.getRelativeUrl());
+        ProductDetailPage pdp = OpenPageFlow.openProductPage(product.getRelativeUrl());
         pdp.validateStructure();
         pdp.validate(product.getName());
 

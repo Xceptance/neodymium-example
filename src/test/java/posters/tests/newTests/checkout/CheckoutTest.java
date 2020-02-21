@@ -10,7 +10,7 @@ import posters.dataobjects.OrderData;
 import posters.flows.AddProductsToCartFlow;
 import posters.flows.OpenPageFlow;
 import posters.flows.OrderFlow;
-import posters.pageobjects.pages.browsing.ProductdetailPage;
+import posters.pageobjects.pages.browsing.ProductDetailPage;
 import posters.pageobjects.pages.checkout.BillingAddressPage;
 import posters.pageobjects.pages.checkout.PaymentPage;
 import posters.pageobjects.pages.checkout.PlaceOrderPage;
@@ -41,7 +41,7 @@ public class CheckoutTest extends AbstractTest
     public void testCantProceedCheckoutWithoutReqieredFieldsInShipping()
     {
         OpenPageFlow.openHomePage();
-        ProductdetailPage pdp = AddProductsToCartFlow.addToCart(orderData.getProducts());
+        ProductDetailPage pdp = AddProductsToCartFlow.addToCart(orderData.getProducts());
 
         ShippingAddressPage shippingPage = pdp.miniCart.openCartPage().openShippingPage();
         shippingPage.fillForm(orderData.getShippingAddress()).sendIncorrectForm();
@@ -53,7 +53,7 @@ public class CheckoutTest extends AbstractTest
     public void testCantProceedCheckoutWithoutReqieredFieldsInBilling()
     {
         OpenPageFlow.openHomePage();
-        ProductdetailPage pdp = AddProductsToCartFlow.addToCart(orderData.getProducts());
+        ProductDetailPage pdp = AddProductsToCartFlow.addToCart(orderData.getProducts());
         ShippingAddressPage shippingPage = pdp.miniCart.openCartPage().openShippingPage();
 
         BillingAddressPage billingAddressPage = shippingPage.fillForm(orderData.getShippingAddress()).sendCorrectForm();
@@ -66,7 +66,7 @@ public class CheckoutTest extends AbstractTest
     public void testCantProceedCheckoutWithoutReqieredFieldsInPayment()
     {
         OpenPageFlow.openHomePage();
-        ProductdetailPage pdp = AddProductsToCartFlow.addToCart(orderData.getProducts());
+        ProductDetailPage pdp = AddProductsToCartFlow.addToCart(orderData.getProducts());
         ShippingAddressPage shippingPage = pdp.miniCart.openCartPage().openShippingPage();
         BillingAddressPage billingAddressPage = shippingPage.fillForm(orderData.getShippingAddress()).sendCorrectForm();
 

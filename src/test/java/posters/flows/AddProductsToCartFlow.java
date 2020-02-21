@@ -2,13 +2,13 @@ package posters.flows;
 
 import posters.dataobjects.Product;
 import posters.dataobjects.Products;
-import posters.pageobjects.pages.browsing.ProductdetailPage;
+import posters.pageobjects.pages.browsing.ProductDetailPage;
 
 public class AddProductsToCartFlow
 {
-    public static ProductdetailPage addToCart(Products products)
+    public static ProductDetailPage addToCart(Products products)
     {
-        ProductdetailPage pdp = new ProductdetailPage();
+        ProductDetailPage pdp = new ProductDetailPage();
         for (Product product : products.getAll())
         {
             pdp = OpenPageFlow.openProductPageWithCookies(product.getRelativeUrl());

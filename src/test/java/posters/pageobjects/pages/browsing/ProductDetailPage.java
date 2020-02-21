@@ -19,7 +19,7 @@ import io.qameta.allure.Step;
 /**
  * @author pfotenhauer
  */
-public class ProductdetailPage extends AbstractBrowsingPage
+public class ProductDetailPage extends AbstractBrowsingPage
 {
     private SelenideElement addToCartButton = $("#btnAddToCart");
 
@@ -31,7 +31,7 @@ public class ProductdetailPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a product detail page")
-    public ProductdetailPage isExpectedPage()
+    public ProductDetailPage isExpectedPage()
     {
         $("#addToCartForm").should(exist);
         return this;
@@ -39,7 +39,7 @@ public class ProductdetailPage extends AbstractBrowsingPage
 
     @Override
     @Step("validate product detail page structure")
-    public ProductdetailPage validateStructure()
+    public ProductDetailPage validateStructure()
     {
         super.validateStructure();
 
@@ -59,7 +59,7 @@ public class ProductdetailPage extends AbstractBrowsingPage
     }
 
     @Step("validate product name on product detail page")
-    public ProductdetailPage validateProductName(String name)
+    public ProductDetailPage validateProductName(String name)
     {
         // Verify product name
         // compares the displayed product name to the given parameter.
@@ -68,28 +68,28 @@ public class ProductdetailPage extends AbstractBrowsingPage
     }
 
     @Step("select size")
-    public ProductdetailPage setSize(String size)
+    public ProductDetailPage setSize(String size)
     {
         productSize.selectOptionContainingText(size);
         return this;
     }
 
     @Step("select style")
-    public ProductdetailPage setStyle(String style)
+    public ProductDetailPage setStyle(String style)
     {
         $(".radio #finish-" + style).selectRadio(style);
         return this;
     }
 
     @Step("add product to the cart")
-    public ProductdetailPage addToCart()
+    public ProductDetailPage addToCart()
     {
         addToCartButton.scrollTo().click();
         return this;
     }
 
     @Step("add product with size:\"{size}\" and style:\"{style}\" to cart")
-    public ProductdetailPage addToCart(String size, String style)
+    public ProductDetailPage addToCart(String size, String style)
     {
         // Style
         // Checks the chosen style.
@@ -98,19 +98,18 @@ public class ProductdetailPage extends AbstractBrowsingPage
         // Selects the chosen size.
         setSize(size);
         // Click the Add to cart button
-        addToCart();
-        return this;
+        return addToCart();
     }
 
     /**
      * @param productName
      */
     @Step("validate the product detail page of \"{productName}\"")
-    public ProductdetailPage validate(String productName)
+    public ProductDetailPage validate(String productName)
     {
         validateStructure();
         validateProductName(productName);
-        return this;
+        return validateProductName(productName);
     };
 
     /**
@@ -118,22 +117,22 @@ public class ProductdetailPage extends AbstractBrowsingPage
      * @param string
      */
     @Step("validate the product detail page of \"{productName}\" and assert visually")
-    public ProductdetailPage validateAndVisualAssert(String productName)
+    public ProductDetailPage validateAndVisualAssert(String productName)
     {
         validateStructureAndVisual();
         validateProductName(productName);
-        return this;
+        return validateProductName(productName);
     }
 
     @Step("validate selected size is {size}")
-    public ProductdetailPage validateSelectedSize(String size)
+    public ProductDetailPage validateSelectedSize(String size)
     {
         $("#selectSize").getSelectedOption().shouldHave(exactText(size));
         return this;
     }
 
     @Step("validate selected style is {style}")
-    public ProductdetailPage validateSelectedStyle(String style)
+    public ProductDetailPage validateSelectedStyle(String style)
     {
         SelenideAddons.wrapAssertionError(() -> {
             Assert.assertEquals($("#selectStyle input[checked='checked']").getValue(), style);
@@ -142,7 +141,7 @@ public class ProductdetailPage extends AbstractBrowsingPage
     }
 
     @Step("validate unit price is equal to price")
-    public ProductdetailPage validateUnitPrice(String price)
+    public ProductDetailPage validateUnitPrice(String price)
     {
         $("#prodPrice").shouldHave(exactText(price));
         return this;
