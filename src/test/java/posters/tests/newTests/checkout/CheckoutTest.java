@@ -38,7 +38,7 @@ public class CheckoutTest extends AbstractTest
 
     @DataSet(id = "Checkout-Without-Required-Fields-In-Shipping-Test")
     @Test
-    public void testCantProceedCheckoutWithoutReqieredFieldsInShipping()
+    public void testCantProceedCheckoutWithoutRequiredFieldsInShipping()
     {
         OpenPageFlow.openHomePage();
         ProductDetailPage pdp = AddProductsToCartFlow.addToCart(orderData.getProducts());
@@ -50,7 +50,7 @@ public class CheckoutTest extends AbstractTest
 
     @DataSet(id = "Checkout-Without-Required-Fields-In-Billing-Test")
     @Test
-    public void testCantProceedCheckoutWithoutReqieredFieldsInBilling()
+    public void testCantProceedCheckoutWithoutRequiredFieldsInBilling()
     {
         OpenPageFlow.openHomePage();
         ProductDetailPage pdp = AddProductsToCartFlow.addToCart(orderData.getProducts());
@@ -63,7 +63,7 @@ public class CheckoutTest extends AbstractTest
 
     @DataSet(id = "Checkout-Without-Required-Fields-In-Payment-Test")
     @Test
-    public void testCantProceedCheckoutWithoutReqieredFieldsInPayment()
+    public void testCantProceedCheckoutWithoutRequiredFieldsInPayment()
     {
         OpenPageFlow.openHomePage();
         ProductDetailPage pdp = AddProductsToCartFlow.addToCart(orderData.getProducts());
