@@ -18,8 +18,8 @@ import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.Product;
-import posters.pageobjects.pages.checkout.ShippingAddressPage;
 import posters.pageobjects.pages.checkout.ShippingAddressListPage;
+import posters.pageobjects.pages.checkout.ShippingAddressPage;
 import posters.pageobjects.utility.PriceHelper;
 
 /**
@@ -42,7 +42,7 @@ public class CartPage extends AbstractBrowsingPage
     @Step("validate subtotal in the cart")
     public CartPage validateSubtotal(String subtotal)
     {
-        $$("#cartSummaryList li").findBy(text("Subtotal")).find(".text-right").shouldHave(exactText(subtotal));
+        subTotal.shouldHave(exactText(subtotal));
         return this;
     }
 
@@ -84,57 +84,10 @@ public class CartPage extends AbstractBrowsingPage
         return this;
     }
 
-    @Step("validate shipping costs on cart page")
-    public CartPage validateShippingCosts(String shippingCosts)
-    {
-        // Assert the correct shipping price is shown
-        $("#orderShippingCosts").shouldHave(exactText(shippingCosts));
-        return this;
-    }
-
-    /**
-     * @param shippingcosts
-     */
-    @Step("validate cart page with shipping costs: \"{shippingCosts}\"")
-    public CartPage validate(String shippingCosts)
-    {
-        validateStructure();
-        validateShippingCosts(shippingCosts);
-        return this;
-    }
-
-    private SelenideElement findProductContainer(Product product)
-    {
-        SelenideElement productContainer = $$("div.hidden-xs").filter(text(product.getName())).first().parent().parent();
-        for (int i = 0; i < $$("div.hidden-xs").filter(text(product.getName())).size(); i++)
-        {
-            SelenideElement productCard = $$("div.hidden-xs").filter(text(product.getName())).get(i);
-            if (productCard.find(".productStyle").text().equals(product.getStyle()) && productCard.find(".productSize").text().equals(product.getSize()))
-            {
-                productContainer = productCard.parent().parent();
-            }
-        }
-        return productContainer;
-    }
-
-    private SelenideElement findProductContainer(String productName, String style, String size)
-    {
-        SelenideElement productContainer = $$("div.hidden-xs").filter(text(productName)).first().parent().parent();
-        for (int i = 0; i < $$("div.hidden-xs").filter(text(productName)).size(); i++)
-        {
-            SelenideElement product = $$("div.hidden-xs").filter(text(productName)).get(i);
-            if (product.find(".productStyle").text().equals(style) && product.find(".productSize").text().equals(size))
-            {
-                productContainer = product.parent().parent();
-            }
-        }
-        return productContainer;
-    }
-
     @Step("update product count by the name")
     public CartPage updateProductCountByName(Product product, int amount)
     {
-        SelenideElement productContainer = findProductContainer(product);
+        SelenideElement productContainer = findProductContainer(product.getName(), product.getStyle(), product.getSize());
         productContainer.find(".productCount").setValue(Integer.toString(amount));
         productContainer.find(".btnUpdateProduct").scrollTo().click();
         return this;
@@ -143,36 +96,27 @@ public class CartPage extends AbstractBrowsingPage
     @Step("remove product by name")
     public CartPage removeProductByName(Product product)
     {
-        SelenideElement productContainer = findProductContainer(product);
+        SelenideElement productContainer = findProductContainer(product.getName(), product.getStyle(), product.getSize());
         productContainer.find(".btnRemoveProduct").click();
         $("#buttonDelete").click();
-        return this;
-    }
-
-    private CartPage clickCheckoutButton()
-    {
-        $("#btnStartCheckout").scrollTo().click();
         return this;
     }
 
     @Step("open shipping address for registered user from the cart page")
     public ShippingAddressListPage openShippingPageForRegisteredUserWithSavedAddress()
     {
-        clickCheckoutButton();
-        ShippingAddressListPage shippingAddressPage = new ShippingAddressListPage();
-        shippingAddressPage.isExpectedPage();
-        return shippingAddressPage;
+        $("#btnStartCheckout").scrollTo().click();
+        return new ShippingAddressListPage().isExpectedPage();
     }
 
     @Step("open shipping address from the cart page")
     public ShippingAddressPage openShippingPage()
     {
-        clickCheckoutButton();
-        ShippingAddressPage shippingAddressPage = new ShippingAddressPage();
-        shippingAddressPage.isExpectedPage();
-        return shippingAddressPage;
+        $("#btnStartCheckout").scrollTo().click();
+        return new ShippingAddressPage().isExpectedPage();
     }
 
+    // used in cucumber example
     /**
      * @param position
      */
@@ -196,6 +140,7 @@ public class CartPage extends AbstractBrowsingPage
         return this;
     }
 
+    // used in cucumber example
     /**
      * @return
      */
@@ -211,5 +156,19 @@ public class CartPage extends AbstractBrowsingPage
         $("#btnRemoveProdCount0").shouldNot(exist);
         $("#errorCartMessage").shouldHave(exactText(Neodymium.localizedText("CartPage.emptyCartInfo")));
         return this;
+    }
+
+    private SelenideElement findProductContainer(String productName, String style, String size)
+    {
+        SelenideElement productContainer = $$("div.hidden-xs").filter(text(productName)).first().parent().parent();
+        for (int i = 0; i < $$("div.hidden-xs").filter(text(productName)).size(); i++)
+        {
+            SelenideElement product = $$("div.hidden-xs").filter(text(productName)).get(i);
+            if (product.find(".productStyle").text().equals(style) && product.find(".productSize").text().equals(size))
+            {
+                productContainer = product.parent().parent();
+            }
+        }
+        return productContainer;
     }
 }
