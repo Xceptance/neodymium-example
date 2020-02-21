@@ -77,28 +77,6 @@ public class PaymentPage extends AbstractEnterAddressPage
         return this;
     }
 
-    /**
-     * @param number
-     *            The credit card number, has to be 16 numbers
-     * @param name
-     *            The full name
-     * @param month
-     *            Expiration Month in numbers
-     * @param year
-     *            Expiration year
-     */
-    @Step("fill and send new payment form")
-    public PlaceOrderPage sendPaymentForm(String number, String name, String month, String year)
-    {
-        fillForm(number, name, month, year);
-        // Opens the order overview page
-        // Clicks the Continue button
-        addPaymentButton.scrollTo().click();
-        PlaceOrderPage placeOrderPage = new PlaceOrderPage();
-        placeOrderPage.isExpectedPage();
-        return placeOrderPage;
-    }
-
     @Step("fill payment form")
     public PaymentPage fillForm(String number, String name, String month, String year)
     {
@@ -114,29 +92,6 @@ public class PaymentPage extends AbstractEnterAddressPage
         // Chooses the expiration year matching the parameter
         expirationYear.selectOption(year);
         return this;
-    }
-
-    @Override
-    @Step("fill payment form")
-    public PaymentPage fillForm(AddressContainer address)
-    {
-        CreditCard creditCard = (CreditCard) address;
-        return fillForm(creditCard.getCardNumber(), creditCard.getFullName(), creditCard.getExpDateMonth(), creditCard.getExpDateYear());
-    }
-
-    @Override
-    @Step("send incorrect payment")
-    public PaymentPage sendIncorrectForm()
-    {
-        addPaymentButton.click();
-        return this;
-    }
-
-    @Step("send correct payment")
-    public PlaceOrderPage sendCorrectForm()
-    {
-        addPaymentButton.click();
-        return new PlaceOrderPage().isExpectedPage();
     }
 
     @Step("validate entered payment")
@@ -156,28 +111,35 @@ public class PaymentPage extends AbstractEnterAddressPage
         return this;
     }
 
+    @Override
+    @Step("fill payment form")
+    public PaymentPage fillForm(AddressContainer address)
+    {
+        CreditCard creditCard = (CreditCard) address;
+        return fillForm(creditCard.getCardNumber(), creditCard.getFullName(), creditCard.getExpDateMonth(), creditCard.getExpDateYear());
+    }
+
+    @Override
+    @Step("send correct payment")
+    public PlaceOrderPage sendCorrectForm()
+    {
+        addPaymentButton.click();
+        return new PlaceOrderPage().isExpectedPage();
+    }
+
+    @Override
+    @Step("send incorrect payment")
+    public PaymentPage sendIncorrectForm()
+    {
+        addPaymentButton.click();
+        return this;
+    }
+
+    @Override
     @Step("validate entered payment")
     public PaymentPage validateEnteredData(AddressContainer address)
     {
         CreditCard creditCard = (CreditCard) address;
         return validateEnteredData(creditCard.getCardNumber(), creditCard.getFullName(), creditCard.getExpDateMonth(), creditCard.getExpDateYear());
     }
-
-    @Step("place order")
-    public PlaceOrderPage placeOrder()
-    {
-        // Clicks the Continue button
-        addPaymentButton.scrollTo().click();
-        return new PlaceOrderPage().isExpectedPage();
-    }
-
-    /**
-     * @param creditcard
-     * @return
-     */
-    public PlaceOrderPage sendPaymentForm(CreditCard creditcard)
-    {
-        return sendPaymentForm(creditcard.getCardNumber(), creditcard.getFullName(), creditcard.getExpDateMonth(), creditcard.getExpDateYear());
-    }
-
 }

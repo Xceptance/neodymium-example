@@ -105,6 +105,7 @@ public class ShippingAddressPage extends AbstractEnterAddressPage
         return this;
     }
 
+    @Step("enter shipping address")
     public ShippingAddressPage fillForm(String name, String company, String address, String city,
                                         String state, String zip, String country, boolean sameBillingAddress)
     {
@@ -141,43 +142,6 @@ public class ShippingAddressPage extends AbstractEnterAddressPage
         }
 
         return this;
-    }
-
-    public ShippingAddressPage fillForm(AddressContainer address)
-    {
-        ShippingAddress shippingAddress = (ShippingAddress) address;
-        return fillForm(shippingAddress.getFullName(), shippingAddress.getCompany(), shippingAddress.getAddressLine(), shippingAddress.getCity(),
-                        shippingAddress.getState(), shippingAddress.getZip(), shippingAddress.getCountry(), shippingAddress.isUseForBilling());
-    }
-
-    @Step("open billing page")
-    public BillingAddressPage openBillingAddressPage()
-    {
-        addShippingButton.scrollTo().click();
-        return new BillingAddressPage().isExpectedPage();
-    }
-
-    @Step("open payment page")
-    public PaymentPage openPaymentPage()
-    {
-        addShippingButton.scrollTo().click();
-        return new PaymentPage().isExpectedPage();
-    }
-
-    @Override
-    @Step("send incorrect shipping address")
-    public ShippingAddressPage sendIncorrectForm()
-    {
-        addShippingButton.click();
-        return this;
-    }
-
-    @Override
-    @Step("send correct shipping address")
-    public BillingAddressPage sendCorrectForm()
-    {
-        addShippingButton.click();
-        return new BillingAddressPage();
     }
 
     @Step("validate entered shipping address")
@@ -218,6 +182,32 @@ public class ShippingAddressPage extends AbstractEnterAddressPage
         return this;
     }
 
+    @Override
+    @Step("enter shipping address")
+    public ShippingAddressPage fillForm(AddressContainer address)
+    {
+        ShippingAddress shippingAddress = (ShippingAddress) address;
+        return fillForm(shippingAddress.getFullName(), shippingAddress.getCompany(), shippingAddress.getAddressLine(), shippingAddress.getCity(),
+                        shippingAddress.getState(), shippingAddress.getZip(), shippingAddress.getCountry(), shippingAddress.isUseForBilling());
+    }
+
+    @Override
+    @Step("send correct shipping address")
+    public BillingAddressPage sendCorrectForm()
+    {
+        addShippingButton.click();
+        return new BillingAddressPage();
+    }
+
+    @Override
+    @Step("send incorrect shipping address")
+    public ShippingAddressPage sendIncorrectForm()
+    {
+        addShippingButton.click();
+        return this;
+    }
+
+    @Override
     @Step("validate entered shipping address")
     public ShippingAddressPage validateEnteredData(AddressContainer address)
     {
