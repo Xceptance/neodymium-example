@@ -10,9 +10,7 @@ import posters.dataobjects.OrderData;
 import posters.dataobjects.User;
 import posters.flows.OrderFlow;
 import posters.flows.RegisterAndLoginFlow;
-import posters.flows.RegisterUserAndAddAddressFlow;
 import posters.pageobjects.pages.browsing.HomePage;
-import posters.pageobjects.pages.user.MyAddressesPage;
 import posters.tests.AbstractTest;
 
 public class RegisteredOrderTest extends AbstractTest
@@ -28,6 +26,8 @@ public class RegisteredOrderTest extends AbstractTest
         user = User.createRandomUser();
     }
 
+    @DataSet(id = "Registered-Order-Test")
+    @DataSet(id = "Registered-Order-Test-billing")
     @Test
     public void testRegisteredOrder()
     {
@@ -38,15 +38,57 @@ public class RegisteredOrderTest extends AbstractTest
         homepage.validateSuccessfulOrder();
     }
 
-    @DataSet(id = "Registered-Order-Test")
+    @DataSet(id = "Registered-Checkout-With-Saved-Data-Test-shipping")
+    @DataSet(id = "Registered-Checkout-With-Saved-Data-Test-billing")
+    @DataSet(id = "Registered-Checkout-With-Saved-Data-Test-payment")
     @Test
     public void testOrderForRegisterdeUserWithSavedData()
     {
-        MyAddressesPage myAddressesPage = RegisterUserAndAddAddressFlow.addShippingAddress(user, orderData.getShippingAddress());
-        myAddressesPage.addNewBillingAddress(orderData.getBillingAddress() != null ? orderData.getBillingAddress() : orderData.getShippingAddress());
-        myAddressesPage.userMenu.openAccountOverview().openPaymentSettings().addPayment(orderData.getPayment());
+        HomePage homePage = RegisterAndLoginFlow.registerAndLogin(user);
+        if (orderData.getShippingAddress().isSavedInAccount())
+        {
+            homePage.userMenu.openAccountOverview().openMyAddressesPage().addNewShippingAddress(orderData.getShippingAddress());
+        }
+
+        if (orderData.getBillingAddress() != null && orderData.getBillingAddress().isSavedInAccount())
+        {
+            homePage.userMenu.openAccountOverview().openMyAddressesPage().addNewBillingAddress(orderData.getBillingAddress());
+        }
+
+        if (orderData.getPayment().isSavedInAccount())
+        {
+            homePage.userMenu.openAccountOverview().openPaymentSettings().addPayment(orderData.getPayment());
+        }
 
         HomePage homepage = OrderFlow.placeOrderWithValidationForUserWithSavedData(orderData);
+
+        homepage.validateSuccessfulOrder();
+    }
+
+    @DataSet(id = "Registered-Checkout-With-Second-Saved-Data-Test-shipping")
+    @DataSet(id = "Registered-Checkout-With-Second-Saved-Data-Test-billing")
+    @DataSet(id = "Registered-Checkout-With-Second-Saved-Data-Test-payment")
+    @Test
+    public void testOrderForRegisterdeUserWithSecondSavedData()
+    {
+
+        HomePage homePage = RegisterAndLoginFlow.registerAndLogin(user);
+        if (orderData.getShippingAddress().isSavedInAccount())
+        {
+            homePage.userMenu.openAccountOverview().openMyAddressesPage().addNewShippingAddress(orderData.getShippingAddress());
+        }
+
+        if (orderData.getBillingAddress() != null && orderData.getBillingAddress().isSavedInAccount())
+        {
+            homePage.userMenu.openAccountOverview().openMyAddressesPage().addNewBillingAddress(orderData.getBillingAddress());
+        }
+
+        if (orderData.getPayment().isSavedInAccount())
+        {
+            homePage.userMenu.openAccountOverview().openPaymentSettings().addPayment(orderData.getPayment());
+        }
+        orderData.makeSecondAddressesToMain();
+        HomePage homepage = OrderFlow.placeOrderWithValidationForUserWithSecondSavedData(orderData);
 
         homepage.validateSuccessfulOrder();
     }

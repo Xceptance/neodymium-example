@@ -8,13 +8,15 @@ package posters.dataobjects;
  */
 public class CreditCard implements AddressContainer
 {
-    String fullName;
+    private String fullName;
 
-    String cardNumber;
+    private String cardNumber;
 
-    String expDateMonth;
+    private String expDateMonth;
 
-    String expDateYear;
+    private String expDateYear;
+
+    private boolean savedInAccount;
 
     public CreditCard(String fullName, String cardNumber, String expDateMonth, String expDateYear)
     {
@@ -101,9 +103,22 @@ public class CreditCard implements AddressContainer
     }
 
     @Override
+    public boolean isSavedInAccount()
+    {
+        return savedInAccount;
+    }
+
+    @Override
     public String toString()
     {
-        return String.format("CreditCard [fullName()=%s, cardNumber()=%s, expMonth()=%s, expYear()=%s]",
-                             getFullName(), getCardNumber(), getExpDateMonth(), getExpDateYear());
+        return "CreditCard [fullName=" + fullName + ", cardNumber=" + cardNumber + ", expDateMonth=" + expDateMonth + ", expDateYear=" + expDateYear
+               + ", savedInAccount=" + savedInAccount + "]";
     }
+
+    @Override
+    public void setSavedInAccount(boolean savedInAcount)
+    {
+        this.savedInAccount = savedInAcount;
+    }
+
 }

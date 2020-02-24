@@ -7,10 +7,11 @@ import com.codeborne.selenide.SelenideElement;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.Address;
-import posters.pageobjects.pages.checkout.BillingAddresssListPage;
+import posters.dataobjects.AddressContainer;
+import posters.pageobjects.pages.checkout.AbstractCheckoutPage;
 import posters.pageobjects.pages.checkout.PaymentListPage;
 
-public class NewAddressOverlay extends AbstractComponent
+public class NewAddressOverlay extends AbstractOverlayComponent
 {
 
     private SelenideElement addNewAddressButton = $("#addAdressModal");
@@ -29,8 +30,6 @@ public class NewAddressOverlay extends AbstractComponent
 
     private SelenideElement countryField = $("#country");
 
-    private SelenideElement addShippingButton = $("#btnAddDelAddr");
-
     @Override
     public void isComponentAvailable()
     {
@@ -38,8 +37,8 @@ public class NewAddressOverlay extends AbstractComponent
     }
 
     @Step("fill and send shipping address form")
-    private void sendForm(String name, String company, String address, String city,
-                          String state, String zip, String country, boolean sameBillingAddress)
+    protected NewAddressOverlay fillForm(String name, String company, String address, String city,
+                                         String state, String zip, String country)
     {
         $("#addAdressModal").click();
         // Name
@@ -63,59 +62,43 @@ public class NewAddressOverlay extends AbstractComponent
         // Country
         // Select the country whose label equals the parameter
         countryField.selectOption(country);
-        // Radio Button
-        // Click the radio button for Yes or No
-        if (sameBillingAddress)
-        {
-            $("#billEqualShipp-Yes").scrollTo().click();
-        }
-        else
-        {
-            $("#billEqualShipp-No").scrollTo().click();
-        }
-        // Open the billing addresses or payment options page, depending on which radio button you checked
-        // Click on Continue
-        addShippingButton.scrollTo().click();
-
-    }
-
-    @Step("fill and send shipping address form")
-    public BillingAddresssListPage sendShippingAddressForm(Address address, boolean sameBillingAddress)
-    {
-        sendForm(address.getFullName(), address.getCompany(), address.getAddressLine(), address.getCity(), address.getState(),
-                 address.getZip(), address.getCountry(), sameBillingAddress);
-        BillingAddresssListPage billingAddressPage = new BillingAddresssListPage();
-        billingAddressPage.isExpectedPage();
-        return billingAddressPage;
+        return this;
     }
 
     @Step("fill and send billing address form")
     public PaymentListPage sendBillingAddressForm(Address address)
     {
-        sendForm(address.getFullName(), address.getCompany(), address.getAddressLine(), address.getCity(), address.getState(),
-                 address.getZip(), address.getCountry(), false);
-        PaymentListPage paymentPage = new PaymentListPage();
-        paymentPage.isExpectedPage();
-        return paymentPage;
-    }
-
-    @Step("fill and send shipping address form")
-    public BillingAddresssListPage sendShippingAddressForm(String name, String company, String address, String city,
-                                                           String state, String zip, String country, boolean sameBillingAddress)
-    {
-        sendForm(name, company, address, city, state, zip, country, sameBillingAddress);
-        BillingAddresssListPage billingAddressPage = new BillingAddresssListPage();
-        billingAddressPage.isExpectedPage();
-        return billingAddressPage;
+        fillForm(address.getFullName(), address.getCompany(), address.getAddressLine(), address.getCity(), address.getState(),
+                 address.getZip(), address.getCountry());
+        // Open the billing addresses or payment options page, depending on which radio button you checked
+        // Click on Continue
+        sendForm();
+        return new PaymentListPage().isExpectedPage();
     }
 
     @Step("fill and send billing address form")
     public PaymentListPage sendBillingAddressForm(String name, String company, String address, String city,
                                                   String state, String zip, String country)
     {
-        sendForm(name, company, address, city, state, zip, country, false);
+        fillForm(name, company, address, city, state, zip, country);
+        sendForm();
         PaymentListPage paymentPage = new PaymentListPage();
         paymentPage.isExpectedPage();
         return paymentPage;
+    }
+
+    @Override
+    public AbstractOverlayComponent fillForm(AddressContainer container)
+    {
+        Address address = (Address) container;
+        return fillForm(address.getFullName(), address.getCompany(), address.getAddressLine(), address.getCity(), address.getState(), address.getZip(),
+                        address.getCountry());
+    }
+
+    @Override
+    public AbstractCheckoutPage sendForm()
+    {
+        $("#btnAddBillAddr").scrollTo().click();
+        return new PaymentListPage();
     }
 }

@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 
 import io.qameta.allure.Step;
+import posters.pageobjects.components.AbstractOverlayComponent;
 import posters.pageobjects.components.NewAddressOverlay;
 
 /**
@@ -18,7 +19,7 @@ import posters.pageobjects.components.NewAddressOverlay;
  * 
  * @author pfotenhauer
  */
-public class BillingAddresssListPage extends AbstractCheckoutPage
+public class BillingAddresssListPage extends AbstractListPage
 {
     private SelenideElement headline = $("#titleBillAddr");
 
@@ -81,5 +82,19 @@ public class BillingAddresssListPage extends AbstractCheckoutPage
     {
         proceed();
         return new PaymentListPage().isExpectedPage();
+    }
+
+    @Override
+    public AbstractCheckoutPage selectAddressByPosition(int position)
+    {
+        selectBillingAddress(position);
+        return openPaymentListPage();
+    }
+
+    @Override
+    public AbstractOverlayComponent getOverlayComponent()
+    {
+        $("button[data-target='#addAdressModal']").click();
+        return addNewAddressFromListPage;
     }
 }

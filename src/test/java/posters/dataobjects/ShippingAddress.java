@@ -19,11 +19,18 @@ public class ShippingAddress extends Address
         this.useForBilling = useForBilling;
     }
 
+    public void setSavedInAccount(boolean savedInAccount)
+    {
+        super.setSavedInAccount(savedInAccount);
+    }
+
     @Override
     public String toString()
     {
-        return "ShippingAddress [useForBilling=" + useForBilling + ", fullName=" + fullName + ", company=" + company + ", addressLine=" + addressLine
-               + ", city=" + city + ", state=" + state + ", zip=" + zip + ", country=" + country + "]";
+        return "ShippingAddress [useForBilling=" + useForBilling + ", getFullName()=" + getFullName() + ", getCompany()=" + getCompany() + ", getAddressLine()="
+               + getAddressLine() + ", getCity()=" + getCity() + ", getState()=" + getState() + ", getZip()=" + getZip() + ", getCountry()=" + getCountry()
+               + ", isSavedInAccount()=" + isSavedInAccount() + ", toString()=" + super.toString() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+               + "]";
     }
 
 }

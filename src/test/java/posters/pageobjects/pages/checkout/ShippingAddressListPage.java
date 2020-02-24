@@ -11,18 +11,19 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 
 import io.qameta.allure.Step;
-import posters.pageobjects.components.NewAddressOverlay;
+import posters.pageobjects.components.AbstractOverlayComponent;
+import posters.pageobjects.components.NewShippingAddressOverlay;
 
 /**
  * This page is only for registered user with saved billing address available
  * 
  * @author pfotenhauer
  */
-public class ShippingAddressListPage extends AbstractCheckoutPage
+public class ShippingAddressListPage extends AbstractListPage
 {
     private SelenideElement headline = $("#titleDelAddr");
 
-    public NewAddressOverlay addNewAddressFromListPage = new NewAddressOverlay();
+    public NewShippingAddressOverlay addNewShippingAddressFromListPage = new NewShippingAddressOverlay();
 
     @Override
     @Step("ensure this is a shipping address page")
@@ -81,6 +82,20 @@ public class ShippingAddressListPage extends AbstractCheckoutPage
     {
         proceed();
         return new BillingAddresssListPage().isExpectedPage();
+    }
+
+    @Override
+    public AbstractCheckoutPage selectAddressByPosition(int position)
+    {
+        selectShippingAddress(position);
+        return openBillingAddresssListPage();
+    }
+
+    @Override
+    public AbstractOverlayComponent getOverlayComponent()
+    {
+        $("button[data-target='#addAdressModal']").click();
+        return addNewShippingAddressFromListPage;
     }
 
 }

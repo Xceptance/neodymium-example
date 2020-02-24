@@ -8,19 +8,21 @@ package posters.dataobjects;
  */
 public class Address implements AddressContainer
 {
-    String fullName;
+    private String fullName;
 
-    String company;
+    private String company;
 
-    String addressLine;
+    private String addressLine;
 
-    String city;
+    private String city;
 
-    String state;
+    private String state;
 
-    String zip;
+    private String zip;
 
-    String country;
+    private String country;
+
+    private boolean savedInAccount;
 
     /**
      * 
@@ -156,9 +158,20 @@ public class Address implements AddressContainer
     }
 
     @Override
+    public boolean isSavedInAccount()
+    {
+        return savedInAccount;
+    }
+
+    public void setSavedInAccount(boolean savedInAccount)
+    {
+        this.savedInAccount = savedInAccount;
+    }
+
+    @Override
     public String toString()
     {
-        return String.format("Address [fullName()=%s, company()=%s, addressLine()=%s, zip()=%s, city()=%s, state()=%s, country()=%s]",
-                             getFullName(), getCompany(), getAddressLine(), getZip(), getCity(), getState(), getCountry());
+        return "Address [fullName=" + fullName + ", company=" + company + ", addressLine=" + addressLine + ", city=" + city + ", state=" + state + ", zip="
+               + zip + ", country=" + country + ", savedInAccount=" + savedInAccount + "]";
     }
 }

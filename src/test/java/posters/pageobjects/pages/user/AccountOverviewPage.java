@@ -88,6 +88,7 @@ public class AccountOverviewPage extends AbstractBrowsingPage
         return myAddressesPage;
     }
 
+    @Step("open payment settings")
     public PaymentSettingsPage openPaymentSettings()
     {
         paymentLink.click();

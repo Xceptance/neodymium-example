@@ -16,6 +16,12 @@ public class OrderData
 
     private String orderTaxRate;
 
+    private ShippingAddress secondShippingAddress;
+
+    private Address secondBillingAddress;
+
+    private CreditCard secondPayment;
+
     public String getOrderTotal()
     {
         double shippingCost = Double.parseDouble(PriceHelper.removeCurrency(this.shippingCost));
@@ -80,6 +86,67 @@ public class OrderData
     public void setShippingCost(String shippingCosts)
     {
         this.shippingCost = shippingCosts;
+    }
+
+    public String getOrderTaxRate()
+    {
+        return orderTaxRate;
+    }
+
+    public void setOrderTaxRate(String orderTaxRate)
+    {
+        this.orderTaxRate = orderTaxRate;
+    }
+
+    public ShippingAddress getSecondShippingAddress()
+    {
+        return secondShippingAddress;
+    }
+
+    public void setSecondShippingAddress(ShippingAddress secondShippingAddress)
+    {
+        this.secondShippingAddress = secondShippingAddress;
+    }
+
+    public Address getSecondBillingAddress()
+    {
+        return secondBillingAddress;
+    }
+
+    public void setSecondBillingAddress(Address secondBillingAddress)
+    {
+        this.secondBillingAddress = secondBillingAddress;
+    }
+
+    public CreditCard getSecondPayment()
+    {
+        return secondPayment;
+    }
+
+    public void setSecondPayment(CreditCard secondPayment)
+    {
+        this.secondPayment = secondPayment;
+    }
+
+    public void makeSecondAddressesToMain()
+    {
+        if (secondShippingAddress != null)
+        {
+            secondShippingAddress.setSavedInAccount(true);
+            this.shippingAddress = secondShippingAddress;
+
+        }
+        if (secondBillingAddress != null)
+        {
+            secondBillingAddress.setSavedInAccount(true);
+            this.billingAddress = secondBillingAddress;
+
+        }
+        if (secondPayment != null)
+        {
+            secondPayment.setSavedInAccount(true);
+            this.payment = secondPayment;
+        }
     }
 
     @Override

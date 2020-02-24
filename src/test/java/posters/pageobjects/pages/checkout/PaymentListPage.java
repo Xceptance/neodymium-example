@@ -11,14 +11,15 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 
 import io.qameta.allure.Step;
-import posters.dataobjects.CreditCard;
+import posters.pageobjects.components.AbstractOverlayComponent;
+import posters.pageobjects.components.NewPaymentOverlay;
 
 /**
  * This page is only for registered user with saved billing address available
  * 
  * @author pfotenhauer
  */
-public class PaymentListPage extends AbstractCheckoutPage
+public class PaymentListPage extends AbstractListPage
 {
     private SelenideElement headline = $("#titlePayment");
 
@@ -31,6 +32,8 @@ public class PaymentListPage extends AbstractCheckoutPage
     private SelenideElement expirationYear = $("#expirationDateYear");
 
     private SelenideElement addPaymentButton = $("#btnAddPayment");
+
+    public NewPaymentOverlay newPaymentOverlay = new NewPaymentOverlay();
 
     @Override
     @Step("ensure this is a payment page")
@@ -75,32 +78,16 @@ public class PaymentListPage extends AbstractCheckoutPage
         return placeOrderPage;
     }
 
-    @Step("fill and send payment form")
-    public PlaceOrderPage sendPaymentForm(String number, String name, String month, String year)
+    @Override
+    public AbstractCheckoutPage selectAddressByPosition(int position)
     {
-        $("#addPaymentModal").click();
-        // Credit Card Number
-        // Fills the card number field with the parameter
-        creditCardNumber.val(number);
-        // Name
-        // Fills the card holder field with the parameter
-        creditCardName.val(name);
-        // Expiration
-        // Chooses the expiration month matching the parameter
-        expirationMonth.selectOption(month);
-        // Chooses the expiration year matching the parameter
-        expirationYear.selectOption(year);
-        // Opens the order overview page
-        // Clicks the Continue button
-        addPaymentButton.scrollTo().click();
-        PlaceOrderPage placeOrderPage = new PlaceOrderPage();
-        placeOrderPage.isExpectedPage();
-        return placeOrderPage;
+        return selectCreditCard(position);
     }
 
-    @Step("fill and send payment form with credit card {card}")
-    public PlaceOrderPage sendPaymentForm(CreditCard card)
+    @Override
+    public AbstractOverlayComponent getOverlayComponent()
     {
-        return sendPaymentForm(card.getCardNumber(), card.getFullName(), card.getExpDateMonth(), card.getExpDateYear());
+        $("button[data-target='#addPaymentModal']").click();
+        return newPaymentOverlay;
     }
 }
