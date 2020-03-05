@@ -1,7 +1,6 @@
 package posters.tests.newTests.orderreview;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.xceptance.neodymium.util.DataUtils;
@@ -29,7 +28,6 @@ public class RegisteredOrderReviewTest extends AbstractTest
         user = User.createRandomUser();
     }
 
-    @Ignore
     @Test
     public void testRegisteredOrder()
     {
