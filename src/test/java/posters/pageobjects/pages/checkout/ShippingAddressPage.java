@@ -15,13 +15,12 @@ import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
-import posters.dataobjects.AddressContainer;
 import posters.dataobjects.ShippingAddress;
 
 /**
  * @author pfotenhauer
  */
-public class ShippingAddressPage extends AbstractEnterAddressPage
+public class ShippingAddressPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleDelAddr");
 
@@ -182,16 +181,14 @@ public class ShippingAddressPage extends AbstractEnterAddressPage
         return this;
     }
 
-    @Override
     @Step("enter shipping address")
-    public ShippingAddressPage fillForm(AddressContainer address)
+    public ShippingAddressPage fillForm(ShippingAddress address)
     {
         ShippingAddress shippingAddress = (ShippingAddress) address;
         return fillForm(shippingAddress.getFullName(), shippingAddress.getCompany(), shippingAddress.getAddressLine(), shippingAddress.getCity(),
                         shippingAddress.getState(), shippingAddress.getZip(), shippingAddress.getCountry(), shippingAddress.isUseForBilling());
     }
 
-    @Override
     @Step("send correct shipping address")
     public BillingAddressPage sendCorrectForm()
     {
@@ -199,7 +196,6 @@ public class ShippingAddressPage extends AbstractEnterAddressPage
         return new BillingAddressPage();
     }
 
-    @Override
     @Step("send incorrect shipping address")
     public ShippingAddressPage sendIncorrectForm()
     {
@@ -207,9 +203,8 @@ public class ShippingAddressPage extends AbstractEnterAddressPage
         return this;
     }
 
-    @Override
     @Step("validate entered shipping address")
-    public ShippingAddressPage validateEnteredData(AddressContainer address)
+    public ShippingAddressPage validateEnteredData(ShippingAddress address)
     {
         ShippingAddress shippingAddress = (ShippingAddress) address;
         return validateEnteredData(shippingAddress.getFullName(), shippingAddress.getCompany(), shippingAddress.getAddressLine(),

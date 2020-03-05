@@ -6,7 +6,7 @@ package posters.dataobjects;
 /**
  * @author pfotenhauer
  */
-public class Address implements AddressContainer
+public class Address
 {
     private String fullName;
 
@@ -157,7 +157,6 @@ public class Address implements AddressContainer
         this.country = country;
     }
 
-    @Override
     public boolean isSavedInAccount()
     {
         return savedInAccount;

@@ -261,8 +261,7 @@
 			"fullName": "Jimmy Blue",
 			"cardNumber": "4111111111111111",
 			"expDateMonth": "04",
-			"expDateYear": "2024",
-			"savedInAccount":"true"
+			"expDateYear": "2024"
 		},
 		"shippingCost": "$7.00",
 		"orderTaxRate": "6.0"

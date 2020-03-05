@@ -6,7 +6,7 @@ package posters.dataobjects;
 /**
  * @author pfotenhauer
  */
-public class CreditCard implements AddressContainer
+public class CreditCard
 {
     private String fullName;
 
@@ -102,7 +102,6 @@ public class CreditCard implements AddressContainer
         this.expDateYear = expDateYear;
     }
 
-    @Override
     public boolean isSavedInAccount()
     {
         return savedInAccount;
@@ -115,7 +114,6 @@ public class CreditCard implements AddressContainer
                + ", savedInAccount=" + savedInAccount + "]";
     }
 
-    @Override
     public void setSavedInAccount(boolean savedInAcount)
     {
         this.savedInAccount = savedInAcount;

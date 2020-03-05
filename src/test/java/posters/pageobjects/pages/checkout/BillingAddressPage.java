@@ -15,12 +15,11 @@ import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.Address;
-import posters.dataobjects.AddressContainer;
 
 /**
  * @author pfotenhauer
  */
-public class BillingAddressPage extends AbstractEnterAddressPage
+public class BillingAddressPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleBillAddr");
 
@@ -168,7 +167,7 @@ public class BillingAddressPage extends AbstractEnterAddressPage
     }
 
     @Step("validate entered billing address")
-    public BillingAddressPage validateEnteredData(AddressContainer address)
+    public BillingAddressPage validateEnteredData(Address address)
     {
         Address billingAddress = (Address) address;
         return validateEnteredData(billingAddress.getFullName(), billingAddress.getCompany(), billingAddress.getAddressLine(),
@@ -213,22 +212,19 @@ public class BillingAddressPage extends AbstractEnterAddressPage
         return this;
     }
 
-    @Override
-    public BillingAddressPage fillForm(AddressContainer address)
+    public BillingAddressPage fillForm(Address address)
     {
         Address billingAddress = (Address) address;
         return fillFrom(billingAddress.getFullName(), billingAddress.getCompany(), billingAddress.getAddressLine(), billingAddress.getCity(),
                         billingAddress.getState(), billingAddress.getZip(), billingAddress.getCountry());
     }
 
-    @Override
     public PaymentPage sendCorrectForm()
     {
         addBillingButton.click();
         return new PaymentPage().isExpectedPage();
     }
 
-    @Override
     public BillingAddressPage sendIncorrectForm()
     {
         addBillingButton.click();

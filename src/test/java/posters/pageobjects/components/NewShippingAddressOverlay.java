@@ -4,7 +4,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 import io.qameta.allure.Step;
-import posters.dataobjects.AddressContainer;
 import posters.dataobjects.ShippingAddress;
 import posters.pageobjects.pages.checkout.AbstractCheckoutPage;
 import posters.pageobjects.pages.checkout.BillingAddressPage;
@@ -37,10 +36,8 @@ public class NewShippingAddressOverlay extends NewAddressOverlay
         }
     }
 
-    @Override
-    public NewShippingAddressOverlay fillForm(AddressContainer container)
+    public NewShippingAddressOverlay fillForm(ShippingAddress shippingAddress)
     {
-        ShippingAddress shippingAddress = (ShippingAddress) container;
         fillForm(shippingAddress.getFullName(), shippingAddress.getCompany(), shippingAddress.getAddressLine(), shippingAddress.getCity(),
                  shippingAddress.getState(), shippingAddress.getZip(),
                  shippingAddress.getCountry(), shippingAddress.isUseForBilling());

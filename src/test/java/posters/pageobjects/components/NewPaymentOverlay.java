@@ -4,11 +4,10 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 import io.qameta.allure.Step;
-import posters.dataobjects.AddressContainer;
 import posters.dataobjects.CreditCard;
 import posters.pageobjects.pages.checkout.PlaceOrderPage;
 
-public class NewPaymentOverlay extends AbstractOverlayComponent
+public class NewPaymentOverlay extends AbstractComponent
 {
 
     @Override
@@ -34,14 +33,11 @@ public class NewPaymentOverlay extends AbstractOverlayComponent
         return sendForm();
     }
 
-    @Override
-    public AbstractOverlayComponent fillForm(AddressContainer address)
+    public NewPaymentOverlay fillForm(CreditCard creditCard)
     {
-        CreditCard creditCard = (CreditCard) address;
         return fillForm(creditCard.getCardNumber(), creditCard.getFullName(), creditCard.getExpDateMonth(), creditCard.getExpDateYear());
     }
 
-    @Override
     public PlaceOrderPage sendForm()
     {
         $("#btnAddPayment").click();

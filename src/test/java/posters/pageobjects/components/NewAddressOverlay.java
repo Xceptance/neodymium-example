@@ -7,11 +7,10 @@ import com.codeborne.selenide.SelenideElement;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.Address;
-import posters.dataobjects.AddressContainer;
 import posters.pageobjects.pages.checkout.AbstractCheckoutPage;
 import posters.pageobjects.pages.checkout.PaymentListPage;
 
-public class NewAddressOverlay extends AbstractOverlayComponent
+public class NewAddressOverlay extends AbstractComponent
 {
 
     private SelenideElement addNewAddressButton = $("#addAdressModal");
@@ -87,15 +86,13 @@ public class NewAddressOverlay extends AbstractOverlayComponent
         return paymentPage;
     }
 
-    @Override
-    public AbstractOverlayComponent fillForm(AddressContainer container)
+    public NewAddressOverlay fillForm(Address container)
     {
         Address address = (Address) container;
         return fillForm(address.getFullName(), address.getCompany(), address.getAddressLine(), address.getCity(), address.getState(), address.getZip(),
                         address.getCountry());
     }
 
-    @Override
     public AbstractCheckoutPage sendForm()
     {
         $("#btnAddBillAddr").scrollTo().click();

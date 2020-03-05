@@ -11,7 +11,6 @@ import static com.codeborne.selenide.Selenide.$;
 import com.codeborne.selenide.SelenideElement;
 
 import io.qameta.allure.Step;
-import posters.pageobjects.components.AbstractOverlayComponent;
 import posters.pageobjects.components.NewPaymentOverlay;
 
 /**
@@ -19,7 +18,7 @@ import posters.pageobjects.components.NewPaymentOverlay;
  * 
  * @author pfotenhauer
  */
-public class PaymentListPage extends AbstractListPage
+public class PaymentListPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titlePayment");
 
@@ -78,16 +77,8 @@ public class PaymentListPage extends AbstractListPage
         return placeOrderPage;
     }
 
-    @Override
-    public AbstractCheckoutPage selectAddressByPosition(int position)
+    public PlaceOrderPage selectAddressByPosition(int position)
     {
         return selectCreditCard(position);
-    }
-
-    @Override
-    public AbstractOverlayComponent getOverlayComponent()
-    {
-        $("button[data-target='#addPaymentModal']").click();
-        return newPaymentOverlay;
     }
 }

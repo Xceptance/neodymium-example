@@ -14,13 +14,12 @@ import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
-import posters.dataobjects.AddressContainer;
 import posters.dataobjects.CreditCard;
 
 /**
  * @author pfotenhauer
  */
-public class PaymentPage extends AbstractEnterAddressPage
+public class PaymentPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titlePayment");
 
@@ -111,15 +110,12 @@ public class PaymentPage extends AbstractEnterAddressPage
         return this;
     }
 
-    @Override
-    @Step("fill payment form")
-    public PaymentPage fillForm(AddressContainer address)
+    public PaymentPage fillForm(CreditCard creditCard)
     {
-        CreditCard creditCard = (CreditCard) address;
         return fillForm(creditCard.getCardNumber(), creditCard.getFullName(), creditCard.getExpDateMonth(), creditCard.getExpDateYear());
+
     }
 
-    @Override
     @Step("send correct payment")
     public PlaceOrderPage sendCorrectForm()
     {
@@ -127,7 +123,6 @@ public class PaymentPage extends AbstractEnterAddressPage
         return new PlaceOrderPage().isExpectedPage();
     }
 
-    @Override
     @Step("send incorrect payment")
     public PaymentPage sendIncorrectForm()
     {
@@ -135,11 +130,9 @@ public class PaymentPage extends AbstractEnterAddressPage
         return this;
     }
 
-    @Override
     @Step("validate entered payment")
-    public PaymentPage validateEnteredData(AddressContainer address)
+    public PaymentPage validateEnteredData(CreditCard creditCard)
     {
-        CreditCard creditCard = (CreditCard) address;
         return validateEnteredData(creditCard.getCardNumber(), creditCard.getFullName(), creditCard.getExpDateMonth(), creditCard.getExpDateYear());
     }
 }
