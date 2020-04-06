@@ -5,7 +5,7 @@
 
 	<groupId>com.xceptance.neodymium.project</groupId>
 	<artifactId>neodymium-example</artifactId>
-	<version>3.5.0-SNAPSHOT</version>
+	<version>3.6.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>neodymium-example</name>
@@ -30,7 +30,7 @@
 		<surefire.version>2.22.2</surefire.version>
 		<aspectj.version>1.9.5</aspectj.version>
 		<allure.version>2.10.0</allure.version>
-		<neodymium.version>3.5.0</neodymium.version>
+		<neodymium.version>3.6.0</neodymium.version>
 	</properties>
 
 	<build>
