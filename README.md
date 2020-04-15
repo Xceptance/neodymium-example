@@ -1,14 +1,14 @@
 # Introduction
-This repository demonstrates how to use our [Neodymium library](https://github.com/Xceptance/neodymium-library) to set up a maintainable and well structured test automation project. Furthermore we use the [Wiki](https://github.com/Xceptance/neodymium-library/wiki) on the Neodymium library project to show and explain how to use features from Neodymium library. We also give insight how we think a test automation project should be structured and what results you should get out of it.
+This repository demonstrates how to use our [Neodymium library](https://github.com/Xceptance/neodymium-library) to set up a maintainable and well structured test automation project. Please also see the [Wiki](https://github.com/Xceptance/neodymium-library/wiki) for the Neodymium library project which shows and explains how to use the vaious features from Neodymium library. There you will also find insight about how we think a test automation project should be structured and what results you should get out of it.
 
 ## Selenide
 Within this example project we demonstrate how to set up and implement a test automation project using Selenide. You can find information about Selenide within our [Wiki](https://github.com/Xceptance/neodymium-library/wiki/Selenide).
 
 ## How to try it out
-This will be a short introduction how to get it running. 
+This is a short introduction on how to get it running. 
 
 ### Prerequisites
-You will need the following technologies available to try it out:
+You will need the following to try it out:
 * Git
 * Maven 3+
 * JDK 8
@@ -37,10 +37,10 @@ Simply clone or fork this project.
 3. Run `mvn clean test`
 
 ### Test out Allure reports
-Please check our [Wiki](https://github.com/Xceptance/neodymium-library/wiki/Allure-reports) to get all info you need.
+Please check our [Wiki](https://github.com/Xceptance/neodymium-library/wiki/Allure-reports) to get all the info you need.
  
 # Template
-If you like our ideas and you would like to start a test automation project using the Neodymium library. We prepared a template that can be used as "Hello World" tutorial and is a good starting point for your own project.
+If you like our ideas and you would like to start a test automation project using the Neodymium library, we prepared a template that can be used as a "Hello World" tutorial and as a good starting point for your own project.
 
 Check out [Neodymium template](https://github.com/Xceptance/neodymium-template).
 
