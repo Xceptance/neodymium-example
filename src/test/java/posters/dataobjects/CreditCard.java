@@ -18,6 +18,18 @@ public class CreditCard
 
     String expDateYear;
 
+    /**
+     * @param fullName
+     *            the fullName to set
+     * @param cardNumber
+     *            the cardNumber to set
+     * @param crypticCardNumber
+     *            the crypticCardNumber to set
+     * @param expDateMonth
+     *            the expDateMonth to set
+     * @param expDateYear
+     *            the expDateYear to set
+     */
     public CreditCard(String fullName, String cardNumber, String crypticCardNumber, String expDateMonth, String expDateYear)
     {
         this.fullName = fullName;

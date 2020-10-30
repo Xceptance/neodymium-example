@@ -23,7 +23,20 @@ public class Address
     String country;
 
     /**
-     * 
+     * @param fullName
+     *            the fullName to set
+     * @param company
+     *            the company to set
+     * @param addressLine
+     *            the addressLine to set
+     * @param city
+     *            the city to set
+     * @param state
+     *            the state to set
+     * @param zip
+     *            the zip to set
+     * @param country
+     *            the country to set
      */
     public Address(String fullName, String company, String addressLine, String city, String state, String zip, String country)
     {

@@ -34,6 +34,7 @@ public class ProductdetailPage extends AbstractBrowsingPage
         $("#addToCartForm").should(exist);
     }
 
+    @Override
     @Step("validate product detail page structure")
     public void validateStructure()
     {
@@ -136,11 +137,10 @@ public class ProductdetailPage extends AbstractBrowsingPage
     {
         validateStructure();
         validateProductName(productName);
-    };
+    }
 
     /**
      * @param productName
-     * @param string
      */
     @Step("validate the product detail page of \"{productName}\" and assert visually")
     public void validateAndVisualAssert(String productName)

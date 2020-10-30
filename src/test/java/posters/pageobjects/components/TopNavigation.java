@@ -23,6 +23,7 @@ public class TopNavigation extends AbstractComponent
 {
     SelenideElement categoryMenu = $("#categoryMenu");
 
+    @Override
     public void isComponentAvailable()
     {
         categoryMenu.should(exist);
@@ -65,7 +66,7 @@ public class TopNavigation extends AbstractComponent
     }
 
     /**
-     * @param position
+     * @param subCategoryName
      * @return
      */
     @Step("click on a product by name \"{productName}\"")

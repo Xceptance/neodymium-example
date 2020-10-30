@@ -45,6 +45,7 @@ public class CategoryPage extends AbstractBrowsingPage
         $("#titleCategoryName").shouldBe(text(categoryName));
     }
 
+    @Override
     @Step("validate category page structure")
     public void validateStructure()
     {
@@ -101,7 +102,7 @@ public class CategoryPage extends AbstractBrowsingPage
     }
 
     /**
-     * @param position
+     * @param productName
      * @return
      */
     @Step("click on a product by name \"{productName}\"")

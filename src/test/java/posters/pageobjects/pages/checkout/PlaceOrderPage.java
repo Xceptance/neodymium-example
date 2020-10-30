@@ -58,16 +58,8 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     }
 
     /**
-     * @param position
-     *            The position of the product you want to check
-     * @param productName
-     *            The Product name of that product
-     * @param productCount
-     *            The amount
-     * @param productStyle
-     *            The style
-     * @param productSize
-     *            The size
+     * @param product
+     *            The product
      */
     @Step("validate order contains product \"{product.name}\"")
     public void validateContainsProduct(Product product)

@@ -24,11 +24,15 @@ public class Product
 
     /**
      * @param name
+     *            the name to set
      * @param unitPrice
-     * @param totalUnitPrice
+     *            the unitPrice to set
      * @param style
+     *            the style to set
      * @param size
+     *            the size to set
      * @param amount
+     *            the amount to set
      */
     public Product(String name, String unitPrice, String style, String size, int amount)
     {
@@ -108,7 +112,7 @@ public class Product
     }
 
     /**
-     * @return the size
+     * @return the amount
      */
     public int getAmount()
     {
@@ -116,8 +120,8 @@ public class Product
     }
 
     /**
-     * @param size
-     *            the size to set
+     * @param amount
+     *            the amount to set
      */
     public void setAmount(int amount)
     {
@@ -133,12 +137,6 @@ public class Product
     @Override
     public boolean equals(Object obj)
     {
-    	if(!this.getClass().isInstance(obj))
-    	{
-    		System.out.println("Found incompatible type for comparison");
-    		return false;
-    	}
-    	
         Product other = (Product) obj;
         if (name.equals(other.name) && unitPrice.equals(other.unitPrice) && style.equals(other.style) && size.equals(other.size))
         {

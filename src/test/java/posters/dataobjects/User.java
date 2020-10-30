@@ -23,6 +23,16 @@ public class User
     {
     }
 
+    /**
+     * @param firstName
+     *            the firstName to set
+     * @param lastName
+     *            the lastName to set
+     * @param email
+     *            the email to set
+     * @param password
+     *            the password to set
+     */
     public User(String firstName, String lastName, String email, String password)
     {
         this.firstName = firstName;

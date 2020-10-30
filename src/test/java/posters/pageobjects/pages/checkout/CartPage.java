@@ -92,7 +92,7 @@ public class CartPage extends AbstractBrowsingPage
     }
 
     /**
-     * @param shippingcosts
+     * @param shippingCosts
      */
     @Step("validate cart page with shipping costs: \"{shippingCosts}\"")
     public void validate(String shippingCosts)
@@ -311,7 +311,7 @@ public class CartPage extends AbstractBrowsingPage
     }
 
     /**
-     * @param index
+     * @param position
      */
     @Step("click on a product on the cart page")
     public ProductdetailPage openProductPage(int position)
