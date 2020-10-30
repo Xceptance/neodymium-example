@@ -5,7 +5,7 @@
 
 	<groupId>com.xceptance.neodymium.project</groupId>
 	<artifactId>neodymium-example</artifactId>
-	<version>4.0.0-SNAPSHOT</version>
+	<version>4.1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>neodymium-example</name>
@@ -28,9 +28,9 @@
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
 		<surefire.version>2.22.2</surefire.version>
-		<aspectj.version>1.9.5</aspectj.version>
+		<aspectj.version>1.9.6</aspectj.version>
 		<allure.version>2.10.0</allure.version>
-		<neodymium.version>4.0.0</neodymium.version>
+		<neodymium.version>4.1.0</neodymium.version>
 	</properties>
 
 	<build>
