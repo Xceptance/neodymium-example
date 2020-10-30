@@ -76,6 +76,23 @@
 					<reportVersion>${allure.version}</reportVersion>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<source>11</source>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -94,15 +111,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
 				<version>${surefire.version}</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.1.1</version>
-				<configuration>
-					<additionalparam>-Xdoclint:none</additionalparam>
-					<source>8</source>
-				</configuration>
 			</plugin>
 		</plugins>
 	</reporting>
