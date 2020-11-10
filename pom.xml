@@ -42,8 +42,9 @@
 				<configuration>
 					<forkCount>2</forkCount>
 					<!-- our test case naming does not follow Maven naming conventions -->
+					<!-- execute only suites -->
 					<includes>
-						<include>posters/tests/**/*Test.java</include>
+						<include>posters/tests/**/*TestSuite.java</include>
 					</includes>
 					<testFailureIgnore>true</testFailureIgnore>
 					<argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package posters.tests.smoke;
+package posters.tests.smoke.browsing;
 
 import org.junit.Before;
 import org.junit.Test;
