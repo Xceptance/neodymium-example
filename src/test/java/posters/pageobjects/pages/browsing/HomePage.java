@@ -102,7 +102,7 @@ public class HomePage extends AbstractBrowsingPage
     public ProductdetailPage clickOnPresentedProduct(String productName)
     {
         $$("#productList .thumbnail .pName").filter(exactText(productName)).shouldHaveSize(1).first().click();
-        ProductdetailPage productdetailPage = new ProductdetailPage();
+        var productdetailPage = new ProductdetailPage();
         productdetailPage.isExpectedPage();
         return productdetailPage;
     }

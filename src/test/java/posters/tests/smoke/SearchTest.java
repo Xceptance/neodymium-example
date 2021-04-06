@@ -15,10 +15,6 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
-import posters.pageobjects.pages.browsing.CategoryPage;
-import posters.pageobjects.pages.browsing.HomePage;
-import posters.pageobjects.pages.browsing.NoHitsPage;
-import posters.pageobjects.pages.browsing.ProductdetailPage;
 import posters.tests.AbstractTest;
 
 /**
@@ -49,17 +45,17 @@ public class SearchTest extends AbstractTest
     public void testSearching()
     {
         // Go to homepage
-        HomePage homePage = OpenHomePageFlow.flow();
+        var homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Search
-        CategoryPage categoryPage = homePage.search.categoryPageResult(searchTerm);
+        var categoryPage = homePage.search.categoryPageResult(searchTerm);
         categoryPage.validateStructure();
         categoryPage.validateSearchHits(searchTerm, searchTermExpectedCount);
 
         final String productName = categoryPage.getProductNameByPosition(position);
-        ProductdetailPage productPage = categoryPage.clickProductByPosition(position);
-        productPage.validate(productName);
+        var productDetailPage = categoryPage.clickProductByPosition(position);
+        productDetailPage.validate(productName);
     }
 
     @Test
@@ -67,11 +63,11 @@ public class SearchTest extends AbstractTest
     public void testSearchingWithoutResult()
     {
         // Go to homepage
-        HomePage homePage = OpenHomePageFlow.flow();
+        var homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Search
-        NoHitsPage noHitsPage = homePage.search.noResult(searchTerm);
+        var noHitsPage = homePage.search.noResult(searchTerm);
         noHitsPage.validate();
     }
 }

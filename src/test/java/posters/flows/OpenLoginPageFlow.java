@@ -1,7 +1,6 @@
 package posters.flows;
 
 import io.qameta.allure.Step;
-import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.user.LoginPage;
 
 public class OpenLoginPageFlow
@@ -10,10 +9,10 @@ public class OpenLoginPageFlow
     public static LoginPage flow()
     {
         // initialize the session and go to home page
-        HomePage homePage = OpenHomePageFlow.flow();
+        var homePage = OpenHomePageFlow.flow();
 
         // open login page and check for expected page
-        LoginPage loginPage = homePage.userMenu.openLogin();
+        var loginPage = homePage.userMenu.openLogin();
         loginPage.isExpectedPage();
 
         return loginPage;

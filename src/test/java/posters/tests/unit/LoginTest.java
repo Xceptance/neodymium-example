@@ -17,7 +17,6 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.dataobjects.User;
 import posters.flows.OpenLoginPageFlow;
-import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.tests.AbstractTest;
 
@@ -44,9 +43,9 @@ public class LoginTest extends AbstractTest
     @DataSet(1)
     public void testSuccessfulLogin()
     {
-        LoginPage loginPage = prepareTest();
+        var loginPage = prepareTest();
 
-        HomePage homePage = loginPage.sendLoginform(user);
+        var homePage = loginPage.sendLoginform(user);
         homePage.validateSuccessfulLogin(user);
     }
 
@@ -55,7 +54,7 @@ public class LoginTest extends AbstractTest
     @DataSet(3)
     public void testLoginWithPasswordFailure()
     {
-        LoginPage loginPage = prepareTest();
+        var loginPage = prepareTest();
 
         loginPage.sendFalseLoginform(user);
         loginPage.validateWrongPassword(user.getEmail());
@@ -65,7 +64,7 @@ public class LoginTest extends AbstractTest
     @DataSet(4)
     public void testLoginWithEmailFailure()
     {
-        LoginPage loginPage = prepareTest();
+        var loginPage = prepareTest();
 
         loginPage.sendFalseLoginform(user);
         loginPage.validateWrongEmail(user.getEmail());
@@ -76,7 +75,7 @@ public class LoginTest extends AbstractTest
     @DataSet(6)
     public void testLoginWithoutRequiredFields()
     {
-        LoginPage loginPage = prepareTest();
+        var loginPage = prepareTest();
 
         loginPage.sendFalseLoginform(user);
         loginPage.errorMessage.validateNoErrorMessageOnPage();
@@ -86,9 +85,9 @@ public class LoginTest extends AbstractTest
     @SuppressDataSets
     public void testLoginWithUnregisteredUser()
     {
-        final User user = new User("Jens", "Doe", "jens@doe.com", "topsecret");
+        final var user = new User("Jens", "Doe", "jens@doe.com", "topsecret");
 
-        LoginPage loginPage = prepareTest();
+        var loginPage = prepareTest();
 
         loginPage.sendFalseLoginform(user);
         loginPage.validateWrongEmail(user.getEmail());

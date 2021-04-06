@@ -14,18 +14,8 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.dataobjects.Address;
 import posters.dataobjects.CreditCard;
-import posters.dataobjects.Product;
 import posters.flows.CartCleanUpFlow;
 import posters.flows.OpenHomePageFlow;
-import posters.pageobjects.pages.browsing.CategoryPage;
-import posters.pageobjects.pages.browsing.HomePage;
-import posters.pageobjects.pages.browsing.ProductdetailPage;
-import posters.pageobjects.pages.checkout.BillingAddressPage;
-import posters.pageobjects.pages.checkout.CartPage;
-import posters.pageobjects.pages.checkout.PaymentPage;
-import posters.pageobjects.pages.checkout.PlaceOrderPage;
-import posters.pageobjects.pages.checkout.ShippingAddressPage;
-import posters.pageobjects.pages.user.LoginPage;
 import posters.tests.AbstractTest;
 
 /**
@@ -45,7 +35,7 @@ public class RegisteredOrderTest extends AbstractTest
         final String shippingCosts = Neodymium.dataValue("shippingCosts");
 
         // Go to homepage
-        HomePage homePage = OpenHomePageFlow.flow();
+        var homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Assure not logged in status
@@ -56,7 +46,7 @@ public class RegisteredOrderTest extends AbstractTest
         final String oldSubtotal = homePage.miniCart.getSubtotal();
 
         // Go to login form
-        LoginPage loginPage = homePage.userMenu.openLogin();
+        var loginPage = homePage.userMenu.openLogin();
         loginPage.validateStructure();
         final String email = Neodymium.dataValue("email");
         final String password = Neodymium.dataValue("password");
@@ -67,19 +57,19 @@ public class RegisteredOrderTest extends AbstractTest
 
         // Go to category
         final String categoryName = homePage.topNav.getSubCategoryNameByPosition(2, 3);
-        CategoryPage categoryPage = homePage.topNav.clickSubCategoryByPosition(2, 3);
+        var categoryPage = homePage.topNav.clickSubCategoryByPosition(2, 3);
         categoryPage.validate(categoryName);
 
         // Go to product page
         final String productName = categoryPage.getProductNameByPosition(2, 1);
-        ProductdetailPage productPage = categoryPage.clickProductByPosition(2, 1);
-        productPage.validate(productName);
+        var productDetailPage = categoryPage.clickProductByPosition(2, 1);
+        productDetailPage.validate(productName);
 
-        productPage.addToCart("32 x 24 in", "matte");
+        productDetailPage.addToCart("32 x 24 in", "matte");
 
         // Go to cart and validate
-        final Product product = productPage.getProduct();
-        CartPage cartPage = productPage.miniCart.openCartPage();
+        final var product = productDetailPage.getProduct();
+        final var cartPage = productDetailPage.miniCart.openCartPage();
         cartPage.validateStructure();
         cartPage.validateShippingCosts(shippingCosts);
         cartPage.miniCart.validateMiniCart(1, product);
@@ -88,15 +78,15 @@ public class RegisteredOrderTest extends AbstractTest
         cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, 0.00);
 
         // Go to shipping address and validate
-        ShippingAddressPage shippingAddressPage = cartPage.openShippingPage();
+        final var shippingAddressPage = cartPage.openShippingPage();
         shippingAddressPage.validateStructure();
 
         // Send shipping address and validate billing form
-        BillingAddressPage billingAddressPage = shippingAddressPage.selectShippingAddress(1);
+        final var billingAddressPage = shippingAddressPage.selectShippingAddress(1);
         billingAddressPage.validateStructure();
 
         // Send billing address and validate payment form
-        PaymentPage paymentPage = billingAddressPage.selectBillingAddress(1);
+        final var paymentPage = billingAddressPage.selectBillingAddress(1);
         paymentPage.validateStructure();
 
         final String name = firstname + " " + Neodymium.dataValue("lastname");
@@ -110,13 +100,13 @@ public class RegisteredOrderTest extends AbstractTest
         // setup checkout data for validation
         final Address shippingAddress = new Address(name, company, street, city, state, zip, country);
         final Address billingAddress = new Address(name, company, street, city, state, zip, country);
-        final CreditCard creditcard = new CreditCard("John Doe", "4111111111111111", "xxxx xxxx xxxx 1111", "08", "2022");
+        final var creditCard = new CreditCard("John Doe", "4111111111111111", "xxxx xxxx xxxx 1111", "08", "2022");
 
         // Send payment data and validate place order page
-        PlaceOrderPage placeOrderPage = paymentPage.selectCreditCard(1);
+        final var placeOrderPage = paymentPage.selectCreditCard(1);
         placeOrderPage.validateStructure();
         placeOrderPage.validateProduct(1, product.getName(), product.getAmount(), product.getStyle(), product.getSize());
-        placeOrderPage.validateAddressesAndPayment(shippingAddress, billingAddress, creditcard);
+        placeOrderPage.validateAddressesAndPayment(shippingAddress, billingAddress, creditCard);
 
         // Place order
         homePage = placeOrderPage.placeOrder();

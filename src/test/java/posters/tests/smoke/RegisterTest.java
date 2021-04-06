@@ -18,9 +18,6 @@ import io.qameta.allure.junit4.Tag;
 import posters.dataobjects.User;
 import posters.flows.DeleteUserFlow;
 import posters.flows.OpenHomePageFlow;
-import posters.pageobjects.pages.browsing.HomePage;
-import posters.pageobjects.pages.user.LoginPage;
-import posters.pageobjects.pages.user.RegisterPage;
 import posters.tests.AbstractTest;
 
 /**
@@ -49,18 +46,18 @@ public class RegisterTest extends AbstractTest
     public void testRegistering()
     {
         // Go to homepage
-        HomePage homePage = OpenHomePageFlow.flow();
+        var homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Assure that nobody is logged in
         homePage.userMenu.validateNotLoggedIn();
 
         // Go to login form
-        LoginPage loginPage = homePage.userMenu.openLogin();
+        var loginPage = homePage.userMenu.openLogin();
         loginPage.validateStructure();
 
         // Go to register form
-        RegisterPage registerPage = loginPage.openRegister();
+        var registerPage = loginPage.openRegister();
         registerPage.validateStructure();
 
         loginPage = registerPage.sendRegisterForm(user, user.getPassword());
