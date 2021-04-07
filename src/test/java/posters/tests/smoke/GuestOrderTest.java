@@ -5,6 +5,7 @@ package posters.tests.smoke;
 
 import org.junit.Test;
 
+import com.xceptance.neodymium.util.DataUtils;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
@@ -65,17 +66,10 @@ public class GuestOrderTest extends AbstractTest
         cartPage.validateCartItem(1, product);
         cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, 0.00);
 
-        final String name = Neodymium.dataValue("name");
-        final String company = Neodymium.dataValue("company");
-        final String street = Neodymium.dataValue("street");
-        final String city = Neodymium.dataValue("city");
-        final String state = Neodymium.dataValue("state");
-        final String zip = Neodymium.dataValue("zip");
-        final String country = Neodymium.dataValue("country");
         // setup checkout data
-        final Address shippingAddress = new Address(name, company, street, city, state, zip, country);
+        final var shippingAddress = DataUtils.get(Address.class);
         final boolean sameBillingAddress = false;
-        final Address billingAddress = new Address(name, company, street, city, state, zip, country);
+        final var billingAddress = DataUtils.get(Address.class);
         final var creditCard = new CreditCard("Jimmy Blue", "4111111111111111", "xxxx xxxx xxxx 1111", "04", "2022");
         // Go to shipping address and validate
         final var newShippingAddressPage = cartPage.openNewShippingPage();

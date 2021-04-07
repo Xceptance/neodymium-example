@@ -230,7 +230,7 @@ public class CartPage extends AbstractBrowsingPage
     public Product getProduct(int position)
     {
         return new Product(getProductName(position), getProductUnitPrice(position), getProductStyle(position), getProductSize(position), Integer.parseInt(getProductCount(position)));
-    };
+    }
 
     /**
      * @param position

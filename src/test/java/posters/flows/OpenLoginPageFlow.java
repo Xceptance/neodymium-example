@@ -16,5 +16,5 @@ public class OpenLoginPageFlow
         loginPage.isExpectedPage();
 
         return loginPage;
-    };
+    }
 }

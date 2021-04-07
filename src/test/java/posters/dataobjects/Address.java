@@ -8,11 +8,11 @@ package posters.dataobjects;
  */
 public class Address
 {
-    String fullName;
+    String name;
 
     String company;
 
-    String addressLine;
+    String street;
 
     String city;
 
@@ -23,12 +23,12 @@ public class Address
     String country;
 
     /**
-     * @param fullName
-     *            the fullName to set
+     * @param name
+     *            the name to set
      * @param company
      *            the company to set
-     * @param addressLine
-     *            the addressLine to set
+     * @param street
+     *            the street to set
      * @param city
      *            the city to set
      * @param state
@@ -38,11 +38,11 @@ public class Address
      * @param country
      *            the country to set
      */
-    public Address(String fullName, String company, String addressLine, String city, String state, String zip, String country)
+    public Address(String name, String company, String street, String city, String state, String zip, String country)
     {
-        this.fullName = fullName;
+        this.name = name;
         this.company = company;
-        this.addressLine = addressLine;
+        this.street = street;
         this.city = city;
         this.state = state;
         this.zip = zip;
@@ -50,20 +50,20 @@ public class Address
     }
 
     /**
-     * @return the fullName
+     * @return the name
      */
-    public String getFullName()
+    public String getName()
     {
-        return fullName;
+        return name;
     }
 
     /**
-     * @param fullName
-     *            the fullName to set
+     * @param name
+     *            the name to set
      */
-    public void setFullName(String fullName)
+    public void setName(String name)
     {
-        this.fullName = fullName;
+        this.name = name;
     }
 
     /**
@@ -84,20 +84,20 @@ public class Address
     }
 
     /**
-     * @return the address
+     * @return the street
      */
-    public String getAddressLine()
+    public String getStreet()
     {
-        return addressLine;
+        return street;
     }
 
     /**
-     * @param addressLine
-     *            the address to set
+     * @param street
+     *            the street to set
      */
-    public void setAddressLine(String addressLine)
+    public void setStreet(String street)
     {
-        this.addressLine = addressLine;
+        this.street = street;
     }
 
     /**
@@ -171,7 +171,7 @@ public class Address
     @Override
     public String toString()
     {
-        return String.format("Address [fullName()=%s, company()=%s, addressLine()=%s, zip()=%s, city()=%s, state()=%s, country()=%s]",
-                             getFullName(), getCompany(), getAddressLine(), getZip(), getCity(), getState(), getCountry());
+        return String.format("Address [name()=%s, company()=%s, street()=%s, zip()=%s, city()=%s, state()=%s, country()=%s]",
+                             getName(), getCompany(), getStreet(), getZip(), getCity(), getState(), getCountry());
     }
 }

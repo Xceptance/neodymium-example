@@ -8,7 +8,6 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
-import posters.dataobjects.Product;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 
@@ -70,7 +69,7 @@ public class AddToCartTest extends AbstractTest
         productDetailPage = categoryPage.clickProductByPosition(1, 1);
         productDetailPage.validate(productName2);
         productDetailPage.addToCart("64 x 48 in", "gloss");
-        final Product product2 = productDetailPage.getProduct();
+        final var product2 = productDetailPage.getProduct();
 
         // Go to cart and validate
         cartPage = productDetailPage.miniCart.openCartPage();
@@ -85,7 +84,7 @@ public class AddToCartTest extends AbstractTest
         int productToUpdatePosition = 1;
         int newProductAmount = 3;
         final String oldSubtotal3 = cartPage.miniCart.getSubtotal();
-        final Product productBeforeUpdate = cartPage.getProduct(productToUpdatePosition);
+        final var productBeforeUpdate = cartPage.getProduct(productToUpdatePosition);
 
         // Update amount of product on cart page
         cartPage.updateProductCount(productToUpdatePosition, newProductAmount);
@@ -109,7 +108,7 @@ public class AddToCartTest extends AbstractTest
         totalCount = totalCount - newProductAmount;
         cartPage.miniCart.validateTotalCount(totalCount);
 
-        final Product productFromCartPage = cartPage.getProduct(1);
+        final var productFromCartPage = cartPage.getProduct(1);
         productDetailPage = cartPage.openProductPage(1);
         productDetailPage.validate(productFromCartPage.getName());
         productDetailPage.addToCart(productFromCartPage.getSize(), productFromCartPage.getStyle());

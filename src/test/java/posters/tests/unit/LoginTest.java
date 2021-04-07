@@ -96,7 +96,7 @@ public class LoginTest extends AbstractTest
     private LoginPage prepareTest()
     {
         // Page types to use
-        LoginPage loginPage;
+        var loginPage = new LoginPage();
 
         // Go to login page
         loginPage = OpenLoginPageFlow.flow();

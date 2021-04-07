@@ -171,7 +171,7 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
      */
     public NewBillingAddressPage sendShippingAddressForm(Address shippingAddress, boolean sameBillingAddress)
     {
-        return sendShippingAddressForm(shippingAddress.getFullName(), shippingAddress.getCompany(), shippingAddress.getAddressLine(),
+        return sendShippingAddressForm(shippingAddress.getName(), shippingAddress.getCompany(), shippingAddress.getStreet(),
                                        shippingAddress.getCity(), shippingAddress.getState(), shippingAddress.getZip(),
                                        shippingAddress.getCountry(), sameBillingAddress);
     }

@@ -6,6 +6,7 @@ package posters.tests.smoke;
 import org.junit.After;
 import org.junit.Test;
 
+import com.xceptance.neodymium.util.DataUtils;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
@@ -98,8 +99,8 @@ public class RegisteredOrderTest extends AbstractTest
         final String country = Neodymium.dataValue("country");
 
         // setup checkout data for validation
-        final Address shippingAddress = new Address(name, company, street, city, state, zip, country);
-        final Address billingAddress = new Address(name, company, street, city, state, zip, country);
+        final var shippingAddress = DataUtils.get(Address.class);
+        final var billingAddress = DataUtils.get(Address.class);
         final var creditCard = new CreditCard("John Doe", "4111111111111111", "xxxx xxxx xxxx 1111", "08", "2022");
 
         // Send payment data and validate place order page
