@@ -29,9 +29,10 @@ public class DeleteAccountPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a delete account page")
-    public void isExpectedPage()
+    public DeleteAccountPage isExpectedPage()
     {
         deleteForm.should(exist);
+        return this;
     }
 
     @Override

@@ -31,9 +31,10 @@ public class PaymentPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a payment page")
-    public void isExpectedPage()
+    public PaymentPage isExpectedPage()
     {
         headline.should(exist);
+        return this;
     }
 
     @Override

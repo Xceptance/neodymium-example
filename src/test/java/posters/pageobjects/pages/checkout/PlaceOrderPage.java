@@ -37,9 +37,10 @@ public class PlaceOrderPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a place order page")
-    public void isExpectedPage()
+    public PlaceOrderPage isExpectedPage()
     {
         headline.should(exist);
+        return this;
     }
 
     @Override

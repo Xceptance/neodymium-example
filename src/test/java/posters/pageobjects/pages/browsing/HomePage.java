@@ -17,9 +17,10 @@ public class HomePage extends AbstractBrowsingPage
 {
     @Override
     @Step("ensure this is a home page")
-    public void isExpectedPage()
+    public HomePage isExpectedPage()
     {
         $("#titleIndex").should(exist);
+        return this;
     }
 
     @Step("validate home page structure")

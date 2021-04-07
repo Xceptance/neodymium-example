@@ -24,9 +24,10 @@ public class PersonalDataPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a personal data page")
-    public void isExpectedPage()
+    public PersonalDataPage isExpectedPage()
     {
         headline.should(exist);
+        return this;
     }
 
     @Override

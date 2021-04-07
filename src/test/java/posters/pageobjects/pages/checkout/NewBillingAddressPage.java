@@ -40,9 +40,10 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a new billing address page")
-    public void isExpectedPage()
+    public NewBillingAddressPage isExpectedPage()
     {
         headline.should(exist);
+        return this;
     }
 
     @Override

@@ -38,9 +38,10 @@ public class RegisterPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a register page")
-    public void isExpectedPage()
+    public RegisterPage isExpectedPage()
     {
         registerForm.should(exist);
+        return this;
     }
 
     @Override

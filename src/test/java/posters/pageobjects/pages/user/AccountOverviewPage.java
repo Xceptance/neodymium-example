@@ -20,9 +20,10 @@ public class AccountOverviewPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is an account overview page")
-    public void isExpectedPage()
+    public AccountOverviewPage isExpectedPage()
     {
         headline.should(exist);
+        return this;
     }
 
     @Override

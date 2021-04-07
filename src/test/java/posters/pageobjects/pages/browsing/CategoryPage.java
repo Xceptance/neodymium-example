@@ -32,9 +32,10 @@ public class CategoryPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a category page")
-    public void isExpectedPage()
+    public CategoryPage isExpectedPage()
     {
         productOverview.should(exist);
+        return this;
     }
 
     @Step("validate category name \"{categoryName}\" on category page")

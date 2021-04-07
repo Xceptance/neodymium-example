@@ -36,9 +36,10 @@ public class CartPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a cart page")
-    public void isExpectedPage()
+    public CartPage isExpectedPage()
     {
         cartTable.should(exist);
+        return this;
     }
 
     @Step("validate subtotal in the cart")

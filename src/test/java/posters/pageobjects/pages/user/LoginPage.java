@@ -35,9 +35,10 @@ public class LoginPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a login page")
-    public void isExpectedPage()
+    public LoginPage isExpectedPage()
     {
         loginForm.should(exist);
+        return this;
     }
 
     @Override

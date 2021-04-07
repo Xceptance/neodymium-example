@@ -29,9 +29,10 @@ public class ProductdetailPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a product detail page")
-    public void isExpectedPage()
+    public ProductdetailPage isExpectedPage()
     {
         $("#addToCartForm").should(exist);
+        return this;
     }
 
     @Override

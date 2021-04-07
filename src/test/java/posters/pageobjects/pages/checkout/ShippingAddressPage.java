@@ -37,9 +37,10 @@ public class ShippingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a shipping address page")
-    public void isExpectedPage()
+    public ShippingAddressPage isExpectedPage()
     {
         headline.should(exist);
+        return this;
     }
 
     @Override
