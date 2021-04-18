@@ -34,6 +34,7 @@ public class CategoryPage extends AbstractBrowsingPage
     @Step("ensure this is a category page")
     public CategoryPage isExpectedPage()
     {
+        super.isExpectedPage();
         productOverview.should(exist);
         return this;
     }

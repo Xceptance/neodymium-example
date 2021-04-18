@@ -40,6 +40,7 @@ public class RegisterPage extends AbstractBrowsingPage
     @Step("ensure this is a register page")
     public RegisterPage isExpectedPage()
     {
+        super.isExpectedPage();
         registerForm.should(exist);
         return this;
     }

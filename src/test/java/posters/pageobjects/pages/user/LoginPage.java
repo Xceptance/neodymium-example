@@ -37,6 +37,7 @@ public class LoginPage extends AbstractBrowsingPage
     @Step("ensure this is a login page")
     public LoginPage isExpectedPage()
     {
+        super.isExpectedPage();
         loginForm.should(exist);
         return this;
     }

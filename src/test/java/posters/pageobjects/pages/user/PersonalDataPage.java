@@ -26,6 +26,7 @@ public class PersonalDataPage extends AbstractBrowsingPage
     @Step("ensure this is a personal data page")
     public PersonalDataPage isExpectedPage()
     {
+        super.isExpectedPage();
         headline.should(exist);
         return this;
     }
