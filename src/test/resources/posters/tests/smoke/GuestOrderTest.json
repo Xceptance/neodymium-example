@@ -5,5 +5,10 @@
 "city":"Burlington",
 "state":"Massachusetts",
 "zip":"01803",
-"country":"United States"}
+"country":"United States",
+"fullName":"Jimmy Blue",
+"cardNumber":"4111111111111111",
+"crypticCardNumber":"xxxx xxxx xxxx 1111",
+"expDateMonth":"04",
+"expDateYear":"2022"}
 ]

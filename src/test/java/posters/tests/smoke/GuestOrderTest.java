@@ -36,6 +36,7 @@ public class GuestOrderTest extends AbstractTest
 
         // Assure not logged in status
         homePage.userMenu.validateNotLoggedIn();
+
         // Assure an empty cart
         homePage.miniCart.validateTotalCount(totalCount);
         homePage.miniCart.validateSubtotal("$0.00");
@@ -50,7 +51,6 @@ public class GuestOrderTest extends AbstractTest
         final String productName = categoryPage.getProductNameByPosition(1, 1);
         var productDetailPage = categoryPage.clickProductByPosition(1, 1);
         productDetailPage.validate(productName);
-
         productDetailPage.addToCart("64 x 48 in", "gloss");
 
         // Go to cart and validate
@@ -67,7 +67,8 @@ public class GuestOrderTest extends AbstractTest
         final var shippingAddress = DataUtils.get(Address.class);
         final boolean sameBillingAddress = false;
         final var billingAddress = DataUtils.get(Address.class);
-        final var creditCard = new CreditCard("Jimmy Blue", "4111111111111111", "xxxx xxxx xxxx 1111", "04", "2022");
+        final var creditCard = DataUtils.get(CreditCard.class);
+
         // Go to shipping address and validate
         final var newShippingAddressPage = cartPage.openNewShippingPage();
         newShippingAddressPage.validateStructure();
@@ -88,6 +89,7 @@ public class GuestOrderTest extends AbstractTest
 
         // Place order
         homePage = placeOrderPage.placeOrder();
+
         // Validate order confirmation on home page
         homePage.validate();
         homePage.validateSuccessfulOrder();

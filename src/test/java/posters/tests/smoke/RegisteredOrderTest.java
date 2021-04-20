@@ -38,6 +38,7 @@ public class RegisteredOrderTest extends AbstractTest
 
         // Assure not logged in status
         homePage.userMenu.validateNotLoggedIn();
+
         // Assure an empty cart
         homePage.miniCart.validateTotalCount(totalCount);
         homePage.miniCart.validateSubtotal("$0.00");
@@ -49,7 +50,6 @@ public class RegisteredOrderTest extends AbstractTest
         final String email = Neodymium.dataValue("email");
         final String password = Neodymium.dataValue("password");
         homePage = loginPage.sendLoginform(email, password);
-
         final String firstname = Neodymium.dataValue("firstname");
         homePage.validateSuccessfulLogin(firstname);
 
@@ -62,7 +62,6 @@ public class RegisteredOrderTest extends AbstractTest
         final String productName = categoryPage.getProductNameByPosition(2, 1);
         var productDetailPage = categoryPage.clickProductByPosition(2, 1);
         productDetailPage.validate(productName);
-
         productDetailPage.addToCart("32 x 24 in", "matte");
 
         // Go to cart and validate
@@ -90,7 +89,7 @@ public class RegisteredOrderTest extends AbstractTest
         // setup checkout data for validation
         final var shippingAddress = DataUtils.get(Address.class);
         final var billingAddress = DataUtils.get(Address.class);
-        final var creditCard = new CreditCard("John Doe", "4111111111111111", "xxxx xxxx xxxx 1111", "08", "2022");
+        final var creditCard = DataUtils.get(CreditCard.class);
 
         // Send payment data and validate place order page
         final var placeOrderPage = paymentPage.selectCreditCard(1);
@@ -100,6 +99,7 @@ public class RegisteredOrderTest extends AbstractTest
 
         // Place order
         homePage = placeOrderPage.placeOrder();
+
         // Validate order confirmation on Homepage
         homePage.validate();
         homePage.validateSuccessfulOrder();
