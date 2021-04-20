@@ -57,6 +57,6 @@ public class BillingAddressPage extends AbstractCheckoutPage
         // Clicks the continue button
         $("#btnUseBillAddress").scrollTo().click();
 
-        return new PaymentPage();
+        return new PaymentPage().isExpectedPage();
     }
 }

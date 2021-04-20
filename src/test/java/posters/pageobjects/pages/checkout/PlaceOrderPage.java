@@ -178,6 +178,6 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         // Clicks the Order button
         orderButton.scrollTo().click();
 
-        return new HomePage();
+        return new HomePage().isExpectedPage();
     }
 }

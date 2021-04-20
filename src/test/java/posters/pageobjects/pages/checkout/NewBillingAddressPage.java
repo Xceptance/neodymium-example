@@ -145,7 +145,7 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
         // Click on Continue
         addBillingButton.scrollTo().click();
 
-        return new NewPaymentPage();
+        return new NewPaymentPage().isExpectedPage();
     }
 
     /**

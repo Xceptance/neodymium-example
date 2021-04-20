@@ -50,6 +50,6 @@ public class DeleteUserFlow
         loginPage.sendFalseLoginform(user);
         loginPage.validateWrongEmail(user.getEmail());
 
-        return loginPage;
+        return loginPage.isExpectedPage();
     }
 }

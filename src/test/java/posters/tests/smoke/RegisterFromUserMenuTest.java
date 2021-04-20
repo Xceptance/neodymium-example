@@ -4,7 +4,10 @@
 package posters.tests.smoke;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+
+import com.xceptance.neodymium.util.DataUtils;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
@@ -18,13 +21,20 @@ import posters.tests.AbstractTest;
 /**
  * @author pfotenhauer
  */
+
 @Owner("Lisa Smith")
 @Severity(SeverityLevel.NORMAL)
 @Tag("smoke")
 @Tag("registered")
 public class RegisterFromUserMenuTest extends AbstractTest
 {
-    final User user = new User("Jane", "Doe", "jane@doe.com", "topsecret");
+    User user;
+
+    @Before
+    public void setup()
+    {
+        user = DataUtils.get(User.class);
+    }
 
     @Test
     public void testRegisteringFromUserMenu()
@@ -40,7 +50,7 @@ public class RegisterFromUserMenuTest extends AbstractTest
         final var registerPage = homePage.userMenu.openRegister();
         registerPage.validateStructure();
 
-        final var loginPage = registerPage.sendRegisterForm(user, user.getPassword());
+        final var loginPage = registerPage.sendRegisterForm(user);
         loginPage.validateSuccessfulRegistration();
         loginPage.validateStructure();
 

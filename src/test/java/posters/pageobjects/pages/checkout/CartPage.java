@@ -318,7 +318,7 @@ public class CartPage extends AbstractBrowsingPage
     public ProductdetailPage openProductPage(int position)
     {
         $("#product" + (position - 1) + " img").scrollTo().click();
-        return new ProductdetailPage();
+        return new ProductdetailPage().isExpectedPage();
     }
 
     private void clickCheckoutButton()
@@ -330,14 +330,14 @@ public class CartPage extends AbstractBrowsingPage
     public NewShippingAddressPage openNewShippingPage()
     {
         clickCheckoutButton();
-        return new NewShippingAddressPage();
+        return new NewShippingAddressPage().isExpectedPage();
     }
 
     @Step("open shipping address from the cart page")
     public ShippingAddressPage openShippingPage()
     {
         clickCheckoutButton();
-        return new ShippingAddressPage();
+        return new ShippingAddressPage().isExpectedPage();
     }
 
     /**

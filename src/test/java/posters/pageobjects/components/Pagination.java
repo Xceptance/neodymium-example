@@ -41,6 +41,6 @@ public class Pagination extends AbstractComponent
         chosenPaginationLink.scrollTo();
         chosenPaginationLink.click();
 
-        return new CategoryPage();
+        return new CategoryPage().isExpectedPage();
     }
 }

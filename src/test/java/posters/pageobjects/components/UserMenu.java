@@ -60,7 +60,7 @@ public class UserMenu extends AbstractComponent
     {
         openUserMenu();
         userMenu.find(".goToLogin").scrollTo().click();
-        return new LoginPage();
+        return new LoginPage().isExpectedPage();
     }
 
     @Step("open account page from user menu")
@@ -68,7 +68,7 @@ public class UserMenu extends AbstractComponent
     {
         openUserMenu();
         userMenu.find(".goToAccountOverview").scrollTo().click();
-        return new AccountOverviewPage();
+        return new AccountOverviewPage().isExpectedPage();
     }
 
     @Step("open register page from user menu")
@@ -76,7 +76,7 @@ public class UserMenu extends AbstractComponent
     {
         openUserMenu();
         userMenu.find(".goToRegistration").scrollTo().click();
-        return new RegisterPage();
+        return new RegisterPage().isExpectedPage();
     }
 
     /**

@@ -90,14 +90,6 @@ public class RegisteredOrderTest extends AbstractTest
         final var paymentPage = billingAddressPage.selectBillingAddress(1);
         paymentPage.validateStructure();
 
-        final String name = firstname + " " + Neodymium.dataValue("lastname");
-        final String company = Neodymium.dataValue("company");
-        final String street = Neodymium.dataValue("street");
-        final String city = Neodymium.dataValue("city");
-        final String state = Neodymium.dataValue("state");
-        final String zip = Neodymium.dataValue("zip");
-        final String country = Neodymium.dataValue("country");
-
         // setup checkout data for validation
         final var shippingAddress = DataUtils.get(Address.class);
         final var billingAddress = DataUtils.get(Address.class);

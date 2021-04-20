@@ -102,7 +102,7 @@ public class NewPaymentPage extends AbstractCheckoutPage
         // Clicks the Continue button
         addPaymentButton.scrollTo().click();
 
-        return new PlaceOrderPage();
+        return new PlaceOrderPage().isExpectedPage();
     }
 
     /**

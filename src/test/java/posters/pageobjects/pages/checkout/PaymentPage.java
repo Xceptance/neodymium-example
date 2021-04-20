@@ -67,7 +67,7 @@ public class PaymentPage extends AbstractCheckoutPage
         // Clicks the continue button
         $("#btnUsePayment").scrollTo().click();
 
-        return new PlaceOrderPage();
+        return new PlaceOrderPage().isExpectedPage();
     }
 
     @Step("fill and send payment form")
@@ -88,6 +88,6 @@ public class PaymentPage extends AbstractCheckoutPage
         // Clicks the Continue button
         addPaymentButton.scrollTo().click();
 
-        return new PlaceOrderPage();
+        return new PlaceOrderPage().isExpectedPage();
     }
 }

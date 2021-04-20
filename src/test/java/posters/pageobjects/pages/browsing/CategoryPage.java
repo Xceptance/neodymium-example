@@ -73,7 +73,7 @@ public class CategoryPage extends AbstractBrowsingPage
         // Clicks a product by position. Because of the html code, this requires x and y coordinates.
         SelenideElement rowContainer = $$("#productOverview > .row").get(row - 1);
         rowContainer.find(".thumbnail", column - 1).scrollTo().click();
-        return new ProductdetailPage();
+        return new ProductdetailPage().isExpectedPage();
     }
 
     /**
@@ -100,7 +100,7 @@ public class CategoryPage extends AbstractBrowsingPage
         // Click on the product's image and open the product overview page
         // Click the product link to open the product detail page
         $("#product" + index + " img").scrollTo().click();
-        return new ProductdetailPage();
+        return new ProductdetailPage().isExpectedPage();
     }
 
     /**
@@ -114,7 +114,7 @@ public class CategoryPage extends AbstractBrowsingPage
         // Click on the product's image and open the product overview page
         // Click the product link to open the product detail page
         $("#productOverview .thumbnails .thumbnail a > img.pImage[title='" + productName + "']").scrollTo().click();
-        return new ProductdetailPage();
+        return new ProductdetailPage().isExpectedPage();
     }
 
     /**

@@ -15,6 +15,6 @@ public class OpenLoginPageFlow
         var loginPage = homePage.userMenu.openLogin();
         loginPage.isExpectedPage();
 
-        return loginPage;
+        return loginPage.isExpectedPage();
     }
 }

@@ -161,7 +161,7 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
         // Click on Continue
         addShippingButton.scrollTo().click();
 
-        return new NewBillingAddressPage();
+        return new NewBillingAddressPage().isExpectedPage();
     }
 
     /**

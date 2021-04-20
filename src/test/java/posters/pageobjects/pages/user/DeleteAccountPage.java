@@ -64,6 +64,6 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         // Delete account and open the homepage
         // click the confirmation button
         deleteButton.scrollTo().click();
-        return new HomePage();
+        return new HomePage().isExpectedPage();
     }
 }

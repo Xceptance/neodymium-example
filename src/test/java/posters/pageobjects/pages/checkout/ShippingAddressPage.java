@@ -73,7 +73,7 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         // Clicks the continue button
         $("#btnUseAddressContinue").scrollTo().click();
 
-        return new BillingAddressPage();
+        return new BillingAddressPage().isExpectedPage();
     }
 
     @Step("fill and send shipping address form")
@@ -115,6 +115,6 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         // Click on Continue
         addShippingButton.scrollTo().click();
 
-        return new BillingAddressPage();
+        return new BillingAddressPage().isExpectedPage();
     }
 }
