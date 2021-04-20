@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.pages.user;
 
 import static com.codeborne.selenide.Condition.exist;

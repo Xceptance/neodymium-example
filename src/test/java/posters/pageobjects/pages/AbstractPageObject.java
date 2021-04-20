@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.pages;
 
 import static com.codeborne.selenide.Selenide.$;

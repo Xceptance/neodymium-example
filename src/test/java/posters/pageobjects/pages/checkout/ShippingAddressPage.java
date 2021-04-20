@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.pages.checkout;
 
 import static com.codeborne.selenide.Condition.exist;
@@ -39,6 +36,7 @@ public class ShippingAddressPage extends AbstractCheckoutPage
     @Step("ensure this is a shipping address page")
     public ShippingAddressPage isExpectedPage()
     {
+        super.isExpectedPage();
         headline.should(exist);
         return this;
     }

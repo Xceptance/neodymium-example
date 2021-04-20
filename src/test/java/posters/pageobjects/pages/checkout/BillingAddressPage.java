@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.pages.checkout;
 
 import static com.codeborne.selenide.Condition.exist;

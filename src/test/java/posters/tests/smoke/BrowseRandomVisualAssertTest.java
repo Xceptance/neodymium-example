@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.tests.smoke;
 
 import java.util.Random;

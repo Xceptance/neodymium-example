@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.flows;
 
 import io.qameta.allure.Step;

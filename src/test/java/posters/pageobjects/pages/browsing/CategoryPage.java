@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.pages.browsing;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;

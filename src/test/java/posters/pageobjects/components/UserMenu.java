@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.cssClass;

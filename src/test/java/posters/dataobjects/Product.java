@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.dataobjects;
 
 import com.xceptance.neodymium.util.Neodymium;

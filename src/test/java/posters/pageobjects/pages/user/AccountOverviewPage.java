@@ -22,6 +22,7 @@ public class AccountOverviewPage extends AbstractBrowsingPage
     @Step("ensure this is an account overview page")
     public AccountOverviewPage isExpectedPage()
     {
+        super.isExpectedPage();
         headline.should(exist);
         return this;
     }

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.pages.checkout;
 
 import static com.codeborne.selenide.Condition.exactText;
@@ -43,6 +40,7 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
     @Step("ensure this is a new shipping address page")
     public NewShippingAddressPage isExpectedPage()
     {
+        super.isExpectedPage();
         headline.should(exist);
         return this;
     }

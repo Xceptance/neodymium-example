@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.pages.checkout;
 
 import static com.codeborne.selenide.Condition.exist;
@@ -33,6 +30,7 @@ public class PaymentPage extends AbstractCheckoutPage
     @Step("ensure this is a payment page")
     public PaymentPage isExpectedPage()
     {
+        super.isExpectedPage();
         headline.should(exist);
         return this;
     }

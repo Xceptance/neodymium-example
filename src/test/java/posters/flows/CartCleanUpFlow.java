@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.flows;
 
 import static com.codeborne.selenide.Selenide.$;

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.pages.checkout;
 
 import static com.codeborne.selenide.Condition.exactText;
@@ -38,6 +35,7 @@ public class CartPage extends AbstractBrowsingPage
     @Step("ensure this is a cart page")
     public CartPage isExpectedPage()
     {
+        super.isExpectedPage();
         cartTable.should(exist);
         return this;
     }

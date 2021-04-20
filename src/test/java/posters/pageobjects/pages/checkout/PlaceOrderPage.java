@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.pages.checkout;
 
 import static com.codeborne.selenide.Condition.exactText;
@@ -39,6 +36,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     @Step("ensure this is a place order page")
     public PlaceOrderPage isExpectedPage()
     {
+        super.isExpectedPage();
         headline.should(exist);
         return this;
     }

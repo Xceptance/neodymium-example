@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.tests.unit;
 
 import org.junit.Before;
