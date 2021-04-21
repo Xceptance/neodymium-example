@@ -70,19 +70,19 @@ public class GuestOrderTest extends AbstractTest
         final var creditCard = DataUtils.get(CreditCard.class);
 
         // Go to shipping address and validate
-        final var newShippingAddressPage = cartPage.openNewShippingPage();
+        var newShippingAddressPage = cartPage.openNewShippingPage();
         newShippingAddressPage.validateStructure();
 
         // Send shipping address and validate billing form
-        final var newBillingAddressPage = newShippingAddressPage.sendShippingAddressForm(shippingAddress, sameBillingAddress);
+        var newBillingAddressPage = newShippingAddressPage.sendShippingAddressForm(shippingAddress, sameBillingAddress);
         newBillingAddressPage.validateStructure();
 
         // Send billing address and validate payment form
-        final var newPaymentPage = newBillingAddressPage.sendBillingAddressForm(billingAddress);
+        var newPaymentPage = newBillingAddressPage.sendBillingAddressForm(billingAddress);
         newPaymentPage.validateStructure();
 
         // Send payment data and validate place order page
-        final var placeOrderPage = newPaymentPage.sendPaymentForm(creditCard);
+        var placeOrderPage = newPaymentPage.sendPaymentForm(creditCard);
         placeOrderPage.validateStructure();
         placeOrderPage.validateProduct(1, product.getName(), product.getAmount(), product.getStyle(), product.getSize());
         placeOrderPage.validateAddressesAndPayment(shippingAddress, billingAddress, creditCard);

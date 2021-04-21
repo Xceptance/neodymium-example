@@ -30,18 +30,20 @@ public class LoginTest extends AbstractTest
 {
     private User user;
 
+    LoginPage loginPage;
+
     @Before
     public void setup()
     {
         user = DataUtils.get(User.class);
+
+        loginPage = prepareTest();
     }
 
     @Test
     @DataSet(1)
     public void testSuccessfulLogin()
     {
-        var loginPage = prepareTest();
-
         var homePage = loginPage.sendLoginform(user);
         homePage.validateSuccessfulLogin(user);
     }
@@ -51,8 +53,6 @@ public class LoginTest extends AbstractTest
     @DataSet(3)
     public void testLoginWithPasswordFailure()
     {
-        var loginPage = prepareTest();
-
         loginPage.sendFalseLoginform(user);
         loginPage.validateWrongPassword(user.getEmail());
     }
@@ -61,8 +61,6 @@ public class LoginTest extends AbstractTest
     @DataSet(4)
     public void testLoginWithEmailFailure()
     {
-        var loginPage = prepareTest();
-
         loginPage.sendFalseLoginform(user);
         loginPage.validateWrongEmail(user.getEmail());
     }
@@ -72,8 +70,6 @@ public class LoginTest extends AbstractTest
     @DataSet(6)
     public void testLoginWithoutRequiredFields()
     {
-        var loginPage = prepareTest();
-
         loginPage.sendFalseLoginform(user);
         loginPage.errorMessage.validateNoErrorMessageOnPage();
     }
@@ -83,9 +79,6 @@ public class LoginTest extends AbstractTest
     public void testLoginWithUnregisteredUser()
     {
         final var user = new User("Jens", "Doe", "jens@doe.com", "topsecret");
-
-        var loginPage = prepareTest();
-
         loginPage.sendFalseLoginform(user);
         loginPage.validateWrongEmail(user.getEmail());
     }

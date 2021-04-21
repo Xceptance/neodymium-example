@@ -63,11 +63,12 @@ public class MiniCart extends AbstractComponent
     {
         // Click the mini cart icon again
         headerCart.scrollTo().click();
-
         // Open the cart
         // Click on the button to go to the Cart
-        miniCart.find(".goToCart").scrollTo().click();
-        return new CartPage().isExpectedPage();
+        // miniCart.find(".goToCart").scrollTo().click();
+        miniCart.find(".goToCart").click();
+
+        return new CartPage(); // .isExpectedPage();
     }
 
     @Step("get the total product count from mini cart")

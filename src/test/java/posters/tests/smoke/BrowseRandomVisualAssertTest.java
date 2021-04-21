@@ -57,8 +57,8 @@ public class BrowseRandomVisualAssertTest extends AbstractTest
     @Test
     public void browseRandomCategoriesAndProducts()
     {
-        var categoryPage = new CategoryPage();
-        var productPage = new ProductdetailPage();
+        CategoryPage categoryPage = new CategoryPage();
+        ProductdetailPage productPage = new ProductdetailPage();
 
         for (int i = 1; i <= numberOfProductDetailPages; i++)
         {

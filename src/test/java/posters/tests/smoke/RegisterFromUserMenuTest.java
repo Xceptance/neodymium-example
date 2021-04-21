@@ -44,10 +44,10 @@ public class RegisterFromUserMenuTest extends AbstractTest
         homePage.userMenu.validateNotLoggedIn();
 
         // Go to register form
-        final var registerPage = homePage.userMenu.openRegister();
+        var registerPage = homePage.userMenu.openRegister();
         registerPage.validateStructure();
 
-        final var loginPage = registerPage.sendRegisterForm(user);
+        var loginPage = registerPage.sendRegisterForm(user);
         loginPage.validateSuccessfulRegistration();
         loginPage.validateStructure();
 
