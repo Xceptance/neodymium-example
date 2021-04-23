@@ -106,9 +106,12 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     public void validateAddressesAndPayment(Address shippingAddress, Address billingAddress, CreditCard creditcard)
     {
         // Shipping address
-        // Name
-        // Makes sure the shipping address name matches the parameter
-        shippingAddressForm.find(".name").shouldHave(exactText(shippingAddress.getName()));
+        // fullName
+        // Makes sure the shipping address fullName matches the parameter
+        String firstName = shippingAddress.getFirstName();
+        String lastName = shippingAddress.getLastName();
+        String fullName = firstName + " " + lastName;
+        shippingAddressForm.find(".name").shouldHave(exactText(fullName));
         // Company
         // Makes sure the shipping address company matches the parameter
         shippingAddressForm.find(".company").shouldHave(exactText(shippingAddress.getCompany()));
@@ -130,7 +133,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         // Billing address
         // Name
         // Makes sure the billing address name matches the parameter
-        billingAddressForm.find(".name").shouldHave(exactText(billingAddress.getName()));
+        billingAddressForm.find(".name").shouldHave(exactText(fullName));
         // Company
         // Makes sure the billing address company matches the parameter
         billingAddressForm.find(".company").shouldHave(exactText(billingAddress.getCompany()));

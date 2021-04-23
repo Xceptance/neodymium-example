@@ -124,7 +124,7 @@ public class CreditCard
     @Override
     public String toString()
     {
-        return String.format("CreditCard [fullName()=%s, cardNumber()=%s, expMonth()=%s, expYear()=%s]",
-                             getFullName(), getCardNumber(), getExpDateMonth(), getExpDateYear());
+        return String.format("CreditCard [fullName()=%s, cardNumber()=%s, crypticCardNumber()=%s, expMonth()=%s, expYear()=%s]",
+                             getFullName(), getCardNumber(), getCrypticCardNumber(), getExpDateMonth(), getExpDateYear());
     }
 }

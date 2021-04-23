@@ -50,8 +50,8 @@ public class RegisteredOrderTest extends AbstractTest
         final String email = Neodymium.dataValue("email");
         final String password = Neodymium.dataValue("password");
         homePage = loginPage.sendLoginform(email, password);
-        final String firstname = Neodymium.dataValue("firstname");
-        homePage.validateSuccessfulLogin(firstname);
+        final String firstName = Neodymium.dataValue("firstName");
+        homePage.validateSuccessfulLogin(firstName);
 
         // Go to category
         final String categoryName = homePage.topNav.getSubCategoryNameByPosition(2, 3);

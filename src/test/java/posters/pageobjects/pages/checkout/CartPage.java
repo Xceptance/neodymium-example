@@ -36,7 +36,7 @@ public class CartPage extends AbstractBrowsingPage
     public CartPage isExpectedPage()
     {
         super.isExpectedPage();
-        cartTable.should(exist);
+        $("#titleCart").shouldBe(visible);
         return this;
     }
 
@@ -44,7 +44,6 @@ public class CartPage extends AbstractBrowsingPage
     public void validateSubtotal(String subtotal)
     {
         $$("#cartSummaryList li").findBy(text("Subtotal")).find(".text-right").shouldHave(exactText(subtotal));
-
     }
 
     @Override
@@ -74,7 +73,6 @@ public class CartPage extends AbstractBrowsingPage
     {
         SelenideElement productContainer = $$("div.hidden-xs").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
                                                               .parent().parent();
-
         productContainer.find(".productName").shouldHave(exactText(product.getName()));
         productContainer.find(".productSize").shouldHave(exactText(product.getSize()));
         productContainer.find(".productStyle").shouldHave(exactText(product.getStyle()));

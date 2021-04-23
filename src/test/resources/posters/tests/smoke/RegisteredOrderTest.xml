@@ -3,8 +3,8 @@
     <dataset>
         <data key="email">john@doe.com</data>
         <data key="password">topsecret</data>
-        <data key="firstname">John</data>
-        <data key="name">John Doe</data>
+        <data key="firstName">John</data>
+        <data key="lastName">Doe</data>
         <data key="company">John Doe Inc.</data>
         <data key="street">5-7 John Doe street</data>
         <data key="city">New York</data>

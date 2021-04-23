@@ -5,7 +5,9 @@ package posters.dataobjects;
  */
 public class Address
 {
-    String name;
+    String firstName;
+
+    String lastName;
 
     String company;
 
@@ -20,8 +22,10 @@ public class Address
     String country;
 
     /**
-     * @param name
-     *            the name to set
+     * @param firstName
+     *            the firstName to set
+     * @param lastName
+     *            the lastName to set
      * @param company
      *            the company to set
      * @param street
@@ -35,9 +39,10 @@ public class Address
      * @param country
      *            the country to set
      */
-    public Address(String name, String company, String street, String city, String state, String zip, String country)
+    public Address(String firstName, String lastName, String company, String street, String city, String state, String zip, String country)
     {
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.company = company;
         this.street = street;
         this.city = city;
@@ -47,20 +52,37 @@ public class Address
     }
 
     /**
-     * @return the name
+     * @return the firstName
      */
-    public String getName()
+    public String getFirstName()
     {
-        return name;
+        return firstName;
     }
 
     /**
-     * @param name
-     *            the name to set
+     * @param firstName
+     *            the firstName to set
      */
-    public void setName(String name)
+    public void setFirstName(String firstName)
     {
-        this.name = name;
+        this.firstName = firstName;
+    }
+
+    /**
+     * @return the lastName
+     */
+    public String getLastName()
+    {
+        return lastName;
+    }
+
+    /**
+     * @param lastName
+     *            the lastName to set
+     */
+    public void setLastName(String lastName)
+    {
+        this.lastName = lastName;
     }
 
     /**
@@ -168,7 +190,7 @@ public class Address
     @Override
     public String toString()
     {
-        return String.format("Address [name()=%s, company()=%s, street()=%s, zip()=%s, city()=%s, state()=%s, country()=%s]",
-                             getName(), getCompany(), getStreet(), getZip(), getCity(), getState(), getCountry());
+        return String.format("Address [firtName()=%s, lastName()=%s, company()=%s, street()=%s, zip()=%s, city()=%s, state()=%s, country()=%s]",
+                             getFirstName(), getLastName(), getCompany(), getStreet(), getZip(), getCity(), getState(), getCountry());
     }
 }

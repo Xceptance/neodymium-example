@@ -152,7 +152,9 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
      */
     public NewPaymentPage sendBillingAddressForm(Address billingAddress)
     {
-        return sendBillingAddressForm(billingAddress.getName(), billingAddress.getCompany(), billingAddress.getStreet(),
+        String fullName = billingAddress.getFirstName() + " " + billingAddress.getLastName();
+
+        return sendBillingAddressForm(fullName, billingAddress.getCompany(), billingAddress.getStreet(),
                                       billingAddress.getCity(), billingAddress.getState(), billingAddress.getZip(),
                                       billingAddress.getCountry());
     }

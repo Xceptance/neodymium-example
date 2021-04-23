@@ -25,7 +25,7 @@ import posters.tests.AbstractTest;
 @Tag("registered")
 public class RegisterFromUserMenuTest extends AbstractTest
 {
-    User user;
+    private User user;
 
     @Before
     public void setup()

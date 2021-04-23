@@ -28,7 +28,7 @@ import posters.tests.AbstractTest;
 @Browser("Firefox_1024x768")
 public class RegisterTest extends AbstractTest
 {
-    User user;
+    private User user;
 
     @Before
     public void setup()

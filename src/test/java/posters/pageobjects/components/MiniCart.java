@@ -39,8 +39,8 @@ public class MiniCart extends AbstractComponent
     @Step("open the mini cart")
     public void openMiniCart()
     {
-        // Click the mini cart icon
-        headerCart.scrollTo().click();
+        // Click hover over the cart icon
+        headerCart.hover();
         // Wait for mini cart to appear
         // Wait for the mini cart to show
         miniCart.waitUntil(visible, Neodymium.configuration().selenideTimeout());
@@ -49,8 +49,6 @@ public class MiniCart extends AbstractComponent
     @Step("close the mini cart")
     public void closeMiniCart()
     {
-        // Click the mini cart icon again
-        headerCart.scrollTo().click();
         // Move the mouse out of the area
         $("#brand").hover();
         // Wait for mini cart to disappear
@@ -61,14 +59,11 @@ public class MiniCart extends AbstractComponent
     @Step("open the cart page")
     public CartPage openCartPage()
     {
-        // Click the mini cart icon again
-        headerCart.scrollTo().click();
         // Open the cart
         // Click on the button to go to the Cart
         // miniCart.find(".goToCart").scrollTo().click();
         miniCart.find(".goToCart").click();
-
-        return new CartPage(); // .isExpectedPage();
+        return new CartPage().isExpectedPage();
     }
 
     @Step("get the total product count from mini cart")
@@ -86,7 +81,6 @@ public class MiniCart extends AbstractComponent
     @Step("get the subtotal price from mini cart")
     public String getSubtotal()
     {
-
         // Store the mini cart subtotal
         // Open mini cart
         openMiniCart();

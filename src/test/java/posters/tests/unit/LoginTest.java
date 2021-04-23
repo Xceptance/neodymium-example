@@ -30,7 +30,7 @@ public class LoginTest extends AbstractTest
 {
     private User user;
 
-    LoginPage loginPage;
+    private LoginPage loginPage;
 
     @Before
     public void setup()
