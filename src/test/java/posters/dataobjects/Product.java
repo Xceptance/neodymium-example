@@ -49,24 +49,6 @@ public class Product
     }
 
     /**
-     * @param name
-     *            the name to set
-     */
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-    /**
-     * @param price
-     *            the price to set
-     */
-    public void setUnitPrice(String price)
-    {
-        this.unitPrice = price;
-    }
-
-    /**
      * @return the unitPrice
      */
     public String getUnitPrice()
@@ -83,15 +65,6 @@ public class Product
     }
 
     /**
-     * @param style
-     *            the style to set
-     */
-    public void setStyle(String style)
-    {
-        this.style = style;
-    }
-
-    /**
      * @return the size
      */
     public String getSize()
@@ -100,29 +73,11 @@ public class Product
     }
 
     /**
-     * @param size
-     *            the size to set
-     */
-    public void setSize(String size)
-    {
-        this.size = size;
-    }
-
-    /**
      * @return the amount
      */
     public int getAmount()
     {
         return amount;
-    }
-
-    /**
-     * @param amount
-     *            the amount to set
-     */
-    public void setAmount(int amount)
-    {
-        this.amount = amount;
     }
 
     @Override
