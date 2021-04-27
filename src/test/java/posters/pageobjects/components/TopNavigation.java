@@ -47,14 +47,14 @@ public class TopNavigation extends AbstractComponent
         return new CategoryPage();
     }
 
-    @Step("click on \"{categoryName}\" category")
+    @Step("click on '{categoryName}' category")
     public CategoryPage clickCategory(String categoryName)
     {
         $(By.linkText(categoryName)).scrollTo().click();
         return new CategoryPage();
     }
 
-    @Step("click on a \"{subCategoryName}\" subcategory within \"{categoryName}\"")
+    @Step("click on a '{subCategoryName}' subcategory within '{categoryName}'")
     public CategoryPage clickSubCategoryByNames(String categoryName, String subCategoryName)
     {
         // Open the category page
@@ -69,7 +69,7 @@ public class TopNavigation extends AbstractComponent
      * @param subCategoryName
      * @return
      */
-    @Step("click on a product by name \"{productName}\"")
+    @Step("click on a product by name '{productName}'")
     public CategoryPage clickSubcategoryByName(String subCategoryName)
     {
         categoryMenu.find(".dropdown-menu li > a[title='" + subCategoryName + "']").parent().parent().parent().hover();

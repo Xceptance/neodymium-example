@@ -61,7 +61,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
      * @param product
      *            The product
      */
-    @Step("validate order contains product \"{product.name}\"")
+    @Step("validate order contains product '{product.name}'")
     public void validateContainsProduct(Product product)
     {
         SelenideElement productContainer = $$("div.hidden-xs").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
@@ -81,7 +81,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         $$("#checkoutSummaryList li").findBy(text("Subtotal")).find(".text-right").shouldBe(exactText(subtotal));
     }
 
-    @Step("validate product \"{productName}\" on place order page")
+    @Step("validate product '{productName}' on place order page")
     public void validateProduct(int position, String productName, int productCount, String productStyle, String productSize)
     {
         final int index = position - 1;

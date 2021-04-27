@@ -115,14 +115,14 @@ public class MiniCart extends AbstractComponent
      * @param product
      */
 
-    @Step("validate \"{product}\" in the mini cart")
+    @Step("validate '{product}' in the mini cart")
     public void validateMiniCart(int position, Product product)
     {
         validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(),
                          PriceHelper.format(product.getTotalPrice()));
     }
 
-    @Step("validate \"{product}\" in the mini cart by name")
+    @Step("validate '{product}' in the mini cart by name")
     public void validateMiniCartByProduct(Product product)
     {
         SelenideElement productContainer = $$(".cartItems").filter(matchText(product.getCartRowRegex())).shouldHaveSize(1).first();
@@ -140,7 +140,7 @@ public class MiniCart extends AbstractComponent
      * @param productAmount
      * @param productTotalPrice
      */
-    @Step("validate \"{product}\" in the mini cart")
+    @Step("validate '{product}' in the mini cart")
     public void validateMiniCart(int position, Product product, int productAmount, String productTotalPrice)
     {
         validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), productAmount, productTotalPrice);

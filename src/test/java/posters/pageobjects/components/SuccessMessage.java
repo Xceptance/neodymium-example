@@ -18,7 +18,7 @@ public class SuccessMessage extends AbstractComponent
         successMessage.should(exist);
     }
 
-    @Step("validate that the success message \"{message}\" is visible")
+    @Step("validate that the success message '{message}' is visible")
     public void validateSuccessMessage(String message)
     {
         // Wait until javascript makes the success message visible

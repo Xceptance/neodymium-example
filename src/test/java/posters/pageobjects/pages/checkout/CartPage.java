@@ -94,7 +94,7 @@ public class CartPage extends AbstractBrowsingPage
     /**
      * @param shippingCosts
      */
-    @Step("validate cart page with shipping costs: \"{shippingCosts}\"")
+    @Step("validate cart page with shipping costs: '{shippingCosts}'")
     public void validate(String shippingCosts)
     {
         validateStructure();
@@ -105,7 +105,7 @@ public class CartPage extends AbstractBrowsingPage
      * @param position
      * @param product
      */
-    @Step("validate \"{product}\" in on the cart page")
+    @Step("validate '{product}' in on the cart page")
     public void validateCartItem(int position, Product product)
     {
         validateCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(),
@@ -117,7 +117,7 @@ public class CartPage extends AbstractBrowsingPage
      * @param product
      * @param productAmount
      */
-    @Step("validate \"{product}\" in on the cart page")
+    @Step("validate '{product}' in on the cart page")
     public void validateCartItem(int position, Product product, int productAmount)
     {
         validateCartItem(position, product.getName(), product.getStyle(), product.getSize(),

@@ -82,7 +82,7 @@ public class ProductdetailPage extends AbstractBrowsingPage
 
     }
 
-    @Step("add product with size:\"{size}\" and style:\"{style}\" to cart")
+    @Step("add product with size:'{size}' and style:'{style}' to cart")
     public void addToCart(String size, String style)
     {
         // Style
@@ -132,7 +132,7 @@ public class ProductdetailPage extends AbstractBrowsingPage
     /**
      * @param productName
      */
-    @Step("validate the product detail page of \"{productName}\"")
+    @Step("validate the product detail page of '{productName}'")
     public void validate(String productName)
     {
         validateStructure();
@@ -142,7 +142,7 @@ public class ProductdetailPage extends AbstractBrowsingPage
     /**
      * @param productName
      */
-    @Step("validate the product detail page of \"{productName}\" and assert visually")
+    @Step("validate the product detail page of '{productName}' and assert visually")
     public void validateAndVisualAssert(String productName)
     {
         validateStructureAndVisual();

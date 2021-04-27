@@ -20,21 +20,21 @@ public class Search extends AbstractComponent
         searchField.should(exist);
     }
 
-    @Step("search for \"{searchTerm}\" without result")
+    @Step("search for '{searchTerm}' without result")
     public NoHitsPage noResult(String searchTerm)
     {
         search(searchTerm);
         return new NoHitsPage();
     }
 
-    @Step("search for \"{searchTerm}\" with result")
+    @Step("search for '{searchTerm}' with result")
     public CategoryPage categoryPageResult(String searchTerm)
     {
         search(searchTerm);
         return new CategoryPage();
     }
 
-    @Step("search for \"{searchTerm}\"")
+    @Step("search for '{searchTerm}'")
     public void search(String searchTerm)
     {
         openSearch();

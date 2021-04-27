@@ -82,7 +82,7 @@ public class UserMenu extends AbstractComponent
     /**
      * @param firstName
      */
-    @Step("validate that \"{firstName}\" is logged in")
+    @Step("validate that '{firstName}' is logged in")
     public void validateLoggedInName(String firstName)
     {
         // Click on the mini user menu symbol
