@@ -31,7 +31,7 @@ public class Search extends AbstractComponent
     public CategoryPage categoryPageResult(String searchTerm)
     {
         search(searchTerm);
-        return new CategoryPage();
+        return new CategoryPage().isExpectedPage();
     }
 
     @Step("search for '{searchTerm}'")

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.exactText;
@@ -42,8 +39,8 @@ public class MiniCart extends AbstractComponent
     @Step("open the mini cart")
     public void openMiniCart()
     {
-        // Click the mini cart icon
-        headerCart.scrollTo().click();
+        // Hover over the cart icon
+        headerCart.hover();
         // Wait for mini cart to appear
         // Wait for the mini cart to show
         miniCart.waitUntil(visible, Neodymium.configuration().selenideTimeout());
@@ -52,8 +49,6 @@ public class MiniCart extends AbstractComponent
     @Step("close the mini cart")
     public void closeMiniCart()
     {
-        // Click the mini cart icon again
-        headerCart.scrollTo().click();
         // Move the mouse out of the area
         $("#brand").hover();
         // Wait for mini cart to disappear
@@ -66,8 +61,8 @@ public class MiniCart extends AbstractComponent
     {
         // Open the cart
         // Click on the button to go to the Cart
-        miniCart.find(".goToCart").scrollTo().click();
-        return new CartPage();
+        miniCart.find(".goToCart").click();
+        return new CartPage().isExpectedPage();
     }
 
     @Step("get the total product count from mini cart")
@@ -85,7 +80,6 @@ public class MiniCart extends AbstractComponent
     @Step("get the subtotal price from mini cart")
     public String getSubtotal()
     {
-
         // Store the mini cart subtotal
         // Open mini cart
         openMiniCart();
@@ -104,7 +98,7 @@ public class MiniCart extends AbstractComponent
         // Open mini cart
         openMiniCart();
         // Verify subtotal equals specified subtotal
-        // Compare the subTotal to the parameter
+        // Compare the subtotal to the parameter
         subOrderPrice.shouldHave(exactText(subtotal));
         // Close Mini Cart
         closeMiniCart();

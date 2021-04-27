@@ -36,7 +36,7 @@ public class CategoryPage extends AbstractBrowsingPage
         return this;
     }
 
-    @Step("validate category name '{categoryName}' on category page")
+    @Step("validate category name \"{categoryName}\" on category page")
     public void validateCategoryName(String categoryName)
     {
         // Category name
@@ -104,8 +104,8 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param productName
      * @return
      */
-    @Step("click on a product by name '{productName}'")
-    public ProductdetailPage clickProductByName(String productName)
+    @Step("click on a product by name \"{productName}\"")
+    public ProductDetailPage clickProductByName(String productName)
     {
         // Open the product detail page
         // Click on the product's image and open the product overview page
@@ -130,7 +130,7 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param searchTerm
      * @param searchTermExpectedCount
      */
-    @Step("validate search results for '{searchTerm}' on category page")
+    @Step("validate search results for \"{searchTerm}\" on category page")
     public void validateSearchHits(String searchTerm, int searchTermExpectedCount)
     {
         $("#titleSearchText").should(exist);
@@ -156,7 +156,7 @@ public class CategoryPage extends AbstractBrowsingPage
     /**
      * @param productName
      */
-    @Step("validate product '{productName}' is visible on category page")
+    @Step("validate product \"{productName}\" is visible on category page")
     public void validateProductVisible(String productName)
     {
         $("#productOverview .thumbnails .thumbnail a > img.pImage[title='" + productName + "']").shouldBe(visible);
@@ -165,7 +165,7 @@ public class CategoryPage extends AbstractBrowsingPage
     /**
      * @param categoryName
      */
-    @Step("validate category page of category '{categoryName}'")
+    @Step("validate category page of category \"{categoryName}\"")
     public void validate(String categoryName)
     {
         validateStructure();
@@ -175,7 +175,7 @@ public class CategoryPage extends AbstractBrowsingPage
     /**
      * @param categoryName
      */
-    @Step("validate category page of category '{categoryName}' and assert visually")
+    @Step("validate category page of category \"{categoryName}\" and assert visually")
     public void validateAndVisualAssert(String categoryName)
     {
         validateStructureAndVisual();

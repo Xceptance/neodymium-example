@@ -1,15 +1,9 @@
-/**
- * 
- */
 package posters.flows;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.User;
 import posters.pageobjects.pages.browsing.HomePage;
-import posters.pageobjects.pages.user.AccountOverviewPage;
-import posters.pageobjects.pages.user.DeleteAccountPage;
 import posters.pageobjects.pages.user.LoginPage;
-import posters.pageobjects.pages.user.PersonalDataPage;
 
 /**
  * @author pfotenhauer
@@ -22,9 +16,10 @@ public class DeleteUserFlow
     @Step("delete user flow")
     public static LoginPage flow(User user)
     {
-        HomePage homePage = new HomePage();
+        var homePage = new HomePage();
+
         // ensure that the user is logged in
-        LoginPage loginPage;
+        var loginPage = new LoginPage();
         if (!homePage.userMenu.isLoggedIn())
         {
             loginPage = homePage.userMenu.openLogin();
@@ -32,15 +27,15 @@ public class DeleteUserFlow
         }
 
         // go to account page
-        AccountOverviewPage accountOverviewPage = homePage.userMenu.openAccountOverview();
+        var accountOverviewPage = homePage.userMenu.openAccountOverview();
         accountOverviewPage.validateStructure();
 
         // go to personal data page
-        PersonalDataPage personalDataPage = accountOverviewPage.openPersonalData();
+        var personalDataPage = accountOverviewPage.openPersonalData();
         personalDataPage.validateStructure();
 
         // go to account deletion page
-        DeleteAccountPage deleteAccountPage = personalDataPage.openDeleteAccount();
+        var deleteAccountPage = personalDataPage.openDeleteAccount();
 
         // delete the account
         homePage = deleteAccountPage.deleteAccount(user.getPassword());
@@ -52,6 +47,6 @@ public class DeleteUserFlow
         loginPage.sendFalseLoginform(user);
         loginPage.validateWrongEmail(user.getEmail());
 
-        return loginPage;
+        return loginPage.isExpectedPage();
     }
 }

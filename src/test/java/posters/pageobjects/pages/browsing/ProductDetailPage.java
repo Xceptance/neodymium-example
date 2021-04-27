@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.pages.browsing;
 
 import static com.codeborne.selenide.Condition.exactText;
@@ -17,7 +14,7 @@ import posters.dataobjects.Product;
 /**
  * @author pfotenhauer
  */
-public class ProductdetailPage extends AbstractBrowsingPage
+public class ProductDetailPage extends AbstractBrowsingPage
 {
     private SelenideElement addToCartButton = $("#btnAddToCart");
 
@@ -29,9 +26,11 @@ public class ProductdetailPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a product detail page")
-    public void isExpectedPage()
+    public ProductDetailPage isExpectedPage()
     {
+        super.isExpectedPage();
         $("#addToCartForm").should(exist);
+        return this;
     }
 
     @Override

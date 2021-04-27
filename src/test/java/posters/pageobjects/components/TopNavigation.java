@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.exist;
@@ -44,14 +41,14 @@ public class TopNavigation extends AbstractComponent
         // Clicks the subcategory with position @{subCategoryPosition}
         // belonging to the category with position @{categoryPosition}
         topCat.find(".dropdown-menu a", subCategoryPosition - 1).click();
-        return new CategoryPage();
+        return new CategoryPage().isExpectedPage();
     }
 
     @Step("click on '{categoryName}' category")
     public CategoryPage clickCategory(String categoryName)
     {
         $(By.linkText(categoryName)).scrollTo().click();
-        return new CategoryPage();
+        return new CategoryPage().isExpectedPage();
     }
 
     @Step("click on a '{subCategoryName}' subcategory within '{categoryName}'")
@@ -75,7 +72,7 @@ public class TopNavigation extends AbstractComponent
         categoryMenu.find(".dropdown-menu li > a[title='" + subCategoryName + "']").parent().parent().parent().hover();
         categoryMenu.find(By.linkText(subCategoryName)).click();
 
-        return new CategoryPage();
+        return new CategoryPage().isExpectedPage();
     }
 
     @Step("get a random sub category name ")

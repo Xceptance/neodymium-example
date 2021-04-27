@@ -1,0 +1,19 @@
+[
+    {
+        "email": "john@doe.com",
+        "password": "topsecret",
+        "firstName": "John",
+        "lastName": "Doe",
+        "company": "John Doe Inc.",
+        "street": "5-7 John Doe street",
+        "city": "New York",
+        "state": "NY",
+        "zip": "12345",
+        "country": "United States",
+        "fullName": "John Doe",
+        "cardNumber": "4111111111111111",
+        "crypticCardNumber": "xxxx xxxx xxxx 1111",
+        "expDateMonth": "08",
+        "expDateYear": "2022"
+    }
+]

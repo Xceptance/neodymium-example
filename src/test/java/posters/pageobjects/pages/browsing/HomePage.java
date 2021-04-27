@@ -17,9 +17,11 @@ public class HomePage extends AbstractBrowsingPage
 {
     @Override
     @Step("ensure this is a home page")
-    public void isExpectedPage()
+    public HomePage isExpectedPage()
     {
+        super.isExpectedPage();
         $("#titleIndex").should(exist);
+        return this;
     }
 
     @Step("validate home page structure")
@@ -99,11 +101,9 @@ public class HomePage extends AbstractBrowsingPage
         footer.validate();
     }
 
-    public ProductdetailPage clickOnPresentedProduct(String productName)
+    public ProductDetailPage clickOnPresentedProduct(String productName)
     {
         $$("#productList .thumbnail .pName").filter(exactText(productName)).shouldHaveSize(1).first().click();
-        ProductdetailPage productdetailPage = new ProductdetailPage();
-        productdetailPage.isExpectedPage();
-        return productdetailPage;
+        return new ProductDetailPage().isExpectedPage();
     }
 }

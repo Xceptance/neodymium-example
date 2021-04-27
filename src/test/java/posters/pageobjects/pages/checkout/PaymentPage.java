@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.pages.checkout;
 
 import static com.codeborne.selenide.Condition.exist;
@@ -31,9 +28,11 @@ public class PaymentPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a payment page")
-    public void isExpectedPage()
+    public PaymentPage isExpectedPage()
     {
+        super.isExpectedPage();
         headline.should(exist);
+        return this;
     }
 
     @Override
@@ -66,7 +65,7 @@ public class PaymentPage extends AbstractCheckoutPage
         // Clicks the continue button
         $("#btnUsePayment").scrollTo().click();
 
-        return new PlaceOrderPage();
+        return new PlaceOrderPage().isExpectedPage();
     }
 
     @Step("fill and send payment form")
@@ -87,6 +86,6 @@ public class PaymentPage extends AbstractCheckoutPage
         // Clicks the Continue button
         addPaymentButton.scrollTo().click();
 
-        return new PlaceOrderPage();
+        return new PlaceOrderPage().isExpectedPage();
     }
 }

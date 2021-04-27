@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.dataobjects;
 
 /**
@@ -48,29 +45,11 @@ public class CreditCard
     }
 
     /**
-     * @param fullName
-     *            the fullName to set
-     */
-    public void setFullName(String fullName)
-    {
-        this.fullName = fullName;
-    }
-
-    /**
      * @return the cardNumber
      */
     public String getCardNumber()
     {
         return cardNumber;
-    }
-
-    /**
-     * @param cardNumber
-     *            the cardNumber to set
-     */
-    public void setCardNumber(String cardNumber)
-    {
-        this.cardNumber = cardNumber;
     }
 
     /**
@@ -82,29 +61,11 @@ public class CreditCard
     }
 
     /**
-     * @param crypticCardNumber
-     *            the crypticCardNumber to set
-     */
-    public void setCrypticCardNumber(String crypticCardNumber)
-    {
-        this.crypticCardNumber = crypticCardNumber;
-    }
-
-    /**
      * @return the expDateMonth
      */
     public String getExpDateMonth()
     {
         return expDateMonth;
-    }
-
-    /**
-     * @param expDateMonth
-     *            the expDateMonth to set
-     */
-    public void setExpDateMonth(String expDateMonth)
-    {
-        this.expDateMonth = expDateMonth;
     }
 
     /**
@@ -115,19 +76,10 @@ public class CreditCard
         return expDateYear;
     }
 
-    /**
-     * @param expDateYear
-     *            the expDateYear to set
-     */
-    public void setExpDateYear(String expDateYear)
-    {
-        this.expDateYear = expDateYear;
-    }
-
     @Override
     public String toString()
     {
-        return String.format("CreditCard [fullName()=%s, cardNumber()=%s, expMonth()=%s, expYear()=%s]",
-                             getFullName(), getCardNumber(), getExpDateMonth(), getExpDateYear());
+        return String.format("CreditCard [fullName()=%s, cardNumber()=%s, crypticCardNumber()=%s, expMonth()=%s, expYear()=%s]",
+                             getFullName(), getCardNumber(), getCrypticCardNumber(), getExpDateMonth(), getExpDateYear());
     }
 }

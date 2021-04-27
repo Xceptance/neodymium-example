@@ -1,9 +1,16 @@
 [
-{"name": "Jimmy Blue", 
-"company": "Ochsenknecht Records",
-"street":"6 Wall St",
-"city":"Burlington",
-"state":"Massachusetts",
-"zip":"01803",
-"country":"United States"}
+   {
+      "name":"Jimmy Blue",
+      "company":"Ochsenknecht Records",
+      "street":"6 Wall St",
+      "city":"Burlington",
+      "state":"Massachusetts",
+      "zip":"01803",
+      "country":"United States",
+      "fullName":"Jimmy Blue",
+      "cardNumber":"4111111111111111",
+      "crypticCardNumber":"xxxx xxxx xxxx 1111",
+      "expDateMonth":"04",
+      "expDateYear":"2022"
+   }
 ]

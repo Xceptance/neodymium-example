@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.utility;
 
 import java.text.DecimalFormat;

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.pages;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -19,16 +16,17 @@ public abstract class AbstractPageObject
 {
     public Title title = new Title();
 
-    public void isExpectedPage()
+    public AbstractPageObject isExpectedPage()
     {
+        return this;
     }
 
     abstract public void validateStructure();
 
     public void validateVisual(String testCaseName)
     {
-    	String className = this.getClass().getSimpleName();
-    	
+        String className = this.getClass().getSimpleName();
+
         if (StringUtils.isAllEmpty(testCaseName))
         {
             new AI().execute(Neodymium.getDriver(), className, "validate" + className);
