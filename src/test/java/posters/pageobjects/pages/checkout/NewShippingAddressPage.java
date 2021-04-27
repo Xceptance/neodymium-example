@@ -59,42 +59,42 @@ public class NewShippingAddressPage extends AbstractCheckoutPage
         $("#formAddDelAddr").shouldBe(visible);
         // Name
         // Asserts the label next to the name field shows the right text
-        $("label[for=\"fullName\"]").shouldHave(exactText(Neodymium.localizedText("General.addresses.fullname")));
+        $("label[for='fullName']").shouldHave(exactText(Neodymium.localizedText("General.addresses.fullname")));
         // Asserts the name field is there
         nameField.shouldBe(visible);
         // Company
         // Asserts the label next to the company field shows the right text
-        $("label[for=\"company\"]").shouldHave(exactText(Neodymium.localizedText("General.addresses.company")));
+        $("label[for='company']").shouldHave(exactText(Neodymium.localizedText("General.addresses.company")));
         // Asserts the company field is there
         companyField.shouldBe(visible);
         // Address
         // Asserts the label next to the address field shows the right text
-        $("label[for=\"addressLine\"]").shouldHave(exactText(Neodymium.localizedText("General.addresses.address")));
+        $("label[for='addressLine']").shouldHave(exactText(Neodymium.localizedText("General.addresses.address")));
         // Asserts the address field is there
         addressField.shouldBe(visible);
         // City
         // Asserts the label next to the city field shows the right text
-        $("label[for=\"city\"]").shouldHave(exactText(Neodymium.localizedText("General.addresses.city")));
+        $("label[for='city']").shouldHave(exactText(Neodymium.localizedText("General.addresses.city")));
         // Asserts the city field is there
         cityField.shouldBe(visible);
         // State
         // Asserts the label next to the state field shows the right text
-        $("label[for=\"state\"]").shouldHave(exactText(Neodymium.localizedText("General.addresses.state")));
+        $("label[for='state']").shouldHave(exactText(Neodymium.localizedText("General.addresses.state")));
         // Asserts the state field is there
         stateField.shouldBe(visible);
         // Zip
         // Asserts the label next to the zip field shows the right text
-        $("label[for=\"zip\"]").shouldHave(exactText(Neodymium.localizedText("General.addresses.zip")));
+        $("label[for='zip']").shouldHave(exactText(Neodymium.localizedText("General.addresses.zip")));
         // Asserts the zip field is there
         zipField.shouldBe(visible);
         // Country
         // Asserts the label next to the country field shows the right text
-        $("label[for=\"country\"]").shouldHave(exactText(Neodymium.localizedText("General.addresses.country")));
+        $("label[for='country']").shouldHave(exactText(Neodymium.localizedText("General.addresses.country")));
         // Asserts the country field is there
         countryField.shouldBe(visible);
         // Radio Button
         // Assert the radio buttons are there
-        $$("input[name=\"billEqualShipp\"]").shouldHaveSize(2);
+        $$("input[name='billEqualShipp']").shouldHaveSize(2);
         // Continue Button
         // Asserts the Continue button is there
         addShippingButton.shouldBe(visible);
