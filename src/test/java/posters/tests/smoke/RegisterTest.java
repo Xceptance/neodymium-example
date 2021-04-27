@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.tests.smoke;
 
 import org.junit.After;
@@ -18,12 +15,12 @@ import io.qameta.allure.junit4.Tag;
 import posters.dataobjects.User;
 import posters.flows.DeleteUserFlow;
 import posters.flows.OpenHomePageFlow;
-import posters.pageobjects.pages.browsing.HomePage;
-import posters.pageobjects.pages.user.LoginPage;
-import posters.pageobjects.pages.user.RegisterPage;
 import posters.tests.AbstractTest;
 
 /**
+ * The initial data base of Posters provides a default user to avoid a registration process. The used e-mail address is
+ * "john@doe.com". Using this user within the RegisterTest would lead to an expected error.
+ * 
  * @author pfotenhauer
  */
 @Owner("Lisa Smith")
@@ -34,7 +31,7 @@ import posters.tests.AbstractTest;
 @Browser("Firefox_1024x768")
 public class RegisterTest extends AbstractTest
 {
-    User user;
+    private User user;
 
     @Before
     public void setup()
@@ -49,21 +46,21 @@ public class RegisterTest extends AbstractTest
     public void testRegistering()
     {
         // Go to homepage
-        HomePage homePage = OpenHomePageFlow.flow();
+        var homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Assure that nobody is logged in
         homePage.userMenu.validateNotLoggedIn();
 
         // Go to login form
-        LoginPage loginPage = homePage.userMenu.openLogin();
+        var loginPage = homePage.userMenu.openLogin();
         loginPage.validateStructure();
 
         // Go to register form
-        RegisterPage registerPage = loginPage.openRegister();
+        var registerPage = loginPage.openRegister();
         registerPage.validateStructure();
 
-        loginPage = registerPage.sendRegisterForm(user, user.getPassword());
+        loginPage = registerPage.sendRegisterForm(user);
         loginPage.validateSuccessfulRegistration();
         loginPage.validateStructure();
 

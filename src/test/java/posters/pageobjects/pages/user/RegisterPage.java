@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.pages.user;
 
 import static com.codeborne.selenide.Condition.exactText;
@@ -38,9 +35,11 @@ public class RegisterPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a register page")
-    public void isExpectedPage()
+    public RegisterPage isExpectedPage()
     {
+        super.isExpectedPage();
         registerForm.should(exist);
+        return this;
     }
 
     @Override
@@ -79,40 +78,27 @@ public class RegisterPage extends AbstractBrowsingPage
     }
 
     /**
-     * @param eMail
-     *            The email of the account you want to log into
-     * @param password
-     *            The password of the account you want to log into
+     * @param user
+     *            The User data of the account you want to log into
      */
     @Step("fill and send register form")
-    public LoginPage sendRegisterForm(String firstName, String lastName, String eMail, String password, String passwordRepeat)
+    public LoginPage sendRegisterForm(User user)
     {
         // Fill out the registration form
         // Type the last name parameter into the last name field.
-        lastnameField.val(lastName);
+        lastnameField.val(user.getLastName());
         // Type the first name parameter into the first name field.
-        firstnameField.val(firstName);
+        firstnameField.val(user.getFirstName());
         // Type the email parameter into the email field.
-        emailField.val(eMail);
+        emailField.val(user.getEmail());
         // Type the password parameter into the password field.
-        passwordField.val(password);
+        passwordField.val(user.getPassword());
         // Type the second password parameter into the second password field.
-        passwordRepeatField.val(passwordRepeat);
+        passwordRepeatField.val(user.getPassword());
         // Register and open the login page if successful
         // Click on the Register Button
         registerButton.scrollTo().click();
 
-        return new LoginPage();
-    }
-
-    /**
-     * @param user
-     * @param passwordRepeat
-     * @return
-     */
-    @Step("send register form for {user}")
-    public LoginPage sendRegisterForm(User user, String passwordRepeat)
-    {
-        return sendRegisterForm(user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(), passwordRepeat);
+        return new LoginPage().isExpectedPage();
     }
 }

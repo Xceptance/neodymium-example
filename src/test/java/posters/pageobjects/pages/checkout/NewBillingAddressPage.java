@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.pages.checkout;
 
 import static com.codeborne.selenide.Condition.exactText;
@@ -40,9 +37,11 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a new billing address page")
-    public void isExpectedPage()
+    public NewBillingAddressPage isExpectedPage()
     {
+        super.isExpectedPage();
         headline.should(exist);
+        return this;
     }
 
     @Override
@@ -144,7 +143,7 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
         // Click on Continue
         addBillingButton.scrollTo().click();
 
-        return new NewPaymentPage();
+        return new NewPaymentPage().isExpectedPage();
     }
 
     /**
@@ -153,7 +152,9 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
      */
     public NewPaymentPage sendBillingAddressForm(Address billingAddress)
     {
-        return sendBillingAddressForm(billingAddress.getFullName(), billingAddress.getCompany(), billingAddress.getAddressLine(),
+        String fullName = billingAddress.getFirstName() + " " + billingAddress.getLastName();
+
+        return sendBillingAddressForm(fullName, billingAddress.getCompany(), billingAddress.getStreet(),
                                       billingAddress.getCity(), billingAddress.getState(), billingAddress.getZip(),
                                       billingAddress.getCountry());
     }

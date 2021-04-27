@@ -18,9 +18,11 @@ public class OrderHistoryPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is an order history page")
-    public void isExpectedPage()
+    public OrderHistoryPage isExpectedPage()
     {
+        super.isExpectedPage();
         headline.should(exist);
+        return this;
     }
 
     @Step("validate product is in the order")

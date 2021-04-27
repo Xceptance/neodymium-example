@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.pages.checkout;
 
 import static com.codeborne.selenide.Condition.exist;
@@ -37,9 +34,11 @@ public class ShippingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a shipping address page")
-    public void isExpectedPage()
+    public ShippingAddressPage isExpectedPage()
     {
+        super.isExpectedPage();
         headline.should(exist);
+        return this;
     }
 
     @Override
@@ -72,7 +71,7 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         // Clicks the continue button
         $("#btnUseAddressContinue").scrollTo().click();
 
-        return new BillingAddressPage();
+        return new BillingAddressPage().isExpectedPage();
     }
 
     @Step("fill and send shipping address form")
@@ -114,6 +113,6 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         // Click on Continue
         addShippingButton.scrollTo().click();
 
-        return new BillingAddressPage();
+        return new BillingAddressPage().isExpectedPage();
     }
 }

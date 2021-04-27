@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.tests.smoke;
 
 import org.junit.Test;
@@ -10,9 +7,6 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
-import posters.pageobjects.pages.browsing.CategoryPage;
-import posters.pageobjects.pages.browsing.HomePage;
-import posters.pageobjects.pages.browsing.ProductdetailPage;
 import posters.tests.AbstractTest;
 
 /**
@@ -27,37 +21,37 @@ public class BrowseTest extends AbstractTest
     public void testBrowsing()
     {
         // Go to homepage
-        HomePage homePage = OpenHomePageFlow.flow();
+        var homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Go to category
         final String categoryName = homePage.topNav.getSubCategoryNameByPosition(1, 1);
-        CategoryPage categoryPage = homePage.topNav.clickSubCategoryByPosition(1, 1);
+        var categoryPage = homePage.topNav.clickSubCategoryByPosition(1, 1);
         categoryPage.validate(categoryName);
 
         // Go to product page
         final String productName = categoryPage.getProductNameByPosition(1, 1);
-        ProductdetailPage productPage = categoryPage.clickProductByPosition(1, 1);
-        productPage.validate(productName);
+        var productDetailPage = categoryPage.clickProductByPosition(1, 1);
+        productDetailPage.validate(productName);
 
         // Go to category
-        final String categoryName2 = productPage.topNav.getSubCategoryNameByPosition(2, 2);
-        categoryPage = productPage.topNav.clickSubCategoryByPosition(2, 2);
+        final String categoryName2 = productDetailPage.topNav.getSubCategoryNameByPosition(2, 2);
+        categoryPage = productDetailPage.topNav.clickSubCategoryByPosition(2, 2);
         categoryPage.validate(categoryName2);
 
         // Go to product page
         final String productName2 = categoryPage.getProductNameByPosition(2, 2);
-        productPage = categoryPage.clickProductByPosition(2, 2);
-        productPage.validate(productName2);
+        productDetailPage = categoryPage.clickProductByPosition(2, 2);
+        productDetailPage.validate(productName2);
 
         // Go to category
-        final String categoryName3 = productPage.topNav.getSubCategoryNameByPosition(2, 3);
-        categoryPage = productPage.topNav.clickSubCategoryByPosition(2, 3);
+        final String categoryName3 = productDetailPage.topNav.getSubCategoryNameByPosition(2, 3);
+        categoryPage = productDetailPage.topNav.clickSubCategoryByPosition(2, 3);
         categoryPage.validate(categoryName3);
 
         // Go to product page
         final String productName3 = categoryPage.getProductNameByPosition(2, 3);
-        productPage = categoryPage.clickProductByPosition(2, 3);
-        productPage.validate(productName3);
+        productDetailPage = categoryPage.clickProductByPosition(2, 3);
+        productDetailPage.validate(productName3);
     }
 }

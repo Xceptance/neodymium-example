@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.dataobjects;
 
 /**
@@ -50,29 +47,11 @@ public class User
     }
 
     /**
-     * @param firstName
-     *            the firstName to set
-     */
-    public void setFirstName(String firstName)
-    {
-        this.firstName = firstName;
-    }
-
-    /**
      * @return the lastName
      */
     public String getLastName()
     {
         return lastName;
-    }
-
-    /**
-     * @param lastName
-     *            the lastName to set
-     */
-    public void setLastName(String lastName)
-    {
-        this.lastName = lastName;
     }
 
     /**
@@ -84,29 +63,11 @@ public class User
     }
 
     /**
-     * @param email
-     *            the email to set
-     */
-    public void setEmail(String email)
-    {
-        this.email = email;
-    }
-
-    /**
      * @return the password
      */
     public String getPassword()
     {
         return password;
-    }
-
-    /**
-     * @param password
-     *            the password to set
-     */
-    public void setPassword(String password)
-    {
-        this.password = password;
     }
 
     @Override

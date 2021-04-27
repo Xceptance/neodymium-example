@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.pageobjects.pages.checkout;
 
 import static com.codeborne.selenide.Condition.exactText;
@@ -37,9 +34,11 @@ public class PlaceOrderPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a place order page")
-    public void isExpectedPage()
+    public PlaceOrderPage isExpectedPage()
     {
+        super.isExpectedPage();
         headline.should(exist);
+        return this;
     }
 
     @Override
@@ -107,15 +106,18 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     public void validateAddressesAndPayment(Address shippingAddress, Address billingAddress, CreditCard creditcard)
     {
         // Shipping address
-        // Name
-        // Makes sure the shipping address name matches the parameter
-        shippingAddressForm.find(".name").shouldHave(exactText(shippingAddress.getFullName()));
+        // fullName
+        // Makes sure the shipping address fullName matches the parameter
+        String firstName = shippingAddress.getFirstName();
+        String lastName = shippingAddress.getLastName();
+        String fullName = firstName + " " + lastName;
+        shippingAddressForm.find(".name").shouldHave(exactText(fullName));
         // Company
         // Makes sure the shipping address company matches the parameter
         shippingAddressForm.find(".company").shouldHave(exactText(shippingAddress.getCompany()));
         // Address
         // Makes sure the shipping address matches the parameter
-        shippingAddressForm.find(".addressLine").shouldHave(exactText(shippingAddress.getAddressLine()));
+        shippingAddressForm.find(".addressLine").shouldHave(exactText(shippingAddress.getStreet()));
         // City
         // Makes sure the shipping address city matches the parameter
         shippingAddressForm.find(".city").shouldHave(exactText(shippingAddress.getCity()));
@@ -131,13 +133,13 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         // Billing address
         // Name
         // Makes sure the billing address name matches the parameter
-        billingAddressForm.find(".name").shouldHave(exactText(billingAddress.getFullName()));
+        billingAddressForm.find(".name").shouldHave(exactText(fullName));
         // Company
         // Makes sure the billing address company matches the parameter
         billingAddressForm.find(".company").shouldHave(exactText(billingAddress.getCompany()));
         // Address
         // Makes sure the billing address matches the parameter
-        billingAddressForm.find(".addressLine").shouldHave(exactText(billingAddress.getAddressLine()));
+        billingAddressForm.find(".addressLine").shouldHave(exactText(billingAddress.getStreet()));
         // City
         // Makes sure the billing address city matches the parameter
         billingAddressForm.find(".city").shouldHave(exactText(billingAddress.getCity()));
@@ -177,6 +179,6 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         // Clicks the Order button
         orderButton.scrollTo().click();
 
-        return new HomePage();
+        return new HomePage().isExpectedPage();
     }
 }

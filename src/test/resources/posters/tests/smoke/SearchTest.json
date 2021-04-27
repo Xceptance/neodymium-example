@@ -1,0 +1,12 @@
+[
+    {
+        "searchTerm": "bear",
+        "position": "1",
+        "searchTermExpectedCount": "3"
+    },
+    {
+        "searchTerm": "Foobar",
+        "position": "",
+        "searchTermExpectedCount": ""
+    }
+]

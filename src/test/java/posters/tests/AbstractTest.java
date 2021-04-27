@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.tests;
 
 import org.junit.runner.RunWith;

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.dataobjects;
 
 /**
@@ -8,11 +5,13 @@ package posters.dataobjects;
  */
 public class Address
 {
-    String fullName;
+    String firstName;
+
+    String lastName;
 
     String company;
 
-    String addressLine;
+    String street;
 
     String city;
 
@@ -23,12 +22,14 @@ public class Address
     String country;
 
     /**
-     * @param fullName
-     *            the fullName to set
+     * @param firstName
+     *            the firstName to set
+     * @param lastName
+     *            the lastName to set
      * @param company
      *            the company to set
-     * @param addressLine
-     *            the addressLine to set
+     * @param street
+     *            the street to set
      * @param city
      *            the city to set
      * @param state
@@ -38,11 +39,12 @@ public class Address
      * @param country
      *            the country to set
      */
-    public Address(String fullName, String company, String addressLine, String city, String state, String zip, String country)
+    public Address(String firstName, String lastName, String company, String street, String city, String state, String zip, String country)
     {
-        this.fullName = fullName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.company = company;
-        this.addressLine = addressLine;
+        this.street = street;
         this.city = city;
         this.state = state;
         this.zip = zip;
@@ -50,20 +52,19 @@ public class Address
     }
 
     /**
-     * @return the fullName
+     * @return the firstName
      */
-    public String getFullName()
+    public String getFirstName()
     {
-        return fullName;
+        return firstName;
     }
 
     /**
-     * @param fullName
-     *            the fullName to set
+     * @return the lastName
      */
-    public void setFullName(String fullName)
+    public String getLastName()
     {
-        this.fullName = fullName;
+        return lastName;
     }
 
     /**
@@ -75,29 +76,11 @@ public class Address
     }
 
     /**
-     * @param company
-     *            the company to set
+     * @return the street
      */
-    public void setCompany(String company)
+    public String getStreet()
     {
-        this.company = company;
-    }
-
-    /**
-     * @return the address
-     */
-    public String getAddressLine()
-    {
-        return addressLine;
-    }
-
-    /**
-     * @param addressLine
-     *            the address to set
-     */
-    public void setAddressLine(String addressLine)
-    {
-        this.addressLine = addressLine;
+        return street;
     }
 
     /**
@@ -109,29 +92,11 @@ public class Address
     }
 
     /**
-     * @param city
-     *            the city to set
-     */
-    public void setCity(String city)
-    {
-        this.city = city;
-    }
-
-    /**
      * @return the state
      */
     public String getState()
     {
         return state;
-    }
-
-    /**
-     * @param state
-     *            the state to set
-     */
-    public void setState(String state)
-    {
-        this.state = state;
     }
 
     /**
@@ -143,15 +108,6 @@ public class Address
     }
 
     /**
-     * @param zip
-     *            the zip to set
-     */
-    public void setZip(String zip)
-    {
-        this.zip = zip;
-    }
-
-    /**
      * @return the country
      */
     public String getCountry()
@@ -159,19 +115,10 @@ public class Address
         return country;
     }
 
-    /**
-     * @param country
-     *            the country to set
-     */
-    public void setCountry(String country)
-    {
-        this.country = country;
-    }
-
     @Override
     public String toString()
     {
-        return String.format("Address [fullName()=%s, company()=%s, addressLine()=%s, zip()=%s, city()=%s, state()=%s, country()=%s]",
-                             getFullName(), getCompany(), getAddressLine(), getZip(), getCity(), getState(), getCountry());
+        return String.format("Address [firtName()=%s, lastName()=%s, company()=%s, street()=%s, zip()=%s, city()=%s, state()=%s, country()=%s]",
+                             getFirstName(), getLastName(), getCompany(), getStreet(), getZip(), getCity(), getState(), getCountry());
     }
 }

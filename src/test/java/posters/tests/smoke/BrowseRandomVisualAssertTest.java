@@ -1,6 +1,3 @@
-/**
- * 
- */
 package posters.tests.smoke;
 
 import java.util.Random;
@@ -18,8 +15,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.pageobjects.pages.browsing.CategoryPage;
-import posters.pageobjects.pages.browsing.HomePage;
-import posters.pageobjects.pages.browsing.ProductdetailPage;
+import posters.pageobjects.pages.browsing.ProductDetailPage;
 import posters.tests.AbstractTest;
 
 /**
@@ -62,20 +58,19 @@ public class BrowseRandomVisualAssertTest extends AbstractTest
     public void browseRandomCategoriesAndProducts()
     {
         CategoryPage categoryPage;
-        ProductdetailPage productPage;
+        ProductDetailPage productPage;
 
         for (int i = 1; i <= numberOfProductDetailPages; i++)
         {
             // Go to homepage
             LOGGER.info("Homepage");
-            HomePage homePage = OpenHomePageFlow.flow();
+            var homePage = OpenHomePageFlow.flow();
             homePage.validateAndVisualAssert();
 
             // Go to category
             LOGGER.info("Category page");
             String categoryName = homePage.topNav.getRandomSubcategoryName(random);
             categoryPage = homePage.topNav.clickSubcategoryByName(categoryName);
-            categoryPage.isExpectedPage();
             categoryPage.validateAndVisualAssert(categoryName);
             categoryPage = categoryPage.pagination.clickOnRandomSite(random);
             categoryPage.scrollToTop();
