@@ -53,23 +53,23 @@ public class RegisterPage extends AbstractBrowsingPage
         registerForm.find(".h2").should(matchText("[A-Z].{3,}"));
         // Form
         // Asserts the label belonging to the last name field displays the correct text
-        $("label[for=\"lastName\"]").shouldHave(exactText(Neodymium.localizedText("AccountPages.lastname")));
+        $("label[for='lastName']").shouldHave(exactText(Neodymium.localizedText("AccountPages.lastname")));
         // Make sure the field to type in the last name is visible.
         lastnameField.shouldBe(visible);
         // Asserts the label belonging to the first name field displays the correct text
-        $("label[for=\"firstName\"]").shouldHave(exactText(Neodymium.localizedText("AccountPages.firstname")));
+        $("label[for='firstName']").shouldHave(exactText(Neodymium.localizedText("AccountPages.firstname")));
         // Make sure the field to type in the first name is visible.
         firstnameField.shouldBe(visible);
         // Asserts the label belonging to the email field displays the correct text
-        $("label[for=\"eMail\"]").shouldHave(exactText(Neodymium.localizedText("AccountPages.email")));
+        $("label[for='eMail']").shouldHave(exactText(Neodymium.localizedText("AccountPages.email")));
         // Make sure the field to type in the e-Mail is visible.
         emailField.shouldBe(visible);
         // Asserts the label belonging to the password field displays the correct text
-        $("label[for=\"password\"]").shouldHave(exactText(Neodymium.localizedText("AccountPages.password")));
+        $("label[for='password']").shouldHave(exactText(Neodymium.localizedText("AccountPages.password")));
         // Make sure the field to type in the password is visible.
         passwordField.shouldBe(visible);
         // Asserts the label belonging to the second password field displays the correct text
-        $("label[for=\"passwordAgain\"]").shouldHave(exactText(Neodymium.localizedText("AccountPages.passwordRepeat")));
+        $("label[for='passwordAgain']").shouldHave(exactText(Neodymium.localizedText("AccountPages.passwordRepeat")));
         // Make sure the field to type in the password again is visible.
         passwordRepeatField.shouldBe(visible);
         // Register button
