@@ -3,7 +3,6 @@ package posters.tests.smoke;
 import java.util.Random;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.xceptance.neodymium.module.statement.browser.multibrowser.Browser;
@@ -15,7 +14,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.pageobjects.pages.browsing.CategoryPage;
-import posters.pageobjects.pages.browsing.ProductdetailPage;
+import posters.pageobjects.pages.browsing.ProductDetailPage;
 import posters.tests.AbstractTest;
 
 /**
@@ -25,7 +24,7 @@ import posters.tests.AbstractTest;
 @Severity(SeverityLevel.NORMAL)
 @Tag("smoke")
 @Browser("Firefox_headless")
-@Ignore
+// @Ignore
 public class BrowseRandomVisualAssertTest extends AbstractTest
 {
     private static int numberOfProductDetailPages;
@@ -35,6 +34,7 @@ public class BrowseRandomVisualAssertTest extends AbstractTest
     @Before
     public void setup()
     {
+        System.out.println("setup");
         try
         {
             random = new Random(DataUtils.asLong("seed"));
@@ -58,17 +58,17 @@ public class BrowseRandomVisualAssertTest extends AbstractTest
     public void browseRandomCategoriesAndProducts()
     {
         CategoryPage categoryPage;
-        ProductdetailPage productPage;
+        ProductDetailPage productPage;
 
         for (int i = 1; i <= numberOfProductDetailPages; i++)
         {
             // Go to homepage
-            LOGGER.info("Homepage");
+            LOGGER.error("Homepage");
             var homePage = OpenHomePageFlow.flow();
             homePage.validateAndVisualAssert();
 
             // Go to category
-            LOGGER.info("Category page");
+            LOGGER.error("Category page");
             String categoryName = homePage.topNav.getRandomSubcategoryName(random);
             categoryPage = homePage.topNav.clickSubcategoryByName(categoryName);
             categoryPage.validateAndVisualAssert(categoryName);
@@ -77,7 +77,7 @@ public class BrowseRandomVisualAssertTest extends AbstractTest
             categoryPage.validateAndVisualAssert(categoryName);
 
             // Go to any product detail page
-            LOGGER.info("Product detail page");
+            LOGGER.error("Product detail page");
             String productName = categoryPage.getRandomProductDetailName(random);
             productPage = categoryPage.clickProductByName(productName);
             productPage.validateAndVisualAssert(productName);

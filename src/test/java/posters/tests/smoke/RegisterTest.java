@@ -18,6 +18,8 @@ import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 
 /**
+ * Since john@doe.com is an already registered user in the DB, a RegisterTest with this would lead to an error.
+ * 
  * @author pfotenhauer
  */
 @Owner("Lisa Smith")

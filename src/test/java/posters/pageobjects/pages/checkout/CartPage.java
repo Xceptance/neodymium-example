@@ -19,7 +19,7 @@ import com.xceptance.neodymium.util.Neodymium;
 import io.qameta.allure.Step;
 import posters.dataobjects.Product;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
-import posters.pageobjects.pages.browsing.ProductdetailPage;
+import posters.pageobjects.pages.browsing.ProductDetailPage;
 import posters.pageobjects.utility.PriceHelper;
 
 /**
@@ -311,10 +311,10 @@ public class CartPage extends AbstractBrowsingPage
      * @param position
      */
     @Step("click on a product on the cart page")
-    public ProductdetailPage openProductPage(int position)
+    public ProductDetailPage openProductPage(int position)
     {
         $("#product" + (position - 1) + " img").scrollTo().click();
-        return new ProductdetailPage().isExpectedPage();
+        return new ProductDetailPage().isExpectedPage();
     }
 
     private void clickCheckoutButton()

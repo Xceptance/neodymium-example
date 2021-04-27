@@ -101,9 +101,9 @@ public class HomePage extends AbstractBrowsingPage
         footer.validate();
     }
 
-    public ProductdetailPage clickOnPresentedProduct(String productName)
+    public ProductDetailPage clickOnPresentedProduct(String productName)
     {
         $$("#productList .thumbnail .pName").filter(exactText(productName)).shouldHaveSize(1).first().click();
-        return new ProductdetailPage().isExpectedPage();
+        return new ProductDetailPage().isExpectedPage();
     }
 }
