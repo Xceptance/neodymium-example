@@ -18,7 +18,8 @@ import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 
 /**
- * Since john@doe.com is an already registered user in the DB, a RegisterTest with this would lead to an error.
+ * The initial data base of Posters provides a default user to avoid a registration process. The used e-mail address is
+ * "john@doe.com". Using this user within the RegisterTest would lead to an expected error.
  * 
  * @author pfotenhauer
  */

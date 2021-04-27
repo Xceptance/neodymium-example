@@ -39,7 +39,7 @@ public class MiniCart extends AbstractComponent
     @Step("open the mini cart")
     public void openMiniCart()
     {
-        // Click hover over the cart icon
+        // hover over the cart icon
         headerCart.hover();
         // Wait for mini cart to appear
         // Wait for the mini cart to show
@@ -98,7 +98,7 @@ public class MiniCart extends AbstractComponent
         // Open mini cart
         openMiniCart();
         // Verify subtotal equals specified subtotal
-        // Compare the subTotal to the parameter
+        // Compare the subtotal to the parameter
         subOrderPrice.shouldHave(exactText(subtotal));
         // Close Mini Cart
         closeMiniCart();
