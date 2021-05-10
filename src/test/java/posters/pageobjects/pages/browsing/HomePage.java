@@ -12,9 +12,12 @@ import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.dataobjects.User;
+import posters.pageobjects.components.PosterSlider;
 
 public class HomePage extends AbstractBrowsingPage
 {
+	public PosterSlider posterSlider = new PosterSlider();
+	
     @Override
     @Step("ensure this is a home page")
     public HomePage isExpectedPage()
@@ -39,8 +42,6 @@ public class HomePage extends AbstractBrowsingPage
 
         // Asserts the first headline is there.
         $("#titleIndex").shouldBe(matchText("[A-Z].{3,}"));
-        // Asserts the animated poster rotation is there.
-        $("#pShopCarousel").shouldBe(visible);
 
         // Verifies the "Hot products" section is there.
         $("#main .margin_top20 .h2").shouldBe(matchText("[A-Z].{3,}"));
@@ -55,6 +56,7 @@ public class HomePage extends AbstractBrowsingPage
     {
         validateStructure();
         footer.validate();
+        posterSlider.validate();
     }
 
     @Step("validate successful order on home page")
@@ -106,4 +108,5 @@ public class HomePage extends AbstractBrowsingPage
         $$("#productList .thumbnail .pName").filter(exactText(productName)).shouldHaveSize(1).first().click();
         return new ProductDetailPage().isExpectedPage();
     }
+
 }
