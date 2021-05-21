@@ -6,7 +6,6 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
-import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 
 /**

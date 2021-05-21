@@ -13,7 +13,6 @@ import io.qameta.allure.junit4.Tag;
 import posters.dataobjects.Address;
 import posters.dataobjects.CreditCard;
 import posters.flows.CartCleanUpFlow;
-import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 
 /**

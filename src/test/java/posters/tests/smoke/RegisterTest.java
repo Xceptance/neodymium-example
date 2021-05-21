@@ -14,7 +14,6 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.dataobjects.User;
 import posters.flows.DeleteUserFlow;
-import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 
 /**
@@ -42,7 +41,8 @@ public class RegisterTest extends AbstractTest
     @Test
     @DataSet(2)
     @DataSet(4)
-    @DataSet(id = "Jim's test")
+    @DataSet(
+             id = "Jim's test")
     public void testRegistering()
     {
         // Go to homepage

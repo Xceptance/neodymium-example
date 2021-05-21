@@ -14,7 +14,6 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.TmsLink;
 import io.qameta.allure.junit4.DisplayName;
 import io.qameta.allure.junit4.Tag;
-import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 
 /**
@@ -25,12 +24,16 @@ import posters.tests.AbstractTest;
 @Tag("smoke")
 @TmsLink("end-of-script-developer-and-now")
 @Issue("148")
-@Link(url = "https://ask.xceptance.de/t/end-of-script-developer-and-now/148", type = "custom", name = "DemoLink")
+@Link(
+      url = "https://ask.xceptance.de/t/end-of-script-developer-and-now/148",
+      type = "custom",
+      name = "DemoLink")
 @DisplayName("HomepageTest")
 public class HomePageTest extends AbstractTest
 {
     @Test
-    @Description(value = "A basic description for home page validation.")
+    @Description(
+                 value = "A basic description for home page validation.")
     public void testVisitingHomepage()
     {
         AllureAddons.addToReport("Find me in the report", "Some additional content. Could be the toString method of an complex object.");

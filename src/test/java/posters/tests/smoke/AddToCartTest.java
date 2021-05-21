@@ -8,7 +8,6 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
-import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 
 @Owner("Joe Fix")
@@ -90,9 +89,7 @@ public class AddToCartTest extends AbstractTest
         cartPage.validateProductAmount(productToUpdatePosition, newProductAmount);
 
         final String newLinItemPrice = cartPage.getProductTotalUnitPrice(productToUpdatePosition);
-        cartPage.validateSubAndLineItemTotalAfterAdd(productToUpdatePosition,
-                                                     oldSubtotal3,
-                                                     productBeforeUpdate.getTotalPrice());
+        cartPage.validateSubAndLineItemTotalAfterAdd(productToUpdatePosition, oldSubtotal3, productBeforeUpdate.getTotalPrice());
         cartPage.validateCartItem(1, productBeforeUpdate, newProductAmount);
         cartPage.miniCart.validateMiniCart(1, productBeforeUpdate, newProductAmount, newLinItemPrice);
         totalCount = totalCount + newProductAmount - 1;
