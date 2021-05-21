@@ -1,6 +1,7 @@
 [
    {
-      "name":"Jimmy Blue",
+      "firstName":"Jimmy",
+      "lastName":"Blue",
       "company":"Ochsenknecht Records",
       "street":"6 Wall St",
       "city":"Burlington",

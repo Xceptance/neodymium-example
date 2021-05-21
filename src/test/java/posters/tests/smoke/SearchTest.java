@@ -42,7 +42,6 @@ public class SearchTest extends AbstractTest
     public void testSearching()
     {
         // Go to homepage
-        var homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Search
@@ -60,7 +59,6 @@ public class SearchTest extends AbstractTest
     public void testSearchingWithoutResult()
     {
         // Go to homepage
-        var homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Search

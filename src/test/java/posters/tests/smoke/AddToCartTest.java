@@ -23,7 +23,6 @@ public class AddToCartTest extends AbstractTest
         int totalCount = 0;
 
         // Go to homepage
-        var homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         homePage.miniCart.validateTotalCount(totalCount);

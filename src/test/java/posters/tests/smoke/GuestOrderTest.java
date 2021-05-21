@@ -31,7 +31,6 @@ public class GuestOrderTest extends AbstractTest
         final String shippingCosts = Neodymium.dataValue("shippingCosts");
 
         // Go to homepage
-        var homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Assure not logged in status
@@ -55,7 +54,7 @@ public class GuestOrderTest extends AbstractTest
 
         // Go to cart and validate
         final var product = productDetailPage.getProduct();
-        var cartPage = productDetailPage.miniCart.openCartPage();
+        var cartPage = productDetailPage.miniCart.openMiniCart().openCartPage();
         cartPage.validateStructure();
         cartPage.validateShippingCosts(shippingCosts);
         cartPage.miniCart.validateMiniCart(1, product);

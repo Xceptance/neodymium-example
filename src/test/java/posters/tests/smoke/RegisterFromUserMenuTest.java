@@ -37,7 +37,6 @@ public class RegisterFromUserMenuTest extends AbstractTest
     public void testRegisteringFromUserMenu()
     {
         // Go to homepage
-        var homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Assure not logged in status

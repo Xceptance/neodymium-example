@@ -33,7 +33,6 @@ public class RegisteredOrderTest extends AbstractTest
         final String shippingCosts = Neodymium.dataValue("shippingCosts");
 
         // Go to homepage
-        var homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Assure not logged in status

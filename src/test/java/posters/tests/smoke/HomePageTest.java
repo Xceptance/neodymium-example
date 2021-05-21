@@ -34,7 +34,6 @@ public class HomePageTest extends AbstractTest
     public void testVisitingHomepage()
     {
         AllureAddons.addToReport("Find me in the report", "Some additional content. Could be the toString method of an complex object.");
-        var homePage = OpenHomePageFlow.flow();
         homePage.validate();
         homePage.title.validateTitle(Neodymium.localizedText("HomePage.title"));
     }

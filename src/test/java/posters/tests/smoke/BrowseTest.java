@@ -21,7 +21,6 @@ public class BrowseTest extends AbstractTest
     public void testBrowsing()
     {
         // Go to homepage
-        var homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Go to category

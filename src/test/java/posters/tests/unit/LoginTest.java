@@ -7,12 +7,14 @@ import com.xceptance.neodymium.module.statement.browser.multibrowser.Browser;
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
 import com.xceptance.neodymium.module.statement.testdata.SuppressDataSets;
 import com.xceptance.neodymium.util.DataUtils;
+import com.xceptance.neodymium.util.SelenideAddons;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.dataobjects.User;
+import posters.flows.OpenHomePageFlow;
 import posters.flows.OpenLoginPageFlow;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.tests.AbstractTest;
@@ -70,7 +72,9 @@ public class LoginTest extends AbstractTest
     @DataSet(6)
     public void testLoginWithoutRequiredFields()
     {
-        loginPage.sendFalseLoginform(user);
+        SelenideAddons.$safe(() -> {
+            loginPage.sendFalseLoginform(user);
+        });
         loginPage.errorMessage.validateNoErrorMessageOnPage();
     }
 
@@ -89,7 +93,7 @@ public class LoginTest extends AbstractTest
         var loginPage = new LoginPage();
 
         // Go to login page
-        loginPage = OpenLoginPageFlow.flow();
+        loginPage = homePage.userMenu.openLogin();
         loginPage.validateStructure();
 
         // Assure not logged in status

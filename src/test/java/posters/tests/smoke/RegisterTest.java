@@ -46,7 +46,6 @@ public class RegisterTest extends AbstractTest
     public void testRegistering()
     {
         // Go to homepage
-        var homePage = OpenHomePageFlow.flow();
         homePage.validate();
 
         // Assure that nobody is logged in

@@ -37,13 +37,14 @@ public class MiniCart extends AbstractComponent
     }
 
     @Step("open the mini cart")
-    public void openMiniCart()
+    public MiniCart openMiniCart()
     {
         // Hover over the cart icon
         headerCart.hover();
         // Wait for mini cart to appear
         // Wait for the mini cart to show
         miniCart.waitUntil(visible, Neodymium.configuration().selenideTimeout());
+        return this;
     }
 
     @Step("close the mini cart")
