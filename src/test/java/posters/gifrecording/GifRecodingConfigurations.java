@@ -24,6 +24,10 @@ public interface GifRecodingConfigurations extends Mutable
     @DefaultValue("500")
     public int oneImagePerMilliseconds();
 
+    @Key("gif.loop")
+    @DefaultValue("false")
+    public boolean loop();
+
     @Key("gif.tempFolderToStoreGifs")
     @DefaultValue("target/gifs/")
     public String tempFolderToStoreGifs();

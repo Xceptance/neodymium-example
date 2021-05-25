@@ -54,7 +54,7 @@ public class RecordGifThread extends Thread
         }
         File gif = new File(CONFIGURATION.tempFolderToStoreGifs() + giftName);
         try (ImageOutputStream output = new FileImageOutputStream(gif);
-            GifSequenceWriter writer = new GifSequenceWriter(output, BufferedImage.TYPE_4BYTE_ABGR, CONFIGURATION.oneImagePerMilliseconds(), CONFIGURATION.imageQuality(), CONFIGURATION.imageScaleFactor(), true))
+            GifSequenceWriter writer = new GifSequenceWriter(output, BufferedImage.TYPE_4BYTE_ABGR, CONFIGURATION.oneImagePerMilliseconds(), CONFIGURATION.imageQuality(), CONFIGURATION.imageScaleFactor(), CONFIGURATION.loop()))
         {
             long turns = 0;
             long millis = 0;
