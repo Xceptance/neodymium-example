@@ -21,7 +21,7 @@ public interface GifRecodingConfigurations extends Mutable
     public double imageScaleFactor();
 
     @Key("gif.oneImagePerMilliseconds")
-    @DefaultValue("500")
+    @DefaultValue("1000")
     public int oneImagePerMilliseconds();
 
     @Key("gif.loop")
