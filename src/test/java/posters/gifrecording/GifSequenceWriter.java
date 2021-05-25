@@ -67,10 +67,10 @@ public class GifSequenceWriter implements AutoCloseable
         child.setAttribute("applicationID", "NETSCAPE");
         child.setAttribute("authenticationCode", "2.0");
 
-        int loopContinuously = loop ? 0 : 1;
+        int loopContinuously = loop ? 1 : 0;
         child.setUserObject(new byte[]
             {
-              0x1, (byte) (loopContinuously & 0xFF), (byte) ((loopContinuously >> 8) & 0xFF)
+             (byte) loopContinuously , 0x0, 0x0
             });
         appExtensionsNode.appendChild(child);
         metadata.setFromTree(metaFormatName, root);
