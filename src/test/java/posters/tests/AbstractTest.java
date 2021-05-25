@@ -39,14 +39,17 @@ public abstract class AbstractTest
         @Override
         protected void failed(Throwable e, Description description)
         {
-            recordGifThread.stopRun(true);
-            try
+            if (recordGifThread != null)
             {
-                recordGifThread.join();
-            }
-            catch (InterruptedException e1)
-            {
-                e1.printStackTrace();
+                recordGifThread.stopRun(true);
+                try
+                {
+                    recordGifThread.join();
+                }
+                catch (InterruptedException e1)
+                {
+                    e1.printStackTrace();
+                }
             }
         }
 
