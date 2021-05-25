@@ -79,7 +79,8 @@ public class RecordGifThread extends Thread
                 long duration = Duration.between(timerStart, timerStop).toMillis();
                 millis += duration;
                 turns++;
-                Thread.sleep(CONFIGURATION.oneImagePerMilliseconds() - duration);
+                long sleep = CONFIGURATION.oneImagePerMilliseconds() - duration;
+                Thread.sleep(sleep > 0 ? sleep : 0);
             }
             AllureAddons.addToReport("avarage gif sequence recording creation duration = " + millis + " / " + turns + "=" + millis / turns,
                                      "");
