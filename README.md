@@ -1,3 +1,18 @@
+#FFmpeg
+
+To use the video filming feature from this branch, you need to install  [FFmpeg](https://ffmpeg.org/download.html) on your machine.
+
+Installation steps for Linux:
+
+* `sudo apt-get update`
+* `sudo apt-get install ffmpeg`
+* `ffmpeg --version`
+
+Installation steps for MacOS:
+* `brew install ffmpeg`
+
+[Installation steps for Windows](https://www.wikihow.com/Install-FFmpeg-on-Windows)
+
 # Introduction
 This repository demonstrates how to use our [Neodymium library](https://github.com/Xceptance/neodymium-library) to set up a maintainable and well structured test automation project. Please also see the [Wiki](https://github.com/Xceptance/neodymium-library/wiki) for the Neodymium library project which shows and explains how to use the vaious features from Neodymium library. There you will also find insight about how we think a test automation project should be structured and what results you should get out of it.
 
