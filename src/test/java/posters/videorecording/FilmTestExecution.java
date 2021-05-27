@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Timer;
@@ -13,6 +15,7 @@ import java.util.WeakHashMap;
 import org.aeonbits.owner.ConfigFactory;
 import org.apache.commons.io.FileUtils;
 
+import com.xceptance.neodymium.util.AllureAddons;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Allure;
@@ -38,7 +41,7 @@ public class FilmTestExecution
     {
         folderName = getContext().tempFolderToStoreVideos() + testName.replaceAll("\\s", "-").replaceAll(":", "-").replaceAll("/", "_");
         videoFileName = folderName + ".mp4";
-        screenshotTime= new Timer();
+        screenshotTime = new Timer();
         File directory = new File(folderName);
         if (!directory.exists())
         {
@@ -51,6 +54,7 @@ public class FilmTestExecution
 
     public void finishFilmingTest(boolean testFailed)
     {
+        LocalDateTime now = LocalDateTime.now();
         screenshotTime.cancel();
         try
         {
@@ -69,6 +73,8 @@ public class FilmTestExecution
         {
             e.printStackTrace();
         }
+        LocalDateTime finish = LocalDateTime.now();
+        AllureAddons.addToReport("video creation for this test took " + Duration.between(now, finish).toMillis() + " milliseconds", "");
     }
 
     private void convertScreenshotsToVideo() throws IOException, InterruptedException
