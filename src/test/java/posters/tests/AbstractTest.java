@@ -16,7 +16,7 @@ import com.xceptance.neodymium.module.statement.browser.multibrowser.Browser;
 
 import posters.flows.OpenHomePageFlow;
 import posters.pageobjects.pages.browsing.HomePage;
-import posters.videorecording.FilmTestExecution;
+import posters.recording.FilmTestExecution;
 
 /**
  * @author pfotenhauer
@@ -31,6 +31,8 @@ public abstract class AbstractTest
 
     private FilmTestExecution filmTestExecution;
 
+    private FilmTestExecution filmTestExecution1;
+
     @Rule
     public TestName name = new TestName();
 
@@ -43,6 +45,7 @@ public abstract class AbstractTest
             if (filmTestExecution != null)
             {
                 filmTestExecution.finishFilmingTest(true);
+                filmTestExecution1.finishFilmingTest(true);
             }
         }
 
@@ -50,13 +53,15 @@ public abstract class AbstractTest
         protected void succeeded(Description description)
         {
             filmTestExecution.finishFilmingTest(false);
+            filmTestExecution1.finishFilmingTest(false);
         }
     };
 
     @Before
     public void openHomePageAndStartFilming() throws IOException, InterruptedException
     {
-        filmTestExecution = new FilmTestExecution().startFilmingTest(name.getMethodName());
+        filmTestExecution = new FilmTestExecution().startFilmingGif(name.getMethodName());
+        filmTestExecution1 = new FilmTestExecution().startFilmingVideo(name.getMethodName());
         homePage = OpenHomePageFlow.flow();
     }
 }
