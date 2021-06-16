@@ -15,17 +15,17 @@ public interface RecordingConfigurations extends Mutable
     @DefaultValue("500")
     public int oneImagePerMilliseconds();
 
-    @Key("gif.tempFolderToStoreVideos")
-    @DefaultValue("target/videos/")
-    public String tempFolderToStoreVideos();
+    @Key("gif.tempFolderToStoreRecoring")
+    @DefaultValue("target/gifs/")
+    public String tempFolderToStoreRecoring();
 
-    @Key("gif.deleteVideosAfterAddingToAllureReport")
+    @Key("gif.deleteRecordingsAfterAddingToAllureReport")
     @DefaultValue("true")
-    public boolean deleteVideosAfterAddingToAllureReport();
+    public boolean deleteRecordingsAfterAddingToAllureReport();
 
-    @Key("gif.appendAllVideosToReport")
+    @Key("gif.appendAllRecordingsToReport")
     @DefaultValue("false")
-    public boolean appendAllVideosToReport();
+    public boolean appendAllRecordingsToReport();
 
     @Key("gif.imageQuality")
     @DefaultValue("0.2f")
@@ -38,15 +38,10 @@ public interface RecordingConfigurations extends Mutable
     public String format();
 
     // only for gif
-    @DefaultValue("false")
     public boolean loop();
 
     // only for video
-    @Key("video.ffmpegBinaryPath")
-    @DefaultValue("ffmpeg")
     public String ffmpegBinaryPath();
 
-    @Key("video.ffmpegLogFile")
-    @DefaultValue("target/ffmpeg_output_msg.txt")
     public String ffmpegLogFile();
 }

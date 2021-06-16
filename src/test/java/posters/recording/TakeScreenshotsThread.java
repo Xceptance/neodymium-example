@@ -37,10 +37,10 @@ public class TakeScreenshotsThread extends Thread
         String testName) throws IOException
     {
         this.recordingConfigurations = recordingConfigurations;
-        fileName = recordingConfigurations.tempFolderToStoreVideos()
+        fileName = recordingConfigurations.tempFolderToStoreRecoring()
                    + testName.replaceAll("\\s", "-").replaceAll(":", "-").replaceAll("/", "_") + "." + recordingConfigurations.format();
         this.writer = Writer.instanciate(writerClass, recordingConfigurations, fileName);
-        File directory = new File(recordingConfigurations.tempFolderToStoreVideos());
+        File directory = new File(recordingConfigurations.tempFolderToStoreRecoring());
         if (!directory.exists())
         {
             directory.mkdir();
@@ -107,16 +107,17 @@ public class TakeScreenshotsThread extends Thread
                 writer.stop();
                 try
                 {
-                    if (recordingConfigurations.appendAllVideosToReport() || testFailed)
+                    if (recordingConfigurations.appendAllRecordingsToReport() || testFailed)
                     {
 
-                        Allure.addAttachment(fileName, "video/mp4", new FileInputStream(fileName), "mp4");
+                        String type = recordingConfigurations.format().equals("mp4") ? "video/mp4" : "image/gif";
+                        Allure.addAttachment(fileName, type, new FileInputStream(fileName), recordingConfigurations.format());
 
                     }
-                    if (recordingConfigurations.deleteVideosAfterAddingToAllureReport())
+                    if (recordingConfigurations.deleteRecordingsAfterAddingToAllureReport())
                     {
                         new File(fileName).delete();
-                        FileUtils.deleteDirectory(new File(recordingConfigurations.tempFolderToStoreVideos()));
+                        FileUtils.deleteDirectory(new File(recordingConfigurations.tempFolderToStoreRecoring()));
                     }
                 }
                 catch (IOException e)

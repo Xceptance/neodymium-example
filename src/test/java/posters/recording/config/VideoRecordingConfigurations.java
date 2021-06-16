@@ -13,20 +13,20 @@ public interface VideoRecordingConfigurations extends RecordingConfigurations
     public boolean enableFilming();
 
     @Key("video.oneImagePerMilliseconds")
-    @DefaultValue("500")
+    @DefaultValue("100")
     public int oneImagePerMilliseconds();
 
     @Key("video.tempFolderToStoreVideos")
     @DefaultValue("target/videos/")
-    public String tempFolderToStoreVideos();
+    public String tempFolderToStoreRecoring();
 
     @Key("video.deleteVideosAfterAddingToAllureReport")
     @DefaultValue("true")
-    public boolean deleteVideosAfterAddingToAllureReport();
+    public boolean deleteRecordingsAfterAddingToAllureReport();
 
     @Key("video.appendAllVideosToReport")
     @DefaultValue("false")
-    public boolean appendAllVideosToReport();
+    public boolean appendAllRecordingsToReport();
 
     @Key("video.imageQuality")
     @DefaultValue("1.0")
