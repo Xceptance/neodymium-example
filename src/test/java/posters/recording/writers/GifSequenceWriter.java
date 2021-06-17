@@ -15,8 +15,15 @@ import javax.imageio.metadata.IIOMetadataNode;
 import javax.imageio.stream.FileImageOutputStream;
 import javax.imageio.stream.ImageOutputStream;
 
+import posters.recording.TakeScreenshotsThread;
 import posters.recording.config.RecordingConfigurations;
+import posters.recording.config.VideoRecordingConfigurations;
 
+/**
+ * Writer to create gif using pure java
+ * 
+ * @author olha
+ */
 public class GifSequenceWriter implements Writer
 {
     protected ImageWriter writer;
@@ -25,16 +32,36 @@ public class GifSequenceWriter implements Writer
 
     protected IIOMetadata metadata;
 
-    private String videoFileName;
+    private String gifFileName;
 
     private RecordingConfigurations recordingConfigurations;
 
-    protected GifSequenceWriter(RecordingConfigurations recordingConfigurations, String videoFileName) throws IOException
+    /**
+     * Required to instantiate the object in the {@link Writer#instantiate(Class, RecordingConfigurations, String)}
+     * method.
+     * <p>
+     * 
+     * @param recordingConfigurations
+     *            {@link VideoRecordingConfigurations} for the writer
+     * @param gifFileName
+     *            {@link String} gif file name ( including the path)
+     * @throws IOException
+     */
+    protected GifSequenceWriter(RecordingConfigurations recordingConfigurations, String gifFileName) throws IOException
     {
         this.recordingConfigurations = recordingConfigurations;
-        this.videoFileName = videoFileName;
+        this.gifFileName = gifFileName;
     }
 
+    /**
+     * Configures metadata, which will be used for every gif sequence
+     * 
+     * @param delay
+     *            {@link Integer} value of milliseconds between the neighbor gif sequences
+     * @param loop
+     *            {@link Boolean} value if the gif should be looped
+     * @throws IIOInvalidTreeException
+     */
     private void configureRootMetadata(int delay, boolean loop) throws IIOInvalidTreeException
     {
         String metaFormatName = metadata.getNativeMetadataFormatName();
@@ -64,6 +91,15 @@ public class GifSequenceWriter implements Writer
         metadata.setFromTree(metaFormatName, root);
     }
 
+    /**
+     * Method to dive into the metadata configurations and find the specific {@link IIOMetadataNode}
+     * 
+     * @param rootNode
+     *            {@link IIOMetadataNode} the parent node
+     * @param nodeName
+     *            {@link String} name of the desired node
+     * @return found {@link IIOMetadataNode}
+     */
     private static IIOMetadataNode getNode(IIOMetadataNode rootNode, String nodeName)
     {
         int nNodes = rootNode.getLength();
@@ -76,13 +112,21 @@ public class GifSequenceWriter implements Writer
         }
         IIOMetadataNode node = new IIOMetadataNode(nodeName);
         rootNode.appendChild(node);
-        return (node);
+        return node;
     }
 
+    /**
+     * Starts gif generation.
+     * <p>
+     * Creates the required streams and configures the {@link ImageWriter}
+     * 
+     * @throws IOException
+     *             to stop screenshots loop on {@link TakeScreenshotsThread} in case of start failure
+     */
     @Override
     public void start() throws IOException
     {
-        ImageOutputStream out = new FileImageOutputStream(new File(videoFileName));
+        ImageOutputStream out = new FileImageOutputStream(new File(gifFileName));
         writer = ImageIO.getImageWritersBySuffix("gif").next();
         params = writer.getDefaultWriteParam();
 
@@ -94,6 +138,9 @@ public class GifSequenceWriter implements Writer
         writer.prepareWriteSequence(null);
     }
 
+    /**
+     * Writes a gif sequence into gif file
+     */
     @Override
     public void write(File image)
     {
@@ -108,6 +155,9 @@ public class GifSequenceWriter implements Writer
         }
     }
 
+    /**
+     * Closes the {@link ImageWriter}
+     */
     @Override
     public void stop()
     {

@@ -1,12 +1,9 @@
 package posters.recording;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
-
-import javax.imageio.ImageIO;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -18,6 +15,15 @@ import io.qameta.allure.Allure;
 import posters.recording.config.RecordingConfigurations;
 import posters.recording.writers.Writer;
 
+/**
+ * Background thread to take screenshots and write them to the files using {@link Writer}.
+ * <p>
+ * This class constructs the required writer on its own, it's only needed to pass the {@link Writer} class it should
+ * use. It also requires configuration object of type {@link RecordingConfigurations} and the name of the result file
+ * (will also be created by the class itself)
+ * 
+ * @author olha
+ */
 public class TakeScreenshotsThread extends Thread
 {
     private WebDriver driver;
@@ -38,7 +44,7 @@ public class TakeScreenshotsThread extends Thread
         this.recordingConfigurations = recordingConfigurations;
         fileName = recordingConfigurations.tempFolderToStoreRecoring()
                    + testName.replaceAll("\\s", "-").replaceAll(":", "-").replaceAll("/", "_") + "." + recordingConfigurations.format();
-        this.writer = Writer.instanciate(writerClass, recordingConfigurations, fileName);
+        this.writer = Writer.instantiate(writerClass, recordingConfigurations, fileName);
         File directory = new File(recordingConfigurations.tempFolderToStoreRecoring());
         if (!directory.exists())
         {
@@ -47,44 +53,32 @@ public class TakeScreenshotsThread extends Thread
         this.driver = driver;
     }
 
+    /**
+     * Runs screenshot loop in background and writes the screenshots into files
+     */
     @Override
     public synchronized void run()
     {
+        // if writer construction was successful we can start the screenshot loop
+        // in case there was an error while writer creation, the background thread should die as there is nothing to do
+        // in the run method
         if (writer != null)
         {
             try
             {
+                // try to start writer
+                // in case writer start fails, the run method will exit
                 writer.start();
 
                 long turns = 0;
                 long millis = 0;
+                // start screenshot loop
                 while (run)
                 {
                     long start = new Date().getTime();
 
                     File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-                    boolean isResizeNeeded = recordingConfigurations.imageScaleFactor() != 1.0;
-                    boolean isCompressionNeeded = recordingConfigurations.imageQuality() != 1.0;
-                    if (isResizeNeeded || isCompressionNeeded)
-                    {
-                        try
-                        {
-                            BufferedImage img = ImageIO.read(file);
-                            if (isResizeNeeded)
-                            {
-                                img = writer.resizeImage(img, recordingConfigurations.imageScaleFactor());
-                            }
-                            if (isCompressionNeeded)
-                            {
-                                img = writer.compressImage(img, recordingConfigurations.imageQuality());
-                            }
-                            ImageIO.write(img, "jpg", file);
-                        }
-                        catch (IOException e)
-                        {
-                            e.printStackTrace();
-                        }
-                    }
+                    writer.compressImageIfNeeded(file, recordingConfigurations.imageScaleFactor(), recordingConfigurations.imageQuality());
                     writer.write(file);
 
                     long duration = new Date().getTime() - start;
@@ -116,7 +110,6 @@ public class TakeScreenshotsThread extends Thread
                     if (recordingConfigurations.deleteRecordingsAfterAddingToAllureReport())
                     {
                         new File(fileName).delete();
-                        // FileUtils.deleteDirectory(new File(recordingConfigurations.tempFolderToStoreRecoring()));
                     }
                 }
                 catch (IOException e)
@@ -131,6 +124,13 @@ public class TakeScreenshotsThread extends Thread
         }
     }
 
+    /**
+     * Stops screenshot loop. Please, don't forget to call {@link Thread#join()} method after this to kill the thread
+     * 
+     * @param testFailed
+     *            {@link Boolean} if the filmed test failed (needed to decide whether the record should be attached to
+     *            the allure report)
+     */
     public void stopRun(boolean testFailed)
     {
         this.testFailed = testFailed;

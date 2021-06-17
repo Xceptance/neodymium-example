@@ -17,9 +17,27 @@ import javax.imageio.stream.ImageOutputStream;
 
 import posters.recording.config.RecordingConfigurations;
 
+/**
+ * Interface for all the writers. Provides a static method to instantiate the writer and the methods every writer should
+ * have (start, write and stop). It also implements the methods for image compression as this algorithm is the same for
+ * every writer.
+ * 
+ * @author olha
+ */
 public interface Writer
 {
-    public static Writer instanciate(Class<? extends Writer> writer, RecordingConfigurations recordingConfigurations, String fileName)
+    /**
+     * Instantiates the writer.
+     * 
+     * @param writer
+     *            {@link Class} of the {@link Writer} to instantiate
+     * @param recordingConfigurations
+     *            {@link RecordingConfigurations} for the {@link Writer}
+     * @param fileName
+     *            {@link String} name of the file writer shouls write into (with absolute or relative path)
+     * @return created {@link Writer} instance
+     */
+    public static Writer instantiate(Class<? extends Writer> writer, RecordingConfigurations recordingConfigurations, String fileName)
     {
         Writer writerObject = null;
         try
@@ -35,7 +53,55 @@ public interface Writer
         return writerObject;
     }
 
-    public default BufferedImage compressImage(BufferedImage image, double imageQuality)
+    /**
+     * Compresses image if it' required.
+     * 
+     * @param imageFile
+     *            {@link File} of the image to compress
+     * @param imageScaleFactor
+     *            {@link Double} scale factor of the image (does nothing on 1.0 value)
+     * @param imageQuality
+     *            {@link Double} image quality value (does nothing on 1.0 value)
+     * @return compressed image {@link File}
+     */
+    public default File compressImageIfNeeded(File imageFile, double imageScaleFactor, double imageQuality)
+    {
+        // compress image if needed
+        boolean isResizeNeeded = imageScaleFactor != 1.0;
+        boolean isCompressionNeeded = imageQuality != 1.0;
+        if (isResizeNeeded || isCompressionNeeded)
+        {
+            try
+            {
+                BufferedImage img = ImageIO.read(imageFile);
+                if (isResizeNeeded)
+                {
+                    img = resizeImage(img, imageScaleFactor);
+                }
+                if (isCompressionNeeded)
+                {
+                    img = changeImageQuality(img, imageQuality);
+                }
+                ImageIO.write(img, "jpg", imageFile);
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+        return imageFile;
+    }
+
+    /**
+     * Changes quality of the image
+     * 
+     * @param image
+     *            {@link BufferedImage} to compress
+     * @param imageQuality
+     *            {@link Double} value of desired quality percentage
+     * @return {@link BufferedImage} with changed quality
+     */
+    public default BufferedImage changeImageQuality(BufferedImage image, double imageQuality)
     {
         ByteArrayOutputStream compressed = new ByteArrayOutputStream();
 
@@ -72,6 +138,15 @@ public interface Writer
         return image;
     }
 
+    /**
+     * Resizes the image
+     * 
+     * @param originalImage
+     *            {@link BufferedImage} to resize
+     * @param scaleFactor
+     *            {@link Double} of scale factor
+     * @return resized {@link BufferedImage}
+     */
     public default BufferedImage resizeImage(BufferedImage originalImage, double scaleFactor)
     {
         int targetWidth = (int) Math.round(originalImage.getWidth() * scaleFactor);

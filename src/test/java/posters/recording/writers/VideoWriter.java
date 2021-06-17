@@ -18,8 +18,15 @@ import org.slf4j.LoggerFactory;
 import com.codeborne.selenide.Selenide;
 import com.xceptance.neodymium.util.AllureAddons;
 
+import posters.recording.TakeScreenshotsThread;
 import posters.recording.config.RecordingConfigurations;
+import posters.recording.config.VideoRecordingConfigurations;
 
+/**
+ * Writer to create a video using FFmpeg
+ * 
+ * @author olha
+ */
 public class VideoWriter implements Writer
 {
     private static final Logger LOGGER = LoggerFactory.getLogger(VideoWriter.class);
@@ -30,6 +37,18 @@ public class VideoWriter implements Writer
 
     private Process p;
 
+    /**
+     * Required to instantiate the object in the {@link Writer#instantiate(Class, RecordingConfigurations, String)}
+     * method.
+     * <p>
+     * Prepares the FFmpeg command with {@link ProcessBuilder}.
+     * 
+     * @param recordingConfigurations
+     *            {@link VideoRecordingConfigurations} for the writer
+     * @param videoFileName
+     *            {@link String} video file name ( including the path)
+     * @throws IOException
+     */
     protected VideoWriter(RecordingConfigurations recordingConfigurations, String videoFileName) throws IOException
     {
         pb = new ProcessBuilder(recordingConfigurations.ffmpegBinaryPath(), "-y", "-f", "image2pipe", "-r", " 5/1", "-i", "pipe:0", "-c:v", "libx264", videoFileName);
@@ -37,6 +56,12 @@ public class VideoWriter implements Writer
         pb.redirectOutput(Redirect.appendTo(new File(recordingConfigurations.ffmpegLogFile())));
     }
 
+    /**
+     * Starts FFmpeg video generation.
+     * 
+     * @throws IOException
+     *             to stop screenshots loop on {@link TakeScreenshotsThread} in case of start failure
+     */
     @Override
     public void start() throws IOException
     {
@@ -44,6 +69,9 @@ public class VideoWriter implements Writer
         ffmpegInput = p.getOutputStream();
     }
 
+    /**
+     * Writes {@link File} into the FFmpeg {@link Process}
+     */
     @Override
     public void write(File image)
     {
@@ -64,6 +92,10 @@ public class VideoWriter implements Writer
         }
     }
 
+    /**
+     * Flushes and closes the input stream of the FFmpeg {@link Process} to make it start processing the video. Waits
+     * until the video processing is done and logs to the allure report the time required for the processing
+     */
     @Override
     public void stop()
     {
