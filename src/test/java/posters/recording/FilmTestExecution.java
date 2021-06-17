@@ -27,9 +27,9 @@ public class FilmTestExecution
 
     private static final Map<Thread, GifRecordingConfigurations> CONTEXTS_GIF = Collections.synchronizedMap(new WeakHashMap<>());
 
-    private static final Map<Thread, TakeScreenshotsThread> GIF_THREADS = Collections.synchronizedMap(new WeakHashMap<>());
+    private static final Map<String, TakeScreenshotsThread> GIF_THREADS = Collections.synchronizedMap(new WeakHashMap<>());
 
-    private static final Map<Thread, TakeScreenshotsThread> VIDEO_THREADS = Collections.synchronizedMap(new WeakHashMap<>());
+    private static final Map<String, TakeScreenshotsThread> VIDEO_THREADS = Collections.synchronizedMap(new WeakHashMap<>());
 
     /**
      * Gets {@link RecordingConfigurations} for current thread
@@ -87,24 +87,24 @@ public class FilmTestExecution
      */
     private static TakeScreenshotsThread createThread(String testName, boolean isGif)
     {
-        Map<Thread, TakeScreenshotsThread> threads = isGif ? GIF_THREADS : VIDEO_THREADS;
-        return threads.computeIfAbsent(Thread.currentThread(), key -> {
+        Map<String, TakeScreenshotsThread> threads = isGif ? GIF_THREADS : VIDEO_THREADS;
+        return threads.computeIfAbsent(testName, key -> {
             return createTakeScreenshotsThread(testName, isGif);
         });
     }
 
     /**
-     * Gets the {@link TakeScreenshotsThread} for the current thread and removes it
+     * Gets the {@link TakeScreenshotsThread} for the specific test and removes it
      * 
      * @param isGif
      *            should the desired {@link TakeScreenshotsThread} create a gif
      * @return {@link TakeScreenshotsThread} for the current thread
      */
-    private static TakeScreenshotsThread popThread(boolean isGif)
+    private static TakeScreenshotsThread popThread(String testName, boolean isGif)
     {
-        Map<Thread, TakeScreenshotsThread> threads = isGif ? GIF_THREADS : VIDEO_THREADS;
-        TakeScreenshotsThread thread = threads.get(Thread.currentThread());
-        threads.remove(Thread.currentThread());
+        Map<String, TakeScreenshotsThread> threads = isGif ? GIF_THREADS : VIDEO_THREADS;
+        TakeScreenshotsThread thread = threads.get(testName);
+        threads.remove(testName);
         return thread;
     }
 
@@ -141,13 +141,15 @@ public class FilmTestExecution
     /**
      * Finishes gif filming for the current test
      * 
+     * @param testName
+     *            name of the test to finish filming for
      * @param testFailed
      *            {@link Boolean} value of test test success (needed to decide whether the gif should be attached to
      *            allure report)
      */
-    public static void finishGifFilming(boolean testFailed)
+    public static void finishGifFilming(String testName, boolean testFailed)
     {
-        TakeScreenshotsThread thread = popThread(true);
+        TakeScreenshotsThread thread = popThread(testName, true);
         if (thread != null)
         {
             thread.stopRun(testFailed);
@@ -165,13 +167,15 @@ public class FilmTestExecution
     /**
      * Finishes video filming for the current test
      * 
+     * @param testName
+     *            name of the test to finish filming for
      * @param testFailed
      *            {@link Boolean} value of test test success (needed to decide whether the video should be attached to
      *            allure report)
      */
-    public static void finishVideoFilming(boolean testFailed)
+    public static void finishVideoFilming(String testName, boolean testFailed)
     {
-        TakeScreenshotsThread thread = popThread(false);
+        TakeScreenshotsThread thread = popThread(testName, false);
         if (thread != null)
         {
             thread.stopRun(testFailed);

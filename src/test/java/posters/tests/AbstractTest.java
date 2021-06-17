@@ -38,15 +38,15 @@ public abstract class AbstractTest
         @Override
         protected void failed(Throwable e, Description description)
         {
-            FilmTestExecution.finishGifFilming(true);
-            FilmTestExecution.finishVideoFilming(true);
+            FilmTestExecution.finishGifFilming(name.getMethodName(), true);
+            FilmTestExecution.finishVideoFilming(name.getMethodName(), true);
         }
 
         @Override
         protected void succeeded(Description description)
         {
-            FilmTestExecution.finishGifFilming(false);
-            FilmTestExecution.finishVideoFilming(false);
+            FilmTestExecution.finishGifFilming(name.getMethodName(), false);
+            FilmTestExecution.finishVideoFilming(name.getMethodName(), false);
         }
     };
 
