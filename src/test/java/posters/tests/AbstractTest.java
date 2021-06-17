@@ -29,10 +29,6 @@ public abstract class AbstractTest
 
     protected HomePage homePage;
 
-    private FilmTestExecution filmTestExecution;
-
-    private FilmTestExecution filmTestExecution1;
-
     @Rule
     public TestName name = new TestName();
 
@@ -42,26 +38,23 @@ public abstract class AbstractTest
         @Override
         protected void failed(Throwable e, Description description)
         {
-            if (filmTestExecution != null)
-            {
-                filmTestExecution.finishFilmingTest(true);
-                filmTestExecution1.finishFilmingTest(true);
-            }
+            FilmTestExecution.finishGifFilming(true);
+            FilmTestExecution.finishVideoFilming(true);
         }
 
         @Override
         protected void succeeded(Description description)
         {
-            filmTestExecution.finishFilmingTest(false);
-            filmTestExecution1.finishFilmingTest(false);
+            FilmTestExecution.finishGifFilming(false);
+            FilmTestExecution.finishVideoFilming(false);
         }
     };
 
     @Before
     public void openHomePageAndStartFilming() throws IOException, InterruptedException
     {
-        filmTestExecution = new FilmTestExecution().startFilmingGif(name.getMethodName());
-        filmTestExecution1 = new FilmTestExecution().startFilmingVideo(name.getMethodName());
+        FilmTestExecution.startGifRecording(name.getMethodName());
+        FilmTestExecution.startVideoRecording(name.getMethodName());
         homePage = OpenHomePageFlow.flow();
     }
 }

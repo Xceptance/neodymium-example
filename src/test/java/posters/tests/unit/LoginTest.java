@@ -21,7 +21,6 @@ import posters.tests.AbstractTest;
  * @author pfotenhauer
  */
 @Browser("Chrome_1024x768")
-@Browser("Firefox_1024x768")
 @Owner("Tim Brown")
 @Severity(SeverityLevel.NORMAL)
 @Tag("functionality")

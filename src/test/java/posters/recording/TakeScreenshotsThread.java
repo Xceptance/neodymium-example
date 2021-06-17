@@ -8,7 +8,6 @@ import java.util.Date;
 
 import javax.imageio.ImageIO;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -117,7 +116,7 @@ public class TakeScreenshotsThread extends Thread
                     if (recordingConfigurations.deleteRecordingsAfterAddingToAllureReport())
                     {
                         new File(fileName).delete();
-                        FileUtils.deleteDirectory(new File(recordingConfigurations.tempFolderToStoreRecoring()));
+                        // FileUtils.deleteDirectory(new File(recordingConfigurations.tempFolderToStoreRecoring()));
                     }
                 }
                 catch (IOException e)
