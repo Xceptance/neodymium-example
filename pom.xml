@@ -30,7 +30,7 @@
 		<surefire.version>2.22.2</surefire.version>
 		<aspectj.version>1.9.6</aspectj.version>
 		<allure.version>2.10.0</allure.version>
-		<neodymium.version>4.1.0</neodymium.version>
+		<neodymium.version>4.1.1</neodymium.version>
 	</properties>
 
 	<build>
