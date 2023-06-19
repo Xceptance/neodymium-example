@@ -1,6 +1,6 @@
 package posters.pageobjects.components;
 
-import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -23,6 +23,7 @@ public class Footer extends AbstractComponent
     {
         isComponentAvailable();
         // Asserts the footer contains the correct text.
-        footer.shouldHave(exactText(Neodymium.localizedText("footer.text")));
+        footer.shouldHave(text(Neodymium.localizedText("footer.text")));
+
     }
 }

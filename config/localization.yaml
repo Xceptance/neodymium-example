@@ -1,6 +1,6 @@
 default:
     footer:
-        text: Copyright (c) 2016 Xceptance Software Technologies -- This software is for demo purposes only and not meant to be used in production.
+        text: Copyright (c) 2013-2020 Xceptance Software Technologies GmbH -- This software is for demo purposes only and not meant to be used in production.
     search:
         results:
             text: Your results for your search

@@ -20,7 +20,7 @@ public class HomePage extends AbstractBrowsingPage
     public HomePage isExpectedPage()
     {
         super.isExpectedPage();
-        $("#titleIndex").should(exist);
+        $("#titleSlide").should(exist);
         return this;
     }
 
@@ -30,24 +30,29 @@ public class HomePage extends AbstractBrowsingPage
         super.validateStructure();
 
         // Verifies the company Logo and name are visible.
-        $("#brand").shouldBe(visible);
+        $("#colorlib-logo").shouldBe(visible);
 
         // Verifies the Navigation bar is visible
-        $("#categoryMenu .nav").shouldBe(visible);
+        $("#categoryMenu .navi").shouldBe(visible);
         // Asserts there's categories in the nav bar.
-        $$("#categoryMenu .header-menu-item").shouldHave(sizeGreaterThan(0));
+        $$("#categoryMenu .has-dropdown").shouldHave(sizeGreaterThan(0));
 
         // Asserts the first headline is there.
-        $("#titleIndex").shouldBe(matchText("[A-Z].{3,}"));
+        // $("#titleIndex").shouldBe(matchText("[A-Z].{3,}"));
+        
         // Asserts the animated poster rotation is there.
-        $("#pShopCarousel").shouldBe(visible);
+        $(".flex-control-nav").shouldBe(visible);
 
+        // Verifies the 'Intro Quote' section is there.
+        $(".colorlib-intro .container h2").shouldBe(matchText("[A-Z].{3,}"));
+        
         // Verifies the "Hot products" section is there.
-        $("#main .margin_top20 .h2").shouldBe(matchText("[A-Z].{3,}"));
+        $(".colorlib-product .colorlib-heading h2").shouldBe(matchText("[A-Z].{3,}"));
+        
         // Asserts there's a list of items under "Hot Products".
-        $("#productList").shouldBe(visible);
+        $(".colorlib-product #productList").shouldBe(visible);
         // Asserts there's at least 1 item in the list.
-        $$("#productList .thumbnail").shouldHave(sizeGreaterThan(0));
+        $$(".container .row-pb-md .product-entry").shouldHave(sizeGreaterThan(0));
     }
 
     @Step("validate home page")

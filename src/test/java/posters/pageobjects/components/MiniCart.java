@@ -29,7 +29,9 @@ public class MiniCart extends AbstractComponent
 
     private SelenideElement subOrderPrice = $(miniCartSelector + " .subOrderPrice");
 
-    private SelenideElement totalCountElement = $("#btnCartOverviewForm .headerCartProductCount");
+    private SelenideElement totalCountElement = $("#headerCartOverview .headerCartProductCount");
+    
+    private SelenideElement goToCartButton = $(".goToCart");
 
     public void isComponentAvailable()
     {
@@ -59,9 +61,10 @@ public class MiniCart extends AbstractComponent
     @Step("open the cart page")
     public CartPage openCartPage()
     {
+
         // Open the cart
         // Click on the button to go to the Cart
-        miniCart.find(".goToCart").click();
+         goToCartButton.click();
         return new CartPage().isExpectedPage();
     }
 

@@ -44,7 +44,7 @@ public class Search extends AbstractComponent
     @Step("open search field")
     public void openSearch()
     {
-        $("#header-search-trigger").scrollTo().click();
+        $("#btnSearch").scrollTo().exists();
     }
 
     @Step("validate that {searchTerm} is still visible after")

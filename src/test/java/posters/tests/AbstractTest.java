@@ -11,7 +11,7 @@ import com.xceptance.neodymium.module.statement.browser.multibrowser.Browser;
  * @author pfotenhauer
  */
 @RunWith(NeodymiumRunner.class)
-@Browser("Chrome_1024x768")
+@Browser("Firefox_10")
 public abstract class AbstractTest
 {
     protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractTest.class);

@@ -150,7 +150,7 @@ public class CartPage extends AbstractBrowsingPage
         SelenideElement productContainer = $("#product" + (position - 1));
         // Store unit price (without $ sign)
         // Takes the price per 1 unit of the specified item
-        String unitPriceShort_varDynamic = productContainer.find(".unitPriceShort").text();
+        String unitPriceShort_varDynamic = PriceHelper.removeCurrency(productContainer.find(".unitPriceShort").text());
         // Store product count
         // Takes the amount of the specified item
         String quantity_varDynamic = $("#productCount" + (position - 1)).val();
@@ -313,7 +313,7 @@ public class CartPage extends AbstractBrowsingPage
     @Step("click on a product on the cart page")
     public ProductDetailPage openProductPage(int position)
     {
-        $("#product" + (position - 1) + " img").scrollTo().click();
+        $("#product" + (position - 1) + " .product-img").scrollTo().click();
         return new ProductDetailPage().isExpectedPage();
     }
 

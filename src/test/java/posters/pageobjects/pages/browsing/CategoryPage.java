@@ -68,7 +68,7 @@ public class CategoryPage extends AbstractBrowsingPage
     {
         // Open the product detail page
         // Clicks a product by position. Because of the html code, this requires x and y coordinates.
-        SelenideElement rowContainer = $$("#productOverview > .row").get(row - 1);
+        SelenideElement rowContainer = $$("#products > .row").get(row - 1);
         rowContainer.find(".thumbnail", column - 1).scrollTo().click();
         return new ProductDetailPage().isExpectedPage();
     }
@@ -81,8 +81,8 @@ public class CategoryPage extends AbstractBrowsingPage
     @Step("get a product name by position in grid")
     public String getProductNameByPosition(int row, int column)
     {
-        SelenideElement rowContainer = productOverview.findAll(".thumbnails.row").get(row - 1);
-        return rowContainer.find("h4.pName", column - 1).text();
+        SelenideElement rowContainer = productOverview.findAll("#products #pRows").get(row - 1);
+        return rowContainer.find("h2.pName", column - 1).text();
     }
 
     /**
@@ -93,6 +93,7 @@ public class CategoryPage extends AbstractBrowsingPage
     public ProductDetailPage clickProductByPosition(int position)
     {
         final int index = position - 1;
+        
         // Open the product detail page
         // Click on the product's image and open the product overview page
         // Click the product link to open the product detail page
@@ -123,7 +124,7 @@ public class CategoryPage extends AbstractBrowsingPage
     {
         final int index = position - 1;
         // Get the product name
-        return $("#product" + index + " .pInfo .pName").text();
+        return $("#product" + index + " .desc .pName").text();
     }
 
     /**
@@ -145,9 +146,9 @@ public class CategoryPage extends AbstractBrowsingPage
         $(".header-container #searchTextValue").shouldHave(exactText(searchTerm));
         // Verify there are search results
         // There is at least one row of results
-        $("#productOverview ul.row").shouldBe(exist);
+        $("#productOverview #products .row").shouldBe(exist);
         // There is at least one product in the results
-        $$("#productOverview li").shouldHave(sizeGreaterThan(0));
+        $$("#productOverview .product-entry").shouldHave(sizeGreaterThan(0));
         // Verify that there is the specified amount of results
         // The amount of products shown in the headline matches the expected value
         $("#totalProductCount").shouldHave(exactText(Integer.toString(searchTermExpectedCount)));

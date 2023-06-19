@@ -36,7 +36,8 @@ public class PriceHelper
 
     public static String removeCurrency(String price)
     {
-        return price.substring(1);
+        String s = price.substring(1); 
+        return s;
     }
 
     /**
