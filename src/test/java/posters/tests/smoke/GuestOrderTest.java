@@ -29,6 +29,8 @@ public class GuestOrderTest extends AbstractTest
         // total product count will be updated throughout the test
         int totalCount = 0;
         final String shippingCosts = Neodymium.dataValue("shippingCosts");
+        
+
 
         // Go to homepage
         var homePage = OpenHomePageFlow.flow();
@@ -88,10 +90,21 @@ public class GuestOrderTest extends AbstractTest
         placeOrderPage.validateAddressesAndPayment(shippingAddress, billingAddress, creditCard);
 
         // Place order
-        homePage = placeOrderPage.placeOrder();
+        //homePage = placeOrderPage.placeOrder();
+        
+        // Place Order
+        var orderConfirmationPage = placeOrderPage.placeOrder();
+        
+        // Validate order confirmation on the Order Confirmation page
+        orderConfirmationPage.validate();
+        orderConfirmationPage.validateSuccessfulOrder();
+        
+        //navigate to the Home Page
+        
+        // Place order
+        homePage = placeOrderPage.goHome();
 
-        // Validate order confirmation on home page
+        // Validate home page
         homePage.validate();
-        homePage.validateSuccessfulOrder();
     }
 }

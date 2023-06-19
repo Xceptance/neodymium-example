@@ -63,7 +63,7 @@ public class NewBillingAddressPage extends AbstractCheckoutPage
         nameField.shouldBe(visible);
         // Company
         // Asserts the label next to the company field shows the right text
-        $("label[for='company']").shouldHave(exactText(Neodymium.localizedText("General.addresses.company")));
+        $("label[for='companyname']").shouldHave(exactText(Neodymium.localizedText("General.addresses.company")));
         // Asserts the company field is there
         companyField.shouldBe(visible);
         // Address

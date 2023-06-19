@@ -1,6 +1,7 @@
 package posters.pageobjects.pages.checkout;
 
 import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.text;
@@ -31,6 +32,9 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     private SelenideElement paymentForm = $("#payment");
 
     private SelenideElement orderButton = $("#btnOrder");
+    
+    private SelenideElement homePageButton = $("#goHome");
+
 
     @Override
     @Step("ensure this is a place order page")
@@ -93,14 +97,18 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         productContainer.find(".pName").shouldHave(exactText(productName));
         // Amount
         // The amount equals the parameter
-        productContainer.find(".pCount").shouldHave(exactText(Integer.toString(productCount)));
+        //String Val = productContainer.find(".productCount").getAttribute("value");
+       
+        productContainer.find(".productCount").shouldHave(value(Integer.toString(productCount)));
         // Style
         // The style equals the parameter
-        productContainer.find(".pStyle").shouldHave(exactText(productStyle));
+        productContainer.find(".productStyle").shouldHave(exactText(productStyle));
         // Size
         // The size equals the parameter
-        productContainer.find(".pSize").shouldHave(exactText(productSize));
+        productContainer.find(".productSize").shouldHave(exactText(productSize));
     }
+
+
 
     @Step("validate addresses and payment on place order page")
     public void validateAddressesAndPayment(Address shippingAddress, Address billingAddress, CreditCard creditcard)
@@ -173,12 +181,26 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     }
 
     @Step("place the order")
-    public HomePage placeOrder()
+    public OrderConfirmationPage placeOrder()
     {
-        // Opens the homepage
+        // Opens the OrderConfirmationPage
         // Clicks the Order button
         orderButton.scrollTo().click();
 
-        return new HomePage().isExpectedPage();
+        return new OrderConfirmationPage().isExpectedPage();
+        
+        
     }
+
+    public HomePage goHome()
+    {
+        
+        // Clicks the HomePage button on the Order Confirmation page
+        homePageButton.scrollTo().click();
+
+        return new HomePage().isExpectedPage();
+        
+    }
+    
+
 }
