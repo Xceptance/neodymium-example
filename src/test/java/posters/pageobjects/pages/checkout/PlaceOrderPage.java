@@ -15,7 +15,6 @@ import io.qameta.allure.Step;
 import posters.dataobjects.Address;
 import posters.dataobjects.CreditCard;
 import posters.dataobjects.Product;
-import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.utility.PriceHelper;
 
 /**
@@ -33,7 +32,6 @@ public class PlaceOrderPage extends AbstractCheckoutPage
 
     private SelenideElement orderButton = $("#btnOrder");
     
-    private SelenideElement homePageButton = $("#goHome");
 
 
     @Override
@@ -192,15 +190,6 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         
     }
 
-    public HomePage goHome()
-    {
-        
-        // Clicks the HomePage button on the Order Confirmation page
-        homePageButton.scrollTo().click();
-
-        return new HomePage().isExpectedPage();
-        
-    }
-    
+   
 
 }

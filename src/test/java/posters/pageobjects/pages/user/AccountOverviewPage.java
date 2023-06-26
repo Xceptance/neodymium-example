@@ -16,7 +16,7 @@ public class AccountOverviewPage extends AbstractBrowsingPage
 {
     private SelenideElement headline = $("#titleAccountOverview");
 
-    private SelenideElement personalDataLink = $("#linkPersonalData");
+    private SelenideElement personalDataLink = $("#linkSettingOverview");
 
     @Override
     @Step("ensure this is an account overview page")

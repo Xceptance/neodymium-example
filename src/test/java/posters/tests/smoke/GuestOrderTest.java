@@ -100,11 +100,10 @@ public class GuestOrderTest extends AbstractTest
         orderConfirmationPage.validateSuccessfulOrder();
         
         //navigate to the Home Page
-        
-        // Place order
-        homePage = placeOrderPage.goHome();
+        homePage = orderConfirmationPage.goHome();
+       
 
-        // Validate home page
+        //Validate home page
         homePage.validate();
     }
 }

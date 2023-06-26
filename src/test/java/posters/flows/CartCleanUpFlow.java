@@ -14,7 +14,7 @@ public class CartCleanUpFlow
     public static void flow()
     {
         // click on the shop logo to ensure a home page afterwards
-        $(".navbar #brand").click();
+        $(".colorlib-nav #brand").click();
 
         // open the minicart
         var homePage = new HomePage();

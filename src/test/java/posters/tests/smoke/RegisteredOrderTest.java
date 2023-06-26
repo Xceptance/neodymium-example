@@ -98,11 +98,11 @@ public class RegisteredOrderTest extends AbstractTest
         placeOrderPage.validateAddressesAndPayment(shippingAddress, billingAddress, creditCard);
 
         // Place order
-        homePage = placeOrderPage.placeOrder();
+        var OrderConfirmationPage = placeOrderPage.placeOrder();
 
-        // Validate order confirmation on Homepage
-        homePage.validate();
-        homePage.validateSuccessfulOrder();
+        // Validate order confirmation on Order Confirmation Page
+        OrderConfirmationPage.validate();
+        OrderConfirmationPage.validateSuccessfulOrder();
     }
 
     @After

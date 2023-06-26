@@ -6,12 +6,17 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
+import posters.pageobjects.pages.browsing.HomePage;
 
 public class OrderConfirmationPage extends AbstractBrowsingPage{
+    
+    private SelenideElement homePageButton = $("#goHome");
+
     
     @Step("ensure this is the Order Confirmation page")
     public OrderConfirmationPage isExpectedPage()
@@ -65,6 +70,16 @@ public class OrderConfirmationPage extends AbstractBrowsingPage{
         // Verify that the mini cart is empty again
         miniCart.validateTotalCount(0);
         miniCart.validateSubtotal("$0.00");
+    }
+    
+    public HomePage goHome()
+    {
+        
+        // Clicks the Continue Shopping button on the Order Confirmation page
+        homePageButton.scrollTo().click();
+
+        return new HomePage().isExpectedPage();
+        
     }
     
     

@@ -27,7 +27,7 @@ import posters.tests.AbstractTest;
 @Severity(SeverityLevel.CRITICAL)
 @Tag("smoke")
 @Tag("registered")
-@Browser("Chrome_1024x768")
+//@Browser("Chrome_1024x768")
 @Browser("Firefox_1024x768")
 public class RegisterTest extends AbstractTest
 {

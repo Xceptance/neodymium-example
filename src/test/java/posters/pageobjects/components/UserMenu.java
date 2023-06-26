@@ -88,7 +88,7 @@ public class UserMenu extends AbstractComponent
         userMenu.find(".firstName").shouldHave(exactText(firstName));
         closeUserMenu();
         // Makes sure the mini menu element has the "logged" class active instead of the "not-logged" class.
-        showUserMenu.find("span.glyphicon").shouldHave(cssClass("logged")).shouldHave(exactText(""));
+        showUserMenu.find(".icon-user2").shouldHave(cssClass("logged")).shouldHave(exactText(""));
     }
 
     @Step("validate that nobody is logged in")

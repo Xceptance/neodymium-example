@@ -50,7 +50,7 @@ public class RegisterPage extends AbstractBrowsingPage
 
         // Login headline
         // Make sure the Headline is there and starts with a capital letter followed by at least 3 more symbols.
-        registerForm.find(".h2").should(matchText("[A-Z].{3,}"));
+        registerForm.find(".h2fwpr").should(matchText("[A-Z].{3,}"));
         // Form
         // Asserts the label belonging to the last name field displays the correct text
         $("label[for='lastName']").shouldHave(exactText(Neodymium.localizedText("AccountPages.lastname")));

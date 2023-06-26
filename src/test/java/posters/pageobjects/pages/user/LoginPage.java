@@ -47,7 +47,7 @@ public class LoginPage extends AbstractBrowsingPage
 
         // Login headline
         // Make sure the Headline is there and starts with a capital letter followed by at least 3 more symbols.
-        loginForm.find("h2").should(matchText("[A-Z].{3,}"));
+        loginForm.find(".h2fwpr").should(matchText("[A-Z].{3,}"));
         // Email field
         // Asserts the Email field has a label displaying the value.
         loginForm.find("label.control-label[for=email]").shouldHave(exactText(Neodymium.localizedText("AccountPages.yourEmail")));
@@ -63,7 +63,7 @@ public class LoginPage extends AbstractBrowsingPage
         signInButton.shouldHave(exactText(Neodymium.localizedText("AccountPages.signIn")));
         // Register headline
         // Asserts the Headline for the Registration is there.
-        $("#main .h3").shouldHave(exactText(Neodymium.localizedText("AccountPages.newCustomer")));
+        $(".header-container .h2fwpr").shouldHave(exactText(Neodymium.localizedText("AccountPages.newCustomer")));
         // Registration page link
         // Asserts the Register link is there and shows the correct text.
         registerLink.shouldHave(exactText(Neodymium.localizedText("AccountPages.createNewAccount")));
