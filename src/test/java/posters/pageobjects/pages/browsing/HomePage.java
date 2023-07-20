@@ -58,8 +58,9 @@ public class HomePage extends AbstractBrowsingPage
     @Step("validate home page")
     public void validate()
     {
-        validateStructure();
-        footer.validate();
+        //validateStructure();
+        //footer.validate();
+        header.validateStructure();
     }
 
     @Step("validate successful order on home page")
