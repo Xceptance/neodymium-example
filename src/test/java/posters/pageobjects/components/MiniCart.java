@@ -2,12 +2,13 @@ package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.matchText;
+import static com.codeborne.selenide.Condition.matchesText;
 import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -21,18 +22,20 @@ import posters.pageobjects.utility.PriceHelper;
  */
 public class MiniCart extends AbstractComponent
 {
-    private SelenideElement headerCart = $("#headerCartOverview");
+    private static SelenideElement headerCart = $("#headerCartOverview");
 
     private final static String miniCartSelector = "#miniCartMenu";
 
     private SelenideElement miniCart = $(miniCartSelector);
+    
+    public static ElementsCollection subtotal = $$(miniCartSelector + " .cartMiniSubOrderTotal");
 
     private SelenideElement subOrderPrice = $(miniCartSelector + " .subOrderPrice");
 
     private SelenideElement totalCountElement = $("#headerCartOverview .headerCartProductCount");
     
     private SelenideElement goToCartButton = $(".goToCart");
-
+    
     public void isComponentAvailable()
     {
         $("#btnCartOverviewForm").should(exist);
@@ -122,7 +125,7 @@ public class MiniCart extends AbstractComponent
     @Step("validate '{product}' in the mini cart by name")
     public void validateMiniCartByProduct(Product product)
     {
-        SelenideElement productContainer = $$(".cartItems").filter(matchText(product.getCartRowRegex())).shouldHaveSize(1).first();
+        SelenideElement productContainer = $$(".cartItems").filter(matchesText(product.getCartRowRegex())).shouldHaveSize(1).first();
 
         productContainer.find(".prodName").shouldHave(exactText(product.getName()));
         productContainer.find(".prodStyle").shouldHave(exactText(product.getStyle()));
@@ -167,5 +170,22 @@ public class MiniCart extends AbstractComponent
         miniCartItem.find(".prodPrice").shouldHave(exactText(prodTotalPrice));
         // Close mini cart
         closeMiniCart();
+    }
+
+    // extended by Jonas
+    @Step("validate shopping cart menu")
+    public static void validateStructure() 
+    {
+        $(".icon-shopping-cart").shouldBe(visible);
+        $$("#count_wideView").findBy(matchesText("\\d")).shouldBe(visible);
+        
+        headerCart.hover();
+        // TODO - validate item count
+        $$("#miniCartMenu .cartMiniHeader").findBy(matchesText(Neodymium.localizedText("header.shoppingCart.itemsInCart"))).shouldBe(visible);
+        subtotal.findBy(matchesText(Neodymium.localizedText("header.shoppingCart.subtotal"))).shouldBe(visible);
+        subtotal.findBy(matchesText("\\$\\d\\.\\d")).shouldBe(visible);
+        $$("#miniCartMenu .linkButton").findBy(exactText(Neodymium.localizedText("header.shoppingCart.viewCart"))).shouldBe(visible);
+        
+        $("#globalNavigation").hover();
     }
 }

@@ -13,7 +13,7 @@ import posters.pageobjects.pages.browsing.NoHitsPage;
 
 public class Search extends AbstractComponent
 {
-    private SelenideElement searchField = $("#s");
+    private static SelenideElement searchField = $("#s");
 
     public void isComponentAvailable()
     {
@@ -50,11 +50,17 @@ public class Search extends AbstractComponent
     @Step("validate that {searchTerm} is still visible after")
     public void validateSearchTerm(String searchTerm)
     {
-        // Validate the entered search phrase is still visible in the input
         openSearch();
-        // Validate the entered search phrase is still visible in the input
         searchField.should(visible);
-        // Validate the entered search phrase is still visible in the input
         searchField.should(exactValue(searchTerm));
+    }
+    
+    @Step("validate structure search bar")
+    public static void validateStructure() 
+    {
+        // validate search-bar, button and icon of button
+        searchField.shouldBe(visible);
+        $("#btnSearch").shouldBe(visible);
+        $(".icon-search").shouldBe(visible);
     }
 }

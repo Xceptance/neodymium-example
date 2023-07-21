@@ -6,7 +6,9 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -23,13 +25,14 @@ public class UserMenu extends AbstractComponent
 
     private final SelenideElement userMenu = $("#userMenu");
 
-    private final SelenideElement showUserMenu = $("#showUserMenu");
+    private static SelenideElement showUserMenu = $("#showUserMenu");
 
     public void isComponentAvailable()
     {
         showUserMenu.should(exist);
     }
 
+    // TODO - improve
     @Step("open user menu")
     public void openUserMenu()
     {
@@ -40,6 +43,7 @@ public class UserMenu extends AbstractComponent
         userMenu.waitUntil(visible, Neodymium.configuration().selenideTimeout());
     }
 
+    // TODO - check if needed
     @Step("close user menu")
     public void closeUserMenu()
     {
@@ -52,6 +56,7 @@ public class UserMenu extends AbstractComponent
         userMenu.waitUntil(not(visible), Neodymium.configuration().selenideTimeout());
     }
 
+    // TODO - check if needed
     @Step("open login page from user menu")
     public LoginPage openLogin()
     {
@@ -60,6 +65,7 @@ public class UserMenu extends AbstractComponent
         return new LoginPage().isExpectedPage();
     }
 
+    // TODO - check if needed
     @Step("open account page from user menu")
     public AccountOverviewPage openAccountOverview()
     {
@@ -68,6 +74,7 @@ public class UserMenu extends AbstractComponent
         return new AccountOverviewPage().isExpectedPage();
     }
 
+    // TODO - check if needed
     @Step("open register page from user menu")
     public RegisterPage openRegister()
     {
@@ -76,9 +83,7 @@ public class UserMenu extends AbstractComponent
         return new RegisterPage().isExpectedPage();
     }
 
-    /**
-     * @param firstName
-     */
+    // TODO - check if needed
     @Step("validate that '{firstName}' is logged in")
     public void validateLoggedInName(String firstName)
     {
@@ -91,15 +96,40 @@ public class UserMenu extends AbstractComponent
         showUserMenu.find(".icon-user2").shouldHave(cssClass("logged")).shouldHave(exactText(""));
     }
 
+    // TODO - check if needed
     @Step("validate that nobody is logged in")
     public void validateNotLoggedIn()
     {
         userMenu.find(".goToLogin").should(exist);
     }
 
+    // TODO - check if needed
     @Step("validate that somebody is logged in")
     public boolean isLoggedIn()
     {
         return userMenu.find(".goToAccountOverview").exists();
+    }
+
+    // extended by Jonas
+    @Step("validate strings in user menu")
+    private static void validateUserMenu(String text)
+    {
+        $$("#userMenu li").findBy(exactText(Neodymium.localizedText(text))).shouldBe(visible);
+    }
+
+    // extended by Jonas
+    @Step("validate user menu")
+    public static void validateStructure()
+    {
+        $(".icon-user2").shouldBe(visible);
+        
+        showUserMenu.hover();
+        validateUserMenu("header.userMenu.greeting");
+        validateUserMenu("header.userMenu.createAccount");
+        validateUserMenu("header.userMenu.signIn");
+        $("#userMenu .icon-user-add-outline").shouldBe(visible);
+        $("#userMenu .icon-log-in").shouldBe(visible);
+        
+        $("#globalNavigation").hover();
     }
 }

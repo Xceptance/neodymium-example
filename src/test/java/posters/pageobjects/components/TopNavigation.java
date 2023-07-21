@@ -1,6 +1,9 @@
 package posters.pageobjects.components;
 
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.matchesText;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -9,6 +12,7 @@ import java.util.Random;
 import org.openqa.selenium.By;
 
 import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.CategoryPage;
@@ -26,12 +30,21 @@ public class TopNavigation extends AbstractComponent
         categoryMenu.should(exist);
     }
 
-    @Step("get the subcategory name")
-    public String getSubCategoryNameByPosition(int categoryPosition, int subCategoryPosition)
+    // TODO - check if needed
+    @Step ("get the category name")
+    public static String getCategoryNameByPosition(int categoryPosition) 
     {
-        return $("#categoryMenu > ul > li:nth-of-type(" + categoryPosition + ") ul.dropdown li:nth-of-type(" + subCategoryPosition + ") a").attr("title");
+        return $("#categoryMenu li:nth-of-type(" + categoryPosition + ") a").attr("title");
+    }
+    
+    // TODO - check if needed
+    @Step("get the subcategory name")
+    public static String getSubCategoryNameByPosition(int categoryPosition, int subCategoryPosition)
+    {
+        return $("#categoryMenu li:nth-of-type(" + categoryPosition + ") .dropdown li:nth-of-type(" + subCategoryPosition + ") a").attr("title");
     }
 
+    // TODO - improve
     @Step("click a subcategory")
     public CategoryPage clickSubCategoryByPosition(int categoryPosition, int subCategoryPosition)
     {
@@ -44,6 +57,7 @@ public class TopNavigation extends AbstractComponent
         return new CategoryPage().isExpectedPage();
     }
 
+    // TODO - check if needed
     @Step("click on '{categoryName}' category")
     public CategoryPage clickCategory(String categoryName)
     {
@@ -51,6 +65,7 @@ public class TopNavigation extends AbstractComponent
         return new CategoryPage().isExpectedPage();
     }
 
+    // TODO - check if needed
     @Step("click on a '{subCategoryName}' subcategory within '{categoryName}'")
     public CategoryPage clickSubCategoryByNames(String categoryName, String subCategoryName)
     {
@@ -62,10 +77,7 @@ public class TopNavigation extends AbstractComponent
         return new CategoryPage();
     }
 
-    /**
-     * @param subCategoryName
-     * @return
-     */
+    // TODO - check if needed
     @Step("click on a product by name '{productName}'")
     public CategoryPage clickSubcategoryByName(String subCategoryName)
     {
@@ -75,6 +87,7 @@ public class TopNavigation extends AbstractComponent
         return new CategoryPage().isExpectedPage();
     }
 
+    // TODO - check if needed
     @Step("get a random sub category name ")
     public String getRandomSubcategoryName(Random random)
     {
@@ -92,5 +105,57 @@ public class TopNavigation extends AbstractComponent
             categoryPositionY = random.nextInt(2) + 1;
 
         return getSubCategoryNameByPosition(categoryPositionX, categoryPositionY);
+    }
+    
+    // extended by Jonas
+    @Step("validate name of components in navigation")
+    public static void validateNavComponent(String component) 
+    {
+        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText(component))).shouldBe(visible);
+    }
+
+    // extended by Jonas
+    @Step("validate name of components in sub navigation")
+    public static void validateSubNavComponent(String component, String subComponent) 
+    {
+        $$("ul.dropdown-menu li").findBy(matchesText(Neodymium.localizedText(subComponent))).shouldBe(visible);
+    }
+    
+    // extended by Jonas
+    @Step("validate structure top navigation")
+    public static void validateStructure() 
+    {
+        // validate navigation bar
+        validateNavComponent("header.worldOfNature");
+        validateNavComponent("header.dining");
+        validateNavComponent("header.transportation");
+        validateNavComponent("header.panoramas");
+        
+        // validate sub navigation "World Of Nature"
+        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.worldOfNature"))).hover();
+        validateSubNavComponent("header.worldOfNature", "header.animals");
+        validateSubNavComponent("header.worldOfNature", "header.flowers");
+        validateSubNavComponent("header.worldOfNature", "header.trees");
+        
+        // validate sub navigation "Dining"
+        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.dining"))).hover();
+        validateSubNavComponent("header.worldOfNature", "header.coldCuts");
+        validateSubNavComponent("header.worldOfNature", "header.mainDishes");
+        validateSubNavComponent("header.worldOfNature", "header.sweets");
+        
+        // validate sub navigation "Transportation"
+        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.transportation"))).hover();
+        validateSubNavComponent("header.worldOfNature", "header.airTravel");
+        validateSubNavComponent("header.worldOfNature", "header.classicCars");
+        validateSubNavComponent("header.worldOfNature", "header.railways");
+        
+        // validate sub navigation "Panoramas"
+        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.panoramas"))).hover();
+        validateSubNavComponent("header.worldOfNature", "header.architecture");
+        validateSubNavComponent("header.worldOfNature", "header.fireworks");
+        validateSubNavComponent("header.worldOfNature", "header.landscapes");
+        validateSubNavComponent("header.worldOfNature", "header.xxlPanoramas");
+        
+        $("#globalNavigation").hover();
     }
 }
