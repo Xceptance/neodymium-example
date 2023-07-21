@@ -15,26 +15,36 @@ public class Search extends AbstractComponent
 {
     private static SelenideElement searchField = $("#s");
 
+    @Override
+    @Step("validate availability search bar")
     public void isComponentAvailable()
     {
         searchField.should(exist);
     }
-
-    @Step("search for '{searchTerm}' without result")
-    public NoHitsPage noResult(String searchTerm)
+    
+    @Step("validate structure search bar")
+    public static void validateStructure() 
     {
-        search(searchTerm);
-        return new NoHitsPage();
+        searchField.shouldBe(visible);
+        $("#btnSearch").shouldBe(visible);
+        $(".icon-search").shouldBe(visible);
     }
 
-    @Step("search for '{searchTerm}' with result")
+    @Step("search for {searchTerm} without result")
+    public NoHitsPage noHitsPageResult(String searchTerm)
+    {
+        search(searchTerm);
+        return new NoHitsPage().isExpectedPage();
+    }
+
+    @Step("search for {searchTerm} with result")
     public CategoryPage categoryPageResult(String searchTerm)
     {
         search(searchTerm);
         return new CategoryPage().isExpectedPage();
     }
 
-    @Step("search for '{searchTerm}'")
+    @Step("search for {searchTerm}")
     public void search(String searchTerm)
     {
         openSearch();
@@ -44,23 +54,13 @@ public class Search extends AbstractComponent
     @Step("open search field")
     public void openSearch()
     {
-        $("#btnSearch").scrollTo().exists();
+        searchField.scrollTo().click();
     }
 
     @Step("validate that {searchTerm} is still visible after")
     public void validateSearchTerm(String searchTerm)
     {
         openSearch();
-        searchField.should(visible);
-        searchField.should(exactValue(searchTerm));
-    }
-    
-    @Step("validate structure search bar")
-    public static void validateStructure() 
-    {
-        // validate search-bar, button and icon of button
-        searchField.shouldBe(visible);
-        $("#btnSearch").shouldBe(visible);
-        $(".icon-search").shouldBe(visible);
+        searchField.shouldHave(exactValue(searchTerm));
     }
 }

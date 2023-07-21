@@ -12,11 +12,9 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
+import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.tests.AbstractTest;
 
-/**
- * @author pfotenhauer
- */
 @Owner("Tim Brown")
 @Severity(SeverityLevel.MINOR)
 @Tag("smoke")
@@ -41,30 +39,38 @@ public class SearchTest extends AbstractTest
     @DataSet(1)
     public void testSearching()
     {
-        // Go to homepage
+        // go to homepage
         var homePage = OpenHomePageFlow.flow();
-        homePage.validate();
 
-        // Search
+        // go to category page
         var categoryPage = homePage.search.categoryPageResult(searchTerm);
         categoryPage.validateStructure();
         categoryPage.validateSearchHits(searchTerm, searchTermExpectedCount);
+        validateHeaderAndFooter(categoryPage);
 
+        //go to product detail page
         final String productName = categoryPage.getProductNameByPosition(position);
         var productDetailPage = categoryPage.clickProductByPosition(position);
         productDetailPage.validate(productName);
+        validateHeaderAndFooter(productDetailPage);
     }
 
     @Test
     @DataSet(2)
     public void testSearchingWithoutResult()
     {
-        // Go to homepage
+        // go to homepage
         var homePage = OpenHomePageFlow.flow();
-        homePage.validate();
 
-        // Search
-        var noHitsPage = homePage.search.noResult(searchTerm);
-        noHitsPage.validate();
+        // go to no hits page
+        var noHitsPage = homePage.search.noHitsPageResult(searchTerm);
+        noHitsPage.validateStructure();
+        validateHeaderAndFooter(noHitsPage);
+    }
+    
+    public void validateHeaderAndFooter(AbstractBrowsingPage page) 
+    {
+        page.header.validateStructure();
+        page.footer.validateStructure();
     }
 }

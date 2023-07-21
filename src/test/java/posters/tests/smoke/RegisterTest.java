@@ -47,7 +47,7 @@ public class RegisterTest extends AbstractTest
     {
         // Go to homepage
         var homePage = OpenHomePageFlow.flow();
-        homePage.validate();
+        homePage.validateStructure();
 
         // Assure that nobody is logged in
         homePage.userMenu.validateNotLoggedIn();

@@ -60,7 +60,7 @@ public class OrderConfirmationPage extends AbstractBrowsingPage{
     public void validate()
     {
         validateStructure();
-        footer.validate();
+        footer.validateStructure();
     }
 
     @Step("validate successful order on Confirmation page")

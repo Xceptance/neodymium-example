@@ -22,7 +22,7 @@ public class BrowseTest extends AbstractTest
     {
         // Go to homepage
         var homePage = OpenHomePageFlow.flow();
-        homePage.validate();
+        homePage.validateStructure();
 
         // Go to category
         final String categoryName = homePage.topNav.getSubCategoryNameByPosition(1, 1);

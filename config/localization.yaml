@@ -41,7 +41,7 @@ default:
             successfulAccountDeletion: Your account has been deleted. We hope to see you soon again!
     NoHitsPage:
         validation:
-            noProductsFound: Sorry! No results found matching your search. Please try again.
+            noProductsFound: × Sorry! No results found matching your search. Please try again.
     ProductdetailPage:
         addToCartButton:
             text: Add to cart

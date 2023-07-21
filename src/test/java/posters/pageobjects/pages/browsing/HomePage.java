@@ -24,7 +24,8 @@ public class HomePage extends AbstractBrowsingPage
         return this;
     }
 
-    @Step("validate home page structure")
+    @Override
+    @Step("validate structure home page")
     public void validateStructure()
     {
         super.validateStructure();
@@ -53,14 +54,6 @@ public class HomePage extends AbstractBrowsingPage
         $(".colorlib-product #productList").shouldBe(visible);
         // Asserts there's at least 1 item in the list.
         $$(".container .row-pb-md .product-entry").shouldHave(sizeGreaterThan(0));
-    }
-
-    @Step("validate home page")
-    public void validate()
-    {
-        //validateStructure();
-        //footer.validate();
-        header.validateStructure();
     }
 
     @Step("validate successful order on home page")
@@ -104,7 +97,7 @@ public class HomePage extends AbstractBrowsingPage
     public void validateAndVisualAssert()
     {
         validateStructureAndVisual();
-        footer.validate();
+        footer.validateStructure();
     }
 
     public ProductDetailPage clickOnPresentedProduct(String productName)

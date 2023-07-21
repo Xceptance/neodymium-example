@@ -3,6 +3,7 @@ package posters.pageobjects.pages.browsing;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
@@ -11,9 +12,7 @@ import com.xceptance.neodymium.util.Neodymium;
 import io.qameta.allure.Step;
 import posters.dataobjects.Product;
 
-/**
- * @author pfotenhauer
- */
+// review: "Product Description:", "Select size:", "Select style:" only selectable with style class
 public class ProductDetailPage extends AbstractBrowsingPage
 {
     private SelenideElement addToCartButton = $("#btnAddToCart");
@@ -39,28 +38,46 @@ public class ProductDetailPage extends AbstractBrowsingPage
     {
         super.validateStructure();
 
-        // Title
-        // Make sure we have the proper headline and it is not empty, at least 4 characters, starting with uppercase
-        // letter,
-        productName.shouldBe(matchText("[A-Z].{3,}"));
-        // Price
-        // Check that the price is correct in its form. A dollar symbol, followed by 1-3 digits, optionally more groups
-        // of exactly 3 digits separated by a comma as separator, a period and 2 digits for the cents as the end of the
-        // String.
-        productPrice.shouldBe(matchText("\\$(\\d{1,3})(,\\d{3})*\\.\\d{2}$"));
-        // Add to cart button
-        // Make sure we got an add to cart button and the text matches.
-        addToCartButton.shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.addToCartButton.text")));
+        // validate image
+        $("#prodImg").shouldBe(visible);
+        
+        // validate title
+        productName.shouldHave(matchText("[A-Z].{3,}")).shouldBe(visible);
+        
+        // validate product price
+        productPrice.shouldHave(matchText("\\$\\d+\\.\\d{2}")).shouldBe(visible);
+        
+        // validate product description
+        $("#prodDescriptionOverview").shouldBe(visible);
+        $("#prodDescriptionDetail").shouldBe(visible);
+        
+        // validate size selection
+        $("#selectSize").shouldBe(visible);
+        
+        // validate style selection
+        $("#selectStyle").shouldBe(visible);
+        
+        // validate print information
+        $("#prodPrintInfo").shouldBe(visible);
+        
+        // validate add to cart button
+        addToCartButton.shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.addToCartButton.text"))).shouldBe(visible);
     }
-
+    
+    @Step("validate the product detail page of {productName}")
+    public void validate(String productName)
+    {
+        validateStructure();
+        validateProductName(productName);
+    }
+    
     @Step("validate product name on product detail page")
     public void validateProductName(String name)
     {
-        // Verify product name
-        // compares the displayed product name to the given parameter.
         productName.shouldHave(exactText(name));
     }
-
+    
+    // ----------------------------------------------------------------------------------
     @Step("select size")
     public void setSize(String size)
     {
@@ -128,19 +145,6 @@ public class ProductDetailPage extends AbstractBrowsingPage
         return new Product(getProductName(), getProductPrice(), getChosenStyle(), getChosenSize(), 1);
     }
 
-    /**
-     * @param productName
-     */
-    @Step("validate the product detail page of '{productName}'")
-    public void validate(String productName)
-    {
-        validateStructure();
-        validateProductName(productName);
-    }
-
-    /**
-     * @param productName
-     */
     @Step("validate the product detail page of '{productName}' and assert visually")
     public void validateAndVisualAssert(String productName)
     {

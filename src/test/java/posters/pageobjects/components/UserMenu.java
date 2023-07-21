@@ -27,11 +27,41 @@ public class UserMenu extends AbstractComponent
 
     private static SelenideElement showUserMenu = $("#showUserMenu");
 
+    @Override
+    @Step("ensure availability user menu")
     public void isComponentAvailable()
     {
         showUserMenu.should(exist);
     }
 
+    @Step("validate user menu")
+    public static void validateStructure()
+    {   
+        // validate user icon
+        $(".icon-user2").shouldBe(visible);
+        
+        // open user window
+        showUserMenu.hover();
+        
+        // validate structure user window
+        validateUserMenu("header.userMenu.greeting");
+        validateUserMenu("header.userMenu.createAccount");
+        validateUserMenu("header.userMenu.signIn");
+        $("#userMenu .icon-user-add-outline").shouldBe(visible);
+        $("#userMenu .icon-log-in").shouldBe(visible);
+        
+        // close user window
+        $("#globalNavigation").hover();
+    }
+
+    @Step("validate strings in user menu")
+    private static void validateUserMenu(String text)
+    {
+        $$("#userMenu li").findBy(exactText(Neodymium.localizedText(text))).shouldBe(visible);
+    }
+    
+    // ---------------------------------------------------------------------
+    
     // TODO - improve
     @Step("open user menu")
     public void openUserMenu()
@@ -108,28 +138,5 @@ public class UserMenu extends AbstractComponent
     public boolean isLoggedIn()
     {
         return userMenu.find(".goToAccountOverview").exists();
-    }
-
-    // extended by Jonas
-    @Step("validate strings in user menu")
-    private static void validateUserMenu(String text)
-    {
-        $$("#userMenu li").findBy(exactText(Neodymium.localizedText(text))).shouldBe(visible);
-    }
-
-    // extended by Jonas
-    @Step("validate user menu")
-    public static void validateStructure()
-    {
-        $(".icon-user2").shouldBe(visible);
-        
-        showUserMenu.hover();
-        validateUserMenu("header.userMenu.greeting");
-        validateUserMenu("header.userMenu.createAccount");
-        validateUserMenu("header.userMenu.signIn");
-        $("#userMenu .icon-user-add-outline").shouldBe(visible);
-        $("#userMenu .icon-log-in").shouldBe(visible);
-        
-        $("#globalNavigation").hover();
     }
 }

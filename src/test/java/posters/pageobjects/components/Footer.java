@@ -19,7 +19,7 @@ public class Footer extends AbstractComponent
     }
 
     @Step("validate the footer")
-    public void validate()
+    public void validateStructure()
     {
         isComponentAvailable();
         // Asserts the footer contains the correct text.

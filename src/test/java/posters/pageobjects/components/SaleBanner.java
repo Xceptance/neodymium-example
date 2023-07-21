@@ -17,7 +17,8 @@ public class SaleBanner extends AbstractComponent
         $(".sale").should(exist);
     }
 
-    // validate strings sale banner
+    // extended by Jonas
+    @Step("validate strings sale banner")
     private static void validateSaleBanner(String text) 
     {
         $$(".owl-stage").findBy(exactText(Neodymium.localizedText(text))).waitUntil(visible, 6500);

@@ -18,9 +18,6 @@ import com.xceptance.neodymium.util.Neodymium;
 import io.qameta.allure.Step;
 import posters.pageobjects.components.Pagination;
 
-/**
- * @author pfotenhauer
- */
 public class CategoryPage extends AbstractBrowsingPage
 {
     public Pagination pagination = new Pagination();
@@ -35,34 +32,43 @@ public class CategoryPage extends AbstractBrowsingPage
         productOverview.should(exist);
         return this;
     }
-
-    @Step("validate category name '{categoryName}' on category page")
-    public void validateCategoryName(String categoryName)
-    {
-        // Category name
-        // Ensures the category headline contains the category name
-        $("#titleCategoryName").shouldBe(text(categoryName));
-    }
-
+    
     @Override
     @Step("validate category page structure")
     public void validateStructure()
     {
         super.validateStructure();
-
-        // Amount of results
-        // Assures the amount of posters displayed in the headline is not 0.
-        $("#totalProductCount").shouldNotBe(exactText("0"));
-        // Results
-        // Assures there's at least one product shown
+        
+        // validate poster count in headline is not 0
+        $("#totalProductCount").shouldNotBe(exactText("0")).shouldBe(visible);
+        
+        // validate at least 1 poster is displayed
         $("#product0").shouldBe(visible);
     }
+    
+    @Step("get a product name by position")
+    public String getProductNameByPosition(int position)
+    {
+        return $("#product" + (position - 1) + " h2").text();
+    }
+    
+    @Step("click on a product by position")
+    public ProductDetailPage clickProductByPosition(int position)
+    {
+        $("#product" + (position - 1)).scrollTo().click();
+        return new ProductDetailPage().isExpectedPage();
+    }
+    
+    // ----------------------------------------------------------
 
-    /**
-     * @param row
-     * @param column
-     * @return
-     */
+    // TODO - check if needed
+    @Step("validate category name {categoryName} is on category page")
+    public void validateCategoryName(String categoryName)
+    {
+        $("#titleCategoryName").shouldHave(text(categoryName));
+    }
+    
+    // TODO - check if needed
     @Step("click on a product by position in grid")
     public ProductDetailPage clickProductByPosition(int row, int column)
     {
@@ -73,11 +79,7 @@ public class CategoryPage extends AbstractBrowsingPage
         return new ProductDetailPage().isExpectedPage();
     }
 
-    /**
-     * @param row
-     * @param column
-     * @return
-     */
+    // TODO - check if needed
     @Step("get a product name by position in grid")
     public String getProductNameByPosition(int row, int column)
     {
@@ -85,26 +87,7 @@ public class CategoryPage extends AbstractBrowsingPage
         return rowContainer.find("h2.pName", column - 1).text();
     }
 
-    /**
-     * @param position
-     * @return
-     */
-    @Step("click on a product by position")
-    public ProductDetailPage clickProductByPosition(int position)
-    {
-        final int index = position - 1;
-        
-        // Open the product detail page
-        // Click on the product's image and open the product overview page
-        // Click the product link to open the product detail page
-        $("#product" + index + " img").scrollTo().click();
-        return new ProductDetailPage().isExpectedPage();
-    }
-
-    /**
-     * @param productName
-     * @return
-     */
+    // TODO - check if needed
     @Step("click on a product by name '{productName}'")
     public ProductDetailPage clickProductByName(String productName)
     {
@@ -115,22 +98,7 @@ public class CategoryPage extends AbstractBrowsingPage
         return new ProductDetailPage().isExpectedPage();
     }
 
-    /**
-     * @param position
-     * @return
-     */
-    @Step("get a product name by position")
-    public String getProductNameByPosition(int position)
-    {
-        final int index = position - 1;
-        // Get the product name
-        return $("#product" + index + " .desc .pName").text();
-    }
-
-    /**
-     * @param searchTerm
-     * @param searchTermExpectedCount
-     */
+    // TODO - check if needed
     @Step("validate search results for '{searchTerm}' on category page")
     public void validateSearchHits(String searchTerm, int searchTermExpectedCount)
     {
@@ -154,18 +122,14 @@ public class CategoryPage extends AbstractBrowsingPage
         $("#totalProductCount").shouldHave(exactText(Integer.toString(searchTermExpectedCount)));
     }
 
-    /**
-     * @param productName
-     */
+    // TODO - check if needed
     @Step("validate product '{productName}' is visible on category page")
     public void validateProductVisible(String productName)
     {
         $("#productOverview .thumbnails .thumbnail a > img.pImage[title='" + productName + "']").shouldBe(visible);
     }
 
-    /**
-     * @param categoryName
-     */
+    // TODO - check if needed
     @Step("validate category page of category '{categoryName}'")
     public void validate(String categoryName)
     {
@@ -173,9 +137,7 @@ public class CategoryPage extends AbstractBrowsingPage
         validateCategoryName(categoryName);
     }
 
-    /**
-     * @param categoryName
-     */
+    // TODO - check if needed
     @Step("validate category page of category '{categoryName}' and assert visually")
     public void validateAndVisualAssert(String categoryName)
     {
@@ -183,6 +145,7 @@ public class CategoryPage extends AbstractBrowsingPage
         validateCategoryName(categoryName);
     }
 
+    // TODO - check if needed
     public String getRandomProductDetailName(Random random)
     {
         ElementsCollection rows = productOverview.findAll(".thumbnails.row");

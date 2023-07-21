@@ -24,7 +24,7 @@ public class AddToCartTest extends AbstractTest
 
         // Go to homepage
         var homePage = OpenHomePageFlow.flow();
-        homePage.validate();
+        homePage.validateStructure();
 
         homePage.miniCart.validateTotalCount(totalCount);
         homePage.miniCart.validateSubtotal("$0.00");

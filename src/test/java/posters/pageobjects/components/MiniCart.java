@@ -17,9 +17,6 @@ import posters.dataobjects.Product;
 import posters.pageobjects.pages.checkout.CartPage;
 import posters.pageobjects.utility.PriceHelper;
 
-/**
- * @author pfotenhauer
- */
 public class MiniCart extends AbstractComponent
 {
     private static SelenideElement headerCart = $("#headerCartOverview");
@@ -36,11 +33,36 @@ public class MiniCart extends AbstractComponent
     
     private SelenideElement goToCartButton = $(".goToCart");
     
+    @Override
+    @Step("ensure availability mini cart")
     public void isComponentAvailable()
     {
         $("#btnCartOverviewForm").should(exist);
     }
 
+    @Step("validate shopping cart menu")
+    public static void validateStructure() 
+    {
+        // validate shopping cart icon, item count
+        $(".icon-shopping-cart").shouldBe(visible);
+        $$("#count_wideView").findBy(matchesText("\\d")).shouldBe(visible);
+        
+        // open cart window
+        headerCart.hover();
+        
+        // validate structure cart window
+        // TODO - validate item count
+        $$("#miniCartMenu .cartMiniHeader").findBy(matchesText(Neodymium.localizedText("header.shoppingCart.itemsInCart"))).shouldBe(visible);
+        subtotal.findBy(matchesText(Neodymium.localizedText("header.shoppingCart.subtotal"))).shouldBe(visible);
+        subtotal.findBy(matchesText("\\$\\d\\.\\d")).shouldBe(visible);
+        $$("#miniCartMenu .linkButton").findBy(exactText(Neodymium.localizedText("header.shoppingCart.viewCart"))).shouldBe(visible);
+        
+        // close cart menu
+        $("#globalNavigation").hover();
+    }
+    
+    // --------------------------------------------------------------
+    
     @Step("open the mini cart")
     public void openMiniCart()
     {
@@ -170,22 +192,5 @@ public class MiniCart extends AbstractComponent
         miniCartItem.find(".prodPrice").shouldHave(exactText(prodTotalPrice));
         // Close mini cart
         closeMiniCart();
-    }
-
-    // extended by Jonas
-    @Step("validate shopping cart menu")
-    public static void validateStructure() 
-    {
-        $(".icon-shopping-cart").shouldBe(visible);
-        $$("#count_wideView").findBy(matchesText("\\d")).shouldBe(visible);
-        
-        headerCart.hover();
-        // TODO - validate item count
-        $$("#miniCartMenu .cartMiniHeader").findBy(matchesText(Neodymium.localizedText("header.shoppingCart.itemsInCart"))).shouldBe(visible);
-        subtotal.findBy(matchesText(Neodymium.localizedText("header.shoppingCart.subtotal"))).shouldBe(visible);
-        subtotal.findBy(matchesText("\\$\\d\\.\\d")).shouldBe(visible);
-        $$("#miniCartMenu .linkButton").findBy(exactText(Neodymium.localizedText("header.shoppingCart.viewCart"))).shouldBe(visible);
-        
-        $("#globalNavigation").hover();
     }
 }

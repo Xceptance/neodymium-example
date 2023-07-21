@@ -34,7 +34,7 @@ public class GuestOrderTest extends AbstractTest
 
         // Go to homepage
         var homePage = OpenHomePageFlow.flow();
-        homePage.validate();
+        homePage.validateStructure();
 
         // Assure not logged in status
         homePage.userMenu.validateNotLoggedIn();
@@ -104,6 +104,6 @@ public class GuestOrderTest extends AbstractTest
        
 
         //Validate home page
-        homePage.validate();
+        homePage.validateStructure();
     }
 }
