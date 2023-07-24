@@ -17,14 +17,12 @@ public class SaleBanner extends AbstractComponent
         $(".sale").should(exist);
     }
 
-    // extended by Jonas
     @Step("validate strings sale banner")
     private static void validateSaleBanner(String text) 
     {
         $$(".owl-stage").findBy(exactText(Neodymium.localizedText(text))).waitUntil(visible, 6500);
     }
     
-    // extended by Jonas
     @Step("validate sale banner")
     public static void validateStructure()
     {

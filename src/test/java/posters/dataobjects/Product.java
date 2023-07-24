@@ -4,9 +4,6 @@ import com.xceptance.neodymium.util.Neodymium;
 
 import posters.pageobjects.utility.PriceHelper;
 
-/**
- * @author pfotenhauer
- */
 public class Product
 {
     String name;
@@ -19,18 +16,6 @@ public class Product
 
     int amount;
 
-    /**
-     * @param name
-     *            the name to set
-     * @param unitPrice
-     *            the unitPrice to set
-     * @param style
-     *            the style to set
-     * @param size
-     *            the size to set
-     * @param amount
-     *            the amount to set
-     */
     public Product(String name, String unitPrice, String style, String size, int amount)
     {
         this.name = name;
@@ -40,46 +25,47 @@ public class Product
         this.amount = amount;
     }
 
-    /**
-     * @return the name
-     */
+    // ----- get product data ----- //
+    
     public String getName()
     {
         return name;
     }
 
-    /**
-     * @return the unitPrice
-     */
     public String getUnitPrice()
     {
         return unitPrice;
     }
 
-    /**
-     * @return the style
-     */
     public String getStyle()
     {
         return style;
     }
 
-    /**
-     * @return the size
-     */
     public String getSize()
     {
         return size;
     }
 
-    /**
-     * @return the amount
-     */
     public int getAmount()
     {
         return amount;
     }
 
+    // ----- get total product price ----- //
+    
+    private double getUnitPriceDouble()
+    {
+        return Double.parseDouble(PriceHelper.removeCurrency(unitPrice));
+    }
+
+    public double getTotalPrice()
+    {
+        return amount * getUnitPriceDouble();
+    }
+    
+    // -------------------------------------------------------------
+    
     @Override
     public String toString()
     {
@@ -116,15 +102,5 @@ public class Product
                + ":\\s" + "\\d+\\s\\(" + getStyle()
                + ",\\s" + getSize()
                + "\\s\\)\\n\\$\\d+\\.\\d+";
-    }
-
-    private double getUnitPriceDouble()
-    {
-        return Double.parseDouble(PriceHelper.removeCurrency(unitPrice));
-    }
-
-    public double getTotalPrice()
-    {
-        return amount * getUnitPriceDouble();
     }
 }

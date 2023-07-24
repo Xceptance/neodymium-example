@@ -33,41 +33,51 @@ public class CategoryPage extends AbstractBrowsingPage
         return this;
     }
     
+    // ----- validate content category page ----- //
+
     @Override
     @Step("validate category page structure")
     public void validateStructure()
     {
         super.validateStructure();
-        
+
         // validate poster count in headline is not 0
         $("#totalProductCount").shouldNotBe(exactText("0")).shouldBe(visible);
-        
+
         // validate at least 1 poster is displayed
         $("#product0").shouldBe(visible);
     }
+    
+    @Step("validate category name {categoryName} is on category page")
+    public void validateCategoryName(String categoryName)
+    {
+        $("#titleCategoryName").shouldHave(matchText(Neodymium.localizedText(categoryName)));
+    }
+    
+    @Step("validate category page of category '{categoryName}'")
+    public void validate(String categoryName)
+    {
+        validateStructure();
+        validateCategoryName(categoryName);
+    }
+
+    // ----- product by position ----- //
     
     @Step("get a product name by position")
     public String getProductNameByPosition(int position)
     {
         return $("#product" + (position - 1) + " h2").text();
     }
-    
+
     @Step("click on a product by position")
     public ProductDetailPage clickProductByPosition(int position)
     {
         $("#product" + (position - 1)).scrollTo().click();
         return new ProductDetailPage().isExpectedPage();
     }
-    
+
     // ----------------------------------------------------------
 
-    // TODO - check if needed
-    @Step("validate category name {categoryName} is on category page")
-    public void validateCategoryName(String categoryName)
-    {
-        $("#titleCategoryName").shouldHave(text(categoryName));
-    }
-    
     // TODO - check if needed
     @Step("click on a product by position in grid")
     public ProductDetailPage clickProductByPosition(int row, int column)
@@ -127,14 +137,6 @@ public class CategoryPage extends AbstractBrowsingPage
     public void validateProductVisible(String productName)
     {
         $("#productOverview .thumbnails .thumbnail a > img.pImage[title='" + productName + "']").shouldBe(visible);
-    }
-
-    // TODO - check if needed
-    @Step("validate category page of category '{categoryName}'")
-    public void validate(String categoryName)
-    {
-        validateStructure();
-        validateCategoryName(categoryName);
     }
 
     // TODO - check if needed

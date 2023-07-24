@@ -22,9 +22,6 @@ import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.ProductDetailPage;
 import posters.pageobjects.utility.PriceHelper;
 
-/**
- * @author pfotenhauer
- */
 public class CartPage extends AbstractBrowsingPage
 {
     private SelenideElement cartTable = $("#cartOverviewTable");
@@ -39,33 +36,79 @@ public class CartPage extends AbstractBrowsingPage
         $("#titleCart").shouldBe(visible);
         return this;
     }
-
-    @Step("validate subtotal in the cart")
-    public void validateSubtotal(String subtotal)
-    {
-        $$("#cartSummaryList li").findBy(text("Subtotal")).find(".text-right").shouldHave(exactText(subtotal));
-    }
-
+    
+    // ----- validate content cart page ----- //
+    
     @Override
     @Step("validate cart page structure")
     public void validateStructure()
     {
         super.validateStructure();
 
-        // Headline
-        // Makes sure the headline is there and starts with a capital letter
+        // validate title 
         $("#titleCart").shouldBe(matchText("[A-Z].{3,}"));
-        // Assert there is an item list with at least one item present
-        // Makes sure the list of cart items is there
+        
+        // validate product list
         cartTable.shouldBe(visible);
-        // Makes sure there's at least one product in the item list
+        
+        // validate at least 1 product in product list
         $("#product0").shouldBe(visible);
-        // Assert the cart summary is visible
-        // Makes sure the price breakdown list is there
+        
+        // validate cart summary list
         $("#cartSummaryList").shouldBe(visible);
-        // Checkout Button
-        // Makes sure the checkout button is there.
+        
+        // validate checkut button
         $("#btnStartCheckout").should(exist);
+    }
+    
+    @Step("validate shipping costs on cart page")
+    public void validateShippingCosts(String shippingCosts)
+    {
+        $("#orderShippingCosts").shouldHave(exactText(shippingCosts));
+    }
+    
+    @Step("validate cart page with shipping costs: '{shippingCosts}'")
+    public void validate(String shippingCosts)
+    {
+        validateStructure();
+        validateShippingCosts(shippingCosts);
+    }
+    
+    // ----- validate product data in cart item ----- //
+
+    private void validateCartItem(int position, String productName, String productStyle, String productSize, int productAmount, String productPrice)
+    {
+        // selector for product
+        SelenideElement productContainer = $("#product" + (position - 1));
+
+        // validate product name is same as {productName}
+        productContainer.find(".productName").shouldHave(exactText(productName));
+        
+        // validate product style is same as {productStyle}
+        productContainer.find(".productStyle").shouldHave(exactText(productStyle));
+
+        // validate product size is same as {productSize}
+        productContainer.find(".productSize").shouldHave(exactText(productSize));
+        
+        // validate product amount is same as {productAmount}
+        productContainer.find(".productCount").shouldHave(exactValue(Integer.toString(productAmount)));
+
+        // validate product name is same as {productName}
+        productContainer.find(".productUnitPrice").shouldHave(exactText(productPrice));
+    }
+    
+    @Step("validate '{product}' in on the cart page")
+    public void validateCartItem(int position, Product product)
+    {
+        validateCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), product.getUnitPrice());
+    }
+    
+    // ----------------------------------------------------------------------------- //
+    
+    @Step("validate subtotal in the cart")
+    public void validateSubtotal(String subtotal)
+    {
+        $$("#cartSummaryList li").findBy(text("Subtotal")).find(".text-right").shouldHave(exactText(subtotal));
     }
 
     @Step("validate product in the cart")
@@ -79,69 +122,6 @@ public class CartPage extends AbstractBrowsingPage
         productContainer.find(".productCount").shouldHave(value(Integer.toString(product.getAmount())));
         productContainer.find(".productUnitPrice").shouldHave(exactText(product.getUnitPrice()));
         productContainer.find(".productTotalUnitPrice").shouldHave(exactText(PriceHelper.format(product.getTotalPrice())));
-    }
-
-    @Step("validate shipping costs on cart page")
-    public void validateShippingCosts(String shippingCosts)
-    {
-        // Assert the correct shipping price is shown
-        $("#orderShippingCosts").shouldHave(exactText(shippingCosts));
-    }
-
-    /**
-     * @param shippingCosts
-     */
-    @Step("validate cart page with shipping costs: '{shippingCosts}'")
-    public void validate(String shippingCosts)
-    {
-        validateStructure();
-        validateShippingCosts(shippingCosts);
-    }
-
-    /**
-     * @param position
-     * @param product
-     */
-    @Step("validate '{product}' in on the cart page")
-    public void validateCartItem(int position, Product product)
-    {
-        validateCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(),
-                         product.getUnitPrice());
-    }
-
-    /**
-     * @param position
-     * @param product
-     * @param productAmount
-     */
-    @Step("validate '{product}' in on the cart page")
-    public void validateCartItem(int position, Product product, int productAmount)
-    {
-        validateCartItem(position, product.getName(), product.getStyle(), product.getSize(),
-                         productAmount, product.getUnitPrice());
-    }
-
-    private void validateCartItem(int position, String productName, String productStyle, String productSize, int productAmount, String productPrice)
-    {
-        SelenideElement productContainer = $("#product" + (position - 1));
-        // Visibility
-        // Makes sure a product at the specified index exists and is visible
-        productContainer.shouldBe(visible);
-        // Name
-        // Compares the displayed name with the parameter
-        productContainer.find(".productName").shouldHave(exactText(productName));
-        // Count
-        // Compares the displayed amount with the parameter
-        validateProductAmount(position, productAmount);
-        // Style
-        // Compares the displayed style with the parameter
-        productContainer.find(".productStyle").shouldHave(exactText(productStyle));
-        // Size
-        // Compares the displayed style with the parameter
-        productContainer.find(".productSize").shouldHave(exactText(productSize));
-        // Price
-        // Compares the displayed price with the parameter
-        productContainer.find(".productUnitPrice").shouldHave(exactText(productPrice));
     }
 
     @Step("validate sub total and line item total after adding on the cart page")
@@ -173,12 +153,14 @@ public class CartPage extends AbstractBrowsingPage
         Assert.assertEquals(price, price2);
     }
 
+    /* TODO - check if needed
     @Step("validate line item amount on the cart page")
     public void validateProductAmount(int position, int amount)
     {
         // Makes sure the amount of the item with index @{index} in the cart equals the parameter
         $("#product" + (position - 1) + " .productCount").shouldHave(exactValue(Integer.toString(amount)));
     }
+    */
 
     @Step("get product name from line item on the cart page")
     public String getProductName(int position)

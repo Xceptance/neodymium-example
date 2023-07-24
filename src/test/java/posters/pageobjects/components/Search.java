@@ -30,6 +30,28 @@ public class Search extends AbstractComponent
         $(".icon-search").shouldBe(visible);
     }
 
+    // ----- search navigation ----- //
+    
+    @Step("open search field")
+    public void openSearch()
+    {
+        searchField.scrollTo().click();
+    }
+
+    @Step("search for {searchTerm}")
+    public void search(String searchTerm)
+    {
+        openSearch();
+        searchField.val(searchTerm).pressEnter();
+    }
+    
+    @Step("validate that {searchTerm} is still visible after")
+    public void validateSearchTerm(String searchTerm)
+    {
+        openSearch();
+        searchField.shouldHave(exactValue(searchTerm));
+    }
+    
     @Step("search for {searchTerm} without result")
     public NoHitsPage noHitsPageResult(String searchTerm)
     {
@@ -42,25 +64,5 @@ public class Search extends AbstractComponent
     {
         search(searchTerm);
         return new CategoryPage().isExpectedPage();
-    }
-
-    @Step("search for {searchTerm}")
-    public void search(String searchTerm)
-    {
-        openSearch();
-        searchField.val(searchTerm).pressEnter();
-    }
-
-    @Step("open search field")
-    public void openSearch()
-    {
-        searchField.scrollTo().click();
-    }
-
-    @Step("validate that {searchTerm} is still visible after")
-    public void validateSearchTerm(String searchTerm)
-    {
-        openSearch();
-        searchField.shouldHave(exactValue(searchTerm));
     }
 }
