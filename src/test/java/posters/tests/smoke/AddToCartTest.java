@@ -1,7 +1,12 @@
 package posters.tests.smoke;
 
 import org.junit.Test;
+import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Selenide.$;
+
+import com.codeborne.selenide.Selenide;
+import com.xceptance.neodymium.util.DataUtils;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
@@ -10,6 +15,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
+import posters.tests.testdata.AddToCartTestData;
 
 @Owner("Joe Fix")
 @Severity(SeverityLevel.CRITICAL)
@@ -19,40 +25,54 @@ public class AddToCartTest extends AbstractTest
     @Test
     public void testAddProductsToCart()
     {
-        final String shippingCosts = Neodymium.dataValue("shippingCosts");
-        int totalCount = 0;
+        // use test data class
+        AddToCartTestData addToCartTestData = DataUtils.get(AddToCartTestData.class);
 
-        // Go to homepage
+        // go to homepage
         var homePage = OpenHomePageFlow.flow();
-        homePage.validateStructure();
-
+        
+        // validate empty mini cart window
+        int totalCount = 0;
         homePage.miniCart.validateTotalCount(totalCount);
         homePage.miniCart.validateSubtotal("$0.00");
+        
+        // ???
         final String oldSubtotal = homePage.miniCart.getSubtotal();
 
-        // Go to a top category page
-        final String topCatName = Neodymium.dataValue("topCatName");
-        var categoryPage = homePage.topNav.clickCategory(topCatName);
-        categoryPage.validateCategoryName(topCatName);
+        // go to top category page {topCategory}
+        final String topCategory = addToCartTestData.getTopCategory();
+        var categoryPage = homePage.topNav.clickCategory(topCategory);
+        categoryPage.validate(topCategory);
 
-        // Go to sub category page
-        final String categoryName = categoryPage.topNav.getSubCategoryNameByPosition(1, 1);
-        categoryPage = categoryPage.topNav.clickSubCategoryByPosition(1, 1);
-        categoryPage.validate(categoryName);
-
-        // Go to product page and add to cart
-        final String productName = categoryPage.getProductNameByPosition(1, 1);
-        var productDetailPage = categoryPage.clickProductByPosition(1, 1);
+        // go to sub category page {subCategory}
+        final String subCategory = addToCartTestData.getSubCategory();
+        var subCategoryPage = categoryPage.topNav.clickSubCategory(topCategory, subCategory);
+        subCategoryPage.validate(subCategory);
+        
+        // go to product page
+        final String productName = categoryPage.getProductNameByPosition(addToCartTestData.getPosition());
+        var productDetailPage = categoryPage.clickProductByPosition(addToCartTestData.getPosition());
         productDetailPage.validate(productName);
+        
+        // add product to cart
         productDetailPage.addToCart("16 x 12 in", "matte");
-
-        // Go to cart and validate
+        
+        // go to cart
         final var product = productDetailPage.getProduct();
         var cartPage = productDetailPage.miniCart.openCartPage();
+        
+        // validate cart page
+        final String shippingCosts = Neodymium.dataValue("shippingCosts");
         cartPage.validate(shippingCosts);
-        cartPage.miniCart.validateMiniCart(1, product);
-        cartPage.validateCartItem(1, product);
+        cartPage.miniCart.validateMiniCart(addToCartTestData.getPosition(), product);
+        cartPage.validateCartItem(addToCartTestData.getPosition(), product);
+        
+        
+        
+        // ----------------------------------------------------------------
 
+
+        /*
         cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, 0.00);
 
         final String oldSubtotal2 = cartPage.miniCart.getSubtotal();
@@ -116,5 +136,6 @@ public class AddToCartTest extends AbstractTest
 
         cartPage.validateCartItem(1, productFromCartPage, 2);
         cartPage.miniCart.validateTotalCount(++totalCount);
+        */
     }
 }

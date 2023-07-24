@@ -39,7 +39,7 @@ public class MiniCart extends AbstractComponent
     {
         $("#btnCartOverviewForm").should(exist);
     }
-
+    
     @Step("validate shopping cart menu")
     public static void validateStructure() 
     {
@@ -61,37 +61,72 @@ public class MiniCart extends AbstractComponent
         $("#globalNavigation").hover();
     }
     
-    // --------------------------------------------------------------
+    // ----- mini cart navigation ------ //
     
     @Step("open the mini cart")
     public void openMiniCart()
     {
-        // Hover over the cart icon
         headerCart.hover();
-        // Wait for mini cart to appear
-        // Wait for the mini cart to show
-        miniCart.waitUntil(visible, Neodymium.configuration().selenideTimeout());
     }
 
     @Step("close the mini cart")
     public void closeMiniCart()
     {
-        // Move the mouse out of the area
         $("#brand").hover();
-        // Wait for mini cart to disappear
-        // Wait for the mini cart to disappear
-        miniCart.waitUntil(not(visible), Neodymium.configuration().selenideTimeout());
     }
-
+    
+    @Step("validate the mini cart subtotal price")
+    public void validateSubtotal(String subtotal)
+    {
+        openMiniCart();
+        subOrderPrice.shouldHave(exactText(subtotal));
+        closeMiniCart();
+    }
+    
     @Step("open the cart page")
     public CartPage openCartPage()
     {
-
-        // Open the cart
-        // Click on the button to go to the Cart
-         goToCartButton.click();
+        goToCartButton.click();
         return new CartPage().isExpectedPage();
     }
+    
+    // ----- validate product data in mini cart ----- //
+    
+    @Step("validate data o cart item in mini cart")
+    private void validateMiniCart(int position, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
+    {
+        openMiniCart();
+        
+        // selector for product
+        SelenideElement miniCartItem = $$("#miniCartMenu .cartItems").get(position - 1);
+        
+        // validate product name is same as {productName}
+        miniCartItem.find(".prodName").shouldHave(exactText(productName));
+        
+        // validate product style is same as {productStyle}
+        miniCartItem.find(".prodStyle").shouldHave(exactText(productStyle));
+        
+        // validate product size is same as {productSize}
+        miniCartItem.find(".prodSize").shouldHave(exactText(productSize));
+
+        // validate product count is same as {productCount}
+        miniCartItem.find(".prodCount").shouldHave(exactText(Integer.toString(productCount)));
+        
+        // validate product prize is same as {productPrize}
+        miniCartItem.find(".prodPrice").shouldHave(exactText(prodTotalPrice));
+
+        closeMiniCart();
+    }
+    
+    @Step("validate '{product}' in the mini cart")
+    public void validateMiniCart(int position, Product product)
+    {
+        validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), PriceHelper.format(product.getTotalPrice()));
+    }
+    
+    // --------------------------------------------------------------
+
+
 
     @Step("get the total product count from mini cart")
     public int getTotalCount()
@@ -119,31 +154,6 @@ public class MiniCart extends AbstractComponent
         return subtotal;
     }
 
-    @Step("validate the mini cart subtotal price")
-    public void validateSubtotal(String subtotal)
-    {
-        // Verify the mini cart shows the specified subtotal
-        // Open mini cart
-        openMiniCart();
-        // Verify subtotal equals specified subtotal
-        // Compare the subtotal to the parameter
-        subOrderPrice.shouldHave(exactText(subtotal));
-        // Close Mini Cart
-        closeMiniCart();
-    }
-
-    /**
-     * @param position
-     * @param product
-     */
-
-    @Step("validate '{product}' in the mini cart")
-    public void validateMiniCart(int position, Product product)
-    {
-        validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(),
-                         PriceHelper.format(product.getTotalPrice()));
-    }
-
     @Step("validate '{product}' in the mini cart by name")
     public void validateMiniCartByProduct(Product product)
     {
@@ -154,43 +164,5 @@ public class MiniCart extends AbstractComponent
         productContainer.find(".prodSize").shouldHave(exactText(product.getSize()));
         productContainer.find(".prodCount").shouldHave(exactText(Integer.toString(product.getAmount())));
         productContainer.find(".prodPrice").shouldHave(exactText(PriceHelper.format(product.getTotalPrice())));
-    }
-
-    /**
-     * @param position
-     * @param product
-     * @param productAmount
-     * @param productTotalPrice
-     */
-    @Step("validate '{product}' in the mini cart")
-    public void validateMiniCart(int position, Product product, int productAmount, String productTotalPrice)
-    {
-        validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), productAmount, productTotalPrice);
-    }
-
-    private void validateMiniCart(int position, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
-    {
-        // Open the mini cart
-        openMiniCart();
-        // Validate data of specified item
-        // Product Name
-        // ul.cartMiniElementList li:nth-child(" + position + ") ul.cartItems
-        SelenideElement miniCartItem = $$("#miniCartMenu .cartItems").get(position - 1);
-        // Compares the name of the cart item at position @{position} to the parameter
-        miniCartItem.find(".prodName").shouldHave(exactText(productName));
-        // Product Style
-        // Compares the style of the cart item at position @{position} to the parameter
-        miniCartItem.find(".prodStyle").shouldHave(exactText(productStyle));
-        // Product Size
-        // Compares the style of the cart item at position @{position} to the parameter
-        miniCartItem.find(".prodSize").shouldHave(exactText(productSize));
-        // Amount
-        // Compares the amount of the cart item at position @{position} to the parameter
-        miniCartItem.find(".prodCount").shouldHave(exactText(Integer.toString(productCount)));
-        // Price
-        // Compares the price of the cart item at position @{position} to the parameter
-        miniCartItem.find(".prodPrice").shouldHave(exactText(prodTotalPrice));
-        // Close mini cart
-        closeMiniCart();
     }
 }

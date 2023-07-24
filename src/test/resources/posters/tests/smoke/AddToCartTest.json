@@ -1,6 +1,8 @@
 [
     {
-        "topCatName": "World of Nature",
+        "topCategory": "header.worldOfNature",
+        "subCategory": "header.animals",
+		"position": "1",
         "searchTerm": "pizza"
     }
 ]

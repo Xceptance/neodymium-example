@@ -15,11 +15,9 @@ public class Header extends AbstractComponent
         $("#globalNavigation").should(exist);
     }
     
-    // extended by Jonas
     @Step("validate structure header")
     public void validateStructure() 
     {   
-        // validate company logo
         $("#brand").shouldBe(visible);
 
         Search.validateStructure();
