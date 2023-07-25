@@ -32,8 +32,8 @@ public class CategoryPage extends AbstractBrowsingPage
         productOverview.should(exist);
         return this;
     }
-    
-    // ----- validate content category page ----- //
+
+    /// ----- validate content category page ----- ///
 
     @Override
     @Step("validate category page structure")
@@ -47,22 +47,36 @@ public class CategoryPage extends AbstractBrowsingPage
         // validate at least 1 poster is displayed
         $("#product0").shouldBe(visible);
     }
-    
+
     @Step("validate category name {categoryName} is on category page")
     public void validateCategoryName(String categoryName)
     {
         $("#titleCategoryName").shouldHave(matchText(Neodymium.localizedText(categoryName)));
     }
-    
+
     @Step("validate category page of category '{categoryName}'")
     public void validate(String categoryName)
     {
         validateStructure();
         validateCategoryName(categoryName);
     }
-
-    // ----- product by position ----- //
     
+    @Step("validate search results for '{searchTerm}' on category page")
+    public void validateSearchHits(String searchTerm, int searchTermExpectedCount)
+    {
+        // validate the headline 
+        $("#titleSearchText").should(visible);
+        $("#titleSearchText").should(matchText(Neodymium.localizedText("search.results.text") + "'" + searchTerm + "' \\(" + searchTermExpectedCount + ".*\\)"));
+        
+        // validate visibility {searchTerm} after search
+        search.validateSearchTerm(searchTerm);
+        
+        // validate at least 1 search result
+        $("#product0").shouldBe(visible);
+    }
+
+    /// ----- product by position ----- ///
+
     @Step("get a product name by position")
     public String getProductNameByPosition(int position)
     {
@@ -76,8 +90,10 @@ public class CategoryPage extends AbstractBrowsingPage
         return new ProductDetailPage().isExpectedPage();
     }
 
+
     // ----------------------------------------------------------
 
+    
     // TODO - check if needed
     @Step("click on a product by position in grid")
     public ProductDetailPage clickProductByPosition(int row, int column)
@@ -106,30 +122,6 @@ public class CategoryPage extends AbstractBrowsingPage
         // Click the product link to open the product detail page
         $("#productOverview .thumbnails .thumbnail a > img.pImage[title='" + productName + "']").scrollTo().click();
         return new ProductDetailPage().isExpectedPage();
-    }
-
-    // TODO - check if needed
-    @Step("validate search results for '{searchTerm}' on category page")
-    public void validateSearchHits(String searchTerm, int searchTermExpectedCount)
-    {
-        $("#titleSearchText").should(exist);
-        // Validate the headline contains the search phrase
-        // \\(" + searchTermExpectedCount + " *\\)
-        $("#titleSearchText").should(matchText(Neodymium.localizedText("search.results.text") + ": '" + searchTerm + "' \\(" + searchTermExpectedCount
-                                               + ".*\\)"));
-        // Verify that the correct search term is displayed
-        // Validate the entered search phrase is still visible in the input
-        search.validateSearchTerm(searchTerm);
-        // Assert the Headline displays the search term.
-        $(".header-container #searchTextValue").shouldHave(exactText(searchTerm));
-        // Verify there are search results
-        // There is at least one row of results
-        $("#productOverview #products .row").shouldBe(exist);
-        // There is at least one product in the results
-        $$("#productOverview .product-entry").shouldHave(sizeGreaterThan(0));
-        // Verify that there is the specified amount of results
-        // The amount of products shown in the headline matches the expected value
-        $("#totalProductCount").shouldHave(exactText(Integer.toString(searchTermExpectedCount)));
     }
 
     // TODO - check if needed

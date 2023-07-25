@@ -3,6 +3,8 @@
         "topCategory": "header.worldOfNature",
         "subCategory": "header.animals",
 		"position": "1",
-        "searchTerm": "pizza"
+        "searchTerm": "pizza",
+        "searchResultCount": "1",
+        "amountChange": "3"
     }
 ]

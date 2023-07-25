@@ -32,7 +32,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
         return this;
     }
 
-    // ----- validate content product detail page ----- //
+    /// ----- validate content product detail page ----- ///
     
     @Override
     @Step("validate product detail page structure")
@@ -79,7 +79,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
         validateProductName(productName);
     }
     
-    // ----- select product size/style, add to cart ----- //
+    /// ----- select product size/style, add to cart ----- ///
 
     @Step("select size")
     public void setSize(String size)
@@ -107,7 +107,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
         clickAddToCartButton();
     }
     
-    // ----- get product details ----- //
+    /// ----- get product details ----- ///
     
     @Step("get product name from product detail page")
     public String getProductName()

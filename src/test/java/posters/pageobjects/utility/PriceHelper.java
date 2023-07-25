@@ -37,12 +37,10 @@ public class PriceHelper
         return format(res);
     }
 
-    // TODO - understand use
-    // Subtracts the old subtotal from the new one, rounds the result to 2 decimals (to avoid things like 19.9
-    // instead of 19.90) and compares it to the price of the new item
-    public static String subtractFromPrice(String from, String value)
+    @Step("calculate difference")
+    public static String subtractFromPrice(String minuend, String subtrahend)
     {
-        double res = (double) (Math.round((Double.valueOf(removeCurrency(from)) - Double.valueOf(removeCurrency(value))) * 100)) / 100;
+        double res = (double) (Math.round((Double.valueOf(removeCurrency(minuend)) - Double.valueOf(removeCurrency(subtrahend))) * 100)) / 100;
         return format(res);
     }
 }

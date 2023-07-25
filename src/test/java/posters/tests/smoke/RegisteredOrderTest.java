@@ -72,7 +72,7 @@ public class RegisteredOrderTest extends AbstractTest
         cartPage.miniCart.validateMiniCart(1, product);
         cartPage.miniCart.validateTotalCount(++totalCount);
         cartPage.validateCartItem(1, product);
-        cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, 0.00);
+        cartPage.validateTotalAfterAdd(1, oldSubtotal, 0.00);
 
         // Go to shipping address and validate
         var shippingAddressPage = cartPage.openShippingPage();

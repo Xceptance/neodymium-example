@@ -63,7 +63,7 @@ public class GuestOrderTest extends AbstractTest
         cartPage.miniCart.validateMiniCart(1, product);
         cartPage.miniCart.validateTotalCount(++totalCount);
         cartPage.validateCartItem(1, product);
-        cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, 0.00);
+        cartPage.validateTotalAfterAdd(1, oldSubtotal, 0.00);
 
         // setup checkout data
         final var shippingAddress = DataUtils.get(Address.class);

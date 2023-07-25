@@ -6,6 +6,8 @@ public class AddToCartTestData
     private String subCategory;
     private int position;
     private String searchTerm;
+    private int searchResultCount;
+    private int amountChange;
     
     public String getTopCategory() 
     {
@@ -25,5 +27,15 @@ public class AddToCartTestData
     public String getSearchTerm()
     {
         return searchTerm;
+    }
+    
+    public int getSearchResultCount()
+    {
+        return searchResultCount;
+    }
+    
+    public int getAmountChange()
+    {
+        return amountChange;
     }
 }

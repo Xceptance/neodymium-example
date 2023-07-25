@@ -92,7 +92,7 @@ public class MiniCart extends AbstractComponent
     
     // ----- validate product data in mini cart ----- //
     
-    @Step("validate data o cart item in mini cart")
+    @Step("validate data cart item in mini cart")
     private void validateMiniCart(int position, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
     {
         openMiniCart();
@@ -124,6 +124,19 @@ public class MiniCart extends AbstractComponent
         validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), PriceHelper.format(product.getTotalPrice()));
     }
     
+    @Step("validate '{product}' in the mini cart")
+    public void validateMiniCart(int position, Product product, int productAmount, String productPrice)
+    {
+        validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), productAmount, productPrice);
+    }
+    
+    @Step("validate the mini cart total product count")
+    public void validateTotalCount(int totalCount)
+    {
+        totalCountElement.shouldHave(exactText(Integer.toString(totalCount)));
+    }
+        
+
     // --------------------------------------------------------------
 
 
@@ -132,12 +145,6 @@ public class MiniCart extends AbstractComponent
     public int getTotalCount()
     {
         return Integer.parseInt(totalCountElement.text());
-    }
-
-    @Step("validate the mini cart total product count")
-    public void validateTotalCount(int totalCount)
-    {
-        totalCountElement.shouldHave(exactText(Integer.toString(totalCount)));
     }
 
     @Step("get the subtotal price from mini cart")
