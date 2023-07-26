@@ -19,11 +19,14 @@ import com.xceptance.neodymium.util.Neodymium;
 import io.qameta.allure.Step;
 import posters.dataobjects.Product;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
+import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.browsing.ProductDetailPage;
 import posters.pageobjects.utility.PriceHelper;
 
 public class CartPage extends AbstractBrowsingPage
 {
+    private SelenideElement title = $("#titleCart");
+    
     private SelenideElement cartTable = $("#cartOverviewTable");
 
     private SelenideElement subTotal = $("#orderSubTotalValue");
@@ -39,14 +42,24 @@ public class CartPage extends AbstractBrowsingPage
 
     /// ----- validate content cart page ----- ///
 
+    @Step("validate empty cart page")
+    public void validateEmptyCartPage() 
+    {
+        title.shouldHave(exactText(Neodymium.localizedText("CartPage.title"))).shouldBe(visible);
+        $("#errorCartMessage").shouldHave(exactText(Neodymium.localizedText("CartPage.errorMessage"))).shouldBe(visible);
+    }
+    
     @Override
     @Step("validate cart page structure")
     public void validateStructure()
     {
         super.validateStructure();
 
+        // validate process sequence
+        $(".process-wrap").shouldBe(visible);
+        
         // validate title
-        $("#titleCart").shouldBe(matchText("[A-Z].{3,}"));
+        title.shouldHave(exactText(Neodymium.localizedText("CartPage.title"))).shouldBe(visible);
 
         // validate product list
         cartTable.shouldBe(visible);
@@ -57,8 +70,8 @@ public class CartPage extends AbstractBrowsingPage
         // validate cart summary list
         $("#cartSummaryList").shouldBe(visible);
 
-        // validate checkut button
-        $("#btnStartCheckout").should(exist);
+        // validate checkout button
+        $("#btnStartCheckout").should(visible);
     }
 
     @Step("validate shipping costs on cart page")
@@ -106,6 +119,13 @@ public class CartPage extends AbstractBrowsingPage
         // validate {price} equals {price2}
         Assert.assertEquals(productPrice, productPriceAmountChange);
     }
+    
+    @Step("validate sub total and line item total after removing on the cart page")
+    public void validateTotalAfterRemove(String oldSubTotal, String oldLineItemTotal)
+    {
+        String newSubTotal = PriceHelper.subtractFromPrice(oldSubTotal, oldLineItemTotal);
+        subTotal.shouldHave(exactText(newSubTotal));
+    }
 
     /// ----- validate product data in cart item ----- ///
 
@@ -141,7 +161,7 @@ public class CartPage extends AbstractBrowsingPage
     {
         validateCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), product.getUnitPrice());
     }
-    
+   
     @Step("validate '{product}' on the cart page")
     public void validateCartItem(int position, Product product, int productAmount)
     {
@@ -205,6 +225,32 @@ public class CartPage extends AbstractBrowsingPage
         // click update button
         productContainer.find(".btnUpdateProduct").scrollTo().click();
     }
+    
+    @Step("remove product on the cart page")
+    public void removeProduct(int position)
+    { 
+        // click delete button
+        $("#btnRemoveProdCount" + (position - 1)).scrollTo().click();
+        
+        // click delete confirmation button
+        $("#buttonDelete").scrollTo().click();
+    }
+    
+    /// ----- cart page navigation ----- ///
+    
+    @Step("click on a product on the cart page")
+    public ProductDetailPage openProductDetailPage(int position)
+    {
+        $("#product" + (position - 1) + " .product-img").scrollTo().click();
+        return new ProductDetailPage().isExpectedPage();
+    }
+    
+    public HomePage openHomePage() 
+    {
+        $("#brand").scrollTo().click();
+        return new HomePage().isExpectedPage();
+    }
+
 
     // ----------------------------------------------------------------------------- //
 
@@ -255,39 +301,6 @@ public class CartPage extends AbstractBrowsingPage
         SelenideElement productContainer = findProductContainer(productName, style, size);
         productContainer.find(".btnRemoveProduct").click();
         $("#buttonDelete").click();
-    }
-
-    @Step("remove product on the cart page")
-    public void removeProduct(int position)
-    {
-        // Click delete button
-        // Click on the delete button for the product
-        $("#btnRemoveProdCount" + (position - 1)).scrollTo().click();
-        // Wait for the second delete button to appear
-        // Wait until the confirmation button is visible
-        $("#buttonDelete").waitUntil(visible, Neodymium.configuration().selenideTimeout());
-        // Click delete button
-        // Click the confirmation button
-        $("#buttonDelete").scrollTo().click();
-        // Wait until the confirmation button is gone
-        $("#buttonDelete").waitUntil(hidden, Neodymium.configuration().selenideTimeout());
-        // Reload page to let IDs adjust to the deletion
-        miniCart.openMiniCart();
-        miniCart.openCartPage();
-    }
-
-    @Step("validate sub total and line item total after removing on the cart page")
-    public void validateSubAndLineItemTotalAfterRemove(String oldSubTotal, String oldLineItemTotal)
-    {
-        String newSubTotal = PriceHelper.subtractFromPrice(oldSubTotal, oldLineItemTotal);
-        subTotal.shouldHave(exactText(newSubTotal));
-    }
-
-    @Step("click on a product on the cart page")
-    public ProductDetailPage openProductPage(int position)
-    {
-        $("#product" + (position - 1) + " .product-img").scrollTo().click();
-        return new ProductDetailPage().isExpectedPage();
     }
 
     private void clickCheckoutButton()

@@ -9,9 +9,6 @@ import com.xceptance.neodymium.visual.ai.AI;
 
 import posters.pageobjects.components.Title;
 
-/**
- * @author pfotenhauer
- */
 public abstract class AbstractPageObject
 {
     public Title title = new Title();

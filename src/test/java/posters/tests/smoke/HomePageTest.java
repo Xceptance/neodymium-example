@@ -17,9 +17,6 @@ import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 
-/**
- * @author pfotenhauer
- */
 @Severity(SeverityLevel.TRIVIAL)
 @Owner("Joe Fix")
 @Tag("smoke")
@@ -37,7 +34,6 @@ public class HomePageTest extends AbstractTest
         var homePage = OpenHomePageFlow.flow();
         homePage.title.validateTitle(Neodymium.localizedText("HomePage.title"));
         homePage.validateStructure();
-        homePage.header.validateStructure();
-        homePage.footer.validateStructure();
+        homePage.validateHeaderAndFooter(homePage);
     }
 }

@@ -31,44 +31,6 @@ public class TopNavigation extends AbstractComponent
     
     // ----- validate content top navigation ----- //
     
-    @Step("validate structure top navigation")
-    public static void validateStructure() 
-    {
-        // validate navigation bar
-        validateNavComponent("header.worldOfNature");
-        validateNavComponent("header.dining");
-        validateNavComponent("header.transportation");
-        validateNavComponent("header.panoramas");
-        
-        // validate sub navigation "World Of Nature"
-        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.worldOfNature"))).hover();
-        validateSubNavComponent("header.animals");
-        validateSubNavComponent("header.flowers");
-        validateSubNavComponent("header.trees");
-        
-        // validate sub navigation "Dining"
-        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.dining"))).hover();
-        validateSubNavComponent("header.coldCuts");
-        validateSubNavComponent("header.mainDishes");
-        validateSubNavComponent("header.sweets");
-        
-        // validate sub navigation "Transportation"
-        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.transportation"))).hover();
-        validateSubNavComponent("header.airTravel");
-        validateSubNavComponent("header.classicCars");
-        validateSubNavComponent("header.railways");
-        
-        // validate sub navigation "Panoramas"
-        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.panoramas"))).hover();
-        validateSubNavComponent("header.architecture");
-        validateSubNavComponent("header.fireworks");
-        validateSubNavComponent("header.landscapes");
-        validateSubNavComponent("header.xxlPanoramas");
-        
-        // close sub navigation
-        $("#globalNavigation").hover();
-    }
-    
     @Step("validate name of components in navigation")
     public static void validateNavComponent(String topCategory) 
     {
@@ -79,6 +41,44 @@ public class TopNavigation extends AbstractComponent
     public static void validateSubNavComponent(String subCategory) 
     {
         $$(".navi ul.dropdown-menu li").findBy(exactText(Neodymium.localizedText(subCategory))).shouldBe(visible);
+    }
+    
+    @Step("validate structure top navigation")
+    public static void validateStructure() 
+    {
+        // validate navigation bar
+        validateNavComponent("header.topNavigation.1.title");
+        validateNavComponent("header.topNavigation.2.title");
+        validateNavComponent("header.topNavigation.3.title");
+        validateNavComponent("header.topNavigation.4.title");
+        
+        // validate sub navigation "World Of Nature"
+        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.topNavigation.1.title"))).hover();
+        validateSubNavComponent("header.topNavigation.1.subCategory.1");
+        validateSubNavComponent("header.topNavigation.1.subCategory.2");
+        validateSubNavComponent("header.topNavigation.1.subCategory.3");
+        
+        // validate sub navigation "Dining"
+        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.topNavigation.2.title"))).hover();
+        validateSubNavComponent("header.topNavigation.2.subCategory.1");
+        validateSubNavComponent("header.topNavigation.2.subCategory.2");
+        validateSubNavComponent("header.topNavigation.2.subCategory.3");
+        
+        // validate sub navigation "Transportation"
+        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.topNavigation.3.title"))).hover();
+        validateSubNavComponent("header.topNavigation.3.subCategory.1");
+        validateSubNavComponent("header.topNavigation.3.subCategory.2");
+        validateSubNavComponent("header.topNavigation.3.subCategory.3");
+        
+        // validate sub navigation "Panoramas"
+        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.topNavigation.4.title"))).hover();
+        validateSubNavComponent("header.topNavigation.4.subCategory.1");
+        validateSubNavComponent("header.topNavigation.4.subCategory.2");
+        validateSubNavComponent("header.topNavigation.4.subCategory.3");
+        validateSubNavComponent("header.topNavigation.4.subCategory.4");
+        
+        // close sub navigation
+        $("#globalNavigation").hover();
     }
     
     // ----- category navigation ------ //

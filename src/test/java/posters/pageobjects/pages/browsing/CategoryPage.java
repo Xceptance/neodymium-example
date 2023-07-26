@@ -49,30 +49,17 @@ public class CategoryPage extends AbstractBrowsingPage
     }
 
     @Step("validate category name {categoryName} is on category page")
-    public void validateCategoryName(String categoryName)
+    public void validateCategoryHeadline(String categoryName, int expectedResultCount)
     {
-        $("#titleCategoryName").shouldHave(matchText(Neodymium.localizedText(categoryName)));
+        $("#titleCategoryName").shouldHave(matchText(Neodymium.localizedText(categoryName))).shouldBe(visible);
+        $("#titleCategoryName").shouldHave(matchText(Integer.toString(expectedResultCount))).shouldBe(visible);
     }
 
     @Step("validate category page of category '{categoryName}'")
-    public void validate(String categoryName)
+    public void validate(String categoryName, int expectedResultCount)
     {
         validateStructure();
-        validateCategoryName(categoryName);
-    }
-    
-    @Step("validate search results for '{searchTerm}' on category page")
-    public void validateSearchHits(String searchTerm, int searchTermExpectedCount)
-    {
-        // validate the headline 
-        $("#titleSearchText").should(visible);
-        $("#titleSearchText").should(matchText(Neodymium.localizedText("search.results.text") + "'" + searchTerm + "' \\(" + searchTermExpectedCount + ".*\\)"));
-        
-        // validate visibility {searchTerm} after search
-        search.validateSearchTerm(searchTerm);
-        
-        // validate at least 1 search result
-        $("#product0").shouldBe(visible);
+        validateCategoryHeadline(categoryName, expectedResultCount);
     }
 
     /// ----- product by position ----- ///

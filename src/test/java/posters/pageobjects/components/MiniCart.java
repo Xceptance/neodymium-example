@@ -21,13 +21,7 @@ public class MiniCart extends AbstractComponent
 {
     private static SelenideElement headerCart = $("#headerCartOverview");
 
-    private final static String miniCartSelector = "#miniCartMenu";
-
-    private SelenideElement miniCart = $(miniCartSelector);
-    
-    public static ElementsCollection subtotal = $$(miniCartSelector + " .cartMiniSubOrderTotal");
-
-    private SelenideElement subOrderPrice = $(miniCartSelector + " .subOrderPrice");
+    private SelenideElement subOrderPrice = $("#miniCartMenu .subOrderPrice");
 
     private SelenideElement totalCountElement = $("#headerCartOverview .headerCartProductCount");
     
@@ -38,27 +32,6 @@ public class MiniCart extends AbstractComponent
     public void isComponentAvailable()
     {
         $("#btnCartOverviewForm").should(exist);
-    }
-    
-    @Step("validate shopping cart menu")
-    public static void validateStructure() 
-    {
-        // validate shopping cart icon, item count
-        $(".icon-shopping-cart").shouldBe(visible);
-        $$("#count_wideView").findBy(matchesText("\\d")).shouldBe(visible);
-        
-        // open cart window
-        headerCart.hover();
-        
-        // validate structure cart window
-        // TODO - validate item count
-        $$("#miniCartMenu .cartMiniHeader").findBy(matchesText(Neodymium.localizedText("header.shoppingCart.itemsInCart"))).shouldBe(visible);
-        subtotal.findBy(matchesText(Neodymium.localizedText("header.shoppingCart.subtotal"))).shouldBe(visible);
-        subtotal.findBy(matchesText("\\$\\d\\.\\d")).shouldBe(visible);
-        $$("#miniCartMenu .linkButton").findBy(exactText(Neodymium.localizedText("header.shoppingCart.viewCart"))).shouldBe(visible);
-        
-        // close cart menu
-        $("#globalNavigation").hover();
     }
     
     // ----- mini cart navigation ------ //
@@ -75,6 +48,22 @@ public class MiniCart extends AbstractComponent
         $("#brand").hover();
     }
     
+    @Step("open the cart page")
+    public CartPage openCartPage()
+    {
+        openMiniCart();
+        goToCartButton.click();
+        return new CartPage().isExpectedPage();
+    }
+    
+    // ----- validate product data in mini cart ----- //
+   
+    @Step("validate shopping cart menu")
+    public static void validateStructure()
+    {
+        // TODO - verify (not) empty shopping cart in one function for header component 
+    }
+    
     @Step("validate the mini cart subtotal price")
     public void validateSubtotal(String subtotal)
     {
@@ -83,14 +72,33 @@ public class MiniCart extends AbstractComponent
         closeMiniCart();
     }
     
-    @Step("open the cart page")
-    public CartPage openCartPage()
+    @Step("validate the mini cart total product count")
+    public void validateTotalCount(int totalCount)
     {
-        goToCartButton.click();
-        return new CartPage().isExpectedPage();
+        totalCountElement.shouldHave(exactText(Integer.toString(totalCount)));
     }
     
-    // ----- validate product data in mini cart ----- //
+    @Step("validate empty mini cart")
+    public void validateEmptyMiniCart() 
+    {
+        // validate shopping cart icon, item count
+        $(".icon-shopping-cart").shouldBe(visible);
+        $(".headerCartProductCount").shouldHave(exactText("0")).shouldBe(visible);
+        
+        openMiniCart();
+        
+        // validate cart window header
+        $$("#miniCartMenu .cartMiniHeader").findBy(matchesText(Neodymium.localizedText("header.shoppingCart.noItemsInCart"))).shouldBe(visible);
+        
+        // validate subtotal
+        $("#miniCartMenu .cartMiniSubOrderTotal").shouldHave(matchesText(Neodymium.localizedText("header.shoppingCart.subtotal"))).shouldBe(visible);
+        $(".subOrderPrice").shouldHave(exactText("$0.00")).shouldBe(visible);
+        
+        // validate view cart button
+        $("#miniCartMenu .linkButton").shouldHave(exactText(Neodymium.localizedText("header.shoppingCart.viewCart"))).shouldBe(visible);
+        
+        closeMiniCart();
+    }
     
     @Step("validate data cart item in mini cart")
     private void validateMiniCart(int position, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
@@ -130,12 +138,6 @@ public class MiniCart extends AbstractComponent
         validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), productAmount, productPrice);
     }
     
-    @Step("validate the mini cart total product count")
-    public void validateTotalCount(int totalCount)
-    {
-        totalCountElement.shouldHave(exactText(Integer.toString(totalCount)));
-    }
-        
 
     // --------------------------------------------------------------
 

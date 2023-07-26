@@ -1,7 +1,9 @@
 [
     {
-        "topCategory": "header.worldOfNature",
-        "subCategory": "header.animals",
+        "topCategory": "header.topNavigation.1.title",
+        "subCategory": "header.topNavigation.1.subCategory.1",
+        "expectedCategoryResultCount": "30",
+        "expectedSubCategoryResultCount": "10",
 		"position": "1",
         "searchTerm": "pizza",
         "searchResultCount": "1",

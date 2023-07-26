@@ -42,4 +42,10 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
         successMessage.isComponentAvailable();
         errorMessage.isComponentAvailable();
     }
+    
+    public void validateHeaderAndFooter(AbstractBrowsingPage page) 
+    {
+        page.header.validateStructure();
+        page.footer.validateStructure();
+    }
 }

@@ -44,8 +44,7 @@ public class SearchTest extends AbstractTest
 
         // go to category page
         var categoryPage = homePage.search.categoryPageResult(searchTerm);
-        categoryPage.validateStructure();
-        categoryPage.validateSearchHits(searchTerm, searchTermExpectedCount);
+        categoryPage.validate(searchTerm, searchTermExpectedCount);
         validateHeaderAndFooter(categoryPage);
 
         //go to product detail page

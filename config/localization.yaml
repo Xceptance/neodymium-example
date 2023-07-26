@@ -1,28 +1,37 @@
 default:
     header:
-        worldOfNature: World of Nature
-        animals: Animals
-        flowers: Flowers
-        trees: Trees
-        dining: Dining
-        coldCuts: Cold Cuts
-        mainDishes: Main Dishes
-        sweets: Sweets
-        transportation: Transportation
-        airTravel: Air Travel
-        classicCars: Classic Cars
-        railways: Railways
-        panoramas: Panoramas
-        architecture: Architecture
-        fireworks: Fireworks
-        landscapes: Landscapes
-        xxlPanoramas: XXL Panoramas
+        topNavigation:
+            "1":
+                title: World of Nature
+                subCategory:
+                    "1": Animals
+                    "2": Flowers
+                    "3": Trees
+            "2":
+                title: Dining
+                subCategory:
+                    "1": Cold Cuts
+                    "2": Main Dishes
+                    "3": Sweets
+            "3":
+                title: Transportation
+                subCategory:
+                    "1": Air Travel
+                    "2": Classic Cars
+                    "3": Railways
+            "4":
+                title: Panoramas
+                subCategory:
+                    "1": Architecture
+                    "2": Fireworks
+                    "3": Landscapes
+                    "4": XXL Panoramas
         userMenu:
             greeting: "WELCOME: GUEST"
             createAccount: CREATE ACCOUNT
             signIn: SIGN IN
         shoppingCart:
-            itemsInCart: ITEMS IN THE CART
+            noItemsInCart: 0 ITEMS IN THE CART
             subtotal: SUBTOTAL
             viewCart: VIEW CART
         sale:
@@ -39,12 +48,23 @@ default:
             successfulOrder: Thank you for shopping with us!
             successfulLogin: Login successful. Have fun in our shop!
             successfulAccountDeletion: Your account has been deleted. We hope to see you soon again!
+    CartPage:
+        title: Cart
+        errorMessage: Your cart is empty. Continue shopping.
     NoHitsPage:
         validation:
             noProductsFound: × Sorry! No results found matching your search. Please try again.
     ProductdetailPage:
-        addToCartButton:
-            text: Add to cart
+        size:
+            "16x12": 16 x 12 in
+            "32x24": 32 x 24 in
+            "64x48": 64 x 48 in
+            "96x32": 96 x 32 in
+        style:
+            matte: matte
+            gloss: gloss
+        print: "Print information:"
+        addToCartButton: Add to cart
     AccountPages:
         email: Email address*
         firstname: First name*

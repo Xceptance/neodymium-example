@@ -3,9 +3,12 @@ package posters.pageobjects.pages.browsing;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -34,6 +37,34 @@ public class ProductDetailPage extends AbstractBrowsingPage
 
     /// ----- validate content product detail page ----- ///
     
+    public void validateSizeDropdown(int position, String size) 
+    {
+        $("#selectSize option:nth-of-type(" + position + ")").shouldHave(exactText(Neodymium.localizedText(size))).shouldBe(visible);
+    }
+    
+    @Step("validate size dropdown")
+    public void validateSizeDropdown() 
+    {
+        productSize.scrollTo().click();
+        
+        if ($$("#selectSize option").shouldHave(sizeGreaterThan(1)) != null) 
+        {
+            validateSizeDropdown(1, "ProductdetailPage.size.16x12");
+            validateSizeDropdown(2, "ProductdetailPage.size.32x24");
+            validateSizeDropdown(3, "ProductdetailPage.size.64x48");
+        }
+        else validateSizeDropdown(1, "ProductdetailPage.size.96x32");
+        
+        productSize.scrollTo().click();
+    }
+    
+    @Step("validate style radio")
+    public void validateStyleRadio() 
+    {
+        $("#selectStyle .radio:nth-of-type(1)").shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.style.matte"))).shouldBe(visible);
+        $("#selectStyle .radio:nth-of-type(2)").shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.style.gloss"))).shouldBe(visible);
+    }
+    
     @Override
     @Step("validate product detail page structure")
     public void validateStructure()
@@ -47,23 +78,26 @@ public class ProductDetailPage extends AbstractBrowsingPage
         productName.shouldHave(matchText("[A-Z].{3,}")).shouldBe(visible);
         
         // validate product price
-        productPrice.shouldHave(matchText("\\$\\d+\\.\\d{2}")).shouldBe(visible);
+        productPrice.shouldHave(matchText("\\$\\d{2}\\.\\d{2}")).shouldBe(visible);
         
         // validate product description
         $("#prodDescriptionOverview").shouldBe(visible);
         $("#prodDescriptionDetail").shouldBe(visible);
         
         // validate size selection
-        $("#selectSize").shouldBe(visible);
+        validateSizeDropdown();
         
         // validate style selection
         $("#selectStyle").shouldBe(visible);
+        validateStyleRadio();
         
-        // validate print information
+        // validate  print information
+        $("#prodPrintInfoTitle").shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.print"))).shouldBe(visible);
         $("#prodPrintInfo").shouldBe(visible);
         
         // validate add to cart button
-        addToCartButton.shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.addToCartButton.text"))).shouldBe(visible);
+        addToCartButton.shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.addToCartButton"))).shouldBe(visible);
+        $("#btnAddToCart .icon-shopping-cart").shouldBe(visible);
     }
     
     @Step("validate product name on product detail page")

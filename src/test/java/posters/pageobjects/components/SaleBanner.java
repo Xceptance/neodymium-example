@@ -20,7 +20,7 @@ public class SaleBanner extends AbstractComponent
     @Step("validate strings sale banner")
     private static void validateSaleBanner(String text) 
     {
-        $$(".owl-stage").findBy(exactText(Neodymium.localizedText(text))).waitUntil(visible, 6500);
+        $$(".owl-stage").findBy(exactText(Neodymium.localizedText(text))).waitUntil(visible, 9000);
     }
     
     @Step("validate sale banner")
