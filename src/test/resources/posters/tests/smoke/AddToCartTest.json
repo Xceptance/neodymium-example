@@ -1,12 +1,12 @@
 [
     {
+    	"position": "1",
         "topCategory": "header.topNavigation.1.title",
         "subCategory": "header.topNavigation.1.subCategory.1",
         "expectedCategoryResultCount": "30",
         "expectedSubCategoryResultCount": "10",
-		"position": "1",
         "searchTerm": "pizza",
-        "searchResultCount": "1",
+        "expectedSearchResultCount": "1",
         "amountChange": "3"
     }
 ]

@@ -1,10 +1,8 @@
 package posters.pageobjects.pages.browsing;
 
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -23,6 +21,8 @@ public class CategoryPage extends AbstractBrowsingPage
     public Pagination pagination = new Pagination();
 
     private SelenideElement productOverview = $("#productOverview");
+    
+    private SelenideElement titleCategoryName = $("#titleCategoryName");
 
     @Override
     @Step("ensure this is a category page")
@@ -51,8 +51,17 @@ public class CategoryPage extends AbstractBrowsingPage
     @Step("validate category name {categoryName} is on category page")
     public void validateCategoryHeadline(String categoryName, int expectedResultCount)
     {
-        $("#titleCategoryName").shouldHave(matchText(Neodymium.localizedText(categoryName))).shouldBe(visible);
-        $("#titleCategoryName").shouldHave(matchText(Integer.toString(expectedResultCount))).shouldBe(visible);
+        if (categoryName.contains(".")) 
+        {
+            titleCategoryName.should(matchText(Neodymium.localizedText(categoryName))).shouldBe(visible);
+            titleCategoryName.shouldHave(matchText(Integer.toString(expectedResultCount))).shouldBe(visible);
+        }
+        else 
+        { 
+            $("#titleSearchText").should(matchText(Neodymium.localizedText("search.result.text"))).shouldBe(visible);
+            $("#searchTextValue").should(exactText(categoryName)).shouldBe(visible);
+            $("#totalProductCount").should(exactText(Integer.toString(expectedResultCount))).shouldBe(visible);
+        }
     }
 
     @Step("validate category page of category '{categoryName}'")
@@ -120,10 +129,10 @@ public class CategoryPage extends AbstractBrowsingPage
 
     // TODO - check if needed
     @Step("validate category page of category '{categoryName}' and assert visually")
-    public void validateAndVisualAssert(String categoryName)
+    public void validateAndVisualAssert(String categoryName, int expectedResultCount)
     {
         validateStructureAndVisual();
-        validateCategoryName(categoryName);
+        validateCategoryHeadline(categoryName, expectedResultCount);
     }
 
     // TODO - check if needed

@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -22,6 +23,8 @@ public class MiniCart extends AbstractComponent
     private static SelenideElement headerCart = $("#headerCartOverview");
 
     private SelenideElement subOrderPrice = $("#miniCartMenu .subOrderPrice");
+    
+    private SelenideElement miniCart = $("#miniCartMenu");
 
     private SelenideElement totalCountElement = $("#headerCartOverview .headerCartProductCount");
     
@@ -40,12 +43,14 @@ public class MiniCart extends AbstractComponent
     public void openMiniCart()
     {
         headerCart.hover();
+        miniCart.waitUntil(visible, 9000);
     }
 
     @Step("close the mini cart")
     public void closeMiniCart()
     {
         $("#brand").hover();
+        miniCart.waitUntil(not(visible), 9000);
     }
     
     @Step("open the cart page")
@@ -83,7 +88,7 @@ public class MiniCart extends AbstractComponent
     {
         // validate shopping cart icon, item count
         $(".icon-shopping-cart").shouldBe(visible);
-        $(".headerCartProductCount").shouldHave(exactText("0")).shouldBe(visible);
+        totalCountElement.shouldHave(exactText("0")).shouldBe(visible);
         
         openMiniCart();
         
@@ -92,7 +97,7 @@ public class MiniCart extends AbstractComponent
         
         // validate subtotal
         $("#miniCartMenu .cartMiniSubOrderTotal").shouldHave(matchesText(Neodymium.localizedText("header.shoppingCart.subtotal"))).shouldBe(visible);
-        $(".subOrderPrice").shouldHave(exactText("$0.00")).shouldBe(visible);
+        subOrderPrice.shouldHave(exactText("$0.00")).shouldBe(visible);
         
         // validate view cart button
         $("#miniCartMenu .linkButton").shouldHave(exactText(Neodymium.localizedText("header.shoppingCart.viewCart"))).shouldBe(visible);
@@ -103,6 +108,9 @@ public class MiniCart extends AbstractComponent
     @Step("validate data cart item in mini cart")
     private void validateMiniCart(int position, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
     {
+        // validate shopping cart icon, item count
+        $(".icon-shopping-cart").shouldBe(visible);
+        
         openMiniCart();
         
         // selector for product
@@ -138,7 +146,19 @@ public class MiniCart extends AbstractComponent
         validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), productAmount, productPrice);
     }
     
+    /// ----- get data mini cart ----- ///
+    
+    @Step("get the subtotal price from mini cart")
+    public String getSubtotal()
+    {
+        openMiniCart();
+        String subtotal = subOrderPrice.text();
+        closeMiniCart();
 
+        return subtotal;
+    }
+    
+    
     // --------------------------------------------------------------
 
 
@@ -149,19 +169,6 @@ public class MiniCart extends AbstractComponent
         return Integer.parseInt(totalCountElement.text());
     }
 
-    @Step("get the subtotal price from mini cart")
-    public String getSubtotal()
-    {
-        // Store the mini cart subtotal
-        // Open mini cart
-        openMiniCart();
-        // Store subtotal in oldSubTotal
-        String subtotal = subOrderPrice.text();
-        // Close mini cart
-        closeMiniCart();
-
-        return subtotal;
-    }
 
     @Step("validate '{product}' in the mini cart by name")
     public void validateMiniCartByProduct(Product product)

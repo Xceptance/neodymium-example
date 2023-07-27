@@ -43,4 +43,12 @@ public class PriceHelper
         double res = (double) (Math.round((Double.valueOf(removeCurrency(minuend)) - Double.valueOf(removeCurrency(subtrahend))) * 100)) / 100;
         return format(res);
     }
+    
+    @Step("calculate tax")
+    public static String calculateTax(String shippingCosts, String subtotal) 
+    {
+        double totalPrice = (double) (Math.round((Double.valueOf(removeCurrency(shippingCosts)) + Double.valueOf(removeCurrency(subtotal))) * 100)) / 100;
+        double tax = (double) (Math.round((Double.valueOf(totalPrice) * 0.06) * 100)) / 100;
+        return format(tax);
+    }
 }

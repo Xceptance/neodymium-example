@@ -2,14 +2,19 @@ package posters.tests.testdata;
 
 public class AddToCartTestData
 {
+    private int position;
     private String topCategory;
     private String subCategory;
     private int expectedCategoryResultCount;
     private int expectedSubCategoryResultCount;
-    private int position;
     private String searchTerm;
-    private int searchResultCount;
+    private int expectedSearchResultCount;
     private int amountChange;
+    
+    public int getPosition()
+    {
+        return position;
+    }
     
     public String getTopCategory() 
     {
@@ -31,19 +36,14 @@ public class AddToCartTestData
         return expectedSubCategoryResultCount;
     }
     
-    public int getPosition()
-    {
-        return position;
-    }
-    
     public String getSearchTerm()
     {
         return searchTerm;
     }
     
-    public int getSearchResultCount()
+    public int getExpectedSearchResultCount()
     {
-        return searchResultCount;
+        return expectedSearchResultCount;
     }
     
     public int getAmountChange()

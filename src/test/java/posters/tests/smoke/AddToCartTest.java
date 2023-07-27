@@ -14,6 +14,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
+import posters.pageobjects.utility.PriceHelper;
 import posters.tests.AbstractTest;
 import posters.tests.testdata.AddToCartTestData;
 
@@ -35,11 +36,13 @@ public class AddToCartTest extends AbstractTest
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
         
-        // go to cart page and validate
+        // go to empty cart page
         var cartPage = homePage.miniCart.openCartPage();
+        
+        // validate empty cart page
         cartPage.validateEmptyCartPage();
-        cartPage.miniCart.validateEmptyMiniCart();
         cartPage.validateHeaderAndFooter(cartPage);
+        cartPage.miniCart.validateEmptyMiniCart();
         
         // go back to homepage
         cartPage.openHomePage();        
@@ -49,77 +52,87 @@ public class AddToCartTest extends AbstractTest
         // store old subtotal
         final String oldSubtotal = homePage.miniCart.getSubtotal();
 
-        // go to top category page and validate
+        // go to top category page
         var categoryPage = homePage.topNav.clickCategory(addToCartTestData.getTopCategory());
+        
+        // validate top category page
         categoryPage.validate(addToCartTestData.getTopCategory(), addToCartTestData.getExpectedCategoryResultCount());
         categoryPage.validateHeaderAndFooter(categoryPage);
+        categoryPage.miniCart.validateEmptyMiniCart();
 
-        // go to sub category page
+        // go to sub category page and validate
         var subCategoryPage = categoryPage.topNav.clickSubCategory(addToCartTestData.getTopCategory(), addToCartTestData.getSubCategory());
+        
+        // validate sub category page
         subCategoryPage.validate(addToCartTestData.getSubCategory(), addToCartTestData.getExpectedSubCategoryResultCount());
 
-        // go to product page
-        final String productName = categoryPage.getProductNameByPosition(addToCartTestData.getPosition());
+        // go to product detail page
         var productDetailPage = categoryPage.clickProductByPosition(addToCartTestData.getPosition());
-        productDetailPage.validate(productName);
-        productDetailPage.validateHeaderAndFooter(productDetailPage);
-
+        
         // add product to cart
         productDetailPage.addToCart("16 x 12 in", "matte");
-
-        // go to cart
+        
+        // store displayed product
         final var product = productDetailPage.getProduct();
+        
+        // validate product detail page
+        productDetailPage.validate(product.getName());
+        productDetailPage.validateHeaderAndFooter(productDetailPage);
+        productDetailPage.miniCart.validateTotalCount(++totalCount);
+        productDetailPage.miniCart.validateMiniCart(addToCartTestData.getPosition(), product);
+        
+        // go to cart page
         cartPage = productDetailPage.miniCart.openCartPage();
 
-        /*
         // validate cart page
-        cartPage.validate(shippingCosts);
-        cartPage.miniCart.validateMiniCart(addToCartTestData.getPosition(), product);
         cartPage.validateCartItem(addToCartTestData.getPosition(), product);
-
-        // validate (sub)total after adding new item to cart
+        cartPage.validate(shippingCosts, cartPage.miniCart.getSubtotal());
         cartPage.validateTotalAfterAdd(addToCartTestData.getPosition(), oldSubtotal, 0.00);
-
+        cartPage.miniCart.validateTotalCount(totalCount);
+        cartPage.miniCart.validateMiniCart(addToCartTestData.getPosition(), product);
+ 
+        /// ----- PART 3: USE SEARCH BAR TO ADD PRODUCT TO CART ----- ///
+        
         // store old subtotal
         final String oldSubtotal2 = cartPage.miniCart.getSubtotal();
-
-        // validate mini cart total product count
-        cartPage.miniCart.validateTotalCount(++totalCount);
         
-        /*
-        /// ----- part 2: search for product and add to cart ----- ///
-
-        // search for product on cart page
+        // go to category page via search
         categoryPage = cartPage.search.categoryPageResult(addToCartTestData.getSearchTerm());
-        categoryPage.validateSearchHits(addToCartTestData.getSearchTerm(), addToCartTestData.getSearchResultCount());
+        
+        // validate category page
+        categoryPage.validate(addToCartTestData.getSearchTerm(), addToCartTestData.getExpectedSearchResultCount());
+        categoryPage.miniCart.validateMiniCart(addToCartTestData.getPosition(), product);
 
-        // go to product page
-        final String productName2 = categoryPage.getProductNameByPosition(addToCartTestData.getPosition());
+        // go to product detail page
         productDetailPage = categoryPage.clickProductByPosition(addToCartTestData.getPosition());
-        productDetailPage.validate(productName2);
-
+        
         // add product to cart
         productDetailPage.addToCart("64 x 48 in", "gloss");
-
-        // go to cart
+        
+        // store displayed product
         final var product2 = productDetailPage.getProduct();
+        
+        // validate product detail page
+        productDetailPage.validate(product2.getName());
+        productDetailPage.miniCart.validateTotalCount(++totalCount);
+        productDetailPage.miniCart.validateMiniCart(addToCartTestData.getPosition(), product2);
+
+        // go to cart page
         cartPage = productDetailPage.miniCart.openCartPage();
 
         // validate cart page
-        cartPage.validate(shippingCosts);
-        cartPage.miniCart.validateMiniCart(addToCartTestData.getPosition(), product2);
         cartPage.validateCartItem(addToCartTestData.getPosition(), product2);
+        cartPage.validate(shippingCosts, cartPage.miniCart.getSubtotal());
+        cartPage.validateTotalAfterAdd(addToCartTestData.getPosition(), oldSubtotal2, 0.00);
+        cartPage.miniCart.validateTotalCount(totalCount);
+        cartPage.miniCart.validateMiniCart(addToCartTestData.getPosition(), product2);
         
-        // validate (sub)total after adding new item to cart
-        cartPage.validateTotalAfterAdd(1, oldSubtotal2, 0.00);
-
+        
+        /*
+        /// ----- part 3: change amount of product in cart ----- ///
+        
         // store old subtotal
         final String oldSubtotal3 = cartPage.miniCart.getSubtotal(); 
-        
-        // validate mini cart total product count
-        cartPage.miniCart.validateTotalCount(++totalCount); 
-        
-        /// ----- part 3: change amount of product in cart ----- ///
         
         // update amount of product on cart page
         final var productBeforeUpdate = cartPage.getProduct(addToCartTestData.getPosition());

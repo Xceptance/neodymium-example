@@ -79,12 +79,20 @@ public class CartPage extends AbstractBrowsingPage
     {
         $("#orderShippingCosts").shouldHave(exactText(shippingCosts));
     }
+    
+    @Step("validate tax on cart page")
+    public void validateTax(String shippingCosts, String subtotal) 
+    {
+        String tax = PriceHelper.calculateTax(shippingCosts, subtotal);
+        $("#orderSubTotalTaxValue").shouldHave(exactText(tax));
+    }
 
     @Step("validate cart page with shipping costs: '{shippingCosts}'")
-    public void validate(String shippingCosts)
+    public void validate(String shippingCosts, String subtotal)
     {
         validateStructure();
         validateShippingCosts(shippingCosts);
+        validateTax(shippingCosts, subtotal);
     }
     
     @Step("validate sub total and line item total after adding on the cart page")
@@ -127,7 +135,7 @@ public class CartPage extends AbstractBrowsingPage
         subTotal.shouldHave(exactText(newSubTotal));
     }
 
-    /// ----- validate product data in cart item ----- ///
+    /// ----- validate product in cart item ----- ///
 
     @Step("validate item amount on the cart page")
     public void validateProductAmount(int position, int amount)
@@ -140,6 +148,9 @@ public class CartPage extends AbstractBrowsingPage
         // selector for product
         SelenideElement productContainer = $("#product" + (position - 1));
 
+        // validate product image
+        productContainer.find(".product-img").shouldBe(visible);
+        
         // validate product name is same as {productName}
         productContainer.find(".productName").shouldHave(exactText(productName));
 
@@ -151,7 +162,11 @@ public class CartPage extends AbstractBrowsingPage
 
         // validate product amount is same as {productAmount}
         validateProductAmount(position, productAmount);
-
+        
+        // validate remove and update button
+        $("#btnRemoveProdCount" + (position - 1)).shouldBe(visible);
+        $("#btnUpdateProdCount" + (position - 1)).shouldBe(visible);
+        
         // validate product name is same as {productName}
         productContainer.find(".productUnitPrice").shouldHave(exactText(productPrice));
     }
