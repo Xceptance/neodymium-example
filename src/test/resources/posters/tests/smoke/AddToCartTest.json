@@ -1,12 +1,30 @@
 [
     {
-    	"position": "1",
         "topCategory": "header.topNavigation.1.title",
-        "subCategory": "header.topNavigation.1.subCategory.1",
         "expectedCategoryResultCount": "30",
+        "categoryResultPosition": "1",
+        "subCategory": "header.topNavigation.1.subCategory.1",
         "expectedSubCategoryResultCount": "10",
+        "subCategoryResultPosition": "1",
         "searchTerm": "pizza",
         "expectedSearchResultCount": "1",
-        "amountChange": "3"
+        "searchResultPosition": "1",
+        "productUpdatePosition": "1",
+        "amountChange": "3",
+        "productRemovePosition": "1"
+    },
+    {
+        "topCategory": "header.topNavigation.3.title",
+        "expectedCategoryResultCount": "30",
+        "categoryResultPosition": "2",
+        "subCategory": "header.topNavigation.3.subCategory.2",
+        "expectedSubCategoryResultCount": "10",
+        "subCategoryResultPosition": "2",
+        "searchTerm": "boston",
+        "expectedSearchResultCount": "5",
+        "searchResultPosition": "4",
+        "productUpdatePosition": "2",
+        "amountChange": "5",
+        "productRemovePosition": "1"
     }
 ]

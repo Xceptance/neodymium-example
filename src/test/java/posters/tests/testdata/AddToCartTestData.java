@@ -2,52 +2,95 @@ package posters.tests.testdata;
 
 public class AddToCartTestData
 {
-    private int position;
     private String topCategory;
-    private String subCategory;
+
     private int expectedCategoryResultCount;
+
+    private int categoryResultPosition;
+
+    private String subCategory;
+
     private int expectedSubCategoryResultCount;
+
+    private int subCategoryResultPosition;
+
     private String searchTerm;
+
     private int expectedSearchResultCount;
+
+    private int searchResultPosition;
+    
+    private int productUpdatePosition;
+
     private int amountChange;
     
-    public int getPosition()
-    {
-        return position;
-    }
+    private int productRemovePosition;
+
+    /// ----- top category ----- ///
     
-    public String getTopCategory() 
+    public String getTopCategory()
     {
         return topCategory;
-    }
-    
-    public String getSubCategory() 
-    {
-        return subCategory;
     }
     
     public int getExpectedCategoryResultCount()
     {
         return expectedCategoryResultCount;
     }
+
+    public int getCategoryResultPosition()
+    {
+        return categoryResultPosition;
+    }
     
+    /// ----- sub category ----- ///
+    
+    public String getSubCategory()
+    {
+        return subCategory;
+    }
+
     public int getExpectedSubCategoryResultCount()
     {
         return expectedSubCategoryResultCount;
     }
     
+    public int getSubCategoryResultPosition()
+    {
+        return subCategoryResultPosition;
+    }
+
+    /// ----- search term ----- ///
+    
     public String getSearchTerm()
     {
         return searchTerm;
     }
-    
+
     public int getExpectedSearchResultCount()
     {
         return expectedSearchResultCount;
     }
     
+    public int getSearchResultPosition()
+    {
+        return searchResultPosition;
+    }
+
+    /// ----- update data ----- ///
+    
+    public int getProductUpdatePosition()
+    {
+        return productUpdatePosition;
+    }
+    
     public int getAmountChange()
     {
         return amountChange;
+    }
+    
+    public int getProductRemovePosition()
+    {
+        return productRemovePosition;
     }
 }

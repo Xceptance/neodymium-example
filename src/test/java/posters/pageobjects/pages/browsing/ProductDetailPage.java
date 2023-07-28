@@ -173,7 +173,6 @@ public class ProductDetailPage extends AbstractBrowsingPage
         return new Product(getProductName(), getProductPrice(), getChosenStyle(), getChosenSize(), 1);
     }
     
-    
     // ----------------------------------------------------------------------------------
 
 

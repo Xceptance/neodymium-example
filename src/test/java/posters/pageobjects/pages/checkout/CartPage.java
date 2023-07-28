@@ -103,13 +103,13 @@ public class CartPage extends AbstractBrowsingPage
         SelenideElement productContainer = $("#product" + (position - 1));
 
         // store product unit price (without $ sign) for 1 unit
-        String unitPrice = PriceHelper.removeCurrency(productContainer.find(".unitPriceShort").text());
+        String unitPrice = productContainer.find(".unitPriceShort").text();
 
         // store product count
         String quantity = $("#productCount" + (position - 1)).val();
 
         // calculate price of specified product
-        String subOrderPrice = PriceHelper.computeRowPrice(PriceHelper.addCurrency(unitPrice), quantity);
+        String subOrderPrice = PriceHelper.computeRowPrice(unitPrice, quantity);
 
         // verify calculated unit price equals the displayed total unit price
         productContainer.find(".productTotalUnitPrice").shouldHave(exactText(subOrderPrice));
@@ -216,7 +216,7 @@ public class CartPage extends AbstractBrowsingPage
     }
 
     @Step("get product total price from line item on the cart page")
-    public String getProductTotalUnitPrice(int position)
+    public String getProductTotalPrice(int position)
     {
         return $("#product" + (position - 1) + " .productTotalUnitPrice").text();
     }

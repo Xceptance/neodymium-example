@@ -33,7 +33,7 @@ public class PriceHelper
     @Step("calculate ({unitPrice} * {quantity} * 100) / 100 -> ensure two decimal places")
     public static String computeRowPrice(String unitPrice, String quantity)
     {
-        double res = (double) (Math.round(Double.valueOf(removeCurrency(unitPrice)) * Double.valueOf(quantity) * 100)) / 100;
+        double res = (double) (Math.round((Double.valueOf(removeCurrency(unitPrice)) * Double.valueOf(quantity)) * 100)) / 100;
         return format(res);
     }
 
