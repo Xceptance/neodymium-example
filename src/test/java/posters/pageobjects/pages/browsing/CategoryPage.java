@@ -18,7 +18,7 @@ import posters.pageobjects.components.Pagination;
 
 public class CategoryPage extends AbstractBrowsingPage
 {
-    public Pagination pagination = new Pagination();
+    //public Pagination pagination = new Pagination();
 
     private SelenideElement productOverview = $("#productOverview");
     
@@ -69,6 +69,7 @@ public class CategoryPage extends AbstractBrowsingPage
     {
         validateStructure();
         validateCategoryHeadline(categoryName, expectedResultCount);
+        Pagination.validateStructure(expectedResultCount);
     }
 
     /// ----- product by position ----- ///

@@ -53,7 +53,10 @@ public class ProductDetailPage extends AbstractBrowsingPage
             validateSizeDropdown("ProductdetailPage.size.32x24");
             validateSizeDropdown("ProductdetailPage.size.64x48");
         }
-        else validateSizeDropdown("ProductdetailPage.size.96x32");
+        else 
+        {
+            validateSizeDropdown("ProductdetailPage.size.96x32");
+        }
         
         productSize.scrollTo().click();
     }

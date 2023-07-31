@@ -13,12 +13,20 @@ public class AddToCartTestData
     private int expectedSubCategoryResultCount;
 
     private int subCategoryResultPosition;
+    
+    private String sizeFirstProduct;
+    
+    private String styleFirstProduct;
 
     private String searchTerm;
 
     private int expectedSearchResultCount;
 
     private int searchResultPosition;
+    
+    private String sizeSecondProduct;
+    
+    private String styleSecondProduct;
     
     private int productUpdatePosition;
 
@@ -59,6 +67,16 @@ public class AddToCartTestData
     {
         return subCategoryResultPosition;
     }
+    
+    public String getSizeFirstProduct()
+    {
+        return sizeFirstProduct;
+    }
+    
+    public String getStyleFirstProduct()
+    {
+        return styleFirstProduct;
+    }
 
     /// ----- search term ----- ///
     
@@ -75,6 +93,16 @@ public class AddToCartTestData
     public int getSearchResultPosition()
     {
         return searchResultPosition;
+    }
+    
+    public String getSizeSecondProduct()
+    {
+        return sizeSecondProduct;
+    }
+    
+    public String getStyleSecondProduct()
+    {
+        return styleSecondProduct;
     }
 
     /// ----- update data ----- ///

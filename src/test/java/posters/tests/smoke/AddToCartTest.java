@@ -20,7 +20,7 @@ import posters.tests.testdata.AddToCartTestData;
 public class AddToCartTest extends AbstractTest
 {
     @Test
-    //@DataSet(1)
+    @DataSet(1)
     @DataSet(2)
     public void testAddProductsToCart()
     {   
@@ -68,7 +68,7 @@ public class AddToCartTest extends AbstractTest
         var productDetailPage = categoryPage.clickProductByPosition(addToCartTestData.getSubCategoryResultPosition());
         
         // add product to cart
-        productDetailPage.addToCart("16 x 12 in", "matte");
+        productDetailPage.addToCart(addToCartTestData.getSizeFirstProduct(), addToCartTestData.getStyleFirstProduct());
         
         // store displayed product
         final var product = productDetailPage.getProduct();
@@ -105,7 +105,7 @@ public class AddToCartTest extends AbstractTest
         productDetailPage = categoryPage.clickProductByPosition(addToCartTestData.getSearchResultPosition());
         
         // add product to cart
-        productDetailPage.addToCart("64 x 48 in", "gloss");
+        productDetailPage.addToCart(addToCartTestData.getSizeSecondProduct(), addToCartTestData.getStyleSecondProduct());
         
         // store displayed product
         final var product2 = productDetailPage.getProduct();
@@ -148,7 +148,7 @@ public class AddToCartTest extends AbstractTest
         cartPage.validate(shippingCosts, cartPage.miniCart.getSubtotal());
         cartPage.validateTotalAfterAdd(addToCartTestData.getProductUpdatePosition(), oldSubtotal3, productBeforeUpdate.getTotalPrice());
         cartPage.miniCart.validateTotalCount(totalCount);
-        cartPage.miniCart.validateMiniCart(addToCartTestData.getProductUpdatePosition(), productBeforeUpdate, addToCartTestData.getAmountChange(), subtotalAfterUpdate);
+        cartPage.miniCart.validateMiniCart(1, productBeforeUpdate, addToCartTestData.getAmountChange(), subtotalAfterUpdate);
         
         /// ----- PART 5: REMOVE PRODUCT FROM CART ----- ///
         
