@@ -9,9 +9,6 @@ import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 
-/**
- * @author pfotenhauer
- */
 @Owner("Tim Brown")
 @Severity(SeverityLevel.NORMAL)
 @Tag("smoke")

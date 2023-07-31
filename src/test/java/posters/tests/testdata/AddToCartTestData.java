@@ -4,13 +4,9 @@ public class AddToCartTestData
 {
     private String topCategory;
 
-    private int expectedCategoryResultCount;
-
     private int categoryResultPosition;
 
     private String subCategory;
-
-    private int expectedSubCategoryResultCount;
 
     private int subCategoryResultPosition;
     
@@ -19,8 +15,6 @@ public class AddToCartTestData
     private String styleFirstProduct;
 
     private String searchTerm;
-
-    private int expectedSearchResultCount;
 
     private int searchResultPosition;
     
@@ -38,11 +32,6 @@ public class AddToCartTestData
     {
         return topCategory;
     }
-    
-    public int getExpectedCategoryResultCount()
-    {
-        return expectedCategoryResultCount;
-    }
 
     public int getCategoryResultPosition()
     {
@@ -54,11 +43,6 @@ public class AddToCartTestData
     public String getSubCategory()
     {
         return subCategory;
-    }
-
-    public int getExpectedSubCategoryResultCount()
-    {
-        return expectedSubCategoryResultCount;
     }
     
     public int getSubCategoryResultPosition()
@@ -81,11 +65,6 @@ public class AddToCartTestData
     public String getSearchTerm()
     {
         return searchTerm;
-    }
-
-    public int getExpectedSearchResultCount()
-    {
-        return expectedSearchResultCount;
     }
     
     public int getSearchResultPosition()
