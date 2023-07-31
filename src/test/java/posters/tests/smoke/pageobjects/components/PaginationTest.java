@@ -16,26 +16,17 @@ import posters.tests.AbstractTest;
 @Severity(SeverityLevel.MINOR)
 @Tag("smoke")
 @SuppressDataSets
-public class HeaderTest extends AbstractTest
+public class PaginationTest extends AbstractTest
 {       
     @Test
     @DataSet(1)
-    public void testHeader()
+    public void testPagination()
     {  
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
-        homePage.header.validateStructure();
 
         // go to category page
-        var categoryPage = homePage.topNav.clickCategory(headerTestData.getTopCategory());
-        categoryPage.header.validateStructure();
-
-        //go to product detail page, add product to cart
-        var productDetailPage = categoryPage.clickProductByPosition(headerTestData.getResultPosition());
-        productDetailPage.header.validateStructure();
-        
-        // go to cart page
-        var cartPage = productDetailPage.miniCart.openCartPage();
-        cartPage.header.validateStructure();
+        var categoryPage = homePage.topNav.clickCategory(paginationTestData.getTopCategory());
+        categoryPage.pagination.validateStructure(paginationTestData.getExpectedResultCount());
     }
 }

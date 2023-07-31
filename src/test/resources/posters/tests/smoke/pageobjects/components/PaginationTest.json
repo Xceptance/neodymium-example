@@ -1,6 +1,6 @@
 [
     {
         "topCategory": "header.topNavigation.1.title",
-        "resultPosition": "1"
+        "expectedResultCount": "30"
     }
 ]

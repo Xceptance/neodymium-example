@@ -11,6 +11,7 @@ import com.xceptance.neodymium.util.DataUtils;
 
 import posters.tests.testdata.AddToCartTestData;
 import posters.tests.testdata.pageobjects.components.HeaderTestData;
+import posters.tests.testdata.pageobjects.components.PaginationTestData;
 import posters.tests.testdata.pageobjects.components.SearchTestData;
 
 @RunWith(NeodymiumRunner.class)
@@ -22,6 +23,8 @@ public abstract class AbstractTest
     protected AddToCartTestData addToCartTestData;
     
     protected HeaderTestData headerTestData;
+    
+    protected PaginationTestData paginationTestData;
 
     @Before
     public void setup()
@@ -29,6 +32,7 @@ public abstract class AbstractTest
         searchTestData = DataUtils.get(SearchTestData.class);
         addToCartTestData = DataUtils.get(AddToCartTestData.class);
         headerTestData = DataUtils.get(HeaderTestData.class);
+        paginationTestData = DataUtils.get(PaginationTestData.class);
     }
 
     protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractTest.class);
