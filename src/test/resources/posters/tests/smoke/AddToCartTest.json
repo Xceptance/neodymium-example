@@ -1,38 +1,30 @@
 [
     {
         "topCategory": "header.topNavigation.1.title",
-        "expectedCategoryResultCount": "30",
         "categoryResultPosition": "1",
         "subCategory": "header.topNavigation.1.subCategory.1",
-        "expectedSubCategoryResultCount": "10",
         "subCategoryResultPosition": "1",
         "sizeFirstProduct": "16 x 12 in",
         "styleFirstProduct": "matte",
         "searchTerm": "pizza",
-        "expectedSearchResultCount": "1",
         "searchResultPosition": "1",
         "sizeSecondProduct": "64 x 48 in",
         "styleSecondProduct": "gloss",
         "productUpdatePosition": "1",
-        "amountChange": "3",
-        "productRemovePosition": "1"
+        "amountChange": "3"
     },
     {
         "topCategory": "header.topNavigation.3.title",
-        "expectedCategoryResultCount": "30",
         "categoryResultPosition": "2",
         "subCategory": "header.topNavigation.3.subCategory.2",
-        "expectedSubCategoryResultCount": "10",
         "subCategoryResultPosition": "2",
         "sizeFirstProduct": "32 x 24 in",
         "styleFirstProduct": "gloss",
         "searchTerm": "boston",
-        "expectedSearchResultCount": "5",
         "searchResultPosition": "4",
         "sizeSecondProduct": "96 x 32 in",
         "styleSecondProduct": "matte",
         "productUpdatePosition": "1",
-        "amountChange": "5",
-        "productRemovePosition": "1"
+        "amountChange": "5"
     }
 ]

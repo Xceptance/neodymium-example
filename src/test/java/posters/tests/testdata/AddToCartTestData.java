@@ -31,8 +31,6 @@ public class AddToCartTestData
     private int productUpdatePosition;
 
     private int amountChange;
-    
-    private int productRemovePosition;
 
     /// ----- top category ----- ///
     
@@ -115,10 +113,5 @@ public class AddToCartTestData
     public int getAmountChange()
     {
         return amountChange;
-    }
-    
-    public int getProductRemovePosition()
-    {
-        return productRemovePosition;
     }
 }
