@@ -17,9 +17,6 @@ import posters.pageobjects.pages.user.AccountOverviewPage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.pageobjects.pages.user.RegisterPage;
 
-/**
- * @author pfotenhauer
- */
 public class UserMenu extends AbstractComponent
 {
 
@@ -34,8 +31,14 @@ public class UserMenu extends AbstractComponent
         showUserMenu.should(exist);
     }
 
-    @Step("validate user menu")
+    @Step("validate logged in user menu")
     public static void validateStructure()
+    {
+        // TODO - verify for logged on user
+    }
+    
+    @Step("validate guest user menu")
+    public static void validateGuestUserMenu()
     {   
         // validate user icon
         $(".icon-user2").shouldBe(visible);
@@ -44,9 +47,9 @@ public class UserMenu extends AbstractComponent
         showUserMenu.hover();
         
         // validate structure user window
-        validateUserMenu("header.userMenu.greeting");
-        validateUserMenu("header.userMenu.createAccount");
-        validateUserMenu("header.userMenu.signIn");
+        validateGuestUserMenu("header.userMenu.greeting");
+        validateGuestUserMenu("header.userMenu.createAccount");
+        validateGuestUserMenu("header.userMenu.signIn");
         $("#userMenu .icon-user-add-outline").shouldBe(visible);
         $("#userMenu .icon-log-in").shouldBe(visible);
         
@@ -55,7 +58,7 @@ public class UserMenu extends AbstractComponent
     }
 
     @Step("validate strings in user menu")
-    private static void validateUserMenu(String text)
+    private static void validateGuestUserMenu(String text)
     {
         $$("#userMenu li").findBy(exactText(Neodymium.localizedText(text))).shouldBe(visible);
     }

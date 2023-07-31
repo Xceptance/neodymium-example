@@ -22,8 +22,8 @@ public class Header extends AbstractComponent
 
         Search.validateStructure();
         TopNavigation.validateStructure();
-        UserMenu.validateStructure();
-        MiniCart.validateStructure();
+        UserMenu.validateGuestUserMenu();
+        MiniCart.validateEmptyMiniCart();
         SaleBanner.validateStructure();
     }
 }

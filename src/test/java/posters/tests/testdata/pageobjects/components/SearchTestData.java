@@ -1,4 +1,4 @@
-package posters.tests.testdata;
+package posters.tests.testdata.pageobjects.components;
 
 public class SearchTestData
 {

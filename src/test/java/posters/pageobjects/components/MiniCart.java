@@ -8,8 +8,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -22,11 +20,11 @@ public class MiniCart extends AbstractComponent
 {
     private static SelenideElement headerCart = $("#headerCartOverview");
 
-    private SelenideElement subOrderPrice = $("#miniCartMenu .subOrderPrice");
+    private static  SelenideElement subOrderPrice = $("#miniCartMenu .subOrderPrice");
     
-    private SelenideElement miniCart = $("#miniCartMenu");
+    private static SelenideElement miniCart = $("#miniCartMenu");
 
-    private SelenideElement totalCountElement = $("#headerCartOverview .headerCartProductCount");
+    private static SelenideElement totalCountElement = $("#headerCartOverview .headerCartProductCount");
     
     private SelenideElement goToCartButton = $(".goToCart");
     
@@ -40,14 +38,14 @@ public class MiniCart extends AbstractComponent
     // ----- mini cart navigation ------ //
     
     @Step("open the mini cart")
-    public void openMiniCart()
+    public static void openMiniCart()
     {
         headerCart.hover();
         miniCart.waitUntil(visible, 9000);
     }
 
     @Step("close the mini cart")
-    public void closeMiniCart()
+    public static void closeMiniCart()
     {
         $("#brand").hover();
         miniCart.waitUntil(not(visible), 9000);
@@ -84,7 +82,7 @@ public class MiniCart extends AbstractComponent
     }
     
     @Step("validate empty mini cart")
-    public void validateEmptyMiniCart() 
+    public static void validateEmptyMiniCart() 
     {
         // validate shopping cart icon, item count
         $(".icon-shopping-cart").shouldBe(visible);

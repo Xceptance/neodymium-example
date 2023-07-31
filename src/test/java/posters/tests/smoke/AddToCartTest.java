@@ -24,8 +24,6 @@ public class AddToCartTest extends AbstractTest
     @DataSet(2)
     public void testAddProductsToCart()
     {   
-        // use test data class
-        AddToCartTestData addToCartTestData = DataUtils.get(AddToCartTestData.class);
         final String shippingCosts = Neodymium.dataValue("shippingCosts");
         int totalCount = 0;
 
