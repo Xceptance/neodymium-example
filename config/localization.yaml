@@ -38,7 +38,7 @@ default:
             first: "25% off (Almost) Everything! Use Code: Posters Sale"
             second: "Our biggest sale yet 50% off all Posters"
     footer:
-        text: Copyright (c) 2013-2020 Xceptance Software Technologies GmbH -- This software is for demo purposes only and not meant to be used in production.
+        copyright: Copyright (c) 2013-2020 Xceptance Software Technologies GmbH -- This software is for demo purposes only and not meant to be used in production.
     HomePage:
         title: Posters - The Ultimate Online Shop
         slider:

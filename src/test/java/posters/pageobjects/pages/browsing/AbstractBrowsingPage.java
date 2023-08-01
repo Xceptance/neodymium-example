@@ -4,7 +4,6 @@ import posters.pageobjects.components.ErrorMessage;
 import posters.pageobjects.components.Footer;
 import posters.pageobjects.components.Header;
 import posters.pageobjects.components.MiniCart;
-import posters.pageobjects.components.Pagination;
 import posters.pageobjects.components.Search;
 import posters.pageobjects.components.SuccessMessage;
 import posters.pageobjects.components.TopNavigation;

@@ -1,9 +1,8 @@
-package posters.tests.smoke;
+package posters.tests.smoke.processes;
 
 import org.junit.Test;
 
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
-import com.xceptance.neodymium.util.DataUtils;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
@@ -12,7 +11,6 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
-import posters.tests.testdata.AddToCartTestData;
 
 @Owner("Joe Fix")
 @Severity(SeverityLevel.CRITICAL)

@@ -2,8 +2,6 @@ package posters.pageobjects.pages.checkout;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exactValue;
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.hidden;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.value;

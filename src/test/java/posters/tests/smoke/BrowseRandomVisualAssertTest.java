@@ -18,9 +18,6 @@ import posters.pageobjects.pages.browsing.CategoryPage;
 import posters.pageobjects.pages.browsing.ProductDetailPage;
 import posters.tests.AbstractTest;
 
-/**
- * @author schaefer
- */
 @Owner("Tim Brown")
 @Severity(SeverityLevel.NORMAL)
 @Tag("smoke")

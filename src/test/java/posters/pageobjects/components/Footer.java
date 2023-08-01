@@ -2,6 +2,7 @@ package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
@@ -21,9 +22,13 @@ public class Footer extends AbstractComponent
     @Step("validate the footer")
     public void validateStructure()
     {
-        isComponentAvailable();
-        // Asserts the footer contains the correct text.
-        footer.shouldHave(text(Neodymium.localizedText("footer.text")));
-
+        // validate about xceptance
+        $("#footer .icon-twitter").shouldBe(visible);
+        $("#footer .icon-facebook").shouldBe(visible);
+        $("#footer .icon-linkedin").shouldBe(visible);
+        $("#footer .icon-dribbble").shouldBe(visible);
+        
+        // validate copyright text
+        footer.shouldHave(text(Neodymium.localizedText("footer.copyright")));
     }
 }
