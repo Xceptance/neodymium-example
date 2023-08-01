@@ -37,25 +37,45 @@ default:
         sale:
             first: "25% off (Almost) Everything! Use Code: Posters Sale"
             second: "Our biggest sale yet 50% off all Posters"
-    pagination:
-        goToNextPage: ">"
-        goToLastPage: ">>"
-        goToPrevPage: "<"
-        goToFirstPage: "<<"
     footer:
         text: Copyright (c) 2013-2020 Xceptance Software Technologies GmbH -- This software is for demo purposes only and not meant to be used in production.
-    search:
-        result:
-            text: "Your results for your search: "
     HomePage:
         title: Posters - The Ultimate Online Shop
+        slider:
+            headline:
+                "1": NORTH BOSTON
+                "2": BOSTON SUNSET
+                "3": BRYCE NATIONAL PARK, UTAH I
+                "4": BRYCE NATIONAL PARK, UTAH II
+            button: BUY
+        intro: Began with a simple idea "SHATATATATA!" - M. Scott
+        hotProducts: HOT PRODUCTS
+        featuredContent:
+            "1": "BLUE MORPHO BUTTERFLY"
+            "2": "SNOWDROP ANEMONE"
+            "3": "INDIAN SUMMER: RED BEECHES"
+            "4": "FINGER FOOD"
+            "5": "STUFFED TURKEY"
+            "6": "FRUIT TART WITH COCOA"
+            "7": "SWISS AIR AIRBUS A320"
+            "8": "IFA F8"
+            "9": "GERMAN STEAM LOCOMOTIVE"
+            "10": "GROCHWITZ CASTLE, GERMANY"
+            "11": "NEW YEAR'S FIREWORKS III"
+            "12": "LINNAEAN GARDEN AND MUSEUM, SWEDEN"
+        shopAllProducts: Shop All Products
         validation:
             successfulOrder: Thank you for shopping with us!
             successfulLogin: Login successful. Have fun in our shop!
             successfulAccountDeletion: Your account has been deleted. We hope to see you soon again!
-    CartPage:
-        title: Cart
-        errorMessage: Your cart is empty. Continue shopping.
+    CategoryPage:
+        search:
+            resultText: "Your results for your search: "
+        pagination:
+            goToNextPage: ">"
+            goToLastPage: ">>"
+            goToPrevPage: "<"
+            goToFirstPage: "<<"
     NoHitsPage:
         validation:
             noProductsFound: × Sorry! No results found matching your search. Please try again.
@@ -70,6 +90,9 @@ default:
             gloss: gloss
         print: "Print information:"
         addToCartButton: Add to cart
+    CartPage:
+        title: Cart
+        errorMessage: Your cart is empty. Continue shopping.
     AccountPages:
         email: Email address*
         firstname: First name*

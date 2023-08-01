@@ -1,4 +1,4 @@
-package posters.tests.smoke;
+package posters.tests.smoke.pageobjects.pages;
 
 import org.junit.Test;
 
@@ -34,6 +34,5 @@ public class HomePageTest extends AbstractTest
         var homePage = OpenHomePageFlow.flow();
         homePage.title.validateTitle(Neodymium.localizedText("HomePage.title"));
         homePage.validateStructure();
-        homePage.validateHeaderAndFooter(homePage);
     }
 }

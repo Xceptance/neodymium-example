@@ -1,6 +1,7 @@
 [
     {
         "searchTerm": "bear",
+        "expectedResultCount": "3",
         "resultPosition": "1"
     },
     {

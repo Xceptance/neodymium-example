@@ -27,6 +27,7 @@ public class SearchTest extends AbstractTest
 
         // go to category page
         var categoryPage = homePage.search.categoryPageResult(searchTestData.getSearchTerm());
+        categoryPage.validate(searchTestData.getSearchTerm(), searchTestData.getExpectedResultCount());
 
         //go to product detail page
         final String productName = categoryPage.getProductNameByPosition(searchTestData.getResultPosition());

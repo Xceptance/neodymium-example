@@ -58,7 +58,7 @@ public class CategoryPage extends AbstractBrowsingPage
         }
         else 
         { 
-            $("#titleSearchText").should(matchText(Neodymium.localizedText("search.result.text"))).shouldBe(visible);
+            $("#titleSearchText").should(matchText(Neodymium.localizedText("CategoryPage.search.resultText"))).shouldBe(visible);
             $("#searchTextValue").should(exactText(categoryName)).shouldBe(visible);
             $("#totalProductCount").should(exactText(Integer.toString(expectedResultCount))).shouldBe(visible);
         }
