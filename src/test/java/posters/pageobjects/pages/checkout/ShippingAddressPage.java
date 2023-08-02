@@ -48,11 +48,11 @@ public class ShippingAddressPage extends AbstractCheckoutPage
     @Step("validate breadcrumb")
     public void validateBreadcrumb()
     {
-        $("#btnToCard").shouldHave(exactText(Neodymium.localizedText("General.breadcrumb.cart"))).shouldBe(visible);
-        $("#btnShippAddr").shouldHave(exactText(Neodymium.localizedText("General.breadcrumb.shippingAddress"))).shouldBe(visible);
-        $("#btnBillAddr").shouldHave(exactText(Neodymium.localizedText("General.breadcrumb.billingAddress"))).shouldBe(visible);
-        $("#btnCreditCard").shouldHave(exactText(Neodymium.localizedText("General.breadcrumb.payment"))).shouldBe(visible);
-        $("#btnPlaceOrder").shouldHave(exactText(Neodymium.localizedText("General.breadcrumb.placeOrder"))).shouldBe(visible);
+        $("#btnToCard").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.cart"))).shouldBe(visible);
+        $("#btnShippAddr").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.shippingAddress"))).shouldBe(visible);
+        $("#btnBillAddr").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.billingAddress"))).shouldBe(visible);
+        $("#btnCreditCard").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.payment"))).shouldBe(visible);
+        $("#btnPlaceOrder").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.placeOrder"))).shouldBe(visible);
     }
 
     @Step("validate fill-in form headlines")
@@ -64,37 +64,37 @@ public class ShippingAddressPage extends AbstractCheckoutPage
     @Step("validate fill-in form headlines")
     public void validateFillInHeadlines()
     {
-        validateFillInHeadlines("General.fillIn.headlines.fullName");
-        validateFillInHeadlines("General.fillIn.headlines.company");
-        validateFillInHeadlines("General.fillIn.headlines.address");
-        validateFillInHeadlines("General.fillIn.headlines.city");
-        validateFillInHeadlines("General.fillIn.headlines.state");
-        validateFillInHeadlines("General.fillIn.headlines.zip");
-        // validateFillInHeadlines("General.fillIn.headlines.country");
+        validateFillInHeadlines("AddressPages.fillIn.headlines.fullName");
+        validateFillInHeadlines("AddressPages.fillIn.headlines.company");
+        validateFillInHeadlines("AddressPages.fillIn.headlines.address");
+        validateFillInHeadlines("AddressPages.fillIn.headlines.city");
+        validateFillInHeadlines("AddressPages.fillIn.headlines.state");
+        validateFillInHeadlines("AddressPages.fillIn.headlines.zip");
+        // validateFillInHeadlines("AddressPages.fillIn.headlines.country");
     }
 
     @Step("validate fill-in form placeholder")
     public void validateFillInPlaceholder()
     {
-        nameField.shouldHave(attribute("placeholder", (Neodymium.localizedText("General.fillIn.placeholder.yourName")))).shouldBe(visible);
-        companyField.shouldHave(attribute("placeholder", (Neodymium.localizedText("General.fillIn.placeholder.companyName")))).shouldBe(visible);
-        addressField.shouldHave(attribute("placeholder", (Neodymium.localizedText("General.fillIn.placeholder.address")))).shouldBe(visible);
-        zipField.shouldHave(attribute("placeholder", (Neodymium.localizedText("General.fillIn.placeholder.zip")))).shouldBe(visible);
+        nameField.shouldHave(attribute("placeholder", (Neodymium.localizedText("AddressPages.fillIn.placeholder.yourName")))).shouldBe(visible);
+        companyField.shouldHave(attribute("placeholder", (Neodymium.localizedText("AddressPages.fillIn.placeholder.companyName")))).shouldBe(visible);
+        addressField.shouldHave(attribute("placeholder", (Neodymium.localizedText("AddressPages.fillIn.placeholder.address")))).shouldBe(visible);
+        zipField.shouldHave(attribute("placeholder", (Neodymium.localizedText("AddressPages.fillIn.placeholder.zip")))).shouldBe(visible);
     }
 
     @Step("validate country dropdown")
     public void validateCountryDropdown()
     {
-        countryField.shouldBe(matchText(Neodymium.localizedText("General.fillIn.dropdown.usa"))).should(exist);
-        countryField.shouldBe(matchText(Neodymium.localizedText("General.fillIn.dropdown.germany"))).should(exist);
+        countryField.shouldBe(matchText(Neodymium.localizedText("AddressPages.fillIn.dropdown.usa"))).should(exist);
+        countryField.shouldBe(matchText(Neodymium.localizedText("AddressPages.fillIn.dropdown.germany"))).should(exist);
     }
 
     @Step("validate shipping address usage for billing address radio")
     public void validateAddressRadio()
     {
-        $(".control-label").shouldHave(exactText(Neodymium.localizedText("General.fillIn.headlines.useAddressForBilling"))).shouldBe(visible);
-        $(".radio :nth-of-type(1)").shouldHave(matchText(Neodymium.localizedText("General.fillIn.radio.yes"))).shouldBe(visible);
-        $(".radio :nth-of-type(2)").shouldHave(matchText(Neodymium.localizedText("General.fillIn.radio.no"))).shouldBe(visible);
+        $(".control-label").shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.useAddressForBilling"))).shouldBe(visible);
+        $(".radio :nth-of-type(1)").shouldHave(matchText(Neodymium.localizedText("AddressPages.fillIn.radio.yes"))).shouldBe(visible);
+        $(".radio :nth-of-type(2)").shouldHave(matchText(Neodymium.localizedText("AddressPages.fillIn.radio.no"))).shouldBe(visible);
     }
 
     @Override
@@ -107,7 +107,7 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         validateBreadcrumb();
 
         // validate fill in form headline
-        headline.shouldHave(exactText(Neodymium.localizedText("ShippingAddressPage.fillIn.headline"))).shouldBe(visible);
+        headline.shouldHave(exactText(Neodymium.localizedText("ShippingAddressPage.fillIn.title"))).shouldBe(visible);
         validateFillInHeadlines();
 
         // validate fill in form structure
@@ -120,10 +120,10 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         validateAddressRadio();
 
         // validate "required fields" string
-        $(".reqField").shouldHave(exactText(Neodymium.localizedText("General.fillIn.headlines.requiredFields"))).shouldBe(visible);
+        $(".reqField").shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.requiredFields"))).shouldBe(visible);
 
         // validate continue button
-        addShippingButton.shouldHave(exactText(Neodymium.localizedText("General.fillIn.button"))).shouldBe(visible);
+        addShippingButton.shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.button"))).shouldBe(visible);
     }
 
     /// ----- send shipping address form ----- ///

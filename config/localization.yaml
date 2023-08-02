@@ -95,14 +95,49 @@ default:
         errorMessage: Your cart is empty. Continue shopping.
     ShippingAddressPage:
         fillIn:
-            headline: Enter a shipping address
+            title: Enter a shipping address
     BillingAddressPage:
         fillIn:
-            headline: Enter a billing address
+            title: Enter a billing address
+    PaymentPage:
+        fillIn:
+            title: Enter a payment method
+            headlines:
+                cardNumber: "CARD NUMBER*"
+                cardHolderName: "CARDHOLDER'S NAME*"
+                expirationDate: EXPIRATION DATE*
+            placeholder:
+                cardNumber: Card number
+                cardOwnerName: "Cardholder's name"
+            expireMonth:
+                january: 01
+                february: 02
+                march: 03
+                april: 04
+                may: 05
+                june: 06
+                july: 07
+                august: 08
+                september: 09
+                october: 10
+                november: 11
+                december: 12
+            expireYear:
+                "2023": 2023
+                "2024": 2024
+                "2025": 2025
+                "2026": 2026
+                "2027": 2027
+                "2028": 2028
+                "2029": 2029
+                "2030": 2030
+                "2031": 2031
+                "2032": 2032
+                "2033": 2033
     AccountPages:
         email: Email address*
-        firstname: First name*
-        lastname: Last name*
+        firstName: First name*
+        lastName: Last name*
         password: Password*
         passwordRepeat: Repeat password*
         yourEmail: Your email*
@@ -115,9 +150,7 @@ default:
             successfulAccountCreation: Your account has been created. Log in with your email address and password.
             emailDoesNotExistError: The email address you entered doesn't exist. Please try again.
             incorrectPasswordError: The password you entered is incorrect. Please try again.
-    General:
-        addresses:
-            fullname: Full name*
+    AddressPages:
         breadcrumb:
             cart: CART/ 
             shippingAddress: SHIPPING ADDRESS / 
@@ -146,11 +179,8 @@ default:
             radio:
                 "yes": "YES"
                 "no": "NO"
-            button: Continue       
-        payment:
-            cardnumber: Card number*
-            cardholdername: Cardholder's name*
-            expirationdate: Expiration date*
+            button: Continue
+    General:
         product:
           style: style
           size: size
