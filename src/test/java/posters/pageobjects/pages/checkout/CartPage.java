@@ -258,10 +258,18 @@ public class CartPage extends AbstractBrowsingPage
         return new ProductDetailPage().isExpectedPage();
     }
     
+    @Step("open homepage from cart page")
     public HomePage openHomePage() 
     {
         $("#brand").scrollTo().click();
         return new HomePage().isExpectedPage();
+    }
+    
+    @Step("open shipping address from the cart page")
+    public ShippingAddressPage openShippingAddressPage()
+    {
+        $("#btnStartCheckout").scrollTo().click();
+        return new ShippingAddressPage().isExpectedPage();
     }
 
 
@@ -316,23 +324,18 @@ public class CartPage extends AbstractBrowsingPage
         $("#buttonDelete").click();
     }
 
+    // needed???
     private void clickCheckoutButton()
     {
         $("#btnStartCheckout").scrollTo().click();
     }
 
+    // needed???
     @Step("open new shipping address from the cart page")
     public NewShippingAddressPage openNewShippingPage()
     {
         clickCheckoutButton();
         return new NewShippingAddressPage().isExpectedPage();
-    }
-
-    @Step("open shipping address from the cart page")
-    public ShippingAddressPage openShippingPage()
-    {
-        clickCheckoutButton();
-        return new ShippingAddressPage().isExpectedPage();
     }
 
     @Step("check if there are product on the cart page")

@@ -5,9 +5,6 @@ import static com.codeborne.selenide.Selenide.$;
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.HomePage;
 
-/**
- * @author pfotenhauer
- */
 public class CartCleanUpFlow
 {
     @Step("cart clean up flow")

@@ -13,9 +13,6 @@ import com.xceptance.neodymium.util.Neodymium;
 import io.qameta.allure.Step;
 import posters.dataobjects.Address;
 
-/**
- * @author pfotenhauer
- */
 public class NewShippingAddressPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleDelAddr");

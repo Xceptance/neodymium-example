@@ -5,9 +5,6 @@ import posters.dataobjects.User;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.user.LoginPage;
 
-/**
- * @author pfotenhauer
- */
 public class DeleteUserFlow
 {
     /**

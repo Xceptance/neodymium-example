@@ -9,9 +9,6 @@ import com.codeborne.selenide.SelenideElement;
 
 import io.qameta.allure.Step;
 
-/**
- * @author pfotenhauer
- */
 public class PaymentPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titlePayment");

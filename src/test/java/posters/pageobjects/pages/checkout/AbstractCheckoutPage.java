@@ -5,9 +5,6 @@ import posters.pageobjects.components.Footer;
 import posters.pageobjects.components.UserMenu;
 import posters.pageobjects.pages.AbstractPageObject;
 
-/**
- * @author pfotenhauer
- */
 public abstract class AbstractCheckoutPage extends AbstractPageObject
 {
     public CheckoutHeader header = new CheckoutHeader();

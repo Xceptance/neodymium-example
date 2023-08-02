@@ -1,8 +1,5 @@
 package posters.dataobjects;
 
-/**
- * @author pfotenhauer
- */
 public class User
 {
     String firstName;

@@ -93,6 +93,12 @@ default:
     CartPage:
         title: Cart
         errorMessage: Your cart is empty. Continue shopping.
+    ShippingAddressPage:
+        fillIn:
+            headline: Enter a shipping address
+    BillingAddressPage:
+        fillIn:
+            headline: Enter a billing address
     AccountPages:
         email: Email address*
         firstname: First name*
@@ -112,12 +118,35 @@ default:
     General:
         addresses:
             fullname: Full name*
-            company: Company
-            address: Address*
-            city: City*
-            state: State/Province*
-            zip: ZIP/Postal code*
-            country: Country*
+        breadcrumb:
+            cart: CART/ 
+            shippingAddress: SHIPPING ADDRESS / 
+            billingAddress: BILLING ADDRESS / 
+            payment: PAYMENT / 
+            placeOrder: PLACE ORDER / 
+        fillIn:
+            headlines:
+                fullName: FULL NAME*
+                company: COMPANY
+                address: ADDRESS*
+                city: CITY*
+                state: STATE/PROVINCE*
+                zip: ZIP/POSTAL CODE*
+                country: COUNTRY*
+                useAddressForBilling: "Use this address for billing?*"
+                requiredFields: "* Required fields"
+            placeholder:
+                yourName: Your Name
+                companyName: company name
+                address: "Street address, Apartment, etc."
+                zip: "Zip / Postal"
+            dropdown:
+                usa: United States
+                germany: Germany
+            radio:
+                "yes": "YES"
+                "no": "NO"
+            button: Continue       
         payment:
             cardnumber: Card number*
             cardholdername: Cardholder's name*

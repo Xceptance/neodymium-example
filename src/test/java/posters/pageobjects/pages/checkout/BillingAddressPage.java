@@ -1,20 +1,38 @@
 package posters.pageobjects.pages.checkout;
 
+import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
+import posters.dataobjects.Address;
 
-/**
- * @author pfotenhauer
- */
 public class BillingAddressPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleBillAddr");
+
+    private SelenideElement nameField = $("#fullName");
+
+    private SelenideElement companyField = $("#company");
+
+    private SelenideElement addressField = $("#addressLine");
+
+    private SelenideElement cityField = $("#city");
+
+    private SelenideElement stateField = $("#state");
+
+    private SelenideElement zipField = $("#zip");
+
+    private SelenideElement countryField = $("#country");
+
+    private SelenideElement addBillingButton = $("#btnAddBillAddr");
 
     @Override
     @Step("ensure this is a billing address page")
@@ -24,20 +42,110 @@ public class BillingAddressPage extends AbstractCheckoutPage
         return this;
     }
 
+    /// ----- validate shipping address page ----- ///
+
+    @Step("validate breadcrumb")
+    public void validateBreadcrumb()
+    {
+        $("#btnToCard").shouldHave(exactText(Neodymium.localizedText("General.breadcrumb.cart"))).shouldBe(visible);
+        $("#btnShippAddr").shouldHave(exactText(Neodymium.localizedText("General.breadcrumb.shippingAddress"))).shouldBe(visible);
+        $("#btnBillAddr").shouldHave(exactText(Neodymium.localizedText("General.breadcrumb.billingAddress"))).shouldBe(visible);
+        $("#btnCreditCard").shouldHave(exactText(Neodymium.localizedText("General.breadcrumb.payment"))).shouldBe(visible);
+        $("#btnPlaceOrder").shouldHave(exactText(Neodymium.localizedText("General.breadcrumb.placeOrder"))).shouldBe(visible);
+    }
+    
+    @Step("validate fill-in form headlines")
+    public void validateFillInHeadlines(String headline)
+    {
+        $$(".form-group").findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
+    }
+
+    @Step("validate fill-in form headlines")
+    public void validateFillInHeadlines()
+    {
+        validateFillInHeadlines("General.fillIn.headlines.fullName");
+        validateFillInHeadlines("General.fillIn.headlines.company");
+        validateFillInHeadlines("General.fillIn.headlines.address");
+        validateFillInHeadlines("General.fillIn.headlines.city");
+        validateFillInHeadlines("General.fillIn.headlines.state");
+        validateFillInHeadlines("General.fillIn.headlines.zip");
+        // validateFillInHeadlines("General.fillIn.headlines.country");
+    }
+
+    @Step("validate fill-in form placeholder")
+    public void validateFillInPlaceholder()
+    {
+        nameField.shouldHave(attribute("placeholder", (Neodymium.localizedText("General.fillIn.placeholder.yourName")))).shouldBe(visible);
+        companyField.shouldHave(attribute("placeholder", (Neodymium.localizedText("General.fillIn.placeholder.companyName")))).shouldBe(visible);
+        addressField.shouldHave(attribute("placeholder", (Neodymium.localizedText("General.fillIn.placeholder.address")))).shouldBe(visible);
+        zipField.shouldHave(attribute("placeholder", (Neodymium.localizedText("General.fillIn.placeholder.zip")))).shouldBe(visible);
+    }
+
+    @Step("validate country dropdown")
+    public void validateCountryDropdown()
+    {
+        countryField.shouldBe(matchText(Neodymium.localizedText("General.fillIn.dropdown.usa"))).should(exist);
+        countryField.shouldBe(matchText(Neodymium.localizedText("General.fillIn.dropdown.germany"))).should(exist);
+    }
+
     @Override
-    @Step("validate billing address page structure")
+    @Step("validate shipping address page structure")
     public void validateStructure()
     {
         super.validateStructure();
 
-        // Headline
-        // Assert the headline is there and starts with a capital letter
-        headline.should(matchText("[A-Z].{3,}"));
-        // First address
-        // Makes sure at least one address is visible
-        $("#billAddr0").shouldBe(visible);
+        // validate breadcrumb
+        validateBreadcrumb();
+
+        // validate fill in form headline
+        headline.shouldHave(exactText(Neodymium.localizedText("BillingAddressPage.fillIn.headline"))).shouldBe(visible);
+        validateFillInHeadlines();
+
+        // validate fill in form structure
+        validateFillInPlaceholder();
+
+        // validate country selection dropdown
+        validateCountryDropdown();
+
+        // validate "required fields" string
+        $(".reqField").shouldHave(exactText(Neodymium.localizedText("General.fillIn.headlines.requiredFields"))).shouldBe(visible);
+
+        // validate continue button
+        addBillingButton.shouldHave(exactText(Neodymium.localizedText("General.fillIn.button"))).shouldBe(visible);
+    }
+    
+    /// ----- send billing address form ----- ///
+    
+    public PaymentPage sendBillingAddressForm(Address billingAddress)
+    {
+        String fullName = billingAddress.getFirstName() + " " + billingAddress.getLastName();
+
+        return sendBillingAddressForm(fullName, billingAddress.getCompany(), billingAddress.getStreet(),
+                                      billingAddress.getCity(), billingAddress.getState(), billingAddress.getZip(),
+                                      billingAddress.getCountry());
+    }
+    
+    @Step("fill and send new billing address form")
+    public PaymentPage sendBillingAddressForm(String name, String company, String address, String city,
+                                              String state, String zip, String country)
+    {
+        // enter parameters
+        nameField.val(name);
+        companyField.val(company);
+        addressField.val(address);
+        cityField.val(city);
+        stateField.val(state);
+        zipField.val(zip);
+        countryField.selectOption(country);
+        
+        // click on "Continue" button
+        addBillingButton.scrollTo().click();
+
+        return new PaymentPage().isExpectedPage();
     }
 
+    // ---------------------------------------------------
+    
     /**
      * @param position
      *            The position of the billing address you want to choose

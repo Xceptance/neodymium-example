@@ -68,10 +68,10 @@ public class BrowseRandomVisualAssertTest extends AbstractTest
             LOGGER.info("Category page");
             String categoryName = homePage.topNav.getRandomSubcategoryName(random);
             categoryPage = homePage.topNav.clickSubcategoryByName(categoryName);
-            categoryPage.validateAndVisualAssert(categoryName);
+            categoryPage.validateAndVisualAssert(categoryName, 30);
             categoryPage = categoryPage.pagination.clickOnRandomSite(random);
             categoryPage.scrollToTop();
-            categoryPage.validateAndVisualAssert(categoryName);
+            categoryPage.validateAndVisualAssert(categoryName, 30);
 
             // Go to any product detail page
             LOGGER.info("Product detail page");

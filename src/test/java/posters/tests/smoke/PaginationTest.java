@@ -1,4 +1,4 @@
-package posters.tests.smoke.pageobjects.components;
+package posters.tests.smoke;
 
 import org.junit.Test;
 

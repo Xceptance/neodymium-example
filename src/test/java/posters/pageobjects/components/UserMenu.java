@@ -30,11 +30,35 @@ public class UserMenu extends AbstractComponent
     {
         showUserMenu.should(exist);
     }
+    
+    /// ----- user menu navigation ----- ///
+    
+    @Step("open user menu")
+    public void openUserMenu()
+    {
+        showUserMenu.scrollTo().click();
+        userMenu.waitUntil(visible, Neodymium.configuration().selenideTimeout());
+    }
 
+    @Step("close user menu")
+    public void closeUserMenu()
+    {
+        $("#brand").hover();
+        userMenu.waitUntil(not(visible), Neodymium.configuration().selenideTimeout());
+    }
+
+    /// ----- validate user menu ----- ///
+    
     @Step("validate logged in user menu")
     public static void validateStructure()
     {
         // TODO - verify for logged on user
+    }
+    
+    @Step("validate strings in user menu")
+    private static void validateGuestUserMenu(String text)
+    {
+        $$("#userMenu li").findBy(exactText(Neodymium.localizedText(text))).shouldBe(visible);
     }
     
     @Step("validate guest user menu")
@@ -56,38 +80,23 @@ public class UserMenu extends AbstractComponent
         // close user window
         $("#globalNavigation").hover();
     }
-
-    @Step("validate strings in user menu")
-    private static void validateGuestUserMenu(String text)
+    
+    @Step("validate that nobody is logged in")
+    public void validateNotLoggedIn()
     {
-        $$("#userMenu li").findBy(exactText(Neodymium.localizedText(text))).shouldBe(visible);
+        userMenu.find(".goToLogin").should(exist);
     }
+
+    @Step("validate that somebody is logged in")
+    public boolean isLoggedIn()
+    {
+        return userMenu.find(".goToAccountOverview").exists();
+    }
+    
     
     // ---------------------------------------------------------------------
     
-    // TODO - improve
-    @Step("open user menu")
-    public void openUserMenu()
-    {
-        // Click the mini cart icon
-        showUserMenu.scrollTo().click();
-        // Wait for mini cart to appear
-        // Wait for the mini cart to show
-        userMenu.waitUntil(visible, Neodymium.configuration().selenideTimeout());
-    }
 
-    // TODO - check if needed
-    @Step("close user menu")
-    public void closeUserMenu()
-    {
-        // Click the mini cart icon again
-        showUserMenu.scrollTo().click();
-        // Move the mouse out of the area
-        $("#brand").hover();
-        // Wait for mini cart to disappear
-        // Wait for the mini cart to disappear
-        userMenu.waitUntil(not(visible), Neodymium.configuration().selenideTimeout());
-    }
 
     // TODO - check if needed
     @Step("open login page from user menu")
@@ -127,19 +136,5 @@ public class UserMenu extends AbstractComponent
         closeUserMenu();
         // Makes sure the mini menu element has the "logged" class active instead of the "not-logged" class.
         showUserMenu.find(".icon-user2").shouldHave(cssClass("logged")).shouldHave(exactText(""));
-    }
-
-    // TODO - check if needed
-    @Step("validate that nobody is logged in")
-    public void validateNotLoggedIn()
-    {
-        userMenu.find(".goToLogin").should(exist);
-    }
-
-    // TODO - check if needed
-    @Step("validate that somebody is logged in")
-    public boolean isLoggedIn()
-    {
-        return userMenu.find(".goToAccountOverview").exists();
     }
 }

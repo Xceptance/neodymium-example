@@ -1,4 +1,4 @@
-package posters.tests.smoke.processes;
+package posters.tests.smoke;
 
 import org.junit.Test;
 
