@@ -12,7 +12,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
-import posters.dataobjects.Address;
+import posters.tests.testdata.dataobjects.Address;
 
 public class BillingAddressPage extends AbstractCheckoutPage
 {
@@ -116,6 +116,7 @@ public class BillingAddressPage extends AbstractCheckoutPage
     
     /// ----- send billing address form ----- ///
     
+    @Step("fill and send new billing address form")
     public PaymentPage sendBillingAddressForm(Address billingAddress)
     {
         String fullName = billingAddress.getFirstName() + " " + billingAddress.getLastName();

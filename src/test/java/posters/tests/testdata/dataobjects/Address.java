@@ -1,4 +1,4 @@
-package posters.dataobjects;
+package posters.tests.testdata.dataobjects;
 
 public class Address
 {
@@ -18,6 +18,7 @@ public class Address
 
     String country;
 
+    // needed???
     public Address(String firstName, String lastName, String company, String street, String city, String state, String zip, String country)
     {
         this.firstName = firstName;

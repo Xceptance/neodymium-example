@@ -9,20 +9,20 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
-import posters.dataobjects.Address;
-import posters.dataobjects.CreditCard;
-import posters.dataobjects.Product;
+import posters.tests.testdata.dataobjects.Address;
+import posters.tests.testdata.dataobjects.CreditCard;
+import posters.tests.testdata.dataobjects.Product;
 import posters.pageobjects.utility.PriceHelper;
 
-/**
- * @author pfotenhauer
- */
 public class PlaceOrderPage extends AbstractCheckoutPage
 {
-    private SelenideElement headline = $("#titleOrderOverview");
+    private SelenideElement title = $("#titleOrderOverview");
 
     private SelenideElement shippingAddressForm = $("#shippingAddr");
 
@@ -32,31 +32,129 @@ public class PlaceOrderPage extends AbstractCheckoutPage
 
     private SelenideElement orderButton = $("#btnOrder");
     
-
-
     @Override
     @Step("ensure this is a place order page")
     public PlaceOrderPage isExpectedPage()
     {
         super.isExpectedPage();
-        headline.should(exist);
+        title.should(exist);
         return this;
     }
 
+    /// ----- validate place order page ----- ///
+
+    @Step("validate breadcrumb")
+    public void validateBreadcrumb()
+    {
+        $("#btnToCard").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.cart"))).shouldBe(visible);
+        $("#btnShippAddr").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.shippingAddress"))).shouldBe(visible);
+        $("#btnBillAddr").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.billingAddress"))).shouldBe(visible);
+        $("#btnCreditCard").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.payment"))).shouldBe(visible);
+        $("#btnPlaceOrder").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.placeOrder"))).shouldBe(visible);
+    }
+    
+    @Step("validate shipping address overview")
+    public void validateShippingAddressOverview(Address shippingAddress, String headline) 
+    {
+        // validate headline
+        $$(".total-wrap h3").findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
+        
+        // validate name
+        String fullName = shippingAddress.getFirstName() + " " + shippingAddress.getLastName();
+        $("#shippingAddr").find(".name").shouldHave(exactText(fullName)).shouldBe(visible);
+        
+        // TODO - fix, change company in .json to null/empty String
+        // validate optional company name
+        if (!StringUtils.isBlank(shippingAddress.getCompany()));
+        {
+            $("#shippingAddr").find(".company").shouldHave(exactText(shippingAddress.getCompany())).shouldBe(visible);
+        }
+        
+        // validate address
+        $("#shippingAddr").find(".addressLine").shouldHave(exactText(shippingAddress.getStreet())).shouldBe(visible);
+        
+        // validate city, state, zip
+        $("#shippingAddr").find(".city").shouldHave(exactText(shippingAddress.getCity())).shouldBe(visible);
+        $("#shippingAddr").find(".state").shouldHave(exactText(shippingAddress.getState())).shouldBe(visible);
+        $("#shippingAddr").find(".zip").shouldHave(exactText(shippingAddress.getZip())).shouldBe(visible);
+        
+        // validate country
+        $("#shippingAddr").find(".country").shouldHave(exactText(shippingAddress.getCountry())).shouldBe(visible);
+    }
+    
+    @Step("validate billing address overview")
+    public void validateBillingAddressOverview(Address billingAddress, String headline) 
+    {
+        // validate headline
+        $$(".total-wrap h3").findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
+        
+        // validate name
+        String fullName = billingAddress.getFirstName() + " " + billingAddress.getLastName();
+        $("#billingAddr").find(".name").shouldHave(exactText(fullName)).shouldBe(visible);
+        
+        // TODO - fix, change company in .json to null/empty String
+        // validate optional company name
+        if (!StringUtils.isBlank(billingAddress.getCompany()));
+        {
+            $("#billingAddr").find(".company").shouldHave(exactText(billingAddress.getCompany())).shouldBe(visible);
+        }
+        
+        // validate address
+        $("#billingAddr").find(".addressLine").shouldHave(exactText(billingAddress.getStreet())).shouldBe(visible);
+        
+        // validate city, state, zip
+        $("#billingAddr").find(".city").shouldHave(exactText(billingAddress.getCity())).shouldBe(visible);
+        $("#billingAddr").find(".state").shouldHave(exactText(billingAddress.getState())).shouldBe(visible);
+        $("#billingAddr").find(".zip").shouldHave(exactText(billingAddress.getZip())).shouldBe(visible);
+        
+        // validate country
+        $("#billingAddr").find(".country").shouldHave(exactText(billingAddress.getCountry())).shouldBe(visible);
+    }
+    
+    @Step("validate payment overview")
+    public void validatePaymentOverview(CreditCard creditCard, String headline) 
+    {
+        // validate headline
+        $$(".total-wrap h3").findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
+        
+        // validate name
+        $("#payment").find(".name").shouldHave(exactText(creditCard.getFullName())).shouldBe(visible);
+        
+        // validate censored card number
+        $("#payment").find(".cardNumber").shouldHave(exactText(creditCard.getCrypticCardNumber())).shouldBe(visible);
+        
+        // validate expiration date
+        $("#payment").find(".month").shouldHave(exactText(creditCard.getExpDateMonth())).shouldBe(visible);
+        $("#payment").find(".year").shouldHave(exactText(creditCard.getExpDateYear())).shouldBe(visible);
+    }
+    
+    @Step("validate order overview")
+    public void validateOrderOverview(Address shippingAddress, Address billingAddress, CreditCard creditCard) 
+    {
+        // validate title
+        title.shouldHave(exactText(Neodymium.localizedText("PlaceOrderPage.overview.title"))).shouldBe(visible);
+        
+        // validate shipping address
+        validateShippingAddressOverview(shippingAddress, "PlaceOrderPage.overview.headlines.shippingAddress");
+        
+        // validate billing address
+        validateBillingAddressOverview(billingAddress, "PlaceOrderPage.overview.headlines.billingAddress");
+        
+        // validate payment
+        validatePaymentOverview(creditCard, "PlaceOrderPage.overview.headlines.payment");
+    }
+    
     @Override
     @Step("validate place order page structure")
     public void validateStructure()
     {
         super.validateStructure();
 
-        // Headline
-        // Headline is there and starts with a capital letter
-        headline.should(matchText("[A-Z].{3,}"));
-        shippingAddressForm.shouldBe(visible);
-        billingAddressForm.shouldBe(visible);
-        paymentForm.shouldBe(visible);
-        orderButton.shouldBe(visible);
+        // validate breadcrumb
+        validateBreadcrumb();
     }
+    
+    // --------------------------------------------------------------
 
     /**
      * @param product
@@ -104,72 +202,6 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         // Size
         // The size equals the parameter
         productContainer.find(".productSize").shouldHave(exactText(productSize));
-    }
-
-
-
-    @Step("validate addresses and payment on place order page")
-    public void validateAddressesAndPayment(Address shippingAddress, Address billingAddress, CreditCard creditcard)
-    {
-        // Shipping address
-        // fullName
-        // Makes sure the shipping address fullName matches the parameter
-        String firstName = shippingAddress.getFirstName();
-        String lastName = shippingAddress.getLastName();
-        String fullName = firstName + " " + lastName;
-        shippingAddressForm.find(".name").shouldHave(exactText(fullName));
-        // Company
-        // Makes sure the shipping address company matches the parameter
-        shippingAddressForm.find(".company").shouldHave(exactText(shippingAddress.getCompany()));
-        // Address
-        // Makes sure the shipping address matches the parameter
-        shippingAddressForm.find(".addressLine").shouldHave(exactText(shippingAddress.getStreet()));
-        // City
-        // Makes sure the shipping address city matches the parameter
-        shippingAddressForm.find(".city").shouldHave(exactText(shippingAddress.getCity()));
-        // State
-        // Makes sure the shipping address state matches the parameter
-        shippingAddressForm.find(".state").shouldHave(exactText(shippingAddress.getState()));
-        // ZIP
-        // Makes sure the shipping address ZIP matches the parameter
-        shippingAddressForm.find(".zip").shouldHave(exactText(" " + shippingAddress.getZip()));
-        // Country
-        // Makes sure the shipping address country matches the parameter
-        shippingAddressForm.find(".country").shouldHave(exactText(shippingAddress.getCountry()));
-        // Billing address
-        // Name
-        // Makes sure the billing address name matches the parameter
-        billingAddressForm.find(".name").shouldHave(exactText(fullName));
-        // Company
-        // Makes sure the billing address company matches the parameter
-        billingAddressForm.find(".company").shouldHave(exactText(billingAddress.getCompany()));
-        // Address
-        // Makes sure the billing address matches the parameter
-        billingAddressForm.find(".addressLine").shouldHave(exactText(billingAddress.getStreet()));
-        // City
-        // Makes sure the billing address city matches the parameter
-        billingAddressForm.find(".city").shouldHave(exactText(billingAddress.getCity()));
-        // State
-        // Makes sure the billing address state matches the parameter
-        billingAddressForm.find(".state").shouldHave(exactText(billingAddress.getState()));
-        // ZIP
-        // Makes sure the billing address ZIP matches the parameter
-        billingAddressForm.find(".zip").shouldHave(exactText(billingAddress.getZip()));
-        // Country
-        // Makes sure the billing address country matches the parameter
-        billingAddressForm.find(".country").shouldHave(exactText(billingAddress.getCountry()));
-        // Payment
-        // Name
-        // Makes sure the credit card holder matches the parameter
-        paymentForm.find(" .name .value").shouldHave(exactText(creditcard.getFullName()));
-        // Credit Card Number
-        // Makes sure the anonymized credit card number matches the parameter
-        paymentForm.find(" .cardNumber .value").shouldHave(exactText(creditcard.getCrypticCardNumber()));
-        // Expiration
-        // Makes sure the credit card expiration month matches the parameter
-        paymentForm.find(" .exp .month").shouldHave(exactText(creditcard.getExpDateMonth()));
-        // Makes sure the credit card expiration year matches the parameter
-        paymentForm.find(" .exp .year").shouldHave(exactText(creditcard.getExpDateYear()));
     }
 
     @Step("get order total costs from place order page")

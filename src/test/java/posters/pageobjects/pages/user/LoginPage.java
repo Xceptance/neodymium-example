@@ -11,13 +11,10 @@ import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
-import posters.dataobjects.User;
+import posters.tests.testdata.dataobjects.User;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.HomePage;
 
-/**
- * @author pfotenhauer
- */
 public class LoginPage extends AbstractBrowsingPage
 {
     private SelenideElement loginForm = $("#formLogin");

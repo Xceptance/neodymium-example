@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$$;
 import com.codeborne.selenide.SelenideElement;
 
 import io.qameta.allure.Step;
-import posters.dataobjects.Product;
+import posters.tests.testdata.dataobjects.Product;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
 public class OrderHistoryPage extends AbstractBrowsingPage

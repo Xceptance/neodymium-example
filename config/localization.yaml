@@ -134,6 +134,13 @@ default:
                 "2031": 2031
                 "2032": 2032
                 "2033": 2033
+    PlaceOrderPage:
+        overview:
+            title: Order Overview
+            headlines:
+                shippingAddress: Shipping Address
+                billingAddress: Billing Address
+                payment: Payment Settings
     AccountPages:
         email: Email address*
         firstName: First name*

@@ -12,17 +12,11 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
-import posters.dataobjects.User;
+import posters.tests.testdata.dataobjects.User;
 import posters.flows.DeleteUserFlow;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 
-/**
- * The initial data base of Posters provides a default user to avoid a registration process. The used e-mail address is
- * "john@doe.com". Using this user within the RegisterTest would lead to an expected error.
- * 
- * @author pfotenhauer
- */
 @Owner("Lisa Smith")
 @Severity(SeverityLevel.CRITICAL)
 @Tag("smoke")

@@ -14,6 +14,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
+import posters.tests.testdata.dataobjects.CreditCard;
 
 public class PaymentPage extends AbstractCheckoutPage
 {
@@ -150,6 +151,29 @@ public class PaymentPage extends AbstractCheckoutPage
         validateYearDropdown();
     }
     
+    /// ----- send payment form ----- ///
+    
+    @Step("fill and send payment form")
+    public PlaceOrderPage sendPaymentForm(CreditCard creditcard)
+    {
+        return sendPaymentForm(creditcard.getCardNumber(), creditcard.getFullName(), creditcard.getExpDateMonth(), creditcard.getExpDateYear());
+    }
+    
+    @Step("fill and send payment form")
+    public PlaceOrderPage sendPaymentForm(String number, String name, String month, String year)
+    {
+        // enter parameters
+        creditCardNumber.val(number);
+        creditCardName.val(name);
+        expirationMonth.selectOption(month);
+        expirationYear.selectOption(year);
+
+        // click on "Continue" button
+        addPaymentButton.scrollTo().click();
+
+        return new PlaceOrderPage().isExpectedPage();
+    }
+    
     // --------------------------------------------------------
 
     /**
@@ -167,27 +191,6 @@ public class PaymentPage extends AbstractCheckoutPage
         // Open the billing address page in the checkout process
         // Clicks the continue button
         $("#btnUsePayment").scrollTo().click();
-
-        return new PlaceOrderPage().isExpectedPage();
-    }
-
-    @Step("fill and send payment form")
-    public PlaceOrderPage sendPaymentForm(String number, String name, String month, String year)
-    {
-        // Credit Card Number
-        // Fills the card number field with the parameter
-        creditCardNumber.val(number);
-        // Name
-        // Fills the card holder field with the parameter
-        creditCardName.val(name);
-        // Expiration
-        // Chooses the expiration month matching the parameter
-        expirationMonth.selectOption(month);
-        // Chooses the expiration year matching the parameter
-        expirationYear.selectOption(year);
-        // Opens the order overview page
-        // Clicks the Continue button
-        addPaymentButton.scrollTo().click();
 
         return new PlaceOrderPage().isExpectedPage();
     }

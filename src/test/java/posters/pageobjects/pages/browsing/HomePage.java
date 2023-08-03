@@ -10,7 +10,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
-import posters.dataobjects.User;
+import posters.tests.testdata.dataobjects.User;
 
 public class HomePage extends AbstractBrowsingPage
 {

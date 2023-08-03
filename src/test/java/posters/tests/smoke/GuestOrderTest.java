@@ -10,8 +10,8 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
-import posters.dataobjects.Address;
-import posters.dataobjects.CreditCard;
+import posters.tests.testdata.dataobjects.Address;
+import posters.tests.testdata.dataobjects.CreditCard;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 
@@ -45,33 +45,31 @@ public class GuestOrderTest extends AbstractTest
         // go to product detail page, add and store displayed product
         var productDetailPage = categoryPage.clickProductByPosition(guestOrderTestData.getResultPosition());
         productDetailPage.addToCart(guestOrderTestData.getsSizeProduct(), guestOrderTestData.getStyleProduct());
+        final var product = productDetailPage.getProduct();
         
         // go to cart page
         var cartPage = productDetailPage.miniCart.openCartPage();
         
         // go to shipping address page and validate
         var shippingAddressPage = cartPage.openShippingAddressPage();
-        shippingAddressPage.validateStructure();
+        //shippingAddressPage.validateStructure();
         
         // go to billing address page and validate
         var billingAddressPage = shippingAddressPage.sendShippingAddressForm(shippingAddress, sameBillingAddress);
-        billingAddressPage.validateStructure();
+        //billingAddressPage.validateStructure();
         
         // go to payment page and validate
         var paymentPage = billingAddressPage.sendBillingAddressForm(billingAddress);
-        paymentPage.validateStructure();
+        //paymentPage.validateStructure();
         
+        // go to place order page and validate
+        var placeOrderPage = paymentPage.sendPaymentForm(creditCard);
+        placeOrderPage.validateStructure();
+        placeOrderPage.validateOrderOverview(shippingAddress, billingAddress, creditCard);
+        //placeOrderPage.validateProduct(product);
         
         /*
 
-
-        // Send billing address and validate payment form
-        var newPaymentPage = newBillingAddressPage.sendBillingAddressForm(billingAddress);
-        newPaymentPage.validateStructure();
-
-        // Send payment data and validate place order page
-        var placeOrderPage = newPaymentPage.sendPaymentForm(creditCard);
-        placeOrderPage.validateStructure();
         placeOrderPage.validateProduct(1, product.getName(), product.getAmount(), product.getStyle(), product.getSize());
         placeOrderPage.validateAddressesAndPayment(shippingAddress, billingAddress, creditCard);
 

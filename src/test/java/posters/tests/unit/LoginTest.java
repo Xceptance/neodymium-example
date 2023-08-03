@@ -12,14 +12,11 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
-import posters.dataobjects.User;
+import posters.tests.testdata.dataobjects.User;
 import posters.flows.OpenLoginPageFlow;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.tests.AbstractTest;
 
-/**
- * @author pfotenhauer
- */
 //@Browser("Chrome_1024x768")
 @Browser("Firefox_1024x768")
 @Owner("Tim Brown")

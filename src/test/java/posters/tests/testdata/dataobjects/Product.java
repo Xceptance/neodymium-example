@@ -1,4 +1,4 @@
-package posters.dataobjects;
+package posters.tests.testdata.dataobjects;
 
 import com.xceptance.neodymium.util.Neodymium;
 

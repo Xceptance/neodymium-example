@@ -10,11 +10,8 @@ import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
-import posters.dataobjects.Address;
+import posters.tests.testdata.dataobjects.Address;
 
-/**
- * @author pfotenhauer
- */
 public class NewBillingAddressPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleBillAddr");

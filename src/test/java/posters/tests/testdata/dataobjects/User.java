@@ -1,4 +1,4 @@
-package posters.dataobjects;
+package posters.tests.testdata.dataobjects;
 
 public class User
 {

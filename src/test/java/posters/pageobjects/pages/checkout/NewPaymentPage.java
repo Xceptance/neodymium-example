@@ -10,11 +10,8 @@ import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
-import posters.dataobjects.CreditCard;
+import posters.tests.testdata.dataobjects.CreditCard;
 
-/**
- * @author pfotenhauer
- */
 public class NewPaymentPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titlePayment");

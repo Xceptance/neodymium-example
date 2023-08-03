@@ -1,15 +1,12 @@
 package posters.flows;
 
 import io.qameta.allure.Step;
-import posters.dataobjects.User;
+import posters.tests.testdata.dataobjects.User;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.user.LoginPage;
 
 public class DeleteUserFlow
 {
-    /**
-     * @param user
-     */
     @Step("delete user flow")
     public static LoginPage flow(User user)
     {
