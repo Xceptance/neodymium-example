@@ -12,6 +12,8 @@ public class PriceHelper
 
     private final static DecimalFormat decimalFormat = new DecimalFormat("##0.00", new DecimalFormatSymbols(Locale.US));
 
+    /// ----- format string ----- ///
+    
     @Step("remove $ from {price}")
     public static String removeCurrency(String price)
     {
@@ -30,18 +32,26 @@ public class PriceHelper
         return addCurrency(decimalFormat.format(input));
     }
     
-    @Step("calculate ({unitPrice} * {quantity} * 100) / 100 -> ensure two decimal places")
-    public static String computeRowPrice(String unitPrice, String quantity)
+    /// ----- specific calculations ----- ///
+    
+    @Step("calculate total product price")
+    public static String totalProductPrice(String unitPrice, String quantity)
     {
         double res = (double) (Math.round((Double.valueOf(removeCurrency(unitPrice)) * Double.valueOf(quantity)) * 100)) / 100;
         return format(res);
     }
-
+    
     @Step("calculate difference")
-    public static String subtractFromPrice(String minuend, String subtrahend)
+    public static String substract(String minuend, String subtrahend)
     {
         double res = (double) (Math.round((Double.valueOf(removeCurrency(minuend)) - Double.valueOf(removeCurrency(subtrahend))) * 100)) / 100;
         return format(res);
+    }
+    
+    @Step("calculate subtotal")
+    public static double calculateSubtotal(double oldSubtotal, String totalProductPrice)
+    {
+        return (double) (Math.round((oldSubtotal + Double.valueOf(totalProductPrice)) * 100)) / 100;
     }
     
     @Step("calculate tax")
@@ -50,5 +60,12 @@ public class PriceHelper
         double totalPrice = (double) (Math.round((Double.valueOf(removeCurrency(shippingCosts)) + Double.valueOf(removeCurrency(subtotal))) * 100)) / 100;
         double tax = (double) (Math.round((Double.valueOf(totalPrice) * 0.06) * 100)) / 100;
         return format(tax);
+    }
+    
+    @Step("calculate grand total price")
+    public static String calculateGrandTotal(String subtotal, String shippingCosts, String tax) 
+    {
+        double grandTotal = (double) (Math.round((Double.valueOf(removeCurrency(subtotal)) + Double.valueOf(removeCurrency(shippingCosts)) + Double.valueOf(removeCurrency(tax))) * 100)) / 100;
+        return format(grandTotal);
     }
 }

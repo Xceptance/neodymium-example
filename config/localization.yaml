@@ -141,6 +141,10 @@ default:
                 shippingAddress: Shipping Address
                 billingAddress: Billing Address
                 payment: Payment Settings
+        button: Order with costs
+    OrderConfirmationPage:
+        thankYouMessage: Thank you for purchasing, Your order is complete
+        button: Continue Shopping
     AccountPages:
         email: Email address*
         firstName: First name*
@@ -163,7 +167,27 @@ default:
             shippingAddress: SHIPPING ADDRESS / 
             billingAddress: BILLING ADDRESS / 
             payment: PAYMENT / 
-            placeOrder: PLACE ORDER / 
+            placeOrder: PLACE ORDER /
+        processWrap:
+            "1":
+                number: "01"
+                name: SHOPPING CART
+            "2":
+                number: "02"
+                name: SHIPPING ADDRESS
+            "3":
+                number: "03"
+                name: BILLING ADDRESS
+            "4":
+                number: "04"
+                name: PAYMENT METHOD
+            "5":
+                number: "05"
+                name: CHECKOUT
+            "6":
+                number: "06"
+                name: ORDER COMPLETE
+                
         fillIn:
             headlines:
                 fullName: FULL NAME*
@@ -189,7 +213,19 @@ default:
             button: Continue
     General:
         product:
-          style: style
-          size: size
-          quantity: Quantity
+            style: style
+            size: size
+            quantity: Quantity
+        priceSummary: 
+            title: Summary
+            subtotal: "Subtotal:"
+            shipping: "Shipping:"
+            tax: "Tax (6.0%)"
+            grandTotal: Total
+        productTable:
+            products: PRODUCTS
+            unitPrice: UNIT PRICE
+            quantity: QUANTITY
+            totalPrice: TOTAL PRICE
+        
             

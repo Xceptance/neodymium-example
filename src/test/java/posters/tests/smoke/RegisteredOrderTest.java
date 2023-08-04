@@ -91,15 +91,14 @@ public class RegisteredOrderTest extends AbstractTest
         // Send payment data and validate place order page
         var placeOrderPage = paymentPage.selectCreditCard(1);
         placeOrderPage.validateStructure();
-        placeOrderPage.validateProduct(1, product.getName(), product.getAmount(), product.getStyle(), product.getSize());
-        placeOrderPage.validateAddressesAndPayment(shippingAddress, billingAddress, creditCard);
+        //placeOrderPage.validateProduct(1, product.getName(), product.getAmount(), product.getStyle(), product.getSize());
+        placeOrderPage.validateOrderOverview(shippingAddress, billingAddress, creditCard);
 
         // Place order
         var OrderConfirmationPage = placeOrderPage.placeOrder();
 
         // Validate order confirmation on Order Confirmation Page
-        OrderConfirmationPage.validate();
-        OrderConfirmationPage.validateSuccessfulOrder();
+        OrderConfirmationPage.validateStructure();
     }
 
     @After

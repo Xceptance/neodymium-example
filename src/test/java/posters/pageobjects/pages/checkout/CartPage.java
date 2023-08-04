@@ -94,7 +94,7 @@ public class CartPage extends AbstractBrowsingPage
     }
     
     @Step("validate sub total and line item total after adding on the cart page")
-    public void validateTotalAfterAdd(int position, String oldSubTotal, double totalPrice)
+    public void validateTotalAfterAdd(int position, String oldSubTotal, double oldTotalProductPrice)
     {
         /// ----- validate total unit price of specified product ----- ///
 
@@ -107,40 +107,35 @@ public class CartPage extends AbstractBrowsingPage
         String quantity = $("#productCount" + (position - 1)).val();
 
         // calculate price of specified product
-        String subOrderPrice = PriceHelper.computeRowPrice(unitPrice, quantity);
+        String newTotalProductPrice = PriceHelper.totalProductPrice(unitPrice, quantity);
 
         // verify calculated unit price equals the displayed total unit price
-        productContainer.find(".productTotalUnitPrice").shouldHave(exactText(subOrderPrice));
+        productContainer.find(".productTotalUnitPrice").shouldHave(exactText(newTotalProductPrice));
 
         /// ----- validate sub total ----- ///
 
         String newSubTotal = subTotal.text();
 
         // new total - old total = price of item you just added
-        String productPrice = PriceHelper.subtractFromPrice(newSubTotal, oldSubTotal);
+        String productPrice = PriceHelper.substract(newSubTotal, oldSubTotal);
 
         // price difference for specific product after changing product amount
-        String productPriceAmountChange = PriceHelper.subtractFromPrice(subOrderPrice, PriceHelper.format(totalPrice));
+        String totalProductPriceChange = PriceHelper.substract(newTotalProductPrice, PriceHelper.format(oldTotalProductPrice));
 
         // validate {price} equals {price2}
-        Assert.assertEquals(productPrice, productPriceAmountChange);
+        Assert.assertEquals(productPrice, totalProductPriceChange);
     }
     
     @Step("validate sub total and line item total after removing on the cart page")
-    public void validateTotalAfterRemove(String oldSubTotal, String oldLineItemTotal)
+    public void validateTotalAfterRemove(String oldSubTotal, String oldTotalProductPrice)
     {
-        String newSubTotal = PriceHelper.subtractFromPrice(oldSubTotal, oldLineItemTotal);
+        String newSubTotal = PriceHelper.substract(oldSubTotal, oldTotalProductPrice);
         subTotal.shouldHave(exactText(newSubTotal));
     }
 
-    /// ----- validate product in cart item ----- ///
+    /// ----- validate product in cart ----- ///
 
-    @Step("validate item amount on the cart page")
-    public void validateProductAmount(int position, int amount)
-    {
-        $("#product" + (position - 1) + " .productCount").shouldHave(exactValue(Integer.toString(amount)));
-    }
-
+    @Step("validate '{product}' on the cart page")
     private void validateCartItem(int position, String productName, String productStyle, String productSize, int productAmount, String productPrice)
     {
         // selector for product
@@ -149,24 +144,16 @@ public class CartPage extends AbstractBrowsingPage
         // validate product image
         productContainer.find(".product-img").shouldBe(visible);
         
-        // validate product name is same as {productName}
+        // validate parameters
         productContainer.find(".productName").shouldHave(exactText(productName));
-
-        // validate product style is same as {productStyle}
         productContainer.find(".productStyle").shouldHave(exactText(productStyle));
-
-        // validate product size is same as {productSize}
         productContainer.find(".productSize").shouldHave(exactText(productSize));
-
-        // validate product amount is same as {productAmount}
-        validateProductAmount(position, productAmount);
+        productContainer.find(".productUnitPrice").shouldHave(exactText(productPrice));
+        productContainer.find(".productCount").shouldHave(exactValue(Integer.toString(productAmount)));
         
         // validate remove and update button
         $("#btnRemoveProdCount" + (position - 1)).shouldBe(visible);
         $("#btnUpdateProdCount" + (position - 1)).shouldBe(visible);
-        
-        // validate product name is same as {productName}
-        productContainer.find(".productUnitPrice").shouldHave(exactText(productPrice));
     }
 
     @Step("validate '{product}' on the cart page")
@@ -328,14 +315,6 @@ public class CartPage extends AbstractBrowsingPage
     private void clickCheckoutButton()
     {
         $("#btnStartCheckout").scrollTo().click();
-    }
-
-    // needed???
-    @Step("open new shipping address from the cart page")
-    public NewShippingAddressPage openNewShippingPage()
-    {
-        clickCheckoutButton();
-        return new NewShippingAddressPage().isExpectedPage();
     }
 
     @Step("check if there are product on the cart page")

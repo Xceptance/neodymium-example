@@ -21,10 +21,7 @@ public class SuccessMessage extends AbstractComponent
     @Step("validate that the success message '{message}' is visible")
     public void validateSuccessMessage(String message)
     {
-        // Wait until javascript makes the success message visible
-        // Waits until javascript makes the success message visible.
         successMessage.shouldBe(visible);
-        // Makes sure the correct text is displayed.
         successMessage.shouldHave(exactText("× " + message));
     }
 }

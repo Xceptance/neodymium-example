@@ -1,12 +1,9 @@
 package posters.pageobjects.pages.checkout;
 
-import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
@@ -18,20 +15,6 @@ public class BillingAddressPage extends AbstractCheckoutPage
 {
     private SelenideElement headline = $("#titleBillAddr");
 
-    private SelenideElement nameField = $("#fullName");
-
-    private SelenideElement companyField = $("#company");
-
-    private SelenideElement addressField = $("#addressLine");
-
-    private SelenideElement cityField = $("#city");
-
-    private SelenideElement stateField = $("#state");
-
-    private SelenideElement zipField = $("#zip");
-
-    private SelenideElement countryField = $("#country");
-
     private SelenideElement addBillingButton = $("#btnAddBillAddr");
 
     @Override
@@ -42,51 +25,7 @@ public class BillingAddressPage extends AbstractCheckoutPage
         return this;
     }
 
-    /// ----- validate shipping address page ----- ///
-
-    @Step("validate breadcrumb")
-    public void validateBreadcrumb()
-    {
-        $("#btnToCard").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.cart"))).shouldBe(visible);
-        $("#btnShippAddr").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.shippingAddress"))).shouldBe(visible);
-        $("#btnBillAddr").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.billingAddress"))).shouldBe(visible);
-        $("#btnCreditCard").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.payment"))).shouldBe(visible);
-        $("#btnPlaceOrder").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.placeOrder"))).shouldBe(visible);
-    }
-    
-    @Step("validate fill-in form headlines")
-    public void validateFillInHeadlines(String headline)
-    {
-        $$(".form-group").findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
-    }
-
-    @Step("validate fill-in form headlines")
-    public void validateFillInHeadlines()
-    {
-        validateFillInHeadlines("AddressPages.fillIn.headlines.fullName");
-        validateFillInHeadlines("AddressPages.fillIn.headlines.company");
-        validateFillInHeadlines("AddressPages.fillIn.headlines.address");
-        validateFillInHeadlines("AddressPages.fillIn.headlines.city");
-        validateFillInHeadlines("AddressPages.fillIn.headlines.state");
-        validateFillInHeadlines("AddressPages.fillIn.headlines.zip");
-        // validateFillInHeadlines("AddressPages.fillIn.headlines.country");
-    }
-
-    @Step("validate fill-in form placeholder")
-    public void validateFillInPlaceholder()
-    {
-        nameField.shouldHave(attribute("placeholder", (Neodymium.localizedText("AddressPages.fillIn.placeholder.yourName")))).shouldBe(visible);
-        companyField.shouldHave(attribute("placeholder", (Neodymium.localizedText("AddressPages.fillIn.placeholder.companyName")))).shouldBe(visible);
-        addressField.shouldHave(attribute("placeholder", (Neodymium.localizedText("AddressPages.fillIn.placeholder.address")))).shouldBe(visible);
-        zipField.shouldHave(attribute("placeholder", (Neodymium.localizedText("AddressPages.fillIn.placeholder.zip")))).shouldBe(visible);
-    }
-
-    @Step("validate country dropdown")
-    public void validateCountryDropdown()
-    {
-        countryField.shouldBe(matchText(Neodymium.localizedText("AddressPages.fillIn.dropdown.usa"))).should(exist);
-        countryField.shouldBe(matchText(Neodymium.localizedText("AddressPages.fillIn.dropdown.germany"))).should(exist);
-    }
+    /// ----- validate billing address page ----- ///
 
     @Override
     @Step("validate shipping address page structure")
@@ -108,7 +47,7 @@ public class BillingAddressPage extends AbstractCheckoutPage
         validateCountryDropdown();
 
         // validate "required fields" string
-        $(".reqField").shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.requiredFields"))).shouldBe(visible);
+        validateRequiredString();
 
         // validate continue button
         addBillingButton.shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.button"))).shouldBe(visible);
@@ -131,13 +70,13 @@ public class BillingAddressPage extends AbstractCheckoutPage
                                               String state, String zip, String country)
     {
         // enter parameters
-        nameField.val(name);
-        companyField.val(company);
-        addressField.val(address);
-        cityField.val(city);
-        stateField.val(state);
-        zipField.val(zip);
-        countryField.selectOption(country);
+        $("#fullName").val(name);
+        $("#company").val(company);
+        $("#addressLine").val(address);
+        $("#city").val(city);
+        $("#state").val(state);
+        $("#zip").val(zip);
+        $("#country").selectOption(country);
         
         // click on "Continue" button
         addBillingButton.scrollTo().click();

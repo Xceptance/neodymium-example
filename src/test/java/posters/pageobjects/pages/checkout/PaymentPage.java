@@ -41,16 +41,6 @@ public class PaymentPage extends AbstractCheckoutPage
     }
 
     /// ----- validate payment page ----- ///
-
-    @Step("validate breadcrumb")
-    public void validateBreadcrumb()
-    {
-        $("#btnToCard").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.cart"))).shouldBe(visible);
-        $("#btnShippAddr").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.shippingAddress"))).shouldBe(visible);
-        $("#btnBillAddr").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.billingAddress"))).shouldBe(visible);
-        $("#btnCreditCard").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.payment"))).shouldBe(visible);
-        $("#btnPlaceOrder").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.placeOrder"))).shouldBe(visible);
-    }
     
     @Step("validate fill-in form headlines")
     public void validateFillInHeadlines(String headline)
@@ -85,7 +75,7 @@ public class PaymentPage extends AbstractCheckoutPage
     public void validateMonthDropdown() 
     {
         // open dropdown
-        $("#expirationDateMonth").scrollTo().click();
+        expirationMonth.scrollTo().click();
         
         // validate months
         validateMonthDropdown("PaymentPage.fillIn.expireMonth.january");
@@ -112,7 +102,7 @@ public class PaymentPage extends AbstractCheckoutPage
     public void validateYearDropdown() 
     {        
         // open dropdown
-        $("#expirationDateYear").scrollTo().click();
+        expirationYear.scrollTo().click();
         
         // validate years
         validateYearDropdown("PaymentPage.fillIn.expireYear.2023");
@@ -149,6 +139,12 @@ public class PaymentPage extends AbstractCheckoutPage
         
         // validate year dropdown
         validateYearDropdown();
+        
+        // validate "required fields" string
+        validateRequiredString();
+        
+        // validate continue button
+        addPaymentButton.shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.button"))).shouldBe(visible);
     }
     
     /// ----- send payment form ----- ///

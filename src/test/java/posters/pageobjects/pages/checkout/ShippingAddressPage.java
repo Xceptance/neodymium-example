@@ -1,12 +1,10 @@
 package posters.pageobjects.pages.checkout;
 
-import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
@@ -16,21 +14,7 @@ import posters.tests.testdata.dataobjects.Address;
 
 public class ShippingAddressPage extends AbstractCheckoutPage
 {
-    private SelenideElement headline = $("#titleDelAddr");
-
-    private SelenideElement nameField = $("#fullName");
-
-    private SelenideElement companyField = $("#company");
-
-    private SelenideElement addressField = $("#addressLine");
-
-    private SelenideElement cityField = $("#city");
-
-    private SelenideElement stateField = $("#state");
-
-    private SelenideElement zipField = $("#zip");
-
-    private SelenideElement countryField = $("#country");
+    private SelenideElement title = $("#titleDelAddr");
 
     private SelenideElement addShippingButton = $("#btnAddDelAddr");
 
@@ -39,55 +23,11 @@ public class ShippingAddressPage extends AbstractCheckoutPage
     public ShippingAddressPage isExpectedPage()
     {
         super.isExpectedPage();
-        headline.should(exist);
+        title.should(exist);
         return this;
     }
 
     /// ----- validate shipping address page ----- ///
-
-    @Step("validate breadcrumb")
-    public void validateBreadcrumb()
-    {
-        $("#btnToCard").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.cart"))).shouldBe(visible);
-        $("#btnShippAddr").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.shippingAddress"))).shouldBe(visible);
-        $("#btnBillAddr").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.billingAddress"))).shouldBe(visible);
-        $("#btnCreditCard").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.payment"))).shouldBe(visible);
-        $("#btnPlaceOrder").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.placeOrder"))).shouldBe(visible);
-    }
-
-    @Step("validate fill-in form headlines")
-    public void validateFillInHeadlines(String headline)
-    {
-        $$(".form-group").findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
-    }
-
-    @Step("validate fill-in form headlines")
-    public void validateFillInHeadlines()
-    {
-        validateFillInHeadlines("AddressPages.fillIn.headlines.fullName");
-        validateFillInHeadlines("AddressPages.fillIn.headlines.company");
-        validateFillInHeadlines("AddressPages.fillIn.headlines.address");
-        validateFillInHeadlines("AddressPages.fillIn.headlines.city");
-        validateFillInHeadlines("AddressPages.fillIn.headlines.state");
-        validateFillInHeadlines("AddressPages.fillIn.headlines.zip");
-        // validateFillInHeadlines("AddressPages.fillIn.headlines.country");
-    }
-
-    @Step("validate fill-in form placeholder")
-    public void validateFillInPlaceholder()
-    {
-        nameField.shouldHave(attribute("placeholder", (Neodymium.localizedText("AddressPages.fillIn.placeholder.yourName")))).shouldBe(visible);
-        companyField.shouldHave(attribute("placeholder", (Neodymium.localizedText("AddressPages.fillIn.placeholder.companyName")))).shouldBe(visible);
-        addressField.shouldHave(attribute("placeholder", (Neodymium.localizedText("AddressPages.fillIn.placeholder.address")))).shouldBe(visible);
-        zipField.shouldHave(attribute("placeholder", (Neodymium.localizedText("AddressPages.fillIn.placeholder.zip")))).shouldBe(visible);
-    }
-
-    @Step("validate country dropdown")
-    public void validateCountryDropdown()
-    {
-        countryField.shouldBe(matchText(Neodymium.localizedText("AddressPages.fillIn.dropdown.usa"))).should(exist);
-        countryField.shouldBe(matchText(Neodymium.localizedText("AddressPages.fillIn.dropdown.germany"))).should(exist);
-    }
 
     @Step("validate shipping address usage for billing address radio")
     public void validateAddressRadio()
@@ -106,8 +46,10 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         // validate breadcrumb
         validateBreadcrumb();
 
+        // validate title
+        title.shouldHave(exactText(Neodymium.localizedText("ShippingAddressPage.fillIn.title"))).shouldBe(visible);
+        
         // validate fill in form headline
-        headline.shouldHave(exactText(Neodymium.localizedText("ShippingAddressPage.fillIn.title"))).shouldBe(visible);
         validateFillInHeadlines();
 
         // validate fill in form structure
@@ -120,7 +62,7 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         validateAddressRadio();
 
         // validate "required fields" string
-        $(".reqField").shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.requiredFields"))).shouldBe(visible);
+        validateRequiredString();
 
         // validate continue button
         addShippingButton.shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.button"))).shouldBe(visible);
@@ -141,15 +83,15 @@ public class ShippingAddressPage extends AbstractCheckoutPage
     @Step("fill and send shipping address form")
     public BillingAddressPage sendShippingAddressForm(String name, String company, String address, String city,
                                                       String state, String zip, String country, boolean sameBillingAddress)
-    {
+    {        
         // enter parameters
-        nameField.val(name);
-        companyField.val(company);
-        addressField.val(address);
-        cityField.val(city);
-        stateField.val(state);
-        zipField.val(zip);
-        countryField.selectOption(country);
+        $("#fullName").val(name);
+        $("#company").val(company);
+        $("#addressLine").val(address);
+        $("#city").val(city);
+        $("#state").val(state);
+        $("#zip").val(zip);
+        $("#country").selectOption(country);
 
         // check if shipping address and billing address is equal
         if (sameBillingAddress)
@@ -169,11 +111,6 @@ public class ShippingAddressPage extends AbstractCheckoutPage
 
     // ---------------------------------------------------------------
 
-    /**
-     * @param position
-     *            position of the shipping address
-     * @return BillingAddressPage
-     */
     @Step("select a shipping address")
     public BillingAddressPage selectShippingAddress(int position)
     {
