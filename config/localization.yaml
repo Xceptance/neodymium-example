@@ -187,7 +187,6 @@ default:
             "6":
                 number: "06"
                 name: ORDER COMPLETE
-                
         fillIn:
             headlines:
                 fullName: FULL NAME*
@@ -223,9 +222,10 @@ default:
             tax: "Tax (6.0%)"
             grandTotal: Total
         productTable:
-            products: PRODUCTS
+            product: PRODUCT
             unitPrice: UNIT PRICE
             quantity: QUANTITY
+            update: REMOVE/UPDATE
             totalPrice: TOTAL PRICE
         
             

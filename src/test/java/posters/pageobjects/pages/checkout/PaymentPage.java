@@ -18,7 +18,7 @@ import posters.tests.testdata.dataobjects.CreditCard;
 
 public class PaymentPage extends AbstractCheckoutPage
 {
-    private SelenideElement headline = $("#titlePayment");
+    private SelenideElement title = $("#titlePayment");
 
     private SelenideElement creditCardNumber = $("#creditCardNumber");
 
@@ -36,7 +36,7 @@ public class PaymentPage extends AbstractCheckoutPage
     public PaymentPage isExpectedPage()
     {
         super.isExpectedPage();
-        headline.should(exist);
+        title.should(exist);
         return this;
     }
 
@@ -127,8 +127,11 @@ public class PaymentPage extends AbstractCheckoutPage
         // validate breadcrumb
         validateBreadcrumb();
         
+        // validate process wrap
+        //validateProcessWrap();
+        
         // validate fill in form headline
-        headline.shouldHave(exactText(Neodymium.localizedText("PaymentPage.fillIn.title"))).shouldBe(visible);
+        title.shouldHave(exactText(Neodymium.localizedText("PaymentPage.fillIn.title"))).shouldBe(visible);
         validateFillInHeadlines();
         
         // validate placeholder

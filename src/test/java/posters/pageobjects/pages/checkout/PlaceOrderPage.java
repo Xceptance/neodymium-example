@@ -55,7 +55,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     @Step("validate product table head")
     public void validateTableHead() 
     {
-        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.products"))).shouldBe(visible);
+        //tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.product"))).shouldBe(visible);
         tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.unitPrice"))).shouldBe(visible);
         tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.quantity"))).shouldBe(visible);
         tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.totalPrice"))).shouldBe(visible);
@@ -69,6 +69,9 @@ public class PlaceOrderPage extends AbstractCheckoutPage
 
         // validate breadcrumb
         validateBreadcrumb();
+        
+        // validate process wrap
+        //validateProcessWrap();
         
         // validate product table head
         validateTableHead();

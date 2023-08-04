@@ -13,7 +13,7 @@ import posters.tests.testdata.dataobjects.Address;
 
 public class BillingAddressPage extends AbstractCheckoutPage
 {
-    private SelenideElement headline = $("#titleBillAddr");
+    private SelenideElement title = $("#titleBillAddr");
 
     private SelenideElement addBillingButton = $("#btnAddBillAddr");
 
@@ -21,7 +21,7 @@ public class BillingAddressPage extends AbstractCheckoutPage
     @Step("ensure this is a billing address page")
     public BillingAddressPage isExpectedPage()
     {
-        headline.should(exist);
+        title.should(exist);
         return this;
     }
 
@@ -35,9 +35,14 @@ public class BillingAddressPage extends AbstractCheckoutPage
 
         // validate breadcrumb
         validateBreadcrumb();
+        
+        // validate process wrap
+        //validateProcessWrap();
 
-        // validate fill in form headline
-        headline.shouldHave(exactText(Neodymium.localizedText("BillingAddressPage.fillIn.title"))).shouldBe(visible);
+        // validate title
+        title.shouldHave(exactText(Neodymium.localizedText("BillingAddressPage.fillIn.title"))).shouldBe(visible);
+        
+        // validate fill form headline
         validateFillInHeadlines();
 
         // validate fill in form structure

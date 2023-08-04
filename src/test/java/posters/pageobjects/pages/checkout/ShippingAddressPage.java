@@ -45,6 +45,9 @@ public class ShippingAddressPage extends AbstractCheckoutPage
 
         // validate breadcrumb
         validateBreadcrumb();
+        
+        // validate process wrap
+        //validateProcessWrap();
 
         // validate title
         title.shouldHave(exactText(Neodymium.localizedText("ShippingAddressPage.fillIn.title"))).shouldBe(visible);

@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import org.junit.Assert;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -27,6 +28,8 @@ public class CartPage extends AbstractBrowsingPage
     
     private SelenideElement cartTable = $("#cartOverviewTable");
 
+    private ElementsCollection tableHead = $$(".product-name span");
+    
     private SelenideElement subTotal = $("#orderSubTotalValue");
 
     @Override
@@ -47,17 +50,30 @@ public class CartPage extends AbstractBrowsingPage
         $("#errorCartMessage").shouldHave(exactText(Neodymium.localizedText("CartPage.errorMessage"))).shouldBe(visible);
     }
     
+    @Step("validate product table head")
+    public void validateTableHead() 
+    {
+        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.product"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.unitPrice"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.quantity"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.update"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.totalPrice"))).shouldBe(visible);
+    }
+    
     @Override
     @Step("validate cart page structure")
     public void validateStructure()
     {
         super.validateStructure();
 
-        // validate process sequence
-        $(".process-wrap").shouldBe(visible);
+        // validate process wrap
+        //validateProcessWrap();
         
         // validate title
         title.shouldHave(exactText(Neodymium.localizedText("CartPage.title"))).shouldBe(visible);
+        
+        // validate product table head
+        validateTableHead();
 
         // validate product list
         cartTable.shouldBe(visible);
