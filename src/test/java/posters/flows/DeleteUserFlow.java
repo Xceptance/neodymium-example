@@ -14,9 +14,9 @@ public class DeleteUserFlow
 
         // ensure that the user is logged in
         var loginPage = new LoginPage();
-        if (!homePage.userMenu.isLoggedIn())
+        if (!homePage.userMenu.validateIsLoggedIn())
         {
-            loginPage = homePage.userMenu.openLogin();
+            loginPage = homePage.userMenu.openLoginPage();
             homePage = loginPage.sendLoginform(user);
         }
 
@@ -36,7 +36,7 @@ public class DeleteUserFlow
         homePage.validateSuccessfulDeletedAccount();
 
         // verify that the account is not available anymore
-        loginPage = homePage.userMenu.openLogin();
+        loginPage = homePage.userMenu.openLoginPage();
         loginPage.validateStructure();
         loginPage.sendFalseLoginform(user);
         loginPage.validateWrongEmail(user.getEmail());

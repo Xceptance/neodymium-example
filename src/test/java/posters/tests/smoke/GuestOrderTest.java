@@ -3,16 +3,15 @@ package posters.tests.smoke;
 import org.junit.Test;
 
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
-import com.xceptance.neodymium.util.DataUtils;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
-import posters.tests.testdata.dataobjects.Address;
-import posters.tests.testdata.dataobjects.CreditCard;
 import posters.flows.OpenHomePageFlow;
+import posters.pageobjects.pages.checkout.PaymentPage;
+import posters.pageobjects.pages.checkout.PlaceOrderPage;
 import posters.tests.AbstractTest;
 
 @Owner("Joe Fix")
@@ -20,17 +19,13 @@ import posters.tests.AbstractTest;
 @Tag("smoke")
 @Tag("registered")
 public class GuestOrderTest extends AbstractTest
-{
+{    
     @Test
     @DataSet(1)
+    @DataSet(2)
     public void testOrderingAsGuest()
-    {
+    {        
         final String shippingCosts = Neodymium.dataValue("shippingCosts");
-        
-        final var shippingAddress = DataUtils.get(Address.class);
-        final boolean sameBillingAddress = false;
-        final var billingAddress = DataUtils.get(Address.class);
-        final var creditCard = DataUtils.get(CreditCard.class);
         
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
@@ -50,25 +45,43 @@ public class GuestOrderTest extends AbstractTest
         var shippingAddressPage = cartPage.openShippingAddressPage();
         shippingAddressPage.validateStructure();
         
-        // go to billing address page and validate
-        var billingAddressPage = shippingAddressPage.sendShippingAddressForm(shippingAddress, sameBillingAddress);
-        billingAddressPage.validateStructure();
+        // declare variables used in if
+        PaymentPage paymentPage;
+        PlaceOrderPage placeOrderPage;
         
-        // go to payment page and validate
-        var paymentPage = billingAddressPage.sendBillingAddressForm(billingAddress);
-        //paymentPage.validateStructure();
+        if (!guestOrderTestData.getShipAndBillAddressAreEqual()) 
+        {
+            // go to billing address page and validate
+            var billingAddressPage = shippingAddressPage.sendShippingAddressForm(guestOrderTestData.getShippingAddress());
+            billingAddressPage.validateStructure();
         
-        // go to place order page and validate
-        var placeOrderPage = paymentPage.sendPaymentForm(creditCard);
+            // go to payment page and validate
+            paymentPage = billingAddressPage.sendBillingAddressForm(guestOrderTestData.getBillingAddress());
+            paymentPage.validateStructure();
+            
+            // go to place order page and validate order overview
+            placeOrderPage = paymentPage.sendPaymentForm(guestOrderTestData.getCreditCard());
+            placeOrderPage.validateOrderOverview(guestOrderTestData.getShippingAddress(), guestOrderTestData.getBillingAddress(), guestOrderTestData.getCreditCard());
+        }
+        else
+        {
+            // got to payment page and validate
+            paymentPage = shippingAddressPage.sendShippingAddressForm2(guestOrderTestData.getShippingAddress());
+            paymentPage.validateStructure();
+            
+            // go to place order page and validate order overview
+            placeOrderPage = paymentPage.sendPaymentForm(guestOrderTestData.getCreditCard());
+            placeOrderPage.validateOrderOverview(guestOrderTestData.getShippingAddress(), guestOrderTestData.getShippingAddress(), guestOrderTestData.getCreditCard());
+        }
+        
         placeOrderPage.validateStructure();
-        placeOrderPage.validateOrderOverview(shippingAddress, billingAddress, creditCard);
         placeOrderPage.validateProduct(1, product);
         placeOrderPage.validatePriceSummary(placeOrderPage.getSubtotal(), shippingCosts);
         
         // go to order confirmation page and validate
         var orderConfirmationPage = placeOrderPage.placeOrder();
         orderConfirmationPage.validateStructure();
-        
+       
         // go to homepage
         homePage = orderConfirmationPage.openHomePage();
     }

@@ -48,14 +48,6 @@ public abstract class AbstractCheckoutPage extends AbstractPageObject
         $("#btnPlaceOrder").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.placeOrder"))).shouldBe(visible);
     }
     
-    /// ----- ShippingAddressPage, BillingAddressPage, PaymentPage ----- ///
-    
-    @Step("validate required string")
-    public void validateRequiredString() 
-    {
-        $(".reqField").shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.requiredFields"))).shouldBe(visible);
-    }
-    
     /// ----- ShippingAddressPage, BillingAddressPage ----- ///
     
     @Step("validate fill-in form headlines")

@@ -74,4 +74,12 @@ public abstract class AbstractPageObject
         $("#chkout h3").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.name"))).shouldBe(visible);
         $("#orderCmplt h3").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.name"))).shouldBe(visible);
     }
+    
+    /// ----- ShippingAddressPage, BillingAddressPage, PaymentPage, LoginPage ----- ///
+    
+    @Step("validate required string")
+    public void validateRequiredString() 
+    {
+        $(".reqField").shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.requiredFields"))).shouldBe(visible);
+    }
 }

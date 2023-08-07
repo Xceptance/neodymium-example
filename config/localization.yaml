@@ -145,22 +145,36 @@ default:
     OrderConfirmationPage:
         thankYouMessage: Thank you for purchasing, Your order is complete
         button: Continue Shopping
-    AccountPages:
-        email: Email address*
-        firstName: First name*
-        lastName: Last name*
-        password: Password*
-        passwordRepeat: Repeat password*
-        yourEmail: Your email*
-        yourPassword: Your password*
-        signIn: Sign in
+    LoginPage:
+        title: Sign-In
+        headlines:
+            email: YOUR EMAIL*
+            password: YOUR PASSWORD*
+        placeholder:
+            email: Email address
+            password: Password
+        button: Sign in
         newCustomer: New customer
-        createAccount: Create account
         createNewAccount: Create new Account
         validation:
-            successfulAccountCreation: Your account has been created. Log in with your email address and password.
-            emailDoesNotExistError: The email address you entered doesn't exist. Please try again.
-            incorrectPasswordError: The password you entered is incorrect. Please try again.
+            successfulRegistration: Your account has been created. Log in with your email address and password.
+            emailDoesNotExist: The email address you entered doesn't exist. Please try again.
+            incorrectPassword: The password you entered is incorrect. Please try again.
+    RegisterPage:
+        title: Create an account
+        headlines:
+            firstName: FIRST NAME*
+            lastName: LAST NAME*
+            email: EMAIL ADDRESS*
+            password: PASSWORD*
+            passwordRepeat: REPEAT PASSWORD*
+        placeholder:
+            firstName: First name
+            lastName: Last name
+            email: Email address
+            password: Password
+            passwordRepeat: Confirm password
+        button: Create account
     AddressPages:
         breadcrumb:
             cart: CART/ 

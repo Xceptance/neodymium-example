@@ -74,18 +74,18 @@ public class ShippingAddressPage extends AbstractCheckoutPage
     /// ----- send shipping address form ----- ///
 
     @Step("fill and send shipping address form")
-    public BillingAddressPage sendShippingAddressForm(Address shippingAddress, boolean sameBillingAddress)
+    public BillingAddressPage sendShippingAddressForm(Address shippingAddress)
     {
         String fullName = shippingAddress.getFirstName() + " " + shippingAddress.getLastName();
 
         return sendShippingAddressForm(fullName, shippingAddress.getCompany(), shippingAddress.getStreet(),
                                        shippingAddress.getCity(), shippingAddress.getState(), shippingAddress.getZip(),
-                                       shippingAddress.getCountry(), sameBillingAddress);
+                                       shippingAddress.getCountry());
     }
 
     @Step("fill and send shipping address form")
     public BillingAddressPage sendShippingAddressForm(String name, String company, String address, String city,
-                                                      String state, String zip, String country, boolean sameBillingAddress)
+                                                      String state, String zip, String country)
     {        
         // enter parameters
         $("#fullName").val(name);
@@ -95,22 +95,46 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         $("#state").val(state);
         $("#zip").val(zip);
         $("#country").selectOption(country);
-
-        // check if shipping address and billing address is equal
-        if (sameBillingAddress)
-        {
-            $("#billEqualShipp-Yes").scrollTo().click();
-        }
-        else
-        {
-            $("#billEqualShipp-No").scrollTo().click();
-        }
+        
+        $("#billEqualShipp-No").scrollTo().click();
 
         // click on "Continue" button
         addShippingButton.scrollTo().click();
 
         return new BillingAddressPage().isExpectedPage();
     }
+    
+    @Step("fill and send shipping address form")
+    public PaymentPage sendShippingAddressForm2(Address shippingAddress)
+    {
+        String fullName = shippingAddress.getFirstName() + " " + shippingAddress.getLastName();
+
+        return sendShippingAddressForm2(fullName, shippingAddress.getCompany(), shippingAddress.getStreet(),
+                                       shippingAddress.getCity(), shippingAddress.getState(), shippingAddress.getZip(),
+                                       shippingAddress.getCountry());
+    }
+
+    @Step("fill and send shipping address form")
+    public PaymentPage sendShippingAddressForm2(String name, String company, String address, String city,
+                                                      String state, String zip, String country)
+    {        
+        // enter parameters
+        $("#fullName").val(name);
+        $("#company").val(company);
+        $("#addressLine").val(address);
+        $("#city").val(city);
+        $("#state").val(state);
+        $("#zip").val(zip);
+        $("#country").selectOption(country);
+        
+        $("#billEqualShipp-Yes").scrollTo().click();
+
+        // click on "Continue" button
+        addShippingButton.scrollTo().click();
+
+        return new PaymentPage().isExpectedPage();
+    }
+
 
     // ---------------------------------------------------------------
 

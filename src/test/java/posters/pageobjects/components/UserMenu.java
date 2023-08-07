@@ -46,6 +46,14 @@ public class UserMenu extends AbstractComponent
         $("#brand").hover();
         userMenu.waitUntil(not(visible), Neodymium.configuration().selenideTimeout());
     }
+    
+    @Step("open login page from user menu")
+    public LoginPage openLoginPage()
+    {
+        openUserMenu();
+        userMenu.find(".goToLogin").scrollTo().click();
+        return new LoginPage().isExpectedPage();
+    }
 
     /// ----- validate user menu ----- ///
     
@@ -88,7 +96,7 @@ public class UserMenu extends AbstractComponent
     }
 
     @Step("validate that somebody is logged in")
-    public boolean isLoggedIn()
+    public boolean validateIsLoggedIn()
     {
         return userMenu.find(".goToAccountOverview").exists();
     }
@@ -98,14 +106,7 @@ public class UserMenu extends AbstractComponent
     
 
 
-    // TODO - check if needed
-    @Step("open login page from user menu")
-    public LoginPage openLogin()
-    {
-        openUserMenu();
-        userMenu.find(".goToLogin").scrollTo().click();
-        return new LoginPage().isExpectedPage();
-    }
+
 
     // TODO - check if needed
     @Step("open account page from user menu")
