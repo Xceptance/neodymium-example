@@ -42,7 +42,7 @@ public class RegisteredOrderTest extends AbstractTest
         final String oldSubtotal = homePage.miniCart.getSubtotal();
 
         // Go to login form
-        var loginPage = homePage.userMenu.openLogin();
+        var loginPage = homePage.userMenu.openLoginPage();
         loginPage.validateStructure();
         final String email = Neodymium.dataValue("email");
         final String password = Neodymium.dataValue("password");

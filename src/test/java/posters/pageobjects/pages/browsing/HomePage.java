@@ -33,6 +33,8 @@ public class HomePage extends AbstractBrowsingPage
         return this;
     }
 
+    /// ----- validate homepage ----- ///
+    
     @Step("validate poster slide")
     public void validatePosterSlide()
     {
@@ -101,6 +103,16 @@ public class HomePage extends AbstractBrowsingPage
         $("a.btn-primary-shop").shouldHave(exactText(Neodymium.localizedText("HomePage.shopAllProducts"))).shouldBe(visible);
     }
     
+    @Step("validate successful login on home page")
+    public void validateSuccessfulLogin(String firstName)
+    {
+        // validate success message
+        successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulLogin"));
+        
+        // validate {firstName} in user menu
+        userMenu.validateLoggedInName(firstName);
+    }
+    
     // --------------------------------------------------
     
     @Step("validate successful order on home page")
@@ -110,16 +122,6 @@ public class HomePage extends AbstractBrowsingPage
         // Verify that the mini cart is empty again
         miniCart.validateTotalCount(0);
         miniCart.validateSubtotal("$0.00");
-    }
-
-    @Step("validate successful login on home page")
-    public void validateSuccessfulLogin(String firstName)
-    {
-        // Verify that you are logged in
-        successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulLogin"));
-        // Verify that the user menu shows your first name
-        userMenu.validateLoggedInName(firstName);
-
     }
     
     @Step("validate successful user login on home page")

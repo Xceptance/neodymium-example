@@ -1,5 +1,8 @@
 package posters.tests.testdata.processes;
 
+import posters.tests.testdata.dataobjects.Address;
+import posters.tests.testdata.dataobjects.CreditCard;
+
 public class GuestOrderTestData
 {
     private String topCategory;
@@ -9,6 +12,14 @@ public class GuestOrderTestData
     private String sizeProduct;
     
     private String styleProduct;
+    
+    private Address shippingAddress;
+    
+    private Boolean sameBillingAddress;
+    
+    private Address billingAddress;
+    
+    private CreditCard creditCard;
     
     public String getTopCategory()
     {
@@ -28,5 +39,25 @@ public class GuestOrderTestData
     public String getStyleProduct()
     {
         return styleProduct;
+    }
+    
+    public Address getShippingAddress() 
+    {
+        return shippingAddress;
+    }
+    
+    public Boolean getShipAndBillAddressAreEqual()
+    {
+        return sameBillingAddress;
+    }
+    
+    public Address getBillingAddress() 
+    {
+        return billingAddress;
+    }
+    
+    public CreditCard getCreditCard() 
+    {
+        return creditCard;
     }
 }
