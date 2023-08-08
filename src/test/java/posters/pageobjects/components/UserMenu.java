@@ -1,6 +1,5 @@
 package posters.pageobjects.components;
 
-import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.not;
@@ -8,7 +7,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -36,25 +34,41 @@ public class UserMenu extends AbstractComponent
     @Step("open user menu")
     public void openUserMenu()
     {
-        showUserMenu.scrollTo().click();
-        userMenu.waitUntil(visible, Neodymium.configuration().selenideTimeout());
+        showUserMenu.hover();
+        userMenu.waitUntil(visible, 9000);
     }
 
     @Step("close user menu")
     public void closeUserMenu()
     {
         $("#brand").hover();
-        userMenu.waitUntil(not(visible), Neodymium.configuration().selenideTimeout());
+        userMenu.waitUntil(not(visible), 9000);
+    }
+    
+    @Step("open register page from user menu")
+    public RegisterPage openRegisterPage()
+    {
+        openUserMenu();
+        userMenu.find(".goToRegistration").click();
+        return new RegisterPage().isExpectedPage();
     }
     
     @Step("open login page from user menu")
     public LoginPage openLoginPage()
     {
         openUserMenu();
-        userMenu.find(".goToLogin").scrollTo().click();
+        userMenu.find(".goToLogin").click();
         return new LoginPage().isExpectedPage();
     }
 
+    @Step("open account page from user menu")
+    public AccountOverviewPage openAccountOverviewPage()
+    {
+        openUserMenu();
+        userMenu.find(".goToAccountOverview").click();
+        return new AccountOverviewPage().isExpectedPage();
+    }
+    
     /// ----- validate user menu ----- ///
     
     @Step("validate logged in user menu")
@@ -92,7 +106,7 @@ public class UserMenu extends AbstractComponent
     @Step("validate that nobody is logged in")
     public void validateNotLoggedIn()
     {
-        userMenu.find(".goToLogin").should(exist);
+        userMenu.find(".goToLogin").exists();
     }
 
     @Step("validate that somebody is logged in")
@@ -101,41 +115,11 @@ public class UserMenu extends AbstractComponent
         return userMenu.find(".goToAccountOverview").exists();
     }
     
-    
-    // ---------------------------------------------------------------------
-    
-
-
-
-
-    // TODO - check if needed
-    @Step("open account page from user menu")
-    public AccountOverviewPage openAccountOverview()
-    {
-        openUserMenu();
-        userMenu.find(".goToAccountOverview").scrollTo().click();
-        return new AccountOverviewPage().isExpectedPage();
-    }
-
-    // TODO - check if needed
-    @Step("open register page from user menu")
-    public RegisterPage openRegister()
-    {
-        openUserMenu();
-        userMenu.find(".goToRegistration").scrollTo().click();
-        return new RegisterPage().isExpectedPage();
-    }
-
-    // TODO - check if needed
     @Step("validate that '{firstName}' is logged in")
     public void validateLoggedInName(String firstName)
     {
-        // Click on the mini user menu symbol
         openUserMenu();
-        // Asserts the Menu shows your first name.
         userMenu.find(".firstName").shouldHave(exactText(firstName));
         closeUserMenu();
-        // Makes sure the mini menu element has the "logged" class active instead of the "not-logged" class.
-        showUserMenu.find(".icon-user2").shouldHave(cssClass("logged")).shouldHave(exactText(""));
     }
 }

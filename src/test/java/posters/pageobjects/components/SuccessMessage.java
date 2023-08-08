@@ -13,6 +13,8 @@ public class SuccessMessage extends AbstractComponent
 {
     private SelenideElement successMessage = $("#successMessage");
 
+    @Override
+    @Step("ensure availability success message")
     public void isComponentAvailable()
     {
         successMessage.should(exist);
@@ -21,7 +23,7 @@ public class SuccessMessage extends AbstractComponent
     @Step("validate that the success message '{message}' is visible")
     public void validateSuccessMessage(String message)
     {
-        successMessage.shouldBe(visible);
-        successMessage.shouldHave(exactText("× " + message));
+        successMessage.find("strong").shouldHave(exactText(message)).shouldBe(visible);
+        successMessage.find(".close").shouldHave(exactText("×")).shouldBe(visible);
     }
 }

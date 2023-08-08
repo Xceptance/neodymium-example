@@ -1,21 +1,21 @@
 package posters.pageobjects.pages.user;
 
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
+import posters.tests.testdata.dataobjects.User;
 
-/**
- * @author pfotenhauer
- */
 public class PersonalDataPage extends AbstractBrowsingPage
 {
-    private SelenideElement headline = $("#titlePersonalData");
+    private SelenideElement title = $("#titlePersonalData");
 
     private SelenideElement deleteButton = $("#btnDeleteAccount");
 
@@ -24,36 +24,45 @@ public class PersonalDataPage extends AbstractBrowsingPage
     public PersonalDataPage isExpectedPage()
     {
         super.isExpectedPage();
-        headline.should(exist);
+        title.should(exist);
         return this;
     }
 
+    /// ----- validate personal data page ----- ///
+    
     @Override
     @Step("validate personal data page structure")
     public void validateStructure()
     {
         super.validateStructure();
 
-        // Headline
-        // Makes sure the headline is there and starts with a capital letter
-        headline.should(matchText("[A-Z].{3,}"));
-        // Data
-        // Makes sure the form with your user Data is there
-        $("#customerName").shouldBe(visible);
-        $("#customerEmail").shouldBe(visible);
-        // Delete Account Button
-        // Make sure the button to delete your account is there
-        deleteButton.shouldBe(visible);
+        // validate title
+        title.shouldHave(exactText(Neodymium.localizedText("PersonalDataPage.title"))).shouldBe(visible);
+        
+        // validate buttons
+        $("#btnChangeNameEmail").shouldHave(exactText(Neodymium.localizedText("PersonalDataPage.buttons.changeData"))).shouldBe(visible);
+        $("#btnChangePassword").shouldHave(exactText(Neodymium.localizedText("PersonalDataPage.buttons.changePassword"))).shouldBe(visible);
+        deleteButton.shouldHave(exactText(Neodymium.localizedText("PersonalDataPage.buttons.deleteAccount"))).shouldBe(visible);
     }
-
-    /**
-     * @return
-     */
-    @Step("open delete account page from personal data page")
-    public DeleteAccountPage openDeleteAccount()
+    
+    @Step("validate personal data")
+    public void validatePersonalData(User user) 
     {
-        // Open the delete account page
-        // Clicks the button to get to the Delete Account page
+        // validate name
+        String fullName = user.getFirstName() + " " + user.getLastName();
+        $$(".form-group strong").findBy(exactText(Neodymium.localizedText("PersonalDataPage.headlines.name"))).shouldBe(visible);
+        $("#customerName").shouldHave(exactText(fullName)).shouldBe(visible);
+        
+        // validate email
+        $$(".form-group strong").findBy(exactText(Neodymium.localizedText("PersonalDataPage.headlines.email"))).shouldBe(visible);
+        $("#customerEmail").shouldHave(exactText(user.getEmail())).shouldBe(visible);
+    }
+    
+    /// ----- personal data page navigation ----- ///
+    
+    @Step("open delete account page from personal data page")
+    public DeleteAccountPage openDeleteAccountPage()
+    {
         deleteButton.scrollTo().click();
         return new DeleteAccountPage().isExpectedPage();
     }

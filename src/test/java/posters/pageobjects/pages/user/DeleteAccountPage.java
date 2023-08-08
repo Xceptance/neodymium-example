@@ -1,8 +1,8 @@
 package posters.pageobjects.pages.user;
 
+import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -13,9 +13,6 @@ import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.HomePage;
 
-/**
- * @author pfotenhauer
- */
 public class DeleteAccountPage extends AbstractBrowsingPage
 {
     private SelenideElement deleteForm = $("#formDeleteAccount");
@@ -30,37 +27,42 @@ public class DeleteAccountPage extends AbstractBrowsingPage
     {
         super.isExpectedPage();
         deleteForm.should(exist);
+        
         return this;
     }
 
+    /// ----- validate delete account page ----- ///
+    
     @Override
     @Step("validate delete account page structure")
     public void validateStructure()
     {
         super.validateStructure();
 
-        // Headline
-        // Asserts the headline is there and starts with a capital letter
-        deleteForm.find(".h2").should(matchText("[A-Z].{3,}"));
-        // Password field
-        // Asserts the label belonging to the password field displays the correct text
-        $("label[for='password']").shouldBe(exactText(Neodymium.localizedText("AccountPages.yourPassword")));
-        // Asserts the field to enter your password is there
-        passwordField.shouldBe(visible);
-        // Button
-        // Asserts the delete button is there
-        deleteButton.shouldBe(visible);
+        // validate title
+        deleteForm.find(".h2").shouldHave(exactText(Neodymium.localizedText("DeleteAccontPage.title"))).shouldBe(visible);
+        
+        // validate headline
+        $("label[for='password']").shouldBe(exactText(Neodymium.localizedText("DeleteAccontPage.headline")));
+        
+        // validate placeholder
+        passwordField.shouldHave(attribute("placeholder", (Neodymium.localizedText("DeleteAccontPage.placeholder")))).shouldBe(visible);
+        
+        // validate "required fields" string
+        validateRequiredString();
+        
+        // validate button
+        deleteButton.shouldHave(exactText(Neodymium.localizedText("DeleteAccontPage.button"))).shouldBe(visible);
     }
+    
+    /// ----- delete account page navigation ----- ///
 
     @Step("delete account")
     public HomePage deleteAccount(String password)
     {
-        // Password
-        // Type the parameter into the password field
         passwordField.setValue(password);
-        // Delete account and open the homepage
-        // click the confirmation button
         deleteButton.scrollTo().click();
+        
         return new HomePage().isExpectedPage();
     }
 }

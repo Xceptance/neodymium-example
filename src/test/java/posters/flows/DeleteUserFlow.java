@@ -10,37 +10,30 @@ public class DeleteUserFlow
     @Step("delete user flow")
     public static LoginPage flow(User user)
     {
-        var homePage = new HomePage();
+        HomePage homePage = new HomePage();
 
-        // ensure that the user is logged in
-        var loginPage = new LoginPage();
-        if (!homePage.userMenu.validateIsLoggedIn())
-        {
-            loginPage = homePage.userMenu.openLoginPage();
-            homePage = loginPage.sendLoginform(user);
-        }
-
-        // go to account page
-        var accountOverviewPage = homePage.userMenu.openAccountOverview();
+        // go to account page and validate
+        var accountOverviewPage = homePage.userMenu.openAccountOverviewPage();
         accountOverviewPage.validateStructure();
 
-        // go to personal data page
+        // go to personal data page and validate
         var personalDataPage = accountOverviewPage.openPersonalData();
         personalDataPage.validateStructure();
+        personalDataPage.validatePersonalData(user);
 
-        // go to account deletion page
-        var deleteAccountPage = personalDataPage.openDeleteAccount();
+        // go to account deletion page and validate
+        var deleteAccountPage = personalDataPage.openDeleteAccountPage();
+        deleteAccountPage.validateStructure();
 
-        // delete the account
+        // delete the account and validate success message
         homePage = deleteAccountPage.deleteAccount(user.getPassword());
         homePage.validateSuccessfulDeletedAccount();
 
         // verify that the account is not available anymore
-        loginPage = homePage.userMenu.openLoginPage();
-        loginPage.validateStructure();
-        loginPage.sendFalseLoginform(user);
+        var loginPage = homePage.userMenu.openLoginPage();
+        loginPage.sendFalseLoginForm(user);
         loginPage.validateWrongEmail(user.getEmail());
-
+        
         return loginPage.isExpectedPage();
     }
 }

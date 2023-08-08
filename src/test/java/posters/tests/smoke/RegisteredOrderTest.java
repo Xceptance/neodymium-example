@@ -46,7 +46,7 @@ public class RegisteredOrderTest extends AbstractTest
         loginPage.validateStructure();
         final String email = Neodymium.dataValue("email");
         final String password = Neodymium.dataValue("password");
-        homePage = loginPage.sendLoginform(email, password);
+        homePage = loginPage.sendLoginForm(userData);
         final String firstName = Neodymium.dataValue("firstName");
         homePage.validateSuccessfulLogin(firstName);
 

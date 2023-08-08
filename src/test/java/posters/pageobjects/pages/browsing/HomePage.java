@@ -113,6 +113,12 @@ public class HomePage extends AbstractBrowsingPage
         userMenu.validateLoggedInName(firstName);
     }
     
+    @Step("validate successful account deletion on home page")
+    public void validateSuccessfulDeletedAccount()
+    {
+        successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulAccountDeletion"));
+    }
+    
     // --------------------------------------------------
     
     @Step("validate successful order on home page")
@@ -122,18 +128,6 @@ public class HomePage extends AbstractBrowsingPage
         // Verify that the mini cart is empty again
         miniCart.validateTotalCount(0);
         miniCart.validateSubtotal("$0.00");
-    }
-    
-    @Step("validate successful user login on home page")
-    public void validateSuccessfulLogin(User user)
-    {
-        validateSuccessfulLogin(user.getFirstName());
-    }
-
-    @Step("validate successful account deletion on home page")
-    public void validateSuccessfulDeletedAccount()
-    {
-        successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulAccountDeletion"));
     }
 
     public void validateAndVisualAssert()

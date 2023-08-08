@@ -8,6 +8,8 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import org.junit.Assert;
+
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -72,6 +74,13 @@ public class LoginPage extends AbstractBrowsingPage
     {
         successMessage.validateSuccessMessage(Neodymium.localizedText("LoginPage.validation.successfulRegistration"));
     }
+
+    @Step("validate invalid email for login error message")
+    public void validateWrongEmail(String email)
+    {
+        errorMessage.validateErrorMessage(Neodymium.localizedText("LoginPage.validation.emailDoesNotExist"));
+        Assert.assertEquals(emailField.val(), email);
+    }
     
     /// ----- login page navigation ----- ///
     
@@ -94,39 +103,21 @@ public class LoginPage extends AbstractBrowsingPage
     }
     
     @Step("send login form with valid user data")
-    public HomePage sendLoginform(User user)
+    public HomePage sendLoginForm(User user)
     {
-        return sendLoginform(user.getEmail(), user.getPassword());
-    }
-    
-    @Step("send login form with valid user data")
-    public HomePage sendLoginform(String email, String password)
-    {
-        sendFormWithData(email, password);
+        sendFormWithData(user.getEmail(), user.getPassword());
         return new HomePage().isExpectedPage();
     }
-
-    // -----------------------------------------------------------
-
-    /**
-     * @param user
-     */
-    @Step("send login form with erroneous user data")
-    public LoginPage sendFalseLoginform(User user)
+    
+    @Step("send login form with invalid user data")
+    public LoginPage sendFalseLoginForm(User user)
     {
         sendFormWithData(user.getEmail(), user.getPassword());
         return new LoginPage().isExpectedPage();
     }
 
-    /**
-     * @param eMail
-     */
-    @Step("validate invalid email for login error message")
-    public void validateWrongEmail(String eMail)
-    {
-        errorMessage.validateErrorMessage(Neodymium.localizedText("AccountPages.validation.emailDoesNotExistError"));
-        emailField.shouldHave(exactValue(eMail));
-    }
+    // -----------------------------------------------------------
+
 
     /**
      * @param eMail

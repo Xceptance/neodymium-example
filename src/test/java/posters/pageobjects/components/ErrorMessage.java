@@ -6,7 +6,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
-import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 
@@ -24,7 +23,8 @@ public class ErrorMessage extends AbstractComponent
     @Step("validate that the error message {message} is visible")
     public void validateErrorMessage(String message)
     {
-        errorMessage.shouldHave(exactText(Neodymium.localizedText(message))).shouldBe(visible);
+        errorMessage.find("strong").shouldHave(exactText(message)).shouldBe(visible);
+        errorMessage.find(".close").shouldHave(exactText("×")).shouldBe(visible);
     }
 
     @Step("validate that no error message is visible")

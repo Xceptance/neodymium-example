@@ -78,7 +78,7 @@ default:
             goToFirstPage: "<<"
     NoHitsPage:
         validation:
-            noProductsFound: × Sorry! No results found matching your search. Please try again.
+            noProductsFound: Sorry! No results found matching your search. Please try again.
     ProductdetailPage:
         size:
             "16x12": 16 x 12 in
@@ -93,12 +93,58 @@ default:
     CartPage:
         title: Cart
         errorMessage: Your cart is empty. Continue shopping.
-    ShippingAddressPage:
+    AddressPages:
+        breadcrumb:
+            cart: CART/ 
+            shippingAddress: SHIPPING ADDRESS / 
+            billingAddress: BILLING ADDRESS / 
+            payment: PAYMENT / 
+            placeOrder: PLACE ORDER /
+        processWrap:
+            "1":
+                number: "01"
+                name: SHOPPING CART
+            "2":
+                number: "02"
+                name: SHIPPING ADDRESS
+            "3":
+                number: "03"
+                name: BILLING ADDRESS
+            "4":
+                number: "04"
+                name: PAYMENT METHOD
+            "5":
+                number: "05"
+                name: CHECKOUT
+            "6":
+                number: "06"
+                name: ORDER COMPLETE
         fillIn:
-            title: Enter a shipping address
-    BillingAddressPage:
-        fillIn:
-            title: Enter a billing address
+            title:
+                shipping: Enter a shipping address
+                billing: Enter a billing address
+            headlines:
+                fullName: FULL NAME*
+                company: COMPANY
+                address: ADDRESS*
+                city: CITY*
+                state: STATE/PROVINCE*
+                zip: ZIP/POSTAL CODE*
+                country: COUNTRY*
+                useAddressForBilling: "Use this address for billing?*"
+                requiredFields: "* Required fields"
+            placeholder:
+                yourName: Your Name
+                companyName: company name
+                address: "Street address, Apartment, etc."
+                zip: "Zip / Postal"
+            dropdown:
+                usa: United States
+                germany: Germany
+            radio:
+                "yes": "YES"
+                "no": "NO"
+            button: Continue
     PaymentPage:
         fillIn:
             title: Enter a payment method
@@ -175,55 +221,27 @@ default:
             password: Password
             passwordRepeat: Confirm password
         button: Create account
-    AddressPages:
-        breadcrumb:
-            cart: CART/ 
-            shippingAddress: SHIPPING ADDRESS / 
-            billingAddress: BILLING ADDRESS / 
-            payment: PAYMENT / 
-            placeOrder: PLACE ORDER /
-        processWrap:
-            "1":
-                number: "01"
-                name: SHOPPING CART
-            "2":
-                number: "02"
-                name: SHIPPING ADDRESS
-            "3":
-                number: "03"
-                name: BILLING ADDRESS
-            "4":
-                number: "04"
-                name: PAYMENT METHOD
-            "5":
-                number: "05"
-                name: CHECKOUT
-            "6":
-                number: "06"
-                name: ORDER COMPLETE
-        fillIn:
-            headlines:
-                fullName: FULL NAME*
-                company: COMPANY
-                address: ADDRESS*
-                city: CITY*
-                state: STATE/PROVINCE*
-                zip: ZIP/POSTAL CODE*
-                country: COUNTRY*
-                useAddressForBilling: "Use this address for billing?*"
-                requiredFields: "* Required fields"
-            placeholder:
-                yourName: Your Name
-                companyName: company name
-                address: "Street address, Apartment, etc."
-                zip: "Zip / Postal"
-            dropdown:
-                usa: United States
-                germany: Germany
-            radio:
-                "yes": "YES"
-                "no": "NO"
-            button: Continue
+    AccountOverviewPage:
+        title: My Account
+        button:
+            orderHistory: Order History
+            myAddresses: My Addresses
+            paymentSettings: Payment Settings
+            personalData: Personal Data
+    PersonalDataPage:
+        title: Personal Data
+        headlines:
+            name: Name
+            email: Email
+        buttons:
+            changeData: Change Name or Email
+            changePassword: Change your password
+            deleteAccount: Delete your account
+    DeleteAccontPage:
+        title: Delete your account
+        headline: YOUR PASSWORD*
+        placeholder: Password
+        button: Delete
     General:
         product:
             style: style
