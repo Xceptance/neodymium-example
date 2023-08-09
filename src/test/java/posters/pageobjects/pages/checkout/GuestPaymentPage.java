@@ -51,16 +51,16 @@ public class GuestPaymentPage extends AbstractCheckoutPage
     @Step("validate fill-in form headlines")
     public void validateFillInHeadlines()
     {
-        validateFillInHeadlines("PaymentPage.fillIn.headlines.cardNumber");
-        validateFillInHeadlines("PaymentPage.fillIn.headlines.cardHolderName");
-        validateFillInHeadlines("PaymentPage.fillIn.headlines.expirationDate");
+        validateFillInHeadlines("GuestPaymentPage.fillIn.headlines.cardNumber");
+        validateFillInHeadlines("GuestPaymentPage.fillIn.headlines.cardHolderName");
+        validateFillInHeadlines("GuestPaymentPage.fillIn.headlines.expirationDate");
     }
     
     @Step("validate fill-in form placeholder")
     public void validateFillInPlaceholder()
     {        
-        creditCardNumber.shouldHave(attribute("placeholder", (Neodymium.localizedText("PaymentPage.fillIn.placeholder.cardNumber")))).shouldBe(visible);
-        creditCardName.shouldHave(attribute("placeholder", (Neodymium.localizedText("PaymentPage.fillIn.placeholder.cardOwnerName")))).shouldBe(visible);
+        creditCardNumber.shouldHave(attribute("placeholder", (Neodymium.localizedText("GuestPaymentPage.fillIn.placeholder.cardNumber")))).shouldBe(visible);
+        creditCardName.shouldHave(attribute("placeholder", (Neodymium.localizedText("GuestPaymentPage.fillIn.placeholder.cardOwnerName")))).shouldBe(visible);
         $("#expirationDateMonth [selected]").shouldHave(exactText("0" + Integer.toString(LocalDate.now().getMonthValue()))).shouldBe(visible);
         $("#expirationDateYear [selected]").shouldHave(exactText(Integer.toString(LocalDate.now().getYear()))).shouldBe(visible);
     }
@@ -78,18 +78,18 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         expirationMonth.scrollTo().click();
         
         // validate months
-        validateMonthDropdown("PaymentPage.fillIn.expireMonth.january");
-        validateMonthDropdown("PaymentPage.fillIn.expireMonth.february");
-        validateMonthDropdown("PaymentPage.fillIn.expireMonth.march");
-        validateMonthDropdown("PaymentPage.fillIn.expireMonth.april");
-        validateMonthDropdown("PaymentPage.fillIn.expireMonth.may");
-        validateMonthDropdown("PaymentPage.fillIn.expireMonth.june");
-        validateMonthDropdown("PaymentPage.fillIn.expireMonth.july");
-        validateMonthDropdown("PaymentPage.fillIn.expireMonth.august");
-        validateMonthDropdown("PaymentPage.fillIn.expireMonth.september");
-        validateMonthDropdown("PaymentPage.fillIn.expireMonth.october");
-        validateMonthDropdown("PaymentPage.fillIn.expireMonth.november");
-        validateMonthDropdown("PaymentPage.fillIn.expireMonth.december");
+        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.january");
+        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.february");
+        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.march");
+        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.april");
+        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.may");
+        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.june");
+        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.july");
+        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.august");
+        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.september");
+        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.october");
+        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.november");
+        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.december");
     }
     
     @Step("validate year dropdown")
@@ -105,17 +105,17 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         expirationYear.scrollTo().click();
         
         // validate years
-        validateYearDropdown("PaymentPage.fillIn.expireYear.2023");
-        validateYearDropdown("PaymentPage.fillIn.expireYear.2024");
-        validateYearDropdown("PaymentPage.fillIn.expireYear.2025");
-        validateYearDropdown("PaymentPage.fillIn.expireYear.2026");
-        validateYearDropdown("PaymentPage.fillIn.expireYear.2027");
-        validateYearDropdown("PaymentPage.fillIn.expireYear.2028");
-        validateYearDropdown("PaymentPage.fillIn.expireYear.2029");
-        validateYearDropdown("PaymentPage.fillIn.expireYear.2030");
-        validateYearDropdown("PaymentPage.fillIn.expireYear.2031");
-        validateYearDropdown("PaymentPage.fillIn.expireYear.2032");
-        validateYearDropdown("PaymentPage.fillIn.expireYear.2033");
+        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2023");
+        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2024");
+        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2025");
+        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2026");
+        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2027");
+        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2028");
+        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2029");
+        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2030");
+        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2031");
+        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2032");
+        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2033");
     }
     
     @Override

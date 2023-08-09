@@ -40,7 +40,7 @@ public class GuestBillingAddressPage extends AbstractCheckoutPage
         // validateProcessWrap();
 
         // validate title
-        title.shouldHave(exactText(Neodymium.localizedText("GuestShippingAddressPage.title"))).shouldBe(visible);
+        title.shouldHave(exactText(Neodymium.localizedText("GuestBillingAddressPage.title"))).shouldBe(visible);
 
         // validate fill form headlines
         validateFillInHeadlines();

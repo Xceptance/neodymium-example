@@ -55,7 +55,7 @@
       "shipAddrEqualBillAddr": true,
       "creditCard":
       {
-      		"fullName": "Jimmy Blue",
+      		"fullName": "Gregor Onkh",
       		"cardNumber": "4111111111111111",
       		"crypticCardNumber": "xxxx xxxx xxxx 1111",
       		"expDateMonth": "12",

@@ -48,8 +48,8 @@
       "sizeProduct": "16 x 12 in",
       "styleProduct": "matte",
       "shipAddrPos": 1,
-      "shipBillPos": 2,
-      "creditCartPos": 1,
+      "billAddrPos": 2,
+      "creditCardPos": 1,
       "shipAddrEqualBillAddr": false,
       "shippingAddress":
       {

@@ -245,6 +245,11 @@ default:
             myAddresses: My Addresses
             paymentSettings: Payment Settings
             personalData: Personal Data
+    MyAddressesPage:
+        title: My Addresses
+        headlines:
+            shipAddr: Shipping Address
+            billAddr: Billing Address
     PersonalDataPage:
         title: Personal Data
         headlines:
@@ -276,5 +281,8 @@ default:
             quantity: QUANTITY
             update: REMOVE/UPDATE
             totalPrice: TOTAL PRICE
+        button:
+            addNewShipAddr: Add a new shipping address
+            addNewBillAddr: Add a new billing address
         
             
