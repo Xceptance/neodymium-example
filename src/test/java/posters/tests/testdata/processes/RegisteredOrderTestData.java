@@ -2,9 +2,12 @@ package posters.tests.testdata.processes;
 
 import posters.tests.testdata.dataobjects.Address;
 import posters.tests.testdata.dataobjects.CreditCard;
+import posters.tests.testdata.dataobjects.User;
 
-public class GuestOrderTestData
+public class RegisteredOrderTestData
 {
+    private User user;
+    
     private String topCategory;
 
     private int resultPosition;
@@ -13,13 +16,24 @@ public class GuestOrderTestData
     
     private String styleProduct;
     
-    private Address shippingAddress;
+    private int shipAddrPos;
+    
+    private int billAddrPos;
+    
+    private int creditCardPos;
     
     private Boolean shipAddrEqualBillAddr;
+    
+    private Address shippingAddress;
     
     private Address billingAddress;
     
     private CreditCard creditCard;
+    
+    public User getUser() 
+    {
+        return user;
+    }
     
     public String getTopCategory()
     {
@@ -41,14 +55,29 @@ public class GuestOrderTestData
         return styleProduct;
     }
     
-    public Address getShippingAddress() 
+    public int getShipAddrPos() 
     {
-        return shippingAddress;
+        return shipAddrPos;
+    }
+    
+    public int getBillAddrPos() 
+    {
+        return billAddrPos;
+    }
+    
+    public int getCreditCardPos() 
+    {
+        return creditCardPos;
     }
     
     public Boolean getShipAddrEqualBillAddr()
     {
         return shipAddrEqualBillAddr;
+    }
+    
+    public Address getShippingAddress() 
+    {
+        return shippingAddress;
     }
     
     public Address getBillingAddress() 

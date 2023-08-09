@@ -16,7 +16,7 @@ import com.xceptance.neodymium.util.Neodymium;
 import io.qameta.allure.Step;
 import posters.tests.testdata.dataobjects.CreditCard;
 
-public class PaymentPage extends AbstractCheckoutPage
+public class GuestPaymentPage extends AbstractCheckoutPage
 {
     private SelenideElement title = $("#titlePayment");
 
@@ -33,14 +33,14 @@ public class PaymentPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a payment page")
-    public PaymentPage isExpectedPage()
+    public GuestPaymentPage isExpectedPage()
     {
         super.isExpectedPage();
         title.should(exist);
         return this;
     }
 
-    /// ----- validate payment page ----- ///
+    /// ----- validate guest payment page ----- ///
     
     @Step("validate fill-in form headlines")
     public void validateFillInHeadlines(String headline)
@@ -130,8 +130,10 @@ public class PaymentPage extends AbstractCheckoutPage
         // validate process wrap
         //validateProcessWrap();
         
-        // validate fill in form headline
-        title.shouldHave(exactText(Neodymium.localizedText("PaymentPage.fillIn.title"))).shouldBe(visible);
+        // validate title
+        title.shouldHave(exactText(Neodymium.localizedText("GuestPaymentPage.title"))).shouldBe(visible);
+        
+        // validate fill in form headlines
         validateFillInHeadlines();
         
         // validate placeholder
@@ -147,49 +149,28 @@ public class PaymentPage extends AbstractCheckoutPage
         validateRequiredString();
         
         // validate continue button
-        addPaymentButton.shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.button"))).shouldBe(visible);
+        addPaymentButton.shouldHave(exactText(Neodymium.localizedText("GuestPaymentPage.button"))).shouldBe(visible);
     }
     
     /// ----- send payment form ----- ///
     
     @Step("fill and send payment form")
-    public PlaceOrderPage sendPaymentForm(CreditCard creditcard)
+    public PlaceOrderPage goToPlaceOrderPage(CreditCard creditcard)
     {
-        return sendPaymentForm(creditcard.getCardNumber(), creditcard.getFullName(), creditcard.getExpDateMonth(), creditcard.getExpDateYear());
+        return goToPlaceOrderPage(creditcard.getCardNumber(), creditcard.getFullName(), creditcard.getExpDateMonth(), creditcard.getExpDateYear());
     }
     
     @Step("fill and send payment form")
-    public PlaceOrderPage sendPaymentForm(String number, String name, String month, String year)
+    public PlaceOrderPage goToPlaceOrderPage(String number, String name, String month, String year)
     {
-        // enter parameters
+        // fill in form with parameters
         creditCardNumber.val(number);
         creditCardName.val(name);
         expirationMonth.selectOption(month);
         expirationYear.selectOption(year);
 
-        // click on "Continue" button
+        // go to place order page
         addPaymentButton.scrollTo().click();
-
-        return new PlaceOrderPage().isExpectedPage();
-    }
-    
-    // --------------------------------------------------------
-
-    /**
-     * @param position
-     *            The position of the credit card you want to select
-     * @return PPlaceOrder
-     */
-    @Step("select a payment")
-    public PlaceOrderPage selectCreditCard(int position)
-    {
-        final int index = position - 1;
-        // Select address
-        // Checks the radio button belonging to the delivery address with index @{index}
-        $("#payment" + index + " input").scrollTo().click();
-        // Open the billing address page in the checkout process
-        // Clicks the continue button
-        $("#btnUsePayment").scrollTo().click();
 
         return new PlaceOrderPage().isExpectedPage();
     }

@@ -268,12 +268,23 @@ public class CartPage extends AbstractBrowsingPage
         return new HomePage().isExpectedPage();
     }
     
-    @Step("open shipping address from the cart page")
-    public ShippingAddressPage openShippingAddressPage()
+    @Step("open guest shipping address from the cart page")
+    public GuestShippingAddressPage openGuestShippingAddressPage()
     {
         $("#btnStartCheckout").scrollTo().click();
-        return new ShippingAddressPage().isExpectedPage();
+        return new GuestShippingAddressPage().isExpectedPage();
     }
+    
+    @Step("open returning customer shipping address from the cart page")
+    public ReturningCustomerShippingAddressPage openReturningCustomerShippingAddressPage()
+    {
+        $("#btnStartCheckout").scrollTo().click();
+        return new ReturningCustomerShippingAddressPage().isExpectedPage();
+    }
+    
+    
+    
+   
 
 
     // ----------------------------------------------------------------------------- //

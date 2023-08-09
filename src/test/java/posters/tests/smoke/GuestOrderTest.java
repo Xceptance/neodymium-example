@@ -10,7 +10,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
-import posters.pageobjects.pages.checkout.PaymentPage;
+import posters.pageobjects.pages.checkout.GuestPaymentPage;
 import posters.pageobjects.pages.checkout.PlaceOrderPage;
 import posters.tests.AbstractTest;
 
@@ -42,35 +42,35 @@ public class GuestOrderTest extends AbstractTest
         var cartPage = productDetailPage.miniCart.openCartPage();
         
         // go to shipping address page and validate
-        var shippingAddressPage = cartPage.openShippingAddressPage();
+        var shippingAddressPage = cartPage.openGuestShippingAddressPage();
         shippingAddressPage.validateStructure();
         
         // declare variables used in if
-        PaymentPage paymentPage;
+        GuestPaymentPage paymentPage;
         PlaceOrderPage placeOrderPage;
         
-        if (!guestOrderTestData.getShipAndBillAddressAreEqual()) 
+        if (!guestOrderTestData.getShipAddrEqualBillAddr()) 
         {
             // go to billing address page and validate
-            var billingAddressPage = shippingAddressPage.sendShippingAddressForm(guestOrderTestData.getShippingAddress());
+            var billingAddressPage = shippingAddressPage.goToGuestBillingAddressPage(guestOrderTestData.getShippingAddress());
             billingAddressPage.validateStructure();
         
             // go to payment page and validate
-            paymentPage = billingAddressPage.sendBillingAddressForm(guestOrderTestData.getBillingAddress());
+            paymentPage = billingAddressPage.goToGuestPaymentPage(guestOrderTestData.getBillingAddress());
             paymentPage.validateStructure();
             
             // go to place order page and validate order overview
-            placeOrderPage = paymentPage.sendPaymentForm(guestOrderTestData.getCreditCard());
+            placeOrderPage = paymentPage.goToPlaceOrderPage(guestOrderTestData.getCreditCard());
             placeOrderPage.validateOrderOverview(guestOrderTestData.getShippingAddress(), guestOrderTestData.getBillingAddress(), guestOrderTestData.getCreditCard());
         }
         else
         {
-            // got to payment page and validate
-            paymentPage = shippingAddressPage.sendShippingAddressForm2(guestOrderTestData.getShippingAddress());
+            // go to payment page and validate
+            paymentPage = shippingAddressPage.goToGuestPaymentPage(guestOrderTestData.getShippingAddress());
             paymentPage.validateStructure();
             
             // go to place order page and validate order overview
-            placeOrderPage = paymentPage.sendPaymentForm(guestOrderTestData.getCreditCard());
+            placeOrderPage = paymentPage.goToPlaceOrderPage(guestOrderTestData.getCreditCard());
             placeOrderPage.validateOrderOverview(guestOrderTestData.getShippingAddress(), guestOrderTestData.getShippingAddress(), guestOrderTestData.getCreditCard());
         }
         

@@ -93,6 +93,20 @@ default:
     CartPage:
         title: Cart
         errorMessage: Your cart is empty. Continue shopping.
+    GuestShippingAddressPage:
+        title: Enter a shipping address
+    ReturningCustomerShippingAddressPage:
+        title: Select or enter a shipping address
+        button:
+            addNewShipAddr: Add a new shipping address
+            useShipAddr: Continue
+    GuestBillingAddressPage:
+        title: Enter a billing address
+    ReturningCustomerBillingAddressPage:
+        title: Select or enter a billing address
+        button:
+            addNewBillAddr: Add a new billing address
+            useBillAddr: Use this billing address
     AddressPages:
         breadcrumb:
             cart: CART/ 
@@ -120,9 +134,6 @@ default:
                 number: "06"
                 name: ORDER COMPLETE
         fillIn:
-            title:
-                shipping: Enter a shipping address
-                billing: Enter a billing address
             headlines:
                 fullName: FULL NAME*
                 company: COMPANY
@@ -144,10 +155,10 @@ default:
             radio:
                 "yes": "YES"
                 "no": "NO"
-            button: Continue
-    PaymentPage:
+        button: Continue
+    GuestPaymentPage:
+        title: Enter a payment method
         fillIn:
-            title: Enter a payment method
             headlines:
                 cardNumber: "CARD NUMBER*"
                 cardHolderName: "CARDHOLDER'S NAME*"
@@ -180,6 +191,12 @@ default:
                 "2031": 2031
                 "2032": 2032
                 "2033": 2033
+        button: Continue
+    ReturningCustomerPaymentPage:
+        title: Select or enter a credit card
+        button:
+            addNewCreditCard: Add a new credit card
+            useCreditCard: Use this credit card
     PlaceOrderPage:
         overview:
             title: Order Overview

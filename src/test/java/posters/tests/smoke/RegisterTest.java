@@ -37,6 +37,7 @@ public class RegisterTest extends AbstractTest
         loginPage.validateStructure();
         loginPage.validateSuccessfulRegistration();
         
+        // send login form
         homePage = loginPage.sendLoginForm(userData);
         homePage.validateSuccessfulLogin(userData.getFirstName());
     }

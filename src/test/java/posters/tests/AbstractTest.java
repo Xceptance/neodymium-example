@@ -12,6 +12,7 @@ import com.xceptance.neodymium.util.DataUtils;
 import posters.tests.testdata.processes.AddToCartTestData;
 import posters.tests.testdata.processes.BrowseTestData;
 import posters.tests.testdata.processes.GuestOrderTestData;
+import posters.tests.testdata.processes.RegisteredOrderTestData;
 import posters.tests.testdata.dataobjects.Address;
 import posters.tests.testdata.dataobjects.CreditCard;
 import posters.tests.testdata.dataobjects.Product;
@@ -49,6 +50,8 @@ public abstract class AbstractTest
     protected BrowseTestData browseTestData;
 
     protected GuestOrderTestData guestOrderTestData;
+    
+    protected RegisteredOrderTestData registeredOrderTestData;
 
     @Before
     public void setup()
@@ -68,6 +71,7 @@ public abstract class AbstractTest
         addToCartTestData = DataUtils.get(AddToCartTestData.class);
         browseTestData = DataUtils.get(BrowseTestData.class);
         guestOrderTestData = DataUtils.get(GuestOrderTestData.class);
+        registeredOrderTestData = DataUtils.get(RegisteredOrderTestData.class);
     }
 
     protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractTest.class);

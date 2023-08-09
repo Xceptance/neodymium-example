@@ -12,7 +12,7 @@ import com.xceptance.neodymium.util.Neodymium;
 import io.qameta.allure.Step;
 import posters.tests.testdata.dataobjects.Address;
 
-public class ShippingAddressPage extends AbstractCheckoutPage
+public class GuestShippingAddressPage extends AbstractCheckoutPage
 {
     private SelenideElement title = $("#titleDelAddr");
 
@@ -20,14 +20,14 @@ public class ShippingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a shipping address page")
-    public ShippingAddressPage isExpectedPage()
+    public GuestShippingAddressPage isExpectedPage()
     {
         super.isExpectedPage();
         title.should(exist);
         return this;
     }
 
-    /// ----- validate shipping address page ----- ///
+    /// ----- validate guest shipping address page ----- ///
 
     @Step("validate shipping address usage for billing address radio")
     public void validateAddressRadio()
@@ -45,14 +45,14 @@ public class ShippingAddressPage extends AbstractCheckoutPage
 
         // validate breadcrumb
         validateBreadcrumb();
-        
+
         // validate process wrap
-        //validateProcessWrap();
+        // validateProcessWrap();
 
         // validate title
-        title.shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.title.shipping"))).shouldBe(visible);
-        
-        // validate fill in form headline
+        title.shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.title.enterShipping"))).shouldBe(visible);
+
+        // validate fill in form headlines
         validateFillInHeadlines();
 
         // validate fill in form structure
@@ -68,26 +68,26 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         validateRequiredString();
 
         // validate continue button
-        addShippingButton.shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.button"))).shouldBe(visible);
+        addShippingButton.shouldHave(exactText(Neodymium.localizedText("AddressPages.button"))).shouldBe(visible);
     }
 
     /// ----- send shipping address form ----- ///
 
-    @Step("fill and send shipping address form")
-    public BillingAddressPage sendShippingAddressForm(Address shippingAddress)
+    @Step("fill and send shipping address form and go to guest billing address page")
+    public GuestBillingAddressPage goToGuestBillingAddressPage(Address shippingAddress)
     {
         String fullName = shippingAddress.getFirstName() + " " + shippingAddress.getLastName();
 
-        return sendShippingAddressForm(fullName, shippingAddress.getCompany(), shippingAddress.getStreet(),
-                                       shippingAddress.getCity(), shippingAddress.getState(), shippingAddress.getZip(),
-                                       shippingAddress.getCountry());
+        return goToGuestBillingAddressPage(fullName, shippingAddress.getCompany(), shippingAddress.getStreet(),
+                                           shippingAddress.getCity(), shippingAddress.getState(), shippingAddress.getZip(),
+                                           shippingAddress.getCountry());
     }
 
-    @Step("fill and send shipping address form")
-    public BillingAddressPage sendShippingAddressForm(String name, String company, String address, String city,
-                                                      String state, String zip, String country)
-    {        
-        // enter parameters
+    @Step("fill and send shipping address form and go to guest billing address page")
+    public GuestBillingAddressPage goToGuestBillingAddressPage(String name, String company, String address, String city,
+                                                               String state, String zip, String country)
+    {
+        // fill in form with parameters
         $("#fullName").val(name);
         $("#company").val(company);
         $("#addressLine").val(address);
@@ -95,30 +95,30 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         $("#state").val(state);
         $("#zip").val(zip);
         $("#country").selectOption(country);
-        
+
         $("#billEqualShipp-No").scrollTo().click();
 
-        // click on "Continue" button
+        // go to guest billing address page
         addShippingButton.scrollTo().click();
 
-        return new BillingAddressPage().isExpectedPage();
+        return new GuestBillingAddressPage().isExpectedPage();
     }
-    
-    @Step("fill and send shipping address form")
-    public PaymentPage sendShippingAddressForm2(Address shippingAddress)
+
+    @Step("fill and send shipping address form and go to guest payment page")
+    public GuestPaymentPage goToGuestPaymentPage(Address shippingAddress)
     {
         String fullName = shippingAddress.getFirstName() + " " + shippingAddress.getLastName();
 
-        return sendShippingAddressForm2(fullName, shippingAddress.getCompany(), shippingAddress.getStreet(),
-                                       shippingAddress.getCity(), shippingAddress.getState(), shippingAddress.getZip(),
-                                       shippingAddress.getCountry());
+        return goToGuestPaymentPage(fullName, shippingAddress.getCompany(), shippingAddress.getStreet(),
+                                    shippingAddress.getCity(), shippingAddress.getState(), shippingAddress.getZip(),
+                                    shippingAddress.getCountry());
     }
 
-    @Step("fill and send shipping address form")
-    public PaymentPage sendShippingAddressForm2(String name, String company, String address, String city,
-                                                      String state, String zip, String country)
-    {        
-        // enter parameters
+    @Step("fill and send shipping address form and go to guest payment page")
+    public GuestPaymentPage goToGuestPaymentPage(String name, String company, String address, String city,
+                                                 String state, String zip, String country)
+    {
+        // fill in form with parameters
         $("#fullName").val(name);
         $("#company").val(company);
         $("#addressLine").val(address);
@@ -126,29 +126,12 @@ public class ShippingAddressPage extends AbstractCheckoutPage
         $("#state").val(state);
         $("#zip").val(zip);
         $("#country").selectOption(country);
-        
+
         $("#billEqualShipp-Yes").scrollTo().click();
 
-        // click on "Continue" button
+        // go to guest payment page
         addShippingButton.scrollTo().click();
 
-        return new PaymentPage().isExpectedPage();
-    }
-
-
-    // ---------------------------------------------------------------
-
-    @Step("select a shipping address")
-    public BillingAddressPage selectShippingAddress(int position)
-    {
-        final int index = position - 1;
-        // Select address
-        // Checks the radio button belonging to the delivery address with index @{index}
-        $("#delAddr" + index + " input").scrollTo().click();
-        // Open the billing address page in the checkout process
-        // Clicks the continue button
-        $("#btnUseAddressContinue").scrollTo().click();
-
-        return new BillingAddressPage().isExpectedPage();
+        return new GuestPaymentPage().isExpectedPage();
     }
 }

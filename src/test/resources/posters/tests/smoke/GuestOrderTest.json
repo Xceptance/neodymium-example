@@ -4,14 +4,6 @@
       "resultPosition": "5",
       "sizeProduct": "64 x 48 in",
       "styleProduct": "gloss",
-      "creditCard":
-      {
-      		"fullName": "Jimmy Blue",
-      		"cardNumber": "4111111111111111",
-      		"crypticCardNumber": "xxxx xxxx xxxx 1111",
-      		"expDateMonth": "12",
-      		"expDateYear": "2026"
-      },
       "shippingAddress":
       {
             "firstName": "Jimmy Blue",
@@ -23,7 +15,7 @@
       		"zip": "01803",
       		"country": "United States"
       },
-      "sameBillingAddress": false,
+      "shipAddrEqualBillAddr": false,
       "billingAddress":
       {
             "firstName": "Jimmy Blue",
@@ -34,6 +26,14 @@
       		"state": "California",
       		"zip": "00018",
       		"country": "United States"
+      },
+      "creditCard":
+      {
+      		"fullName": "Jimmy Blue",
+      		"cardNumber": "4111111111111111",
+      		"crypticCardNumber": "xxxx xxxx xxxx 1111",
+      		"expDateMonth": "12",
+      		"expDateYear": "2026"
       }
    },
    {
@@ -41,14 +41,6 @@
       "resultPosition": "2",
       "sizeProduct": "16 x 12 in",
       "styleProduct": "matte",
-      "creditCard":
-      {
-      		"fullName": "Erik Range",
-      		"cardNumber": "4111111111111111",
-      		"crypticCardNumber": "xxxx xxxx xxxx 1111",
-      		"expDateMonth": "05",
-      		"expDateYear": "2028"
-      },
       "shippingAddress":
       {
             "firstName": "Gregor",
@@ -60,6 +52,14 @@
       		"zip": "38100",
       		"country": "Germany"
       },
-      "sameBillingAddress": true
+      "shipAddrEqualBillAddr": true,
+      "creditCard":
+      {
+      		"fullName": "Jimmy Blue",
+      		"cardNumber": "4111111111111111",
+      		"crypticCardNumber": "xxxx xxxx xxxx 1111",
+      		"expDateMonth": "12",
+      		"expDateYear": "2026"
+      }
    }
 ]
