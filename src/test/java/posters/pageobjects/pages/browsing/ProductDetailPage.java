@@ -36,7 +36,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     
     public void validateSizeDropdown(String size) 
     {
-        productSize.shouldBe(matchText(Neodymium.localizedText(size))).should(exist);
+        productSize.should(matchText(Neodymium.localizedText(size))).should(exist);
     }
     
     @Step("validate size dropdown")
@@ -75,10 +75,10 @@ public class ProductDetailPage extends AbstractBrowsingPage
         $("#prodImg").shouldBe(visible);
         
         // validate title
-        productName.shouldHave(matchText("[A-Z].{3,}")).shouldBe(visible);
+        productName.should(matchText("[A-Z].{3,}")).shouldBe(visible);
         
         // validate product price
-        productPrice.shouldHave(matchText("\\$\\d+\\.\\d{2}")).shouldBe(visible);
+        productPrice.should(matchText("\\$\\d+\\.\\d{2}")).shouldBe(visible);
         
         // validate product description
         $("#prodDescriptionOverview").shouldBe(visible);
@@ -171,15 +171,5 @@ public class ProductDetailPage extends AbstractBrowsingPage
     public Product getProduct()
     {
         return new Product(getProductName(), getProductPrice(), getChosenStyle(), getChosenSize(), 1);
-    }
-    
-    // ----------------------------------------------------------------------------------
-
-
-    @Step("validate the product detail page of '{productName}' and assert visually")
-    public void validateAndVisualAssert(String productName)
-    {
-        validateStructureAndVisual();
-        validateProductName(productName);
     }
 }

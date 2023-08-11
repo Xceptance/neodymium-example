@@ -10,7 +10,6 @@ import com.codeborne.selenide.ElementsCollection;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
-import posters.tests.testdata.dataobjects.User;
 
 public class HomePage extends AbstractBrowsingPage
 {
@@ -33,7 +32,7 @@ public class HomePage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate homepage ----- ///
+    /// ----- validate content homepage ----- ///
     
     @Step("validate poster slide")
     public void validatePosterSlide()
@@ -103,6 +102,8 @@ public class HomePage extends AbstractBrowsingPage
         $("a.btn-primary-shop").shouldHave(exactText(Neodymium.localizedText("HomePage.shopAllProducts"))).shouldBe(visible);
     }
     
+    /// ----- validate success messages ----- ///
+    
     @Step("validate successful login on home page")
     public void validateSuccessfulLogin(String firstName)
     {
@@ -117,28 +118,5 @@ public class HomePage extends AbstractBrowsingPage
     public void validateSuccessfulDeletedAccount()
     {
         successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulAccountDeletion"));
-    }
-    
-    // --------------------------------------------------
-    
-    @Step("validate successful order on home page")
-    public void validateSuccessfulOrder()
-    {
-        successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulOrder"));
-        // Verify that the mini cart is empty again
-        miniCart.validateTotalCount(0);
-        miniCart.validateSubtotal("$0.00");
-    }
-
-    public void validateAndVisualAssert()
-    {
-        validateStructureAndVisual();
-        footer.validateStructure();
-    }
-
-    public ProductDetailPage clickOnPresentedProduct(String productName)
-    {
-        $$("#productList .thumbnail .pName").filter(exactText(productName)).shouldHaveSize(1).first().click();
-        return new ProductDetailPage().isExpectedPage();
     }
 }

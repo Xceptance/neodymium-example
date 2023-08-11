@@ -1,20 +1,15 @@
 package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import java.util.Random;
-
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
-import posters.pageobjects.pages.browsing.CategoryPage;
 
 public class Pagination extends AbstractComponent
 {

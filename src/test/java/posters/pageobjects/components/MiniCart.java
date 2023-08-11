@@ -199,8 +199,7 @@ public class MiniCart extends AbstractComponent
     @Step("validate '{product}' in the mini cart")
     public void validateMiniCartItem(int position, Product product)
     {
-        validateMiniCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(),
-                             PriceHelper.format(product.getTotalPrice()));
+        validateMiniCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), PriceHelper.format(product.getTotalPrice()));
     }
 
     @Step("validate '{product}' in the mini cart")

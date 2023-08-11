@@ -18,6 +18,8 @@ public class NoHitsPage extends AbstractBrowsingPage
         return this;
     }
     
+    /// ----- validate no hits page ----- ///
+    
     @Step("validate that no products are on no hits page")
     public void validateNoProductsFound()
     {
