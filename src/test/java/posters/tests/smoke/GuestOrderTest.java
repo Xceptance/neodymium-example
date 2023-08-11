@@ -10,6 +10,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
+import posters.pageobjects.components.UserMenu;
 import posters.pageobjects.pages.checkout.GuestPaymentPage;
 import posters.pageobjects.pages.checkout.PlaceOrderPage;
 import posters.tests.AbstractTest;

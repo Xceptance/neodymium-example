@@ -110,29 +110,4 @@ public class Pagination extends AbstractComponent
         }
         else return;    
     }
-    
-    // ---------------------------------------------
-    
-    @Step("get number of available pages")
-    public int getNumberOfSites()
-    {
-        return pagination.findAll("li > a").filter(matchText("\\d+")).size();
-    }
-
-    @Step("get the link to a specific page")
-    public SelenideElement getSite(String stringNumber)
-    {
-        return pagination.find(Selectors.withText(stringNumber));
-    }
-
-    @Step("click on any link represented by a number")
-    public CategoryPage clickOnRandomSite(Random random)
-    {
-        String stringChosenElementValue = Integer.toString(random.nextInt(getNumberOfSites()) + 1);
-        SelenideElement chosenPaginationLink = getSite(stringChosenElementValue);
-        chosenPaginationLink.scrollTo();
-        chosenPaginationLink.click();
-
-        return new CategoryPage().isExpectedPage();
-    }
 }

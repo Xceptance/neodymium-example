@@ -16,6 +16,8 @@ public class SaleBanner extends AbstractComponent
     {
         $(".sale").should(exist);
     }
+    
+    /// ----- validate sale banner ----- ///
 
     @Step("validate strings sale banner")
     private static void validateSaleBanner(String text) 

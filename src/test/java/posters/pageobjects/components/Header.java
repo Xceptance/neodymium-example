@@ -15,6 +15,8 @@ public class Header extends AbstractComponent
         $("#globalNavigation").should(exist);
     }
     
+    /// ----- validate header ----- ///
+    
     @Step("validate structure header")
     public void validateStructure() 
     {   
@@ -22,7 +24,7 @@ public class Header extends AbstractComponent
 
         Search.validateStructure();
         TopNavigation.validateStructure();
-        UserMenu.validateGuestUserMenu();
+        UserMenu.validateStructure();
         MiniCart.validateStructure();
         SaleBanner.validateStructure();
     }

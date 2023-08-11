@@ -10,6 +10,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
+import posters.pageobjects.components.UserMenu;
 import posters.tests.AbstractTest;
 
 @Owner("Lisa Smith")
@@ -19,7 +20,7 @@ import posters.tests.AbstractTest;
 public class RegisteredOrderTest extends AbstractTest
 {
     @DataSet(1)
-    @DataSet(2)
+    //@DataSet(2)
     @Test
     public void testOrderingAsRegisteredUser()
     {

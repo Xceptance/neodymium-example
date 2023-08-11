@@ -1,6 +1,7 @@
 package posters.flows;
 
 import io.qameta.allure.Step;
+import posters.pageobjects.components.MiniCart;
 import posters.pageobjects.pages.browsing.HomePage;
 
 public class CartCleanUpFlow
@@ -14,7 +15,7 @@ public class CartCleanUpFlow
         var cartPage = homePage.miniCart.openCartPage();
         
         // remove the first product as long as one is available
-        while (cartPage.miniCart.getTotalCount() != 0)
+        while (MiniCart.getTotalCount() != 0)
         {
             cartPage.removeProduct(1);
         }

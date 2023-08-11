@@ -27,9 +27,11 @@ default:
                     "3": Landscapes
                     "4": XXL Panoramas
         userMenu:
-            greeting: "WELCOME: GUEST"
+            title: "WELCOME: "
             createAccount: CREATE ACCOUNT
             signIn: SIGN IN
+            accountOverview: MY ACCOUNT
+            logout: LOGOUT
         miniCart:
             title:
                 singular: ITEM IN THE CART

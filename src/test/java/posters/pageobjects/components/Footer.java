@@ -19,6 +19,8 @@ public class Footer extends AbstractComponent
         footer.should(exist);
     }
 
+    /// ----- validate footer ----- ///
+    
     @Step("validate the footer")
     public void validateStructure()
     {

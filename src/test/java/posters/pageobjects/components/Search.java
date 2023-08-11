@@ -21,16 +21,8 @@ public class Search extends AbstractComponent
     {
         searchField.should(exist);
     }
-    
-    @Step("validate structure search bar")
-    public static void validateStructure() 
-    {
-        searchField.shouldBe(visible);
-        $("#btnSearch").shouldBe(visible);
-        $(".icon-search").shouldBe(visible);
-    }
 
-    // ----- search navigation ----- //
+    /// ----- search navigation ----- ///
     
     @Step("open search field")
     public void openSearch()
@@ -64,5 +56,15 @@ public class Search extends AbstractComponent
     {
         search(searchTerm);
         return new CategoryPage().isExpectedPage();
+    }
+    
+    /// ----- validate search ----- ///
+    
+    @Step("validate structure search bar")
+    public static void validateStructure() 
+    {
+        searchField.shouldBe(visible);
+        $("#btnSearch").shouldBe(visible);
+        $(".icon-search").shouldBe(visible);
     }
 }

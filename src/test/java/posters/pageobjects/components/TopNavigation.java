@@ -27,7 +27,24 @@ public class TopNavigation extends AbstractComponent
         categoryMenu.should(exist);
     }
     
-    // ----- validate content top navigation ----- //
+    // ----- category navigation ------ //
+    
+    @Step("click on '{categoryName}' category")
+    public CategoryPage clickCategory(String topCategory)
+    {
+        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText(topCategory))).scrollTo().click();
+        return new CategoryPage().isExpectedPage();
+    }
+    
+    @Step("click on a '{subCategoryName}' subcategory within '{categoryName}'")
+    public CategoryPage clickSubCategory(String topCategory, String subCategory)
+    {
+        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText(topCategory))).hover();
+        $$(".navi ul.dropdown-menu li").findBy(exactText(Neodymium.localizedText(subCategory))).click();
+        return new CategoryPage().isExpectedPage();
+    }
+    
+    // ----- validate top navigation ----- //
     
     @Step("validate name of components in navigation")
     public static void validateNavComponent(String topCategory) 
@@ -77,81 +94,5 @@ public class TopNavigation extends AbstractComponent
         
         // close sub navigation
         $("#globalNavigation").hover();
-    }
-    
-    // ----- category navigation ------ //
-    
-    @Step("click on '{categoryName}' category")
-    public CategoryPage clickCategory(String topCategory)
-    {
-        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText(topCategory))).scrollTo().click();
-        return new CategoryPage().isExpectedPage();
-    }
-    
-    @Step("click on a '{subCategoryName}' subcategory within '{categoryName}'")
-    public CategoryPage clickSubCategory(String topCategory, String subCategory)
-    {
-        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText(topCategory))).hover();
-        $$(".navi ul.dropdown-menu li").findBy(exactText(Neodymium.localizedText(subCategory))).click();
-        return new CategoryPage().isExpectedPage();
-    }
-    
-    // ----------------------------------------------------------------
-
-    // TODO - check if needed
-    @Step ("get the category name")
-    public static String getCategoryNameByPosition(int categoryPosition) 
-    {
-        return $("#categoryMenu li:nth-of-type(" + categoryPosition + ") a").attr("title");
-    }
-    
-    // TODO - check if needed
-    @Step("get the subcategory name")
-    public static String getSubCategoryNameByPosition(int categoryPosition, int subCategoryPosition)
-    {
-        return $("#categoryMenu li:nth-of-type(" + categoryPosition + ") .dropdown li:nth-of-type(" + subCategoryPosition + ") a").attr("title");
-    }
-
-    // TODO - improve
-    @Step("click a subcategory")
-    public CategoryPage clickSubCategoryByPosition(int categoryPosition, int subCategoryPosition)
-    {
-        // Open the category page
-        SelenideElement topCat = $$("#categoryMenu .has-dropdown").get(categoryPosition - 1);
-        topCat.hover();
-        // Clicks the subcategory with position @{subCategoryPosition}
-        // belonging to the category with position @{categoryPosition}
-        topCat.find(".dropdown-menu a", subCategoryPosition - 1).click();
-        return new CategoryPage().isExpectedPage();
-    }
-
-    // TODO - check if needed
-    @Step("click on a product by name '{productName}'")
-    public CategoryPage clickSubcategoryByName(String subCategoryName)
-    {
-        categoryMenu.find(".dropdown-menu li > a[title='" + subCategoryName + "']").parent().parent().parent().hover();
-        categoryMenu.find(By.linkText(subCategoryName)).click();
-
-        return new CategoryPage().isExpectedPage();
-    }
-
-    // TODO - check if needed
-    @Step("get a random sub category name ")
-    public String getRandomSubcategoryName(Random random)
-    {
-        // compute random horizontal category position (for posters: random value from 1 to 4)
-        // ["World of nature", "Dining", "Transportation", "Panoramas"]
-        int categoryPositionX = random.nextInt(3) + 1;
-
-        // compute random vertical category position (for posters: random value from 1 to 4)
-        // if (categoryPositionX == 4) == true then categoryPositionY has range from 1 to 4
-        // otherwise from 1 to 3, because any category has 3 subcategories instead of category 4, which has 4
-        int categoryPositionY;
-        if (categoryPositionX == 4)
-            categoryPositionY = random.nextInt(3) + 1;
-        else
-            categoryPositionY = random.nextInt(2) + 1;
-
-        return getSubCategoryNameByPosition(categoryPositionX, categoryPositionY);
     }
 }

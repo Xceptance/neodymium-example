@@ -20,6 +20,8 @@ public class ErrorMessage extends AbstractComponent
         errorMessage.should(exist);
     }
 
+    /// ----- validate error message ----- ///
+    
     @Step("validate that the error message {message} is visible")
     public void validateErrorMessage(String message)
     {
