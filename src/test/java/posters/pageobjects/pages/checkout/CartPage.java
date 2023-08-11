@@ -42,13 +42,6 @@ public class CartPage extends AbstractBrowsingPage
     }
 
     /// ----- validate content cart page ----- ///
-
-    @Step("validate empty cart page")
-    public void validateEmptyCartPage() 
-    {
-        title.shouldHave(exactText(Neodymium.localizedText("CartPage.title"))).shouldBe(visible);
-        $("#errorCartMessage").shouldHave(exactText(Neodymium.localizedText("CartPage.errorMessage"))).shouldBe(visible);
-    }
     
     @Step("validate product table head")
     public void validateTableHead() 
@@ -66,26 +59,34 @@ public class CartPage extends AbstractBrowsingPage
     {
         super.validateStructure();
 
-        // validate process wrap
-        //validateProcessWrap();
-        
         // validate title
         title.shouldHave(exactText(Neodymium.localizedText("CartPage.title"))).shouldBe(visible);
         
-        // validate product table head
-        validateTableHead();
+        // check for empty cart page
+        if (miniCart.getTotalCount() == 0) 
+        {
+            $("#errorCartMessage").shouldHave(exactText(Neodymium.localizedText("CartPage.errorMessage"))).shouldBe(visible);
+        }
+        else
+        {
+            // validate process wrap
+            //validateProcessWrap();
+            
+            // validate product table head
+            validateTableHead();
 
-        // validate product list
-        cartTable.shouldBe(visible);
+            // validate product list
+            cartTable.shouldBe(visible);
 
-        // validate at least 1 product in product list
-        $("#product0").shouldBe(visible);
+            // validate at least 1 product in product list
+            $("#product0").shouldBe(visible);
 
-        // validate cart summary list
-        $("#cartSummaryList").shouldBe(visible);
+            // validate cart summary list
+            $("#cartSummaryList").shouldBe(visible);
 
-        // validate checkout button
-        $("#btnStartCheckout").should(visible);
+            // validate checkout button
+            $("#btnStartCheckout").should(visible);
+        }
     }
 
     @Step("validate shipping costs on cart page")
@@ -280,73 +281,5 @@ public class CartPage extends AbstractBrowsingPage
     {
         $("#btnStartCheckout").scrollTo().click();
         return new ReturningCustomerShippingAddressPage().isExpectedPage();
-    }
-    
-    
-    
-   
-
-
-    // ----------------------------------------------------------------------------- //
-
-    @Step("validate subtotal in the cart")
-    public void validateSubtotal(String subtotal)
-    {
-        $$("#cartSummaryList li").findBy(text("Subtotal")).find(".text-right").shouldHave(exactText(subtotal));
-    }
-
-    @Step("validate product in the cart")
-    public void validateContainsProduct(Product product)
-    {
-        SelenideElement productContainer = $$("div.hidden-xs").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
-                                                              .parent().parent();
-        productContainer.find(".productName").shouldHave(exactText(product.getName()));
-        productContainer.find(".productSize").shouldHave(exactText(product.getSize()));
-        productContainer.find(".productStyle").shouldHave(exactText(product.getStyle()));
-        productContainer.find(".productCount").shouldHave(value(Integer.toString(product.getAmount())));
-        productContainer.find(".productUnitPrice").shouldHave(exactText(product.getUnitPrice()));
-        productContainer.find(".productTotalUnitPrice").shouldHave(exactText(PriceHelper.format(product.getTotalPrice())));
-    }
-
-    private SelenideElement findProductContainer(String productName, String style, String size)
-    {
-        SelenideElement productContainer = $$("div.hidden-xs").filter(text(productName)).first().parent().parent();
-        for (int i = 0; i < $$("div.hidden-xs").filter(text(productName)).size(); i++)
-        {
-            SelenideElement product = $$("div.hidden-xs").filter(text(productName)).get(i);
-            if (product.find(".productStyle").text().equals(style) && product.find(".productSize").text().equals(size))
-            {
-                productContainer = product.parent().parent();
-            }
-        }
-        return productContainer;
-    }
-
-    @Step("update product count by the name")
-    public void updateProductCountByName(String productName, String style, String size, int amount)
-    {
-        SelenideElement productContainer = findProductContainer(productName, style, size);
-        productContainer.find(".productCount").setValue(Integer.toString(amount));
-        productContainer.find(".btnUpdateProduct").scrollTo().click();
-    }
-
-    @Step("remove product by name")
-    public void removeProductByName(String productName, String style, String size)
-    {
-        SelenideElement productContainer = findProductContainer(productName, style, size);
-        productContainer.find(".btnRemoveProduct").click();
-        $("#buttonDelete").click();
-    }
-
-    // needed???
-    private void clickCheckoutButton()
-    {
-        $("#btnStartCheckout").scrollTo().click();
-    }
-
-    @Step("check if there are product on the cart page")
-    public boolean hasProductsInCart()
-    {
-        return $("#btnRemoveProdCount0").exists();
     }
 }

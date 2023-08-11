@@ -20,7 +20,7 @@ import posters.pageobjects.pages.AbstractPageObject;
 
 public abstract class AbstractCheckoutPage extends AbstractPageObject
 {
-    public CheckoutHeader header = new CheckoutHeader();
+    public CheckoutHeader checkoutHeader = new CheckoutHeader();
 
     public Footer footer = new Footer();
 
@@ -31,7 +31,7 @@ public abstract class AbstractCheckoutPage extends AbstractPageObject
     {
         isExpectedPage();
 
-        header.isComponentAvailable();
+        checkoutHeader.isComponentAvailable();
         footer.isComponentAvailable();
         userMenu.isComponentAvailable();
     }

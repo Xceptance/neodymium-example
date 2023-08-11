@@ -2,7 +2,6 @@ package posters.pageobjects.pages.checkout;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exactValue;
-import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.text;
@@ -13,7 +12,6 @@ import static com.codeborne.selenide.Selenide.$$;
 import org.apache.commons.lang3.StringUtils;
 
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -39,6 +37,10 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     
     private ElementsCollection totalProductPrices = $$(".totalUnitPriceShort");
 
+    private SelenideElement subtotalContainer = $("#SubTotalValue");
+    
+    private SelenideElement taxContainer = $("#SubTotalTaxValue");
+    
     private SelenideElement orderButton = $("#btnOrder");
     
     @Override
@@ -71,10 +73,12 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         validateBreadcrumb();
         
         // validate process wrap
+        // TODO - after fixing issue 171: consistent element selectors for all checkout pages with progress indicator
         //validateProcessWrap();
         
         // validate product table head
-        validateTableHead();
+        // TODO - after fixing issue 191: consistent table head CartPage and PlaceOrderPage
+        //validateTableHead();
         
         // validate order with costs button
         $("#btnOrder").shouldHave(exactText(Neodymium.localizedText("PlaceOrderPage.button"))).shouldBe(visible);
@@ -92,9 +96,8 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         String fullName = shippingAddress.getFirstName() + " " + shippingAddress.getLastName();
         shippingAddressForm.find(".name").shouldHave(exactText(fullName)).shouldBe(visible);
         
-        // TODO - fix, so it also works for empty string/ null
         // validate optional company name
-        if (!StringUtils.isBlank(shippingAddress.getCompany()));
+        if (!StringUtils.isBlank(shippingAddress.getCompany()))
         {
             shippingAddressForm.find(".company").shouldHave(exactText(shippingAddress.getCompany())).shouldBe(visible);
         }
@@ -121,9 +124,8 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         String fullName = billingAddress.getFirstName() + " " + billingAddress.getLastName();
         billingAddressForm.find(".name").shouldHave(exactText(fullName)).shouldBe(visible);
         
-        // TODO - fix, so it also works for empty string/ null
         // validate optional company name
-        if (!StringUtils.isBlank(billingAddress.getCompany()));
+        if (!StringUtils.isBlank(billingAddress.getCompany()))
         {
             billingAddressForm.find(".company").shouldHave(exactText(billingAddress.getCompany())).shouldBe(visible);
         }
@@ -188,7 +190,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         productContainer.find(".pName").shouldHave(exactText(productName));
         productContainer.find(".productStyle").shouldHave(exactText(productStyle));
         productContainer.find(".productSize").shouldHave(exactText(productSize));
-        // TODO - fix to TA doesn'T break
+        // TODO - after fixing issue 191: consistent price representation (not "$ 0.00" and "$0.00")
         //productContainer.find(".productUnitPrice").shouldHave(value(productPrice));
         productContainer.find(".productCount").shouldHave(exactValue(Integer.toString(productAmount)));
     }
@@ -204,16 +206,14 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     @Step("get sum of all total product prices")
     public String getSubtotal() 
     {
-        return $("#SubTotalValue").text();
+        return subtotalContainer.text();
     }
     
     @Step("get tax costs")
     public String getTax() 
     {
-        return $("#SubTotalTaxValue").text();
+        return taxContainer.text();
     }
-    
-    /// ----- validate price summary ----- ///
     
     @Step("calculate sum of all total product prices")
     public String calculateSubtotal() 
@@ -222,11 +222,13 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         
         for (SelenideElement totalProductPrice : totalProductPrices) 
         {
-            subtotal = PriceHelper.calculateSubtotal(subtotal, totalProductPrice.getText());
+            subtotal = PriceHelper.calculateSubtotalPlaceOrderPage(subtotal, totalProductPrice.getText());
         }
 
         return PriceHelper.format(subtotal);
     }
+    
+    /// ----- validate price summary ----- ///
     
     @Step("validate description strings")
     public void validateDescriptionStrings() 
@@ -247,13 +249,13 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         validateDescriptionStrings();
         
         // validate subtotal
-        $("#SubTotalValue").shouldHave(exactText(calculateSubtotal()));
+        subtotalContainer.shouldHave(exactText(calculateSubtotal()));
         
         // validate shipping costs
         $("#shippingCosts").shouldHave(exactText(shippingCosts));
        
         // validate tax
-        $("#SubTotalTaxValue").shouldHave(exactText(PriceHelper.calculateTax(shippingCosts, subtotal)));
+        taxContainer.shouldHave(exactText(PriceHelper.calculateTax(shippingCosts, subtotal)));
         
         // validate grand total
         $("#orderTotal").shouldHave(exactText(PriceHelper.calculateGrandTotal(subtotal, shippingCosts, getTax())));
@@ -268,21 +270,5 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         orderButton.scrollTo().click();
 
         return new OrderConfirmationPage().isExpectedPage();
-    }
-    
-    // --------------------------------------------------------------
-
-    @Step("validate order contains product '{product.name}'")
-    public void validateContainsProduct(Product product)
-    {
-        SelenideElement productContainer = $$("div.hidden-xs").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
-                                                              .parent().parent();
-
-        productContainer.find(".pName").shouldHave(exactText(product.getName()));
-        productContainer.find(".pSize").shouldHave(exactText(product.getSize()));
-        productContainer.find(".pStyle").shouldHave(exactText(product.getStyle()));
-        productContainer.find(".pCount").shouldHave(exactText(Integer.toString(product.getAmount())));
-        productContainer.find(".pPrice").shouldHave(exactText(product.getUnitPrice()));
-        productContainer.find(".productLineItemPrice").shouldHave(exactText(PriceHelper.format(product.getTotalPrice())));
     }
 }

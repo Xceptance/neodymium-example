@@ -30,8 +30,10 @@ default:
             greeting: "WELCOME: GUEST"
             createAccount: CREATE ACCOUNT
             signIn: SIGN IN
-        shoppingCart:
-            noItemsInCart: 0 ITEMS IN THE CART
+        miniCart:
+            title:
+                singular: ITEM IN THE CART
+                plural: ITEMS IN THE CART
             subtotal: SUBTOTAL
             viewCart: VIEW CART
         sale:

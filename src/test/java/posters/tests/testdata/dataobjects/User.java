@@ -18,6 +18,8 @@ public class User
         this.password = password;
     }
 
+    /// ----- get user data ----- ///
+    
     public String getFirstName()
     {
         return firstName;
@@ -36,11 +38,5 @@ public class User
     public String getPassword()
     {
         return password;
-    }
-
-    @Override
-    public String toString()
-    {
-        return String.format("User [firstName()=%s, lastName()=%s, email()=%s, password()=%s]", getFirstName(), getLastName(), getEmail(), getPassword());
     }
 }

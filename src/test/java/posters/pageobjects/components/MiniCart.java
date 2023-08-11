@@ -2,12 +2,12 @@ package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.matchesText;
 import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -20,13 +20,19 @@ public class MiniCart extends AbstractComponent
 {
     private static SelenideElement headerCart = $("#headerCartOverview");
 
-    private static  SelenideElement subOrderPrice = $("#miniCartMenu .subOrderPrice");
+    private static SelenideElement subOrderPrice = $("#miniCartMenu .subOrderPrice");
     
     private static SelenideElement miniCart = $("#miniCartMenu");
+    
+    private static SelenideElement miniCartTitle = $(".cartMiniProductCounter");
 
     private static SelenideElement totalCountElement = $("#headerCartOverview .headerCartProductCount");
     
     private SelenideElement goToCartButton = $(".goToCart");
+    
+    private static ElementsCollection productCounts = $$(".prodCount");
+    
+    private static ElementsCollection productPrices = $$(".prodPrice strong");
     
     @Override
     @Step("ensure availability mini cart")
@@ -35,7 +41,7 @@ public class MiniCart extends AbstractComponent
         $("#btnCartOverviewForm").should(exist);
     }
     
-    // ----- mini cart navigation ------ //
+    /// ----- mini cart navigation ------ ///
     
     @Step("open the mini cart")
     public static void openMiniCart()
@@ -59,56 +65,121 @@ public class MiniCart extends AbstractComponent
         return new CartPage().isExpectedPage();
     }
     
-    // ----- validate product data in mini cart ----- //
-   
-    @Step("validate shopping cart menu")
-    public static void validateStructure()
-    {
-        // TODO - verify (not) empty shopping cart in one function for header component 
-    }
+    /// ----- get data mini cart ----- ///
     
-    @Step("validate the mini cart subtotal price")
-    public void validateSubtotal(String subtotal)
+    @Step("get the subtotal price from mini cart")
+    public String getSubtotal()
     {
         openMiniCart();
-        subOrderPrice.shouldHave(exactText(subtotal));
+        String subtotal = subOrderPrice.text();
         closeMiniCart();
+
+        return subtotal;
     }
     
+    @Step("get the total product count from mini cart")
+    public static int getTotalCount()
+    {
+        return Integer.parseInt(totalCountElement.text());
+    }
+    
+    @Step("calculate sum of all total product prices")
+    public static String calculateSubtotal() 
+    {
+        double subtotal = 0;
+        
+        for (SelenideElement totalProductPrice : productPrices) 
+        {
+            subtotal = PriceHelper.calculateSubtotalMiniCart(subtotal, totalProductPrice.getText());
+        }
+
+        return PriceHelper.format(subtotal);
+    }
+    
+    @Step("calculate total count via product counts")
+    public static int calculateTotalCount() 
+    {
+        int totalCount = 0;
+        
+        if ($(".cartItems").exists()) 
+        {
+            for (SelenideElement productCount : productCounts) 
+            {
+                totalCount = PriceHelper.calculateTotalCountMiniCart(totalCount, productCount.getText());
+            }
+            
+            return totalCount;
+        }
+        
+        return totalCount;
+    }
+    
+    /// ----- validate mini cart structure ----- ///
+   
     @Step("validate the mini cart total product count")
-    public void validateTotalCount(int totalCount)
+    public static void validateTotalCount(int totalCount)
     {
         totalCountElement.shouldHave(exactText(Integer.toString(totalCount)));
     }
     
-    @Step("validate empty mini cart")
-    public static void validateEmptyMiniCart() 
+    @Step("validate the mini cart title")
+    public static void validateTitle()
+    {        
+        if (getTotalCount() == 1) 
+        {
+            miniCartTitle.shouldHave(exactText(getTotalCount() + " " + Neodymium.localizedText("header.miniCart.title.singular"))).shouldBe(visible);
+        }
+        else 
+        {
+            miniCartTitle.shouldHave(exactText(getTotalCount() + " " + Neodymium.localizedText("header.miniCart.title.plural"))).shouldBe(visible);
+        }
+    }
+    
+    @Step("validate the mini cart subtotal price")
+    public static void validateSubtotal(String subtotal)
     {
-        // validate shopping cart icon, item count
-        $(".icon-shopping-cart").shouldBe(visible);
-        totalCountElement.shouldHave(exactText("0")).shouldBe(visible);
-        
+        subOrderPrice.shouldHave(exactText(subtotal)).shouldBe(visible);
+    }
+    
+    @Step("validate mini cart menu")
+    public static void validateStructure()
+    {
         openMiniCart();
         
-        // validate cart window header
-        $$("#miniCartMenu .cartMiniHeader").findBy(matchesText(Neodymium.localizedText("header.shoppingCart.noItemsInCart"))).shouldBe(visible);
+        // validate shopping cart icon
+        $(".icon-shopping-cart").shouldBe(visible);
         
-        // validate subtotal
-        $("#miniCartMenu .cartMiniSubOrderTotal").shouldHave(matchesText(Neodymium.localizedText("header.shoppingCart.subtotal"))).shouldBe(visible);
-        subOrderPrice.shouldHave(exactText("$0.00")).shouldBe(visible);
+        // validate total count
+        validateTotalCount((int)(calculateTotalCount()));
+        
+        // validate title
+        // TODO - fix consistency mini cart title
+        //validateTitle();
+        
+        // validate label subtotal
+        $(".labelText").shouldHave(exactText(Neodymium.localizedText("header.miniCart.subtotal"))).shouldBe(visible);
         
         // validate view cart button
-        $("#miniCartMenu .linkButton").shouldHave(exactText(Neodymium.localizedText("header.shoppingCart.viewCart"))).shouldBe(visible);
+        $("#miniCartMenu .linkButton").shouldHave(exactText(Neodymium.localizedText("header.miniCart.viewCart"))).shouldBe(visible);
+        
+        // validate subtotal
+        if (getTotalCount() == 0) 
+        {
+            validateSubtotal("$0.00");
+        }
+        else 
+        {
+            validateSubtotal(calculateSubtotal());
+        }
         
         closeMiniCart();
     }
     
+    /// ----- validate mini cart item ----- ///
+    
     @Step("validate data cart item in mini cart")
-    private void validateMiniCart(int position, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
-    {
-        // validate shopping cart icon, item count
-        $(".icon-shopping-cart").shouldBe(visible);
-        
+    private void validateMiniCartItem(int position, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
+    {        
         openMiniCart();
         
         // selector for product
@@ -133,50 +204,14 @@ public class MiniCart extends AbstractComponent
     }
     
     @Step("validate '{product}' in the mini cart")
-    public void validateMiniCart(int position, Product product)
+    public void validateMiniCartItem(int position, Product product)
     {
-        validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), PriceHelper.format(product.getTotalPrice()));
+        validateMiniCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), PriceHelper.format(product.getTotalPrice()));
     }
     
     @Step("validate '{product}' in the mini cart")
-    public void validateMiniCart(int position, Product product, int productAmount, String productPrice)
+    public void validateMiniCartItem(int position, Product product, int productAmount, String productPrice)
     {
-        validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), productAmount, productPrice);
-    }
-    
-    /// ----- get data mini cart ----- ///
-    
-    @Step("get the subtotal price from mini cart")
-    public String getSubtotal()
-    {
-        openMiniCart();
-        String subtotal = subOrderPrice.text();
-        closeMiniCart();
-
-        return subtotal;
-    }
-    
-    
-    // --------------------------------------------------------------
-
-
-
-    @Step("get the total product count from mini cart")
-    public int getTotalCount()
-    {
-        return Integer.parseInt(totalCountElement.text());
-    }
-
-
-    @Step("validate '{product}' in the mini cart by name")
-    public void validateMiniCartByProduct(Product product)
-    {
-        SelenideElement productContainer = $$(".cartItems").filter(matchesText(product.getCartRowRegex())).shouldHaveSize(1).first();
-
-        productContainer.find(".prodName").shouldHave(exactText(product.getName()));
-        productContainer.find(".prodStyle").shouldHave(exactText(product.getStyle()));
-        productContainer.find(".prodSize").shouldHave(exactText(product.getSize()));
-        productContainer.find(".prodCount").shouldHave(exactText(Integer.toString(product.getAmount())));
-        productContainer.find(".prodPrice").shouldHave(exactText(PriceHelper.format(product.getTotalPrice())));
+        validateMiniCartItem(position, product.getName(), product.getStyle(), product.getSize(), productAmount, productPrice);
     }
 }

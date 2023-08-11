@@ -32,7 +32,7 @@ public class PriceHelper
         return addCurrency(decimalFormat.format(input));
     }
     
-    /// ----- specific calculations ----- ///
+    /// ----- calculations for price summary ----- ///
     
     @Step("calculate total product price")
     public static String totalProductPrice(String unitPrice, String quantity)
@@ -48,8 +48,8 @@ public class PriceHelper
         return format(res);
     }
     
-    @Step("calculate subtotal")
-    public static double calculateSubtotal(double oldSubtotal, String totalProductPrice)
+    @Step("calculate sum of all total product prices")
+    public static double calculateSubtotalPlaceOrderPage(double oldSubtotal, String totalProductPrice)
     {
         return (double) (Math.round((oldSubtotal + Double.valueOf(totalProductPrice)) * 100)) / 100;
     }
@@ -67,5 +67,19 @@ public class PriceHelper
     {
         double grandTotal = (double) (Math.round((Double.valueOf(removeCurrency(subtotal)) + Double.valueOf(removeCurrency(shippingCosts)) + Double.valueOf(removeCurrency(tax))) * 100)) / 100;
         return format(grandTotal);
+    }
+    
+    /// ----- calculations for mini cart ----- ///
+    
+    @Step("calculate sum of all total product quantities")
+    public static int calculateTotalCountMiniCart(int totalCount, String productCount)
+    {
+        return (totalCount + Integer.parseInt(productCount));
+    }
+    
+    @Step("calculate sum of all total product prices")
+    public static double calculateSubtotalMiniCart(double oldSubtotal, String totalProductPrice)
+    {
+        return (double) (Math.round((oldSubtotal + Double.valueOf(removeCurrency(totalProductPrice))) * 100)) / 100;
     }
 }

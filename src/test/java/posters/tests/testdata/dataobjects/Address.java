@@ -18,6 +18,20 @@ public class Address
 
     String country;
     
+    public Address(String firstName, String lastName, String company, String street, String city, String state, String zip, String country)
+    {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.company = company;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.country = country;
+    }
+    
+    /// ----- get address data ----- ///
+    
     public String getFirstName()
     {
         return firstName;
