@@ -2,9 +2,9 @@
 	{
 		"user":
       	{
-      		"firstName": "John",
+      		"firstName": "Jonas",
       		"lastName": "Doe",
-      		"email": "john@doe.com",
+      		"email": "jonas@doe.com",
       		"password": "topsecret"
       	},
       	"topCategory": "header.topNavigation.2.title",
@@ -17,10 +17,10 @@
       	"shipAddrEqualBillAddr": true,
       	"shippingAddress":
       	{
-            "firstName": "John",
+            "firstName": "Jonas",
       		"lastName": "Doe",
-      		"company": "John Doe Inc.",
-      		"street": "5-7 John Doe street",
+      		"company": "Jonas Doe Inc.",
+      		"street": "5-7 Jonas Doe street",
       		"city": "New York City",
       		"state": "New York",
       		"zip": "12345",
@@ -28,7 +28,7 @@
       	},
       	"creditCard":
       	{
-      		"fullName": "John Doe",
+      		"fullName": "Jonas Doe",
       		"cardNumber": "4111111111111111",
       		"crypticCardNumber": "xxxx xxxx xxxx 1111",
       		"expDateMonth": "06",
@@ -38,9 +38,9 @@
 	{
       	"user":
       	{
-      		"firstName": "John",
+      		"firstName": "Jonas",
       		"lastName": "Doe",
-      		"email": "john@doe.com",
+      		"email": "jonas@doe.com",
       		"password": "topsecret"
       	},
       	"topCategory": "header.topNavigation.4.title",
@@ -53,10 +53,10 @@
       	"shipAddrEqualBillAddr": false,
       	"shippingAddress":
       	{
-            "firstName": "John",
+            "firstName": "Jonas",
       		"lastName": "Doe",
-      		"company": "John Doe Inc.",
-      		"street": "5-7 John Doe street",
+      		"company": "Jonas Doe Inc.",
+      		"street": "5-7 Jonas Doe street",
       		"city": "New York City",
       		"state": "New York",
       		"zip": "12345",
@@ -64,10 +64,10 @@
       	},
       	"billingAddress":
       	{
-            "firstName": "John",
+            "firstName": "Jonas",
       		"lastName": "Doe",
-      		"company": "John Doe GmbH",
-      		"street": "John Doe Straße 10",
+      		"company": "Jonas Doe GmbH",
+      		"street": "Jonas Doe Straße 10",
       		"city": "Hannover",
       		"state": "Niedersachsen",
       		"zip": "30159",
@@ -75,7 +75,7 @@
       	},
       	"creditCard":
       	{
-      		"fullName": "John Doe",
+      		"fullName": "Jonas Doe",
       		"cardNumber": "4111111111111111",
       		"crypticCardNumber": "xxxx xxxx xxxx 1111",
       		"expDateMonth": "06",
