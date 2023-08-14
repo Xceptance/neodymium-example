@@ -33,38 +33,38 @@ public class ProductDetailPage extends AbstractBrowsingPage
     }
 
     /// ----- validate content product detail page ----- ///
-    
-    public void validateSizeDropdown(String size) 
+
+    public void validateSizeDropdown(String size)
     {
         productSize.should(matchText(Neodymium.localizedText(size))).should(exist);
     }
-    
+
     @Step("validate size dropdown")
-    public void validateSizeDropdown() 
+    public void validateSizeDropdown()
     {
         productSize.scrollTo().click();
-        
-        if ($$("#selectSize option").size()>1) 
+
+        if ($$("#selectSize option").size() > 1)
         {
             validateSizeDropdown("ProductdetailPage.size.16x12");
             validateSizeDropdown("ProductdetailPage.size.32x24");
             validateSizeDropdown("ProductdetailPage.size.64x48");
         }
-        else 
+        else
         {
             validateSizeDropdown("ProductdetailPage.size.96x32");
         }
-        
+
         productSize.scrollTo().click();
     }
-    
+
     @Step("validate style radio")
-    public void validateStyleRadio() 
+    public void validateStyleRadio()
     {
         $("#selectStyle .radio:nth-of-type(1)").shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.style.matte"))).shouldBe(visible);
         $("#selectStyle .radio:nth-of-type(2)").shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.style.gloss"))).shouldBe(visible);
     }
-    
+
     @Override
     @Step("validate product detail page structure")
     public void validateStructure()
@@ -73,46 +73,46 @@ public class ProductDetailPage extends AbstractBrowsingPage
 
         // validate image
         $("#prodImg").shouldBe(visible);
-        
+
         // validate title
         productName.should(matchText("[A-Z].{3,}")).shouldBe(visible);
-        
+
         // validate product price
         productPrice.should(matchText("\\$\\d+\\.\\d{2}")).shouldBe(visible);
-        
+
         // validate product description
         $("#prodDescriptionOverview").shouldBe(visible);
         $("#prodDescriptionDetail").shouldBe(visible);
-        
+
         // validate size selection
         validateSizeDropdown();
-        
+
         // validate style selection
         $("#selectStyle").shouldBe(visible);
         validateStyleRadio();
-        
-        // validate  print information
+
+        // validate print information
         $("#prodPrintInfoTitle").shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.print"))).shouldBe(visible);
         $("#prodPrintInfo").shouldBe(visible);
-        
+
         // validate add to cart button
         addToCartButton.shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.addToCartButton"))).shouldBe(visible);
         $("#btnAddToCart .icon-shopping-cart").shouldBe(visible);
     }
-    
+
     @Step("validate product name on product detail page")
     public void validateProductName(String name)
     {
         productName.shouldHave(exactText(name));
     }
-    
+
     @Step("validate product name page of product '{productName}'")
-    public void validate(String productName) 
+    public void validate(String productName)
     {
         validateStructure();
         validateProductName(productName);
     }
-    
+
     /// ----- select product size/style, add to cart ----- ///
 
     @Step("select size")
@@ -126,13 +126,13 @@ public class ProductDetailPage extends AbstractBrowsingPage
     {
         $(".radio #finish-" + style).selectRadio(style);
     }
-    
+
     @Step("click add to cart button")
     public void clickAddToCartButton()
     {
         addToCartButton.scrollTo().click();
     }
-    
+
     @Step("add product with size:'{size}' and style:'{style}' to cart")
     public void addToCart(String size, String style)
     {
@@ -140,21 +140,21 @@ public class ProductDetailPage extends AbstractBrowsingPage
         setStyle(style);
         clickAddToCartButton();
     }
-    
+
     /// ----- get product details ----- ///
-    
+
     @Step("get product name from product detail page")
     public String getProductName()
     {
         return productName.text();
     }
-    
+
     @Step("get product price from product detail page")
     public String getProductPrice()
     {
         return productPrice.text();
     }
-    
+
     @Step("get selected product style from product detail page")
     public String getChosenStyle()
     {
@@ -166,7 +166,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     {
         return productSize.getSelectedText();
     }
-    
+
     @Step("get product details from product detail page")
     public Product getProduct()
     {

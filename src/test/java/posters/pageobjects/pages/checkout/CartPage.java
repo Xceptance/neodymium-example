@@ -23,11 +23,11 @@ import posters.pageobjects.utility.PriceHelper;
 public class CartPage extends AbstractBrowsingPage
 {
     private SelenideElement title = $("#titleCart");
-    
+
     private SelenideElement cartTable = $("#cartOverviewTable");
 
     private ElementsCollection tableHead = $$(".product-name span");
-    
+
     private SelenideElement subTotal = $("#orderSubTotalValue");
 
     @Override
@@ -40,9 +40,9 @@ public class CartPage extends AbstractBrowsingPage
     }
 
     /// ----- validate content cart page ----- ///
-    
+
     @Step("validate product table head")
-    public void validateTableHead() 
+    public void validateTableHead()
     {
         tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.product"))).shouldBe(visible);
         tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.unitPrice"))).shouldBe(visible);
@@ -50,7 +50,7 @@ public class CartPage extends AbstractBrowsingPage
         tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.update"))).shouldBe(visible);
         tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.totalPrice"))).shouldBe(visible);
     }
-    
+
     @Override
     @Step("validate cart page structure")
     public void validateStructure()
@@ -59,18 +59,19 @@ public class CartPage extends AbstractBrowsingPage
 
         // validate title
         title.shouldHave(exactText(Neodymium.localizedText("CartPage.title"))).shouldBe(visible);
-        
+
         // check if cart contains items, validate
-        if (MiniCart.getTotalCount() == 0) 
+        if (MiniCart.getTotalCount() == 0)
         {
             $("#errorCartMessage").shouldHave(exactText(Neodymium.localizedText("CartPage.errorMessage"))).shouldBe(visible);
         }
         else
         {
             // validate process wrap
-            // TODO - after fixing issue 171: consistent element selectors for all checkout pages with progress indicator
-            //validateProcessWrap();
-            
+            // TODO - after fixing issue 171: consistent element selectors for all checkout pages with progress
+            // indicator
+            // validateProcessWrap();
+
             // validate product table head
             validateTableHead();
 
@@ -93,9 +94,9 @@ public class CartPage extends AbstractBrowsingPage
     {
         $("#orderShippingCosts").shouldHave(exactText(shippingCosts));
     }
-    
+
     @Step("validate tax on cart page")
-    public void validateTax(String shippingCosts, String subtotal) 
+    public void validateTax(String shippingCosts, String subtotal)
     {
         String tax = PriceHelper.calculateTax(shippingCosts, subtotal);
         $("#orderSubTotalTaxValue").shouldHave(exactText(tax));
@@ -108,7 +109,14 @@ public class CartPage extends AbstractBrowsingPage
         validateShippingCosts(shippingCosts);
         validateTax(shippingCosts, subtotal);
     }
-    
+
+    /**
+     * Note: It checks if the price change of subtotal is equal to the price change of the product.
+     * 
+     * @param position (of specific product in cart)
+     * @param oldSubTotal (subtotal before adding new product to cart/ increasing product quantity)
+     * @param oldTotalProductPrice (product price before adding/ increasing product quantity)
+     */
     @Step("validate sub total and line item total after adding on the cart page")
     public void validateTotalAfterAdd(int position, String oldSubTotal, double oldTotalProductPrice)
     {
@@ -141,7 +149,7 @@ public class CartPage extends AbstractBrowsingPage
         // validate {price} equals {price2}
         Assert.assertEquals(productPrice, totalProductPriceChange);
     }
-    
+
     @Step("validate sub total and line item total after removing on the cart page")
     public void validateTotalAfterRemove(String oldSubTotal, String oldTotalProductPrice)
     {
@@ -159,14 +167,14 @@ public class CartPage extends AbstractBrowsingPage
 
         // validate product image
         productContainer.find(".product-img").shouldBe(visible);
-        
+
         // validate parameters
         productContainer.find(".productName").shouldHave(exactText(productName));
         productContainer.find(".productStyle").shouldHave(exactText(productStyle));
         productContainer.find(".productSize").shouldHave(exactText(productSize));
         productContainer.find(".productUnitPrice").shouldHave(exactText(productPrice));
         productContainer.find(".productCount").shouldHave(exactValue(Integer.toString(productAmount)));
-        
+
         // validate remove and update button
         $("#btnRemoveProdCount" + (position - 1)).shouldBe(visible);
         $("#btnUpdateProdCount" + (position - 1)).shouldBe(visible);
@@ -177,7 +185,7 @@ public class CartPage extends AbstractBrowsingPage
     {
         validateCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), product.getUnitPrice());
     }
-   
+
     @Step("validate '{product}' on the cart page")
     public void validateCartItem(int position, Product product, int productAmount)
     {
@@ -227,54 +235,54 @@ public class CartPage extends AbstractBrowsingPage
     {
         return new Product(getProductName(position), getProductUnitPrice(position), getProductStyle(position), getProductSize(position), Integer.parseInt(getProductCount(position)));
     }
-    
+
     /// ----- update product data ----- ///
-    
+
     @Step("update product count on the cart page")
     public void updateProductCount(int position, int amount)
     {
         SelenideElement productContainer = $("#product" + (position - 1));
-        
+
         // type new amount
         productContainer.find(".productCount").setValue(Integer.toString(amount));
-        
+
         // click update button
         productContainer.find(".btnUpdateProduct").scrollTo().click();
     }
-    
+
     @Step("remove product on the cart page")
     public void removeProduct(int position)
-    { 
+    {
         // click delete button
         $("#btnRemoveProdCount" + (position - 1)).scrollTo().click();
-        
+
         // click delete confirmation button
         $("#buttonDelete").scrollTo().click();
     }
-    
+
     /// ----- cart page navigation ----- ///
-    
+
     @Step("click on a product on the cart page")
     public ProductDetailPage openProductDetailPage(int position)
     {
         $("#product" + (position - 1) + " .product-img").scrollTo().click();
         return new ProductDetailPage().isExpectedPage();
     }
-    
+
     @Step("open homepage from cart page")
-    public HomePage openHomePage() 
+    public HomePage openHomePage()
     {
         $("#brand").scrollTo().click();
         return new HomePage().isExpectedPage();
     }
-    
+
     @Step("open guest shipping address from the cart page")
     public GuestShippingAddressPage openGuestShippingAddressPage()
     {
         $("#btnStartCheckout").scrollTo().click();
         return new GuestShippingAddressPage().isExpectedPage();
     }
-    
+
     @Step("open returning customer shipping address from the cart page")
     public ReturningCustomerShippingAddressPage openReturningCustomerShippingAddressPage()
     {

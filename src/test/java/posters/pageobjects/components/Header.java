@@ -7,19 +7,19 @@ import static com.codeborne.selenide.Selenide.$;
 import io.qameta.allure.Step;
 
 public class Header extends AbstractComponent
-{   
+{
     @Override
     @Step("validate availability header")
     public void isComponentAvailable()
     {
         $("#globalNavigation").should(exist);
     }
-    
+
     /// ----- validate header ----- ///
-    
-    @Step("validate structure header")
-    public void validateStructure() 
-    {   
+
+    @Step("validate header")
+    public void validateStructure()
+    {
         $("#brand").shouldBe(visible);
 
         Search.validateStructure();

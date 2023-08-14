@@ -57,6 +57,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     @Step("validate product table head")
     public void validateTableHead() 
     {
+        // TODO - fix after fixing issue
         //tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.product"))).shouldBe(visible);
         tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.unitPrice"))).shouldBe(visible);
         tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.quantity"))).shouldBe(visible);
@@ -215,6 +216,11 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         return taxContainer.text();
     }
     
+    /**
+     * Note: Loops through all total product prices on the place order page and adds it to the "subtotal" variable.
+     * 
+     * @return subtotal (The sum of all total product prices)
+     */
     @Step("calculate sum of all total product prices")
     public String calculateSubtotal() 
     {

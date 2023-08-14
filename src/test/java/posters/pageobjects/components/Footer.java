@@ -21,7 +21,7 @@ public class Footer extends AbstractComponent
 
     /// ----- validate footer ----- ///
     
-    @Step("validate the footer")
+    @Step("validate structure footer")
     public void validateStructure()
     {
         // validate about xceptance

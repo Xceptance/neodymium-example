@@ -83,6 +83,11 @@ public class MiniCart extends AbstractComponent
         return Integer.parseInt(totalCountElement.text());
     }
 
+    /**
+     * Note: Loops through all total product prices in the mini cart and adds it to the "subtotal" variable.
+     * 
+     * @return subtotal (The sum of all total product prices)
+     */
     @Step("calculate sum of all total product prices")
     public static String calculateSubtotal()
     {
@@ -96,6 +101,12 @@ public class MiniCart extends AbstractComponent
         return PriceHelper.format(subtotal);
     }
 
+    /**
+     * Note: If there is at least 1 item in the cart, it loops through all total product counts in the mini cart
+     * and adds it to the "totalCount" variable.
+     * 
+     * @return totalCount (The sum of all total product counts)
+     */
     @Step("calculate total count via product counts")
     public static int calculateTotalCount()
     {
@@ -159,11 +170,9 @@ public class MiniCart extends AbstractComponent
         // validate label subtotal
         $(".labelText").shouldHave(exactText(Neodymium.localizedText("header.miniCart.subtotal"))).shouldBe(visible);
 
-        // validate view cart button
-        $("#miniCartMenu .linkButton").shouldHave(exactText(Neodymium.localizedText("header.miniCart.viewCart"))).shouldBe(visible);
-
         // validate subtotal
-        if (getTotalCount() == 0) {
+        if (getTotalCount() == 0)
+        {
             // if there are no items in cart
             validateSubtotal("$0.00");
         }
@@ -173,12 +182,15 @@ public class MiniCart extends AbstractComponent
             validateSubtotal(calculateSubtotal());
         }
 
+        // validate view cart button
+        $("#miniCartMenu .linkButton").shouldHave(exactText(Neodymium.localizedText("header.miniCart.viewCart"))).shouldBe(visible);
+
         closeMiniCart();
     }
 
     /// ----- validate mini cart item ----- ///
 
-    @Step("validate data cart item in mini cart")
+    @Step("validate product in the mini cart")
     private void validateMiniCartItem(int position, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
     {
         openMiniCart();
@@ -196,10 +208,11 @@ public class MiniCart extends AbstractComponent
         closeMiniCart();
     }
 
-    @Step("validate '{product}' in the mini cart")
+    @Step("validate product in the mini cart")
     public void validateMiniCartItem(int position, Product product)
     {
-        validateMiniCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), PriceHelper.format(product.getTotalPrice()));
+        validateMiniCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(),
+                             PriceHelper.format(product.getTotalPrice()));
     }
 
     @Step("validate '{product}' in the mini cart")

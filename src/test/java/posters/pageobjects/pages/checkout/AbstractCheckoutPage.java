@@ -57,6 +57,7 @@ public abstract class AbstractCheckoutPage extends AbstractPageObject
         $$(".form-group").findBy(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.city")));
         $$(".form-group").findBy(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.state")));
         $$(".form-group").findBy(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.zip")));
+        // TODO - fix after issue is fixed
         //$$(".form-group").findBy(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.country")));
     }
     

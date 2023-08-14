@@ -35,20 +35,20 @@ public class HomePage extends AbstractBrowsingPage
     /// ----- validate content homepage ----- ///
     
     @Step("validate poster slide")
+    public void validatePosterSlide(String position, String headline)
+    {
+        slideNavigation.findBy(exactText(position)).click();
+        slideHeadline.findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
+        slideButton.findBy(exactText(Neodymium.localizedText("HomePage.slider.button"))).shouldBe(visible);
+    }
+    
+    @Step("validate poster slide")
     public void validatePosterSlide()
     {
         validatePosterSlide("4", "HomePage.slider.headline.4");
         validatePosterSlide("3", "HomePage.slider.headline.3");
         validatePosterSlide("2", "HomePage.slider.headline.2");
         validatePosterSlide("1", "HomePage.slider.headline.1");
-    }
-    
-    @Step("validate slider headline")
-    public void validatePosterSlide(String position, String headline)
-    {
-        slideNavigation.findBy(exactText(position)).click();
-        slideHeadline.findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
-        slideButton.findBy(exactText(Neodymium.localizedText("HomePage.slider.button"))).shouldBe(visible);
     }
     
     @Step("validate featured categories")

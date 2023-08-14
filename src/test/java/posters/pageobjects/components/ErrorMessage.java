@@ -22,7 +22,7 @@ public class ErrorMessage extends AbstractComponent
 
     /// ----- validate error message ----- ///
     
-    @Step("validate that the error message {message} is visible")
+    @Step("validate visibility of error message {message}")
     public void validateErrorMessage(String message)
     {
         errorMessage.find("strong").shouldHave(exactText(message)).shouldBe(visible);

@@ -15,9 +15,9 @@ import posters.pageobjects.components.Pagination;
 public class CategoryPage extends AbstractBrowsingPage
 {
     public Pagination pagination = new Pagination();
-    
+
     private SelenideElement productOverview = $("#productOverview");
-    
+
     private SelenideElement titleCategoryName = $("#titleCategoryName");
 
     @Override
@@ -44,17 +44,26 @@ public class CategoryPage extends AbstractBrowsingPage
         $("#product0").shouldBe(visible);
     }
 
+    /**
+     * Note: If {categoryName} contains a ".", it's a localization string, localized by Neodymium. Else a search
+     * term was used. Both cases have a different headline to validate.
+     * 
+     * @param categoryName
+     *            (name of specific category of top navigation)
+     * @param expectedResultCount
+     *            (number of results for specific category/search)
+     */
     @Step("validate category name {categoryName} is on category page")
     public void validateCategoryHeadline(String categoryName, int expectedResultCount)
     {
-        if (categoryName.contains(".")) 
+        if (categoryName.contains("."))
         {
             // if {categoryName} contains Neodymium localization
             titleCategoryName.should(matchText(Neodymium.localizedText(categoryName))).shouldBe(visible);
             titleCategoryName.should(matchText(Integer.toString(expectedResultCount))).shouldBe(visible);
         }
-        else 
-        { 
+        else
+        {
             // if {categoryName} is search input
             $("#titleSearchText").should(matchText(Neodymium.localizedText("CategoryPage.search.resultText"))).shouldBe(visible);
             $("#searchTextValue").shouldHave(exactText(categoryName)).shouldBe(visible);

@@ -249,11 +249,21 @@ default:
             myAddresses: My Addresses
             paymentSettings: Payment Settings
             personalData: Personal Data
+    OrderHistoryPage:
+        title: Order History
+        tableHead:
+            purchasedPosters: PURCHASED POSTERS
+            orderDetails: ORDER DETAILS
+            quantity: QUANTITY
     MyAddressesPage:
         title: My Addresses
         headlines:
             shipAddr: Shipping Address
             billAddr: Billing Address
+    PaymentSettingsPage:
+        title: Payment Settings
+        button:
+            addNewCreditCard: Add a new credit card
     PersonalDataPage:
         title: Personal Data
         headlines:
