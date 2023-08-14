@@ -2,9 +2,6 @@ package posters.pageobjects.pages.checkout;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exactValue;
-import static com.codeborne.selenide.Condition.matchText;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -71,6 +68,7 @@ public class CartPage extends AbstractBrowsingPage
         else
         {
             // validate process wrap
+            // TODO - after fixing issue 171: consistent element selectors for all checkout pages with progress indicator
             //validateProcessWrap();
             
             // validate product table head

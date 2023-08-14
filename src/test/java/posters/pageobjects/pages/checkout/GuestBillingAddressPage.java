@@ -25,7 +25,7 @@ public class GuestBillingAddressPage extends AbstractCheckoutPage
         return this;
     }
 
-    /// ----- validate guest billing address page ----- ///
+    /// ----- validate content guest billing address page ----- ///
 
     @Override
     @Step("validate shipping address page structure")
@@ -37,6 +37,7 @@ public class GuestBillingAddressPage extends AbstractCheckoutPage
         validateBreadcrumb();
 
         // validate process wrap
+        // TODO - after fixing issue 171: consistent element selectors for all checkout pages with progress indicator
         // validateProcessWrap();
 
         // validate title

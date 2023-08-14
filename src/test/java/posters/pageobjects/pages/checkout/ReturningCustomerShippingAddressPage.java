@@ -28,7 +28,7 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
         return this;
     }
 
-    /// ----- validate returning customer shipping address page ----- ///
+    /// ----- validate content returning customer shipping address page ----- ///
     
     @Override
     @Step("validate returning customer shipping address page structure")
@@ -40,6 +40,7 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
         validateBreadcrumb();
         
         // validate process wrap
+        // TODO - after fixing issue 171: consistent element selectors for all checkout pages with progress indicator
         //validateProcessWrap();
         
         // validate title

@@ -52,7 +52,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         return this;
     }
 
-    /// ----- validate structure ----- ///
+    /// ----- validate content place order page ----- ///
     
     @Step("validate product table head")
     public void validateTableHead() 

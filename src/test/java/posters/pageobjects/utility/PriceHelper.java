@@ -48,6 +48,7 @@ public class PriceHelper
         return format(res);
     }
     
+    // TODO - after fixing issue: put together with calculateSubtotalMiniCart()
     @Step("calculate sum of all total product prices")
     public static double calculateSubtotalPlaceOrderPage(double oldSubtotal, String totalProductPrice)
     {

@@ -32,7 +32,7 @@ public class AccountOverviewPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate account overview page ----- ///
+    /// ----- validate content account overview page ----- ///
     
     @Override
     @Step("validate account overview page structure")

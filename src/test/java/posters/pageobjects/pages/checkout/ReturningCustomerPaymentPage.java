@@ -29,7 +29,7 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
         return this;
     }
 
-    /// ----- validate returning customer payment page ----- ///
+    /// ----- validate content returning customer payment page ----- ///
     
     @Override
     @Step("validate returning customer payment page structure")
@@ -41,6 +41,7 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
         validateBreadcrumb();
         
         // validate process wrap
+        // TODO - after fixing issue 171: consistent element selectors for all checkout pages with progress indicator
         //validateProcessWrap();
         
         // validate title

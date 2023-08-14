@@ -24,7 +24,7 @@ public class OrderConfirmationPage extends AbstractBrowsingPage{
         return this;
     }
     
-    /// ----- validate order confirmation page ----- ///
+    /// ----- validate content order confirmation page ----- ///
     
     public void validateStructure()
     {

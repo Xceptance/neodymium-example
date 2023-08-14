@@ -40,7 +40,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         return this;
     }
 
-    /// ----- validate guest payment page ----- ///
+    /// ----- validate content guest payment page ----- ///
     
     @Step("validate fill-in form headlines")
     public void validateFillInHeadlines(String headline)
@@ -128,6 +128,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         validateBreadcrumb();
         
         // validate process wrap
+        // TODO - after fixing issue 171: consistent element selectors for all checkout pages with progress indicator
         //validateProcessWrap();
         
         // validate title

@@ -19,7 +19,7 @@ import posters.tests.AbstractTest;
 public class RegisteredOrderTest extends AbstractTest
 {
     @DataSet(1)
-    //@DataSet(2)
+    @DataSet(2)
     @Test
     public void testOrderingAsRegisteredUser()
     {

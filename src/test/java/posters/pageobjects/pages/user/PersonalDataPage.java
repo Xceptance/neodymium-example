@@ -28,7 +28,7 @@ public class PersonalDataPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate personal data page ----- ///
+    /// ----- validate content personal data page ----- ///
     
     @Override
     @Step("validate personal data page structure")

@@ -27,7 +27,7 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
         return this;
     }
 
-    /// ----- validate guest shipping address page ----- ///
+    /// ----- validate content guest shipping address page ----- ///
 
     @Step("validate shipping address usage for billing address radio")
     public void validateAddressRadio()
@@ -47,6 +47,7 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
         validateBreadcrumb();
 
         // validate process wrap
+        // TODO - after fixing issue 171: consistent element selectors for all checkout pages with progress indicator
         // validateProcessWrap();
 
         // validate title

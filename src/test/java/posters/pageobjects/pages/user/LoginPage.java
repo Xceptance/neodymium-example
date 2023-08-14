@@ -2,7 +2,6 @@ package posters.pageobjects.pages.user;
 
 import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.exactValue;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -39,7 +38,7 @@ public class LoginPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate login page ----- ///
+    /// ----- validate content login page ----- ///
     
     @Override
     @Step("validate login page structure")
@@ -69,6 +68,8 @@ public class LoginPage extends AbstractBrowsingPage
         registerLink.shouldHave(exactText(Neodymium.localizedText("LoginPage.createNewAccount")));
     }
     
+    /// ----- validate success and error messages ----- ///
+    
     @Step("validate successful registration message")
     public void validateSuccessfulRegistration()
     {
@@ -79,6 +80,13 @@ public class LoginPage extends AbstractBrowsingPage
     public void validateWrongEmail(String email)
     {
         errorMessage.validateErrorMessage(Neodymium.localizedText("LoginPage.validation.emailDoesNotExist"));
+        Assert.assertEquals(emailField.val(), email);
+    }
+    
+    @Step("validate invalid password for login error message")
+    public void validateWrongPassword(String email)
+    {
+        errorMessage.validateErrorMessage(Neodymium.localizedText("LoginPage.validation.incorrectPassword"));
         Assert.assertEquals(emailField.val(), email);
     }
     
@@ -114,18 +122,5 @@ public class LoginPage extends AbstractBrowsingPage
     {
         sendFormWithData(user.getEmail(), user.getPassword());
         return new LoginPage().isExpectedPage();
-    }
-
-    // -----------------------------------------------------------
-
-
-    /**
-     * @param eMail
-     */
-    @Step("validate invalid password for login error message")
-    public void validateWrongPassword(String eMail)
-    {
-        errorMessage.validateErrorMessage(Neodymium.localizedText("AccountPages.validation.incorrectPasswordError"));
-        emailField.shouldHave(exactValue(eMail));
     }
 }

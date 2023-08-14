@@ -24,7 +24,7 @@ public class MyAddressesPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate my addresses page ----- ///
+    /// ----- validate content my addresses page ----- ///
 
     @Override
     @Step("validate personal data page structure")

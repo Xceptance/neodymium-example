@@ -31,7 +31,7 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate delete account page ----- ///
+    /// ----- validate content delete account page ----- ///
     
     @Override
     @Step("validate delete account page structure")

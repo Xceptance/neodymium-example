@@ -1,85 +1,85 @@
 [
-    {
-      "user":
-      {
-      		"firstName": "Jonas",
+	{
+		"user":
+      	{
+      		"firstName": "John",
       		"lastName": "Doe",
-      		"email": "jonas@doe.com",
+      		"email": "john@doe.com",
       		"password": "topsecret"
-      },
-      "topCategory": "header.topNavigation.2.title",
-      "resultPosition": "6",
-      "sizeProduct": "32 x 24 in",
-      "styleProduct": "gloss",
-      "shipAddrPos": 1,
-      "billAddrPos": 1,
-      "creditCardPos": 1,
-      "shipAddrEqualBillAddr": true,
-      "shippingAddress":
-      {
-            "firstName": "Jonas",
+      	},
+      	"topCategory": "header.topNavigation.2.title",
+      	"resultPosition": "6",
+      	"sizeProduct": "32 x 24 in",
+      	"styleProduct": "gloss",
+     	"shipAddrPos": 1,
+      	"billAddrPos": 1,
+      	"creditCardPos": 1,
+      	"shipAddrEqualBillAddr": true,
+      	"shippingAddress":
+      	{
+            "firstName": "John",
       		"lastName": "Doe",
-      		"company": "Jonas Doe Inc.",
-      		"street": "5-7 Jonas Doe street",
+      		"company": "John Doe Inc.",
+      		"street": "5-7 John Doe street",
       		"city": "New York City",
       		"state": "New York",
       		"zip": "12345",
       		"country": "United States"
-      },
-      "creditCard":
-      {
-      		"fullName": "Jonas Doe",
+      	},
+      	"creditCard":
+      	{
+      		"fullName": "John Doe",
       		"cardNumber": "4111111111111111",
       		"crypticCardNumber": "xxxx xxxx xxxx 1111",
       		"expDateMonth": "06",
       		"expDateYear": "2028"
-      }
-   },
-   {
-      "user":
-      {
-      		"firstName": "Jonas",
+      	}
+	},
+	{
+      	"user":
+      	{
+      		"firstName": "John",
       		"lastName": "Doe",
-      		"email": "jonas@doe.com",
+      		"email": "john@doe.com",
       		"password": "topsecret"
-      },
-      "topCategory": "header.topNavigation.4.title",
-      "resultPosition": "2",
-      "sizeProduct": "16 x 12 in",
-      "styleProduct": "matte",
-      "shipAddrPos": 1,
-      "billAddrPos": 2,
-      "creditCardPos": 1,
-      "shipAddrEqualBillAddr": false,
-      "shippingAddress":
-      {
-            "firstName": "Jonas",
+      	},
+      	"topCategory": "header.topNavigation.4.title",
+      	"resultPosition": "2",
+      	"sizeProduct": "16 x 12 in",
+      	"styleProduct": "matte",
+      	"shipAddrPos": 1,
+      	"billAddrPos": 2,
+      	"creditCardPos": 1,
+      	"shipAddrEqualBillAddr": false,
+      	"shippingAddress":
+      	{
+            "firstName": "John",
       		"lastName": "Doe",
-      		"company": "Jonas Doe Inc.",
-      		"street": "5-7 Jonas Doe street",
+      		"company": "John Doe Inc.",
+      		"street": "5-7 John Doe street",
       		"city": "New York City",
       		"state": "New York",
       		"zip": "12345",
       		"country": "United States"
-      },
-      "billingAddress":
-      {
-            "firstName": "Jonas",
+      	},
+      	"billingAddress":
+      	{
+            "firstName": "John",
       		"lastName": "Doe",
-      		"company": "Jonas Doe GmbH",
-      		"street": "Jonas Doe Straße 10",
+      		"company": "John Doe GmbH",
+      		"street": "John Doe Straße 10",
       		"city": "Hannover",
       		"state": "Niedersachsen",
       		"zip": "30159",
       		"country": "Germany"
-      },
-      "creditCard":
-      {
-      		"fullName": "Jonas Doe",
+      	},
+      	"creditCard":
+      	{
+      		"fullName": "John Doe",
       		"cardNumber": "4111111111111111",
       		"crypticCardNumber": "xxxx xxxx xxxx 1111",
       		"expDateMonth": "06",
       		"expDateYear": "2028"
-      }
-   }
+      	}
+	}
 ]
