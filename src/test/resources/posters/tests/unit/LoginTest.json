@@ -2,14 +2,14 @@
 	{
 		"firstName": "John",
 		"lastName": "Doe",
-		"email": "john@doe.com",
+		"email": "john@varmail.net",
 		"password": "topsecret",
 		"testId": "happy path"
 	},
 	{
 		"firstName": "John",
 		"lastName": "Doe",
-		"email": "john@doe.com",
+		"email": "john@varmail.net",
 		"password": "notsecret",
 		"testId": "wrong password"
 	},
@@ -30,7 +30,7 @@
 	{
 		"firstName": "John",
 		"lastName": "Doe",
-		"email": "john@doe.com",
+		"email": "john@varmail.net",
 		"password": "",
 		"testId": "missing password"
 	}

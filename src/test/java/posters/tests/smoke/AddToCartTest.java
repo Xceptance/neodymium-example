@@ -3,6 +3,7 @@ package posters.tests.smoke;
 import org.junit.Test;
 
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
+import com.xceptance.neodymium.util.DataUtils;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
@@ -11,6 +12,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
+import posters.tests.testdata.processes.AddToCartTestData;
 
 @Owner("Joe Fix")
 @Severity(SeverityLevel.CRITICAL)
@@ -22,7 +24,9 @@ public class AddToCartTest extends AbstractTest
     @DataSet(2)
     public void testAddProductsToCart()
     {   
+        // use test data
         final String shippingCosts = Neodymium.dataValue("shippingCosts");
+        final AddToCartTestData addToCartTestData = DataUtils.get(AddToCartTestData.class);
 
         /// ----- PART 1: USE TOP NAVIGATION TO ADD PRODUCT TO CART ----- ///
         

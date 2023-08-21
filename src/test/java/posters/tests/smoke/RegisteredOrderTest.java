@@ -1,29 +1,35 @@
 package posters.tests.smoke;
 
+import org.junit.After;
 import org.junit.Test;
 
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
+import com.xceptance.neodymium.util.DataUtils;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
+import posters.flows.CartCleanUpFlow;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
+import posters.tests.testdata.processes.RegisteredOrderTestData;
 
 @Owner("Lisa Smith")
 @Severity(SeverityLevel.BLOCKER)
 @Tag("smoke")
 @Tag("registered")
 public class RegisteredOrderTest extends AbstractTest
-{
+{   
     @DataSet(1)
     @DataSet(2)
     @Test
     public void testOrderingAsRegisteredUser()
     {
+        // use test data
         final String shippingCosts = Neodymium.dataValue("shippingCosts");
+        final RegisteredOrderTestData registeredOrderTestData = DataUtils.get(RegisteredOrderTestData.class);
 
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
@@ -90,8 +96,11 @@ public class RegisteredOrderTest extends AbstractTest
         // go to order confirmation page
         var orderConfirmationPage = placeOrderPage.placeOrder();
         orderConfirmationPage.validateStructure();
-
-        // go to homepage
-        homePage = orderConfirmationPage.openHomePage();
+    }
+    
+    @After
+    public void after()
+    {
+        CartCleanUpFlow.flow();
     }
 }

@@ -1,74 +1,76 @@
 package posters.tests.unit;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import com.xceptance.neodymium.module.statement.browser.multibrowser.Browser;
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
+import com.xceptance.neodymium.util.DataUtils;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.Step;
 import io.qameta.allure.junit4.Tag;
-import posters.flows.OpenHomePageFlow;
-import posters.pageobjects.pages.browsing.HomePage;
+import posters.flows.OpenLoginPageFlow;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.tests.AbstractTest;
+import posters.tests.testdata.dataobjects.User;
 
+@Browser("Chrome_1024x768")
+//@Browser("Firefox_1024x768")
 @Owner("Tim Brown")
 @Severity(SeverityLevel.NORMAL)
 @Tag("functionality")
 @Tag("registered")
 public class LoginTest extends AbstractTest
-{
-    HomePage homePage;
+{    
+    private User user;
 
-    LoginPage loginPage;
+    private LoginPage loginPage;
 
-    @Step("go to login page and validate")
-    public void goToLoginPage()
+    @Before
+    public void setup()
     {
-        // go to homepage
-        homePage = OpenHomePageFlow.flow();
-        homePage.header.userMenu.validateStructure();
+        user = DataUtils.get(User.class);
 
-        // go to login page and validate
-        loginPage = homePage.header.userMenu.openLoginPage();
+        loginPage = prepareTest();
+    }
+    
+    private LoginPage prepareTest()
+    {
+        // go to login page
+        loginPage = OpenLoginPageFlow.flow();
         loginPage.validateStructure();
+
+        // validate that nobody is logged in
+        loginPage.header.userMenu.validateNotLoggedIn();
+
+        return new LoginPage().isExpectedPage();
     }
 
     @Test
     @DataSet(1)
     public void testSuccessfulLogin()
     {
-        // go to login page and validate
-        goToLoginPage();
-
-        // send login form
-        homePage = loginPage.sendLoginForm(userData);
+        var homePage = loginPage.sendLoginForm(user);
         homePage.header.userMenu.validateStructure();
-        homePage.validateSuccessfulLogin(userData.getFirstName());
+        homePage.validateSuccessfulLogin(user.getFirstName());
     }
 
     @Test
     @DataSet(2)
     public void testLoginWithWrongPasswort()
     {
-        // go to login page and validate
-        goToLoginPage();
-
-        loginPage.sendFalseLoginForm(userData);
-        loginPage.validateWrongPassword(userData.getEmail());
+        loginPage.sendFalseLoginForm(user);
+        loginPage.validateWrongPassword(user.getEmail());
     }
 
     @Test
     @DataSet(3)
     public void testLoginWithEmailFailure()
     {
-        // go to login page and validate
-        goToLoginPage();
-
-        loginPage.sendFalseLoginForm(userData);
-        loginPage.validateWrongEmail(userData.getEmail());
+        loginPage.sendFalseLoginForm(user);
+        loginPage.validateWrongEmail(user.getEmail());
     }
 
     @Test
@@ -76,10 +78,7 @@ public class LoginTest extends AbstractTest
     @DataSet(5)
     public void testLoginWithoutRequiredFields()
     {
-        // go to login page and validate
-        goToLoginPage();
-
-        loginPage.sendFalseLoginForm(userData);
+        loginPage.sendFalseLoginForm(user);
         loginPage.errorMessage.validateNoErrorMessageOnPage();
     }
 }

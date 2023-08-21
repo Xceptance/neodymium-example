@@ -1,9 +1,10 @@
-package posters.tests.smoke;
+package posters.tests.component;
 
 import org.junit.Test;
 
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
 import com.xceptance.neodymium.module.statement.testdata.SuppressDataSets;
+import com.xceptance.neodymium.util.DataUtils;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
@@ -11,6 +12,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
+import posters.tests.testdata.pageobjects.components.PaginationTestData;
 
 @Owner("Tim Brown")
 @Severity(SeverityLevel.MINOR)
@@ -22,6 +24,9 @@ public class PaginationTest extends AbstractTest
     @DataSet(1)
     public void testPagination()
     {  
+        // use test data
+        final PaginationTestData paginationTestData = DataUtils.get(PaginationTestData.class);
+        
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
 

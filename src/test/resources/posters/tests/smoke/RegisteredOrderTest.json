@@ -4,7 +4,7 @@
       	{
       		"firstName": "Jonas",
       		"lastName": "Doe",
-      		"email": "jonas@doe.com",
+      		"email": "jonas@varmail.net",
       		"password": "topsecret"
       	},
       	"topCategory": "header.topNavigation.2.title",
@@ -40,7 +40,7 @@
       	{
       		"firstName": "Jonas",
       		"lastName": "Doe",
-      		"email": "jonas@doe.com",
+      		"email": "jonas@varmail.net",
       		"password": "topsecret"
       	},
       	"topCategory": "header.topNavigation.4.title",

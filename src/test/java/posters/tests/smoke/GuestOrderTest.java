@@ -3,6 +3,7 @@ package posters.tests.smoke;
 import org.junit.Test;
 
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
+import com.xceptance.neodymium.util.DataUtils;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
@@ -13,6 +14,7 @@ import posters.flows.OpenHomePageFlow;
 import posters.pageobjects.pages.checkout.GuestPaymentPage;
 import posters.pageobjects.pages.checkout.PlaceOrderPage;
 import posters.tests.AbstractTest;
+import posters.tests.testdata.processes.GuestOrderTestData;
 
 @Owner("Joe Fix")
 @Severity(SeverityLevel.BLOCKER)
@@ -25,8 +27,10 @@ public class GuestOrderTest extends AbstractTest
     @DataSet(2)
     public void testOrderingAsGuest()
     {        
+        // use test data
         final String shippingCosts = Neodymium.dataValue("shippingCosts");
-        
+        final GuestOrderTestData guestOrderTestData = DataUtils.get(GuestOrderTestData.class);
+           
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
 

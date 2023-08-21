@@ -1,9 +1,11 @@
 package posters.tests.smoke;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
 import com.xceptance.neodymium.module.statement.testdata.SuppressDataSets;
+import com.xceptance.neodymium.util.DataUtils;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
@@ -11,6 +13,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
+import posters.tests.testdata.pageobjects.components.SearchTestData;
 
 @Owner("Tim Brown")
 @Severity(SeverityLevel.MINOR)
@@ -18,6 +21,14 @@ import posters.tests.AbstractTest;
 @SuppressDataSets
 public class SearchTest extends AbstractTest
 {       
+    private SearchTestData searchTestData;
+
+    @Before
+    public void setup()
+    {
+        searchTestData = DataUtils.get(SearchTestData.class);
+    }
+    
     @Test
     @DataSet(1)
     public void testSearching()

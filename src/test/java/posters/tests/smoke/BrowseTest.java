@@ -3,6 +3,7 @@ package posters.tests.smoke;
 import org.junit.Test;
 
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
+import com.xceptance.neodymium.util.DataUtils;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
@@ -10,6 +11,7 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
+import posters.tests.testdata.processes.BrowseTestData;
 
 @Owner("Tim Brown")
 @Severity(SeverityLevel.NORMAL)
@@ -20,6 +22,9 @@ public class BrowseTest extends AbstractTest
     @DataSet(1)
     public void testBrowsing()
     {
+        // use test data
+        final BrowseTestData browseTestData = DataUtils.get(BrowseTestData.class);
+        
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
         homePage.validateStructure();
