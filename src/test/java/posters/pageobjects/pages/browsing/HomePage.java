@@ -13,7 +13,7 @@ import io.qameta.allure.Step;
 
 public class HomePage extends AbstractBrowsingPage
 {
-    private ElementsCollection slideNavigation = $$(".flex-control-nav li");
+    private ElementsCollection slideNavigation = $$(".flex-control-nav a");
     
     private ElementsCollection slideHeadline = $$("#titleSlide h1");
     
@@ -36,8 +36,11 @@ public class HomePage extends AbstractBrowsingPage
     
     @Step("validate poster slide")
     public void validatePosterSlide(String position, String headline)
-    {
+    {        
         slideNavigation.findBy(exactText(position)).click();
+        slideNavigation.findBy(exactText(position)).click();
+        slideNavigation.findBy(exactText(position)).click();
+
         slideHeadline.findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
         slideButton.findBy(exactText(Neodymium.localizedText("HomePage.slider.button"))).shouldBe(visible);
     }

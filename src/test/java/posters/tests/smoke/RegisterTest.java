@@ -33,7 +33,7 @@ public class RegisterTest extends AbstractTest
     }
     
     @Test
-    @DataSet(9)
+    @DataSet(2)
     public void testRegistering()
     {        
         // go to homepage
