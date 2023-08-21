@@ -29,14 +29,14 @@ public class RegisteredOrderTest extends AbstractTest
         var homePage = OpenHomePageFlow.flow();
 
         // go to login page
-        var loginPage = homePage.userMenu.openLoginPage();
+        var loginPage = homePage.header.userMenu.openLoginPage();
 
         // send login form
         homePage = loginPage.sendLoginForm(registeredOrderTestData.getUser());
         homePage.validateSuccessfulLogin(registeredOrderTestData.getUser().getFirstName());
 
         // go to category page
-        var categoryPage = homePage.topNav.clickCategory(registeredOrderTestData.getTopCategory());
+        var categoryPage = homePage.header.topNav.clickCategory(registeredOrderTestData.getTopCategory());
 
         // go to product detail page, add and store displayed product
         var productDetailPage = categoryPage.clickProductByPosition(registeredOrderTestData.getResultPosition());
@@ -44,7 +44,7 @@ public class RegisteredOrderTest extends AbstractTest
         final var product = productDetailPage.getProduct();
 
         // go to cart page
-        var cartPage = productDetailPage.miniCart.openCartPage();
+        var cartPage = productDetailPage.header.miniCart.openCartPage();
 
         // go to shipping address page
         var shippingAddressPage = cartPage.openReturningCustomerShippingAddressPage();

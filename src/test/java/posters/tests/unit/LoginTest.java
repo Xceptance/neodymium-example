@@ -10,7 +10,6 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
-import posters.pageobjects.components.UserMenu;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.tests.AbstractTest;
@@ -30,10 +29,10 @@ public class LoginTest extends AbstractTest
     {
         // go to homepage
         homePage = OpenHomePageFlow.flow();
-        UserMenu.validateStructure();
+        homePage.header.userMenu.validateStructure();
 
         // go to login page and validate
-        loginPage = homePage.userMenu.openLoginPage();
+        loginPage = homePage.header.userMenu.openLoginPage();
         loginPage.validateStructure();
     }
 
@@ -46,7 +45,7 @@ public class LoginTest extends AbstractTest
 
         // send login form
         homePage = loginPage.sendLoginForm(userData);
-        UserMenu.validateStructure();
+        homePage.header.userMenu.validateStructure();
         homePage.validateSuccessfulLogin(userData.getFirstName());
     }
 

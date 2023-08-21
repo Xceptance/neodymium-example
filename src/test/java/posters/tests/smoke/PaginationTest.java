@@ -26,7 +26,7 @@ public class PaginationTest extends AbstractTest
         var homePage = OpenHomePageFlow.flow();
 
         // go to category page
-        var categoryPage = homePage.topNav.clickCategory(paginationTestData.getTopCategory());
+        var categoryPage = homePage.header.topNav.clickCategory(paginationTestData.getTopCategory());
         categoryPage.pagination.validateStructure(paginationTestData.getExpectedResultCount());
     }
 }

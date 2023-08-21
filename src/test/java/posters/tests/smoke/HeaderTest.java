@@ -27,7 +27,7 @@ public class HeaderTest extends AbstractTest
         homePage.header.validateStructure();
 
         // go to category page
-        var categoryPage = homePage.topNav.clickCategory(headerTestData.getTopCategory());
+        var categoryPage = homePage.header.topNav.clickCategory(headerTestData.getTopCategory());
         categoryPage.header.validateStructure();
 
         //go to product detail page, add product to cart
@@ -35,7 +35,7 @@ public class HeaderTest extends AbstractTest
         productDetailPage.header.validateStructure();
         
         // go to cart page
-        var cartPage = productDetailPage.miniCart.openCartPage();
+        var cartPage = productDetailPage.header.miniCart.openCartPage();
         cartPage.header.validateStructure();
     }
 }

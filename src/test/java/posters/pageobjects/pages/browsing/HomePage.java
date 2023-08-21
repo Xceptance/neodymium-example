@@ -111,7 +111,7 @@ public class HomePage extends AbstractBrowsingPage
         successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulLogin"));
         
         // validate {firstName} in user menu
-        userMenu.validateLoggedInName(firstName);
+        header.userMenu.validateLoggedInName(firstName);
     }
     
     @Step("validate successful account deletion on home page")

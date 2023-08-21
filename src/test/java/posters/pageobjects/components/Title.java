@@ -10,7 +10,6 @@ import io.qameta.allure.Step;
 
 public class Title extends AbstractComponent
 {
-
     public void isComponentAvailable()
     {
     }

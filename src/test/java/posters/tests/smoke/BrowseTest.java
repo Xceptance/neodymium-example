@@ -25,7 +25,7 @@ public class BrowseTest extends AbstractTest
         homePage.validateStructure();
 
         // go to category page and validate
-        var categoryPage = homePage.topNav.clickCategory(browseTestData.getTopCategory1());
+        var categoryPage = homePage.header.topNav.clickCategory(browseTestData.getTopCategory1());
         categoryPage.validate(browseTestData.getTopCategory1(), browseTestData.getExpectedResultCount1());
         
         // go to product page and validate
@@ -34,7 +34,7 @@ public class BrowseTest extends AbstractTest
         productDetailPage.validate(productName);
 
         // go to category page and validate
-        categoryPage = productDetailPage.topNav.clickCategory(browseTestData.getTopCategory2());
+        categoryPage = productDetailPage.header.topNav.clickCategory(browseTestData.getTopCategory2());
         categoryPage.validate(browseTestData.getTopCategory2(), browseTestData.getExpectedResultCount2());
        
         // go to product page and validate
@@ -43,7 +43,7 @@ public class BrowseTest extends AbstractTest
         productDetailPage.validate(productName2);
         
         // go to category page and validate
-        categoryPage = productDetailPage.topNav.clickCategory(browseTestData.getTopCategory3());
+        categoryPage = productDetailPage.header.topNav.clickCategory(browseTestData.getTopCategory3());
         categoryPage.validate(browseTestData.getTopCategory3(), browseTestData.getExpectedResultCount3());
        
         // go to product page and validate
@@ -52,7 +52,7 @@ public class BrowseTest extends AbstractTest
         productDetailPage.validate(productName3);
         
         // go to category page and validate
-        categoryPage = productDetailPage.topNav.clickCategory(browseTestData.getTopCategory4());
+        categoryPage = productDetailPage.header.topNav.clickCategory(browseTestData.getTopCategory4());
         categoryPage.validate(browseTestData.getTopCategory4(), browseTestData.getExpectedResultCount4());
        
         // go to product page and validate

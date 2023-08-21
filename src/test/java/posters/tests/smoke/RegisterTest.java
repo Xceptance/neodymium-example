@@ -29,7 +29,7 @@ public class RegisterTest extends AbstractTest
         var homePage = OpenHomePageFlow.flow();
 
         // go to register page and validate
-        var registerPage = homePage.userMenu.openRegisterPage();
+        var registerPage = homePage.header.userMenu.openRegisterPage();
         registerPage.validateStructure();
         
         // go to login page and validate

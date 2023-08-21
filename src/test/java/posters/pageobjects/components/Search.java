@@ -13,7 +13,7 @@ import posters.pageobjects.pages.browsing.NoHitsPage;
 
 public class Search extends AbstractComponent
 {
-    private static SelenideElement searchField = $("#s");
+    private SelenideElement searchField = $("#s");
 
     @Override
     @Step("validate availability search bar")
@@ -61,7 +61,7 @@ public class Search extends AbstractComponent
     /// ----- validate search ----- ///
     
     @Step("validate structure search bar")
-    public static void validateStructure() 
+    public void validateStructure() 
     {
         searchField.shouldBe(visible);
         $("#btnSearch").shouldBe(visible);

@@ -19,9 +19,9 @@ import posters.pageobjects.pages.user.RegisterPage;
 public class UserMenu extends AbstractComponent
 {
 
-    private final static SelenideElement userMenu = $("#userMenu");
+    private SelenideElement userMenu = $("#userMenu");
 
-    private static SelenideElement showUserMenu = $("#showUserMenu");
+    private SelenideElement showUserMenu = $("#showUserMenu");
 
     @Override
     @Step("ensure availability user menu")
@@ -33,14 +33,14 @@ public class UserMenu extends AbstractComponent
     /// ----- user menu navigation ----- ///
 
     @Step("open user menu")
-    public static void openUserMenu()
+    public void openUserMenu()
     {
         showUserMenu.hover();
         userMenu.waitUntil(visible, 9000);
     }
 
     @Step("close user menu")
-    public static void closeUserMenu()
+    public void closeUserMenu()
     {
         $(".top-menu").hover();
         userMenu.waitUntil(not(visible), 9000);
@@ -87,7 +87,7 @@ public class UserMenu extends AbstractComponent
     }
 
     @Step("validate that somebody is logged in")
-    public static boolean validateIsLoggedIn()
+    public boolean validateIsLoggedIn()
     {
         return userMenu.find(".firstName").exists();
     }
@@ -101,7 +101,7 @@ public class UserMenu extends AbstractComponent
     }
     
     @Step("validate logged in user menu")
-    public static void validateStructure()
+    public void validateStructure()
     {
         openUserMenu();
         

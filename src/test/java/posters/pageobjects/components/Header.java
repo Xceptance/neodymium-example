@@ -8,6 +8,16 @@ import io.qameta.allure.Step;
 
 public class Header extends AbstractComponent
 {
+    public Search search = new Search();
+
+    public TopNavigation topNav = new TopNavigation();
+
+    public UserMenu userMenu = new UserMenu();
+    
+    public MiniCart miniCart = new MiniCart();
+    
+    public SaleBanner saleBanner = new SaleBanner();
+    
     @Override
     @Step("validate availability header")
     public void isComponentAvailable()
@@ -22,10 +32,10 @@ public class Header extends AbstractComponent
     {
         $("#brand").shouldBe(visible);
 
-        Search.validateStructure();
-        TopNavigation.validateStructure();
-        UserMenu.validateStructure();
-        MiniCart.validateStructure();
-        SaleBanner.validateStructure();
+        search.validateStructure();
+        topNav.validateStructure();
+        userMenu.validateStructure();
+        miniCart.validateStructure();
+        saleBanner.validateStructure();
     }
 }

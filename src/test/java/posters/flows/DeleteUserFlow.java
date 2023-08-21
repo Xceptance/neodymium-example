@@ -13,7 +13,7 @@ public class DeleteUserFlow
         HomePage homePage = new HomePage();
 
         // go to account page and validate
-        var accountOverviewPage = homePage.userMenu.openAccountOverviewPage();
+        var accountOverviewPage = homePage.header.userMenu.openAccountOverviewPage();
         accountOverviewPage.validateStructure();
 
         // go to personal data page and validate
@@ -30,7 +30,7 @@ public class DeleteUserFlow
         homePage.validateSuccessfulDeletedAccount();
 
         // verify that the account is not available anymore
-        var loginPage = homePage.userMenu.openLoginPage();
+        var loginPage = homePage.header.userMenu.openLoginPage();
         loginPage.sendFalseLoginForm(user);
         loginPage.validateWrongEmail(user.getEmail());
         

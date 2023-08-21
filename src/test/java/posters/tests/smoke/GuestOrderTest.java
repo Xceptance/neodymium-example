@@ -31,7 +31,7 @@ public class GuestOrderTest extends AbstractTest
         var homePage = OpenHomePageFlow.flow();
 
         // go to category page
-        var categoryPage = homePage.topNav.clickCategory(guestOrderTestData.getTopCategory());
+        var categoryPage = homePage.header.topNav.clickCategory(guestOrderTestData.getTopCategory());
         
         // go to product detail page, add and store displayed product
         var productDetailPage = categoryPage.clickProductByPosition(guestOrderTestData.getResultPosition());
@@ -39,7 +39,7 @@ public class GuestOrderTest extends AbstractTest
         final var product = productDetailPage.getProduct();
         
         // go to cart page
-        var cartPage = productDetailPage.miniCart.openCartPage();
+        var cartPage = productDetailPage.header.miniCart.openCartPage();
         
         // go to shipping address page and validate
         var shippingAddressPage = cartPage.openGuestShippingAddressPage();

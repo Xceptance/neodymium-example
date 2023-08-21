@@ -14,7 +14,7 @@ import posters.pageobjects.pages.browsing.CategoryPage;
 
 public class TopNavigation extends AbstractComponent
 {
-    SelenideElement categoryMenu = $("#categoryMenu");
+    private SelenideElement categoryMenu = $("#categoryMenu");
 
     @Override
     @Step("ensure availability top navigation")
@@ -43,19 +43,19 @@ public class TopNavigation extends AbstractComponent
     // ----- validate top navigation ----- //
     
     @Step("validate name of components in navigation")
-    public static void validateNavComponent(String topCategory) 
+    public void validateNavComponent(String topCategory) 
     {
         $$(".has-dropdown").findBy(exactText(Neodymium.localizedText(topCategory))).shouldBe(visible);
     }
 
     @Step("validate name of components in sub navigation")
-    public static void validateSubNavComponent(String subCategory) 
+    public void validateSubNavComponent(String subCategory) 
     {
         $$(".navi ul.dropdown-menu li").findBy(exactText(Neodymium.localizedText(subCategory))).shouldBe(visible);
     }
     
     @Step("validate structure top navigation")
-    public static void validateStructure() 
+    public void validateStructure() 
     {
         // validate navigation bar
         validateNavComponent("header.topNavigation.1.title");

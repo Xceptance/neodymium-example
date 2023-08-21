@@ -14,7 +14,6 @@ import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.tests.testdata.dataobjects.Product;
-import posters.pageobjects.components.MiniCart;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.browsing.ProductDetailPage;
@@ -61,7 +60,7 @@ public class CartPage extends AbstractBrowsingPage
         title.shouldHave(exactText(Neodymium.localizedText("CartPage.title"))).shouldBe(visible);
 
         // check if cart contains items, validate
-        if (MiniCart.getTotalCount() == 0)
+        if (header.miniCart.getTotalCount() == 0)
         {
             $("#errorCartMessage").shouldHave(exactText(Neodymium.localizedText("CartPage.errorMessage"))).shouldBe(visible);
         }

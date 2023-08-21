@@ -18,21 +18,21 @@ import posters.pageobjects.utility.PriceHelper;
 
 public class MiniCart extends AbstractComponent
 {
-    private static SelenideElement headerCart = $("#headerCartOverview");
+    private SelenideElement headerCart = $("#headerCartOverview");
 
-    private static SelenideElement subOrderPrice = $("#miniCartMenu .subOrderPrice");
+    private SelenideElement subOrderPrice = $("#miniCartMenu .subOrderPrice");
 
-    private static SelenideElement miniCart = $("#miniCartMenu");
+    private SelenideElement miniCart = $("#miniCartMenu");
 
-    private static SelenideElement miniCartTitle = $(".cartMiniProductCounter");
+    private SelenideElement miniCartTitle = $(".cartMiniProductCounter");
 
-    private static SelenideElement totalCountElement = $("#headerCartOverview .headerCartProductCount");
+    private SelenideElement totalCountElement = $("#headerCartOverview .headerCartProductCount");
 
     private SelenideElement goToCartButton = $(".goToCart");
 
-    private static ElementsCollection productCounts = $$(".prodCount");
+    private ElementsCollection productCounts = $$(".prodCount");
 
-    private static ElementsCollection productPrices = $$(".prodPrice strong");
+    private ElementsCollection productPrices = $$(".prodPrice strong");
 
     @Override
     @Step("ensure availability mini cart")
@@ -44,14 +44,14 @@ public class MiniCart extends AbstractComponent
     /// ----- mini cart navigation ------ ///
 
     @Step("open the mini cart")
-    public static void openMiniCart()
+    public void openMiniCart()
     {
         headerCart.hover();
         miniCart.waitUntil(visible, 9000);
     }
 
     @Step("close the mini cart")
-    public static void closeMiniCart()
+    public void closeMiniCart()
     {
         $("#brand").hover();
         miniCart.waitUntil(not(visible), 9000);
@@ -78,7 +78,7 @@ public class MiniCart extends AbstractComponent
     }
 
     @Step("get the total product count from mini cart")
-    public static int getTotalCount()
+    public int getTotalCount()
     {
         return Integer.parseInt(totalCountElement.text());
     }
@@ -89,7 +89,7 @@ public class MiniCart extends AbstractComponent
      * @return subtotal (The sum of all total product prices)
      */
     @Step("calculate sum of all total product prices")
-    public static String calculateSubtotal()
+    public String calculateSubtotal()
     {
         double subtotal = 0;
 
@@ -108,7 +108,7 @@ public class MiniCart extends AbstractComponent
      * @return totalCount (The sum of all total product counts)
      */
     @Step("calculate total count via product counts")
-    public static int calculateTotalCount()
+    public int calculateTotalCount()
     {
         int totalCount = 0;
 
@@ -128,13 +128,13 @@ public class MiniCart extends AbstractComponent
     /// ----- validate mini cart structure ----- ///
 
     @Step("validate the mini cart total product count")
-    public static void validateTotalCount(int totalCount)
+    public void validateTotalCount(int totalCount)
     {
         totalCountElement.shouldHave(exactText(Integer.toString(totalCount)));
     }
 
     @Step("validate the mini cart title")
-    public static void validateTitle()
+    public void validateTitle()
     {
         if (getTotalCount() == 1)
         {
@@ -147,13 +147,13 @@ public class MiniCart extends AbstractComponent
     }
 
     @Step("validate the mini cart subtotal price")
-    public static void validateSubtotal(String subtotal)
+    public void validateSubtotal(String subtotal)
     {
         subOrderPrice.shouldHave(exactText(subtotal)).shouldBe(visible);
     }
 
     @Step("validate mini cart menu")
-    public static void validateStructure()
+    public void validateStructure()
     {
         openMiniCart();
 

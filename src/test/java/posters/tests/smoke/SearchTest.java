@@ -26,7 +26,7 @@ public class SearchTest extends AbstractTest
         var homePage = OpenHomePageFlow.flow();
 
         // go to category page
-        var categoryPage = homePage.search.categoryPageResult(searchTestData.getSearchTerm());
+        var categoryPage = homePage.header.search.categoryPageResult(searchTestData.getSearchTerm());
         categoryPage.validate(searchTestData.getSearchTerm(), searchTestData.getExpectedResultCount());
 
         //go to product detail page
@@ -43,7 +43,7 @@ public class SearchTest extends AbstractTest
         var homePage = OpenHomePageFlow.flow();
 
         // go to no hits page
-        var noHitsPage = homePage.search.noHitsPageResult(searchTestData.getSearchTerm());
+        var noHitsPage = homePage.header.search.noHitsPageResult(searchTestData.getSearchTerm());
         noHitsPage.validateStructure();
     }
 }
