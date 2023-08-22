@@ -45,7 +45,7 @@ public class PersonalDataPage extends AbstractBrowsingPage
         deleteButton.shouldHave(exactText(Neodymium.localizedText("PersonalDataPage.buttons.deleteAccount"))).shouldBe(visible);
     }
     
-    @Step("validate personal data")
+    @Step("validate personal data of '{user}")
     public void validatePersonalData(User user) 
     {
         // validate name

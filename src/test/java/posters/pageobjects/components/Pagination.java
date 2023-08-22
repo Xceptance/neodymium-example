@@ -24,7 +24,7 @@ public class Pagination extends AbstractComponent
 
     /// ----- pagination navigation ----- ///
 
-    @Step("click on specific page number")
+    @Step("click on page number '{pageNumber}'")
     public void goToPage(int pageNumber)
     {
         paginationComponents.findBy(exactText(Integer.toString(pageNumber))).click();
@@ -63,7 +63,7 @@ public class Pagination extends AbstractComponent
      * @param expectedResultCount
      *            (number of results for specific category/search)
      */
-    @Step("validate visibility numbers in navigation")
+    @Step("validate visibility numbers in pagination")
     public void validateElementNumbers(int expectedResultCount)
     {
         int numberOfPages = expectedResultCount / 6;
@@ -117,7 +117,6 @@ public class Pagination extends AbstractComponent
             validateLeftNavigation();
             validateElementNumbers(expectedResultCount);
         }
-        else
-            return;
+        else return;
     }
 }

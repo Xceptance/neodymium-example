@@ -53,7 +53,7 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param expectedResultCount
      *            (number of results for specific category/search)
      */
-    @Step("validate category name {categoryName} is on category page")
+    @Step("validate category name '{categoryName}' and amount results '{expectedResultCount}' is on category page")
     public void validateCategoryHeadline(String categoryName, int expectedResultCount)
     {
         if (categoryName.contains("."))
@@ -80,13 +80,13 @@ public class CategoryPage extends AbstractBrowsingPage
 
     /// ----- product by position ----- ///
 
-    @Step("get a product name by position")
+    @Step("get a product name by position '{position}'")
     public String getProductNameByPosition(int position)
     {
         return $("#product" + (position - 1) + " h2").text();
     }
 
-    @Step("click on a product by position")
+    @Step("click on a product by position '{position}'")
     public ProductDetailPage clickProductByPosition(int position)
     {
         $("#product" + (position - 1)).scrollTo().click();

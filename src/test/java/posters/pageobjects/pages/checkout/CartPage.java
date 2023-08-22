@@ -88,7 +88,7 @@ public class CartPage extends AbstractBrowsingPage
         }
     }
 
-    @Step("validate shipping costs on cart page")
+    @Step("validate shipping costs '{shippingCosts}' on cart page")
     public void validateShippingCosts(String shippingCosts)
     {
         $("#orderShippingCosts").shouldHave(exactText(shippingCosts));
@@ -101,7 +101,7 @@ public class CartPage extends AbstractBrowsingPage
         $("#orderSubTotalTaxValue").shouldHave(exactText(tax));
     }
 
-    @Step("validate cart page with shipping costs: '{shippingCosts}'")
+    @Step("validate cart page")
     public void validate(String shippingCosts, String subtotal)
     {
         validateStructure();
@@ -145,7 +145,6 @@ public class CartPage extends AbstractBrowsingPage
         // price difference for specific product after changing product amount
         String totalProductPriceChange = PriceHelper.substract(newTotalProductPrice, PriceHelper.format(oldTotalProductPrice));
 
-        // validate {price} equals {price2}
         Assert.assertEquals(productPrice, totalProductPriceChange);
     }
 
@@ -158,7 +157,6 @@ public class CartPage extends AbstractBrowsingPage
 
     /// ----- validate product in cart ----- ///
 
-    @Step("validate '{product}' on the cart page")
     private void validateCartItem(int position, String productName, String productStyle, String productSize, int productAmount, String productPrice)
     {
         // selector for product
@@ -185,7 +183,7 @@ public class CartPage extends AbstractBrowsingPage
         validateCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), product.getUnitPrice());
     }
 
-    @Step("validate '{product}' on the cart page")
+    @Step("validate '{product}' on the cart page after changing it's quantity")
     public void validateCartItem(int position, Product product, int productAmount)
     {
         validateCartItem(position, product.getName(), product.getStyle(), product.getSize(), productAmount, product.getUnitPrice());
@@ -193,43 +191,43 @@ public class CartPage extends AbstractBrowsingPage
 
     /// ----- get product data ----- ///
 
-    @Step("get product name from line item on the cart page")
+    @Step("get product name from line item on position '{position}' on the cart page")
     public String getProductName(int position)
     {
         return $("#product" + (position - 1) + " .productName").text();
     }
 
-    @Step("get product style from line item on the cart page")
+    @Step("get product style from line item on position '{position}' on the cart page")
     public String getProductStyle(int position)
     {
         return $("#product" + (position - 1) + " .productStyle").text();
     }
 
-    @Step("get product size from line item on the cart page")
+    @Step("get product size from line item on position '{position}' on the cart page")
     public String getProductSize(int position)
     {
         return $("#product" + (position - 1) + " .productSize").text();
     }
 
-    @Step("get product count from line item on the cart page")
+    @Step("get product count from line item on position '{position}' on the cart page")
     public String getProductCount(int position)
     {
         return $("#product" + (position - 1) + " .productCount").val();
     }
 
-    @Step("get product unit price from line item on the cart page")
+    @Step("get product unit price from line item on position '{position}' on the cart page")
     public String getProductUnitPrice(int position)
     {
         return $("#product" + (position - 1) + " .productUnitPrice").text();
     }
 
-    @Step("get product total price from line item on the cart page")
+    @Step("get product total price from line item on position '{position}' on the cart page")
     public String getProductTotalPrice(int position)
     {
         return $("#product" + (position - 1) + " .productTotalUnitPrice").text();
     }
 
-    @Step("get product from line item on the cart page")
+    @Step("get product from line item on position '{position}' on the cart page")
     public Product getProduct(int position)
     {
         return new Product(getProductName(position), getProductUnitPrice(position), getProductStyle(position), getProductSize(position), Integer.parseInt(getProductCount(position)));
@@ -237,7 +235,7 @@ public class CartPage extends AbstractBrowsingPage
 
     /// ----- update product data ----- ///
 
-    @Step("update product count on the cart page")
+    @Step("update product count of product on position '{position}' on the cart page to '{amount}'")
     public void updateProductCount(int position, int amount)
     {
         SelenideElement productContainer = $("#product" + (position - 1));
@@ -249,7 +247,7 @@ public class CartPage extends AbstractBrowsingPage
         productContainer.find(".btnUpdateProduct").scrollTo().click();
     }
 
-    @Step("remove product on the cart page")
+    @Step("remove product on position '{position}' on the cart page")
     public void removeProduct(int position)
     {
         // click delete button
@@ -261,7 +259,7 @@ public class CartPage extends AbstractBrowsingPage
 
     /// ----- cart page navigation ----- ///
 
-    @Step("click on a product on the cart page")
+    @Step("click on a product on position '{position}' on the cart page")
     public ProductDetailPage openProductDetailPage(int position)
     {
         $("#product" + (position - 1) + " .product-img").scrollTo().click();

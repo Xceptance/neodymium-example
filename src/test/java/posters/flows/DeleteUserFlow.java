@@ -7,7 +7,7 @@ import posters.pageobjects.pages.user.LoginPage;
 
 public class DeleteUserFlow
 {
-    @Step("delete user flow")
+    @Step("delete '{user}' flow")
     public static LoginPage flow(User user)
     {
         HomePage homePage = new HomePage();

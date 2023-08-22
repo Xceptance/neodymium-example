@@ -42,14 +42,19 @@ public class RegisterPage extends AbstractBrowsingPage
 
     /// ----- validate content register page ----- ///
     
-    @Step("validate fill in form headlines")
+    private void validateFillInHeadlines(String headline)
+    {
+        $$("#formRegister .form-group label").findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
+    }
+    
+    @Step("validate fill-in form headlines")
     public void validateFillInHeadlines()
     {
-        $$("#formRegister .form-group label").findBy(exactText(Neodymium.localizedText("RegisterPage.headlines.firstName"))).shouldBe(visible);
-        $$("#formRegister .form-group label").findBy(exactText(Neodymium.localizedText("RegisterPage.headlines.lastName"))).shouldBe(visible);
-        $$("#formRegister .form-group label").findBy(exactText(Neodymium.localizedText("RegisterPage.headlines.email"))).shouldBe(visible);
-        $$("#formRegister .form-group label").findBy(exactText(Neodymium.localizedText("RegisterPage.headlines.password"))).shouldBe(visible);
-        $$("#formRegister .form-group label").findBy(exactText(Neodymium.localizedText("RegisterPage.headlines.passwordRepeat"))).shouldBe(visible);
+        validateFillInHeadlines("RegisterPage.headlines.firstName");
+        validateFillInHeadlines("RegisterPage.headlines.lastName");
+        validateFillInHeadlines("RegisterPage.headlines.email");
+        validateFillInHeadlines("RegisterPage.headlines.password");
+        validateFillInHeadlines("RegisterPage.headlines.passwordRepeat");
     }
     
     @Step("validate fill in form placeholder")
@@ -92,7 +97,7 @@ public class RegisterPage extends AbstractBrowsingPage
 
     /// ----- register page navigation ----- ///
     
-    @Step("fill and send register form")
+    @Step("fill and send register form with '{user}'")
     public LoginPage sendRegisterForm(User user)
     {
         // fill out the registration form

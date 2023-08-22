@@ -116,14 +116,14 @@ public class LoginPage extends AbstractBrowsingPage
         signInButton.scrollTo().click();
     }
     
-    @Step("send login form with valid user data")
+    @Step("fill and send login form with valid user '{user}'")
     public HomePage sendLoginForm(User user)
     {
         sendFormWithData(user.getEmail(), user.getPassword());
         return new HomePage().isExpectedPage();
     }
     
-    @Step("send login form with invalid user data")
+    @Step("fill and send login form with invalid user '{user}'")
     public LoginPage sendFalseLoginForm(User user)
     {
         sendFormWithData(user.getEmail(), user.getPassword());

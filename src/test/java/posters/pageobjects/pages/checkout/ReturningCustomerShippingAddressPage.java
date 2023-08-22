@@ -65,7 +65,7 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
         useShippingAddressButton.shouldHave(exactText(Neodymium.localizedText("ReturningCustomerShippingAddressPage.button.useShipAddr"))).shouldBe(visible);
     }
     
-    @Step("validate specific position in address container")
+    @Step("validate shipping address '{shippingAddress}' on position '{position}' in address container")
     public void validateAddressContainer(int position, Address shippingAddress) 
     {
         final int index = position - 1;
@@ -83,7 +83,7 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
 
     /// ----- select shipping address ----- ///
 
-    @Step("select a shipping address")
+    @Step("select a shipping address on position '{position}'")
     public ReturningCustomerBillingAddressPage selectShippingAddress(int position)
     {
         final int index = position - 1;

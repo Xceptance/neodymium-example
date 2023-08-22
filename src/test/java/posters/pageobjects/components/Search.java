@@ -30,28 +30,28 @@ public class Search extends AbstractComponent
         searchField.scrollTo().click();
     }
 
-    @Step("search for {searchTerm}")
+    @Step("search for '{searchTerm}'")
     public void search(String searchTerm)
     {
         openSearch();
         searchField.val(searchTerm).pressEnter();
     }
     
-    @Step("validate that {searchTerm} is still visible after")
+    @Step("validate that '{searchTerm}' is still visible after search")
     public void validateSearchTerm(String searchTerm)
     {
         openSearch();
         searchField.shouldHave(exactValue(searchTerm));
     }
     
-    @Step("search for {searchTerm} without result")
+    @Step("search for '{searchTerm}' without result")
     public NoHitsPage noHitsPageResult(String searchTerm)
     {
         search(searchTerm);
         return new NoHitsPage().isExpectedPage();
     }
 
-    @Step("search for {searchTerm} with result")
+    @Step("search for '{searchTerm}' with result")
     public CategoryPage categoryPageResult(String searchTerm)
     {
         search(searchTerm);
@@ -60,7 +60,7 @@ public class Search extends AbstractComponent
     
     /// ----- validate search ----- ///
     
-    @Step("validate structure search bar")
+    @Step("validate search bar")
     public void validateStructure() 
     {
         searchField.shouldBe(visible);

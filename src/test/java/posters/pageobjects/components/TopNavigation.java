@@ -25,14 +25,14 @@ public class TopNavigation extends AbstractComponent
     
     // ----- category navigation ------ //
     
-    @Step("click on '{categoryName}' category")
+    @Step("click on the top category '{topCategory}'")
     public CategoryPage clickCategory(String topCategory)
     {
         $$(".has-dropdown").findBy(exactText(Neodymium.localizedText(topCategory))).scrollTo().click();
         return new CategoryPage().isExpectedPage();
     }
     
-    @Step("click on a '{subCategoryName}' subcategory within '{categoryName}'")
+    @Step("click on the '{subCategory}' sub category within the top category '{topCategory}'")
     public CategoryPage clickSubCategory(String topCategory, String subCategory)
     {
         $$(".has-dropdown").findBy(exactText(Neodymium.localizedText(topCategory))).hover();
@@ -42,13 +42,13 @@ public class TopNavigation extends AbstractComponent
     
     // ----- validate top navigation ----- //
     
-    @Step("validate name of components in navigation")
+    @Step("validate top category name '{topCategory}'")
     public void validateNavComponent(String topCategory) 
     {
         $$(".has-dropdown").findBy(exactText(Neodymium.localizedText(topCategory))).shouldBe(visible);
     }
 
-    @Step("validate name of components in sub navigation")
+    @Step("validate sub category name '{subCategory}'")
     public void validateSubNavComponent(String subCategory) 
     {
         $$(".navi ul.dropdown-menu li").findBy(exactText(Neodymium.localizedText(subCategory))).shouldBe(visible);

@@ -14,6 +14,8 @@ public class Footer extends AbstractComponent
 {
     private SelenideElement footer = $("#footer");
 
+    @Override
+    @Step("ensure availability footer")
     public void isComponentAvailable()
     {
         footer.should(exist);
@@ -21,7 +23,7 @@ public class Footer extends AbstractComponent
 
     /// ----- validate footer ----- ///
     
-    @Step("validate structure footer")
+    @Step("validate footer")
     public void validateStructure()
     {
         // validate about xceptance

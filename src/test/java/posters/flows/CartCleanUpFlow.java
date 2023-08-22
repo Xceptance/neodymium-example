@@ -5,7 +5,7 @@ import posters.pageobjects.pages.browsing.HomePage;
 
 public class CartCleanUpFlow
 {
-    @Step("cart clean up flow")
+    @Step("clean up cart flow")
     public static void flow()
     {
         HomePage homePage = new HomePage();

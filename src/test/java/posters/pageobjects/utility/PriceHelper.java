@@ -14,19 +14,19 @@ public class PriceHelper
 
     /// ----- format string ----- ///
 
-    @Step("remove $ from {price}")
+    @Step("remove $ from '{price}'")
     public static String removeCurrency(String price)
     {
         return price.substring(1);
     }
 
-    @Step("add $ to {price}")
+    @Step("add $ to '{price}'")
     public static String addCurrency(String price)
     {
         return CURRENCY + price;
     }
 
-    @Step("get formatted {price}")
+    @Step("get formatted price")
     public static String format(double input)
     {
         return addCurrency(decimalFormat.format(input));

@@ -22,7 +22,7 @@ public class SuccessMessage extends AbstractComponent
     
     /// ----- validate success message ----- ///
 
-    @Step("validate that the success message '{message}' is visible")
+    @Step("validate visibility of success message '{message}'")
     public void validateSuccessMessage(String message)
     {
         successMessage.find("strong").shouldHave(exactText(message)).shouldBe(visible);

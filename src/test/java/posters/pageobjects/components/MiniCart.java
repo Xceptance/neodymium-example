@@ -127,7 +127,7 @@ public class MiniCart extends AbstractComponent
 
     /// ----- validate mini cart structure ----- ///
 
-    @Step("validate the mini cart total product count")
+    @Step("validate the mini cart total product count equals '{totalCount}'")
     public void validateTotalCount(int totalCount)
     {
         totalCountElement.shouldHave(exactText(Integer.toString(totalCount)));
@@ -146,13 +146,13 @@ public class MiniCart extends AbstractComponent
         }
     }
 
-    @Step("validate the mini cart subtotal price")
+    @Step("validate the mini cart subtotal price equals '{subtotal}'")
     public void validateSubtotal(String subtotal)
     {
         subOrderPrice.shouldHave(exactText(subtotal)).shouldBe(visible);
     }
 
-    @Step("validate mini cart menu")
+    @Step("validate mini cart")
     public void validateStructure()
     {
         openMiniCart();
@@ -190,7 +190,6 @@ public class MiniCart extends AbstractComponent
 
     /// ----- validate mini cart item ----- ///
 
-    @Step("validate product in the mini cart")
     private void validateMiniCartItem(int position, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
     {
         openMiniCart();
@@ -208,14 +207,14 @@ public class MiniCart extends AbstractComponent
         closeMiniCart();
     }
 
-    @Step("validate product in the mini cart")
+    @Step("validate '{product}' on position {position} in the mini cart")
     public void validateMiniCartItem(int position, Product product)
     {
         validateMiniCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(),
                              PriceHelper.format(product.getTotalPrice()));
     }
 
-    @Step("validate '{product}' in the mini cart")
+    @Step("validate '{product}' on position '{position}' in the mini cart after changing it's quantity")
     public void validateMiniCartItem(int position, Product product, int productAmount, String productPrice)
     {
         validateMiniCartItem(position, product.getName(), product.getStyle(), product.getSize(), productAmount, productPrice);

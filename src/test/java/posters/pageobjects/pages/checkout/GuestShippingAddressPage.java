@@ -61,17 +61,22 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
         $("#orderCmplt h3").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.name"))).shouldBe(visible);
     }
     
+    private void validateFillInHeadlines(String headline)
+    {
+        $$(".form-group").findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
+    }
+    
     @Step("validate fill-in form headlines")
     public void validateFillInHeadlines()
     {
-        $$(".form-group").findBy(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.fullName")));
-        $$(".form-group").findBy(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.company")));
-        $$(".form-group").findBy(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.address")));
-        $$(".form-group").findBy(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.city")));
-        $$(".form-group").findBy(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.state")));
-        $$(".form-group").findBy(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.zip")));
+        validateFillInHeadlines("AddressPages.fillIn.headlines.fullName");
+        validateFillInHeadlines("AddressPages.fillIn.headlines.company");
+        validateFillInHeadlines("AddressPages.fillIn.headlines.address");
+        validateFillInHeadlines("AddressPages.fillIn.headlines.city");
+        validateFillInHeadlines("AddressPages.fillIn.headlines.state");
+        validateFillInHeadlines("AddressPages.fillIn.headlines.zip");
         // TODO - fix after issue is fixed
-        //$$(".form-group").findBy(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.country")));
+        //validateFillInHeadlines("AddressPages.fillIn.headlines.country");
     }
     
     @Step("validate fill-in form placeholder")
@@ -141,7 +146,27 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
 
     /// ----- send shipping address form ----- ///
 
-    @Step("fill and send shipping address form and go to guest billing address page")
+    private GuestBillingAddressPage goToGuestBillingAddressPage(String name, String company, String address, String city,
+                                                                String state, String zip, String country)
+     {
+         // fill in form with parameters
+         $("#fullName").val(name);
+         $("#company").val(company);
+         $("#addressLine").val(address);
+         $("#city").val(city);
+         $("#state").val(state);
+         $("#zip").val(zip);
+         $("#country").selectOption(country);
+
+         $("#billEqualShipp-No").scrollTo().click();
+
+         // go to guest billing address page
+         addShippingButton.scrollTo().click();
+
+         return new GuestBillingAddressPage().isExpectedPage();
+     }
+    
+    @Step("fill and send shipping address form with '{shippingAddress}' and go to guest billing address page")
     public GuestBillingAddressPage goToGuestBillingAddressPage(Address shippingAddress)
     {
         String fullName = shippingAddress.getFirstName() + " " + shippingAddress.getLastName();
@@ -151,39 +176,7 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
                                            shippingAddress.getCountry());
     }
 
-    @Step("fill and send shipping address form and go to guest billing address page")
-    public GuestBillingAddressPage goToGuestBillingAddressPage(String name, String company, String address, String city,
-                                                               String state, String zip, String country)
-    {
-        // fill in form with parameters
-        $("#fullName").val(name);
-        $("#company").val(company);
-        $("#addressLine").val(address);
-        $("#city").val(city);
-        $("#state").val(state);
-        $("#zip").val(zip);
-        $("#country").selectOption(country);
-
-        $("#billEqualShipp-No").scrollTo().click();
-
-        // go to guest billing address page
-        addShippingButton.scrollTo().click();
-
-        return new GuestBillingAddressPage().isExpectedPage();
-    }
-
-    @Step("fill and send shipping address form and go to guest payment page")
-    public GuestPaymentPage goToGuestPaymentPage(Address shippingAddress)
-    {
-        String fullName = shippingAddress.getFirstName() + " " + shippingAddress.getLastName();
-
-        return goToGuestPaymentPage(fullName, shippingAddress.getCompany(), shippingAddress.getStreet(),
-                                    shippingAddress.getCity(), shippingAddress.getState(), shippingAddress.getZip(),
-                                    shippingAddress.getCountry());
-    }
-
-    @Step("fill and send shipping address form and go to guest payment page")
-    public GuestPaymentPage goToGuestPaymentPage(String name, String company, String address, String city,
+    private GuestPaymentPage goToGuestPaymentPage(String name, String company, String address, String city,
                                                  String state, String zip, String country)
     {
         // fill in form with parameters
@@ -201,5 +194,15 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
         addShippingButton.scrollTo().click();
 
         return new GuestPaymentPage().isExpectedPage();
+    }
+    
+    @Step("fill and send shipping address form with '{shippingAddress}' and go to guest payment page")
+    public GuestPaymentPage goToGuestPaymentPage(Address shippingAddress)
+    {
+        String fullName = shippingAddress.getFirstName() + " " + shippingAddress.getLastName();
+
+        return goToGuestPaymentPage(fullName, shippingAddress.getCompany(), shippingAddress.getStreet(),
+                                    shippingAddress.getCity(), shippingAddress.getState(), shippingAddress.getZip(),
+                                    shippingAddress.getCountry());
     }
 }

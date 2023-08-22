@@ -117,8 +117,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     
     /// ----- validate order overview ----- ///
     
-    @Step("validate shipping address overview")
-    public void validateShippingAddressOverview(Address shippingAddress, String headline) 
+    private void validateShippingAddressOverview(Address shippingAddress, String headline) 
     {
         // validate headline
         headlines.findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
@@ -145,8 +144,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         shippingAddressForm.find(".country").shouldHave(exactText(shippingAddress.getCountry())).shouldBe(visible);
     }
     
-    @Step("validate billing address overview")
-    public void validateBillingAddressOverview(Address billingAddress, String headline) 
+    private void validateBillingAddressOverview(Address billingAddress, String headline) 
     {
         // validate headline
         headlines.findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
@@ -173,8 +171,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         billingAddressForm.find(".country").shouldHave(exactText(billingAddress.getCountry())).shouldBe(visible);
     }
     
-    @Step("validate payment overview")
-    public void validatePaymentOverview(CreditCard creditCard, String headline) 
+    private void validatePaymentOverview(CreditCard creditCard, String headline) 
     {
         // validate headline
         headlines.findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
@@ -208,7 +205,6 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     
     /// ----- validate products ----- ///
     
-    @Step("validate '{product}' on the place order page")
     private void validateProduct(int position, String productName, String productStyle, String productSize, int productAmount, String productPrice)
     {
         // selector for product

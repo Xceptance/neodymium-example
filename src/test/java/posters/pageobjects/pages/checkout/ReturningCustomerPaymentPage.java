@@ -64,7 +64,7 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
         useCreditCardButton.shouldHave(exactText(Neodymium.localizedText("ReturningCustomerPaymentPage.button.useCreditCard"))).shouldBe(visible);
     }
     
-    @Step("validate specific position in credit card container")
+    @Step("validate credit card '{creditCard}' on position '{position}' in credit card container")
     public void validateCreditCardContainer(int position, CreditCard creditCard) 
     {
         final int index = position - 1;
@@ -79,7 +79,7 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
     
     /// ----- select credit card ----- ///
 
-    @Step("select a credit card for payment")
+    @Step("select a credit card on position '{position}'")
     public PlaceOrderPage selectCreditCard(int position)
     {
         final int index = position - 1;

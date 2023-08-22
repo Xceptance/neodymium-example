@@ -92,7 +92,7 @@ public class UserMenu extends AbstractComponent
         return userMenu.find(".firstName").exists();
     }
 
-    @Step("validate that '{firstName}' is logged in")
+    @Step("validate that '{firstName}' is displayed in user menu")
     public void validateLoggedInName(String firstName)
     {
         openUserMenu();

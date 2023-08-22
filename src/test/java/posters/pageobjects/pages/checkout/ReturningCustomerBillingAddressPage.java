@@ -64,7 +64,7 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
         useBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("ReturningCustomerBillingAddressPage.button.useBillAddr"))).shouldBe(visible);
     }
     
-    @Step("validate specific position in address container")
+    @Step("validate billing address '{billingAddress}' on position '{position}' in address container")
     public void validateAddressContainer(int position, Address billingAddress) 
     {
         final int index = position - 1;
@@ -82,7 +82,7 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
 
     /// ----- select billing address ----- ///
     
-    @Step("select a billing address")
+    @Step("select a billing address on position '{position}'")
     public ReturningCustomerPaymentPage selectBillingAddress(int position)
     {
         final int index = position - 1;

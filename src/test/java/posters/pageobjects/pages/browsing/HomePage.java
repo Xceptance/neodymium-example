@@ -38,6 +38,7 @@ public class HomePage extends AbstractBrowsingPage
     public void validatePosterSlide(String position, String headline)
     {         
         slideNavigation.findBy(exactText(position)).shouldBe(visible).scrollIntoView(true).click();
+        //slideHeadline.findBy(exactText(Neodymium.localizedText(headline))).waitUntil(visible, 9000);
         slideHeadline.findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
         slideButton.findBy(exactText(Neodymium.localizedText("HomePage.slider.button"))).shouldBe(visible);
     }
@@ -104,7 +105,7 @@ public class HomePage extends AbstractBrowsingPage
     
     /// ----- validate success messages ----- ///
     
-    @Step("validate successful login on home page")
+    @Step("validate successful login of user '{firstName}' on home page")
     public void validateSuccessfulLogin(String firstName)
     {
         // validate success message

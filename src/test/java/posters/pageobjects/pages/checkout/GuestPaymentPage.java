@@ -30,7 +30,6 @@ public class GuestPaymentPage extends AbstractCheckoutPage
 
     private SelenideElement addPaymentButton = $("#btnAddPayment");
     
-
     @Override
     @Step("ensure this is a payment page")
     public GuestPaymentPage isExpectedPage()
@@ -72,8 +71,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         $("#orderCmplt h3").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.name"))).shouldBe(visible);
     }
     
-    @Step("validate fill-in form headlines")
-    public void validateFillInHeadlines(String headline)
+    private void validateFillInHeadlines(String headline)
     {
         $$(".form-group label").findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
     }
@@ -95,8 +93,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         $("#expirationDateYear [selected]").shouldHave(exactText(Integer.toString(LocalDate.now().getYear()))).shouldBe(visible);
     }
     
-    @Step("validate month dropdown")
-    public void validateMonthDropdown(String month) 
+    private void validateMonthDropdown(String month) 
     {
         $$("#expirationDateMonth").findBy(matchText(Neodymium.localizedText(month))).shouldBe(visible);
     }
@@ -122,8 +119,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.december");
     }
     
-    @Step("validate year dropdown")
-    public void validateYearDropdown(String year) 
+    private void validateYearDropdown(String year) 
     {
         $$("#expirationDateYear").findBy(matchText(Neodymium.localizedText(year))).shouldBe(visible);
     }
@@ -191,14 +187,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
     
     /// ----- send payment form ----- ///
     
-    @Step("fill and send payment form")
-    public PlaceOrderPage goToPlaceOrderPage(CreditCard creditcard)
-    {
-        return goToPlaceOrderPage(creditcard.getCardNumber(), creditcard.getFullName(), creditcard.getExpDateMonth(), creditcard.getExpDateYear());
-    }
-    
-    @Step("fill and send payment form")
-    public PlaceOrderPage goToPlaceOrderPage(String number, String name, String month, String year)
+    private PlaceOrderPage goToPlaceOrderPage(String number, String name, String month, String year)
     {
         // fill in form with parameters
         creditCardNumber.val(number);
@@ -210,5 +199,11 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         addPaymentButton.scrollTo().click();
 
         return new PlaceOrderPage().isExpectedPage();
+    }
+    
+    @Step("fill and send payment form with '{creditCard}'")
+    public PlaceOrderPage goToPlaceOrderPage(CreditCard creditCard)
+    {
+        return goToPlaceOrderPage(creditCard.getCardNumber(), creditCard.getFullName(), creditCard.getExpDateMonth(), creditCard.getExpDateYear());
     }
 }

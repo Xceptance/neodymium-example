@@ -100,13 +100,13 @@ public class ProductDetailPage extends AbstractBrowsingPage
         $("#btnAddToCart .icon-shopping-cart").shouldBe(visible);
     }
 
-    @Step("validate product name on product detail page")
-    public void validateProductName(String name)
+    @Step("validate product name '{prodName}' on product detail page")
+    public void validateProductName(String prodName)
     {
-        productName.shouldHave(exactText(name));
+        productName.shouldHave(exactText(prodName));
     }
 
-    @Step("validate product name page of product '{productName}'")
+    @Step("validate product detail page")
     public void validate(String productName)
     {
         validateStructure();
@@ -115,13 +115,13 @@ public class ProductDetailPage extends AbstractBrowsingPage
 
     /// ----- select product size/style, add to cart ----- ///
 
-    @Step("select size")
+    @Step("select size '{size}'")
     public void setSize(String size)
     {
         productSize.selectOptionContainingText(size);
     }
 
-    @Step("select style")
+    @Step("select style '{style}'")
     public void setStyle(String style)
     {
         $(".radio #finish-" + style).selectRadio(style);
@@ -133,7 +133,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
         addToCartButton.scrollTo().click();
     }
 
-    @Step("add product with size:'{size}' and style:'{style}' to cart")
+    @Step("add product with size '{size}' and style '{style}' to cart")
     public void addToCart(String size, String style)
     {
         setSize(size);
