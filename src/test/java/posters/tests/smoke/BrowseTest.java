@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
 import com.xceptance.neodymium.util.DataUtils;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
@@ -30,8 +31,8 @@ public class BrowseTest extends AbstractTest
         homePage.validateStructure();
 
         // go to category page and validate
-        var categoryPage = homePage.header.topNav.clickCategory(browseTestData.getTopCategory1());
-        categoryPage.validate(browseTestData.getTopCategory1(), browseTestData.getExpectedResultCount1());
+        var categoryPage = homePage.header.topNav.clickCategory(Neodymium.localizedText(browseTestData.getTopCategory1()));
+        categoryPage.validate(Neodymium.localizedText(browseTestData.getTopCategory1()), browseTestData.getExpectedResultCount1());
         
         // go to product page and validate
         final String productName = categoryPage.getProductNameByPosition(browseTestData.getResultPosition1());
@@ -39,8 +40,8 @@ public class BrowseTest extends AbstractTest
         productDetailPage.validate(productName);
 
         // go to category page and validate
-        categoryPage = productDetailPage.header.topNav.clickCategory(browseTestData.getTopCategory2());
-        categoryPage.validate(browseTestData.getTopCategory2(), browseTestData.getExpectedResultCount2());
+        categoryPage = productDetailPage.header.topNav.clickCategory(Neodymium.localizedText(browseTestData.getTopCategory2()));
+        categoryPage.validate(Neodymium.localizedText(browseTestData.getTopCategory2()), browseTestData.getExpectedResultCount2());
        
         // go to product page and validate
         final String productName2 = categoryPage.getProductNameByPosition(browseTestData.getResultPosition2());
@@ -48,8 +49,8 @@ public class BrowseTest extends AbstractTest
         productDetailPage.validate(productName2);
         
         // go to category page and validate
-        categoryPage = productDetailPage.header.topNav.clickCategory(browseTestData.getTopCategory3());
-        categoryPage.validate(browseTestData.getTopCategory3(), browseTestData.getExpectedResultCount3());
+        categoryPage = productDetailPage.header.topNav.clickCategory(Neodymium.localizedText(browseTestData.getTopCategory3()));
+        categoryPage.validate(Neodymium.localizedText(browseTestData.getTopCategory3()), browseTestData.getExpectedResultCount3());
        
         // go to product page and validate
         final String productName3 = categoryPage.getProductNameByPosition(browseTestData.getResultPosition3());
@@ -57,8 +58,8 @@ public class BrowseTest extends AbstractTest
         productDetailPage.validate(productName3);
         
         // go to category page and validate
-        categoryPage = productDetailPage.header.topNav.clickCategory(browseTestData.getTopCategory4());
-        categoryPage.validate(browseTestData.getTopCategory4(), browseTestData.getExpectedResultCount4());
+        categoryPage = productDetailPage.header.topNav.clickCategory(Neodymium.localizedText(browseTestData.getTopCategory4()));
+        categoryPage.validate(Neodymium.localizedText(browseTestData.getTopCategory4()), browseTestData.getExpectedResultCount4());
        
         // go to product page and validate
         final String productName4 = categoryPage.getProductNameByPosition(browseTestData.getResultPosition4());

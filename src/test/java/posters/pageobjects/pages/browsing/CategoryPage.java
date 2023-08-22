@@ -56,18 +56,18 @@ public class CategoryPage extends AbstractBrowsingPage
     @Step("validate category name '{categoryName}' and amount results '{expectedResultCount}' is on category page")
     public void validateCategoryHeadline(String categoryName, int expectedResultCount)
     {
-        if (categoryName.contains("."))
-        {
-            // if {categoryName} contains Neodymium localization
-            titleCategoryName.should(matchText(Neodymium.localizedText(categoryName))).shouldBe(visible);
-            titleCategoryName.should(matchText(Integer.toString(expectedResultCount))).shouldBe(visible);
-        }
-        else
+        if ($("#titleSearchText").exists())
         {
             // if {categoryName} is search input
             $("#titleSearchText").should(matchText(Neodymium.localizedText("CategoryPage.search.resultText"))).shouldBe(visible);
             $("#searchTextValue").shouldHave(exactText(categoryName)).shouldBe(visible);
             $("#totalProductCount").shouldHave(exactText(Integer.toString(expectedResultCount))).shouldBe(visible);
+        }
+        else
+        {
+            // if {categoryName} contains Neodymium localization
+            titleCategoryName.should(matchText(categoryName)).shouldBe(visible);
+            titleCategoryName.should(matchText(Integer.toString(expectedResultCount))).shouldBe(visible);
         }
     }
 
