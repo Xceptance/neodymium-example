@@ -36,11 +36,8 @@ public class HomePage extends AbstractBrowsingPage
     
     @Step("validate poster slide")
     public void validatePosterSlide(String position, String headline)
-    {        
-        slideNavigation.findBy(exactText(position)).click();
-        slideNavigation.findBy(exactText(position)).click();
-        slideNavigation.findBy(exactText(position)).click();
-
+    {         
+        slideNavigation.findBy(exactText(position)).shouldBe(visible).scrollIntoView(true).click();
         slideHeadline.findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
         slideButton.findBy(exactText(Neodymium.localizedText("HomePage.slider.button"))).shouldBe(visible);
     }
