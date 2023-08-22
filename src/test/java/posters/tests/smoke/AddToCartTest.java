@@ -37,8 +37,8 @@ public class AddToCartTest extends AbstractTest
         final String oldSubtotal = homePage.header.miniCart.getSubtotal();
 
         // go to sub category page
-        var categoryPage = homePage.header.topNav.clickCategory(addToCartTestData.getTopCategory());
-        var subCategoryPage = categoryPage.header.topNav.clickSubCategory(addToCartTestData.getTopCategory(), addToCartTestData.getSubCategory());
+        var categoryPage = homePage.header.topNav.clickCategory(Neodymium.localizedText(addToCartTestData.getTopCategory()));
+        var subCategoryPage = categoryPage.header.topNav.clickSubCategory(Neodymium.localizedText(addToCartTestData.getTopCategory()), Neodymium.localizedText(addToCartTestData.getSubCategory()));
 
         // go to product detail page, add and store displayed product
         var productDetailPage = subCategoryPage.clickProductByPosition(addToCartTestData.getSubCategoryResultPosition());
