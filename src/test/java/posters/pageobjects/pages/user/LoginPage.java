@@ -40,6 +40,12 @@ public class LoginPage extends AbstractBrowsingPage
 
     /// ----- validate content login page ----- ///
     
+    @Step("validate required string")
+    public void validateRequiredString() 
+    {
+        $(".reqField").shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.requiredFields"))).shouldBe(visible);
+    }
+    
     @Override
     @Step("validate login page structure")
     public void validateStructure()

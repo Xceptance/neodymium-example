@@ -62,6 +62,12 @@ public class RegisterPage extends AbstractBrowsingPage
         passwordRepeatField.shouldHave(attribute("placeholder", (Neodymium.localizedText("RegisterPage.placeholder.passwordRepeat")))).shouldBe(visible);
     }
     
+    @Step("validate required string")
+    public void validateRequiredString() 
+    {
+        $(".reqField").shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.requiredFields"))).shouldBe(visible);
+    }
+    
     @Override
     @Step("validate register page structure")
     public void validateStructure()

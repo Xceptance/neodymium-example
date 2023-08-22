@@ -33,6 +33,12 @@ public class DeleteAccountPage extends AbstractBrowsingPage
 
     /// ----- validate content delete account page ----- ///
     
+    @Step("validate required string")
+    public void validateRequiredString() 
+    {
+        $(".reqField").shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.requiredFields"))).shouldBe(visible);
+    }
+    
     @Override
     @Step("validate delete account page structure")
     public void validateStructure()
