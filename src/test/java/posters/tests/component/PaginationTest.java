@@ -5,6 +5,7 @@ import org.junit.Test;
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
 import com.xceptance.neodymium.module.statement.testdata.SuppressDataSets;
 import com.xceptance.neodymium.util.DataUtils;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
@@ -31,7 +32,7 @@ public class PaginationTest extends AbstractTest
         var homePage = OpenHomePageFlow.flow();
 
         // go to category page
-        var categoryPage = homePage.header.topNav.clickCategory(paginationTestData.getTopCategory());
+        var categoryPage = homePage.header.topNav.clickCategory(Neodymium.localizedText(paginationTestData.getTopCategory()));
         categoryPage.pagination.validateStructure(paginationTestData.getExpectedResultCount());
     }
 }

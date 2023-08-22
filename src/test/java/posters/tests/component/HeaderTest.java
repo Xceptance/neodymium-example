@@ -5,6 +5,7 @@ import org.junit.Test;
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
 import com.xceptance.neodymium.module.statement.testdata.SuppressDataSets;
 import com.xceptance.neodymium.util.DataUtils;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
@@ -32,7 +33,7 @@ public class HeaderTest extends AbstractTest
         homePage.header.validateStructure();
 
         // go to category page
-        var categoryPage = homePage.header.topNav.clickCategory(headerTestData.getTopCategory());
+        var categoryPage = homePage.header.topNav.clickCategory(Neodymium.localizedText(headerTestData.getTopCategory()));
         categoryPage.header.validateStructure();
 
         //go to product detail page, add product to cart
