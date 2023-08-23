@@ -18,5 +18,8 @@ public class CartCleanUpFlow
         {
             cartPage.removeProduct(1);
         }
+        
+        // go to homepage
+        homePage = cartPage.openHomePage();
     }
 }

@@ -43,5 +43,8 @@ public class HeaderTest extends AbstractTest
         // go to cart page
         var cartPage = productDetailPage.header.miniCart.openCartPage();
         cartPage.header.validateStructure();
+        
+        // go to homepage
+        homePage = cartPage.openHomePage();
     }
 }

@@ -35,7 +35,7 @@ public class GuestOrderTest extends AbstractTest
         var homePage = OpenHomePageFlow.flow();
 
         // go to category page
-        var categoryPage = homePage.header.topNav.clickCategory(guestOrderTestData.getTopCategory());
+        var categoryPage = homePage.header.topNav.clickCategory(Neodymium.localizedText(guestOrderTestData.getTopCategory()));
         
         // go to product detail page, add and store displayed product
         var productDetailPage = categoryPage.clickProductByPosition(guestOrderTestData.getResultPosition());

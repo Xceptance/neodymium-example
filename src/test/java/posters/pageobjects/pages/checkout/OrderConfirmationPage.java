@@ -70,7 +70,7 @@ public class OrderConfirmationPage extends AbstractBrowsingPage{
     
     /// ----- order confirmation page navigation ----- ///
     
-    @Step("go to homepage")
+    @Step("open homepage from order confirmation page")
     public HomePage openHomePage()
     {
         homePageButton.scrollTo().click();

@@ -3,12 +3,11 @@ package posters.flows;
 import io.qameta.allure.Step;
 import posters.tests.testdata.dataobjects.User;
 import posters.pageobjects.pages.browsing.HomePage;
-import posters.pageobjects.pages.user.LoginPage;
 
 public class DeleteUserFlow
 {
     @Step("delete '{user}' flow")
-    public static LoginPage flow(User user)
+    public static void flow(User user)
     {
         HomePage homePage = new HomePage();
 
@@ -34,6 +33,7 @@ public class DeleteUserFlow
         loginPage.sendFalseLoginForm(user);
         loginPage.validateWrongEmail(user.getEmail());
         
-        return loginPage.isExpectedPage();
+        // go to homePage
+        homePage = loginPage.openHomePage();
     }
 }

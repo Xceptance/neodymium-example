@@ -44,6 +44,9 @@ public class SearchTest extends AbstractTest
         final String productName = categoryPage.getProductNameByPosition(searchTestData.getResultPosition());
         var productDetailPage = categoryPage.clickProductByPosition(searchTestData.getResultPosition());
         productDetailPage.validate(productName);
+        
+        // go to homepage
+        homePage = productDetailPage.openHomePage();
     }
 
     @Test
@@ -56,5 +59,8 @@ public class SearchTest extends AbstractTest
         // go to no hits page
         var noHitsPage = homePage.header.search.noHitsPageResult(searchTestData.getSearchTerm());
         noHitsPage.validateStructure();
+        
+        // go to homepage
+        homePage = noHitsPage.openHomePage();
     }
 }

@@ -42,7 +42,7 @@ public class RegisteredOrderTest extends AbstractTest
         homePage.validateSuccessfulLogin(registeredOrderTestData.getUser().getFirstName());
 
         // go to category page
-        var categoryPage = homePage.header.topNav.clickCategory(registeredOrderTestData.getTopCategory());
+        var categoryPage = homePage.header.topNav.clickCategory(Neodymium.localizedText(registeredOrderTestData.getTopCategory()));
 
         // go to product detail page, add and store displayed product
         var productDetailPage = categoryPage.clickProductByPosition(registeredOrderTestData.getResultPosition());
@@ -80,13 +80,11 @@ public class RegisteredOrderTest extends AbstractTest
 
         if (!registeredOrderTestData.getShipAddrEqualBillAddr())
         {
-            placeOrderPage.validateOrderOverview(registeredOrderTestData.getShippingAddress(), registeredOrderTestData.getBillingAddress(),
-                                                 registeredOrderTestData.getCreditCard());
+            placeOrderPage.validateOrderOverview(registeredOrderTestData.getShippingAddress(), registeredOrderTestData.getBillingAddress(), registeredOrderTestData.getCreditCard());
         }
         else
         {
-            placeOrderPage.validateOrderOverview(registeredOrderTestData.getShippingAddress(), registeredOrderTestData.getShippingAddress(),
-                                                 registeredOrderTestData.getCreditCard());
+            placeOrderPage.validateOrderOverview(registeredOrderTestData.getShippingAddress(), registeredOrderTestData.getShippingAddress(), registeredOrderTestData.getCreditCard());
         }
 
         placeOrderPage.validateStructure();
@@ -96,6 +94,9 @@ public class RegisteredOrderTest extends AbstractTest
         // go to order confirmation page
         var orderConfirmationPage = placeOrderPage.placeOrder();
         orderConfirmationPage.validateStructure();
+        
+        // go to homepage
+        homePage = orderConfirmationPage.openHomePage();
     }
     
     @After

@@ -34,5 +34,8 @@ public class PaginationTest extends AbstractTest
         // go to category page
         var categoryPage = homePage.header.topNav.clickCategory(Neodymium.localizedText(paginationTestData.getTopCategory()));
         categoryPage.pagination.validateStructure(paginationTestData.getExpectedResultCount());
+        
+        // go to homepage
+        homePage = categoryPage.openHomePage();
     }
 }

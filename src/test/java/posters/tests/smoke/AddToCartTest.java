@@ -1,5 +1,6 @@
 package posters.tests.smoke;
 
+import org.junit.After;
 import org.junit.Test;
 
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
@@ -10,6 +11,7 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
+import posters.flows.CartCleanUpFlow;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 import posters.tests.testdata.processes.AddToCartTestData;
@@ -144,5 +146,14 @@ public class AddToCartTest extends AbstractTest
         cartPage.validateTotalAfterAdd(1, oldSubtotal5, productFromCartPageBefore.getTotalPrice());
         cartPage.header.miniCart.validateStructure();
         cartPage.header.miniCart.validateMiniCartItem(1, productFromCartPageBefore, cartPage.header.miniCart.getTotalCount(), subtotalAfterUpdate);
+        
+        // go to homepage
+        homePage = cartPage.openHomePage();
+    }
+    
+    @After
+    public void after()
+    {
+        CartCleanUpFlow.flow();
     }
 }

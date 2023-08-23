@@ -92,4 +92,13 @@ public class CategoryPage extends AbstractBrowsingPage
         $("#product" + (position - 1)).scrollTo().click();
         return new ProductDetailPage().isExpectedPage();
     }
+    
+    /// ----- category page navigation ----- ///
+    
+    @Step("open homepage from category page")
+    public HomePage openHomePage()
+    {
+        $("#brand").scrollTo().click();
+        return new HomePage().isExpectedPage();
+    }
 }

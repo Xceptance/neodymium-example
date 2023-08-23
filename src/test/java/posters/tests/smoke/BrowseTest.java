@@ -65,5 +65,8 @@ public class BrowseTest extends AbstractTest
         final String productName4 = categoryPage.getProductNameByPosition(browseTestData.getResultPosition4());
         productDetailPage = categoryPage.clickProductByPosition(browseTestData.getResultPosition4());
         productDetailPage.validate(productName4);
+        
+        // go to homepage
+        homePage = productDetailPage.openHomePage();
     }
 }

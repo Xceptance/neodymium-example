@@ -33,4 +33,13 @@ public class NoHitsPage extends AbstractBrowsingPage
         super.validateStructure();
         validateNoProductsFound();
     }
+    
+    /// ----- no hits page navigation ----- ///
+    
+    @Step("open homepage from no hits page")
+    public HomePage openHomePage()
+    {
+        $("#brand").scrollTo().click();
+        return new HomePage().isExpectedPage();
+    }
 }

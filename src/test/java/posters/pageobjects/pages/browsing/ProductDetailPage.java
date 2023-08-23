@@ -172,4 +172,13 @@ public class ProductDetailPage extends AbstractBrowsingPage
     {
         return new Product(getProductName(), getProductPrice(), getChosenStyle(), getChosenSize(), 1);
     }
+    
+    /// ----- product detail page navigation ----- ///
+    
+    @Step("open homepage from product detail page")
+    public HomePage openHomePage()
+    {
+        $("#brand").scrollTo().click();
+        return new HomePage().isExpectedPage();
+    }
 }

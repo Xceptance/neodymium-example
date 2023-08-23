@@ -105,6 +105,13 @@ public class LoginPage extends AbstractBrowsingPage
         return new RegisterPage().isExpectedPage();
     }
     
+    @Step("open homepage from login page")
+    public HomePage openHomePage()
+    {
+        $("#brand").scrollTo().click();
+        return new HomePage().isExpectedPage();
+    }
+    
     @Step("send login form")
     public void sendFormWithData(String email, String password)
     {
