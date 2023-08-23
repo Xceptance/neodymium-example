@@ -34,9 +34,9 @@ public class ProductDetailPage extends AbstractBrowsingPage
 
     /// ----- validate content product detail page ----- ///
 
-    public void validateSizeDropdown(String size)
+    private void validateSizeDropdown(String size)
     {
-        productSize.should(matchText(Neodymium.localizedText(size))).should(exist);
+        productSize.should(matchText(size)).should(exist);
     }
 
     @Step("validate size dropdown")
@@ -46,13 +46,13 @@ public class ProductDetailPage extends AbstractBrowsingPage
 
         if ($$("#selectSize option").size() > 1)
         {
-            validateSizeDropdown("ProductdetailPage.size.16x12");
-            validateSizeDropdown("ProductdetailPage.size.32x24");
-            validateSizeDropdown("ProductdetailPage.size.64x48");
+            validateSizeDropdown(Neodymium.localizedText("ProductdetailPage.size.16x12"));
+            validateSizeDropdown(Neodymium.localizedText("ProductdetailPage.size.32x24"));
+            validateSizeDropdown(Neodymium.localizedText("ProductdetailPage.size.64x48"));
         }
         else
         {
-            validateSizeDropdown("ProductdetailPage.size.96x32");
+            validateSizeDropdown(Neodymium.localizedText("ProductdetailPage.size.96x32"));
         }
 
         productSize.scrollTo().click();

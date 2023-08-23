@@ -71,4 +71,11 @@ public class Address
     {
         return country;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Address [firstName=" + firstName + ", lastName=" + lastName + ", company=" + company + ", street=" + street + ", city=" + city + ", state="
+               + state + ", zip=" + zip + ", country=" + country + "]";
+    }  
 }

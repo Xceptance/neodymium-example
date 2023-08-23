@@ -120,7 +120,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     private void validateShippingAddressOverview(Address shippingAddress, String headline) 
     {
         // validate headline
-        headlines.findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
+        headlines.findBy(exactText(headline)).shouldBe(visible);
         
         // validate name
         String fullName = shippingAddress.getFirstName() + " " + shippingAddress.getLastName();
@@ -147,7 +147,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     private void validateBillingAddressOverview(Address billingAddress, String headline) 
     {
         // validate headline
-        headlines.findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
+        headlines.findBy(exactText(headline)).shouldBe(visible);
         
         // validate name
         String fullName = billingAddress.getFirstName() + " " + billingAddress.getLastName();
@@ -174,7 +174,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     private void validatePaymentOverview(CreditCard creditCard, String headline) 
     {
         // validate headline
-        headlines.findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
+        headlines.findBy(exactText(headline)).shouldBe(visible);
         
         // validate name
         paymentForm.find(".name").shouldHave(exactText(creditCard.getFullName())).shouldBe(visible);
@@ -194,13 +194,13 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         title.shouldHave(exactText(Neodymium.localizedText("PlaceOrderPage.overview.title"))).shouldBe(visible);
         
         // validate shipping address
-        validateShippingAddressOverview(shippingAddress, "PlaceOrderPage.overview.headlines.shippingAddress");
+        validateShippingAddressOverview(shippingAddress, Neodymium.localizedText("PlaceOrderPage.overview.headlines.shippingAddress"));
         
         // validate billing address
-        validateBillingAddressOverview(billingAddress, "PlaceOrderPage.overview.headlines.billingAddress");
+        validateBillingAddressOverview(billingAddress, Neodymium.localizedText("PlaceOrderPage.overview.headlines.billingAddress"));
         
         // validate payment
-        validatePaymentOverview(creditCard, "PlaceOrderPage.overview.headlines.payment");
+        validatePaymentOverview(creditCard, Neodymium.localizedText("PlaceOrderPage.overview.headlines.payment"));
     }
     
     /// ----- validate products ----- ///

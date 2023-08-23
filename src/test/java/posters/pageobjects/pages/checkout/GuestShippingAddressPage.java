@@ -63,20 +63,20 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
     
     private void validateFillInHeadlines(String headline)
     {
-        $$(".form-group").findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
+        $$(".form-group").findBy(exactText(headline)).shouldBe(visible);
     }
     
     @Step("validate fill-in form headlines")
     public void validateFillInHeadlines()
     {
-        validateFillInHeadlines("AddressPages.fillIn.headlines.fullName");
-        validateFillInHeadlines("AddressPages.fillIn.headlines.company");
-        validateFillInHeadlines("AddressPages.fillIn.headlines.address");
-        validateFillInHeadlines("AddressPages.fillIn.headlines.city");
-        validateFillInHeadlines("AddressPages.fillIn.headlines.state");
-        validateFillInHeadlines("AddressPages.fillIn.headlines.zip");
+        validateFillInHeadlines(Neodymium.localizedText("AddressPages.fillIn.headlines.fullName"));
+        validateFillInHeadlines(Neodymium.localizedText("AddressPages.fillIn.headlines.company"));
+        validateFillInHeadlines(Neodymium.localizedText("AddressPages.fillIn.headlines.address"));
+        validateFillInHeadlines(Neodymium.localizedText("AddressPages.fillIn.headlines.city"));
+        validateFillInHeadlines(Neodymium.localizedText("AddressPages.fillIn.headlines.state"));
+        validateFillInHeadlines(Neodymium.localizedText("AddressPages.fillIn.headlines.zip"));
         // TODO - fix after issue is fixed
-        //validateFillInHeadlines("AddressPages.fillIn.headlines.country");
+        //validateFillInHeadlines(Neodymium.localizedText("AddressPages.fillIn.headlines.country"));
     }
     
     @Step("validate fill-in form placeholder")

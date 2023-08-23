@@ -73,15 +73,15 @@ public class GuestPaymentPage extends AbstractCheckoutPage
     
     private void validateFillInHeadlines(String headline)
     {
-        $$(".form-group label").findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
+        $$(".form-group label").findBy(exactText(headline)).shouldBe(visible);
     }
 
     @Step("validate fill-in form headlines")
     public void validateFillInHeadlines()
     {
-        validateFillInHeadlines("GuestPaymentPage.fillIn.headlines.cardNumber");
-        validateFillInHeadlines("GuestPaymentPage.fillIn.headlines.cardHolderName");
-        validateFillInHeadlines("GuestPaymentPage.fillIn.headlines.expirationDate");
+        validateFillInHeadlines(Neodymium.localizedText("GuestPaymentPage.fillIn.headlines.cardNumber"));
+        validateFillInHeadlines(Neodymium.localizedText("GuestPaymentPage.fillIn.headlines.cardHolderName"));
+        validateFillInHeadlines(Neodymium.localizedText("GuestPaymentPage.fillIn.headlines.expirationDate"));
     }
     
     @Step("validate fill-in form placeholder")
@@ -95,7 +95,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
     
     private void validateMonthDropdown(String month) 
     {
-        $$("#expirationDateMonth").findBy(matchText(Neodymium.localizedText(month))).shouldBe(visible);
+        $$("#expirationDateMonth").findBy(matchText(month)).shouldBe(visible);
     }
     
     @Step("validate month dropdown")
@@ -105,23 +105,23 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         expirationMonth.scrollTo().click();
         
         // validate months
-        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.january");
-        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.february");
-        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.march");
-        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.april");
-        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.may");
-        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.june");
-        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.july");
-        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.august");
-        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.september");
-        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.october");
-        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.november");
-        validateMonthDropdown("GuestPaymentPage.fillIn.expireMonth.december");
+        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.january"));
+        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.february"));
+        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.march"));
+        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.april"));
+        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.may"));
+        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.june"));
+        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.july"));
+        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.august"));
+        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.september"));
+        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.october"));
+        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.november"));
+        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.december"));
     }
     
     private void validateYearDropdown(String year) 
     {
-        $$("#expirationDateYear").findBy(matchText(Neodymium.localizedText(year))).shouldBe(visible);
+        $$("#expirationDateYear").findBy(matchText(year)).shouldBe(visible);
     }
     
     @Step("validate year dropdown")
@@ -131,17 +131,17 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         expirationYear.scrollTo().click();
         
         // validate years
-        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2023");
-        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2024");
-        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2025");
-        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2026");
-        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2027");
-        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2028");
-        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2029");
-        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2030");
-        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2031");
-        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2032");
-        validateYearDropdown("GuestPaymentPage.fillIn.expireYear.2033");
+        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2023"));
+        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2024"));
+        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2025"));
+        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2026"));
+        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2027"));
+        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2028"));
+        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2029"));
+        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2030"));
+        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2031"));
+        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2032"));
+        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2033"));
     }
     
     @Step("validate required string")

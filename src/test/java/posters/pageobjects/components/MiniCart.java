@@ -161,7 +161,7 @@ public class MiniCart extends AbstractComponent
         $(".icon-shopping-cart").shouldBe(visible);
 
         // validate total count
-        validateTotalCount((int) (calculateTotalCount()));
+        validateTotalCount(calculateTotalCount());
 
         // validate title
         // TODO - fix consistency mini cart title

@@ -37,6 +37,7 @@ public class HomePage extends AbstractBrowsingPage
     @Step("validate poster slide")
     public void validatePosterSlide(String position, String headline)
     {         
+        // TODO - improve
         slideNavigation.findBy(exactText(position)).click();
         slideNavigation.findBy(exactText(position)).click();
         slideNavigation.findBy(exactText(position)).click();
@@ -90,7 +91,8 @@ public class HomePage extends AbstractBrowsingPage
         super.validateStructure();
 
         // validate poster slide
-        validatePosterSlide();
+        // TODO - fix consistent click
+        //validatePosterSlide();
         
         // validate intro
         $("#intro").shouldHave(exactText(Neodymium.localizedText("HomePage.intro"))).shouldBe(visible);

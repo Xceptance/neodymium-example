@@ -61,4 +61,10 @@ public class Product
     {
         return amount * getUnitPriceDouble();
     }
+
+    @Override
+    public String toString()
+    {
+        return "Product [name=" + name + ", unitPrice=" + unitPrice + ", style=" + style + ", size=" + size + ", amount=" + amount + "]";
+    }
 }

@@ -21,13 +21,13 @@ public class SaleBanner extends AbstractComponent
 
     private void validateSaleBanner(String text) 
     {
-        $$(".owl-stage").findBy(exactText(Neodymium.localizedText(text))).waitUntil(visible, 9000);
+        $$(".owl-stage").findBy(exactText(text)).waitUntil(visible, 9000);
     }
     
     @Step("validate sale banner")
     public void validateStructure()
     {
-        validateSaleBanner("header.sale.second");
-        validateSaleBanner("header.sale.first");
+        validateSaleBanner(Neodymium.localizedText("header.sale.second"));
+        validateSaleBanner(Neodymium.localizedText("header.sale.first"));
     }
 }

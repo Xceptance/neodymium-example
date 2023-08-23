@@ -46,4 +46,11 @@ public class CreditCard
     {
         return expDateYear;
     }
+
+    @Override
+    public String toString()
+    {
+        return "CreditCard [fullName=" + fullName + ", cardNumber=" + cardNumber + ", crypticCardNumber=" + crypticCardNumber + ", expDateMonth=" + expDateMonth
+               + ", expDateYear=" + expDateYear + "]";
+    }
 }

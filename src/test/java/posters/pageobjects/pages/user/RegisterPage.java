@@ -44,17 +44,17 @@ public class RegisterPage extends AbstractBrowsingPage
     
     private void validateFillInHeadlines(String headline)
     {
-        $$("#formRegister .form-group label").findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
+        $$("#formRegister .form-group label").findBy(exactText(headline)).shouldBe(visible);
     }
     
     @Step("validate fill-in form headlines")
     public void validateFillInHeadlines()
     {
-        validateFillInHeadlines("RegisterPage.headlines.firstName");
-        validateFillInHeadlines("RegisterPage.headlines.lastName");
-        validateFillInHeadlines("RegisterPage.headlines.email");
-        validateFillInHeadlines("RegisterPage.headlines.password");
-        validateFillInHeadlines("RegisterPage.headlines.passwordRepeat");
+        validateFillInHeadlines(Neodymium.localizedText("RegisterPage.headlines.firstName"));
+        validateFillInHeadlines(Neodymium.localizedText("RegisterPage.headlines.lastName"));
+        validateFillInHeadlines(Neodymium.localizedText("RegisterPage.headlines.email"));
+        validateFillInHeadlines(Neodymium.localizedText("RegisterPage.headlines.password"));
+        validateFillInHeadlines(Neodymium.localizedText("RegisterPage.headlines.passwordRepeat"));
     }
     
     @Step("validate fill in form placeholder")
