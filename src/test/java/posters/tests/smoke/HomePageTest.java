@@ -17,9 +17,6 @@ import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 
-/**
- * @author pfotenhauer
- */
 @Severity(SeverityLevel.TRIVIAL)
 @Owner("Joe Fix")
 @Tag("smoke")
@@ -35,7 +32,7 @@ public class HomePageTest extends AbstractTest
     {
         AllureAddons.addToReport("Find me in the report", "Some additional content. Could be the toString method of an complex object.");
         var homePage = OpenHomePageFlow.flow();
-        homePage.validate();
         homePage.title.validateTitle(Neodymium.localizedText("HomePage.title"));
+        homePage.validateStructure();
     }
 }

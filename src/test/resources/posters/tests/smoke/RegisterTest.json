@@ -2,56 +2,56 @@
     {
         "firstName": "Jane",
         "lastName": "Doe",
-        "email": "jane@doe.com",
+        "email": "jane@varmail.net",
         "password": "topsecret",
         "testId": "Jane's test"
     },
     {
         "firstName": "Simon",
         "lastName": "Doe",
-        "email": "simon@doe.com",
+        "email": "simon@varmail.net",
         "password": "topsecret",
         "testId": "Simons's test"
     },
     {
         "firstName": "James",
         "lastName": "Doe",
-        "email": "james@doe.com",
+        "email": "james@varmail.net",
         "password": "topsecret",
         "testId": "James' test"
     },
     {
         "firstName": "Josh",
         "lastName": "Doe",
-        "email": "josh@doe.com",
+        "email": "josh@varmail.net",
         "password": "topsecret",
         "testId": "Josh's test"
     },
     {
         "firstName": "Jim",
         "lastName": "Doe",
-        "email": "jim@doe.com",
+        "email": "jim@varmail.net",
         "password": "topsecret",
         "testId": "Jim's test"
     },
     {
         "firstName": "Jude",
         "lastName": "Doe",
-        "email": "jude@doe.com",
+        "email": "jude@varmail.net",
         "password": "topsecret",
         "testId": "Jude's test"
     },
     {
         "firstName": "Joel",
         "lastName": "Doe",
-        "email": "joel@doe.com",
+        "email": "joel@varmail.net",
         "password": "topsecret",
         "testId": "Joel's test"
     },
     {
         "firstName": "Jeremiah",
         "lastName": "Doe",
-        "email": "jeremiah@doe.com",
+        "email": "jeremiah@varmail.net",
         "password": "topsecret",
         "testId": "Jeremiah's test"
     }

@@ -1,20 +1,25 @@
 package posters.pageobjects.pages.user;
 
 import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.matchText;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
-/**
- * @author pfotenhauer
- */
 public class AccountOverviewPage extends AbstractBrowsingPage
 {
-    private SelenideElement headline = $("#titleAccountOverview");
+    private SelenideElement title = $("#titleAccountOverview");
+    
+    private SelenideElement orderOverviewLink = $("#linkOrderOverview");
+    
+    private SelenideElement myAddressesLink = $("#linkAddressOverview");
+    
+    private SelenideElement paymentSettingsLink = $("#linkPaymentOverview");
 
     private SelenideElement personalDataLink = $("#linkSettingOverview");
 
@@ -23,48 +28,55 @@ public class AccountOverviewPage extends AbstractBrowsingPage
     public AccountOverviewPage isExpectedPage()
     {
         super.isExpectedPage();
-        headline.should(exist);
+        title.should(exist);
         return this;
     }
 
+    /// ----- validate content account overview page ----- ///
+    
     @Override
     @Step("validate account overview page structure")
     public void validateStructure()
     {
         super.validateStructure();
 
-        // Headline
-        // Make sure the headline is there and start with a capital letter
-        headline.should(matchText("[A-Z].{3,}"));
-        // Order Overview Link
-        // Make sure the link to the order history is there and the text starts with a capital letter
-        $("#linkOrderOverview").should(matchText("[A-Z].{3,}"));
-        // My Addresses Link
-        // Make sure the link to the Addresses page is there and the text starts with a capital letter
-        $("#linkAddressOverview").should(matchText("[A-Z].{3,}"));
-        // Payment Settings Link
-        // Make sure the link to the Credit Cards page is there and the text starts with a capital letter
-        $("#linkPaymentOverview").should(matchText("[A-Z].{3,}"));
-        // Personal Data Link
-        // Make sure the link to the Personal Data page is there and the text starts with a capital letter
-        personalDataLink.should(matchText("[A-Z].{3,}"));
+        // validate title
+        title.shouldHave(exactText(Neodymium.localizedText("AccountOverviewPage.title"))).shouldBe(visible);
+        
+        // validate navigation buttons
+        orderOverviewLink.shouldHave(exactText(Neodymium.localizedText("AccountOverviewPage.button.orderHistory"))).shouldBe(visible);
+        myAddressesLink.shouldHave(exactText(Neodymium.localizedText("AccountOverviewPage.button.myAddresses"))).shouldBe(visible);
+        paymentSettingsLink.shouldHave(exactText(Neodymium.localizedText("AccountOverviewPage.button.paymentSettings"))).shouldBe(visible);
+        personalDataLink.shouldHave(exactText(Neodymium.localizedText("AccountOverviewPage.button.personalData"))).shouldBe(visible);
     }
 
-    /**
-     * @return
-     */
+    /// ----- account overview page navigation ----- ///
+    
+    @Step("open order history page")
+    public OrderHistoryPage openOrderHistory()
+    {
+        orderOverviewLink.scrollTo().click();
+        return new OrderHistoryPage().isExpectedPage();
+    }
+    
+    @Step("open my addresses page")
+    public MyAddressesPage openMyAddresses()
+    {
+        myAddressesLink.scrollTo().click();
+        return new MyAddressesPage().isExpectedPage();
+    }
+    
+    @Step("open payment settings page")
+    public PaymentSettingsPage openPaymentSettings()
+    {
+        paymentSettingsLink.scrollTo().click();
+        return new PaymentSettingsPage().isExpectedPage();
+    }
+    
     @Step("open personal data page")
     public PersonalDataPage openPersonalData()
     {
-        // Open the personal data page
-        // Click on the link to Personal Data
         personalDataLink.scrollTo().click();
         return new PersonalDataPage().isExpectedPage();
-    }
-
-    public OrderHistoryPage openOrderHistory()
-    {
-        $("#linkOrderOverview").scrollTo().click();
-        return new OrderHistoryPage().isExpectedPage();
     }
 }

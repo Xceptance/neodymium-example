@@ -1,31 +1,24 @@
 package posters.pageobjects.pages.browsing;
 
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 
-import java.util.Random;
-
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.pageobjects.components.Pagination;
 
-/**
- * @author pfotenhauer
- */
 public class CategoryPage extends AbstractBrowsingPage
 {
     public Pagination pagination = new Pagination();
 
     private SelenideElement productOverview = $("#productOverview");
+
+    private SelenideElement titleCategoryName = $("#titleCategoryName");
 
     @Override
     @Step("ensure this is a category page")
@@ -36,13 +29,7 @@ public class CategoryPage extends AbstractBrowsingPage
         return this;
     }
 
-    @Step("validate category name '{categoryName}' on category page")
-    public void validateCategoryName(String categoryName)
-    {
-        // Category name
-        // Ensures the category headline contains the category name
-        $("#titleCategoryName").shouldBe(text(categoryName));
-    }
+    /// ----- validate content category page ----- ///
 
     @Override
     @Step("validate category page structure")
@@ -50,149 +37,68 @@ public class CategoryPage extends AbstractBrowsingPage
     {
         super.validateStructure();
 
-        // Amount of results
-        // Assures the amount of posters displayed in the headline is not 0.
-        $("#totalProductCount").shouldNotBe(exactText("0"));
-        // Results
-        // Assures there's at least one product shown
+        // validate poster count in headline is not 0
+        $("#totalProductCount").shouldNotBe(exactText("0")).shouldBe(visible);
+
+        // validate at least 1 poster is displayed
         $("#product0").shouldBe(visible);
     }
 
     /**
-     * @param row
-     * @param column
-     * @return
-     */
-    @Step("click on a product by position in grid")
-    public ProductDetailPage clickProductByPosition(int row, int column)
-    {
-        // Open the product detail page
-        // Clicks a product by position. Because of the html code, this requires x and y coordinates.
-        SelenideElement rowContainer = $$("#products > .row").get(row - 1);
-        rowContainer.find(".thumbnail", column - 1).scrollTo().click();
-        return new ProductDetailPage().isExpectedPage();
-    }
-
-    /**
-     * @param row
-     * @param column
-     * @return
-     */
-    @Step("get a product name by position in grid")
-    public String getProductNameByPosition(int row, int column)
-    {
-        SelenideElement rowContainer = productOverview.findAll("#products #pRows").get(row - 1);
-        return rowContainer.find("h2.pName", column - 1).text();
-    }
-
-    /**
-     * @param position
-     * @return
-     */
-    @Step("click on a product by position")
-    public ProductDetailPage clickProductByPosition(int position)
-    {
-        final int index = position - 1;
-        
-        // Open the product detail page
-        // Click on the product's image and open the product overview page
-        // Click the product link to open the product detail page
-        $("#product" + index + " img").scrollTo().click();
-        return new ProductDetailPage().isExpectedPage();
-    }
-
-    /**
-     * @param productName
-     * @return
-     */
-    @Step("click on a product by name '{productName}'")
-    public ProductDetailPage clickProductByName(String productName)
-    {
-        // Open the product detail page
-        // Click on the product's image and open the product overview page
-        // Click the product link to open the product detail page
-        $("#productOverview .thumbnails .thumbnail a > img.pImage[title='" + productName + "']").scrollTo().click();
-        return new ProductDetailPage().isExpectedPage();
-    }
-
-    /**
-     * @param position
-     * @return
-     */
-    @Step("get a product name by position")
-    public String getProductNameByPosition(int position)
-    {
-        final int index = position - 1;
-        // Get the product name
-        return $("#product" + index + " .desc .pName").text();
-    }
-
-    /**
-     * @param searchTerm
-     * @param searchTermExpectedCount
-     */
-    @Step("validate search results for '{searchTerm}' on category page")
-    public void validateSearchHits(String searchTerm, int searchTermExpectedCount)
-    {
-        $("#titleSearchText").should(exist);
-        // Validate the headline contains the search phrase
-        // \\(" + searchTermExpectedCount + " *\\)
-        $("#titleSearchText").should(matchText(Neodymium.localizedText("search.results.text") + ": '" + searchTerm + "' \\(" + searchTermExpectedCount
-                                               + ".*\\)"));
-        // Verify that the correct search term is displayed
-        // Validate the entered search phrase is still visible in the input
-        search.validateSearchTerm(searchTerm);
-        // Assert the Headline displays the search term.
-        $(".header-container #searchTextValue").shouldHave(exactText(searchTerm));
-        // Verify there are search results
-        // There is at least one row of results
-        $("#productOverview #products .row").shouldBe(exist);
-        // There is at least one product in the results
-        $$("#productOverview .product-entry").shouldHave(sizeGreaterThan(0));
-        // Verify that there is the specified amount of results
-        // The amount of products shown in the headline matches the expected value
-        $("#totalProductCount").shouldHave(exactText(Integer.toString(searchTermExpectedCount)));
-    }
-
-    /**
-     * @param productName
-     */
-    @Step("validate product '{productName}' is visible on category page")
-    public void validateProductVisible(String productName)
-    {
-        $("#productOverview .thumbnails .thumbnail a > img.pImage[title='" + productName + "']").shouldBe(visible);
-    }
-
-    /**
+     * Note: If {categoryName} contains a ".", it's a localization string, localized by Neodymium. Else a search
+     * term was used. Both cases have a different headline to validate.
+     * 
      * @param categoryName
+     *            (name of specific category of top navigation)
+     * @param expectedResultCount
+     *            (number of results for specific category/search)
      */
+    @Step("validate category name '{categoryName}' and amount results '{expectedResultCount}' is on category page")
+    public void validateCategoryHeadline(String categoryName, int expectedResultCount)
+    {
+        if ($("#titleSearchText").exists())
+        {
+            // if {categoryName} is search input
+            $("#titleSearchText").should(matchText(Neodymium.localizedText("CategoryPage.search.resultText"))).shouldBe(visible);
+            $("#searchTextValue").shouldHave(exactText(categoryName)).shouldBe(visible);
+            $("#totalProductCount").shouldHave(exactText(Integer.toString(expectedResultCount))).shouldBe(visible);
+        }
+        else
+        {
+            // if {categoryName} contains Neodymium localization
+            titleCategoryName.should(matchText(categoryName)).shouldBe(visible);
+            titleCategoryName.should(matchText(Integer.toString(expectedResultCount))).shouldBe(visible);
+        }
+    }
+
     @Step("validate category page of category '{categoryName}'")
-    public void validate(String categoryName)
+    public void validate(String categoryName, int expectedResultCount)
     {
         validateStructure();
-        validateCategoryName(categoryName);
+        validateCategoryHeadline(categoryName, expectedResultCount);
     }
 
-    /**
-     * @param categoryName
-     */
-    @Step("validate category page of category '{categoryName}' and assert visually")
-    public void validateAndVisualAssert(String categoryName)
+    /// ----- product by position ----- ///
+
+    @Step("get a product name by position '{position}'")
+    public String getProductNameByPosition(int position)
     {
-        validateStructureAndVisual();
-        validateCategoryName(categoryName);
+        return $("#product" + (position - 1) + " h2").text();
     }
 
-    public String getRandomProductDetailName(Random random)
+    @Step("click on a product by position '{position}'")
+    public ProductDetailPage clickProductByPosition(int position)
     {
-        ElementsCollection rows = productOverview.findAll(".thumbnails.row");
-        int numberOfRows = rows.size();
-        int productIndexX = random.nextInt(numberOfRows);
-
-        SelenideElement row = rows.get(productIndexX);
-        int numberOfColumns = row.findAll(".thumbnail").filter(visible).size();
-        int productIndexY = random.nextInt(numberOfColumns);
-
-        return getProductNameByPosition(productIndexX + 1, productIndexY + 1);
+        $("#product" + (position - 1)).scrollTo().click();
+        return new ProductDetailPage().isExpectedPage();
+    }
+    
+    /// ----- category page navigation ----- ///
+    
+    @Step("open homepage from category page")
+    public HomePage openHomePage()
+    {
+        $("#brand").scrollTo().click();
+        return new HomePage().isExpectedPage();
     }
 }

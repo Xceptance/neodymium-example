@@ -1,52 +1,39 @@
 package posters.flows;
 
 import io.qameta.allure.Step;
-import posters.dataobjects.User;
+import posters.tests.testdata.dataobjects.User;
 import posters.pageobjects.pages.browsing.HomePage;
-import posters.pageobjects.pages.user.LoginPage;
 
-/**
- * @author pfotenhauer
- */
 public class DeleteUserFlow
 {
-    /**
-     * @param user
-     */
-    @Step("delete user flow")
-    public static LoginPage flow(User user)
+    @Step("delete '{user}' flow")
+    public static void flow(User user)
     {
-        var homePage = new HomePage();
+        HomePage homePage = new HomePage();
 
-        // ensure that the user is logged in
-        var loginPage = new LoginPage();
-        if (!homePage.userMenu.isLoggedIn())
-        {
-            loginPage = homePage.userMenu.openLogin();
-            homePage = loginPage.sendLoginform(user);
-        }
-
-        // go to account page
-        var accountOverviewPage = homePage.userMenu.openAccountOverview();
+        // go to account page and validate
+        var accountOverviewPage = homePage.header.userMenu.openAccountOverviewPage();
         accountOverviewPage.validateStructure();
 
-        // go to personal data page
+        // go to personal data page and validate
         var personalDataPage = accountOverviewPage.openPersonalData();
         personalDataPage.validateStructure();
+        personalDataPage.validatePersonalData(user);
 
-        // go to account deletion page
-        var deleteAccountPage = personalDataPage.openDeleteAccount();
+        // go to account deletion page and validate
+        var deleteAccountPage = personalDataPage.openDeleteAccountPage();
+        deleteAccountPage.validateStructure();
 
-        // delete the account
+        // delete the account and validate success message
         homePage = deleteAccountPage.deleteAccount(user.getPassword());
         homePage.validateSuccessfulDeletedAccount();
 
         // verify that the account is not available anymore
-        loginPage = homePage.userMenu.openLogin();
-        loginPage.validateStructure();
-        loginPage.sendFalseLoginform(user);
+        var loginPage = homePage.header.userMenu.openLoginPage();
+        loginPage.sendFalseLoginForm(user);
         loginPage.validateWrongEmail(user.getEmail());
-
-        return loginPage.isExpectedPage();
+        
+        // go to homePage
+        homePage = loginPage.openHomePage();
     }
 }

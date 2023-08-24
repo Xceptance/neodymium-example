@@ -1,12 +1,10 @@
 [
     {
         "searchTerm": "bear",
-        "position": "1",
-        "searchTermExpectedCount": "3"
+        "expectedResultCount": "3",
+        "resultPosition": "1"
     },
     {
-        "searchTerm": "Foobar",
-        "position": "",
-        "searchTermExpectedCount": ""
+        "searchTerm": "Foobar"
     }
 ]

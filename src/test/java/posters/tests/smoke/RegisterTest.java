@@ -4,31 +4,24 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.xceptance.neodymium.module.statement.browser.multibrowser.Browser;
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
+import com.xceptance.neodymium.module.statement.testdata.SuppressDataSets;
 import com.xceptance.neodymium.util.DataUtils;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
-import posters.dataobjects.User;
 import posters.flows.DeleteUserFlow;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
+import posters.tests.testdata.dataobjects.User;
 
-/**
- * The initial data base of Posters provides a default user to avoid a registration process. The used e-mail address is
- * "john@doe.com". Using this user within the RegisterTest would lead to an expected error.
- * 
- * @author pfotenhauer
- */
 @Owner("Lisa Smith")
 @Severity(SeverityLevel.CRITICAL)
 @Tag("smoke")
 @Tag("registered")
-//@Browser("Chrome_1024x768")
-@Browser("Firefox_1024x768")
+@SuppressDataSets
 public class RegisterTest extends AbstractTest
 {
     private User user;
@@ -38,34 +31,26 @@ public class RegisterTest extends AbstractTest
     {
         user = DataUtils.get(User.class);
     }
-
+    
     @Test
     @DataSet(2)
-    @DataSet(4)
-    @DataSet(id = "Jim's test")
     public void testRegistering()
-    {
-        // Go to homepage
+    {        
+        // go to homepage
         var homePage = OpenHomePageFlow.flow();
-        homePage.validate();
 
-        // Assure that nobody is logged in
-        homePage.userMenu.validateNotLoggedIn();
-
-        // Go to login form
-        var loginPage = homePage.userMenu.openLogin();
-        loginPage.validateStructure();
-
-        // Go to register form
-        var registerPage = loginPage.openRegister();
+        // go to register page and validate
+        var registerPage = homePage.header.userMenu.openRegisterPage();
         registerPage.validateStructure();
-
-        loginPage = registerPage.sendRegisterForm(user);
-        loginPage.validateSuccessfulRegistration();
+        
+        // go to login page and validate
+        var loginPage = registerPage.sendRegisterForm(user);
         loginPage.validateStructure();
-
-        homePage = loginPage.sendLoginform(user);
-        homePage.validateSuccessfulLogin(user);
+        loginPage.validateSuccessfulRegistration();
+        
+        // send login form
+        homePage = loginPage.sendLoginForm(user);
+        homePage.validateSuccessfulLogin(user.getFirstName());
     }
 
     @After

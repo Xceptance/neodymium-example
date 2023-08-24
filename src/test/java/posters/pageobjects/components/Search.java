@@ -15,23 +15,19 @@ public class Search extends AbstractComponent
 {
     private SelenideElement searchField = $("#s");
 
+    @Override
+    @Step("validate availability search bar")
     public void isComponentAvailable()
     {
         searchField.should(exist);
     }
 
-    @Step("search for '{searchTerm}' without result")
-    public NoHitsPage noResult(String searchTerm)
+    /// ----- search navigation ----- ///
+    
+    @Step("open search field")
+    public void openSearch()
     {
-        search(searchTerm);
-        return new NoHitsPage();
-    }
-
-    @Step("search for '{searchTerm}' with result")
-    public CategoryPage categoryPageResult(String searchTerm)
-    {
-        search(searchTerm);
-        return new CategoryPage().isExpectedPage();
+        searchField.scrollTo().click();
     }
 
     @Step("search for '{searchTerm}'")
@@ -40,21 +36,35 @@ public class Search extends AbstractComponent
         openSearch();
         searchField.val(searchTerm).pressEnter();
     }
-
-    @Step("open search field")
-    public void openSearch()
-    {
-        $("#btnSearch").scrollTo().exists();
-    }
-
-    @Step("validate that {searchTerm} is still visible after")
+    
+    @Step("validate that '{searchTerm}' is still visible after search")
     public void validateSearchTerm(String searchTerm)
     {
-        // Validate the entered search phrase is still visible in the input
         openSearch();
-        // Validate the entered search phrase is still visible in the input
-        searchField.should(visible);
-        // Validate the entered search phrase is still visible in the input
-        searchField.should(exactValue(searchTerm));
+        searchField.shouldHave(exactValue(searchTerm));
+    }
+    
+    @Step("search for '{searchTerm}' without result")
+    public NoHitsPage noHitsPageResult(String searchTerm)
+    {
+        search(searchTerm);
+        return new NoHitsPage().isExpectedPage();
+    }
+
+    @Step("search for '{searchTerm}' with result")
+    public CategoryPage categoryPageResult(String searchTerm)
+    {
+        search(searchTerm);
+        return new CategoryPage().isExpectedPage();
+    }
+    
+    /// ----- validate search ----- ///
+    
+    @Step("validate search bar")
+    public void validateStructure() 
+    {
+        searchField.shouldBe(visible);
+        $("#btnSearch").shouldBe(visible);
+        $(".icon-search").shouldBe(visible);
     }
 }

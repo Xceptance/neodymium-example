@@ -1,52 +1,302 @@
 default:
+    header:
+        topNavigation:
+            "1":
+                title: World of Nature
+                subCategory:
+                    "1": Animals
+                    "2": Flowers
+                    "3": Trees
+            "2":
+                title: Dining
+                subCategory:
+                    "1": Cold Cuts
+                    "2": Main Dishes
+                    "3": Sweets
+            "3":
+                title: Transportation
+                subCategory:
+                    "1": Air Travel
+                    "2": Classic Cars
+                    "3": Railways
+            "4":
+                title: Panoramas
+                subCategory:
+                    "1": Architecture
+                    "2": Fireworks
+                    "3": Landscapes
+                    "4": XXL Panoramas
+        userMenu:
+            title: "WELCOME: "
+            createAccount: CREATE ACCOUNT
+            signIn: SIGN IN
+            accountOverview: MY ACCOUNT
+            logout: LOGOUT
+        miniCart:
+            title:
+                singular: ITEM IN THE CART
+                plural: ITEMS IN THE CART
+            subtotal: SUBTOTAL
+            viewCart: VIEW CART
+        sale:
+            first: "25% off (Almost) Everything! Use Code: Posters Sale"
+            second: "Our biggest sale yet 50% off all Posters"
     footer:
-        text: Copyright (c) 2013-2020 Xceptance Software Technologies GmbH -- This software is for demo purposes only and not meant to be used in production.
-    search:
-        results:
-            text: Your results for your search
+        copyright: Copyright (c) 2013-2020 Xceptance Software Technologies GmbH -- This software is for demo purposes only and not meant to be used in production.
     HomePage:
         title: Posters - The Ultimate Online Shop
+        slider:
+            headline:
+                "1": NORTH BOSTON
+                "2": BOSTON SUNSET
+                "3": BRYCE NATIONAL PARK, UTAH I
+                "4": BRYCE NATIONAL PARK, UTAH II
+            button: BUY
+        intro: Began with a simple idea "SHATATATATA!" - M. Scott
+        hotProducts: HOT PRODUCTS
+        featuredContent:
+            "1": "BLUE MORPHO BUTTERFLY"
+            "2": "SNOWDROP ANEMONE"
+            "3": "INDIAN SUMMER: RED BEECHES"
+            "4": "FINGER FOOD"
+            "5": "STUFFED TURKEY"
+            "6": "FRUIT TART WITH COCOA"
+            "7": "SWISS AIR AIRBUS A320"
+            "8": "IFA F8"
+            "9": "GERMAN STEAM LOCOMOTIVE"
+            "10": "GROCHWITZ CASTLE, GERMANY"
+            "11": "NEW YEAR'S FIREWORKS III"
+            "12": "LINNAEAN GARDEN AND MUSEUM, SWEDEN"
+        shopAllProducts: Shop All Products
         validation:
             successfulOrder: Thank you for shopping with us!
             successfulLogin: Login successful. Have fun in our shop!
             successfulAccountDeletion: Your account has been deleted. We hope to see you soon again!
+    CategoryPage:
+        search:
+            resultText: "Your results for your search: "
+        pagination:
+            goToNextPage: ">"
+            goToLastPage: ">>"
+            goToPrevPage: "<"
+            goToFirstPage: "<<"
     NoHitsPage:
         validation:
             noProductsFound: Sorry! No results found matching your search. Please try again.
     ProductdetailPage:
-        addToCartButton:
-            text: Add to cart
-    AccountPages:
-        email: Email address*
-        firstname: First name*
-        lastname: Last name*
-        password: Password*
-        passwordRepeat: Repeat password*
-        yourEmail: Your email*
-        yourPassword: Your password*
-        signIn: Sign in
+        size:
+            "16x12": 16 x 12 in
+            "32x24": 32 x 24 in
+            "64x48": 64 x 48 in
+            "96x32": 96 x 32 in
+        style:
+            matte: matte
+            gloss: gloss
+        print: "Print information:"
+        addToCartButton: Add to cart
+    CartPage:
+        title: Cart
+        errorMessage: Your cart is empty. Continue shopping.
+    GuestShippingAddressPage:
+        title: Enter a shipping address
+    ReturningCustomerShippingAddressPage:
+        title: Select or enter a shipping address
+        button:
+            addNewShipAddr: Add a new shipping address
+            useShipAddr: Continue
+    GuestBillingAddressPage:
+        title: Enter a billing address
+    ReturningCustomerBillingAddressPage:
+        title: Select or enter a billing address
+        button:
+            addNewBillAddr: Add a new billing address
+            useBillAddr: Use this billing address
+    AddressPages:
+        breadcrumb:
+            cart: CART/ 
+            shippingAddress: SHIPPING ADDRESS / 
+            billingAddress: BILLING ADDRESS / 
+            payment: PAYMENT / 
+            placeOrder: PLACE ORDER /
+        processWrap:
+            "1":
+                number: "01"
+                name: SHOPPING CART
+            "2":
+                number: "02"
+                name: SHIPPING ADDRESS
+            "3":
+                number: "03"
+                name: BILLING ADDRESS
+            "4":
+                number: "04"
+                name: PAYMENT METHOD
+            "5":
+                number: "05"
+                name: CHECKOUT
+            "6":
+                number: "06"
+                name: ORDER COMPLETE
+        fillIn:
+            headlines:
+                fullName: FULL NAME*
+                company: COMPANY
+                address: ADDRESS*
+                city: CITY*
+                state: STATE/PROVINCE*
+                zip: ZIP/POSTAL CODE*
+                country: COUNTRY*
+                useAddressForBilling: "Use this address for billing?*"
+                requiredFields: "* Required fields"
+            placeholder:
+                yourName: Your Name
+                companyName: company name
+                address: "Street address, Apartment, etc."
+                zip: "Zip / Postal"
+            dropdown:
+                usa: United States
+                germany: Germany
+            radio:
+                "yes": "YES"
+                "no": "NO"
+        button: Continue
+    GuestPaymentPage:
+        title: Enter a payment method
+        fillIn:
+            headlines:
+                cardNumber: "CARD NUMBER*"
+                cardHolderName: "CARDHOLDER'S NAME*"
+                expirationDate: EXPIRATION DATE*
+            placeholder:
+                cardNumber: Card number
+                cardOwnerName: "Cardholder's name"
+            expireMonth:
+                january: 01
+                february: 02
+                march: 03
+                april: 04
+                may: 05
+                june: 06
+                july: 07
+                august: 08
+                september: 09
+                october: 10
+                november: 11
+                december: 12
+            expireYear:
+                "2023": 2023
+                "2024": 2024
+                "2025": 2025
+                "2026": 2026
+                "2027": 2027
+                "2028": 2028
+                "2029": 2029
+                "2030": 2030
+                "2031": 2031
+                "2032": 2032
+                "2033": 2033
+        button: Continue
+    ReturningCustomerPaymentPage:
+        title: Select or enter a credit card
+        button:
+            addNewCreditCard: Add a new credit card
+            useCreditCard: Use this credit card
+    PlaceOrderPage:
+        overview:
+            title: Order Overview
+            headlines:
+                shippingAddress: Shipping Address
+                billingAddress: Billing Address
+                payment: Payment Settings
+        button: Order with costs
+    OrderConfirmationPage:
+        thankYouMessage: Thank you for purchasing, Your order is complete
+        button: Continue Shopping
+    LoginPage:
+        title: Sign-In
+        headlines:
+            email: YOUR EMAIL*
+            password: YOUR PASSWORD*
+        placeholder:
+            email: Email address
+            password: Password
+        button: Sign in
         newCustomer: New customer
-        createAccount: Create account
         createNewAccount: Create new Account
         validation:
-            successfulAccountCreation: Your account has been created. Log in with your email address and password.
-            emailDoesNotExistError: The email address you entered doesn't exist. Please try again.
-            incorrectPasswordError: The password you entered is incorrect. Please try again.
+            successfulRegistration: Your account has been created. Log in with your email address and password.
+            emailDoesNotExist: The email address you entered doesn't exist. Please try again.
+            incorrectPassword: The password you entered is incorrect. Please try again.
+    RegisterPage:
+        title: Create an account
+        headlines:
+            firstName: FIRST NAME*
+            lastName: LAST NAME*
+            email: EMAIL ADDRESS*
+            password: PASSWORD*
+            passwordRepeat: REPEAT PASSWORD*
+        placeholder:
+            firstName: First name
+            lastName: Last name
+            email: Email address
+            password: Password
+            passwordRepeat: Confirm password
+        button: Create account
+    AccountOverviewPage:
+        title: My Account
+        button:
+            orderHistory: Order History
+            myAddresses: My Addresses
+            paymentSettings: Payment Settings
+            personalData: Personal Data
+    OrderHistoryPage:
+        title: Order History
+        tableHead:
+            purchasedPosters: PURCHASED POSTERS
+            orderDetails: ORDER DETAILS
+            quantity: QUANTITY
+    MyAddressesPage:
+        title: My Addresses
+        headlines:
+            shipAddr: Shipping Address
+            billAddr: Billing Address
+    PaymentSettingsPage:
+        title: Payment Settings
+        button:
+            addNewCreditCard: Add a new credit card
+    PersonalDataPage:
+        title: Personal Data
+        headlines:
+            name: Name
+            email: Email
+        buttons:
+            changeData: Change Name or Email
+            changePassword: Change your password
+            deleteAccount: Delete your account
+    DeleteAccontPage:
+        title: Delete your account
+        headline: YOUR PASSWORD*
+        placeholder: Password
+        button: Delete
     General:
-        addresses:
-            fullname: Full name*
-            company: Company
-            address: Address*
-            city: City*
-            state: State/Province*
-            zip: ZIP/Postal code*
-            country: Country*
-        payment:
-            cardnumber: Card number*
-            cardholdername: Cardholder's name*
-            expirationdate: Expiration date*
         product:
-          style: style
-          size: size
-          quantity: Quantity
+            style: style
+            size: size
+            quantity: Quantity
+        priceSummary: 
+            title: Summary
+            subtotal: "Subtotal:"
+            shipping: "Shipping:"
+            tax: "Tax (6.0%)"
+            grandTotal: Total
+        productTable:
+            product: PRODUCT
+            unitPrice: UNIT PRICE
+            quantity: QUANTITY
+            update: REMOVE/UPDATE
+            totalPrice: TOTAL PRICE
+        button:
+            addNewShipAddr: Add a new shipping address
+            addNewBillAddr: Add a new billing address
+        
             

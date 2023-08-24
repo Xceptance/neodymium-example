@@ -13,25 +13,25 @@ public class ErrorMessage extends AbstractComponent
 {
     private SelenideElement errorMessage = $("#errorMessage");
 
+    @Override
+    @Step("ensure availability error message")
     public void isComponentAvailable()
     {
         errorMessage.should(exist);
     }
 
-    @Step("validate that the error message {message} is visible")
+    /// ----- validate error message ----- ///
+    
+    @Step("validate visibility of error message '{message}'")
     public void validateErrorMessage(String message)
     {
-        // Wait until javascript makes the error message visible
-        // Waits until javascript makes the error message visible.
-        errorMessage.shouldBe(visible);
-        // Makes sure the correct text is displayed.
-        errorMessage.shouldHave(exactText("× " + message));
+        errorMessage.find("strong").shouldHave(exactText(message)).shouldBe(visible);
+        errorMessage.find(".close").shouldHave(exactText("×")).shouldBe(visible);
     }
 
     @Step("validate that no error message is visible")
     public void validateNoErrorMessageOnPage()
     {
-        // Check that the error message is not visible.
         errorMessage.shouldNotBe(visible);
     }
 }

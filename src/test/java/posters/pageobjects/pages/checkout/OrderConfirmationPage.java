@@ -1,10 +1,9 @@
 package posters.pageobjects.pages.checkout;
 
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
@@ -17,7 +16,6 @@ public class OrderConfirmationPage extends AbstractBrowsingPage{
     
     private SelenideElement homePageButton = $("#goHome");
 
-    
     @Step("ensure this is the Order Confirmation page")
     public OrderConfirmationPage isExpectedPage()
     {
@@ -26,63 +24,57 @@ public class OrderConfirmationPage extends AbstractBrowsingPage{
         return this;
     }
     
+    /// ----- validate content order confirmation page ----- ///
+    
+    @Step("validate process wrap")
+    public void validateProcessWrap() 
+    {
+        // validate process numbers
+        $("#crt span").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.1.number"))).shouldBe(visible);
+        $("#ship span").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.2.number"))).shouldBe(visible);
+        $("#bill span").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.3.number"))).shouldBe(visible);
+        $("#payment span").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.4.number"))).shouldBe(visible);
+        $("#chkout span").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.number"))).shouldBe(visible);
+        $("#orderCmplt span").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.number"))).shouldBe(visible);
+        
+        // validate process names
+        $("#crt h3").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.1.name"))).shouldBe(visible);
+        $("#ship h3").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.2.name"))).shouldBe(visible);
+        $("#bill h3").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.3.name"))).shouldBe(visible);
+        $("#payment h3").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.4.name"))).shouldBe(visible);
+        $("#chkout h3").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.name"))).shouldBe(visible);
+        $("#orderCmplt h3").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.name"))).shouldBe(visible);
+    }
+    
+    @Step("validate order confirmation page structure")
     public void validateStructure()
     {
         super.validateStructure();
 
-
-
-        // Verifies the Navigation bar is visible
-        $("#categoryMenu .navi").shouldBe(visible);
+        // validate success message
+        successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulOrder"));
         
-        // Asserts there's categories in the nav bar.
-        $$("#categoryMenu .has-dropdown").shouldHave(sizeGreaterThan(0));
-
-        // Asserts the first headline is there.
-        // $("#titleIndex").shouldBe(matchText("[A-Z].{3,}"));
+        // validate process wrap
+        validateProcessWrap();
         
-        // Verifies the Process chain is there.
-        $(".process-wrap").shouldBe(visible);
-        
-        // Asserts the Confirmation Check is there.
-        $(".confirmation #cnfmCheck").shouldBe(visible);
+        // validate check icon
+        $(".icon-check").shouldBe(visible);
 
-        // Verifies the Thank you text is visible
-        $("#tYouText").shouldBe(visible);
+        // validate thank you message
+        $("#tYouText").shouldHave(exactText(Neodymium.localizedText("OrderConfirmationPage.thankYouMessage"))).shouldBe(visible);
         
         // Verifies GoTo HomePage button is visible
-        $("#goHome").shouldBe(visible);
-        
-       
+        $("#goHome .icon-shopping-cart").shouldBe(visible);
+        $("#goHome").shouldHave(exactText(Neodymium.localizedText("OrderConfirmationPage.button"))).shouldBe(visible);
     }
     
-    @Step("validate Order Confirmation page")
-    public void validate()
-    {
-        validateStructure();
-        footer.validate();
-    }
-
-    @Step("validate successful order on Confirmation page")
-    public void validateSuccessfulOrder()
-    {
-        successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulOrder"));
-        // Verify that the mini cart is empty again
-        miniCart.validateTotalCount(0);
-        miniCart.validateSubtotal("$0.00");
-    }
+    /// ----- order confirmation page navigation ----- ///
     
-    public HomePage goHome()
+    @Step("open homepage from order confirmation page")
+    public HomePage openHomePage()
     {
-        
-        // Clicks the Continue Shopping button on the Order Confirmation page
         homePageButton.scrollTo().click();
 
         return new HomePage().isExpectedPage();
-        
     }
-    
-    
-    
-
 }

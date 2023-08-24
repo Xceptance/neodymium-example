@@ -1,96 +1,94 @@
 package posters.pageobjects.components;
 
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import java.util.Random;
-
-import org.openqa.selenium.By;
-
 import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.CategoryPage;
 
-/**
- * @author pfotenhauer
- */
 public class TopNavigation extends AbstractComponent
 {
-    SelenideElement categoryMenu = $("#categoryMenu");
+    private SelenideElement categoryMenu = $("#categoryMenu");
 
     @Override
+    @Step("ensure availability top navigation")
     public void isComponentAvailable()
     {
         categoryMenu.should(exist);
     }
-
-    @Step("get the subcategory name")
-    public String getSubCategoryNameByPosition(int categoryPosition, int subCategoryPosition)
+    
+    // ----- category navigation ------ //
+    
+    @Step("click on the top category '{topCategory}'")
+    public CategoryPage clickCategory(String topCategory)
     {
-        return $("#categoryMenu > ul > li:nth-of-type(" + categoryPosition + ") ul.dropdown li:nth-of-type(" + subCategoryPosition + ") a").attr("title");
-    }
-
-    @Step("click a subcategory")
-    public CategoryPage clickSubCategoryByPosition(int categoryPosition, int subCategoryPosition)
-    {
-        // Open the category page
-        SelenideElement topCat = $$("#categoryMenu .has-dropdown").get(categoryPosition - 1);
-        topCat.hover();
-        // Clicks the subcategory with position @{subCategoryPosition}
-        // belonging to the category with position @{categoryPosition}
-        topCat.find(".dropdown-menu a", subCategoryPosition - 1).click();
+        $$(".has-dropdown").findBy(exactText(topCategory)).scrollTo().click();
         return new CategoryPage().isExpectedPage();
     }
-
-    @Step("click on '{categoryName}' category")
-    public CategoryPage clickCategory(String categoryName)
+    
+    @Step("click on the '{subCategory}' sub category within the top category '{topCategory}'")
+    public CategoryPage clickSubCategory(String topCategory, String subCategory)
     {
-        $(By.linkText(categoryName)).scrollTo().click();
+        $$(".has-dropdown").findBy(exactText(topCategory)).hover();
+        $$(".navi ul.dropdown-menu li").findBy(exactText(subCategory)).click();
         return new CategoryPage().isExpectedPage();
     }
-
-    @Step("click on a '{subCategoryName}' subcategory within '{categoryName}'")
-    public CategoryPage clickSubCategoryByNames(String categoryName, String subCategoryName)
+    
+    // ----- validate top navigation ----- //
+    
+    @Step("validate top category name '{topCategory}'")
+    public void validateNavComponent(String topCategory) 
     {
-        // Open the category page
-        categoryMenu.find(By.linkText(categoryName)).hover();
-        // Clicks the subcategory with position @{subCategoryPosition}
-        // belonging to the category with position @{categoryPosition}
-        categoryMenu.find(By.linkText(subCategoryName)).click();
-        return new CategoryPage();
+        $$(".has-dropdown").findBy(exactText(topCategory)).shouldBe(visible);
     }
 
-    /**
-     * @param subCategoryName
-     * @return
-     */
-    @Step("click on a product by name '{productName}'")
-    public CategoryPage clickSubcategoryByName(String subCategoryName)
+    @Step("validate sub category name '{subCategory}'")
+    public void validateSubNavComponent(String subCategory) 
     {
-        categoryMenu.find(".dropdown-menu li > a[title='" + subCategoryName + "']").parent().parent().parent().hover();
-        categoryMenu.find(By.linkText(subCategoryName)).click();
-
-        return new CategoryPage().isExpectedPage();
+        $$(".navi ul.dropdown-menu li").findBy(exactText(subCategory)).shouldBe(visible);
     }
-
-    @Step("get a random sub category name ")
-    public String getRandomSubcategoryName(Random random)
+    
+    @Step("validate structure top navigation")
+    public void validateStructure() 
     {
-        // compute random horizontal category position (for posters: random value from 1 to 4)
-        // ["World of nature", "Dining", "Transportation", "Panoramas"]
-        int categoryPositionX = random.nextInt(3) + 1;
-
-        // compute random vertical category position (for posters: random value from 1 to 4)
-        // if (categoryPositionX == 4) == true then categoryPositionY has range from 1 to 4
-        // otherwise from 1 to 3, because any category has 3 subcategories instead of category 4, which has 4
-        int categoryPositionY;
-        if (categoryPositionX == 4)
-            categoryPositionY = random.nextInt(3) + 1;
-        else
-            categoryPositionY = random.nextInt(2) + 1;
-
-        return getSubCategoryNameByPosition(categoryPositionX, categoryPositionY);
+        // validate navigation bar
+        validateNavComponent(Neodymium.localizedText("header.topNavigation.1.title"));
+        validateNavComponent(Neodymium.localizedText("header.topNavigation.2.title"));
+        validateNavComponent(Neodymium.localizedText("header.topNavigation.3.title"));
+        validateNavComponent(Neodymium.localizedText("header.topNavigation.4.title"));
+        
+        // validate sub navigation "World Of Nature"
+        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.topNavigation.1.title"))).hover();
+        validateSubNavComponent(Neodymium.localizedText("header.topNavigation.1.subCategory.1"));
+        validateSubNavComponent(Neodymium.localizedText("header.topNavigation.1.subCategory.2"));
+        validateSubNavComponent(Neodymium.localizedText("header.topNavigation.1.subCategory.3"));
+        
+        // validate sub navigation "Dining"
+        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.topNavigation.2.title"))).hover();
+        validateSubNavComponent(Neodymium.localizedText("header.topNavigation.2.subCategory.1"));
+        validateSubNavComponent(Neodymium.localizedText("header.topNavigation.2.subCategory.2"));
+        validateSubNavComponent(Neodymium.localizedText("header.topNavigation.2.subCategory.3"));
+        
+        // validate sub navigation "Transportation"
+        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.topNavigation.3.title"))).hover();
+        validateSubNavComponent(Neodymium.localizedText("header.topNavigation.3.subCategory.1"));
+        validateSubNavComponent(Neodymium.localizedText("header.topNavigation.3.subCategory.2"));
+        validateSubNavComponent(Neodymium.localizedText("header.topNavigation.3.subCategory.3"));
+        
+        // validate sub navigation "Panoramas"
+        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.topNavigation.4.title"))).hover();
+        validateSubNavComponent(Neodymium.localizedText("header.topNavigation.4.subCategory.1"));
+        validateSubNavComponent(Neodymium.localizedText("header.topNavigation.4.subCategory.2"));
+        validateSubNavComponent(Neodymium.localizedText("header.topNavigation.4.subCategory.3"));
+        validateSubNavComponent(Neodymium.localizedText("header.topNavigation.4.subCategory.4"));
+        
+        // close sub navigation
+        $("#globalNavigation").hover();
     }
 }

@@ -2,56 +2,71 @@ package posters.tests.smoke;
 
 import org.junit.Test;
 
+import com.xceptance.neodymium.module.statement.testdata.DataSet;
+import com.xceptance.neodymium.util.DataUtils;
+import com.xceptance.neodymium.util.Neodymium;
+
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
+import posters.tests.testdata.processes.BrowseTestData;
 
-/**
- * @author pfotenhauer
- */
 @Owner("Tim Brown")
 @Severity(SeverityLevel.NORMAL)
 @Tag("smoke")
 public class BrowseTest extends AbstractTest
 {
     @Test
+    @DataSet(1)
     public void testBrowsing()
     {
-        // Go to homepage
+        // use test data
+        final BrowseTestData browseTestData = DataUtils.get(BrowseTestData.class);
+        
+        // go to homepage
         var homePage = OpenHomePageFlow.flow();
-        homePage.validate();
+        homePage.validateStructure();
 
-        // Go to category
-        final String categoryName = homePage.topNav.getSubCategoryNameByPosition(1, 1);
-        var categoryPage = homePage.topNav.clickSubCategoryByPosition(1, 1);
-        categoryPage.validate(categoryName);
-
-        // Go to product page
-        final String productName = categoryPage.getProductNameByPosition(1, 1);
-        var productDetailPage = categoryPage.clickProductByPosition(1, 1);
+        // go to category page and validate
+        var categoryPage = homePage.header.topNav.clickCategory(Neodymium.localizedText(browseTestData.getTopCategory1()));
+        categoryPage.validate(Neodymium.localizedText(browseTestData.getTopCategory1()), browseTestData.getExpectedResultCount1());
+        
+        // go to product page and validate
+        final String productName = categoryPage.getProductNameByPosition(browseTestData.getResultPosition1());
+        var productDetailPage = categoryPage.clickProductByPosition(browseTestData.getResultPosition1());
         productDetailPage.validate(productName);
 
-        // Go to category
-        final String categoryName2 = productDetailPage.topNav.getSubCategoryNameByPosition(2, 2);
-        categoryPage = productDetailPage.topNav.clickSubCategoryByPosition(2, 2);
-        categoryPage.validate(categoryName2);
-
-        // Go to product page
-        final String productName2 = categoryPage.getProductNameByPosition(2, 2);
-        productDetailPage = categoryPage.clickProductByPosition(2, 2);
+        // go to category page and validate
+        categoryPage = productDetailPage.header.topNav.clickCategory(Neodymium.localizedText(browseTestData.getTopCategory2()));
+        categoryPage.validate(Neodymium.localizedText(browseTestData.getTopCategory2()), browseTestData.getExpectedResultCount2());
+       
+        // go to product page and validate
+        final String productName2 = categoryPage.getProductNameByPosition(browseTestData.getResultPosition2());
+        productDetailPage = categoryPage.clickProductByPosition(browseTestData.getResultPosition2());
         productDetailPage.validate(productName2);
-
-        // Go to category
-        final String categoryName3 = productDetailPage.topNav.getSubCategoryNameByPosition(2, 3);
-        categoryPage = productDetailPage.topNav.clickSubCategoryByPosition(2, 3);
-        categoryPage.validate(categoryName3);
-
-        // Go to product page
-        final String productName3 = categoryPage.getProductNameByPosition(2, 3);
-        productDetailPage = categoryPage.clickProductByPosition(2, 3);
+        
+        // go to category page and validate
+        categoryPage = productDetailPage.header.topNav.clickCategory(Neodymium.localizedText(browseTestData.getTopCategory3()));
+        categoryPage.validate(Neodymium.localizedText(browseTestData.getTopCategory3()), browseTestData.getExpectedResultCount3());
+       
+        // go to product page and validate
+        final String productName3 = categoryPage.getProductNameByPosition(browseTestData.getResultPosition3());
+        productDetailPage = categoryPage.clickProductByPosition(browseTestData.getResultPosition3());
         productDetailPage.validate(productName3);
+        
+        // go to category page and validate
+        categoryPage = productDetailPage.header.topNav.clickCategory(Neodymium.localizedText(browseTestData.getTopCategory4()));
+        categoryPage.validate(Neodymium.localizedText(browseTestData.getTopCategory4()), browseTestData.getExpectedResultCount4());
+       
+        // go to product page and validate
+        final String productName4 = categoryPage.getProductNameByPosition(browseTestData.getResultPosition4());
+        productDetailPage = categoryPage.clickProductByPosition(browseTestData.getResultPosition4());
+        productDetailPage.validate(productName4);
+        
+        // go to homepage
+        homePage = productDetailPage.openHomePage();
     }
 }

@@ -2,70 +2,79 @@ package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
-import posters.dataobjects.Product;
+import posters.tests.testdata.dataobjects.Product;
 import posters.pageobjects.pages.checkout.CartPage;
 import posters.pageobjects.utility.PriceHelper;
 
-/**
- * @author pfotenhauer
- */
 public class MiniCart extends AbstractComponent
 {
     private SelenideElement headerCart = $("#headerCartOverview");
 
-    private final static String miniCartSelector = "#miniCartMenu";
+    private SelenideElement subOrderPrice = $("#miniCartMenu .subOrderPrice");
 
-    private SelenideElement miniCart = $(miniCartSelector);
+    private SelenideElement miniCart = $("#miniCartMenu");
 
-    private SelenideElement subOrderPrice = $(miniCartSelector + " .subOrderPrice");
+    private SelenideElement miniCartTitle = $(".cartMiniProductCounter");
 
     private SelenideElement totalCountElement = $("#headerCartOverview .headerCartProductCount");
-    
+
     private SelenideElement goToCartButton = $(".goToCart");
 
+    private ElementsCollection productCounts = $$(".prodCount");
+
+    private ElementsCollection productPrices = $$(".prodPrice strong");
+
+    @Override
+    @Step("ensure availability mini cart")
     public void isComponentAvailable()
     {
         $("#btnCartOverviewForm").should(exist);
     }
 
+    /// ----- mini cart navigation ------ ///
+
     @Step("open the mini cart")
     public void openMiniCart()
     {
-        // Hover over the cart icon
         headerCart.hover();
-        // Wait for mini cart to appear
-        // Wait for the mini cart to show
-        miniCart.waitUntil(visible, Neodymium.configuration().selenideTimeout());
+        miniCart.waitUntil(visible, 9000);
     }
 
     @Step("close the mini cart")
     public void closeMiniCart()
     {
-        // Move the mouse out of the area
         $("#brand").hover();
-        // Wait for mini cart to disappear
-        // Wait for the mini cart to disappear
-        miniCart.waitUntil(not(visible), Neodymium.configuration().selenideTimeout());
+        miniCart.waitUntil(not(visible), 9000);
     }
 
     @Step("open the cart page")
     public CartPage openCartPage()
     {
-
-        // Open the cart
-        // Click on the button to go to the Cart
-         goToCartButton.click();
+        openMiniCart();
+        goToCartButton.click();
         return new CartPage().isExpectedPage();
+    }
+
+    /// ----- get data mini cart ----- ///
+
+    @Step("get the subtotal price from mini cart")
+    public String getSubtotal()
+    {
+        openMiniCart();
+        String subtotal = subOrderPrice.text();
+        closeMiniCart();
+
+        return subtotal;
     }
 
     @Step("get the total product count from mini cart")
@@ -74,98 +83,140 @@ public class MiniCart extends AbstractComponent
         return Integer.parseInt(totalCountElement.text());
     }
 
-    @Step("validate the mini cart total product count")
+    /**
+     * Note: Loops through all total product prices in the mini cart and adds it to the "subtotal" variable.
+     * 
+     * @return subtotal (The sum of all total product prices)
+     */
+    @Step("calculate sum of all total product prices")
+    public String calculateSubtotal()
+    {
+        double subtotal = 0;
+
+        for (SelenideElement totalProductPrice : productPrices)
+        {
+            subtotal = PriceHelper.calculateSubtotalMiniCart(subtotal, totalProductPrice.getText());
+        }
+
+        return PriceHelper.format(subtotal);
+    }
+
+    /**
+     * Note: If there is at least 1 item in the cart, it loops through all total product counts in the mini cart
+     * and adds it to the "totalCount" variable.
+     * 
+     * @return totalCount (The sum of all total product counts)
+     */
+    @Step("calculate total count via product counts")
+    public int calculateTotalCount()
+    {
+        int totalCount = 0;
+
+        if ($(".cartItems").exists())
+        {
+            for (SelenideElement productCount : productCounts)
+            {
+                totalCount = PriceHelper.calculateTotalCountMiniCart(totalCount, productCount.getText());
+            }
+
+            return totalCount;
+        }
+
+        return totalCount;
+    }
+
+    /// ----- validate mini cart structure ----- ///
+
+    @Step("validate the mini cart total product count equals '{totalCount}'")
     public void validateTotalCount(int totalCount)
     {
         totalCountElement.shouldHave(exactText(Integer.toString(totalCount)));
     }
 
-    @Step("get the subtotal price from mini cart")
-    public String getSubtotal()
+    @Step("validate the mini cart title")
+    public void validateTitle()
     {
-        // Store the mini cart subtotal
-        // Open mini cart
-        openMiniCart();
-        // Store subtotal in oldSubTotal
-        String subtotal = subOrderPrice.text();
-        // Close mini cart
-        closeMiniCart();
-
-        return subtotal;
+        if (getTotalCount() == 1)
+        {
+            miniCartTitle.shouldHave(exactText(getTotalCount() + " " + Neodymium.localizedText("header.miniCart.title.singular"))).shouldBe(visible);
+        }
+        else
+        {
+            miniCartTitle.shouldHave(exactText(getTotalCount() + " " + Neodymium.localizedText("header.miniCart.title.plural"))).shouldBe(visible);
+        }
     }
 
-    @Step("validate the mini cart subtotal price")
+    @Step("validate the mini cart subtotal price equals '{subtotal}'")
     public void validateSubtotal(String subtotal)
     {
-        // Verify the mini cart shows the specified subtotal
-        // Open mini cart
+        subOrderPrice.shouldHave(exactText(subtotal)).shouldBe(visible);
+    }
+
+    @Step("validate mini cart")
+    public void validateStructure()
+    {
         openMiniCart();
-        // Verify subtotal equals specified subtotal
-        // Compare the subtotal to the parameter
-        subOrderPrice.shouldHave(exactText(subtotal));
-        // Close Mini Cart
+
+        // validate shopping cart icon
+        $(".icon-shopping-cart").shouldBe(visible);
+
+        // validate total count
+        validateTotalCount(calculateTotalCount());
+
+        // validate title
+        // TODO - fix consistency mini cart title
+        // validateTitle();
+
+        // validate label subtotal
+        $(".labelText").shouldHave(exactText(Neodymium.localizedText("header.miniCart.subtotal"))).shouldBe(visible);
+
+        // validate subtotal
+        if (getTotalCount() == 0)
+        {
+            // if there are no items in cart
+            validateSubtotal("$0.00");
+        }
+        else
+        {
+            // if there are items in cart
+            validateSubtotal(calculateSubtotal());
+        }
+
+        // validate view cart button
+        $("#miniCartMenu .linkButton").shouldHave(exactText(Neodymium.localizedText("header.miniCart.viewCart"))).shouldBe(visible);
+
         closeMiniCart();
     }
 
-    /**
-     * @param position
-     * @param product
-     */
+    /// ----- validate mini cart item ----- ///
 
-    @Step("validate '{product}' in the mini cart")
-    public void validateMiniCart(int position, Product product)
+    private void validateMiniCartItem(int position, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
     {
-        validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(),
-                         PriceHelper.format(product.getTotalPrice()));
-    }
-
-    @Step("validate '{product}' in the mini cart by name")
-    public void validateMiniCartByProduct(Product product)
-    {
-        SelenideElement productContainer = $$(".cartItems").filter(matchText(product.getCartRowRegex())).shouldHaveSize(1).first();
-
-        productContainer.find(".prodName").shouldHave(exactText(product.getName()));
-        productContainer.find(".prodStyle").shouldHave(exactText(product.getStyle()));
-        productContainer.find(".prodSize").shouldHave(exactText(product.getSize()));
-        productContainer.find(".prodCount").shouldHave(exactText(Integer.toString(product.getAmount())));
-        productContainer.find(".prodPrice").shouldHave(exactText(PriceHelper.format(product.getTotalPrice())));
-    }
-
-    /**
-     * @param position
-     * @param product
-     * @param productAmount
-     * @param productTotalPrice
-     */
-    @Step("validate '{product}' in the mini cart")
-    public void validateMiniCart(int position, Product product, int productAmount, String productTotalPrice)
-    {
-        validateMiniCart(position, product.getName(), product.getStyle(), product.getSize(), productAmount, productTotalPrice);
-    }
-
-    private void validateMiniCart(int position, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
-    {
-        // Open the mini cart
         openMiniCart();
-        // Validate data of specified item
-        // Product Name
-        // ul.cartMiniElementList li:nth-child(" + position + ") ul.cartItems
+
+        // selector for product
         SelenideElement miniCartItem = $$("#miniCartMenu .cartItems").get(position - 1);
-        // Compares the name of the cart item at position @{position} to the parameter
+
+        // validate parameters
         miniCartItem.find(".prodName").shouldHave(exactText(productName));
-        // Product Style
-        // Compares the style of the cart item at position @{position} to the parameter
         miniCartItem.find(".prodStyle").shouldHave(exactText(productStyle));
-        // Product Size
-        // Compares the style of the cart item at position @{position} to the parameter
         miniCartItem.find(".prodSize").shouldHave(exactText(productSize));
-        // Amount
-        // Compares the amount of the cart item at position @{position} to the parameter
         miniCartItem.find(".prodCount").shouldHave(exactText(Integer.toString(productCount)));
-        // Price
-        // Compares the price of the cart item at position @{position} to the parameter
         miniCartItem.find(".prodPrice").shouldHave(exactText(prodTotalPrice));
-        // Close mini cart
+
         closeMiniCart();
+    }
+
+    @Step("validate '{product}' on position {position} in the mini cart")
+    public void validateMiniCartItem(int position, Product product)
+    {
+        validateMiniCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(),
+                             PriceHelper.format(product.getTotalPrice()));
+    }
+
+    @Step("validate '{product}' on position '{position}' in the mini cart after changing it's quantity")
+    public void validateMiniCartItem(int position, Product product, int productAmount, String productPrice)
+    {
+        validateMiniCartItem(position, product.getName(), product.getStyle(), product.getSize(), productAmount, productPrice);
     }
 }
