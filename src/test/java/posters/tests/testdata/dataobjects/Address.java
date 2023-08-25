@@ -71,6 +71,11 @@ public class Address
     {
         return country;
     }
+    
+    public String getFullName() 
+    {
+        return firstName + " " + lastName;
+    }
 
     @Override
     public String toString()

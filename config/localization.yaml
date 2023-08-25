@@ -249,6 +249,8 @@ default:
             myAddresses: My Addresses
             paymentSettings: Payment Settings
             personalData: Personal Data
+        validation:
+            successfulSave: Saving completed.
     OrderHistoryPage:
         title: Order History
         tableHead:

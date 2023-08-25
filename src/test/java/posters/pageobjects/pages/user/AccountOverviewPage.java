@@ -60,17 +60,17 @@ public class AccountOverviewPage extends AbstractBrowsingPage
     }
     
     @Step("open my addresses page")
-    public MyAddressesPage openMyAddresses()
+    public AddressOverviewPage openMyAddresses()
     {
         myAddressesLink.scrollTo().click();
-        return new MyAddressesPage().isExpectedPage();
+        return new AddressOverviewPage().isExpectedPage();
     }
     
     @Step("open payment settings page")
-    public PaymentSettingsPage openPaymentSettings()
+    public PaymentOverviewPage openPaymentSettings()
     {
         paymentSettingsLink.scrollTo().click();
-        return new PaymentSettingsPage().isExpectedPage();
+        return new PaymentOverviewPage().isExpectedPage();
     }
     
     @Step("open personal data page")

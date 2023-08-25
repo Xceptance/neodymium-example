@@ -16,7 +16,6 @@ import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
 public class RegisterPage extends AbstractBrowsingPage
 {
-
     private SelenideElement registerForm = $("#formRegister");
 
     private SelenideElement firstNameField = $("#firstName");
