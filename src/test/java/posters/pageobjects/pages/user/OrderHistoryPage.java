@@ -2,38 +2,46 @@ package posters.pageobjects.pages.user;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.matchText;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
-import posters.dataobjects.Product;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
 public class OrderHistoryPage extends AbstractBrowsingPage
 {
-    private SelenideElement headline = $("#titleOrderHistory");
+    private SelenideElement title = $("#titleOrderHistory");
+    
+    private ElementsCollection tableHead = $$(".product-name span");
 
     @Override
     @Step("ensure this is an order history page")
     public OrderHistoryPage isExpectedPage()
     {
         super.isExpectedPage();
-        headline.should(exist);
+        title.should(exist);
         return this;
     }
-
-    @Step("validate product is in the order")
-    public void validateContainsProduct(Product product)
+    
+    /// ----- validate content order history page ----- ///
+    
+    @Override
+    @Step("validate personal data page structure")
+    public void validateStructure()
     {
-        SelenideElement productContainer = $$(".productInfo").filter((matchText(product.getRowRegex()))).shouldHaveSize(1).first()
-                                                             .parent();
-
-        productContainer.find(".productName").shouldBe(exactText(product.getName()));
-        productContainer.find(".productStyle").shouldBe(exactText(product.getStyle()));
-        productContainer.find(".productSize").shouldBe(exactText(product.getSize()));
-        productContainer.find(".orderCount").shouldBe(exactText(Integer.toString(product.getAmount()) + "x"));
+        super.validateStructure();
+        
+        // validate title
+        title.shouldHave(exactText(Neodymium.localizedText("OrderHistoryPage.title"))).shouldBe(visible);
+        
+        // validate table Head
+        tableHead.findBy(exactText(Neodymium.localizedText("OrderHistoryPage.tableHead.purchasedPosters"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("OrderHistoryPage.tableHead.orderDetails"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("OrderHistoryPage.tableHead.quantity"))).shouldBe(visible);
     }
 }

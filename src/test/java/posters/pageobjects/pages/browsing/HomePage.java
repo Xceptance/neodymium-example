@@ -1,109 +1,127 @@
 package posters.pageobjects.pages.browsing;
 
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
-import posters.dataobjects.User;
 
 public class HomePage extends AbstractBrowsingPage
 {
+    private ElementsCollection slideNavigation = $$(".flex-control-nav a");
+    
+    private ElementsCollection slideHeadline = $$("#titleSlide h1");
+    
+    private ElementsCollection slideButton = $$("#titleSlide .btn-primary");
+    
+    private ElementsCollection featuredCategories = $$(".pName");
+    
+    private ElementsCollection featuredContent = $$("#productList h2");
+    
     @Override
     @Step("ensure this is a home page")
     public HomePage isExpectedPage()
     {
         super.isExpectedPage();
-        $("#titleIndex").should(exist);
+        $("#titleSlide").should(exist);
         return this;
     }
 
-    @Step("validate home page structure")
+    /// ----- validate content homepage ----- ///
+    
+    @Step("validate poster slide")
+    public void validatePosterSlide(String position, String headline)
+    {         
+        // TODO - improve
+        slideNavigation.findBy(exactText(position)).click();
+        slideNavigation.findBy(exactText(position)).click();
+        slideNavigation.findBy(exactText(position)).click();
+        
+        slideHeadline.findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
+        slideButton.findBy(exactText(Neodymium.localizedText("HomePage.slider.button"))).shouldBe(visible);
+    }
+    
+    @Step("validate poster slide")
+    public void validatePosterSlide()
+    {
+        validatePosterSlide("4", "HomePage.slider.headline.4");
+        validatePosterSlide("3", "HomePage.slider.headline.3");
+        validatePosterSlide("2", "HomePage.slider.headline.2");
+        validatePosterSlide("1", "HomePage.slider.headline.1");
+    }
+    
+    @Step("validate featured categories")
+    public void validateFeaturedCategories()
+    {
+        $$(".featured-img").shouldHaveSize(4);
+        featuredCategories.findBy(exactText(Neodymium.localizedText("header.topNavigation.1.title"))).shouldBe(visible);
+        featuredCategories.findBy(exactText(Neodymium.localizedText("header.topNavigation.2.title"))).shouldBe(visible);
+        featuredCategories.findBy(exactText(Neodymium.localizedText("header.topNavigation.3.title"))).shouldBe(visible);
+        featuredCategories.findBy(exactText(Neodymium.localizedText("header.topNavigation.4.title"))).shouldBe(visible);
+    }
+    
+    @Step("validate featured content")
+    public void validateFeaturedContent()
+    {
+        $$(".colorlib-product .container .row h2").findBy(exactText(Neodymium.localizedText("HomePage.hotProducts"))).shouldBe(visible);
+        $$(".prod-img").shouldHaveSize(12);
+        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.1"))).shouldBe(visible);
+        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.2"))).shouldBe(visible);
+        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.3"))).shouldBe(visible);
+        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.4"))).shouldBe(visible);
+        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.5"))).shouldBe(visible);
+        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.6"))).shouldBe(visible);
+        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.7"))).shouldBe(visible);
+        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.8"))).shouldBe(visible);
+        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.9"))).shouldBe(visible);
+        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.10"))).shouldBe(visible);
+        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.11"))).shouldBe(visible);
+        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.12"))).shouldBe(visible);
+    }
+    
+    @Override
+    @Step("validate structure home page")
     public void validateStructure()
     {
         super.validateStructure();
 
-        // Verifies the company Logo and name are visible.
-        $("#brand").shouldBe(visible);
-
-        // Verifies the Navigation bar is visible
-        $("#categoryMenu .nav").shouldBe(visible);
-        // Asserts there's categories in the nav bar.
-        $$("#categoryMenu .header-menu-item").shouldHave(sizeGreaterThan(0));
-
-        // Asserts the first headline is there.
-        $("#titleIndex").shouldBe(matchText("[A-Z].{3,}"));
-        // Asserts the animated poster rotation is there.
-        $("#pShopCarousel").shouldBe(visible);
-
-        // Verifies the "Hot products" section is there.
-        $("#main .margin_top20 .h2").shouldBe(matchText("[A-Z].{3,}"));
-        // Asserts there's a list of items under "Hot Products".
-        $("#productList").shouldBe(visible);
-        // Asserts there's at least 1 item in the list.
-        $$("#productList .thumbnail").shouldHave(sizeGreaterThan(0));
+        // validate poster slide
+        // TODO - fix consistent click
+        //validatePosterSlide();
+        
+        // validate intro
+        $("#intro").shouldHave(exactText(Neodymium.localizedText("HomePage.intro"))).shouldBe(visible);
+        
+        // validate featured categories
+        validateFeaturedCategories();
+        
+        // validate featured content
+        validateFeaturedContent();
+        
+        // validate shop all products button
+        $("a.btn-primary-shop").shouldHave(exactText(Neodymium.localizedText("HomePage.shopAllProducts"))).shouldBe(visible);
     }
-
-    @Step("validate home page")
-    public void validate()
-    {
-        validateStructure();
-        footer.validate();
-    }
-
-    @Step("validate successful order on home page")
-    public void validateSuccessfulOrder()
-    {
-        successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulOrder"));
-        // Verify that the mini cart is empty again
-        miniCart.validateTotalCount(0);
-        miniCart.validateSubtotal("$0.00");
-    }
-
-    /**
-     * @param firstName
-     *            The name should be shown in the mini User Menu
-     */
-    @Step("validate successful login on home page")
+    
+    /// ----- validate success messages ----- ///
+    
+    @Step("validate successful login of user '{firstName}' on home page")
     public void validateSuccessfulLogin(String firstName)
     {
-        // Verify that you are logged in
+        // validate success message
         successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulLogin"));
-        // Verify that the user menu shows your first name
-        userMenu.validateLoggedInName(firstName);
-
+        
+        // validate {firstName} in user menu
+        header.userMenu.validateLoggedInName(firstName);
     }
-
-    /**
-     * @param user
-     */
-    @Step("validate successful user login on home page")
-    public void validateSuccessfulLogin(User user)
-    {
-        validateSuccessfulLogin(user.getFirstName());
-    }
-
+    
     @Step("validate successful account deletion on home page")
     public void validateSuccessfulDeletedAccount()
     {
         successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulAccountDeletion"));
-    }
-
-    public void validateAndVisualAssert()
-    {
-        validateStructureAndVisual();
-        footer.validate();
-    }
-
-    public ProductDetailPage clickOnPresentedProduct(String productName)
-    {
-        $$("#productList .thumbnail .pName").filter(exactText(productName)).shouldHaveSize(1).first().click();
-        return new ProductDetailPage().isExpectedPage();
     }
 }

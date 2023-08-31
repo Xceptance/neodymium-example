@@ -2,6 +2,7 @@ package posters.tests.smoke;
 
 import org.junit.Test;
 
+import com.xceptance.neodymium.module.statement.testdata.DataSet;
 import com.xceptance.neodymium.util.DataUtils;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -9,89 +10,83 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
-import posters.dataobjects.Address;
-import posters.dataobjects.CreditCard;
 import posters.flows.OpenHomePageFlow;
+import posters.pageobjects.pages.checkout.GuestPaymentPage;
+import posters.pageobjects.pages.checkout.PlaceOrderPage;
 import posters.tests.AbstractTest;
+import posters.tests.testdata.processes.GuestOrderTestData;
 
-/**
- * @author pfotenhauer
- */
 @Owner("Joe Fix")
 @Severity(SeverityLevel.BLOCKER)
 @Tag("smoke")
 @Tag("registered")
 public class GuestOrderTest extends AbstractTest
-{
+{    
     @Test
+    @DataSet(1)
+    @DataSet(2)
     public void testOrderingAsGuest()
-    {
-        // total product count will be updated throughout the test
-        int totalCount = 0;
+    {        
+        // use test data
         final String shippingCosts = Neodymium.dataValue("shippingCosts");
-
-        // Go to homepage
+        final GuestOrderTestData guestOrderTestData = DataUtils.get(GuestOrderTestData.class);
+           
+        // go to homepage
         var homePage = OpenHomePageFlow.flow();
-        homePage.validate();
 
-        // Assure not logged in status
-        homePage.userMenu.validateNotLoggedIn();
-
-        // Assure an empty cart
-        homePage.miniCart.validateTotalCount(totalCount);
-        homePage.miniCart.validateSubtotal("$0.00");
-        final String oldSubtotal = homePage.miniCart.getSubtotal();
-
-        // Go to category
-        final String categoryName = homePage.topNav.getSubCategoryNameByPosition(3, 2);
-        var categoryPage = homePage.topNav.clickSubCategoryByPosition(3, 2);
-        categoryPage.validate(categoryName);
-
-        // Goto product page
-        final String productName = categoryPage.getProductNameByPosition(1, 1);
-        var productDetailPage = categoryPage.clickProductByPosition(1, 1);
-        productDetailPage.validate(productName);
-        productDetailPage.addToCart("64 x 48 in", "gloss");
-
-        // Go to cart and validate
+        // go to category page
+        var categoryPage = homePage.header.topNav.clickCategory(Neodymium.localizedText(guestOrderTestData.getTopCategory()));
+        
+        // go to product detail page, add and store displayed product
+        var productDetailPage = categoryPage.clickProductByPosition(guestOrderTestData.getResultPosition());
+        productDetailPage.addToCart(guestOrderTestData.getsSizeProduct(), guestOrderTestData.getStyleProduct());
         final var product = productDetailPage.getProduct();
-        var cartPage = productDetailPage.miniCart.openCartPage();
-        cartPage.validateStructure();
-        cartPage.validateShippingCosts(shippingCosts);
-        cartPage.miniCart.validateMiniCart(1, product);
-        cartPage.miniCart.validateTotalCount(++totalCount);
-        cartPage.validateCartItem(1, product);
-        cartPage.validateSubAndLineItemTotalAfterAdd(1, oldSubtotal, 0.00);
-
-        // setup checkout data
-        final var shippingAddress = DataUtils.get(Address.class);
-        final boolean sameBillingAddress = false;
-        final var billingAddress = DataUtils.get(Address.class);
-        final var creditCard = DataUtils.get(CreditCard.class);
-
-        // Go to shipping address and validate
-        var newShippingAddressPage = cartPage.openNewShippingPage();
-        newShippingAddressPage.validateStructure();
-
-        // Send shipping address and validate billing form
-        var newBillingAddressPage = newShippingAddressPage.sendShippingAddressForm(shippingAddress, sameBillingAddress);
-        newBillingAddressPage.validateStructure();
-
-        // Send billing address and validate payment form
-        var newPaymentPage = newBillingAddressPage.sendBillingAddressForm(billingAddress);
-        newPaymentPage.validateStructure();
-
-        // Send payment data and validate place order page
-        var placeOrderPage = newPaymentPage.sendPaymentForm(creditCard);
+        
+        // go to cart page
+        var cartPage = productDetailPage.header.miniCart.openCartPage();
+        
+        // go to shipping address page and validate
+        var shippingAddressPage = cartPage.openGuestShippingAddressPage();
+        shippingAddressPage.validateStructure();
+        
+        // declare variables used in if
+        GuestPaymentPage paymentPage;
+        PlaceOrderPage placeOrderPage;
+        
+        if (!guestOrderTestData.getShipAddrEqualBillAddr()) 
+        {
+            // go to billing address page and validate
+            var billingAddressPage = shippingAddressPage.goToGuestBillingAddressPage(guestOrderTestData.getShippingAddress());
+            billingAddressPage.validateStructure();
+        
+            // go to payment page and validate
+            paymentPage = billingAddressPage.goToGuestPaymentPage(guestOrderTestData.getBillingAddress());
+            paymentPage.validateStructure();
+            
+            // go to place order page and validate order overview
+            placeOrderPage = paymentPage.goToPlaceOrderPage(guestOrderTestData.getCreditCard());
+            placeOrderPage.validateOrderOverview(guestOrderTestData.getShippingAddress(), guestOrderTestData.getBillingAddress(), guestOrderTestData.getCreditCard());
+        }
+        else
+        {
+            // go to payment page and validate
+            paymentPage = shippingAddressPage.goToGuestPaymentPage(guestOrderTestData.getShippingAddress());
+            paymentPage.validateStructure();
+            
+            // go to place order page and validate order overview
+            placeOrderPage = paymentPage.goToPlaceOrderPage(guestOrderTestData.getCreditCard());
+            placeOrderPage.validateOrderOverview(guestOrderTestData.getShippingAddress(), guestOrderTestData.getShippingAddress(), guestOrderTestData.getCreditCard());
+        }
+        
         placeOrderPage.validateStructure();
-        placeOrderPage.validateProduct(1, product.getName(), product.getAmount(), product.getStyle(), product.getSize());
-        placeOrderPage.validateAddressesAndPayment(shippingAddress, billingAddress, creditCard);
-
-        // Place order
-        homePage = placeOrderPage.placeOrder();
-
-        // Validate order confirmation on home page
-        homePage.validate();
-        homePage.validateSuccessfulOrder();
+        placeOrderPage.validateProduct(1, product);
+        placeOrderPage.validatePriceSummary(placeOrderPage.getSubtotal(), shippingCosts);
+        
+        // go to order confirmation page and validate
+        var orderConfirmationPage = placeOrderPage.placeOrder();
+        orderConfirmationPage.validateStructure();
+       
+        // go to homepage
+        homePage = orderConfirmationPage.openHomePage();
     }
 }

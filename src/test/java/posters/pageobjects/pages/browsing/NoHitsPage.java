@@ -1,28 +1,45 @@
 package posters.pageobjects.pages.browsing;
 
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Selenide.$;
+
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 
 public class NoHitsPage extends AbstractBrowsingPage
-{
-
-    @Step("validate no hits page structure")
-    public void validateStructure()
+{   
+    @Override
+    @Step("ensure this is a no hits page")
+    public NoHitsPage isExpectedPage()
     {
-        super.validateStructure();
+        super.isExpectedPage();
+        $("#errorMessage").should(exist);
+        return this;
     }
-
+    
+    /// ----- validate no hits page ----- ///
+    
     @Step("validate that no products are on no hits page")
     public void validateNoProductsFound()
     {
         errorMessage.validateErrorMessage(Neodymium.localizedText("NoHitsPage.validation.noProductsFound"));
     }
-
-    @Step("validate no hits page")
-    public void validate()
+    
+    @Override
+    @Step("validate structure no hits page")
+    public void validateStructure()
     {
-        validateStructure();
+        super.validateStructure();
         validateNoProductsFound();
+    }
+    
+    /// ----- no hits page navigation ----- ///
+    
+    @Step("open homepage from no hits page")
+    public HomePage openHomePage()
+    {
+        $("#brand").scrollTo().click();
+        return new HomePage().isExpectedPage();
     }
 }

@@ -13,58 +13,54 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
+import posters.tests.testdata.pageobjects.components.SearchTestData;
 
-/**
- * @author pfotenhauer
- */
 @Owner("Tim Brown")
 @Severity(SeverityLevel.MINOR)
 @Tag("smoke")
 @SuppressDataSets
 public class SearchTest extends AbstractTest
-{
-    private String searchTerm;
-
-    private int position;
-
-    private int searchTermExpectedCount;
+{       
+    private SearchTestData searchTestData;
 
     @Before
     public void setup()
     {
-        searchTerm = DataUtils.asString("searchTerm");
-        position = DataUtils.asInt("position", 0);
-        searchTermExpectedCount = DataUtils.asInt("searchTermExpectedCount", 0);
+        searchTestData = DataUtils.get(SearchTestData.class);
     }
-
+    
     @Test
     @DataSet(1)
     public void testSearching()
-    {
-        // Go to homepage
+    {  
+        // go to homepage
         var homePage = OpenHomePageFlow.flow();
-        homePage.validate();
 
-        // Search
-        var categoryPage = homePage.search.categoryPageResult(searchTerm);
-        categoryPage.validateStructure();
-        categoryPage.validateSearchHits(searchTerm, searchTermExpectedCount);
+        // go to category page
+        var categoryPage = homePage.header.search.categoryPageResult(searchTestData.getSearchTerm());
+        categoryPage.validate(searchTestData.getSearchTerm(), searchTestData.getExpectedResultCount());
 
-        final String productName = categoryPage.getProductNameByPosition(position);
-        var productDetailPage = categoryPage.clickProductByPosition(position);
+        //go to product detail page
+        final String productName = categoryPage.getProductNameByPosition(searchTestData.getResultPosition());
+        var productDetailPage = categoryPage.clickProductByPosition(searchTestData.getResultPosition());
         productDetailPage.validate(productName);
+        
+        // go to homepage
+        homePage = productDetailPage.openHomePage();
     }
 
     @Test
     @DataSet(2)
     public void testSearchingWithoutResult()
-    {
-        // Go to homepage
+    {  
+        // go to homepage
         var homePage = OpenHomePageFlow.flow();
-        homePage.validate();
 
-        // Search
-        var noHitsPage = homePage.search.noResult(searchTerm);
-        noHitsPage.validate();
+        // go to no hits page
+        var noHitsPage = homePage.header.search.noHitsPageResult(searchTestData.getSearchTerm());
+        noHitsPage.validateStructure();
+        
+        // go to homepage
+        homePage = noHitsPage.openHomePage();
     }
 }
