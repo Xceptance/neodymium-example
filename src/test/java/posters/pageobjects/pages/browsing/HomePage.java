@@ -13,22 +13,22 @@ import io.qameta.allure.Step;
 
 public class HomePage extends AbstractBrowsingPage
 {
-    private ElementsCollection slideNavigation = $$(".flex-control-nav a");
+    private ElementsCollection slideNavigation = $$("#carousel-btn");
     
-    private ElementsCollection slideHeadline = $$("#titleSlide h1");
+    private ElementsCollection slideHeadline = $$("#carousel-product-display.carousel h1");
     
-    private ElementsCollection slideButton = $$("#titleSlide .btn-primary");
+    private ElementsCollection slideButton = $$("#carousel-product-display.carousel .btn-primary");
     
-    private ElementsCollection featuredCategories = $$(".pName");
+    private ElementsCollection featuredCategories = $$(".category-tile-title");
     
-    private ElementsCollection featuredContent = $$("#productList h2");
+    private ElementsCollection featuredContent = $$(".card .card-title");
     
     @Override
     @Step("ensure this is a home page")
     public HomePage isExpectedPage()
     {
         super.isExpectedPage();
-        $("#titleSlide").should(exist);
+        $("#carousel-product-display.carousel").should(exist);
         return this;
     }
 
@@ -58,7 +58,7 @@ public class HomePage extends AbstractBrowsingPage
     @Step("validate featured categories")
     public void validateFeaturedCategories()
     {
-        $$(".featured-img").shouldHaveSize(4);
+        $$(".category-tile-image").shouldHaveSize(4);
         featuredCategories.findBy(exactText(Neodymium.localizedText("header.topNavigation.1.title"))).shouldBe(visible);
         featuredCategories.findBy(exactText(Neodymium.localizedText("header.topNavigation.2.title"))).shouldBe(visible);
         featuredCategories.findBy(exactText(Neodymium.localizedText("header.topNavigation.3.title"))).shouldBe(visible);
@@ -68,8 +68,8 @@ public class HomePage extends AbstractBrowsingPage
     @Step("validate featured content")
     public void validateFeaturedContent()
     {
-        $$(".colorlib-product .container .row h2").findBy(exactText(Neodymium.localizedText("HomePage.hotProducts"))).shouldBe(visible);
-        $$(".prod-img").shouldHaveSize(12);
+        $$(".product-display-heading h2").findBy(exactText(Neodymium.localizedText("HomePage.hotProducts"))).shouldBe(visible);
+        $$(".card-img-top").shouldHaveSize(12);
         featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.1"))).shouldBe(visible);
         featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.2"))).shouldBe(visible);
         featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.3"))).shouldBe(visible);
@@ -95,7 +95,7 @@ public class HomePage extends AbstractBrowsingPage
         //validatePosterSlide();
         
         // validate intro
-        $("#intro").shouldHave(exactText(Neodymium.localizedText("HomePage.intro"))).shouldBe(visible);
+        $("#intro-text-homepage").shouldHave(exactText(Neodymium.localizedText("HomePage.intro"))).shouldBe(visible);
         
         // validate featured categories
         validateFeaturedCategories();
@@ -104,7 +104,7 @@ public class HomePage extends AbstractBrowsingPage
         validateFeaturedContent();
         
         // validate shop all products button
-        $("a.btn-primary-shop").shouldHave(exactText(Neodymium.localizedText("HomePage.shopAllProducts"))).shouldBe(visible);
+        $("a.btn-shop-all").shouldHave(exactText(Neodymium.localizedText("HomePage.shopAllProducts"))).shouldBe(visible);
     }
     
     /// ----- validate success messages ----- ///

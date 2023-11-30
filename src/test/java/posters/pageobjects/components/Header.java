@@ -22,7 +22,7 @@ public class Header extends AbstractComponent
     @Step("validate availability header")
     public void isComponentAvailable()
     {
-        $("#globalNavigation").should(exist);
+        $("#header-navigation-bar").should(exist);
     }
 
     /// ----- validate header ----- ///

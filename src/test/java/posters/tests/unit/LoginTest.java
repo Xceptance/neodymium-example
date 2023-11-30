@@ -16,8 +16,8 @@ import posters.pageobjects.pages.user.LoginPage;
 import posters.tests.AbstractTest;
 import posters.tests.testdata.dataobjects.User;
 
-@Browser("Chrome_1024x768")
-//@Browser("Firefox_1024x768")
+//@Browser("Chrome_1024x768")
+@Browser("Firefox_1024x768")
 @Owner("Tim Brown")
 @Severity(SeverityLevel.NORMAL)
 @Tag("functionality")

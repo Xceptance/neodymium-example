@@ -14,7 +14,7 @@ import posters.pageobjects.pages.browsing.CategoryPage;
 
 public class TopNavigation extends AbstractComponent
 {
-    private SelenideElement categoryMenu = $("#categoryMenu");
+    private SelenideElement categoryMenu = $("#header-categories");
 
     @Override
     @Step("ensure availability top navigation")
