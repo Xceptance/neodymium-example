@@ -44,7 +44,7 @@ default:
     footer:
         copyright: Copyright (c) 2013-2020 Xceptance Software Technologies GmbH -- This software is for demo purposes only and not meant to be used in production.
     HomePage:
-        title: Posters - The Ultimate Online Shop
+        title: The Poster Demo Store - The Ultimate Online Shop
         slider:
             headline:
                 "1": NORTH BOSTON

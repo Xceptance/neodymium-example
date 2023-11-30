@@ -38,7 +38,7 @@ public class MiniCart extends AbstractComponent
     @Step("ensure availability mini cart")
     public void isComponentAvailable()
     {
-        $("#btnCartOverviewForm").should(exist);
+        $("#header-customer-menus").should(exist);
     }
 
     /// ----- mini cart navigation ------ ///
