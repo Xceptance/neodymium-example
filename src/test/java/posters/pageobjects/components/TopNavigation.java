@@ -28,15 +28,15 @@ public class TopNavigation extends AbstractComponent
     @Step("click on the top category '{topCategory}'")
     public CategoryPage clickCategory(String topCategory)
     {
-        $$(".has-dropdown").findBy(exactText(topCategory)).scrollTo().click();
+        $$("#header-categories .nav-link[href*=\"/topCategory/\"]").findBy(exactText(topCategory)).scrollTo().click();
         return new CategoryPage().isExpectedPage();
     }
     
     @Step("click on the '{subCategory}' sub category within the top category '{topCategory}'")
     public CategoryPage clickSubCategory(String topCategory, String subCategory)
     {
-        $$(".has-dropdown").findBy(exactText(topCategory)).hover();
-        $$(".navi ul.dropdown-menu li").findBy(exactText(subCategory)).click();
+        $$(".nav-item.dropdown").findBy(exactText(topCategory)).hover();
+        $$("#header-categories ul.dropdown-menu li").findBy(exactText(subCategory)).click();
         return new CategoryPage().isExpectedPage();
     }
     
