@@ -147,7 +147,7 @@ default:
                 zip: ZIP/POSTAL CODE*
                 country: COUNTRY*
                 useAddressForBilling: "Use this address for billing?*"
-                requiredFields: "* Required fields"
+                requiredFields: "*Required fields"
             placeholder:
                 yourName: Your Name
                 companyName: company name
@@ -230,11 +230,11 @@ default:
     RegisterPage:
         title: Create an account
         headlines:
-            firstName: FIRST NAME*
-            lastName: LAST NAME*
-            email: EMAIL ADDRESS*
-            password: PASSWORD*
-            passwordRepeat: REPEAT PASSWORD*
+            firstName: First name*
+            lastName: Last name*
+            email: Email address*
+            password: Password*
+            passwordRepeat: Confirm password*
         placeholder:
             firstName: First name
             lastName: Last name
