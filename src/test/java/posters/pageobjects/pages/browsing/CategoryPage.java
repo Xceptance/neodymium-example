@@ -98,7 +98,7 @@ public class CategoryPage extends AbstractBrowsingPage
     @Step("open homepage from category page")
     public HomePage openHomePage()
     {
-        $("#brand").scrollTo().click();
+        $("#header-brand").scrollTo().click();
         return new HomePage().isExpectedPage();
     }
 }

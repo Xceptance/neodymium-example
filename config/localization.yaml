@@ -292,11 +292,12 @@ default:
             tax: "Tax (6.0%)"
             grandTotal: Total
         productTable:
-            product: PRODUCT
-            unitPrice: UNIT PRICE
-            quantity: QUANTITY
-            update: REMOVE/UPDATE
-            totalPrice: TOTAL PRICE
+            number: '#'
+            product: Product
+            unitPrice: Unit Price
+            quantity: Quantity
+            update: Remove/Update
+            totalPrice: Total Price
         button:
             addNewShipAddr: Add a new shipping address
             addNewBillAddr: Add a new billing address

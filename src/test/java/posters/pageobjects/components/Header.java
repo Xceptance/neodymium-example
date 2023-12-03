@@ -30,7 +30,7 @@ public class Header extends AbstractComponent
     @Step("validate header")
     public void validateStructure()
     {
-        $("#brand").shouldBe(visible);
+        $("#header-brand").shouldBe(visible);
 
         search.validateStructure();
         topNav.validateStructure();

@@ -108,7 +108,7 @@ public class LoginPage extends AbstractBrowsingPage
     @Step("open homepage from login page")
     public HomePage openHomePage()
     {
-        $("#brand").scrollTo().click();
+        $("#header-brand").scrollTo().click();
         return new HomePage().isExpectedPage();
     }
     

@@ -123,7 +123,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("select style '{style}'")
     public void setStyle(String style)
     {
-        $(".radio #finish-" + style).selectRadio(style);
+        $("input#finish-" + style).selectRadio(style);
     }
 
     @Step("click add to cart button")
