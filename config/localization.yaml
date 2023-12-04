@@ -27,11 +27,11 @@ default:
                     "3": Landscapes
                     "4": XXL Panoramas
         userMenu:
-            title: "WELCOME: "
-            createAccount: CREATE ACCOUNT
-            signIn: SIGN IN
-            accountOverview: MY ACCOUNT
-            logout: LOGOUT
+            title: "Welcome"
+            createAccount: Create account
+            signIn: Sign In
+            accountOverview: My Account
+            logout: Logout
         miniCart:
             title:
                 singular: ITEM IN THE CART
@@ -77,9 +77,9 @@ default:
             resultText: "Your results for your search: "
         pagination:
             goToNextPage: ">"
-            goToLastPage: ">>"
+            goToLastPage: "»"
             goToPrevPage: "<"
-            goToFirstPage: "<<"
+            goToFirstPage: "«"
     NoHitsPage:
         validation:
             noProductsFound: Sorry! No results found matching your search. Please try again.

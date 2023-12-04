@@ -115,16 +115,16 @@ public class UserMenu extends AbstractComponent
         if (validateIsLoggedIn())
         {
             // if customer is logged in
-            userMenu.find(".go-to-account-overview").shouldHave(exactText(Neodymium.localizedText("header.userMenu.accountOverview"))).shouldBe(visible);
-            userMenu.find(".go-to-logout").shouldHave(exactText(Neodymium.localizedText("header.userMenu.logout"))).shouldBe(visible);
+            userMenu.find("#go-to-account-overview").shouldHave(exactText(Neodymium.localizedText("header.userMenu.accountOverview"))).shouldBe(visible);
+            userMenu.find("#go-to-logout").shouldHave(exactText(Neodymium.localizedText("header.userMenu.logout"))).shouldBe(visible);
             userMenu.find(".icon-info-large").shouldBe(visible);
             userMenu.find(".icon-log-out").shouldBe(visible);
         }
         else
         {
             // if customer is not logged in
-            userMenu.find(".go-to-registration").shouldHave(exactText(Neodymium.localizedText("header.userMenu.createAccount"))).shouldBe(visible);
-            userMenu.find(".go-to-login").shouldHave(exactText(Neodymium.localizedText("header.userMenu.signIn"))).shouldBe(visible);
+            userMenu.find("#go-to-registration").shouldHave(exactText(Neodymium.localizedText("header.userMenu.createAccount"))).shouldBe(visible);
+            userMenu.find("#go-to-login").shouldHave(exactText(Neodymium.localizedText("header.userMenu.signIn"))).shouldBe(visible);
             userMenu.find(".icon-user-add-outline").shouldBe(visible);
             userMenu.find(".icon-log-in").shouldBe(visible);
         }

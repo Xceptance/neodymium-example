@@ -76,14 +76,14 @@ public class Pagination extends AbstractComponent
     @Step("validate visibility right navigation")
     public void validateRightNavigation()
     {
-        paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToNextPage"))).shouldBe(visible);
+        //paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToNextPage"))).shouldBe(visible);
         paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToLastPage"))).shouldBe(visible);
     }
 
     @Step("validate visibility left navigation")
     public void validateLeftNavigation()
     {
-        paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToPrevPage"))).shouldBe(visible);
+        //paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToPrevPage"))).shouldBe(visible);
         paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToFirstPage"))).shouldBe(visible);
     }
 

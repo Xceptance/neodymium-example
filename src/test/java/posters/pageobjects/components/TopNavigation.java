@@ -45,13 +45,13 @@ public class TopNavigation extends AbstractComponent
     @Step("validate top category name '{topCategory}'")
     public void validateNavComponent(String topCategory) 
     {
-        $$(".has-dropdown").findBy(exactText(topCategory)).shouldBe(visible);
+        $$(".nav-item").findBy(exactText(topCategory)).shouldBe(visible);
     }
 
     @Step("validate sub category name '{subCategory}'")
     public void validateSubNavComponent(String subCategory) 
     {
-        $$(".navi ul.dropdown-menu li").findBy(exactText(subCategory)).shouldBe(visible);
+        $$(".nav-item li a.dropdown-item").findBy(exactText(subCategory)).shouldBe(visible);
     }
     
     @Step("validate structure top navigation")
@@ -64,31 +64,31 @@ public class TopNavigation extends AbstractComponent
         validateNavComponent(Neodymium.localizedText("header.topNavigation.4.title"));
         
         // validate sub navigation "World Of Nature"
-        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.topNavigation.1.title"))).hover();
+        $$(".nav-item").findBy(exactText(Neodymium.localizedText("header.topNavigation.1.title"))).hover();
         validateSubNavComponent(Neodymium.localizedText("header.topNavigation.1.subCategory.1"));
         validateSubNavComponent(Neodymium.localizedText("header.topNavigation.1.subCategory.2"));
         validateSubNavComponent(Neodymium.localizedText("header.topNavigation.1.subCategory.3"));
         
         // validate sub navigation "Dining"
-        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.topNavigation.2.title"))).hover();
+        $$(".nav-item").findBy(exactText(Neodymium.localizedText("header.topNavigation.2.title"))).hover();
         validateSubNavComponent(Neodymium.localizedText("header.topNavigation.2.subCategory.1"));
         validateSubNavComponent(Neodymium.localizedText("header.topNavigation.2.subCategory.2"));
         validateSubNavComponent(Neodymium.localizedText("header.topNavigation.2.subCategory.3"));
         
         // validate sub navigation "Transportation"
-        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.topNavigation.3.title"))).hover();
+        $$(".nav-item").findBy(exactText(Neodymium.localizedText("header.topNavigation.3.title"))).hover();
         validateSubNavComponent(Neodymium.localizedText("header.topNavigation.3.subCategory.1"));
         validateSubNavComponent(Neodymium.localizedText("header.topNavigation.3.subCategory.2"));
         validateSubNavComponent(Neodymium.localizedText("header.topNavigation.3.subCategory.3"));
         
         // validate sub navigation "Panoramas"
-        $$(".has-dropdown").findBy(exactText(Neodymium.localizedText("header.topNavigation.4.title"))).hover();
+        $$(".nav-item").findBy(exactText(Neodymium.localizedText("header.topNavigation.4.title"))).hover();
         validateSubNavComponent(Neodymium.localizedText("header.topNavigation.4.subCategory.1"));
         validateSubNavComponent(Neodymium.localizedText("header.topNavigation.4.subCategory.2"));
         validateSubNavComponent(Neodymium.localizedText("header.topNavigation.4.subCategory.3"));
         validateSubNavComponent(Neodymium.localizedText("header.topNavigation.4.subCategory.4"));
         
         // close sub navigation
-        $("#globalNavigation").hover();
+        $("#header-navigation-bar").hover();
     }
 }

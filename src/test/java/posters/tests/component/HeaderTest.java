@@ -30,7 +30,7 @@ public class HeaderTest extends AbstractTest
         
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
-        homePage.header.validateStructure();
+        homePage.header.validateStructureHomePage();
 
         // go to category page
         var categoryPage = homePage.header.topNav.clickCategory(Neodymium.localizedText(headerTestData.getTopCategory()));

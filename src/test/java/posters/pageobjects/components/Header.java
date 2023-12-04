@@ -25,8 +25,20 @@ public class Header extends AbstractComponent
         $("#header-navigation-bar").should(exist);
     }
 
-    /// ----- validate header ----- ///
+    /// ----- validate header at homepage----- ///
+    @Step("validate header")
+    public void validateStructureHomePage()
+    {
+        $("#header-brand").shouldBe(visible);
 
+        search.validateStructure();
+        topNav.validateStructure();
+        userMenu.validateStructure();
+        miniCart.validateStructure();
+        saleBanner.validateStructure();
+    }
+
+    /// ----- validate header----- ///
     @Step("validate header")
     public void validateStructure()
     {
@@ -36,6 +48,5 @@ public class Header extends AbstractComponent
         topNav.validateStructure();
         userMenu.validateStructure();
         miniCart.validateStructure();
-        saleBanner.validateStructure();
     }
 }
