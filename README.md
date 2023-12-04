@@ -17,10 +17,10 @@ You will need the following to try it out:
 
 ### Get and run Posters
 Posters is a web shop for demo purposes build by [Xceptance](https://www.xceptance.com/en/). We use it throughout all our software products to demonstrate their capabilities within a simple and stable environment. 
-1. Download latest XLT [here](https://www.xceptance.com/en/xlt/download.html).
-2. Go to [downloadPathXlt]/samples/app-server/bin/
-3. Start with: ./start.sh
-4. Go to [https://localhost:8443/posters/](https://localhost:8443/posters/) to check if it is running
+1. Download latest Posters [here](https://github.com/Xceptance/posters-demo-store).
+2. Go to [downloadPathPosters]/posters-demo-store/  
+3. Start with: `mvn clean install` followed by `mvn ninja:run`
+4. Go to [http://localhost:8080/](http://localhost:8080/) to check if it is running.
 
 ### Get yourself a free copy
 Simply clone or fork this project.
