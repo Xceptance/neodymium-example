@@ -67,10 +67,6 @@ public class CartPage extends AbstractBrowsingPage
         }
         else
         {
-            // validate process wrap
-            // TODO - after fixing issue 171: consistent element selectors for all checkout pages with progress
-            // indicator
-            // validateProcessWrap();
 
             // validate product table head
             validateTableHead();
