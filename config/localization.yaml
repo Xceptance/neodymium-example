@@ -76,9 +76,7 @@ default:
         search:
             resultText: "Your results for your search: "
         pagination:
-            goToNextPage: ">"
             goToLastPage: "»"
-            goToPrevPage: "<"
             goToFirstPage: "«"
     NoHitsPage:
         validation:
