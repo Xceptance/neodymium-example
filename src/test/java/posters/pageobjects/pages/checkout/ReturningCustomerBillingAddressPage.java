@@ -28,16 +28,7 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
     }
     
     /// ----- validate content returning customer billing address page ----- ///
-    
-    // @Step("validate breadcrumb")
-    // public void validateBreadcrumb()
-    // {
-    //     $("#btnToCard").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.cart"))).shouldBe(visible);
-    //     $("#btnShippAddr").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.shippingAddress"))).shouldBe(visible);
-    //     $("#btnBillAddr").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.billingAddress"))).shouldBe(visible);
-    //     $("#btnCreditCard").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.payment"))).shouldBe(visible);
-    //     $("#btnPlaceOrder").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.placeOrder"))).shouldBe(visible);
-    // }
+
     @Step("validate process wrap")
     public void validateProcessWrap() 
     {
@@ -63,9 +54,6 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
     {
         super.validateStructure();
 
-        // validate breadcrumb
-        // validateBreadcrumb();
-        
         // validate process wrap
         validateProcessWrap();
         

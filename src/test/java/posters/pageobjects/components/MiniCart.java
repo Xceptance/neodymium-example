@@ -47,7 +47,7 @@ public class MiniCart extends AbstractComponent
     public void openMiniCart()
     {
         headerCart.click();
-        //miniCart.waitUntil(visible, 9000);
+        miniCart.waitUntil(visible, 9000);
     }
 
     @Step("close the mini cart")

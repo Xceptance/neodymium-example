@@ -10,6 +10,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
+import posters.pageobjects.components.SaleBanner;
 
 public class HomePage extends AbstractBrowsingPage
 {
@@ -89,6 +90,9 @@ public class HomePage extends AbstractBrowsingPage
     public void validateStructure()
     {
         super.validateStructure();
+
+        // validate Sale Banner
+        SaleBanner.validateStructure();
 
         // validate poster slide
         // TODO - fix consistent click

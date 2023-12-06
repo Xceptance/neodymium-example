@@ -18,13 +18,13 @@ public class SaleBanner extends AbstractComponent
     
     /// ----- validate sale banner ----- ///
 
-    private void validateSaleBanner(String text, int num) 
+    private static void validateSaleBanner(String text, int num) 
     {
         $("#carousel-sale>div.carousel-inner>div:nth-child("+num+")>a").shouldHave(exactText(text)).waitUntil(visible, 9000);;
     }
     
     @Step("validate sale banner")
-    public void validateStructure()
+    public static void validateStructure()
     {
         validateSaleBanner(Neodymium.localizedText("header.sale.first"), 1);
         $("#carousel-sale .carousel-control-next").click();
