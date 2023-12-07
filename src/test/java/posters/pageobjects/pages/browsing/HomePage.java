@@ -23,7 +23,9 @@ public class HomePage extends AbstractBrowsingPage
     private ElementsCollection featuredCategories = $$(".category-tile-title");
     
     private ElementsCollection featuredContent = $$(".card .card-title");
-    
+
+    public SaleBanner saleBanner = new SaleBanner();
+
     @Override
     @Step("ensure this is a home page")
     public HomePage isExpectedPage()
@@ -92,7 +94,7 @@ public class HomePage extends AbstractBrowsingPage
         super.validateStructure();
 
         // validate Sale Banner
-        SaleBanner.validateStructure();
+        saleBanner.validateStructure();
 
         // validate poster slide
         // TODO - fix consistent click

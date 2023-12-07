@@ -15,9 +15,7 @@ public class Header extends AbstractComponent
     public UserMenu userMenu = new UserMenu();
     
     public MiniCart miniCart = new MiniCart();
-    
-    public SaleBanner saleBanner = new SaleBanner();
-    
+        
     @Override
     @Step("validate availability header")
     public void isComponentAvailable()
