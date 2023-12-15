@@ -17,18 +17,18 @@ public class ProductDetailPage extends AbstractBrowsingPage
 {
     private SelenideElement addToCartButton = $("#btnAddToCart");
 
-    private SelenideElement productName = $("#titleProductName");
+    private SelenideElement productName = $("#product-detail-form-name");
 
-    private SelenideElement productPrice = $("#prodPrice");
+    private SelenideElement productPrice = $("#product-detail-form-price");
 
-    private SelenideElement productSize = $("#selectSize");
+    private SelenideElement productSize = $("#product-detail-form-size-selection");
 
     @Override
     @Step("ensure this is a product detail page")
     public ProductDetailPage isExpectedPage()
     {
         super.isExpectedPage();
-        $("#addToCartForm").should(exist);
+        $(".h2fwpr#main .container.mt-4").should(exist);
         return this;
     }
 
@@ -44,7 +44,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     {
         productSize.scrollTo().click();
 
-        if ($$("#selectSize option").size() > 1)
+        if ($$("#product-detail-form-size-selection option").size() > 1)
         {
             validateSizeDropdown(Neodymium.localizedText("ProductdetailPage.size.16x12"));
             validateSizeDropdown(Neodymium.localizedText("ProductdetailPage.size.32x24"));
@@ -61,8 +61,8 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("validate style radio")
     public void validateStyleRadio()
     {
-        $("#selectStyle .radio:nth-of-type(1)").shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.style.matte"))).shouldBe(visible);
-        $("#selectStyle .radio:nth-of-type(2)").shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.style.gloss"))).shouldBe(visible);
+        $("#product-detail-form-style-selection > div:nth-child(1) > label").shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.style.matte"))).shouldBe(visible);
+        $("#product-detail-form-style-selection > div:nth-child(2) > label").shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.style.gloss"))).shouldBe(visible);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
         super.validateStructure();
 
         // validate image
-        $("#prodImg").shouldBe(visible);
+        $(".img-fluid").shouldBe(visible);
 
         // validate title
         productName.should(matchText("[A-Z].{3,}")).shouldBe(visible);
@@ -81,19 +81,18 @@ public class ProductDetailPage extends AbstractBrowsingPage
         productPrice.should(matchText("\\$\\d+\\.\\d{2}")).shouldBe(visible);
 
         // validate product description
-        $("#prodDescriptionOverview").shouldBe(visible);
-        $("#prodDescriptionDetail").shouldBe(visible);
+        $("#product-detail-form-description-overview").shouldBe(visible);
+        $("#product-detail-form-description").shouldBe(visible);
 
         // validate size selection
         validateSizeDropdown();
 
         // validate style selection
-        $("#selectStyle").shouldBe(visible);
+        $("#product-detail-form-style-selection").shouldBe(visible);
         validateStyleRadio();
 
         // validate print information
-        $("#prodPrintInfoTitle").shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.print"))).shouldBe(visible);
-        $("#prodPrintInfo").shouldBe(visible);
+        $("#product-detail-form-print-information").shouldBe(visible);
 
         // validate add to cart button
         addToCartButton.shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.addToCartButton"))).shouldBe(visible);
@@ -124,7 +123,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("select style '{style}'")
     public void setStyle(String style)
     {
-        $(".radio #finish-" + style).selectRadio(style);
+        $("input#finish-" + style).selectRadio(style);
     }
 
     @Step("click add to cart button")
@@ -178,7 +177,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("open homepage from product detail page")
     public HomePage openHomePage()
     {
-        $("#brand").scrollTo().click();
+        $("#header-brand").scrollTo().click();
         return new HomePage().isExpectedPage();
     }
 }

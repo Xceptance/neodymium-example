@@ -16,19 +16,19 @@ import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
 public class RegisterPage extends AbstractBrowsingPage
 {
-    private SelenideElement registerForm = $("#formRegister");
+    private SelenideElement registerForm = $("#form-register");
 
-    private SelenideElement firstNameField = $("#firstName");
+    private SelenideElement firstNameField = $("#registration-form-first-name");
 
-    private SelenideElement lastNameField = $("#lastName");
+    private SelenideElement lastNameField = $("#registration-form-last-name");
 
-    private SelenideElement emailField = $("#eMail");
+    private SelenideElement emailField = $("#registration-form-e-mail");
 
-    private SelenideElement passwordField = $("#password");
+    private SelenideElement passwordField = $("#registration-form-password");
 
-    private SelenideElement passwordRepeatField = $("#passwordAgain");
+    private SelenideElement passwordRepeatField = $("#registration-form-password-repeat");
 
-    private SelenideElement registerButton = $("#btnRegister");
+    private SelenideElement registerButton = $("#btn-register");
 
     @Override
     @Step("ensure this is a register page")
@@ -43,7 +43,7 @@ public class RegisterPage extends AbstractBrowsingPage
     
     private void validateFillInHeadlines(String headline)
     {
-        $$("#formRegister .form-group label").findBy(exactText(headline)).shouldBe(visible);
+        $$("#form-register .mb-3 label").findBy(exactText(headline)).shouldBe(visible);
     }
     
     @Step("validate fill-in form headlines")
@@ -69,7 +69,7 @@ public class RegisterPage extends AbstractBrowsingPage
     @Step("validate required string")
     public void validateRequiredString() 
     {
-        $(".reqField").shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.requiredFields"))).shouldBe(visible);
+        $("#req-field").shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.requiredFields"))).shouldBe(visible);
     }
     
     @Override

@@ -15,27 +15,22 @@ public class Header extends AbstractComponent
     public UserMenu userMenu = new UserMenu();
     
     public MiniCart miniCart = new MiniCart();
-    
-    public SaleBanner saleBanner = new SaleBanner();
-    
+        
     @Override
     @Step("validate availability header")
     public void isComponentAvailable()
     {
-        $("#globalNavigation").should(exist);
+        $("#header-navigation-bar").should(exist);
     }
 
-    /// ----- validate header ----- ///
-
+    /// ----- validate header----- ///
     @Step("validate header")
     public void validateStructure()
     {
-        $("#brand").shouldBe(visible);
-
+        $("#header-brand").shouldBe(visible);
         search.validateStructure();
         topNav.validateStructure();
         userMenu.validateStructure();
         miniCart.validateStructure();
-        saleBanner.validateStructure();
     }
 }

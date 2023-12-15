@@ -20,19 +20,19 @@ public class AddressOverviewPage extends AbstractBrowsingPage
     
     private SelenideElement addNewBillAddr = $("#linkAddNewBillAddr");
     
-    private SelenideElement fullNameField = $("#fullName");
+    private SelenideElement fullNameField = $("#address-form-input-full-name");
     
-    private SelenideElement companyField = $("#company");
+    private SelenideElement companyField = $("#address-form-input-company");
     
-    private SelenideElement addressLineField = $("#addressLine");
+    private SelenideElement addressLineField = $("#address-form-input-adress-line");
     
-    private SelenideElement cityField = $("#city");
+    private SelenideElement cityField = $("#address-form-input-city");
     
-    private SelenideElement stateField = $("#state");
+    private SelenideElement stateField = $("#address-form-input-state");
     
-    private SelenideElement zipField = $("#zip");
+    private SelenideElement zipField = $("#address-form-input-zip");
     
-    private SelenideElement countryField = $("#country");
+    private SelenideElement countryField = $("#address-form-select-country");
 
     @Override
     @Step("ensure this is a personal data page")

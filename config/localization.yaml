@@ -27,11 +27,11 @@ default:
                     "3": Landscapes
                     "4": XXL Panoramas
         userMenu:
-            title: "WELCOME: "
-            createAccount: CREATE ACCOUNT
-            signIn: SIGN IN
-            accountOverview: MY ACCOUNT
-            logout: LOGOUT
+            title: "Welcome"
+            createAccount: Create account
+            signIn: Sign In
+            accountOverview: My Account
+            logout: Logout
         miniCart:
             title:
                 singular: ITEM IN THE CART
@@ -44,7 +44,7 @@ default:
     footer:
         copyright: Copyright (c) 2013-2020 Xceptance Software Technologies GmbH -- This software is for demo purposes only and not meant to be used in production.
     HomePage:
-        title: Posters - The Ultimate Online Shop
+        title: The Poster Demo Store - The Ultimate Online Shop
         slider:
             headline:
                 "1": NORTH BOSTON
@@ -76,10 +76,8 @@ default:
         search:
             resultText: "Your results for your search: "
         pagination:
-            goToNextPage: ">"
-            goToLastPage: ">>"
-            goToPrevPage: "<"
-            goToFirstPage: "<<"
+            goToLastPage: "»"
+            goToFirstPage: "«"
     NoHitsPage:
         validation:
             noProductsFound: Sorry! No results found matching your search. Please try again.
@@ -120,45 +118,45 @@ default:
             placeOrder: PLACE ORDER /
         processWrap:
             "1":
-                number: "01"
-                name: SHOPPING CART
+                number: "1"
+                name: CART
             "2":
-                number: "02"
-                name: SHIPPING ADDRESS
+                number: "2"
+                name: SHIPPING
             "3":
-                number: "03"
-                name: BILLING ADDRESS
+                number: "3"
+                name: BILLING
             "4":
-                number: "04"
-                name: PAYMENT METHOD
+                number: "4"
+                name: PAYMENT
             "5":
-                number: "05"
-                name: CHECKOUT
+                number: "5"
+                name: SUMMARY
             "6":
-                number: "06"
-                name: ORDER COMPLETE
+                number: "6"
+                name: COMPLETED
         fillIn:
             headlines:
-                fullName: FULL NAME*
-                company: COMPANY
-                address: ADDRESS*
-                city: CITY*
-                state: STATE/PROVINCE*
-                zip: ZIP/POSTAL CODE*
-                country: COUNTRY*
+                fullName: Full name*
+                company: Company
+                address: Address*
+                city: City*
+                state: State/Province*
+                zip: Zip/Postal code*
+                country: Country*
                 useAddressForBilling: "Use this address for billing?*"
-                requiredFields: "* Required fields"
+                requiredFields: "*Required fields"
             placeholder:
-                yourName: Your Name
-                companyName: company name
+                yourName: Your name
+                companyName: Company name
                 address: "Street address, Apartment, etc."
                 zip: "Zip / Postal"
             dropdown:
                 usa: United States
                 germany: Germany
             radio:
-                "yes": "YES"
-                "no": "NO"
+                "yes": "Yes"
+                "no": "No"
         button: Continue
     GuestPaymentPage:
         title: Enter a payment method
@@ -210,7 +208,7 @@ default:
                 payment: Payment Settings
         button: Order with costs
     OrderConfirmationPage:
-        thankYouMessage: Thank you for purchasing, Your order is complete
+        thankYouMessage: Thank you for your purchase, your order is being processed.
         button: Continue Shopping
     LoginPage:
         title: Sign-In
@@ -230,11 +228,11 @@ default:
     RegisterPage:
         title: Create an account
         headlines:
-            firstName: FIRST NAME*
-            lastName: LAST NAME*
-            email: EMAIL ADDRESS*
-            password: PASSWORD*
-            passwordRepeat: REPEAT PASSWORD*
+            firstName: First name*
+            lastName: Last name*
+            email: Email address*
+            password: Password*
+            passwordRepeat: Confirm password*
         placeholder:
             firstName: First name
             lastName: Last name
@@ -292,11 +290,12 @@ default:
             tax: "Tax (6.0%)"
             grandTotal: Total
         productTable:
-            product: PRODUCT
-            unitPrice: UNIT PRICE
-            quantity: QUANTITY
-            update: REMOVE/UPDATE
-            totalPrice: TOTAL PRICE
+            number: '#'
+            product: Product
+            unitPrice: Unit Price
+            quantity: Quantity
+            update: Remove/Update
+            totalPrice: Total Price
         button:
             addNewShipAddr: Add a new shipping address
             addNewBillAddr: Add a new billing address

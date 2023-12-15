@@ -19,9 +19,9 @@ import posters.pageobjects.pages.user.RegisterPage;
 public class UserMenu extends AbstractComponent
 {
 
-    private SelenideElement userMenu = $("#userMenu");
+    private SelenideElement userMenu = $("#user-menu");
 
-    private SelenideElement showUserMenu = $("#showUserMenu");
+    private SelenideElement showUserMenu = $("#show-user-menu");
 
     @Override
     @Step("ensure availability user menu")
@@ -50,7 +50,7 @@ public class UserMenu extends AbstractComponent
     public RegisterPage openRegisterPage()
     {
         openUserMenu();
-        userMenu.find(".goToRegistration").click();
+        userMenu.find("#go-to-registration").click();
         return new RegisterPage().isExpectedPage();
     }
 
@@ -58,7 +58,7 @@ public class UserMenu extends AbstractComponent
     public LoginPage openLoginPage()
     {
         openUserMenu();
-        userMenu.find(".goToLogin").click();
+        userMenu.find("#go-to-login").click();
         return new LoginPage().isExpectedPage();
     }
 
@@ -66,7 +66,7 @@ public class UserMenu extends AbstractComponent
     public AccountOverviewPage openAccountOverviewPage()
     {
         openUserMenu();
-        userMenu.find(".goToAccountOverview").click();
+        userMenu.find("#go-to-account-overview").click();
         return new AccountOverviewPage().isExpectedPage();
     }
 
@@ -74,7 +74,7 @@ public class UserMenu extends AbstractComponent
     public HomePage logout()
     {
         openUserMenu();
-        userMenu.find(".goToLogout").click();
+        userMenu.find("#go-to-logout").click();
         return new HomePage().isExpectedPage();
     }
 
@@ -83,20 +83,20 @@ public class UserMenu extends AbstractComponent
     @Step("validate that nobody is logged in")
     public void validateNotLoggedIn()
     {
-        userMenu.find(".goToLogin").exists();
+        userMenu.find("#go-to-login").exists();
     }
 
     @Step("validate that somebody is logged in")
     public boolean validateIsLoggedIn()
     {
-        return userMenu.find(".firstName").exists();
+        return userMenu.find(".first-name").exists();
     }
 
     @Step("validate that '{firstName}' is displayed in user menu")
     public void validateLoggedInName(String firstName)
     {
         openUserMenu();
-        userMenu.find(".firstName").shouldHave(exactText(firstName));
+        userMenu.find(".first-name").shouldHave(exactText(firstName));
         closeUserMenu();
     }
     
@@ -109,22 +109,22 @@ public class UserMenu extends AbstractComponent
         $(".icon-user2").shouldBe(visible);
 
         // validate title
-        userMenu.find(".userMenuHeader").shouldHave(text(Neodymium.localizedText("header.userMenu.title"))).shouldBe(visible);
+        userMenu.find(".header-user-menu-heading").shouldHave(text(Neodymium.localizedText("header.userMenu.title"))).shouldBe(visible);
 
         // validate buttons
         if (validateIsLoggedIn())
         {
             // if customer is logged in
-            userMenu.find(".goToAccountOverview").shouldHave(exactText(Neodymium.localizedText("header.userMenu.accountOverview"))).shouldBe(visible);
-            userMenu.find(".goToLogout").shouldHave(exactText(Neodymium.localizedText("header.userMenu.logout"))).shouldBe(visible);
+            userMenu.find("#go-to-account-overview").shouldHave(exactText(Neodymium.localizedText("header.userMenu.accountOverview"))).shouldBe(visible);
+            userMenu.find("#go-to-logout").shouldHave(exactText(Neodymium.localizedText("header.userMenu.logout"))).shouldBe(visible);
             userMenu.find(".icon-info-large").shouldBe(visible);
             userMenu.find(".icon-log-out").shouldBe(visible);
         }
         else
         {
             // if customer is not logged in
-            userMenu.find(".goToRegistration").shouldHave(exactText(Neodymium.localizedText("header.userMenu.createAccount"))).shouldBe(visible);
-            userMenu.find(".goToLogin").shouldHave(exactText(Neodymium.localizedText("header.userMenu.signIn"))).shouldBe(visible);
+            userMenu.find("#go-to-registration").shouldHave(exactText(Neodymium.localizedText("header.userMenu.createAccount"))).shouldBe(visible);
+            userMenu.find("#go-to-login").shouldHave(exactText(Neodymium.localizedText("header.userMenu.signIn"))).shouldBe(visible);
             userMenu.find(".icon-user-add-outline").shouldBe(visible);
             userMenu.find(".icon-log-in").shouldBe(visible);
         }

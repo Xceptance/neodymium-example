@@ -64,7 +64,7 @@ public class Search extends AbstractComponent
     public void validateStructure() 
     {
         searchField.shouldBe(visible);
-        $("#btnSearch").shouldBe(visible);
+        $("#header-search-button").shouldBe(visible);
         $(".icon-search").shouldBe(visible);
     }
 }

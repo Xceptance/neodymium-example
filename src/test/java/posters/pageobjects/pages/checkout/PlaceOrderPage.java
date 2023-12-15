@@ -25,9 +25,9 @@ public class PlaceOrderPage extends AbstractCheckoutPage
 {
     private SelenideElement title = $("#titleOrderOverview");
     
-    private ElementsCollection headlines = $$(".total-wrap h3");
+    private ElementsCollection headlines = $$(".checkout-overview-position h3");
     
-    private ElementsCollection tableHead = $$(".product-name span");
+    private ElementsCollection tableHead = $$(".order-overview-position th");
 
     private SelenideElement shippingAddressForm = $("#shippingAddr");
 
@@ -35,7 +35,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
 
     private SelenideElement paymentForm = $("#payment");
     
-    private ElementsCollection totalProductPrices = $$(".totalUnitPriceShort");
+    private ElementsCollection totalProductPrices = $$(".productUnitPrice");
 
     private SelenideElement subtotalContainer = $("#SubTotalValue");
     
@@ -54,20 +54,9 @@ public class PlaceOrderPage extends AbstractCheckoutPage
 
     /// ----- validate content place order page ----- ///
     
-    @Step("validate breadcrumb")
-    public void validateBreadcrumb()
-    {
-        $("#btnToCard").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.cart"))).shouldBe(visible);
-        $("#btnShippAddr").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.shippingAddress"))).shouldBe(visible);
-        $("#btnBillAddr").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.billingAddress"))).shouldBe(visible);
-        $("#btnCreditCard").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.payment"))).shouldBe(visible);
-        $("#btnPlaceOrder").shouldHave(exactText(Neodymium.localizedText("AddressPages.breadcrumb.placeOrder"))).shouldBe(visible);
-    }
-    
     @Step("validate product table head")
-    public void validateTableHead() 
+     public void validateTableHead() 
     {
-        // TODO - fix after fixing issue
         //tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.product"))).shouldBe(visible);
         tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.unitPrice"))).shouldBe(visible);
         tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.quantity"))).shouldBe(visible);
@@ -78,20 +67,21 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     public void validateProcessWrap() 
     {
         // validate process numbers
-        $("#crt span").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.1.number"))).shouldBe(visible);
-        $("#ship span").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.2.number"))).shouldBe(visible);
-        $("#bill span").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.3.number"))).shouldBe(visible);
-        $("#payment span").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.4.number"))).shouldBe(visible);
-        $("#chkout span").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.number"))).shouldBe(visible);
-        $("#orderCmplt span").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.number"))).shouldBe(visible);
+        $(".progress-step-1 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.1.number"))).shouldBe(visible);
+        $(".progress-step-2 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.2.number"))).shouldBe(visible);
+        $(".progress-step-3 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.3.number"))).shouldBe(visible);
+        $(".progress-step-4 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.4.number"))).shouldBe(visible);
+        $(".progress-step-5 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.number"))).shouldBe(visible);
+        $(".progress-step-6 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.number"))).shouldBe(visible);
         
         // validate process names
-        $("#crt h3").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.1.name"))).shouldBe(visible);
-        $("#ship h3").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.2.name"))).shouldBe(visible);
-        $("#bill h3").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.3.name"))).shouldBe(visible);
-        $("#payment h3").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.4.name"))).shouldBe(visible);
-        $("#chkout h3").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.name"))).shouldBe(visible);
-        $("#orderCmplt h3").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.name"))).shouldBe(visible);
+        $(".progress-step-1 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.1.name"))).shouldBe(visible);
+        $(".progress-step-2 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.2.name"))).shouldBe(visible);
+        $(".progress-step-3 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.3.name"))).shouldBe(visible);
+        $(".progress-step-4 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.4.name"))).shouldBe(visible);
+        $(".progress-step-5 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.name"))).shouldBe(visible);
+        $(".progress-step-6 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.name"))).shouldBe(visible);
+
     }
     
     @Override
@@ -100,16 +90,11 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     {
         super.validateStructure();
 
-        // validate breadcrumb
-        validateBreadcrumb();
-        
         // validate process wrap
-        // TODO - after fixing issue 171: consistent element selectors for all checkout pages with progress indicator
-        //validateProcessWrap();
+        validateProcessWrap();
         
         // validate product table head
-        // TODO - after fixing issue 191: consistent table head CartPage and PlaceOrderPage
-        //validateTableHead();
+        validateTableHead();
         
         // validate order with costs button
         $("#btnOrder").shouldHave(exactText(Neodymium.localizedText("PlaceOrderPage.button"))).shouldBe(visible);
@@ -194,13 +179,13 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         title.shouldHave(exactText(Neodymium.localizedText("PlaceOrderPage.overview.title"))).shouldBe(visible);
         
         // validate shipping address
-        validateShippingAddressOverview(shippingAddress, Neodymium.localizedText("PlaceOrderPage.overview.headlines.shippingAddress"));
+         validateShippingAddressOverview(shippingAddress, Neodymium.localizedText("PlaceOrderPage.overview.headlines.shippingAddress"));
         
         // validate billing address
-        validateBillingAddressOverview(billingAddress, Neodymium.localizedText("PlaceOrderPage.overview.headlines.billingAddress"));
+         validateBillingAddressOverview(billingAddress, Neodymium.localizedText("PlaceOrderPage.overview.headlines.billingAddress"));
         
         // validate payment
-        validatePaymentOverview(creditCard, Neodymium.localizedText("PlaceOrderPage.overview.headlines.payment"));
+         validatePaymentOverview(creditCard, Neodymium.localizedText("PlaceOrderPage.overview.headlines.payment"));
     }
     
     /// ----- validate products ----- ///
@@ -211,14 +196,13 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         SelenideElement productContainer = $("#product" + (position - 1));
 
         // validate product image
-        productContainer.find(".product-img").shouldBe(visible);
+        productContainer.find(".img-thumbnail").shouldBe(visible);
         
         // validate parameters
         productContainer.find(".pName").shouldHave(exactText(productName));
-        productContainer.find(".productStyle").shouldHave(exactText(productStyle));
-        productContainer.find(".productSize").shouldHave(exactText(productSize));
-        // TODO - after fixing issue 191: consistent price representation (not "$ 0.00" and "$0.00")
-        //productContainer.find(".productUnitPrice").shouldHave(value(productPrice));
+        productContainer.find(".productStyle span").shouldHave(exactText(productStyle));
+        productContainer.find(".productSize span").shouldHave(exactText(productSize));
+        productContainer.find(".productUnitPrice").shouldHave(exactText(productPrice));
         productContainer.find(".productCount").shouldHave(exactValue(Integer.toString(productAmount)));
     }
     
@@ -265,17 +249,17 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     @Step("validate description strings")
     public void validateDescriptionStrings() 
     {
-        $$(".sub p").findBy(matchText(Neodymium.localizedText("General.priceSummary.subtotal"))).shouldBe(visible);
-        $$(".sub p").findBy(text(Neodymium.localizedText("General.priceSummary.shipping"))).shouldBe(visible);
-        $$(".sub p").findBy(text(Neodymium.localizedText("General.priceSummary.tax"))).shouldBe(visible);
-        $$(".grand-total p").findBy(text(Neodymium.localizedText("General.priceSummary.grandTotal"))).shouldBe(visible);
+        $$(".price-summary-row .price-summary-position").findBy(matchText(Neodymium.localizedText("General.priceSummary.subtotal"))).shouldBe(visible);
+        $$(".price-summary-row .price-summary-position").findBy(text(Neodymium.localizedText("General.priceSummary.shipping"))).shouldBe(visible);
+        $$(".price-summary-row .price-summary-position").findBy(text(Neodymium.localizedText("General.priceSummary.tax"))).shouldBe(visible);
+        $$(".price-summary-row .price-summary-position").findBy(text(Neodymium.localizedText("General.priceSummary.grandTotal"))).shouldBe(visible);
     }
     
     @Step("validate price summary")
     public void validatePriceSummary(String subtotal, String shippingCosts) 
     {
         // validate title
-        $$(".sub").findBy(text(Neodymium.localizedText("General.priceSummary.title"))).shouldBe(visible);
+        $$(".price-summary-row").findBy(text(Neodymium.localizedText("General.priceSummary.title"))).shouldBe(visible);
         
         // validate descriptions
         validateDescriptionStrings();

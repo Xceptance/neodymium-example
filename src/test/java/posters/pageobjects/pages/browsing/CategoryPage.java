@@ -83,13 +83,13 @@ public class CategoryPage extends AbstractBrowsingPage
     @Step("get a product name by position '{position}'")
     public String getProductNameByPosition(int position)
     {
-        return $("#product" + (position - 1) + " h2").text();
+        return $("#product" + (position - 1) + " h5").text();
     }
 
     @Step("click on a product by position '{position}'")
     public ProductDetailPage clickProductByPosition(int position)
     {
-        $("#product" + (position - 1)).scrollTo().click();
+        $("#product" + (position - 1) + " .btn.btn-primary").scrollTo().click();
         return new ProductDetailPage().isExpectedPage();
     }
     
@@ -98,7 +98,7 @@ public class CategoryPage extends AbstractBrowsingPage
     @Step("open homepage from category page")
     public HomePage openHomePage()
     {
-        $("#brand").scrollTo().click();
+        $("#header-brand").scrollTo().click();
         return new HomePage().isExpectedPage();
     }
 }

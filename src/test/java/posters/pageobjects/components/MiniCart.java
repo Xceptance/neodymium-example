@@ -18,11 +18,11 @@ import posters.pageobjects.utility.PriceHelper;
 
 public class MiniCart extends AbstractComponent
 {
-    private SelenideElement headerCart = $("#headerCartOverview");
+    private SelenideElement headerCart = $(".headerCartOverview");
 
-    private SelenideElement subOrderPrice = $("#miniCartMenu .subOrderPrice");
+    private SelenideElement subOrderPrice = $("#mini-cart-menu .subOrderPrice");
 
-    private SelenideElement miniCart = $("#miniCartMenu");
+    private SelenideElement miniCart = $("#mini-cart-menu");
 
     private SelenideElement miniCartTitle = $(".cartMiniProductCounter");
 
@@ -38,7 +38,7 @@ public class MiniCart extends AbstractComponent
     @Step("ensure availability mini cart")
     public void isComponentAvailable()
     {
-        $("#btnCartOverviewForm").should(exist);
+        $("#header-customer-menus").should(exist);
     }
 
     /// ----- mini cart navigation ------ ///
@@ -46,14 +46,14 @@ public class MiniCart extends AbstractComponent
     @Step("open the mini cart")
     public void openMiniCart()
     {
-        headerCart.hover();
+        headerCart.click();
         miniCart.waitUntil(visible, 9000);
     }
 
     @Step("close the mini cart")
     public void closeMiniCart()
     {
-        $("#brand").hover();
+        $("#top-demo-disclaimer").click();
         miniCart.waitUntil(not(visible), 9000);
     }
 
@@ -183,7 +183,7 @@ public class MiniCart extends AbstractComponent
         }
 
         // validate view cart button
-        $("#miniCartMenu .linkButton").shouldHave(exactText(Neodymium.localizedText("header.miniCart.viewCart"))).shouldBe(visible);
+        $("#mini-cart-menu .linkButton").shouldHave(exactText(Neodymium.localizedText("header.miniCart.viewCart"))).shouldBe(visible);
 
         closeMiniCart();
     }
@@ -195,7 +195,7 @@ public class MiniCart extends AbstractComponent
         openMiniCart();
 
         // selector for product
-        SelenideElement miniCartItem = $$("#miniCartMenu .cartItems").get(position - 1);
+        SelenideElement miniCartItem = $$("#mini-cart-menu .cartItems").get(position - 1);
 
         // validate parameters
         miniCartItem.find(".prodName").shouldHave(exactText(productName));

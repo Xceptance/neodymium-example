@@ -11,6 +11,6 @@ public class CheckoutHeader extends AbstractComponent
     @Step("ensure availability checkout header")
     public void isComponentAvailable()
     {
-        $("#headerCheckout").should(exist);
+        $(".progress-indicator").should(exist);
     }
 }

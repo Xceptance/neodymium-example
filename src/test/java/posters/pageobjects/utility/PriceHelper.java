@@ -61,7 +61,7 @@ public class PriceHelper
     @Step("adds total product price to sum")
     public static double calculateSubtotalPlaceOrderPage(double oldSubtotal, String totalProductPrice)
     {
-        return (double) (Math.round((oldSubtotal + Double.valueOf(totalProductPrice)) * 100)) / 100;
+        return (double) (Math.round((oldSubtotal + Double.valueOf(removeCurrency(totalProductPrice))) * 100)) / 100;
     }
 
     /**

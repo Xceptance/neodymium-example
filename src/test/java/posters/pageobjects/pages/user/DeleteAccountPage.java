@@ -36,7 +36,7 @@ public class DeleteAccountPage extends AbstractBrowsingPage
     @Step("validate required string")
     public void validateRequiredString() 
     {
-        $(".reqField").shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.requiredFields"))).shouldBe(visible);
+        $(".me-auto").shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.requiredFields"))).shouldBe(visible);
     }
     
     @Override

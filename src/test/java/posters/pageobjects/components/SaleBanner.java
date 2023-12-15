@@ -4,7 +4,6 @@ import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -14,20 +13,21 @@ public class SaleBanner extends AbstractComponent
 {
     public void isComponentAvailable()
     {
-        $(".sale").should(exist);
+        $("#carousel-sale").should(exist);
     }
     
     /// ----- validate sale banner ----- ///
 
-    private void validateSaleBanner(String text) 
+    private void validateSaleBanner(String text, int num) 
     {
-        $$(".owl-stage").findBy(exactText(text)).waitUntil(visible, 9000);
+        $("#carousel-sale>div.carousel-inner>div:nth-child("+num+")>a").shouldHave(exactText(text)).waitUntil(visible, 9000);;
     }
     
     @Step("validate sale banner")
     public void validateStructure()
     {
-        validateSaleBanner(Neodymium.localizedText("header.sale.second"));
-        validateSaleBanner(Neodymium.localizedText("header.sale.first"));
+        validateSaleBanner(Neodymium.localizedText("header.sale.first"), 1);
+        $("#carousel-sale .carousel-control-next").click();
+        validateSaleBanner(Neodymium.localizedText("header.sale.second"), 2);
     }
 }
