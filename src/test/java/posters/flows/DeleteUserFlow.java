@@ -10,7 +10,15 @@ public class DeleteUserFlow
     public static void flow(User user)
     {
         HomePage homePage = new HomePage();
-
+        
+        // check if the user is logged in if the login failed
+        if (!homePage.header.userMenu.validateIsLoggedIn()) 
+        {
+            var loginPage = homePage.header.userMenu.openLoginPage();
+            homePage = loginPage.sendLoginForm(user);
+            homePage.validateSuccessfulLogin(user.getFirstName());
+        }
+        
         // go to account page and validate
         var accountOverviewPage = homePage.header.userMenu.openAccountOverviewPage();
         accountOverviewPage.validateStructure();
