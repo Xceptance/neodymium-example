@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -53,7 +54,7 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
     @Step("open form to create new payment")
     public void openNewPayment() 
     {
-        addNewPayment.click();
+        addNewPayment.click(ClickOptions.usingJavaScript());
     }
     
     @Step("fill in payment form")
@@ -69,7 +70,7 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
         $("#expirationDateYear").selectOption(creditCard.getExpDateYear());
         
         // click add new payment button
-        $("#btnAddPayment").scrollTo().click();
+        $("#btnAddPayment").scrollTo().click(ClickOptions.usingJavaScript());
     }
     
     /// ----- payment overview page navigation ----- ///
@@ -77,7 +78,7 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
     @Step("open homepage from payment overview page")
     public HomePage openHomePage()
     {
-        $("#header-brand").scrollTo().click();
+        $("#header-brand").scrollTo().click(ClickOptions.usingJavaScript());
         return new HomePage().isExpectedPage();
     }
 }

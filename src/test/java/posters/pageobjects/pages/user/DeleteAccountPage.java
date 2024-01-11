@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -67,7 +68,7 @@ public class DeleteAccountPage extends AbstractBrowsingPage
     public HomePage deleteAccount(String password)
     {
         passwordField.setValue(password);
-        deleteButton.scrollTo().click();
+        deleteButton.scrollTo().click(ClickOptions.usingJavaScript());
         
         return new HomePage().isExpectedPage();
     }

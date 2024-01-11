@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -74,13 +75,13 @@ public class AddressOverviewPage extends AbstractBrowsingPage
     @Step("open form to create new shipping address")
     public void openNewShipAddr() 
     {
-        addNewShipAddr.click();
+        addNewShipAddr.click(ClickOptions.usingJavaScript());
     }
 
     @Step("open form to create new billing address")
     public void openNewBillAddr() 
     {
-        addNewBillAddr.click();
+        addNewBillAddr.click(ClickOptions.usingJavaScript());
     }
     
     @Step("fill in shipping address form")
@@ -99,7 +100,7 @@ public class AddressOverviewPage extends AbstractBrowsingPage
         countryField.selectOption(shippingAddress.getCountry());
         
         // click add new address button
-        $("#btnAddShippAddr").scrollTo().click();
+        $("#btnAddShippAddr").scrollTo().click(ClickOptions.usingJavaScript());
     }
     
     @Step("fill in billing address form")
@@ -118,6 +119,6 @@ public class AddressOverviewPage extends AbstractBrowsingPage
         countryField.selectOption(billingAddress.getCountry());
         
         // click add new address button
-        $("#btnAddBillAddr").scrollTo().click();
+        $("#btnAddBillAddr").scrollTo().click(ClickOptions.usingJavaScript());
     }  
 }

@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import org.junit.Assert;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
@@ -241,17 +242,17 @@ public class CartPage extends AbstractBrowsingPage
         productContainer.find(".product-count").setValue(Integer.toString(amount));
 
         // click update button
-        productContainer.find(".btnUpdateProduct").scrollTo().click();
+        productContainer.find(".btnUpdateProduct").scrollTo().click(ClickOptions.usingJavaScript());
     }
 
     @Step("remove product on position '{position}' on the cart page")
     public void removeProduct(int position)
     {
         // click delete button
-        $("#btnRemoveProdCount" + (position - 1)).scrollTo().click();
+        $("#btnRemoveProdCount" + (position - 1)).scrollTo().click(ClickOptions.usingJavaScript());
 
         // click delete confirmation button
-        $("#buttonDelete").scrollTo().click();
+        $("#buttonDelete").scrollTo().click(ClickOptions.usingJavaScript());
     }
 
     /// ----- cart page navigation ----- ///
@@ -259,28 +260,28 @@ public class CartPage extends AbstractBrowsingPage
     @Step("click on a product on position '{position}' on the cart page")
     public ProductDetailPage openProductDetailPage(int position)
     {
-        $("#product" + (position - 1) + " .img-thumbnail").scrollTo().click();
+        $("#product" + (position - 1) + " .img-thumbnail").scrollTo().click(ClickOptions.usingJavaScript());
         return new ProductDetailPage().isExpectedPage();
     }
 
     @Step("open homepage from cart page")
     public HomePage openHomePage()
     {
-        $("#header-brand").scrollTo().click();
+        $("#header-brand").scrollTo().click(ClickOptions.usingJavaScript());
         return new HomePage().isExpectedPage();
     }
 
     @Step("open guest shipping address from the cart page")
     public GuestShippingAddressPage openGuestShippingAddressPage()
     {
-        $("#btnStartCheckout").scrollTo().click();
+        $("#btnStartCheckout").scrollTo().click(ClickOptions.usingJavaScript());
         return new GuestShippingAddressPage().isExpectedPage();
     }
 
     @Step("open returning customer shipping address from the cart page")
     public ReturningCustomerShippingAddressPage openReturningCustomerShippingAddressPage()
     {
-        $("#btnStartCheckout").scrollTo().click();
+        $("#btnStartCheckout").scrollTo().click(ClickOptions.usingJavaScript());
         return new ReturningCustomerShippingAddressPage().isExpectedPage();
     }
 }

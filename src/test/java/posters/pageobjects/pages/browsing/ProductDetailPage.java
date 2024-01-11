@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -28,7 +29,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     public ProductDetailPage isExpectedPage()
     {
         super.isExpectedPage();
-        $(".h2fwpr#main .container.mt-4").should(exist);
+        $("#product-detail-form-name").should(exist);
         return this;
     }
 
@@ -42,7 +43,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("validate size dropdown")
     public void validateSizeDropdown()
     {
-        productSize.scrollTo().click();
+        productSize.scrollTo().click(ClickOptions.usingJavaScript());
 
         if ($$("#product-detail-form-size-selection option").size() > 1)
         {
@@ -55,7 +56,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
             validateSizeDropdown(Neodymium.localizedText("ProductdetailPage.size.96x32"));
         }
 
-        productSize.scrollTo().click();
+        productSize.scrollTo().click(ClickOptions.usingJavaScript());
     }
 
     @Step("validate style radio")
@@ -129,7 +130,8 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("click add to cart button")
     public void clickAddToCartButton()
     {
-        addToCartButton.scrollTo().click();
+        addToCartButton.scrollTo().click(ClickOptions.usingJavaScript());
+        header.miniCart.closeMiniCart();
     }
 
     @Step("add product with size '{size}' and style '{style}' to cart")
@@ -177,7 +179,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("open homepage from product detail page")
     public HomePage openHomePage()
     {
-        $("#header-brand").scrollTo().click();
+        $("#header-brand").scrollTo().click(ClickOptions.usingJavaScript());
         return new HomePage().isExpectedPage();
     }
 }

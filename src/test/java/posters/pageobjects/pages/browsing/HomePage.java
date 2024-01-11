@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -41,9 +42,9 @@ public class HomePage extends AbstractBrowsingPage
     public void validatePosterSlide(String position, String headline)
     {         
         // TODO - improve
-        slideNavigation.findBy(exactText(position)).click();
-        slideNavigation.findBy(exactText(position)).click();
-        slideNavigation.findBy(exactText(position)).click();
+        slideNavigation.findBy(exactText(position)).click(ClickOptions.usingJavaScript());
+        slideNavigation.findBy(exactText(position)).click(ClickOptions.usingJavaScript());
+        slideNavigation.findBy(exactText(position)).click(ClickOptions.usingJavaScript());
         
         slideHeadline.findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
         slideButton.findBy(exactText(Neodymium.localizedText("HomePage.slider.button"))).shouldBe(visible);

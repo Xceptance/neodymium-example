@@ -182,7 +182,6 @@ default:
                 november: 11
                 december: 12
             expireYear:
-                "2023": 2023
                 "2024": 2024
                 "2025": 2025
                 "2026": 2026
@@ -193,6 +192,7 @@ default:
                 "2031": 2031
                 "2032": 2032
                 "2033": 2033
+                "2034": 2034
         button: Continue
     ReturningCustomerPaymentPage:
         title: Select or enter a credit card

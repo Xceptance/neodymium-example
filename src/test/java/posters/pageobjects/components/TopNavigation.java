@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -28,7 +29,7 @@ public class TopNavigation extends AbstractComponent
     @Step("click on the top category '{topCategory}'")
     public CategoryPage clickCategory(String topCategory)
     {
-        $$("#header-categories .nav-link[href*=\"/topCategory/\"]").findBy(exactText(topCategory)).scrollTo().click();
+        $$("#header-categories .nav-link[href*=\"/topCategory/\"]").findBy(exactText(topCategory)).scrollTo().click(ClickOptions.usingJavaScript());
         return new CategoryPage().isExpectedPage();
     }
     
@@ -36,7 +37,7 @@ public class TopNavigation extends AbstractComponent
     public CategoryPage clickSubCategory(String topCategory, String subCategory)
     {
         $$(".nav-item.dropdown").findBy(exactText(topCategory)).hover();
-        $$("#header-categories ul.dropdown-menu li").findBy(exactText(subCategory)).click();
+        $$("#header-categories ul.dropdown-menu li").findBy(exactText(subCategory)).click(ClickOptions.usingJavaScript());
         return new CategoryPage().isExpectedPage();
     }
     
@@ -89,6 +90,6 @@ public class TopNavigation extends AbstractComponent
         validateSubNavComponent(Neodymium.localizedText("header.topNavigation.4.subCategory.4"));
         
         // close sub navigation
-        $("#header-navigation-bar").hover();
+        $("#top-demo-disclaimer").hover();
     }
 }

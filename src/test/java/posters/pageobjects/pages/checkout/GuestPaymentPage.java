@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -80,7 +81,15 @@ public class GuestPaymentPage extends AbstractCheckoutPage
     {        
         creditCardNumber.shouldHave(attribute("placeholder", (Neodymium.localizedText("GuestPaymentPage.fillIn.placeholder.cardNumber")))).shouldBe(visible);
         creditCardName.shouldHave(attribute("placeholder", (Neodymium.localizedText("GuestPaymentPage.fillIn.placeholder.cardOwnerName")))).shouldBe(visible);
-        $("#expirationDateMonth [selected]").shouldHave(exactText(Integer.toString(LocalDate.now().getMonthValue()))).shouldBe(visible);
+        
+        String month = Integer.toString(LocalDate.now().getMonthValue());
+        
+        if (LocalDate.now().getMonthValue() < 10) 
+        {
+            month = "0" + Integer.toString(LocalDate.now().getMonthValue());
+        }
+        
+        $("#expirationDateMonth [selected]").shouldHave(exactText(month)).shouldBe(visible);
         $("#expirationDateYear [selected]").shouldHave(exactText(Integer.toString(LocalDate.now().getYear()))).shouldBe(visible);
     }
     
@@ -93,7 +102,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
     public void validateMonthDropdown() 
     {
         // open dropdown
-        expirationMonth.scrollTo().click();
+        expirationMonth.scrollTo().click(ClickOptions.usingJavaScript());
         
         // validate months
         validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.january"));
@@ -119,10 +128,9 @@ public class GuestPaymentPage extends AbstractCheckoutPage
     public void validateYearDropdown() 
     {        
         // open dropdown
-        expirationYear.scrollTo().click();
+        expirationYear.scrollTo().click(ClickOptions.usingJavaScript());
         
         // validate years
-        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2023"));
         validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2024"));
         validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2025"));
         validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2026"));
@@ -133,6 +141,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2031"));
         validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2032"));
         validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2033"));
+        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2034"));
     }
     
     @Step("validate required string")
@@ -183,7 +192,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         expirationYear.selectOption(year);
 
         // go to place order page
-        addPaymentButton.scrollTo().click();
+        addPaymentButton.scrollTo().click(ClickOptions.usingJavaScript());
 
         return new PlaceOrderPage().isExpectedPage();
     }

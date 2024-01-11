@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -93,8 +94,8 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
         final int index = position - 1;
         
         // select address, press "Use this billing address"
-        $("#billAddr" + index + " input").scrollTo().click();
-        useBillingAddressButton.scrollTo().click();
+        $("#billAddr" + index + " input").scrollTo().click(ClickOptions.usingJavaScript());
+        useBillingAddressButton.scrollTo().click(ClickOptions.usingJavaScript());
 
         return new ReturningCustomerPaymentPage().isExpectedPage();
     }

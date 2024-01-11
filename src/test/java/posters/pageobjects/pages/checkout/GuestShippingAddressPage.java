@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -150,10 +151,10 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
          $("#address-form-input-zip").val(zip);
          $("#address-form-select-country").selectOption(country);
 
-         $("#billEqualShipp-No").scrollTo().click();
+         $("#billEqualShipp-No").scrollTo().click(ClickOptions.usingJavaScript());
 
          // go to guest billing address page
-         addShippingButton.scrollTo().click();
+         addShippingButton.scrollTo().click(ClickOptions.usingJavaScript());
 
          return new GuestBillingAddressPage().isExpectedPage();
      }
@@ -180,10 +181,10 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
          $("#address-form-input-zip").val(zip);
          $("#address-form-select-country").selectOption(country);
 
-        $("#billEqualShipp-Yes").scrollTo().click();
+        $("#billEqualShipp-Yes").scrollTo().click(ClickOptions.usingJavaScript());
 
         // go to guest payment page
-        addShippingButton.scrollTo().click();
+        addShippingButton.scrollTo().click(ClickOptions.usingJavaScript());
 
         return new GuestPaymentPage().isExpectedPage();
     }

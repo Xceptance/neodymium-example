@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
@@ -283,7 +284,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     public OrderConfirmationPage placeOrder()
     {
         // click on "Order with costs" button
-        orderButton.scrollTo().click();
+        orderButton.scrollTo().click(ClickOptions.usingJavaScript());
 
         return new OrderConfirmationPage().isExpectedPage();
     }

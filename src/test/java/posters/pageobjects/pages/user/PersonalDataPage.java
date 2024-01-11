@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -63,7 +64,7 @@ public class PersonalDataPage extends AbstractBrowsingPage
     @Step("open delete account page from personal data page")
     public DeleteAccountPage openDeleteAccountPage()
     {
-        deleteButton.scrollTo().click();
+        deleteButton.scrollTo().click(ClickOptions.usingJavaScript());
         return new DeleteAccountPage().isExpectedPage();
     }
 }

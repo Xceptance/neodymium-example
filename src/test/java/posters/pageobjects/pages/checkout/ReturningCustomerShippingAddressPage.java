@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -96,8 +97,8 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
         final int index = position - 1;
         
         // select address, press "Continue"
-        $("#delAddr" + index + " input").scrollTo().click();
-        useShippingAddressButton.scrollTo().click();
+        $("#delAddr" + index + " input").scrollTo().click(ClickOptions.usingJavaScript());
+        useShippingAddressButton.scrollTo().click(ClickOptions.usingJavaScript());
 
         return new ReturningCustomerBillingAddressPage().isExpectedPage();
     }
