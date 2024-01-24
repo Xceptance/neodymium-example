@@ -17,10 +17,10 @@ public class ErrorMessage extends AbstractComponent
     @Step("ensure availability error message")
     public void isComponentAvailable()
     {
-        errorMessage.text().matches("lkdsjvosamvlsamvdf");
+        errorMessage.should(exist);
     }
 
-    /// ----- validate error message ----- ///
+    /// ========== validate error message ========== ///
     
     @Step("validate visibility of error message '{message}'")
     public void validateErrorMessage(String message)

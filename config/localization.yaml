@@ -49,7 +49,27 @@ default:
             first: "25% off (Almost) Everything! Use Code: Posters Sale"
             second: "Our biggest sale yet 50% off all Posters"
     footer:
-        copyright: Copyright (c) 2013-2020 Xceptance Software Technologies GmbH -- This software is for demo purposes only and not meant to be used in production.
+        "1":
+            headline: "ABOUT"
+            description: "The Poster Demo Store is a small e-commerce demo application. It is meant for functional testing, test automation, and load and performance testing. It can also help you to learn programming better. This software is licensed under Apache License 2.0."
+            github: "GitHub: "
+        "2":
+            headline: "CUSTOMER CARE"
+            description: "Contact"
+        "3":
+            headline: "INFORMATION"
+            description: "This software is for demo and testing purposes only. Orders will not be fulfilled. Do not enter sensitive or personal data!"
+        "4":
+            headline: "CONTACT INFORMATION"
+            company: "Xceptance GmbH"
+            street: "Leutragraben 2-4"
+            zip: "07743 Jena"
+            country: "Germany"  
+            phone: "Phone: +49-3641-376300"
+            email: "E-mail: kontakt@xceptance.de"
+            website: "Website: www.xceptance.com"
+        copyright: "Copyright © 2013-2023 Xceptance Software Technologies GmbH"
+        version: "The Poster Demo Store - Version 2.1.1"
     HomePage:
         title: The Poster Demo Store - The Ultimate Online Shop
         slider:
