@@ -70,7 +70,7 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
         $("#expirationDateYear").selectOption(creditCard.getExpDateYear());
         
         // click add new payment button
-        $("#btnAddPayment").scrollTo().click(ClickOptions.usingJavaScript());
+        $("#btnAddPayment").click(ClickOptions.usingJavaScript());
     }
     
     /// ----- payment overview page navigation ----- ///
@@ -78,7 +78,7 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
     @Step("open homepage from payment overview page")
     public HomePage openHomePage()
     {
-        $("#header-brand").scrollTo().click(ClickOptions.usingJavaScript());
+        $("#header-brand").click(ClickOptions.usingJavaScript());
         return new HomePage().isExpectedPage();
     }
 }

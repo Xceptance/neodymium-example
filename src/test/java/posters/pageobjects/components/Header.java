@@ -24,6 +24,7 @@ public class Header extends AbstractComponent
     }
 
     /// ----- validate header----- ///
+    
     @Step("validate header")
     public void validateStructure()
     {

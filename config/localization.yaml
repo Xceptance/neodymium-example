@@ -1,4 +1,11 @@
 default:
+    buttons:
+        buyHere: "Buy here"
+        shopAllProducts: "Shop All Products"
+    successMessages:
+        successfulOrder: Thank you for shopping with us!
+        successfulLogin: Login successful. Have fun in our shop!
+        successfulAccountDeletion: Your account has been deleted. We hope to see you soon again!
     header:
         topNavigation:
             "1":
@@ -51,27 +58,45 @@ default:
                 "2": BOSTON SUNSET
                 "3": BRYCE NATIONAL PARK, UTAH I
                 "4": BRYCE NATIONAL PARK, UTAH II
-            button: BUY
         intro: Began with a simple idea "SHATATATATA!" - M. Scott
-        hotProducts: HOT PRODUCTS
-        featuredContent:
-            "1": "BLUE MORPHO BUTTERFLY"
-            "2": "SNOWDROP ANEMONE"
-            "3": "INDIAN SUMMER: RED BEECHES"
-            "4": "FINGER FOOD"
-            "5": "STUFFED TURKEY"
-            "6": "FRUIT TART WITH COCOA"
-            "7": "SWISS AIR AIRBUS A320"
-            "8": "IFA F8"
-            "9": "GERMAN STEAM LOCOMOTIVE"
-            "10": "GROCHWITZ CASTLE, GERMANY"
-            "11": "NEW YEAR'S FIREWORKS III"
-            "12": "LINNAEAN GARDEN AND MUSEUM, SWEDEN"
-        shopAllProducts: Shop All Products
-        validation:
-            successfulOrder: Thank you for shopping with us!
-            successfulLogin: Login successful. Have fun in our shop!
-            successfulAccountDeletion: Your account has been deleted. We hope to see you soon again!
+        featuredProducts:
+            headline: Hot Products
+            "1": 
+                title: "Blue Morpho Butterfly"
+                description: "Lovely."
+            "2":
+                title: "Snowdrop Anemone"
+                description: "A blossom in all its details."
+            "3":
+                title: "Indian Summer: Red Beeches"
+                description: "Check out that color change!"
+            "4":
+                title: "Finger Food"
+                description: "Can't make up your mind?"
+            "5":
+                title: "Stuffed Turkey"
+                description: "Vegetarians, please skip this one!"
+            "6":
+                title: "Fruit Tart with Cocoa"
+                description: "Isn't this pretty?"
+            "7":
+                title: "Swiss Air Airbus A320"
+                description: "Beautiful take-off."
+            "8":
+                title: "IFA F8"
+                description: "One of 25.000."
+            "9":
+                title: "German Steam Locomotive"
+                description: "For railway nostalgics."
+            "10":
+                title: "Grochwitz Castle, Germany"
+                description: "With the sun fighting off a storm."
+            "11":
+                title: "New Year's Fireworks III"
+                description: "A fantastic skycolor change!"
+            "12":
+                title: "Linnaean Garden and Museum, Sweden"
+                description: "A perfect symmetry."
     CategoryPage:
         search:
             resultText: "Your results for your search: "

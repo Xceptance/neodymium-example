@@ -94,8 +94,8 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
         final int index = position - 1;
         
         // select address, press "Use this billing address"
-        $("#billAddr" + index + " input").scrollTo().click(ClickOptions.usingJavaScript());
-        useBillingAddressButton.scrollTo().click(ClickOptions.usingJavaScript());
+        $("#billAddr" + index + " input").click(ClickOptions.usingJavaScript());
+        useBillingAddressButton.click(ClickOptions.usingJavaScript());
 
         return new ReturningCustomerPaymentPage().isExpectedPage();
     }

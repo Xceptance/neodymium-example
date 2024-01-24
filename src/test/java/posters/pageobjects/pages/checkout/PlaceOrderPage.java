@@ -284,7 +284,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     public OrderConfirmationPage placeOrder()
     {
         // click on "Order with costs" button
-        orderButton.scrollTo().click(ClickOptions.usingJavaScript());
+        orderButton.click(ClickOptions.usingJavaScript());
 
         return new OrderConfirmationPage().isExpectedPage();
     }

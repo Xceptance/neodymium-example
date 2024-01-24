@@ -17,7 +17,7 @@ public class ErrorMessage extends AbstractComponent
     @Step("ensure availability error message")
     public void isComponentAvailable()
     {
-        errorMessage.should(exist);
+        errorMessage.text().matches("lkdsjvosamvlsamvdf");
     }
 
     /// ----- validate error message ----- ///

@@ -17,6 +17,6 @@ public abstract class AbstractPageObject
 
     public void scrollToTop()
     {
-        $("body").scrollTo();
+        $("body");
     }
 }

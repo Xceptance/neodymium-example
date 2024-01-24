@@ -68,7 +68,7 @@ public class DeleteAccountPage extends AbstractBrowsingPage
     public HomePage deleteAccount(String password)
     {
         passwordField.setValue(password);
-        deleteButton.scrollTo().click(ClickOptions.usingJavaScript());
+        deleteButton.click(ClickOptions.usingJavaScript());
         
         return new HomePage().isExpectedPage();
     }

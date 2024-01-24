@@ -100,7 +100,7 @@ public class AddressOverviewPage extends AbstractBrowsingPage
         countryField.selectOption(shippingAddress.getCountry());
         
         // click add new address button
-        $("#btnAddShippAddr").scrollTo().click(ClickOptions.usingJavaScript());
+        $("#btnAddShippAddr").click(ClickOptions.usingJavaScript());
     }
     
     @Step("fill in billing address form")
@@ -119,6 +119,6 @@ public class AddressOverviewPage extends AbstractBrowsingPage
         countryField.selectOption(billingAddress.getCountry());
         
         // click add new address button
-        $("#btnAddBillAddr").scrollTo().click(ClickOptions.usingJavaScript());
+        $("#btnAddBillAddr").click(ClickOptions.usingJavaScript());
     }  
 }

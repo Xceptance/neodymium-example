@@ -43,7 +43,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("validate size dropdown")
     public void validateSizeDropdown()
     {
-        productSize.scrollTo().click(ClickOptions.usingJavaScript());
+        productSize.click(ClickOptions.usingJavaScript());
 
         if ($$("#product-detail-form-size-selection option").size() > 1)
         {
@@ -56,7 +56,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
             validateSizeDropdown(Neodymium.localizedText("ProductdetailPage.size.96x32"));
         }
 
-        productSize.scrollTo().click(ClickOptions.usingJavaScript());
+        productSize.click(ClickOptions.usingJavaScript());
     }
 
     @Step("validate style radio")
@@ -130,7 +130,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("click add to cart button")
     public void clickAddToCartButton()
     {
-        addToCartButton.scrollTo().click(ClickOptions.usingJavaScript());
+        addToCartButton.click(ClickOptions.usingJavaScript());
         header.miniCart.closeMiniCart();
     }
 
@@ -179,7 +179,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("open homepage from product detail page")
     public HomePage openHomePage()
     {
-        $("#header-brand").scrollTo().click(ClickOptions.usingJavaScript());
+        $("#header-brand").click(ClickOptions.usingJavaScript());
         return new HomePage().isExpectedPage();
     }
 }

@@ -151,10 +151,10 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
          $("#address-form-input-zip").val(zip);
          $("#address-form-select-country").selectOption(country);
 
-         $("#billEqualShipp-No").scrollTo().click(ClickOptions.usingJavaScript());
+         $("#billEqualShipp-No").click(ClickOptions.usingJavaScript());
 
          // go to guest billing address page
-         addShippingButton.scrollTo().click(ClickOptions.usingJavaScript());
+         addShippingButton.click(ClickOptions.usingJavaScript());
 
          return new GuestBillingAddressPage().isExpectedPage();
      }
@@ -181,10 +181,10 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
          $("#address-form-input-zip").val(zip);
          $("#address-form-select-country").selectOption(country);
 
-        $("#billEqualShipp-Yes").scrollTo().click(ClickOptions.usingJavaScript());
+        $("#billEqualShipp-Yes").click(ClickOptions.usingJavaScript());
 
         // go to guest payment page
-        addShippingButton.scrollTo().click(ClickOptions.usingJavaScript());
+        addShippingButton.click(ClickOptions.usingJavaScript());
 
         return new GuestPaymentPage().isExpectedPage();
     }

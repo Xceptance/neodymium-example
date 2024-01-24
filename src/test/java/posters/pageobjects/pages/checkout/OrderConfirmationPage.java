@@ -74,7 +74,7 @@ public class OrderConfirmationPage extends AbstractBrowsingPage{
     @Step("open homepage from order confirmation page")
     public HomePage openHomePage()
     {
-        homePageButton.scrollTo().click(ClickOptions.usingJavaScript());
+        homePageButton.click(ClickOptions.usingJavaScript());
 
         return new HomePage().isExpectedPage();
     }

@@ -64,7 +64,7 @@ public class PersonalDataPage extends AbstractBrowsingPage
     @Step("open delete account page from personal data page")
     public DeleteAccountPage openDeleteAccountPage()
     {
-        deleteButton.scrollTo().click(ClickOptions.usingJavaScript());
+        deleteButton.click(ClickOptions.usingJavaScript());
         return new DeleteAccountPage().isExpectedPage();
     }
 }

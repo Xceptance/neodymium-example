@@ -93,8 +93,8 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
         final int index = position - 1;
         
         // select address, press "Use this credit card"
-        $("#payment" + index + " input").scrollTo().click(ClickOptions.usingJavaScript());
-        useCreditCardButton.scrollTo().click(ClickOptions.usingJavaScript());
+        $("#payment" + index + " input").click(ClickOptions.usingJavaScript());
+        useCreditCardButton.click(ClickOptions.usingJavaScript());
 
         return new PlaceOrderPage().isExpectedPage();
     }

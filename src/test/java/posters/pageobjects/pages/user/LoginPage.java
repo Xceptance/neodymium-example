@@ -102,14 +102,14 @@ public class LoginPage extends AbstractBrowsingPage
     @Step("open register page from login page")
     public RegisterPage openRegister()
     {
-        registerLink.scrollTo().click(ClickOptions.usingJavaScript());
+        registerLink.click(ClickOptions.usingJavaScript());
         return new RegisterPage().isExpectedPage();
     }
     
     @Step("open homepage from login page")
     public HomePage openHomePage()
     {
-        $("#header-brand").scrollTo().click(ClickOptions.usingJavaScript());
+        $("#header-brand").click(ClickOptions.usingJavaScript());
         return new HomePage().isExpectedPage();
     }
     
@@ -121,7 +121,7 @@ public class LoginPage extends AbstractBrowsingPage
         passwordField.val(password);
 
         // click on the Sign In button.
-        signInButton.scrollTo().click(ClickOptions.usingJavaScript());
+        signInButton.click(ClickOptions.usingJavaScript());
     }
     
     @Step("fill and send login form with valid user '{user}'")

@@ -102,7 +102,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
     public void validateMonthDropdown() 
     {
         // open dropdown
-        expirationMonth.scrollTo().click(ClickOptions.usingJavaScript());
+        expirationMonth.click(ClickOptions.usingJavaScript());
         
         // validate months
         validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.january"));
@@ -128,7 +128,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
     public void validateYearDropdown() 
     {        
         // open dropdown
-        expirationYear.scrollTo().click(ClickOptions.usingJavaScript());
+        expirationYear.click(ClickOptions.usingJavaScript());
         
         // validate years
         validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2024"));
@@ -192,7 +192,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         expirationYear.selectOption(year);
 
         // go to place order page
-        addPaymentButton.scrollTo().click(ClickOptions.usingJavaScript());
+        addPaymentButton.click(ClickOptions.usingJavaScript());
 
         return new PlaceOrderPage().isExpectedPage();
     }

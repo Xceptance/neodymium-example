@@ -40,7 +40,7 @@ public class NoHitsPage extends AbstractBrowsingPage
     @Step("open homepage from no hits page")
     public HomePage openHomePage()
     {
-        $("#header-brand").scrollTo().click(ClickOptions.usingJavaScript());
+        $("#header-brand").click(ClickOptions.usingJavaScript());
         return new HomePage().isExpectedPage();
     }
 }

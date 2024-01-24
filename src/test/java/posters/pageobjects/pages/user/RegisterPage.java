@@ -108,7 +108,7 @@ public class RegisterPage extends AbstractBrowsingPage
         passwordRepeatField.val(user.getPassword());
 
         // click on the Register Button
-        registerButton.scrollTo().click(ClickOptions.usingJavaScript());
+        registerButton.click(ClickOptions.usingJavaScript());
 
         return new LoginPage().isExpectedPage();
     }

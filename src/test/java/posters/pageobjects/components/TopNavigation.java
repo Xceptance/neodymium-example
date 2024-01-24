@@ -29,7 +29,7 @@ public class TopNavigation extends AbstractComponent
     @Step("click on the top category '{topCategory}'")
     public CategoryPage clickCategory(String topCategory)
     {
-        $$("#header-categories .nav-link[href*=\"/topCategory/\"]").findBy(exactText(topCategory)).scrollTo().click(ClickOptions.usingJavaScript());
+        $$("#header-categories .nav-link[href*=\"/topCategory/\"]").findBy(exactText(topCategory)).click(ClickOptions.usingJavaScript());
         return new CategoryPage().isExpectedPage();
     }
     

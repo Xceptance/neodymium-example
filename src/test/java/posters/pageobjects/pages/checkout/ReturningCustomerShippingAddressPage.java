@@ -97,8 +97,8 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
         final int index = position - 1;
         
         // select address, press "Continue"
-        $("#delAddr" + index + " input").scrollTo().click(ClickOptions.usingJavaScript());
-        useShippingAddressButton.scrollTo().click(ClickOptions.usingJavaScript());
+        $("#delAddr" + index + " input").click(ClickOptions.usingJavaScript());
+        useShippingAddressButton.click(ClickOptions.usingJavaScript());
 
         return new ReturningCustomerBillingAddressPage().isExpectedPage();
     }

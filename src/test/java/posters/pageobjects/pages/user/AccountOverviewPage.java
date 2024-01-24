@@ -56,28 +56,28 @@ public class AccountOverviewPage extends AbstractBrowsingPage
     @Step("open order history page")
     public OrderHistoryPage openOrderHistory()
     {
-        orderOverviewLink.scrollTo().click(ClickOptions.usingJavaScript());
+        orderOverviewLink.click(ClickOptions.usingJavaScript());
         return new OrderHistoryPage().isExpectedPage();
     }
     
     @Step("open my addresses page")
     public AddressOverviewPage openMyAddresses()
     {
-        myAddressesLink.scrollTo().click(ClickOptions.usingJavaScript());
+        myAddressesLink.click(ClickOptions.usingJavaScript());
         return new AddressOverviewPage().isExpectedPage();
     }
     
     @Step("open payment settings page")
     public PaymentOverviewPage openPaymentSettings()
     {
-        paymentSettingsLink.scrollTo().click(ClickOptions.usingJavaScript());
+        paymentSettingsLink.click(ClickOptions.usingJavaScript());
         return new PaymentOverviewPage().isExpectedPage();
     }
     
     @Step("open personal data page")
     public PersonalDataPage openPersonalData()
     {
-        personalDataLink.scrollTo().click(ClickOptions.usingJavaScript());
+        personalDataLink.click(ClickOptions.usingJavaScript());
         return new PersonalDataPage().isExpectedPage();
     }
 }

@@ -139,7 +139,7 @@ public class GuestBillingAddressPage extends AbstractCheckoutPage
         $("#address-form-input-zip").val(zip);
         $("#address-form-select-country").selectOption(country);
         // go to guest payment page
-        addBillingButton.scrollTo().click(ClickOptions.usingJavaScript());
+        addBillingButton.click(ClickOptions.usingJavaScript());
 
         return new GuestPaymentPage().isExpectedPage();
     }

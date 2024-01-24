@@ -28,7 +28,7 @@ public class Search extends AbstractComponent
     @Step("open search field")
     public void openSearch()
     {
-        searchField.scrollTo().click(ClickOptions.usingJavaScript());
+        searchField.click(ClickOptions.usingJavaScript());
     }
 
     @Step("search for '{searchTerm}'")
