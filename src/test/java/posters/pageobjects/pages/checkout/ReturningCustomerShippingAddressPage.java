@@ -29,7 +29,7 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
         return this;
     }
 
-    /// ----- validate content returning customer shipping address page ----- ///
+    /// ========== validate content returning customer shipping address page ========== ///
     
     @Step("validate process wrap")
     public void validateProcessWrap() 
@@ -89,7 +89,7 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
         addressContainer.find(".country").shouldHave(exactText(shippingAddress.getCountry())).shouldBe(visible);  
     }
 
-    /// ----- select shipping address ----- ///
+    /// ========== select shipping address ========== ///
 
     @Step("select a shipping address on position '{position}'")
     public ReturningCustomerBillingAddressPage selectShippingAddress(int position)

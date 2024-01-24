@@ -39,7 +39,7 @@ public class LoginPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate content login page ----- ///
+    /// ========== validate content login page ========== ///
     
     @Step("validate required string")
     public void validateRequiredString() 
@@ -75,7 +75,7 @@ public class LoginPage extends AbstractBrowsingPage
         registerLink.shouldHave(exactText(Neodymium.localizedText("LoginPage.createNewAccount")));
     }
     
-    /// ----- validate success and error messages ----- ///
+    /// ========== validate success and error messages ========== ///
     
     @Step("validate successful registration message")
     public void validateSuccessfulRegistration()
@@ -97,7 +97,7 @@ public class LoginPage extends AbstractBrowsingPage
         Assert.assertEquals(emailField.val(), email);
     }
     
-    /// ----- login page navigation ----- ///
+    /// ========== login page navigation ========== ///
     
     @Step("open register page from login page")
     public RegisterPage openRegister()

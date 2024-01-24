@@ -30,7 +30,7 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
         return this;
     }
 
-    /// ----- validate content returning customer payment page ----- ///
+    /// ========== validate content returning customer payment page ========== ///
 
     @Step("validate process wrap")
     public void validateProcessWrap() 
@@ -85,7 +85,7 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
         creditCardContainer.find(".validTo").shouldHave(exactText(expDate)).shouldBe(visible);
     }
     
-    /// ----- select credit card ----- ///
+    /// ========== select credit card ========== ///
 
     @Step("select a credit card on position '{position}'")
     public PlaceOrderPage selectCreditCard(int position)

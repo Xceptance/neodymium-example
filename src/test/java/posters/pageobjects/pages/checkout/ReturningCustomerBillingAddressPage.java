@@ -28,7 +28,7 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
         return this;
     }
     
-    /// ----- validate content returning customer billing address page ----- ///
+    /// ========== validate content returning customer billing address page ========== ///
 
     @Step("validate process wrap")
     public void validateProcessWrap() 
@@ -86,7 +86,7 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
         addressContainer.find(".country").shouldHave(exactText(billingAddress.getCountry())).shouldBe(visible);  
     }
 
-    /// ----- select billing address ----- ///
+    /// ========== select billing address ========== ///
     
     @Step("select a billing address on position '{position}'")
     public ReturningCustomerPaymentPage selectBillingAddress(int position)

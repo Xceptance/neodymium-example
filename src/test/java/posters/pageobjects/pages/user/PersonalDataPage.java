@@ -29,7 +29,7 @@ public class PersonalDataPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate content personal data page ----- ///
+    /// ========== validate content personal data page ========== ///
     
     @Override
     @Step("validate personal data page structure")
@@ -59,7 +59,7 @@ public class PersonalDataPage extends AbstractBrowsingPage
         $("#customerEmail").shouldHave(exactText(user.getEmail())).shouldBe(visible);
     }
     
-    /// ----- personal data page navigation ----- ///
+    /// ========== personal data page navigation ========== ///
     
     @Step("open delete account page from personal data page")
     public DeleteAccountPage openDeleteAccountPage()

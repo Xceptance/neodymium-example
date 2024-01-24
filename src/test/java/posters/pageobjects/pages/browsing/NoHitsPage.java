@@ -19,7 +19,7 @@ public class NoHitsPage extends AbstractBrowsingPage
         return this;
     }
     
-    /// ----- validate no hits page ----- ///
+    /// ========== validate no hits page ========== ///
     
     @Step("validate that no products are on no hits page")
     public void validateNoProductsFound()
@@ -35,7 +35,7 @@ public class NoHitsPage extends AbstractBrowsingPage
         validateNoProductsFound();
     }
     
-    /// ----- no hits page navigation ----- ///
+    /// ========== no hits page navigation ========== ///
     
     @Step("open homepage from no hits page")
     public HomePage openHomePage()

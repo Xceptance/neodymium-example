@@ -33,7 +33,7 @@ public class AccountOverviewPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate content account overview page ----- ///
+    /// ========== validate content account overview page ========== ///
     
     @Override
     @Step("validate account overview page structure")
@@ -51,7 +51,7 @@ public class AccountOverviewPage extends AbstractBrowsingPage
         personalDataLink.shouldHave(exactText(Neodymium.localizedText("AccountOverviewPage.button.personalData"))).shouldBe(visible);
     }
 
-    /// ----- account overview page navigation ----- ///
+    /// ========== account overview page navigation ========== ///
     
     @Step("open order history page")
     public OrderHistoryPage openOrderHistory()

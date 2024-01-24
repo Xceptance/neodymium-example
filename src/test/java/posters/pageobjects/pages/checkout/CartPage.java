@@ -39,7 +39,7 @@ public class CartPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate content cart page ----- ///
+    /// ========== validate content cart page ========== ///
 
     @Step("validate product table head")
     public void validateTableHead()
@@ -117,7 +117,7 @@ public class CartPage extends AbstractBrowsingPage
     @Step("validate sub total and line item total after adding on the cart page")
     public void validateTotalAfterAdd(int position, String oldSubTotal, double oldTotalProductPrice)
     {
-        /// ----- validate total unit price of specified product ----- ///
+        /// ========== validate total unit price of specified product ========== ///
 
         SelenideElement productContainer = $("#product" + (position - 1));
 
@@ -133,7 +133,7 @@ public class CartPage extends AbstractBrowsingPage
         // verify calculated unit price equals the displayed total unit price
         productContainer.find(".product-total-unit-price").shouldHave(exactText(newTotalProductPrice));
 
-        /// ----- validate sub total ----- ///
+        /// ========== validate sub total ========== ///
 
         String newSubTotal = subTotal.text();
 
@@ -153,7 +153,7 @@ public class CartPage extends AbstractBrowsingPage
         subTotal.shouldHave(exactText(newSubTotal));
     }
 
-    /// ----- validate product in cart ----- ///
+    /// ========== validate product in cart ========== ///
 
     private void validateCartItem(int position, String productName, String productStyle, String productSize, int productAmount, String productPrice)
     {
@@ -187,7 +187,7 @@ public class CartPage extends AbstractBrowsingPage
         validateCartItem(position, product.getName(), product.getStyle(), product.getSize(), productAmount, product.getUnitPrice());
     }
 
-    /// ----- get product data ----- ///
+    /// ========== get product data ========== ///
 
     @Step("get product name from line item on position '{position}' on the cart page")
     public String getProductName(int position)
@@ -231,7 +231,7 @@ public class CartPage extends AbstractBrowsingPage
         return new Product(getProductName(position), getProductUnitPrice(position), getProductStyle(position), getProductSize(position), Integer.parseInt(getProductCount(position)));
     }
 
-    /// ----- update product data ----- ///
+    /// ========== update product data ========== ///
 
     @Step("update product count of product on position '{position}' on the cart page to '{amount}'")
     public void updateProductCount(int position, int amount)
@@ -255,7 +255,7 @@ public class CartPage extends AbstractBrowsingPage
         $("#buttonDelete").click(ClickOptions.usingJavaScript());
     }
 
-    /// ----- cart page navigation ----- ///
+    /// ========== cart page navigation ========== ///
 
     @Step("click on a product on position '{position}' on the cart page")
     public ProductDetailPage openProductDetailPage(int position)

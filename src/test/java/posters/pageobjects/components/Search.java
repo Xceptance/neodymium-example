@@ -23,7 +23,7 @@ public class Search extends AbstractComponent
         searchField.should(exist);
     }
 
-    /// ----- search navigation ----- ///
+    /// ========== search navigation ========== ///
     
     @Step("open search field")
     public void openSearch()
@@ -59,7 +59,7 @@ public class Search extends AbstractComponent
         return new CategoryPage().isExpectedPage();
     }
     
-    /// ----- validate search ----- ///
+    /// ========== validate search ========== ///
     
     @Step("validate search bar")
     public void validateStructure() 

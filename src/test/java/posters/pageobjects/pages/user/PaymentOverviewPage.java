@@ -29,7 +29,7 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate content payment settings page ----- ///
+    /// ========== validate content payment settings page ========== ///
     
     @Override
     @Step("validate personal data page structure")
@@ -49,7 +49,7 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
         successMessage.validateSuccessMessage(Neodymium.localizedText("AccountOverviewPage.validation.successfulSave"));
     }
     
-    /// ----- add new payment ----- ///
+    /// ========== add new payment ========== ///
     
     @Step("open form to create new payment")
     public void openNewPayment() 
@@ -73,7 +73,7 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
         $("#btnAddPayment").click(ClickOptions.usingJavaScript());
     }
     
-    /// ----- payment overview page navigation ----- ///
+    /// ========== payment overview page navigation ========== ///
     
     @Step("open homepage from payment overview page")
     public HomePage openHomePage()

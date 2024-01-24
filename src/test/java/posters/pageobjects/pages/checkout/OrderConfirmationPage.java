@@ -25,7 +25,7 @@ public class OrderConfirmationPage extends AbstractBrowsingPage{
         return this;
     }
     
-    /// ----- validate content order confirmation page ----- ///
+    /// ========== validate content order confirmation page ========== ///
     
     @Step("validate process wrap")
     public void validateProcessWrap() 
@@ -69,7 +69,7 @@ public class OrderConfirmationPage extends AbstractBrowsingPage{
         $("#goHome").shouldHave(exactText(Neodymium.localizedText("OrderConfirmationPage.button"))).shouldBe(visible);
     }
     
-    /// ----- order confirmation page navigation ----- ///
+    /// ========== order confirmation page navigation ========== ///
     
     @Step("open homepage from order confirmation page")
     public HomePage openHomePage()

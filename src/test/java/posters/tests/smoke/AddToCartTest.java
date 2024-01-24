@@ -30,7 +30,7 @@ public class AddToCartTest extends AbstractTest
         final String shippingCosts = Neodymium.dataValue("shippingCosts");
         final AddToCartTestData addToCartTestData = DataUtils.get(AddToCartTestData.class);
 
-        /// ----- PART 1: USE TOP NAVIGATION TO ADD PRODUCT TO CART ----- ///
+        /// ========== PART 1: USE TOP NAVIGATION TO ADD PRODUCT TO CART ========== ///
         
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
@@ -57,7 +57,7 @@ public class AddToCartTest extends AbstractTest
         cartPage.header.miniCart.validateStructure();
         cartPage.header.miniCart.validateMiniCartItem(1, product);
         
-        /// ----- PART 2: USE SEARCH BAR TO ADD PRODUCT TO CART ----- ///
+        /// ========== PART 2: USE SEARCH BAR TO ADD PRODUCT TO CART ========== ///
         
         // store old subtotal
         final String oldSubtotal2 = cartPage.header.miniCart.getSubtotal();
@@ -82,7 +82,7 @@ public class AddToCartTest extends AbstractTest
         cartPage.header.miniCart.validateMiniCartItem(1, product2);
         cartPage.header.miniCart.validateMiniCartItem(2, product);
         
-        /// ----- PART 3: CHANGE QUANTITY OF PRODUCT IN CART ----- ///
+        /// ========== PART 3: CHANGE QUANTITY OF PRODUCT IN CART ========== ///
 
         // store old subtotal
         final String oldSubtotal3 = cartPage.header.miniCart.getSubtotal(); 
@@ -103,7 +103,7 @@ public class AddToCartTest extends AbstractTest
         cartPage.header.miniCart.validateStructure();
         cartPage.header.miniCart.validateMiniCartItem(1, productBeforeUpdate, addToCartTestData.getAmountChange(), subtotalAfterUpdate);
         
-        /// ----- PART 4: REMOVE PRODUCT FROM CART ----- ///
+        /// ========== PART 4: REMOVE PRODUCT FROM CART ========== ///
         
         // store old subtotal
         final String oldSubtotal4 = cartPage.header.miniCart.getSubtotal();
@@ -121,7 +121,7 @@ public class AddToCartTest extends AbstractTest
         cartPage.header.miniCart.validateStructure();
         cartPage.header.miniCart.validateMiniCartItem(1, product);
         
-        /// ----- PART 5: ADD SAME PRODUCT TO CART AGAIN ----- ///
+        /// ========== PART 5: ADD SAME PRODUCT TO CART AGAIN ========== ///
         
         // store old subtotal
         final String oldSubtotal5 = cartPage.header.miniCart.getSubtotal();

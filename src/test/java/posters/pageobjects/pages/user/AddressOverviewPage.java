@@ -44,7 +44,7 @@ public class AddressOverviewPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate content my addresses page ----- ///
+    /// ========== validate content my addresses page ========== ///
 
     @Override
     @Step("validate personal data page structure")
@@ -70,7 +70,7 @@ public class AddressOverviewPage extends AbstractBrowsingPage
         successMessage.validateSuccessMessage(Neodymium.localizedText("AccountOverviewPage.validation.successfulSave"));
     }
     
-    /// ----- add new address ----- ///
+    /// ========== add new address ========== ///
     
     @Step("open form to create new shipping address")
     public void openNewShipAddr() 

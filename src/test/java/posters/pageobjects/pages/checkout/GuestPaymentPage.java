@@ -40,7 +40,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         return this;
     }
 
-    /// ----- validate content guest payment page ----- ///
+    /// ========== validate content guest payment page ========== ///
     
     @Step("validate process wrap")
     public void validateProcessWrap() 
@@ -181,7 +181,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         addPaymentButton.shouldHave(exactText(Neodymium.localizedText("GuestPaymentPage.button"))).shouldBe(visible);
     }
     
-    /// ----- send payment form ----- ///
+    /// ========== send payment form ========== ///
     
     private PlaceOrderPage goToPlaceOrderPage(String number, String name, String month, String year)
     {

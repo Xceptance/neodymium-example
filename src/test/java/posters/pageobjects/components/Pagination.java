@@ -23,7 +23,7 @@ public class Pagination extends AbstractComponent
         pagination.shouldBe(visible);
     }
 
-    /// ----- pagination navigation ----- ///
+    /// ========== pagination navigation ========== ///
 
     @Step("click on page number '{pageNumber}'")
     public void goToPage(int pageNumber)
@@ -55,7 +55,7 @@ public class Pagination extends AbstractComponent
         paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToFirstPage"))).click(ClickOptions.usingJavaScript());
     }
 
-    /// ----- validate pagination ----- ///
+    /// ========== validate pagination ========== ///
 
     /**
      * Note: To get {numberOfPages} it divides {expectedResultCount} by 6 because only 6 results can be displayed

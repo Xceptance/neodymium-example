@@ -30,7 +30,7 @@ public class GuestBillingAddressPage extends AbstractCheckoutPage
         return this;
     }
 
-    /// ----- validate content guest billing address page ----- ///
+    /// ========== validate content guest billing address page ========== ///
     
     @Step("validate process wrap")
     public void validateProcessWrap() 
@@ -125,7 +125,7 @@ public class GuestBillingAddressPage extends AbstractCheckoutPage
         addBillingButton.shouldHave(exactText(Neodymium.localizedText("AddressPages.button"))).shouldBe(visible);
     }
 
-    /// ----- send billing address form ----- ///
+    /// ========== send billing address form ========== ///
 
     private GuestPaymentPage goToGuestPaymentPage(String name, String company, String address, String city,
                                                  String state, String zip, String country)

@@ -53,7 +53,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         return this;
     }
 
-    /// ----- validate content place order page ----- ///
+    /// ========== validate content place order page ========== ///
     
     @Step("validate product table head")
      public void validateTableHead() 
@@ -101,7 +101,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         $("#btnOrder").shouldHave(exactText(Neodymium.localizedText("PlaceOrderPage.button"))).shouldBe(visible);
     }
     
-    /// ----- validate order overview ----- ///
+    /// ========== validate order overview ========== ///
     
     private void validateShippingAddressOverview(Address shippingAddress, String headline) 
     {
@@ -189,7 +189,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
          validatePaymentOverview(creditCard, Neodymium.localizedText("PlaceOrderPage.overview.headlines.payment"));
     }
     
-    /// ----- validate products ----- ///
+    /// ========== validate products ========== ///
     
     private void validateProduct(int position, String productName, String productStyle, String productSize, int productAmount, String productPrice)
     {
@@ -213,7 +213,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         validateProduct(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), product.getUnitPrice());
     }
     
-    /// ----- get price summary information ----- ///
+    /// ========== get price summary information ========== ///
     
     @Step("get sum of all total product prices")
     public String getSubtotal() 
@@ -245,7 +245,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         return PriceHelper.format(subtotal);
     }
     
-    /// ----- validate price summary ----- ///
+    /// ========== validate price summary ========== ///
     
     @Step("validate description strings")
     public void validateDescriptionStrings() 
@@ -278,7 +278,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         $("#orderTotal").shouldHave(exactText(PriceHelper.calculateGrandTotal(subtotal, shippingCosts, getTax())));
     }
     
-    /// ----- place order page navigation ----- ///
+    /// ========== place order page navigation ========== ///
    
     @Step("place the order")
     public OrderConfirmationPage placeOrder()

@@ -30,7 +30,7 @@ public class CategoryPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate content category page ----- ///
+    /// ========== validate content category page ========== ///
 
     @Override
     @Step("validate category page structure")
@@ -79,7 +79,7 @@ public class CategoryPage extends AbstractBrowsingPage
         validateCategoryHeadline(categoryName, expectedResultCount);
     }
 
-    /// ----- product by position ----- ///
+    /// ========== product by position ========== ///
 
     @Step("get a product name by position '{position}'")
     public String getProductNameByPosition(int position)
@@ -94,7 +94,7 @@ public class CategoryPage extends AbstractBrowsingPage
         return new ProductDetailPage().isExpectedPage();
     }
     
-    /// ----- category page navigation ----- ///
+    /// ========== category page navigation ========== ///
     
     @Step("open homepage from category page")
     public HomePage openHomePage()

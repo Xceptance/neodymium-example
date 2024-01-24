@@ -24,7 +24,7 @@ public class TopNavigation extends AbstractComponent
         categoryMenu.should(exist);
     }
     
-    // ----- category navigation ------ //
+    // ========== category navigation ==========- //
     
     @Step("click on the top category '{topCategory}'")
     public CategoryPage clickCategory(String topCategory)
@@ -41,7 +41,7 @@ public class TopNavigation extends AbstractComponent
         return new CategoryPage().isExpectedPage();
     }
     
-    // ----- validate top navigation ----- //
+    // ========== validate top navigation ========== //
     
     @Step("validate top category name '{topCategory}'")
     public void validateNavComponent(String topCategory) 

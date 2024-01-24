@@ -28,7 +28,7 @@ public class OrderHistoryPage extends AbstractBrowsingPage
         return this;
     }
     
-    /// ----- validate content order history page ----- ///
+    /// ========== validate content order history page ========== ///
     
     @Override
     @Step("validate personal data page structure")

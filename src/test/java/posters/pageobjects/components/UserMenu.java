@@ -31,7 +31,7 @@ public class UserMenu extends AbstractComponent
         showUserMenu.should(exist);
     }
 
-    /// ----- user menu navigation ----- ///
+    /// ========== user menu navigation ========== ///
 
     @Step("open user menu")
     public void openUserMenu()
@@ -79,7 +79,7 @@ public class UserMenu extends AbstractComponent
         return new HomePage().isExpectedPage();
     }
 
-    /// ----- validate user menu ----- ///
+    /// ========== validate user menu ========== ///
 
     @Step("validate that nobody is logged in")
     public void validateNotLoggedIn()

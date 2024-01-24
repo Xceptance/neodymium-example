@@ -17,7 +17,7 @@ public class SaleBanner extends AbstractComponent
         $("#carousel-sale").should(exist);
     }
     
-    /// ----- validate sale banner ----- ///
+    /// ========== validate sale banner ========== ///
 
     private void validateSaleBanner(String text, int num) 
     {

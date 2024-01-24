@@ -33,7 +33,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate content product detail page ----- ///
+    /// ========== validate content product detail page ========== ///
 
     private void validateSizeDropdown(String size)
     {
@@ -113,7 +113,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
         validateProductName(productName);
     }
 
-    /// ----- select product size/style, add to cart ----- ///
+    /// ========== select product size/style, add to cart ========== ///
 
     @Step("select size '{size}'")
     public void setSize(String size)
@@ -142,7 +142,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
         clickAddToCartButton();
     }
 
-    /// ----- get product details ----- ///
+    /// ========== get product details ========== ///
 
     @Step("get product name from product detail page")
     public String getProductName()
@@ -174,7 +174,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
         return new Product(getProductName(), getProductPrice(), getChosenStyle(), getChosenSize(), 1);
     }
     
-    /// ----- product detail page navigation ----- ///
+    /// ========== product detail page navigation ========== ///
     
     @Step("open homepage from product detail page")
     public HomePage openHomePage()

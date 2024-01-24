@@ -40,7 +40,7 @@ public class RegisterPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate content register page ----- ///
+    /// ========== validate content register page ========== ///
     
     private void validateFillInHeadlines(String headline)
     {
@@ -95,7 +95,7 @@ public class RegisterPage extends AbstractBrowsingPage
         registerButton.shouldHave(exactText(Neodymium.localizedText("RegisterPage.button")));
     }
 
-    /// ----- register page navigation ----- ///
+    /// ========== register page navigation ========== ///
     
     @Step("fill and send register form with '{user}'")
     public LoginPage sendRegisterForm(User user)

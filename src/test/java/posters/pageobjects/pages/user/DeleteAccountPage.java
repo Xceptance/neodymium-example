@@ -32,7 +32,7 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate content delete account page ----- ///
+    /// ========== validate content delete account page ========== ///
     
     @Step("validate required string")
     public void validateRequiredString() 
@@ -62,7 +62,7 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         deleteButton.shouldHave(exactText(Neodymium.localizedText("DeleteAccontPage.button"))).shouldBe(visible);
     }
     
-    /// ----- delete account page navigation ----- ///
+    /// ========== delete account page navigation ========== ///
 
     @Step("delete account")
     public HomePage deleteAccount(String password)
