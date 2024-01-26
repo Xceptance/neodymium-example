@@ -3,6 +3,7 @@ package posters.tests.smoke;
 import org.junit.After;
 import org.junit.Test;
 
+import com.codeborne.selenide.Selenide;
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
 import com.xceptance.neodymium.util.DataUtils;
 import com.xceptance.neodymium.util.Neodymium;

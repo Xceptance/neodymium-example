@@ -34,25 +34,25 @@ public class Pagination extends AbstractComponent
     @Step("click on go to next page")
     public void goToNextPage()
     {
-        paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToNextPage"))).click(ClickOptions.usingJavaScript());
+        paginationComponents.findBy(exactText(Neodymium.localizedText("categoryPage.pagination.goToNextPage"))).click(ClickOptions.usingJavaScript());
     }
 
     @Step("click on go to last page")
     public void goToLastPage()
     {
-        paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToLastPage"))).click(ClickOptions.usingJavaScript());
+        paginationComponents.findBy(exactText(Neodymium.localizedText("categoryPage.pagination.goToLastPage"))).click(ClickOptions.usingJavaScript());
     }
 
     @Step("click on go to previous page")
     public void goToPrevPage()
     {
-        paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToPrevPage"))).click(ClickOptions.usingJavaScript());
+        paginationComponents.findBy(exactText(Neodymium.localizedText("categoryPage.pagination.goToPrevPage"))).click(ClickOptions.usingJavaScript());
     }
 
     @Step("click on go to first page")
     public void goToFirstPage()
     {
-        paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToFirstPage"))).click(ClickOptions.usingJavaScript());
+        paginationComponents.findBy(exactText(Neodymium.localizedText("categoryPage.pagination.goToFirstPage"))).click(ClickOptions.usingJavaScript());
     }
 
     /// ========== validate pagination ========== ///
@@ -77,13 +77,13 @@ public class Pagination extends AbstractComponent
     @Step("validate visibility right navigation")
     public void validateRightNavigation()
     {
-        paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToLastPage"))).shouldBe(visible);
+        paginationComponents.findBy(exactText(Neodymium.localizedText("categoryPage.pagination.goToLastPage"))).shouldBe(visible);
     }
 
     @Step("validate visibility left navigation")
     public void validateLeftNavigation()
     {
-        paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToFirstPage"))).shouldBe(visible);
+        paginationComponents.findBy(exactText(Neodymium.localizedText("categoryPage.pagination.goToFirstPage"))).shouldBe(visible);
     }
 
     /**

@@ -42,13 +42,13 @@ public class AccountOverviewPage extends AbstractBrowsingPage
         super.validateStructure();
 
         // validate title
-        title.shouldHave(exactText(Neodymium.localizedText("AccountOverviewPage.title"))).shouldBe(visible);
+        title.shouldHave(exactText(Neodymium.localizedText("accountOverviewPage.title"))).shouldBe(visible);
         
         // validate navigation buttons
-        orderOverviewLink.shouldHave(exactText(Neodymium.localizedText("AccountOverviewPage.button.orderHistory"))).shouldBe(visible);
-        myAddressesLink.shouldHave(exactText(Neodymium.localizedText("AccountOverviewPage.button.myAddresses"))).shouldBe(visible);
-        paymentSettingsLink.shouldHave(exactText(Neodymium.localizedText("AccountOverviewPage.button.paymentSettings"))).shouldBe(visible);
-        personalDataLink.shouldHave(exactText(Neodymium.localizedText("AccountOverviewPage.button.personalData"))).shouldBe(visible);
+        orderOverviewLink.shouldHave(exactText(Neodymium.localizedText("button.orderHistory"))).shouldBe(visible);
+        myAddressesLink.shouldHave(exactText(Neodymium.localizedText("button.myAddresses"))).shouldBe(visible);
+        paymentSettingsLink.shouldHave(exactText(Neodymium.localizedText("button.paymentSettings"))).shouldBe(visible);
+        personalDataLink.shouldHave(exactText(Neodymium.localizedText("button.personalData"))).shouldBe(visible);
     }
 
     /// ========== account overview page navigation ========== ///

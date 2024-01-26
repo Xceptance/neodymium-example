@@ -44,8 +44,8 @@ public class HomePage extends AbstractBrowsingPage
         for (int i = 1; i<= 4; i++) 
         {
             slideNavigation.findBy(attribute("aria-label", "Slide " + i)).click(ClickOptions.usingJavaScript());
-            slideHeadline.findBy(exactText(Neodymium.localizedText("HomePage.slider.headline." + i))).shouldBe(visible);
-            slideButton.findBy(exactText(Neodymium.localizedText("buttons.buyHere"))).shouldBe(visible);
+            slideHeadline.findBy(exactText(Neodymium.localizedText("homePage.slider." + i))).shouldBe(visible);
+            slideButton.findBy(exactText(Neodymium.localizedText("button.buyHere"))).shouldBe(visible);
         }
     }
     
@@ -63,17 +63,17 @@ public class HomePage extends AbstractBrowsingPage
     @Step("validate featured products")
     public void validateFeaturedProducts()
     {
-        $(".product-display-heading h2").shouldHave(exactText(Neodymium.localizedText("HomePage.featuredProducts.headline"))).shouldBe(visible);
+        $(".product-display-heading h2").shouldHave(exactText(Neodymium.localizedText("homePage.featuredProducts.headline"))).shouldBe(visible);
         $$(".card-img-top").shouldHaveSize(12);
         
         for (int i = 1; i <= 12; i++) 
         {
             SelenideElement productCard = $(".card.product-tile:nth-child(" + i + ")");
             
-            productCard.find(".card-title").shouldHave(exactText(Neodymium.localizedText("HomePage.featuredProducts." + i + ".title"))).shouldBe(visible);
-            productCard.find(".product-tile-text").shouldHave(exactText(Neodymium.localizedText("HomePage.featuredProducts." + i + ".description"))).shouldBe(visible);
+            productCard.find(".card-title").shouldHave(exactText(Neodymium.localizedText("homePage.featuredProducts." + i + ".title"))).shouldBe(visible);
+            productCard.find(".product-tile-text").shouldHave(exactText(Neodymium.localizedText("homePage.featuredProducts." + i + ".description"))).shouldBe(visible);
             productCard.find(".product-tile-price").shouldBe(visible);    
-            productCard.find(".btn").shouldHave(exactText(Neodymium.localizedText("buttons.buyHere"))).shouldBe(visible);
+            productCard.find(".btn").shouldHave(exactText(Neodymium.localizedText("button.buyHere"))).shouldBe(visible);
         }
     }
     
@@ -90,7 +90,7 @@ public class HomePage extends AbstractBrowsingPage
         validatePosterSlide();
         
         // validate intro
-        $("#intro-text-homepage").shouldHave(exactText(Neodymium.localizedText("HomePage.intro"))).shouldBe(visible);
+        $("#intro-text-homepage").shouldHave(exactText(Neodymium.localizedText("homePage.intro"))).shouldBe(visible);
         
         // validate featured categories
         validateFeaturedCategories();
@@ -99,7 +99,7 @@ public class HomePage extends AbstractBrowsingPage
         validateFeaturedProducts();
         
         // validate shop all products button
-        $(".btn-shop-all").shouldHave(exactText(Neodymium.localizedText("buttons.shopAllProducts"))).shouldBe(visible);
+        $(".btn-shop-all").shouldHave(exactText(Neodymium.localizedText("button.shopAllProducts"))).shouldBe(visible);
     }
     
     /// ========== validate success messages ========== ///
@@ -108,7 +108,7 @@ public class HomePage extends AbstractBrowsingPage
     public void validateSuccessfulLogin(String firstName)
     {
         // validate success message
-        successMessage.validateSuccessMessage(Neodymium.localizedText("successMessages.successfulLogin"));
+        successMessage.validateSuccessMessage(Neodymium.localizedText("successMessage.successfulLogin"));
         
         // validate {firstName} in user menu
         header.userMenu.validateLoggedInName(firstName);
@@ -117,6 +117,15 @@ public class HomePage extends AbstractBrowsingPage
     @Step("validate successful account deletion on home page")
     public void validateSuccessfulDeletedAccount()
     {
-        successMessage.validateSuccessMessage(Neodymium.localizedText("successMessages.successfulAccountDeletion"));
+        successMessage.validateSuccessMessage(Neodymium.localizedText("successMessage.successfulAccountDeletion"));
+    }
+    
+    /// ========== homepage navigation ========== ///
+    
+    @Step("reload homepage")
+    public HomePage openHomePage()
+    {
+        $("#header-brand").click(ClickOptions.usingJavaScript());
+        return new HomePage().isExpectedPage();
     }
 }

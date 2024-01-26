@@ -45,22 +45,11 @@ public class GuestPaymentPage extends AbstractCheckoutPage
     @Step("validate process wrap")
     public void validateProcessWrap() 
     {
-       // validate process numbers
-       $(".progress-step-1 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.1.number"))).shouldBe(visible);
-       $(".progress-step-2 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.2.number"))).shouldBe(visible);
-       $(".progress-step-3 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.3.number"))).shouldBe(visible);
-       $(".progress-step-4 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.4.number"))).shouldBe(visible);
-       $(".progress-step-5 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.number"))).shouldBe(visible);
-       $(".progress-step-6 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.number"))).shouldBe(visible);
-       
-       // validate process names
-       $(".progress-step-1 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.1.name"))).shouldBe(visible);
-       $(".progress-step-2 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.2.name"))).shouldBe(visible);
-       $(".progress-step-3 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.3.name"))).shouldBe(visible);
-       $(".progress-step-4 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.4.name"))).shouldBe(visible);
-       $(".progress-step-5 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.name"))).shouldBe(visible);
-       $(".progress-step-6 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.name"))).shouldBe(visible);
-
+        for (int i = 1; i <= 6; i++) 
+        {
+            $(".progress-step-" + i + " .progress-bubble").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".number"))).shouldBe(visible);
+            $(".progress-step-" + i + " .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".name"))).shouldBe(visible);    
+        }
     }
     
     private void validateFillInHeadlines(String headline)
@@ -71,16 +60,16 @@ public class GuestPaymentPage extends AbstractCheckoutPage
     @Step("validate fill-in form headlines")
     public void validateFillInHeadlines()
     {
-        validateFillInHeadlines(Neodymium.localizedText("GuestPaymentPage.fillIn.headlines.cardNumber"));
-        validateFillInHeadlines(Neodymium.localizedText("GuestPaymentPage.fillIn.headlines.cardHolderName"));
-        validateFillInHeadlines(Neodymium.localizedText("GuestPaymentPage.fillIn.headlines.expirationDate"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.cardNumber"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.cardHolderName"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.expirationDate"));
     }
     
     @Step("validate fill-in form placeholder")
     public void validateFillInPlaceholder()
     {        
-        creditCardNumber.shouldHave(attribute("placeholder", (Neodymium.localizedText("GuestPaymentPage.fillIn.placeholder.cardNumber")))).shouldBe(visible);
-        creditCardName.shouldHave(attribute("placeholder", (Neodymium.localizedText("GuestPaymentPage.fillIn.placeholder.cardOwnerName")))).shouldBe(visible);
+        creditCardNumber.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.cardNumber")))).shouldBe(visible);
+        creditCardName.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.cardHolderName")))).shouldBe(visible);
         
         String month = Integer.toString(LocalDate.now().getMonthValue());
         
@@ -93,11 +82,6 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         $("#expirationDateYear [selected]").shouldHave(exactText(Integer.toString(LocalDate.now().getYear()))).shouldBe(visible);
     }
     
-    private void validateMonthDropdown(String month) 
-    {
-        $$("#expirationDateMonth").findBy(matchText(month)).shouldBe(visible);
-    }
-    
     @Step("validate month dropdown")
     public void validateMonthDropdown() 
     {
@@ -105,25 +89,12 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         expirationMonth.click(ClickOptions.usingJavaScript());
         
         // validate months
-        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.january"));
-        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.february"));
-        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.march"));
-        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.april"));
-        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.may"));
-        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.june"));
-        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.july"));
-        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.august"));
-        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.september"));
-        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.october"));
-        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.november"));
-        validateMonthDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireMonth.december"));
+        for (int i = 1; i <= 12; i++) 
+        {
+            $$("#expirationDateMonth").findBy(matchText(Neodymium.localizedText("fillIn.dropdown.expireMonth." + i))).shouldBe(visible);
+        }
     }
-    
-    private void validateYearDropdown(String year) 
-    {
-        $$("#expirationDateYear").findBy(matchText(year)).shouldBe(visible);
-    }
-    
+
     @Step("validate year dropdown")
     public void validateYearDropdown() 
     {        
@@ -131,23 +102,16 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         expirationYear.click(ClickOptions.usingJavaScript());
         
         // validate years
-        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2024"));
-        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2025"));
-        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2026"));
-        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2027"));
-        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2028"));
-        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2029"));
-        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2030"));
-        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2031"));
-        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2032"));
-        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2033"));
-        validateYearDropdown(Neodymium.localizedText("GuestPaymentPage.fillIn.expireYear.2034"));
+        for (int i = 1; i <= 11; i++) 
+        {
+            $$("#expirationDateYear").findBy(matchText(Neodymium.localizedText("fillIn.dropdown.expireYear." + i))).shouldBe(visible);
+        }
     }
     
     @Step("validate required string")
     public void validateRequiredString() 
     {
-        $(".me-auto").shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.requiredFields"))).shouldBe(visible);
+        $(".me-auto").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
     }
     
     @Override
@@ -160,7 +124,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         validateProcessWrap();
         
         // validate title
-        title.shouldHave(exactText(Neodymium.localizedText("GuestPaymentPage.title"))).shouldBe(visible);
+        title.shouldHave(exactText(Neodymium.localizedText("guestPaymentPage.title"))).shouldBe(visible);
         
         // validate fill in form headlines
         validateFillInHeadlines();
@@ -178,7 +142,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         validateRequiredString();
         
         // validate continue button
-        addPaymentButton.shouldHave(exactText(Neodymium.localizedText("GuestPaymentPage.button"))).shouldBe(visible);
+        addPaymentButton.shouldHave(exactText(Neodymium.localizedText("button.continue"))).shouldBe(visible);
     }
     
     /// ========== send payment form ========== ///

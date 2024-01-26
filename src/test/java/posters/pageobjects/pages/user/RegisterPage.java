@@ -50,27 +50,27 @@ public class RegisterPage extends AbstractBrowsingPage
     @Step("validate fill-in form headlines")
     public void validateFillInHeadlines()
     {
-        validateFillInHeadlines(Neodymium.localizedText("RegisterPage.headlines.firstName"));
-        validateFillInHeadlines(Neodymium.localizedText("RegisterPage.headlines.lastName"));
-        validateFillInHeadlines(Neodymium.localizedText("RegisterPage.headlines.email"));
-        validateFillInHeadlines(Neodymium.localizedText("RegisterPage.headlines.password"));
-        validateFillInHeadlines(Neodymium.localizedText("RegisterPage.headlines.passwordRepeat"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.firstName"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.lastName"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.email2"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.password2"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.confirmPassword"));
     }
     
     @Step("validate fill in form placeholder")
     public void validateFillInPlaceholder() 
     {
-        firstNameField.shouldHave(attribute("placeholder", (Neodymium.localizedText("RegisterPage.placeholder.firstName")))).shouldBe(visible);
-        lastNameField.shouldHave(attribute("placeholder", (Neodymium.localizedText("RegisterPage.placeholder.lastName")))).shouldBe(visible);
-        emailField.shouldHave(attribute("placeholder", (Neodymium.localizedText("RegisterPage.placeholder.email")))).shouldBe(visible);
-        passwordField.shouldHave(attribute("placeholder", (Neodymium.localizedText("RegisterPage.placeholder.password")))).shouldBe(visible);
-        passwordRepeatField.shouldHave(attribute("placeholder", (Neodymium.localizedText("RegisterPage.placeholder.passwordRepeat")))).shouldBe(visible);
+        firstNameField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.firstName")))).shouldBe(visible);
+        lastNameField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.lastName")))).shouldBe(visible);
+        emailField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.email")))).shouldBe(visible);
+        passwordField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.password")))).shouldBe(visible);
+        passwordRepeatField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.confirmPassword")))).shouldBe(visible);
     }
     
     @Step("validate required string")
     public void validateRequiredString() 
     {
-        $("#req-field").shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.requiredFields"))).shouldBe(visible);
+        $("#req-field").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
     }
     
     @Override
@@ -80,7 +80,7 @@ public class RegisterPage extends AbstractBrowsingPage
         super.validateStructure();
 
         // validate title
-        registerForm.find("legend").shouldHave(exactText(Neodymium.localizedText("RegisterPage.title"))).shouldBe(visible);
+        registerForm.find("legend").shouldHave(exactText(Neodymium.localizedText("registerPage.title"))).shouldBe(visible);
         
         // validate fill in headlines
         validateFillInHeadlines();
@@ -92,7 +92,7 @@ public class RegisterPage extends AbstractBrowsingPage
         validateRequiredString();
       
         // validate sign in button
-        registerButton.shouldHave(exactText(Neodymium.localizedText("RegisterPage.button")));
+        registerButton.shouldHave(exactText(Neodymium.localizedText("button.createAccount")));
     }
 
     /// ========== register page navigation ========== ///

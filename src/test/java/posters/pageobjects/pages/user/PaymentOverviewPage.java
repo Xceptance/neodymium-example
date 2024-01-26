@@ -38,15 +38,15 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
         super.validateStructure();
         
         // validate title
-        title.shouldHave(exactText(Neodymium.localizedText("PaymentSettingsPage.title"))).shouldBe(visible);
+        title.shouldHave(exactText(Neodymium.localizedText("account.paymentSettings"))).shouldBe(visible);
         
-        $("#linkAddNewPayment").shouldHave(exactText(Neodymium.localizedText("PaymentSettingsPage.button.addNewCreditCard"))).shouldBe(visible);
+        $("#linkAddNewPayment").shouldHave(exactText(Neodymium.localizedText("button.addNewCreditCard"))).shouldBe(visible);
     }
     
     @Step("validate successful saved change")
     public void validateSuccessfulSave()
     {
-        successMessage.validateSuccessMessage(Neodymium.localizedText("AccountOverviewPage.validation.successfulSave"));
+        successMessage.validateSuccessMessage(Neodymium.localizedText("successMessage.successfulSave"));
     }
     
     /// ========== add new payment ========== ///

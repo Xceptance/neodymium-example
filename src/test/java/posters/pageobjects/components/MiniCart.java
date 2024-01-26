@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -19,7 +20,7 @@ import posters.pageobjects.utility.PriceHelper;
 
 public class MiniCart extends AbstractComponent
 {
-    private SelenideElement headerCart = $(".headerCartOverview");
+    private SelenideElement headerCart = $("#headerCartOverview");
     
     private SelenideElement headerTotalCount = $("#count_wideView");
 
@@ -48,7 +49,7 @@ public class MiniCart extends AbstractComponent
     public void openMiniCart()
     {
         headerCart.click(ClickOptions.usingJavaScript());
-        miniCart.waitUntil(visible, 9000);
+        miniCart.waitUntil(visible, 9000);            
     }
 
     @Step("close the mini cart")
@@ -184,7 +185,7 @@ public class MiniCart extends AbstractComponent
         }
 
         // validate view cart button
-        $("#mini-cart-menu .linkButton").shouldHave(exactText(Neodymium.localizedText("header.miniCart.viewCart"))).shouldBe(visible);
+        viewCartButton.shouldHave(exactText(Neodymium.localizedText("button.viewCart"))).shouldBe(visible);
 
         closeMiniCart();
     }

@@ -54,13 +54,13 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param expectedResultCount
      *            (number of results for specific category/search)
      */
-    @Step("validate category name '{categoryName}' and amount results '{expectedResultCount}' is on category page")
+    @Step("validate category name '{categoryName}' and amount results '{expectedResultCount}' on category page")
     public void validateCategoryHeadline(String categoryName, int expectedResultCount)
     {
         if ($("#titleSearchText").exists())
         {
             // if {categoryName} is search input
-            $("#titleSearchText").should(matchText(Neodymium.localizedText("CategoryPage.search.resultText"))).shouldBe(visible);
+            $("#titleSearchText").should(matchText(Neodymium.localizedText("categoryPage.searchResultText"))).shouldBe(visible);
             $("#searchTextValue").shouldHave(exactText(categoryName)).shouldBe(visible);
             $("#totalProductCount").shouldHave(exactText(Integer.toString(expectedResultCount))).shouldBe(visible);
         }

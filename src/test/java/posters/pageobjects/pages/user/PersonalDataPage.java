@@ -38,12 +38,12 @@ public class PersonalDataPage extends AbstractBrowsingPage
         super.validateStructure();
 
         // validate title
-        title.shouldHave(exactText(Neodymium.localizedText("PersonalDataPage.title"))).shouldBe(visible);
+        title.shouldHave(exactText(Neodymium.localizedText("personalDataPage.title"))).shouldBe(visible);
         
         // validate buttons
-        $("#btnChangeNameEmail").shouldHave(exactText(Neodymium.localizedText("PersonalDataPage.buttons.changeData"))).shouldBe(visible);
-        $("#btnChangePassword").shouldHave(exactText(Neodymium.localizedText("PersonalDataPage.buttons.changePassword"))).shouldBe(visible);
-        deleteButton.shouldHave(exactText(Neodymium.localizedText("PersonalDataPage.buttons.deleteAccount"))).shouldBe(visible);
+        $("#btnChangeNameEmail").shouldHave(exactText(Neodymium.localizedText("button.changeNameOrMail"))).shouldBe(visible);
+        $("#btnChangePassword").shouldHave(exactText(Neodymium.localizedText("button.changePassword"))).shouldBe(visible);
+        deleteButton.shouldHave(exactText(Neodymium.localizedText("button.deleteAccount"))).shouldBe(visible);
     }
     
     @Step("validate personal data of '{user}")
@@ -51,11 +51,11 @@ public class PersonalDataPage extends AbstractBrowsingPage
     {
         // validate name
         String fullName = user.getFirstName() + " " + user.getLastName();
-        $$(".form-group strong").findBy(exactText(Neodymium.localizedText("PersonalDataPage.headlines.name"))).shouldBe(visible);
+        $$(".form-group strong").findBy(exactText(Neodymium.localizedText("personalDataPage.name"))).shouldBe(visible);
         $("#customerName").shouldHave(exactText(fullName)).shouldBe(visible);
         
         // validate email
-        $$(".form-group strong").findBy(exactText(Neodymium.localizedText("PersonalDataPage.headlines.email"))).shouldBe(visible);
+        $$(".form-group strong").findBy(exactText(Neodymium.localizedText("personalDataPage.email"))).shouldBe(visible);
         $("#customerEmail").shouldHave(exactText(user.getEmail())).shouldBe(visible);
     }
     

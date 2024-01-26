@@ -37,7 +37,7 @@ public class DeleteAccountPage extends AbstractBrowsingPage
     @Step("validate required string")
     public void validateRequiredString() 
     {
-        $(".me-auto").shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.requiredFields"))).shouldBe(visible);
+        $(".me-auto").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
     }
     
     @Override
@@ -47,19 +47,19 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         super.validateStructure();
 
         // validate title
-        deleteForm.find(".h2").shouldHave(exactText(Neodymium.localizedText("DeleteAccontPage.title"))).shouldBe(visible);
+        deleteForm.find(".h2").shouldHave(exactText(Neodymium.localizedText("deleteAccontPage.title"))).shouldBe(visible);
         
         // validate headline
-        $("label[for='password']").shouldBe(exactText(Neodymium.localizedText("DeleteAccontPage.headline")));
+        $("label[for='password']").shouldBe(exactText(Neodymium.localizedText("fillIn.inputDescription.password")));
         
         // validate placeholder
-        passwordField.shouldHave(attribute("placeholder", (Neodymium.localizedText("DeleteAccontPage.placeholder")))).shouldBe(visible);
+        passwordField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.password")))).shouldBe(visible);
         
         // validate "required fields" string
         validateRequiredString();
         
         // validate button
-        deleteButton.shouldHave(exactText(Neodymium.localizedText("DeleteAccontPage.button"))).shouldBe(visible);
+        deleteButton.shouldHave(exactText(Neodymium.localizedText("button.delete"))).shouldBe(visible);
     }
     
     /// ========== delete account page navigation ========== ///

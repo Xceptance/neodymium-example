@@ -21,18 +21,12 @@ public class NoHitsPage extends AbstractBrowsingPage
     
     /// ========== validate no hits page ========== ///
     
-    @Step("validate that no products are on no hits page")
-    public void validateNoProductsFound()
-    {
-        errorMessage.validateErrorMessage(Neodymium.localizedText("NoHitsPage.validation.noProductsFound"));
-    }
-    
     @Override
     @Step("validate structure no hits page")
     public void validateStructure()
     {
         super.validateStructure();
-        validateNoProductsFound();
+        errorMessage.validateErrorMessage(Neodymium.localizedText("errorMessage.noProductsFound"));
     }
     
     /// ========== no hits page navigation ========== ///

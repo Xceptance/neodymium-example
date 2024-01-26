@@ -52,7 +52,7 @@ public class TopNavigation extends AbstractComponent
     @Step("validate sub category name '{subCategory}'")
     public void validateSubNavComponent(String subCategory) 
     {
-        $$(".nav-item li a.dropdown-item").findBy(exactText(subCategory)).shouldBe(visible);
+        $$(".dropdown-item").findBy(exactText(subCategory)).shouldBe(visible);
     }
     
     @Step("validate structure top navigation")

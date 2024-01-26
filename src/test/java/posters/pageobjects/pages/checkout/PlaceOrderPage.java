@@ -67,22 +67,11 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     @Step("validate process wrap")
     public void validateProcessWrap() 
     {
-        // validate process numbers
-        $(".progress-step-1 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.1.number"))).shouldBe(visible);
-        $(".progress-step-2 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.2.number"))).shouldBe(visible);
-        $(".progress-step-3 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.3.number"))).shouldBe(visible);
-        $(".progress-step-4 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.4.number"))).shouldBe(visible);
-        $(".progress-step-5 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.number"))).shouldBe(visible);
-        $(".progress-step-6 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.number"))).shouldBe(visible);
-        
-        // validate process names
-        $(".progress-step-1 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.1.name"))).shouldBe(visible);
-        $(".progress-step-2 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.2.name"))).shouldBe(visible);
-        $(".progress-step-3 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.3.name"))).shouldBe(visible);
-        $(".progress-step-4 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.4.name"))).shouldBe(visible);
-        $(".progress-step-5 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.name"))).shouldBe(visible);
-        $(".progress-step-6 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.name"))).shouldBe(visible);
-
+        for (int i = 1; i <= 6; i++) 
+        {
+            $(".progress-step-" + i + " .progress-bubble").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".number"))).shouldBe(visible);
+            $(".progress-step-" + i + " .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".name"))).shouldBe(visible);    
+        }
     }
     
     @Override
@@ -98,7 +87,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         validateTableHead();
         
         // validate order with costs button
-        $("#btnOrder").shouldHave(exactText(Neodymium.localizedText("PlaceOrderPage.button"))).shouldBe(visible);
+        $("#btnOrder").shouldHave(exactText(Neodymium.localizedText("button.orderWithCosts"))).shouldBe(visible);
     }
     
     /// ========== validate order overview ========== ///
@@ -177,16 +166,16 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     public void validateOrderOverview(Address shippingAddress, Address billingAddress, CreditCard creditCard) 
     {
         // validate title
-        title.shouldHave(exactText(Neodymium.localizedText("PlaceOrderPage.overview.title"))).shouldBe(visible);
+        title.shouldHave(exactText(Neodymium.localizedText("placeOrderPage.title"))).shouldBe(visible);
         
         // validate shipping address
-         validateShippingAddressOverview(shippingAddress, Neodymium.localizedText("PlaceOrderPage.overview.headlines.shippingAddress"));
+         validateShippingAddressOverview(shippingAddress, Neodymium.localizedText("account.shippingAddress"));
         
         // validate billing address
-         validateBillingAddressOverview(billingAddress, Neodymium.localizedText("PlaceOrderPage.overview.headlines.billingAddress"));
+         validateBillingAddressOverview(billingAddress, Neodymium.localizedText("account.billingAddress"));
         
         // validate payment
-         validatePaymentOverview(creditCard, Neodymium.localizedText("PlaceOrderPage.overview.headlines.payment"));
+         validatePaymentOverview(creditCard, Neodymium.localizedText("account.paymentSettings"));
     }
     
     /// ========== validate products ========== ///

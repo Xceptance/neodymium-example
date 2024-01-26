@@ -31,7 +31,7 @@ public class RegisteredOrderTest extends AbstractTest
     {
         registeredOrderTestData = DataUtils.get(RegisteredOrderTestData.class);
     }
-    
+   
     @DataSet(1)
     @DataSet(2)
     @Test
@@ -151,7 +151,7 @@ public class RegisteredOrderTest extends AbstractTest
     
     @After
     public void after()
-    {
+    {     
         CartCleanUpFlow.flow();
         DeleteUserFlow.flow(registeredOrderTestData.getUser());
     }

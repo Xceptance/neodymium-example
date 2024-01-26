@@ -8,8 +8,11 @@ public class CartCleanUpFlow
     @Step("clean up cart flow")
     public static void flow()
     {
-        HomePage homePage = new HomePage();
+        HomePage init = new HomePage();
 
+        // go to homepage (needed cause checkout header don't has miniCart -> clean up would fail)
+        var homePage = init.openHomePage();
+        
         // go to cart page
         var cartPage = homePage.header.miniCart.openCartPage();
         

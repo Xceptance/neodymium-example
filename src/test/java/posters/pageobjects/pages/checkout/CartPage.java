@@ -59,12 +59,12 @@ public class CartPage extends AbstractBrowsingPage
         super.validateStructure();
 
         // validate title
-        title.shouldHave(exactText(Neodymium.localizedText("CartPage.title"))).shouldBe(visible);
+        title.shouldHave(exactText(Neodymium.localizedText("cartPage.title"))).shouldBe(visible);
 
         // check if cart contains items, validate
         if (header.miniCart.getTotalCount() == 0)
         {
-            $("#errorCartMessage").shouldHave(exactText(Neodymium.localizedText("CartPage.errorMessage"))).shouldBe(visible);
+            $("#errorCartMessage").shouldHave(exactText(Neodymium.localizedText("errorMessage.emptyCart"))).shouldBe(visible);
         }
         else
         {

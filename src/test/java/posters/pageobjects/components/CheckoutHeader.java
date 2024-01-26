@@ -13,4 +13,6 @@ public class CheckoutHeader extends AbstractComponent
     {
         $(".progress-indicator").should(exist);
     }
+    
+    // TODO (validation progress indicator, cleanup localization)
 }

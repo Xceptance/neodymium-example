@@ -37,11 +37,11 @@ public class OrderHistoryPage extends AbstractBrowsingPage
         super.validateStructure();
         
         // validate title
-        title.shouldHave(exactText(Neodymium.localizedText("OrderHistoryPage.title"))).shouldBe(visible);
+        title.shouldHave(exactText(Neodymium.localizedText("orderHistoryPage.title"))).shouldBe(visible);
         
         // validate table Head
-        tableHead.findBy(exactText(Neodymium.localizedText("OrderHistoryPage.tableHead.purchasedPosters"))).shouldBe(visible);
-        tableHead.findBy(exactText(Neodymium.localizedText("OrderHistoryPage.tableHead.orderDetails"))).shouldBe(visible);
-        tableHead.findBy(exactText(Neodymium.localizedText("OrderHistoryPage.tableHead.quantity"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("orderHistoryPage.purchasedPosters"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("orderHistoryPage.orderDetails"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("product.quantity"))).shouldBe(visible);
     }
 }
