@@ -41,13 +41,16 @@ default:
             matte: "matte"
             gloss: "gloss"
         quantity: "Quantity"
+        title: "Product"
+        unitPrice: "Unit Price"
+        totalPrice: "Total Price"
     
     price:
         title: Summary
         subtotal: "Subtotal:"
         shipping: "Shipping:"
         tax: "Tax (6.0%)"
-        grandTotal: Total
+        grandTotal: "Total"
     
     account:
         shippingAddress: "Shipping Address"
@@ -278,6 +281,8 @@ default:
         
     cartPage:
         title: "Cart"
+        number: "#"
+        update: "Remove/Update"
         
     guestShippingAddressPage:
         title: "Enter a shipping address"
@@ -329,20 +334,4 @@ default:
             
     deleteAccontPage:
         title: "Delete your account"
-        
-    General:
-        priceSummary: 
-            title: Summary
-            subtotal: "Subtotal:"
-            shipping: "Shipping:"
-            tax: "Tax (6.0%)"
-            grandTotal: Total
-        productTable:
-            number: '#'
-            product: Product
-            unitPrice: Unit Price
-            quantity: Quantity
-            update: Remove/Update
-            totalPrice: Total Price
-        
             

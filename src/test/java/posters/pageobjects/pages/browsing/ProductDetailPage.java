@@ -132,7 +132,8 @@ public class ProductDetailPage extends AbstractBrowsingPage
     public void clickAddToCartButton()
     {
         addToCartButton.click(ClickOptions.usingJavaScript());
-        header.miniCart.closeMiniCart();
+        $("#mini-cart-menu").waitUntil(visible, 9000);
+        $("#mini-cart-menu").waitUntil(not(visible), 9000);
     }
 
     @Step("add product with size '{size}' and style '{style}' to cart")
@@ -141,7 +142,6 @@ public class ProductDetailPage extends AbstractBrowsingPage
         setSize(size);
         setStyle(style);
         clickAddToCartButton();
-        header.miniCart.closeMiniCart();
     }
 
     /// ========== get product details ========== ///

@@ -48,14 +48,14 @@ public class MiniCart extends AbstractComponent
     @Step("open the mini cart")
     public void openMiniCart()
     {
-        headerCart.click(ClickOptions.usingJavaScript());
+        headerCart.click();
         miniCart.waitUntil(visible, 9000);            
     }
 
     @Step("close the mini cart")
     public void closeMiniCart()
     {
-        $("#top-demo-disclaimer").click(ClickOptions.usingJavaScript());
+        $("#top-demo-disclaimer").click();
         miniCart.waitUntil(not(visible), 9000);
     }
 

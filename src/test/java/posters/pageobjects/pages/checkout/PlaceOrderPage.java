@@ -58,10 +58,10 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     @Step("validate product table head")
      public void validateTableHead() 
     {
-        //tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.product"))).shouldBe(visible);
-        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.unitPrice"))).shouldBe(visible);
-        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.quantity"))).shouldBe(visible);
-        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.totalPrice"))).shouldBe(visible);
+        //tableHead.findBy(exactText(Neodymium.localizedText("product.product"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("product.unitPrice"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("product.quantity"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("product.totalPrice"))).shouldBe(visible);
     }
     
     @Step("validate process wrap")
@@ -239,17 +239,17 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     @Step("validate description strings")
     public void validateDescriptionStrings() 
     {
-        $$(".price-summary-row .price-summary-position").findBy(matchText(Neodymium.localizedText("General.priceSummary.subtotal"))).shouldBe(visible);
-        $$(".price-summary-row .price-summary-position").findBy(text(Neodymium.localizedText("General.priceSummary.shipping"))).shouldBe(visible);
-        $$(".price-summary-row .price-summary-position").findBy(text(Neodymium.localizedText("General.priceSummary.tax"))).shouldBe(visible);
-        $$(".price-summary-row .price-summary-position").findBy(text(Neodymium.localizedText("General.priceSummary.grandTotal"))).shouldBe(visible);
+        $$(".price-summary-row .price-summary-position").findBy(matchText(Neodymium.localizedText("price.subtotal"))).shouldBe(visible);
+        $$(".price-summary-row .price-summary-position").findBy(text(Neodymium.localizedText("price.shipping"))).shouldBe(visible);
+        $$(".price-summary-row .price-summary-position").findBy(text(Neodymium.localizedText("price.tax"))).shouldBe(visible);
+        $$(".price-summary-row .price-summary-position").findBy(text(Neodymium.localizedText("price.grandTotal"))).shouldBe(visible);
     }
     
     @Step("validate price summary")
     public void validatePriceSummary(String subtotal, String shippingCosts) 
     {
         // validate title
-        $$(".price-summary-row").findBy(text(Neodymium.localizedText("General.priceSummary.title"))).shouldBe(visible);
+        $$(".price-summary-row").findBy(text(Neodymium.localizedText("price.title"))).shouldBe(visible);
         
         // validate descriptions
         validateDescriptionStrings();

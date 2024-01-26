@@ -44,12 +44,12 @@ public class CartPage extends AbstractBrowsingPage
     @Step("validate product table head")
     public void validateTableHead()
     {
-        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.number"))).shouldBe(visible);
-        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.product"))).shouldBe(visible);
-        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.unitPrice"))).shouldBe(visible);
-        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.quantity"))).shouldBe(visible);
-        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.update"))).shouldBe(visible);
-        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.totalPrice"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("cartPage.number"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("product.title"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("product.unitPrice"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("product.quantity"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("cartPage.update"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("product.totalPrice"))).shouldBe(visible);
     }
 
     @Override
