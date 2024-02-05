@@ -44,12 +44,7 @@ public class GuestBillingAddressPage extends AbstractCheckoutPage
     
     private void validateFillInHeadlines(String headline)
     {
-        $$(".mb-3").findBy(exactText(headline)).shouldBe(visible);
-    }
-
-    private void validateFillInHeadlinesStateZip(String headline)
-    {
-        $$(".mb-3 .col .form-label").findBy(exactText(headline)).shouldBe(visible);
+        $$(".form-label").findBy(exactText(headline)).shouldBe(visible);
     }
 
     @Step("validate fill-in form headlines")
@@ -59,10 +54,9 @@ public class GuestBillingAddressPage extends AbstractCheckoutPage
         validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.company"));
         validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.address"));
         validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.city"));
-        validateFillInHeadlinesStateZip(Neodymium.localizedText("fillIn.inputDescription.state"));
-        validateFillInHeadlinesStateZip(Neodymium.localizedText("fillIn.inputDescription.zip"));
-        // TODO - fix after issue is fixed
-        //validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.country"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.state"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.zip"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.country"));
     }
 
     @Step("validate fill-in form placeholder")
@@ -128,6 +122,7 @@ public class GuestBillingAddressPage extends AbstractCheckoutPage
         $("#address-form-input-state").val(state);
         $("#address-form-input-zip").val(zip);
         $("#address-form-select-country").selectOption(country);
+        
         // go to guest payment page
         addBillingButton.click(ClickOptions.usingJavaScript());
 

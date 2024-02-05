@@ -52,7 +52,8 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
         // validate title
         title.shouldHave(exactText(Neodymium.localizedText("returningCustomerBillingAddressPage.title"))).shouldBe(visible);
         
-        // TODO - validate address count, get function needed
+        // validate first address
+        $("#billAddr0").shouldBe(visible);
         
         // validate add new billing address button
         addBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewBillingAddress"))).shouldBe(visible);

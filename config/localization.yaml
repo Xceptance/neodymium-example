@@ -141,6 +141,7 @@ default:
         incorrectPassword: "The password you entered is incorrect. Please try again."
         
     header:
+        disclaimer: "This is a demo application. Orders will not be fulfilled. Do not enter ANY personal and sensitive data!"
         topNavigation:
             "1":
                 title: "World of Nature"

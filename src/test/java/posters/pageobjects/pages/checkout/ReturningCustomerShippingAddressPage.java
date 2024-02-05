@@ -53,7 +53,8 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
         // validate title
         title.shouldHave(exactText(Neodymium.localizedText("returningCustomerShippingAddressPage.title"))).shouldBe(visible);
         
-        // TODO - validate address count, get function needed
+        // validate first address
+        $("#delAddr0").shouldBe(visible);
         
         // validate add new shipping address button
         addShippingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewShippingAddress"))).shouldBe(visible);

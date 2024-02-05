@@ -44,12 +44,7 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
     
     private void validateFillInHeadlines(String headline)
     {
-        $$(".mb-3").findBy(exactText(headline)).shouldBe(visible);
-    }
-
-    private void validateFillInHeadlinesStateZip(String headline)
-    {
-        $$(".mb-3 .col .form-label").findBy(exactText(headline)).shouldBe(visible);
+        $$(".form-label").findBy(exactText(headline)).shouldBe(visible);
     }
 
     @Step("validate fill-in form headlines")
@@ -59,10 +54,9 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
         validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.company"));
         validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.address"));
         validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.city"));
-        validateFillInHeadlinesStateZip(Neodymium.localizedText("fillIn.inputDescription.state"));
-        validateFillInHeadlinesStateZip(Neodymium.localizedText("fillIn.inputDescription.zip"));
-        // TODO - fix after issue is fixed
-        //validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.country"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.state"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.zip"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.country"));
     }
     
     @Step("validate fill-in form placeholder")
@@ -85,8 +79,8 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
     public void validateAddressRadio()
     {
         $(".mb-1").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.useThisAddressForBilling"))).shouldBe(visible);
-        $("div.form-check.me-3").shouldHave(matchText(Neodymium.localizedText("fillIn.radio.yes"))).shouldBe(visible);
-        $("div.form-check.ms-3").shouldHave(matchText(Neodymium.localizedText("fillIn.radio.no"))).shouldBe(visible);
+        $$(".form-check-label").findBy(attribute("for", "billEqualShipp-Yes")).shouldHave(exactText(Neodymium.localizedText("fillIn.radio.yes"))).shouldBe(visible);        
+        $$(".form-check-label").findBy(attribute("for", "billEqualShipp-No")).shouldHave(exactText(Neodymium.localizedText("fillIn.radio.no"))).shouldBe(visible);
     }
     
     @Step("validate required string")

@@ -9,7 +9,6 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
