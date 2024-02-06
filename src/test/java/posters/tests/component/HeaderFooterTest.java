@@ -19,11 +19,11 @@ import posters.tests.testdata.pageobjects.components.HeaderTestData;
 @Severity(SeverityLevel.MINOR)
 @Tag("smoke")
 @SuppressDataSets
-public class HeaderTest extends AbstractTest
+public class HeaderFooterTest extends AbstractTest
 {           
     @Test
     @DataSet(1)
-    public void testHeader()
+    public void testHeaderFooter()
     {  
         // use test data
         final HeaderTestData headerTestData = DataUtils.get(HeaderTestData.class);
@@ -31,18 +31,22 @@ public class HeaderTest extends AbstractTest
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
         homePage.header.validateStructure();
+        homePage.footer.validateStructure();
 
         // go to category page
         var categoryPage = homePage.header.topNav.clickCategory(Neodymium.localizedText(headerTestData.getTopCategory()));
         categoryPage.header.validateStructure();
+        categoryPage.footer.validateStructure();
 
         //go to product detail page, add product to cart
         var productDetailPage = categoryPage.clickProductByPosition(headerTestData.getResultPosition());
         productDetailPage.header.validateStructure();
+        productDetailPage.footer.validateStructure();
         
         // go to cart page
         var cartPage = productDetailPage.header.miniCart.openCartPage();
         cartPage.header.validateStructure();
+        cartPage.footer.validateStructure();
         
         // go to homepage
         homePage = cartPage.openHomePage();

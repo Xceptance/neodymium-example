@@ -27,7 +27,5 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
         header.search.isComponentAvailable();
         header.topNav.isComponentAvailable();
         header.userMenu.isComponentAvailable();
-        successMessage.isComponentAvailable();
-        errorMessage.isComponentAvailable();
     }
 }

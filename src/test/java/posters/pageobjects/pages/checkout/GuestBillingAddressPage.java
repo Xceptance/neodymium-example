@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -29,71 +30,55 @@ public class GuestBillingAddressPage extends AbstractCheckoutPage
         return this;
     }
 
-    /// ----- validate content guest billing address page ----- ///
+    /// ========== validate content guest billing address page ========== ///
     
     @Step("validate process wrap")
     public void validateProcessWrap() 
     {
-        // validate process numbers
-        $(".progress-step-1 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.1.number"))).shouldBe(visible);
-        $(".progress-step-2 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.2.number"))).shouldBe(visible);
-        $(".progress-step-3 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.3.number"))).shouldBe(visible);
-        $(".progress-step-4 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.4.number"))).shouldBe(visible);
-        $(".progress-step-5 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.number"))).shouldBe(visible);
-        $(".progress-step-6 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.number"))).shouldBe(visible);
-        
-        // validate process names
-        $(".progress-step-1 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.1.name"))).shouldBe(visible);
-        $(".progress-step-2 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.2.name"))).shouldBe(visible);
-        $(".progress-step-3 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.3.name"))).shouldBe(visible);
-        $(".progress-step-4 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.4.name"))).shouldBe(visible);
-        $(".progress-step-5 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.name"))).shouldBe(visible);
-        $(".progress-step-6 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.name"))).shouldBe(visible);
+        for (int i = 1; i <= 6; i++) 
+        {
+            $(".progress-step-" + i + " .progress-bubble").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".number"))).shouldBe(visible);
+            $(".progress-step-" + i + " .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".name"))).shouldBe(visible);    
+        }
     }
     
     private void validateFillInHeadlines(String headline)
     {
-        $$(".mb-3").findBy(exactText(headline)).shouldBe(visible);
-    }
-
-    private void validateFillInHeadlinesStateZip(String headline)
-    {
-        $$(".mb-3 .col .form-label").findBy(exactText(headline)).shouldBe(visible);
+        $$(".form-label").findBy(exactText(headline)).shouldBe(visible);
     }
 
     @Step("validate fill-in form headlines")
     public void validateFillInHeadlines()
     {
-        validateFillInHeadlines(Neodymium.localizedText("AddressPages.fillIn.headlines.fullName"));
-        validateFillInHeadlines(Neodymium.localizedText("AddressPages.fillIn.headlines.company"));
-        validateFillInHeadlines(Neodymium.localizedText("AddressPages.fillIn.headlines.address"));
-        validateFillInHeadlines(Neodymium.localizedText("AddressPages.fillIn.headlines.city"));
-        validateFillInHeadlinesStateZip(Neodymium.localizedText("AddressPages.fillIn.headlines.state"));
-        validateFillInHeadlinesStateZip(Neodymium.localizedText("AddressPages.fillIn.headlines.zip"));
-        // TODO - fix after issue is fixed
-        //validateFillInHeadlines(Neodymium.localizedText("AddressPages.fillIn.headlines.country"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.fullName"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.company"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.address"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.city"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.state"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.zip"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.country"));
     }
 
     @Step("validate fill-in form placeholder")
     public void validateFillInPlaceholder()
     {
-        $("#address-form-input-full-name").shouldHave(attribute("placeholder", (Neodymium.localizedText("AddressPages.fillIn.placeholder.yourName")))).shouldBe(visible);
-        $("#address-form-input-company").shouldHave(attribute("placeholder", (Neodymium.localizedText("AddressPages.fillIn.placeholder.companyName")))).shouldBe(visible);
-        $("#address-form-input-adress-line").shouldHave(attribute("placeholder", (Neodymium.localizedText("AddressPages.fillIn.placeholder.address")))).shouldBe(visible);
-        $("#address-form-input-zip").shouldHave(attribute("placeholder", (Neodymium.localizedText("AddressPages.fillIn.placeholder.zip")))).shouldBe(visible);
+        $("#address-form-input-full-name").shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.name")))).shouldBe(visible);
+        $("#address-form-input-company").shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.companyName")))).shouldBe(visible);
+        $("#address-form-input-adress-line").shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.address")))).shouldBe(visible);
+        $("#address-form-input-zip").shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.zip")))).shouldBe(visible);
     }
     
     @Step("validate country dropdown")
     public void validateCountryDropdown()
     {
-        $("#address-form-select-country").shouldBe(matchText(Neodymium.localizedText("AddressPages.fillIn.dropdown.usa"))).should(exist);
-        $("#address-form-select-country").shouldBe(matchText(Neodymium.localizedText("AddressPages.fillIn.dropdown.germany"))).should(exist);
+        $("#address-form-select-country").shouldBe(matchText(Neodymium.localizedText("fillIn.dropdown.country.usa"))).should(exist);
+        $("#address-form-select-country").shouldBe(matchText(Neodymium.localizedText("fillIn.dropdown.country.germany"))).should(exist);
     }
     
     @Step("validate required string")
     public void validateRequiredString() 
     {
-        $(".me-auto").shouldHave(exactText(Neodymium.localizedText("AddressPages.fillIn.headlines.requiredFields"))).shouldBe(visible);
+        $(".me-auto").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
     }
     
     @Override
@@ -106,7 +91,7 @@ public class GuestBillingAddressPage extends AbstractCheckoutPage
          validateProcessWrap();
 
         // validate title
-        title.shouldHave(exactText(Neodymium.localizedText("GuestBillingAddressPage.title"))).shouldBe(visible);
+        title.shouldHave(exactText(Neodymium.localizedText("guestBillingAddressPage.title"))).shouldBe(visible);
 
         // validate fill form headlines
         validateFillInHeadlines();
@@ -121,10 +106,10 @@ public class GuestBillingAddressPage extends AbstractCheckoutPage
         validateRequiredString();
 
         // validate continue button
-        addBillingButton.shouldHave(exactText(Neodymium.localizedText("AddressPages.button"))).shouldBe(visible);
+        addBillingButton.shouldHave(exactText(Neodymium.localizedText("button.continue"))).shouldBe(visible);
     }
 
-    /// ----- send billing address form ----- ///
+    /// ========== send billing address form ========== ///
 
     private GuestPaymentPage goToGuestPaymentPage(String name, String company, String address, String city,
                                                  String state, String zip, String country)
@@ -137,8 +122,9 @@ public class GuestBillingAddressPage extends AbstractCheckoutPage
         $("#address-form-input-state").val(state);
         $("#address-form-input-zip").val(zip);
         $("#address-form-select-country").selectOption(country);
+        
         // go to guest payment page
-        addBillingButton.scrollTo().click();
+        addBillingButton.click(ClickOptions.usingJavaScript());
 
         return new GuestPaymentPage().isExpectedPage();
     }

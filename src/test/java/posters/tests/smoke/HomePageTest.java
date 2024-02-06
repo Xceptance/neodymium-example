@@ -32,7 +32,7 @@ public class HomePageTest extends AbstractTest
     {
         AllureAddons.addToReport("Find me in the report", "Some additional content. Could be the toString method of an complex object.");
         var homePage = OpenHomePageFlow.flow();
-        homePage.title.validateTitle(Neodymium.localizedText("HomePage.title"));
+        homePage.title.validateTitle(Neodymium.localizedText("homePage.title"));
         homePage.validateStructure();
     }
 }

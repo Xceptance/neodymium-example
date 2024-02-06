@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -29,27 +30,16 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
         return this;
     }
 
-    /// ----- validate content returning customer payment page ----- ///
+    /// ========== validate content returning customer payment page ========== ///
 
     @Step("validate process wrap")
     public void validateProcessWrap() 
     {
-        // validate process numbers
-        $(".progress-step-1 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.1.number"))).shouldBe(visible);
-        $(".progress-step-2 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.2.number"))).shouldBe(visible);
-        $(".progress-step-3 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.3.number"))).shouldBe(visible);
-        $(".progress-step-4 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.4.number"))).shouldBe(visible);
-        $(".progress-step-5 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.number"))).shouldBe(visible);
-        $(".progress-step-6 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.number"))).shouldBe(visible);
-        
-        // validate process names
-        $(".progress-step-1 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.1.name"))).shouldBe(visible);
-        $(".progress-step-2 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.2.name"))).shouldBe(visible);
-        $(".progress-step-3 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.3.name"))).shouldBe(visible);
-        $(".progress-step-4 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.4.name"))).shouldBe(visible);
-        $(".progress-step-5 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.name"))).shouldBe(visible);
-        $(".progress-step-6 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.name"))).shouldBe(visible);
-
+        for (int i = 1; i <= 6; i++) 
+        {
+            $(".progress-step-" + i + " .progress-bubble").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".number"))).shouldBe(visible);
+            $(".progress-step-" + i + " .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".name"))).shouldBe(visible);    
+        }
     }
     
     @Override
@@ -62,13 +52,13 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
         validateProcessWrap();
         
         // validate title
-        title.shouldHave(exactText(Neodymium.localizedText("ReturningCustomerPaymentPage.title"))).shouldBe(visible);
+        title.shouldHave(exactText(Neodymium.localizedText("returningCustomerPaymentPage.title"))).shouldBe(visible);
         
         // validate add new shipping address button
-        addCreditCardButton.shouldHave(exactText(Neodymium.localizedText("ReturningCustomerPaymentPage.button.addNewCreditCard"))).shouldBe(visible);
+        addCreditCardButton.shouldHave(exactText(Neodymium.localizedText("button.addNewCreditCard"))).shouldBe(visible);
         
         // validate continue button
-        useCreditCardButton.shouldHave(exactText(Neodymium.localizedText("ReturningCustomerPaymentPage.button.useCreditCard"))).shouldBe(visible);
+        useCreditCardButton.shouldHave(exactText(Neodymium.localizedText("button.useThisCreditCard"))).shouldBe(visible);
     }
     
     @Step("validate credit card '{creditCard}' on position '{position}' in credit card container")
@@ -84,7 +74,7 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
         creditCardContainer.find(".validTo").shouldHave(exactText(expDate)).shouldBe(visible);
     }
     
-    /// ----- select credit card ----- ///
+    /// ========== select credit card ========== ///
 
     @Step("select a credit card on position '{position}'")
     public PlaceOrderPage selectCreditCard(int position)
@@ -92,8 +82,8 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
         final int index = position - 1;
         
         // select address, press "Use this credit card"
-        $("#payment" + index + " input").scrollTo().click();
-        useCreditCardButton.scrollTo().click();
+        $("#payment" + index + " input").click(ClickOptions.usingJavaScript());
+        useCreditCardButton.click(ClickOptions.usingJavaScript());
 
         return new PlaceOrderPage().isExpectedPage();
     }

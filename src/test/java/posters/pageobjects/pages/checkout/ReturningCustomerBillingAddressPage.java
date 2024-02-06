@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -27,27 +28,18 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
         return this;
     }
     
-    /// ----- validate content returning customer billing address page ----- ///
+    /// ========== validate content returning customer billing address page ========== ///
 
     @Step("validate process wrap")
     public void validateProcessWrap() 
     {
-        // validate process numbers
-        $(".progress-step-1 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.1.number"))).shouldBe(visible);
-        $(".progress-step-2 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.2.number"))).shouldBe(visible);
-        $(".progress-step-3 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.3.number"))).shouldBe(visible);
-        $(".progress-step-4 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.4.number"))).shouldBe(visible);
-        $(".progress-step-5 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.number"))).shouldBe(visible);
-        $(".progress-step-6 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.number"))).shouldBe(visible);
-        
-        // validate process names
-        $(".progress-step-1 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.1.name"))).shouldBe(visible);
-        $(".progress-step-2 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.2.name"))).shouldBe(visible);
-        $(".progress-step-3 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.3.name"))).shouldBe(visible);
-        $(".progress-step-4 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.4.name"))).shouldBe(visible);
-        $(".progress-step-5 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.name"))).shouldBe(visible);
-        $(".progress-step-6 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.name"))).shouldBe(visible);
+        for (int i = 1; i <= 6; i++) 
+        {
+            $(".progress-step-" + i + " .progress-bubble").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".number"))).shouldBe(visible);
+            $(".progress-step-" + i + " .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".name"))).shouldBe(visible);    
+        }
     }
+    
     @Override
     @Step("validate returning customer billing address page structure")
     public void validateStructure()
@@ -58,15 +50,16 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
         validateProcessWrap();
         
         // validate title
-        title.shouldHave(exactText(Neodymium.localizedText("ReturningCustomerBillingAddressPage.title"))).shouldBe(visible);
+        title.shouldHave(exactText(Neodymium.localizedText("returningCustomerBillingAddressPage.title"))).shouldBe(visible);
         
-        // TODO - validate address count, get function needed
+        // validate first address
+        $("#billAddr0").shouldBe(visible);
         
-        // validate add new shipping address button
-        addBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("ReturningCustomerBillingAddressPage.button.addNewBillAddr"))).shouldBe(visible);
+        // validate add new billing address button
+        addBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewBillingAddress"))).shouldBe(visible);
         
         // validate continue button
-        useBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("ReturningCustomerBillingAddressPage.button.useBillAddr"))).shouldBe(visible);
+        useBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.useThisBillingAddress"))).shouldBe(visible);
     }
     
     @Step("validate billing address '{billingAddress}' on position '{position}' in address container")
@@ -85,7 +78,7 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
         addressContainer.find(".country").shouldHave(exactText(billingAddress.getCountry())).shouldBe(visible);  
     }
 
-    /// ----- select billing address ----- ///
+    /// ========== select billing address ========== ///
     
     @Step("select a billing address on position '{position}'")
     public ReturningCustomerPaymentPage selectBillingAddress(int position)
@@ -93,8 +86,8 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
         final int index = position - 1;
         
         // select address, press "Use this billing address"
-        $("#billAddr" + index + " input").scrollTo().click();
-        useBillingAddressButton.scrollTo().click();
+        $("#billAddr" + index + " input").click(ClickOptions.usingJavaScript());
+        useBillingAddressButton.click(ClickOptions.usingJavaScript());
 
         return new ReturningCustomerPaymentPage().isExpectedPage();
     }

@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -28,7 +29,7 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate content payment settings page ----- ///
+    /// ========== validate content payment settings page ========== ///
     
     @Override
     @Step("validate personal data page structure")
@@ -37,23 +38,23 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
         super.validateStructure();
         
         // validate title
-        title.shouldHave(exactText(Neodymium.localizedText("PaymentSettingsPage.title"))).shouldBe(visible);
+        title.shouldHave(exactText(Neodymium.localizedText("account.paymentSettings"))).shouldBe(visible);
         
-        $("#linkAddNewPayment").shouldHave(exactText(Neodymium.localizedText("PaymentSettingsPage.button.addNewCreditCard"))).shouldBe(visible);
+        $("#linkAddNewPayment").shouldHave(exactText(Neodymium.localizedText("button.addNewCreditCard"))).shouldBe(visible);
     }
     
     @Step("validate successful saved change")
     public void validateSuccessfulSave()
     {
-        successMessage.validateSuccessMessage(Neodymium.localizedText("AccountOverviewPage.validation.successfulSave"));
+        successMessage.validateSuccessMessage(Neodymium.localizedText("successMessage.successfulSave"));
     }
     
-    /// ----- add new payment ----- ///
+    /// ========== add new payment ========== ///
     
     @Step("open form to create new payment")
     public void openNewPayment() 
     {
-        addNewPayment.click();
+        addNewPayment.click(ClickOptions.usingJavaScript());
     }
     
     @Step("fill in payment form")
@@ -69,15 +70,15 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
         $("#expirationDateYear").selectOption(creditCard.getExpDateYear());
         
         // click add new payment button
-        $("#btnAddPayment").scrollTo().click();
+        $("#btnAddPayment").click(ClickOptions.usingJavaScript());
     }
     
-    /// ----- payment overview page navigation ----- ///
+    /// ========== payment overview page navigation ========== ///
     
     @Step("open homepage from payment overview page")
     public HomePage openHomePage()
     {
-        $("#header-brand").scrollTo().click();
+        $("#header-brand").click(ClickOptions.usingJavaScript());
         return new HomePage().isExpectedPage();
     }
 }

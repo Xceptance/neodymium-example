@@ -20,7 +20,7 @@ public class CreditCard
         this.expDateYear = expDateYear;
     }
 
-    /// ----- get credit card data ----- ///
+    /// ========== get credit card data ========== ///
     
     public String getFullName()
     {

@@ -12,7 +12,7 @@ public class PriceHelper
 
     private final static DecimalFormat decimalFormat = new DecimalFormat("##0.00", new DecimalFormatSymbols(Locale.US));
 
-    /// ----- format string ----- ///
+    /// ========== format string ========== ///
 
     @Step("remove $ from '{price}'")
     public static String removeCurrency(String price)
@@ -32,7 +32,7 @@ public class PriceHelper
         return addCurrency(decimalFormat.format(input));
     }
 
-    /// ----- calculations for price summary ----- ///
+    /// ========== calculations for price summary ========== ///
 
     /**
      * @return unitPrice * quantity
@@ -86,7 +86,7 @@ public class PriceHelper
         return format(grandTotal);
     }
 
-    /// ----- calculations for mini cart ----- ///
+    /// ========== calculations for mini cart ========== ///
 
     /**
      * @return totalCount + productCount

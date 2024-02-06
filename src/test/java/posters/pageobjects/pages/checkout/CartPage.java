@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import org.junit.Assert;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
@@ -38,17 +39,17 @@ public class CartPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate content cart page ----- ///
+    /// ========== validate content cart page ========== ///
 
     @Step("validate product table head")
     public void validateTableHead()
     {
-        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.number"))).shouldBe(visible);
-        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.product"))).shouldBe(visible);
-        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.unitPrice"))).shouldBe(visible);
-        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.quantity"))).shouldBe(visible);
-        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.update"))).shouldBe(visible);
-        tableHead.findBy(exactText(Neodymium.localizedText("General.productTable.totalPrice"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("cartPage.number"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("product.title"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("product.unitPrice"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("product.quantity"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("cartPage.update"))).shouldBe(visible);
+        tableHead.findBy(exactText(Neodymium.localizedText("product.totalPrice"))).shouldBe(visible);
     }
 
     @Override
@@ -58,12 +59,12 @@ public class CartPage extends AbstractBrowsingPage
         super.validateStructure();
 
         // validate title
-        title.shouldHave(exactText(Neodymium.localizedText("CartPage.title"))).shouldBe(visible);
+        title.shouldHave(exactText(Neodymium.localizedText("cartPage.title"))).shouldBe(visible);
 
         // check if cart contains items, validate
         if (header.miniCart.getTotalCount() == 0)
         {
-            $("#errorCartMessage").shouldHave(exactText(Neodymium.localizedText("CartPage.errorMessage"))).shouldBe(visible);
+            $("#errorCartMessage").shouldHave(exactText(Neodymium.localizedText("errorMessage.emptyCart"))).shouldBe(visible);
         }
         else
         {
@@ -116,7 +117,7 @@ public class CartPage extends AbstractBrowsingPage
     @Step("validate sub total and line item total after adding on the cart page")
     public void validateTotalAfterAdd(int position, String oldSubTotal, double oldTotalProductPrice)
     {
-        /// ----- validate total unit price of specified product ----- ///
+        /// ========== validate total unit price of specified product ========== ///
 
         SelenideElement productContainer = $("#product" + (position - 1));
 
@@ -132,7 +133,7 @@ public class CartPage extends AbstractBrowsingPage
         // verify calculated unit price equals the displayed total unit price
         productContainer.find(".product-total-unit-price").shouldHave(exactText(newTotalProductPrice));
 
-        /// ----- validate sub total ----- ///
+        /// ========== validate sub total ========== ///
 
         String newSubTotal = subTotal.text();
 
@@ -152,7 +153,7 @@ public class CartPage extends AbstractBrowsingPage
         subTotal.shouldHave(exactText(newSubTotal));
     }
 
-    /// ----- validate product in cart ----- ///
+    /// ========== validate product in cart ========== ///
 
     private void validateCartItem(int position, String productName, String productStyle, String productSize, int productAmount, String productPrice)
     {
@@ -186,7 +187,7 @@ public class CartPage extends AbstractBrowsingPage
         validateCartItem(position, product.getName(), product.getStyle(), product.getSize(), productAmount, product.getUnitPrice());
     }
 
-    /// ----- get product data ----- ///
+    /// ========== get product data ========== ///
 
     @Step("get product name from line item on position '{position}' on the cart page")
     public String getProductName(int position)
@@ -230,7 +231,7 @@ public class CartPage extends AbstractBrowsingPage
         return new Product(getProductName(position), getProductUnitPrice(position), getProductStyle(position), getProductSize(position), Integer.parseInt(getProductCount(position)));
     }
 
-    /// ----- update product data ----- ///
+    /// ========== update product data ========== ///
 
     @Step("update product count of product on position '{position}' on the cart page to '{amount}'")
     public void updateProductCount(int position, int amount)
@@ -241,46 +242,46 @@ public class CartPage extends AbstractBrowsingPage
         productContainer.find(".product-count").setValue(Integer.toString(amount));
 
         // click update button
-        productContainer.find(".btnUpdateProduct").scrollTo().click();
+        productContainer.find(".btnUpdateProduct").click(ClickOptions.usingJavaScript());
     }
 
     @Step("remove product on position '{position}' on the cart page")
     public void removeProduct(int position)
     {
         // click delete button
-        $("#btnRemoveProdCount" + (position - 1)).scrollTo().click();
+        $("#btnRemoveProdCount" + (position - 1)).click(ClickOptions.usingJavaScript());
 
         // click delete confirmation button
-        $("#buttonDelete").scrollTo().click();
+        $("#buttonDelete").click(ClickOptions.usingJavaScript());
     }
 
-    /// ----- cart page navigation ----- ///
+    /// ========== cart page navigation ========== ///
 
     @Step("click on a product on position '{position}' on the cart page")
     public ProductDetailPage openProductDetailPage(int position)
     {
-        $("#product" + (position - 1) + " .img-thumbnail").scrollTo().click();
+        $("#product" + (position - 1) + " .img-thumbnail").click(ClickOptions.usingJavaScript());
         return new ProductDetailPage().isExpectedPage();
     }
 
     @Step("open homepage from cart page")
     public HomePage openHomePage()
     {
-        $("#header-brand").scrollTo().click();
+        $("#header-brand").click(ClickOptions.usingJavaScript());
         return new HomePage().isExpectedPage();
     }
 
     @Step("open guest shipping address from the cart page")
     public GuestShippingAddressPage openGuestShippingAddressPage()
     {
-        $("#btnStartCheckout").scrollTo().click();
+        $("#btnStartCheckout").click(ClickOptions.usingJavaScript());
         return new GuestShippingAddressPage().isExpectedPage();
     }
 
     @Step("open returning customer shipping address from the cart page")
     public ReturningCustomerShippingAddressPage openReturningCustomerShippingAddressPage()
     {
-        $("#btnStartCheckout").scrollTo().click();
+        $("#btnStartCheckout").click(ClickOptions.usingJavaScript());
         return new ReturningCustomerShippingAddressPage().isExpectedPage();
     }
 }

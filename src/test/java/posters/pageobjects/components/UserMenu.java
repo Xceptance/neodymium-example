@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -30,19 +31,19 @@ public class UserMenu extends AbstractComponent
         showUserMenu.should(exist);
     }
 
-    /// ----- user menu navigation ----- ///
+    /// ========== user menu navigation ========== ///
 
     @Step("open user menu")
     public void openUserMenu()
     {
-        showUserMenu.hover();
+        showUserMenu.click(ClickOptions.usingJavaScript());
         userMenu.waitUntil(visible, 9000);
     }
 
     @Step("close user menu")
     public void closeUserMenu()
     {
-        $(".top-menu").hover();
+        $("#top-demo-disclaimer").click(ClickOptions.usingJavaScript());
         userMenu.waitUntil(not(visible), 9000);
     }
 
@@ -50,7 +51,7 @@ public class UserMenu extends AbstractComponent
     public RegisterPage openRegisterPage()
     {
         openUserMenu();
-        userMenu.find("#go-to-registration").click();
+        userMenu.find("#go-to-registration").click(ClickOptions.usingJavaScript());
         return new RegisterPage().isExpectedPage();
     }
 
@@ -58,7 +59,7 @@ public class UserMenu extends AbstractComponent
     public LoginPage openLoginPage()
     {
         openUserMenu();
-        userMenu.find("#go-to-login").click();
+        userMenu.find("#go-to-login").click(ClickOptions.usingJavaScript());
         return new LoginPage().isExpectedPage();
     }
 
@@ -66,7 +67,7 @@ public class UserMenu extends AbstractComponent
     public AccountOverviewPage openAccountOverviewPage()
     {
         openUserMenu();
-        userMenu.find("#go-to-account-overview").click();
+        userMenu.find("#go-to-account-overview").click(ClickOptions.usingJavaScript());
         return new AccountOverviewPage().isExpectedPage();
     }
 
@@ -74,11 +75,11 @@ public class UserMenu extends AbstractComponent
     public HomePage logout()
     {
         openUserMenu();
-        userMenu.find("#go-to-logout").click();
+        userMenu.find("#go-to-logout").click(ClickOptions.usingJavaScript());
         return new HomePage().isExpectedPage();
     }
 
-    /// ----- validate user menu ----- ///
+    /// ========== validate user menu ========== ///
 
     @Step("validate that nobody is logged in")
     public void validateNotLoggedIn()
@@ -115,16 +116,16 @@ public class UserMenu extends AbstractComponent
         if (validateIsLoggedIn())
         {
             // if customer is logged in
-            userMenu.find("#go-to-account-overview").shouldHave(exactText(Neodymium.localizedText("header.userMenu.accountOverview"))).shouldBe(visible);
-            userMenu.find("#go-to-logout").shouldHave(exactText(Neodymium.localizedText("header.userMenu.logout"))).shouldBe(visible);
+            userMenu.find("#go-to-account-overview").shouldHave(exactText(Neodymium.localizedText("button.accountOverview"))).shouldBe(visible);
+            userMenu.find("#go-to-logout").shouldHave(exactText(Neodymium.localizedText("button.logout"))).shouldBe(visible);
             userMenu.find(".icon-info-large").shouldBe(visible);
             userMenu.find(".icon-log-out").shouldBe(visible);
         }
         else
         {
             // if customer is not logged in
-            userMenu.find("#go-to-registration").shouldHave(exactText(Neodymium.localizedText("header.userMenu.createAccount"))).shouldBe(visible);
-            userMenu.find("#go-to-login").shouldHave(exactText(Neodymium.localizedText("header.userMenu.signIn"))).shouldBe(visible);
+            userMenu.find("#go-to-registration").shouldHave(exactText(Neodymium.localizedText("button.createAccount"))).shouldBe(visible);
+            userMenu.find("#go-to-login").shouldHave(exactText(Neodymium.localizedText("button.signIn"))).shouldBe(visible);
             userMenu.find(".icon-user-add-outline").shouldBe(visible);
             userMenu.find(".icon-log-in").shouldBe(visible);
         }

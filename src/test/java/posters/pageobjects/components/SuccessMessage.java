@@ -20,7 +20,7 @@ public class SuccessMessage extends AbstractComponent
         successMessage.should(exist);
     }
     
-    /// ----- validate success message ----- ///
+    /// ========== validate success message ========== ///
 
     @Step("validate visibility of success message '{message}'")
     public void validateSuccessMessage(String message)

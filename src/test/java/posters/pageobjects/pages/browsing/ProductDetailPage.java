@@ -1,12 +1,16 @@
 package posters.pageobjects.pages.browsing;
 
+import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
+import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ClickOptions;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -22,47 +26,44 @@ public class ProductDetailPage extends AbstractBrowsingPage
     private SelenideElement productPrice = $("#product-detail-form-price");
 
     private SelenideElement productSize = $("#product-detail-form-size-selection");
+    
+    private ElementsCollection productStyle = $$(".form-check-label");
 
     @Override
     @Step("ensure this is a product detail page")
     public ProductDetailPage isExpectedPage()
     {
         super.isExpectedPage();
-        $(".h2fwpr#main .container.mt-4").should(exist);
+        productName.should(exist);
         return this;
     }
 
-    /// ----- validate content product detail page ----- ///
-
-    private void validateSizeDropdown(String size)
-    {
-        productSize.should(matchText(size)).should(exist);
-    }
+    /// ========== validate content product detail page ========== ///
 
     @Step("validate size dropdown")
     public void validateSizeDropdown()
     {
-        productSize.scrollTo().click();
+        productSize.click(ClickOptions.usingJavaScript());
 
         if ($$("#product-detail-form-size-selection option").size() > 1)
         {
-            validateSizeDropdown(Neodymium.localizedText("ProductdetailPage.size.16x12"));
-            validateSizeDropdown(Neodymium.localizedText("ProductdetailPage.size.32x24"));
-            validateSizeDropdown(Neodymium.localizedText("ProductdetailPage.size.64x48"));
+            productSize.should(matchText(Neodymium.localizedText("product.size.16x12"))).should(exist);
+            productSize.should(matchText(Neodymium.localizedText("product.size.32x24"))).should(exist);
+            productSize.should(matchText(Neodymium.localizedText("product.size.64x48"))).should(exist);
         }
         else
         {
-            validateSizeDropdown(Neodymium.localizedText("ProductdetailPage.size.96x32"));
+            productSize.should(matchText(Neodymium.localizedText("product.size.96x32"))).should(exist);
         }
 
-        productSize.scrollTo().click();
+        productSize.click(ClickOptions.usingJavaScript());
     }
 
     @Step("validate style radio")
     public void validateStyleRadio()
     {
-        $("#product-detail-form-style-selection > div:nth-child(1) > label").shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.style.matte"))).shouldBe(visible);
-        $("#product-detail-form-style-selection > div:nth-child(2) > label").shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.style.gloss"))).shouldBe(visible);
+        productStyle.findBy(exactText(Neodymium.localizedText("product.style.matte"))).shouldBe(visible);
+        productStyle.findBy(exactText(Neodymium.localizedText("product.style.gloss"))).shouldBe(visible);
     }
 
     @Override
@@ -85,17 +86,18 @@ public class ProductDetailPage extends AbstractBrowsingPage
         $("#product-detail-form-description").shouldBe(visible);
 
         // validate size selection
+        $$(".form-label").findBy(attribute("for", "product-detail-form-size-selection")).shouldHave(exactText(Neodymium.localizedText("productDetailPage.selectSize"))).shouldBe(visible);
         validateSizeDropdown();
 
         // validate style selection
-        $("#product-detail-form-style-selection").shouldBe(visible);
+        $$(".form-label").findBy(attribute("for", "product-detail-form-style-selection")).shouldHave(exactText(Neodymium.localizedText("productDetailPage.selectStyle"))).shouldBe(visible);
         validateStyleRadio();
 
         // validate print information
-        $("#product-detail-form-print-information").shouldBe(visible);
+        $("#product-detail-form-print-information").shouldHave(exactText(Neodymium.localizedText("productDetailPage.printInformation"))).shouldBe(visible);
 
         // validate add to cart button
-        addToCartButton.shouldHave(exactText(Neodymium.localizedText("ProductdetailPage.addToCartButton"))).shouldBe(visible);
+        addToCartButton.shouldHave(exactText(Neodymium.localizedText("button.addToCart"))).shouldBe(visible);
         $("#btnAddToCart .icon-shopping-cart").shouldBe(visible);
     }
 
@@ -112,7 +114,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
         validateProductName(productName);
     }
 
-    /// ----- select product size/style, add to cart ----- ///
+    /// ========== select product size/style, add to cart ========== ///
 
     @Step("select size '{size}'")
     public void setSize(String size)
@@ -129,7 +131,9 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("click add to cart button")
     public void clickAddToCartButton()
     {
-        addToCartButton.scrollTo().click();
+        addToCartButton.click(ClickOptions.usingJavaScript());
+        $("#mini-cart-menu").waitUntil(visible, 9000);
+        $("#mini-cart-menu").waitUntil(not(visible), 9000);
     }
 
     @Step("add product with size '{size}' and style '{style}' to cart")
@@ -140,7 +144,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
         clickAddToCartButton();
     }
 
-    /// ----- get product details ----- ///
+    /// ========== get product details ========== ///
 
     @Step("get product name from product detail page")
     public String getProductName()
@@ -157,7 +161,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("get selected product style from product detail page")
     public String getChosenStyle()
     {
-        return $("input[name='finish']:checked").val();
+        return $(".form-check-input:checked").val();
     }
 
     @Step("get selected product size from product detail page")
@@ -172,12 +176,12 @@ public class ProductDetailPage extends AbstractBrowsingPage
         return new Product(getProductName(), getProductPrice(), getChosenStyle(), getChosenSize(), 1);
     }
     
-    /// ----- product detail page navigation ----- ///
+    /// ========== product detail page navigation ========== ///
     
     @Step("open homepage from product detail page")
     public HomePage openHomePage()
     {
-        $("#header-brand").scrollTo().click();
+        $("#header-brand").click(ClickOptions.usingJavaScript());
         return new HomePage().isExpectedPage();
     }
 }

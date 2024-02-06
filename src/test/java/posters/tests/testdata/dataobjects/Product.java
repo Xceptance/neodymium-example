@@ -23,7 +23,7 @@ public class Product
         this.amount = amount;
     }
 
-    // ----- get product data ----- //
+    // ========== get product data ========== //
     
     public String getName()
     {
@@ -50,7 +50,7 @@ public class Product
         return amount;
     }
 
-    // ----- get total product price ----- //
+    // ========== get total product price ========== //
     
     private double getUnitPriceDouble()
     {

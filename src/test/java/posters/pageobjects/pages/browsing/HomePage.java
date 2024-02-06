@@ -1,12 +1,15 @@
 package posters.pageobjects.pages.browsing;
 
+import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
@@ -16,13 +19,11 @@ public class HomePage extends AbstractBrowsingPage
 {
     private ElementsCollection slideNavigation = $$("#carousel-btn");
     
-    private ElementsCollection slideHeadline = $$("#carousel-product-display.carousel h1");
+    private ElementsCollection slideHeadline = $$(".carousel-content-product h1");
     
-    private ElementsCollection slideButton = $$("#carousel-product-display.carousel .btn-primary");
+    private ElementsCollection slideButton = $$(".carousel-content-product .btn-primary");
     
     private ElementsCollection featuredCategories = $$(".category-tile-title");
-    
-    private ElementsCollection featuredContent = $$(".card .card-title");
 
     public SaleBanner saleBanner = new SaleBanner();
 
@@ -31,60 +32,49 @@ public class HomePage extends AbstractBrowsingPage
     public HomePage isExpectedPage()
     {
         super.isExpectedPage();
-        $("#carousel-product-display.carousel").should(exist);
+        $("#carousel-product-display").should(exist);
         return this;
     }
 
-    /// ----- validate content homepage ----- ///
-    
-    @Step("validate poster slide")
-    public void validatePosterSlide(String position, String headline)
-    {         
-        // TODO - improve
-        slideNavigation.findBy(exactText(position)).click();
-        slideNavigation.findBy(exactText(position)).click();
-        slideNavigation.findBy(exactText(position)).click();
-        
-        slideHeadline.findBy(exactText(Neodymium.localizedText(headline))).shouldBe(visible);
-        slideButton.findBy(exactText(Neodymium.localizedText("HomePage.slider.button"))).shouldBe(visible);
-    }
+    /// ========== validate content homepage ========== ///
     
     @Step("validate poster slide")
     public void validatePosterSlide()
-    {
-        validatePosterSlide("4", "HomePage.slider.headline.4");
-        validatePosterSlide("3", "HomePage.slider.headline.3");
-        validatePosterSlide("2", "HomePage.slider.headline.2");
-        validatePosterSlide("1", "HomePage.slider.headline.1");
+    {      
+        for (int i = 1; i<= 4; i++) 
+        {
+            slideNavigation.findBy(attribute("aria-label", "Slide " + i)).click(ClickOptions.usingJavaScript());
+            slideHeadline.findBy(exactText(Neodymium.localizedText("homePage.slider." + i))).shouldBe(visible);
+            slideButton.findBy(exactText(Neodymium.localizedText("button.buyHere"))).shouldBe(visible);
+        }
     }
     
     @Step("validate featured categories")
     public void validateFeaturedCategories()
     {
         $$(".category-tile-image").shouldHaveSize(4);
-        featuredCategories.findBy(exactText(Neodymium.localizedText("header.topNavigation.1.title"))).shouldBe(visible);
-        featuredCategories.findBy(exactText(Neodymium.localizedText("header.topNavigation.2.title"))).shouldBe(visible);
-        featuredCategories.findBy(exactText(Neodymium.localizedText("header.topNavigation.3.title"))).shouldBe(visible);
-        featuredCategories.findBy(exactText(Neodymium.localizedText("header.topNavigation.4.title"))).shouldBe(visible);
+        
+        for (int i = 1; i <= 4; i++) 
+        {
+            featuredCategories.findBy(exactText(Neodymium.localizedText("header.topNavigation." + i + ".title"))).shouldBe(visible);            
+        }
     }
     
-    @Step("validate featured content")
-    public void validateFeaturedContent()
+    @Step("validate featured products")
+    public void validateFeaturedProducts()
     {
-        $$(".product-display-heading h2").findBy(exactText(Neodymium.localizedText("HomePage.hotProducts"))).shouldBe(visible);
+        $(".product-display-heading h2").shouldHave(exactText(Neodymium.localizedText("homePage.featuredProducts.headline"))).shouldBe(visible);
         $$(".card-img-top").shouldHaveSize(12);
-        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.1"))).shouldBe(visible);
-        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.2"))).shouldBe(visible);
-        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.3"))).shouldBe(visible);
-        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.4"))).shouldBe(visible);
-        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.5"))).shouldBe(visible);
-        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.6"))).shouldBe(visible);
-        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.7"))).shouldBe(visible);
-        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.8"))).shouldBe(visible);
-        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.9"))).shouldBe(visible);
-        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.10"))).shouldBe(visible);
-        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.11"))).shouldBe(visible);
-        featuredContent.findBy(exactText(Neodymium.localizedText("HomePage.featuredContent.12"))).shouldBe(visible);
+        
+        for (int i = 1; i <= 12; i++) 
+        {
+            SelenideElement productCard = $(".card.product-tile:nth-child(" + i + ")");
+            
+            productCard.find(".card-title").shouldHave(exactText(Neodymium.localizedText("homePage.featuredProducts." + i + ".title"))).shouldBe(visible);
+            productCard.find(".product-tile-text").shouldHave(exactText(Neodymium.localizedText("homePage.featuredProducts." + i + ".description"))).shouldBe(visible);
+            productCard.find(".product-tile-price").shouldBe(visible);    
+            productCard.find(".btn").shouldHave(exactText(Neodymium.localizedText("button.buyHere"))).shouldBe(visible);
+        }
     }
     
     @Override
@@ -93,33 +83,32 @@ public class HomePage extends AbstractBrowsingPage
     {
         super.validateStructure();
 
-        // validate Sale Banner
+        // validate sale banner
         saleBanner.validateStructure();
 
         // validate poster slide
-        // TODO - fix consistent click
-        //validatePosterSlide();
+        validatePosterSlide();
         
         // validate intro
-        $("#intro-text-homepage").shouldHave(exactText(Neodymium.localizedText("HomePage.intro"))).shouldBe(visible);
+        $("#intro-text-homepage").shouldHave(exactText(Neodymium.localizedText("homePage.intro"))).shouldBe(visible);
         
         // validate featured categories
         validateFeaturedCategories();
         
-        // validate featured content
-        validateFeaturedContent();
+        // validate featured products
+        validateFeaturedProducts();
         
         // validate shop all products button
-        $("a.btn-shop-all").shouldHave(exactText(Neodymium.localizedText("HomePage.shopAllProducts"))).shouldBe(visible);
+        $(".btn-shop-all").shouldHave(exactText(Neodymium.localizedText("button.shopAllProducts"))).shouldBe(visible);
     }
     
-    /// ----- validate success messages ----- ///
+    /// ========== validate success messages ========== ///
     
     @Step("validate successful login of user '{firstName}' on home page")
     public void validateSuccessfulLogin(String firstName)
     {
         // validate success message
-        successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulLogin"));
+        successMessage.validateSuccessMessage(Neodymium.localizedText("successMessage.successfulLogin"));
         
         // validate {firstName} in user menu
         header.userMenu.validateLoggedInName(firstName);
@@ -128,6 +117,15 @@ public class HomePage extends AbstractBrowsingPage
     @Step("validate successful account deletion on home page")
     public void validateSuccessfulDeletedAccount()
     {
-        successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulAccountDeletion"));
+        successMessage.validateSuccessMessage(Neodymium.localizedText("successMessage.successfulAccountDeletion"));
+    }
+    
+    /// ========== homepage navigation ========== ///
+    
+    @Step("reload homepage")
+    public HomePage openHomePage()
+    {
+        $("#header-brand").click(ClickOptions.usingJavaScript());
+        return new HomePage().isExpectedPage();
     }
 }

@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -24,26 +25,16 @@ public class OrderConfirmationPage extends AbstractBrowsingPage{
         return this;
     }
     
-    /// ----- validate content order confirmation page ----- ///
+    /// ========== validate content order confirmation page ========== ///
     
     @Step("validate process wrap")
     public void validateProcessWrap() 
     {
-        // validate process numbers
-        $(".progress-step-1 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.1.number"))).shouldBe(visible);
-        $(".progress-step-2 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.2.number"))).shouldBe(visible);
-        $(".progress-step-3 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.3.number"))).shouldBe(visible);
-        $(".progress-step-4 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.4.number"))).shouldBe(visible);
-        $(".progress-step-5 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.number"))).shouldBe(visible);
-        $(".progress-step-6 .progress-bubble").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.number"))).shouldBe(visible);
-        
-        // validate process names
-        $(".progress-step-1 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.1.name"))).shouldBe(visible);
-        $(".progress-step-2 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.2.name"))).shouldBe(visible);
-        $(".progress-step-3 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.3.name"))).shouldBe(visible);
-        $(".progress-step-4 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.4.name"))).shouldBe(visible);
-        $(".progress-step-5 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.5.name"))).shouldBe(visible);
-        $(".progress-step-6 .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("AddressPages.processWrap.6.name"))).shouldBe(visible);
+        for (int i = 1; i <= 6; i++) 
+        {
+            $(".progress-step-" + i + " .progress-bubble").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".number"))).shouldBe(visible);
+            $(".progress-step-" + i + " .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".name"))).shouldBe(visible);    
+        }
     }
     
     @Step("validate order confirmation page structure")
@@ -52,7 +43,7 @@ public class OrderConfirmationPage extends AbstractBrowsingPage{
         super.validateStructure();
 
         // validate success message
-        successMessage.validateSuccessMessage(Neodymium.localizedText("HomePage.validation.successfulOrder"));
+        successMessage.validateSuccessMessage(Neodymium.localizedText("successMessage.successfulOrder"));
         
         // validate process wrap
         validateProcessWrap();
@@ -61,19 +52,25 @@ public class OrderConfirmationPage extends AbstractBrowsingPage{
         $(".icon-check").shouldBe(visible);
 
         // validate thank you message
-        $("#tYouText").shouldHave(exactText(Neodymium.localizedText("OrderConfirmationPage.thankYouMessage"))).shouldBe(visible);
+        $("#tYouText").shouldHave(exactText(Neodymium.localizedText("orderConfirmationPage.thankYouMessage"))).shouldBe(visible);
         
         // Verifies GoTo HomePage button is visible
         $("#goHome .icon-shopping-cart").shouldBe(visible);
-        $("#goHome").shouldHave(exactText(Neodymium.localizedText("OrderConfirmationPage.button"))).shouldBe(visible);
+        $("#goHome").shouldHave(exactText(Neodymium.localizedText("button.continueShopping"))).shouldBe(visible);
     }
     
-    /// ----- order confirmation page navigation ----- ///
+    @Step("validate successful order")
+    public void validateSuccessfulOrder()
+    {
+        successMessage.validateSuccessMessage(Neodymium.localizedText("successMessage.successfulOrder"));
+    }
+    
+    /// ========== order confirmation page navigation ========== ///
     
     @Step("open homepage from order confirmation page")
     public HomePage openHomePage()
     {
-        homePageButton.scrollTo().click();
+        homePageButton.click(ClickOptions.usingJavaScript());
 
         return new HomePage().isExpectedPage();
     }

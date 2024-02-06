@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
@@ -18,17 +19,17 @@ import posters.pageobjects.utility.PriceHelper;
 
 public class MiniCart extends AbstractComponent
 {
-    private SelenideElement headerCart = $(".headerCartOverview");
-
-    private SelenideElement subOrderPrice = $("#mini-cart-menu .subOrderPrice");
+    private SelenideElement headerCart = $("#headerCartOverview");
+    
+    private SelenideElement headerTotalCount = $("#count_wideView");
 
     private SelenideElement miniCart = $("#mini-cart-menu");
-
+    
     private SelenideElement miniCartTitle = $(".cartMiniProductCounter");
-
-    private SelenideElement totalCountElement = $("#headerCartOverview .headerCartProductCount");
-
-    private SelenideElement goToCartButton = $(".goToCart");
+    
+    private SelenideElement subOrderPrice = $(".subOrderPrice");
+    
+    private SelenideElement viewCartButton = $(".goToCart");
 
     private ElementsCollection productCounts = $$(".prodCount");
 
@@ -38,16 +39,16 @@ public class MiniCart extends AbstractComponent
     @Step("ensure availability mini cart")
     public void isComponentAvailable()
     {
-        $("#header-customer-menus").should(exist);
+         miniCart.should(exist);
     }
 
-    /// ----- mini cart navigation ------ ///
+    /// ========== mini cart navigation ==========- ///
 
     @Step("open the mini cart")
     public void openMiniCart()
     {
         headerCart.click();
-        miniCart.waitUntil(visible, 9000);
+        miniCart.waitUntil(visible, 9000);            
     }
 
     @Step("close the mini cart")
@@ -61,11 +62,11 @@ public class MiniCart extends AbstractComponent
     public CartPage openCartPage()
     {
         openMiniCart();
-        goToCartButton.click();
+        viewCartButton.click(ClickOptions.usingJavaScript());
         return new CartPage().isExpectedPage();
     }
 
-    /// ----- get data mini cart ----- ///
+    /// ========== get mini cart data ========== ///
 
     @Step("get the subtotal price from mini cart")
     public String getSubtotal()
@@ -80,7 +81,7 @@ public class MiniCart extends AbstractComponent
     @Step("get the total product count from mini cart")
     public int getTotalCount()
     {
-        return Integer.parseInt(totalCountElement.text());
+        return Integer.parseInt(headerTotalCount.text());
     }
 
     /**
@@ -125,12 +126,12 @@ public class MiniCart extends AbstractComponent
         return totalCount;
     }
 
-    /// ----- validate mini cart structure ----- ///
+    /// ========== validate mini cart structure ========== ///
 
     @Step("validate the mini cart total product count equals '{totalCount}'")
     public void validateTotalCount(int totalCount)
     {
-        totalCountElement.shouldHave(exactText(Integer.toString(totalCount)));
+        headerTotalCount.shouldHave(exactText(Integer.toString(totalCount)));
     }
 
     @Step("validate the mini cart title")
@@ -183,12 +184,12 @@ public class MiniCart extends AbstractComponent
         }
 
         // validate view cart button
-        $("#mini-cart-menu .linkButton").shouldHave(exactText(Neodymium.localizedText("header.miniCart.viewCart"))).shouldBe(visible);
+        viewCartButton.shouldHave(exactText(Neodymium.localizedText("button.viewCart"))).shouldBe(visible);
 
         closeMiniCart();
     }
 
-    /// ----- validate mini cart item ----- ///
+    /// ========== validate mini cart item ========== ///
 
     private void validateMiniCartItem(int position, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
     {
@@ -210,8 +211,7 @@ public class MiniCart extends AbstractComponent
     @Step("validate '{product}' on position {position} in the mini cart")
     public void validateMiniCartItem(int position, Product product)
     {
-        validateMiniCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(),
-                             PriceHelper.format(product.getTotalPrice()));
+        validateMiniCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), PriceHelper.format(product.getTotalPrice()));
     }
 
     @Step("validate '{product}' on position '{position}' in the mini cart after changing it's quantity")

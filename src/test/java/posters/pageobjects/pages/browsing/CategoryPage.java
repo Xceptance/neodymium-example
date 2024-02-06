@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -29,7 +30,7 @@ public class CategoryPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate content category page ----- ///
+    /// ========== validate content category page ========== ///
 
     @Override
     @Step("validate category page structure")
@@ -53,13 +54,13 @@ public class CategoryPage extends AbstractBrowsingPage
      * @param expectedResultCount
      *            (number of results for specific category/search)
      */
-    @Step("validate category name '{categoryName}' and amount results '{expectedResultCount}' is on category page")
+    @Step("validate category name '{categoryName}' and amount results '{expectedResultCount}' on category page")
     public void validateCategoryHeadline(String categoryName, int expectedResultCount)
     {
         if ($("#titleSearchText").exists())
         {
             // if {categoryName} is search input
-            $("#titleSearchText").should(matchText(Neodymium.localizedText("CategoryPage.search.resultText"))).shouldBe(visible);
+            $("#titleSearchText").should(matchText(Neodymium.localizedText("categoryPage.searchResultText"))).shouldBe(visible);
             $("#searchTextValue").shouldHave(exactText(categoryName)).shouldBe(visible);
             $("#totalProductCount").shouldHave(exactText(Integer.toString(expectedResultCount))).shouldBe(visible);
         }
@@ -78,7 +79,7 @@ public class CategoryPage extends AbstractBrowsingPage
         validateCategoryHeadline(categoryName, expectedResultCount);
     }
 
-    /// ----- product by position ----- ///
+    /// ========== product by position ========== ///
 
     @Step("get a product name by position '{position}'")
     public String getProductNameByPosition(int position)
@@ -89,16 +90,16 @@ public class CategoryPage extends AbstractBrowsingPage
     @Step("click on a product by position '{position}'")
     public ProductDetailPage clickProductByPosition(int position)
     {
-        $("#product" + (position - 1) + " .btn.btn-primary").scrollTo().click();
+        $("#product" + (position - 1) + " .btn.btn-primary").click(ClickOptions.usingJavaScript());
         return new ProductDetailPage().isExpectedPage();
     }
     
-    /// ----- category page navigation ----- ///
+    /// ========== category page navigation ========== ///
     
     @Step("open homepage from category page")
     public HomePage openHomePage()
     {
-        $("#header-brand").scrollTo().click();
+        $("#header-brand").click(ClickOptions.usingJavaScript());
         return new HomePage().isExpectedPage();
     }
 }

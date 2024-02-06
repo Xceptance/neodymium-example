@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
@@ -22,39 +23,39 @@ public class Pagination extends AbstractComponent
         pagination.shouldBe(visible);
     }
 
-    /// ----- pagination navigation ----- ///
+    /// ========== pagination navigation ========== ///
 
     @Step("click on page number '{pageNumber}'")
     public void goToPage(int pageNumber)
     {
-        paginationComponents.findBy(exactText(Integer.toString(pageNumber))).click();
+        paginationComponents.findBy(exactText(Integer.toString(pageNumber))).click(ClickOptions.usingJavaScript());
     }
 
     @Step("click on go to next page")
     public void goToNextPage()
     {
-        paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToNextPage"))).click();
+        paginationComponents.findBy(exactText(Neodymium.localizedText("categoryPage.pagination.goToNextPage"))).click(ClickOptions.usingJavaScript());
     }
 
     @Step("click on go to last page")
     public void goToLastPage()
     {
-        paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToLastPage"))).click();
+        paginationComponents.findBy(exactText(Neodymium.localizedText("categoryPage.pagination.goToLastPage"))).click(ClickOptions.usingJavaScript());
     }
 
     @Step("click on go to previous page")
     public void goToPrevPage()
     {
-        paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToPrevPage"))).click();
+        paginationComponents.findBy(exactText(Neodymium.localizedText("categoryPage.pagination.goToPrevPage"))).click(ClickOptions.usingJavaScript());
     }
 
     @Step("click on go to first page")
     public void goToFirstPage()
     {
-        paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToFirstPage"))).click();
+        paginationComponents.findBy(exactText(Neodymium.localizedText("categoryPage.pagination.goToFirstPage"))).click(ClickOptions.usingJavaScript());
     }
 
-    /// ----- validate pagination ----- ///
+    /// ========== validate pagination ========== ///
 
     /**
      * Note: To get {numberOfPages} it divides {expectedResultCount} by 6 because only 6 results can be displayed
@@ -76,13 +77,13 @@ public class Pagination extends AbstractComponent
     @Step("validate visibility right navigation")
     public void validateRightNavigation()
     {
-        paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToLastPage"))).shouldBe(visible);
+        paginationComponents.findBy(exactText(Neodymium.localizedText("categoryPage.pagination.goToLastPage"))).shouldBe(visible);
     }
 
     @Step("validate visibility left navigation")
     public void validateLeftNavigation()
     {
-        paginationComponents.findBy(exactText(Neodymium.localizedText("CategoryPage.pagination.goToFirstPage"))).shouldBe(visible);
+        paginationComponents.findBy(exactText(Neodymium.localizedText("categoryPage.pagination.goToFirstPage"))).shouldBe(visible);
     }
 
     /**

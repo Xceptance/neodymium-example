@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -43,7 +44,7 @@ public class AddressOverviewPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ----- validate content my addresses page ----- ///
+    /// ========== validate content my addresses page ========== ///
 
     @Override
     @Step("validate personal data page structure")
@@ -52,35 +53,35 @@ public class AddressOverviewPage extends AbstractBrowsingPage
         super.validateStructure();
 
         // validate title
-        title.shouldHave(exactText(Neodymium.localizedText("MyAddressesPage.title"))).shouldBe(visible);
+        title.shouldHave(exactText(Neodymium.localizedText("myAddressesPage.title"))).shouldBe(visible);
 
         // validate shipping addresses overview
-        $("#titleDelAddr").shouldHave(exactText(Neodymium.localizedText("MyAddressesPage.headlines.shipAddr"))).shouldBe(visible);
-        addNewShipAddr.shouldHave(exactText(Neodymium.localizedText("General.button.addNewShipAddr"))).shouldBe(visible);
+        $("#titleDelAddr").shouldHave(exactText(Neodymium.localizedText("account.shippingAddress"))).shouldBe(visible);
+        addNewShipAddr.shouldHave(exactText(Neodymium.localizedText("button.addNewShippingAddress"))).shouldBe(visible);
 
         // validate billing addresses overview
-        $("#titleBillAddr").shouldHave(exactText(Neodymium.localizedText("MyAddressesPage.headlines.billAddr"))).shouldBe(visible);
-        addNewBillAddr.shouldHave(exactText(Neodymium.localizedText("General.button.addNewBillAddr"))).shouldBe(visible);
+        $("#titleBillAddr").shouldHave(exactText(Neodymium.localizedText("account.billingAddress"))).shouldBe(visible);
+        addNewBillAddr.shouldHave(exactText(Neodymium.localizedText("button.addNewBillingAddress"))).shouldBe(visible);
     }
     
     @Step("validate successful saved change")
     public void validateSuccessfulSave()
     {
-        successMessage.validateSuccessMessage(Neodymium.localizedText("AccountOverviewPage.validation.successfulSave"));
+        successMessage.validateSuccessMessage(Neodymium.localizedText("successMessage.successfulSave"));
     }
     
-    /// ----- add new address ----- ///
+    /// ========== add new address ========== ///
     
     @Step("open form to create new shipping address")
     public void openNewShipAddr() 
     {
-        addNewShipAddr.click();
+        addNewShipAddr.click(ClickOptions.usingJavaScript());
     }
 
     @Step("open form to create new billing address")
     public void openNewBillAddr() 
     {
-        addNewBillAddr.click();
+        addNewBillAddr.click(ClickOptions.usingJavaScript());
     }
     
     @Step("fill in shipping address form")
@@ -99,7 +100,7 @@ public class AddressOverviewPage extends AbstractBrowsingPage
         countryField.selectOption(shippingAddress.getCountry());
         
         // click add new address button
-        $("#btnAddShippAddr").scrollTo().click();
+        $("#btnAddShippAddr").click(ClickOptions.usingJavaScript());
     }
     
     @Step("fill in billing address form")
@@ -118,6 +119,6 @@ public class AddressOverviewPage extends AbstractBrowsingPage
         countryField.selectOption(billingAddress.getCountry());
         
         // click add new address button
-        $("#btnAddBillAddr").scrollTo().click();
+        $("#btnAddBillAddr").click(ClickOptions.usingJavaScript());
     }  
 }
