@@ -92,6 +92,7 @@ public class AddToCartTest extends AbstractTest
         
         // update amount of product on cart page
         cartPage.updateProductCount(addToCartTestData.getProductUpdatePosition(), addToCartTestData.getAmountChange());
+        cartPage.waitForProductUpdate(oldSubtotal3);
         
         // store subtotal of updated product
         String subtotalAfterUpdate = cartPage.getProductTotalPrice(addToCartTestData.getProductUpdatePosition());
@@ -113,6 +114,7 @@ public class AddToCartTest extends AbstractTest
         
         // remove first product on cart page
         cartPage.removeProduct(1);
+        cartPage.waitForProductUpdate(oldSubtotal4);
         
         // validate cart page
         cartPage.validateCartItem(1, product);

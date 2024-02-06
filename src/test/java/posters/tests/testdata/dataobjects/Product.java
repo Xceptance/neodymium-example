@@ -22,8 +22,6 @@ public class Product
         this.size = size;
         this.amount = amount;
     }
-
-    // ========== get product data ========== //
     
     public String getName()
     {
@@ -49,8 +47,6 @@ public class Product
     {
         return amount;
     }
-
-    // ========== get total product price ========== //
     
     private double getUnitPriceDouble()
     {

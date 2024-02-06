@@ -26,8 +26,6 @@ public class Header extends AbstractComponent
         $("#header-navigation-bar").should(exist);
     }
 
-    /// ========== validate header ========== ///
-    
     @Step("validate header")
     public void validateStructure()
     {

@@ -75,8 +75,6 @@ public class LoginPage extends AbstractBrowsingPage
         registerLink.shouldHave(exactText(Neodymium.localizedText("loginPage.createNewAccount")));
     }
     
-    /// ========== validate success and error messages ========== ///
-    
     @Step("validate successful registration message")
     public void validateSuccessfulRegistration()
     {

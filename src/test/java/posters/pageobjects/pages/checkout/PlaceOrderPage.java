@@ -90,8 +90,6 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         $("#btnOrder").shouldHave(exactText(Neodymium.localizedText("button.orderWithCosts"))).shouldBe(visible);
     }
     
-    /// ========== validate order overview ========== ///
-    
     private void validateShippingAddressOverview(Address shippingAddress, String headline) 
     {
         // validate headline
@@ -178,8 +176,6 @@ public class PlaceOrderPage extends AbstractCheckoutPage
          validatePaymentOverview(creditCard, Neodymium.localizedText("account.paymentSettings"));
     }
     
-    /// ========== validate products ========== ///
-    
     private void validateProduct(int position, String productName, String productStyle, String productSize, int productAmount, String productPrice)
     {
         // selector for product
@@ -201,40 +197,6 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     {
         validateProduct(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), product.getUnitPrice());
     }
-    
-    /// ========== get price summary information ========== ///
-    
-    @Step("get sum of all total product prices")
-    public String getSubtotal() 
-    {
-        return subtotalContainer.text();
-    }
-    
-    @Step("get tax costs")
-    public String getTax() 
-    {
-        return taxContainer.text();
-    }
-    
-    /**
-     * Note: Loops through all total product prices on the place order page and adds it to the "subtotal" variable.
-     * 
-     * @return subtotal (The sum of all total product prices)
-     */
-    @Step("calculate sum of all total product prices")
-    public String calculateSubtotal() 
-    {
-        double subtotal = 0;
-        
-        for (SelenideElement totalProductPrice : totalProductPrices) 
-        {
-            subtotal = PriceHelper.calculateSubtotalPlaceOrderPage(subtotal, totalProductPrice.getText());
-        }
-
-        return PriceHelper.format(subtotal);
-    }
-    
-    /// ========== validate price summary ========== ///
     
     @Step("validate description strings")
     public void validateDescriptionStrings() 
@@ -265,6 +227,38 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         
         // validate grand total
         $("#orderTotal").shouldHave(exactText(PriceHelper.calculateGrandTotal(subtotal, shippingCosts, getTax())));
+    }
+    
+    /// ========== get price summary information ========== ///
+    
+    @Step("get sum of all total product prices")
+    public String getSubtotal() 
+    {
+        return subtotalContainer.text();
+    }
+    
+    @Step("get tax costs")
+    public String getTax() 
+    {
+        return taxContainer.text();
+    }
+    
+    /**
+     * Note: Loops through all total product prices on the place order page and adds it to the "subtotal" variable.
+     * 
+     * @return subtotal (The sum of all total product prices)
+     */
+    @Step("calculate sum of all total product prices")
+    public String calculateSubtotal() 
+    {
+        double subtotal = 0;
+        
+        for (SelenideElement totalProductPrice : totalProductPrices) 
+        {
+            subtotal = PriceHelper.calculateSubtotalPlaceOrderPage(subtotal, totalProductPrice.getText());
+        }
+        
+        return PriceHelper.format(subtotal);
     }
     
     /// ========== place order page navigation ========== ///

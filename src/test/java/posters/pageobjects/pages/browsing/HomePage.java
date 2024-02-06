@@ -102,8 +102,6 @@ public class HomePage extends AbstractBrowsingPage
         $(".btn-shop-all").shouldHave(exactText(Neodymium.localizedText("button.shopAllProducts"))).shouldBe(visible);
     }
     
-    /// ========== validate success messages ========== ///
-    
     @Step("validate successful login of user '{firstName}' on home page")
     public void validateSuccessfulLogin(String firstName)
     {

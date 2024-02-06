@@ -47,14 +47,14 @@ public class MiniCart extends AbstractComponent
     @Step("open the mini cart")
     public void openMiniCart()
     {
-        headerCart.click();
+        headerCart.click(ClickOptions.usingJavaScript());
         miniCart.waitUntil(visible, 9000);            
     }
 
     @Step("close the mini cart")
     public void closeMiniCart()
     {
-        $("#top-demo-disclaimer").click();
+        $("#top-demo-disclaimer").click(ClickOptions.usingJavaScript());
         miniCart.waitUntil(not(visible), 9000);
     }
 
@@ -126,7 +126,7 @@ public class MiniCart extends AbstractComponent
         return totalCount;
     }
 
-    /// ========== validate mini cart structure ========== ///
+    /// ========== validate mini cart ========== ///
 
     @Step("validate the mini cart total product count equals '{totalCount}'")
     public void validateTotalCount(int totalCount)
@@ -188,8 +188,6 @@ public class MiniCart extends AbstractComponent
 
         closeMiniCart();
     }
-
-    /// ========== validate mini cart item ========== ///
 
     private void validateMiniCartItem(int position, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
     {

@@ -13,8 +13,8 @@ import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.HomePage;
 
-public class OrderConfirmationPage extends AbstractBrowsingPage{
-    
+public class OrderConfirmationPage extends AbstractBrowsingPage
+{
     private SelenideElement homePageButton = $("#goHome");
 
     @Step("ensure this is the Order Confirmation page")

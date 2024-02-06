@@ -20,8 +20,6 @@ public class CheckoutHeader extends AbstractComponent
         $(".progress-indicator").should(exist);
     }
     
-    /// ========== validate header ========== ///
-    
     @Step("validate header")
     public void validateStructure()
     {

@@ -153,8 +153,6 @@ public class CartPage extends AbstractBrowsingPage
         subTotal.shouldHave(exactText(newSubTotal));
     }
 
-    /// ========== validate product in cart ========== ///
-
     private void validateCartItem(int position, String productName, String productStyle, String productSize, int productAmount, String productPrice)
     {
         // selector for product
@@ -253,6 +251,13 @@ public class CartPage extends AbstractBrowsingPage
 
         // click delete confirmation button
         $("#buttonDelete").click(ClickOptions.usingJavaScript());
+    }
+    
+    @Step("wait for update")
+    public void waitForProductUpdate(String subtotalBeforeUpdate) 
+    {      
+        // wait for subtotal to update
+        $("#orderSubTotalValue").shouldNotHave(exactText(subtotalBeforeUpdate));
     }
 
     /// ========== cart page navigation ========== ///

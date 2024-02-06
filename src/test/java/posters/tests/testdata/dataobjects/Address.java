@@ -30,8 +30,6 @@ public class Address
         this.country = country;
     }
     
-    /// ========== get address data ========== ///
-    
     public String getFirstName()
     {
         return firstName;

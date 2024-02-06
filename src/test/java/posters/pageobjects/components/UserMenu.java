@@ -19,7 +19,6 @@ import posters.pageobjects.pages.user.RegisterPage;
 
 public class UserMenu extends AbstractComponent
 {
-
     private SelenideElement userMenu = $("#user-menu");
 
     private SelenideElement showUserMenu = $("#show-user-menu");
