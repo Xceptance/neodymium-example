@@ -244,9 +244,9 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     }
     
     /**
-     * Note: Loops through all total product prices on the place order page and adds it to the "subtotal" variable.
+     * Loops through all total product prices on the place order page and adds it to the "subtotal" variable.
      * 
-     * @return subtotal (The sum of all total product prices)
+     * @return subtotal The sum of all total product prices
      */
     @Step("calculate sum of all total product prices")
     public String calculateSubtotal() 

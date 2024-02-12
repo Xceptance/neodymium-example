@@ -85,9 +85,9 @@ public class MiniCart extends AbstractComponent
     }
 
     /**
-     * Note: Loops through all total product prices in the mini cart and adds it to the "subtotal" variable.
+     * Loops through all total product prices in the mini cart and adds it to the "subtotal" variable.
      * 
-     * @return subtotal (The sum of all total product prices)
+     * @return subtotal The sum of all total product prices
      */
     @Step("calculate sum of all total product prices")
     public String calculateSubtotal()
@@ -103,10 +103,10 @@ public class MiniCart extends AbstractComponent
     }
 
     /**
-     * Note: If there is at least 1 item in the cart, it loops through all total product counts in the mini cart
+     * If there is at least 1 item in the cart, it loops through all total product counts in the mini cart
      * and adds it to the "totalCount" variable.
      * 
-     * @return totalCount (The sum of all total product counts)
+     * @return totalCount The sum of all total product counts
      */
     @Step("calculate total count via product counts")
     public int calculateTotalCount()

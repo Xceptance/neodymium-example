@@ -108,11 +108,11 @@ public class CartPage extends AbstractBrowsingPage
     }
 
     /**
-     * Note: It checks if the price change of subtotal is equal to the price change of the product.
+     * It checks if the price change of subtotal is equal to the price change of the product.
      * 
-     * @param position (of specific product in cart)
-     * @param oldSubTotal (subtotal before adding new product to cart/ increasing product quantity)
-     * @param oldTotalProductPrice (product price before adding/ increasing product quantity)
+     * @param position of specific product in cart
+     * @param oldSubTotal subtotal before adding new product to cart/ increasing product quantity
+     * @param oldTotalProductPrice product price before adding/ increasing product quantity
      */
     @Step("validate sub total and line item total after adding on the cart page")
     public void validateTotalAfterAdd(int position, String oldSubTotal, double oldTotalProductPrice)

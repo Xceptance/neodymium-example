@@ -58,11 +58,10 @@ public class Pagination extends AbstractComponent
     /// ========== validate pagination ========== ///
 
     /**
-     * Note: To get {numberOfPages} it divides {expectedResultCount} by 6 because only 6 results can be displayed
+     * To get {numberOfPages} it divides {expectedResultCount} by 6 because only 6 results can be displayed
      * per page. Then it loops through the page numbers and validates its existence and visibility.
      * 
-     * @param expectedResultCount
-     *            (number of results for specific category/search)
+     * @param expectedResultCount number of results for specific category/search
      */
     @Step("validate visibility numbers in pagination")
     public void validateElementNumbers(int expectedResultCount)
@@ -87,11 +86,10 @@ public class Pagination extends AbstractComponent
     }
 
     /**
-     * Note: If there is more than 1 result page it validates the pagination. It loops through the page numbers
+     * If there is more than 1 result page it validates the pagination. It loops through the page numbers
      * and validates the existence and visibility of the numbers themselves and the icon navigation (<, <<, >, >>)
      * 
-     * @param expectedResultCount
-     *            (number of results for specific category/search)
+     * @param expectedResultCount number of results for specific category/search
      */
     @Step("validate pagination")
     public void validateStructure(int expectedResultCount)

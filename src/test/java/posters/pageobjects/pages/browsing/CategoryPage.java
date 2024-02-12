@@ -46,13 +46,11 @@ public class CategoryPage extends AbstractBrowsingPage
     }
 
     /**
-     * Note: If {categoryName} contains a ".", it's a localization string, localized by Neodymium. Else a search
+     * If {categoryName} contains a ".", it's a localization string, localized by Neodymium. Else a search
      * term was used. Both cases have a different headline to validate.
      * 
-     * @param categoryName
-     *            (name of specific category of top navigation)
-     * @param expectedResultCount
-     *            (number of results for specific category/search)
+     * @param categoryName name of specific category of top navigation
+     * @param expectedResultCount number of results for specific category/search
      */
     @Step("validate category name '{categoryName}' and amount results '{expectedResultCount}' on category page")
     public void validateCategoryHeadline(String categoryName, int expectedResultCount)
