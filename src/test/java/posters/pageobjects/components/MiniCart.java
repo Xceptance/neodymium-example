@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
@@ -47,14 +46,14 @@ public class MiniCart extends AbstractComponent
     @Step("open the mini cart")
     public void openMiniCart()
     {
-        headerCart.click(ClickOptions.usingJavaScript());
+        headerCart.click();
         miniCart.waitUntil(visible, 9000);            
     }
 
     @Step("close the mini cart")
     public void closeMiniCart()
     {
-        $("#top-demo-disclaimer").click(ClickOptions.usingJavaScript());
+        $("#top-demo-disclaimer").click();
         miniCart.waitUntil(not(visible), 9000);
     }
 
@@ -62,7 +61,7 @@ public class MiniCart extends AbstractComponent
     public CartPage openCartPage()
     {
         openMiniCart();
-        viewCartButton.click(ClickOptions.usingJavaScript());
+        viewCartButton.click();
         return new CartPage().isExpectedPage();
     }
 

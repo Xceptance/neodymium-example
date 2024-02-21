@@ -9,7 +9,6 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import org.junit.Assert;
 
-import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -41,12 +40,6 @@ public class LoginPage extends AbstractBrowsingPage
 
     /// ========== validate content login page ========== ///
     
-    @Step("validate required string")
-    public void validateRequiredString() 
-    {
-        $(".me-auto").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
-    }
-    
     @Override
     @Step("validate login page structure")
     public void validateStructure()
@@ -57,15 +50,15 @@ public class LoginPage extends AbstractBrowsingPage
         loginForm.find("legend").shouldHave(exactText(Neodymium.localizedText("loginPage.title"))).shouldBe(visible);
         
         // validate fill in headlines
-        $$("#formLogin .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.email"))).shouldBe(visible);
-        $$("#formLogin .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.password"))).shouldBe(visible);
+        $$("#formLogin .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.yourEmail"))).shouldBe(visible);
+        $$("#formLogin .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.yourPassword"))).shouldBe(visible);
         
         // validate fill in placeholder
         emailField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.email")))).shouldBe(visible);
         passwordField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.password")))).shouldBe(visible);
         
         // validate "required fields" string
-        validateRequiredString();
+        $(".me-auto").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
       
         // validate sign in button
         signInButton.shouldHave(exactText(Neodymium.localizedText("button.signIn")));
@@ -100,14 +93,14 @@ public class LoginPage extends AbstractBrowsingPage
     @Step("open register page from login page")
     public RegisterPage openRegister()
     {
-        registerLink.click(ClickOptions.usingJavaScript());
+        registerLink.click();
         return new RegisterPage().isExpectedPage();
     }
     
     @Step("open homepage from login page")
     public HomePage openHomePage()
     {
-        $("#header-brand").click(ClickOptions.usingJavaScript());
+        $("#header-brand").click();
         return new HomePage().isExpectedPage();
     }
     
@@ -119,7 +112,7 @@ public class LoginPage extends AbstractBrowsingPage
         passwordField.val(password);
 
         // click on the Sign In button.
-        signInButton.click(ClickOptions.usingJavaScript());
+        signInButton.click();
     }
     
     @Step("fill and send login form with valid user '{user}'")

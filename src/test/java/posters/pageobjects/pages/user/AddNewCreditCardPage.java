@@ -1,55 +1,44 @@
-package posters.pageobjects.pages.checkout;
+package posters.pageobjects.pages.user;
 
-import java.time.LocalDate;
-
-import static com.codeborne.selenide.Condition.attribute;
-import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
+import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
+
+import java.time.LocalDate;
 
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
+import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.tests.testdata.dataobjects.CreditCard;
 
-public class GuestPaymentPage extends AbstractCheckoutPage
+public class AddNewCreditCardPage extends AbstractBrowsingPage
 {
-    private SelenideElement title = $("#titlePayment");
-
-    private SelenideElement creditCardNumber = $("#creditCardNumber");
-
-    private SelenideElement creditCardName = $("#name");
-
+    private SelenideElement creditCardNumberField = $("#creditCardNumber");
+    
+    private SelenideElement cardHolderNameField = $("#name");
+    
     private SelenideElement expirationMonth = $("#expirationDateMonth");
 
     private SelenideElement expirationYear = $("#expirationDateYear");
-
-    private SelenideElement addPaymentButton = $("#btnAddPayment");
     
+    private SelenideElement addNewCreditCardButton = $("#btnAddPayment");
+
     @Override
-    @Step("ensure this is a payment page")
-    public GuestPaymentPage isExpectedPage()
+    @Step("ensure this is a add new credit card page")
+    public AddNewCreditCardPage isExpectedPage()
     {
         super.isExpectedPage();
-        title.should(exist);
+        $("#formAddPayment .h2").should(exist);
         return this;
     }
 
-    /// ========== validate content guest payment page ========== ///
-    
-    @Step("validate process wrap")
-    public void validateProcessWrap() 
-    {
-        for (int i = 1; i <= 6; i++) 
-        {
-            $(".progress-step-" + i + " .progress-bubble").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".number"))).shouldBe(visible);
-            $(".progress-step-" + i + " .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".name"))).shouldBe(visible);    
-        }
-    }
+    /// ========== validate content add new credit card page ========== ///
     
     private void validateFillInHeadlines(String headline)
     {
@@ -66,9 +55,9 @@ public class GuestPaymentPage extends AbstractCheckoutPage
     
     @Step("validate fill-in form placeholder")
     public void validateFillInPlaceholder()
-    {        
-        creditCardNumber.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.cardNumber")))).shouldBe(visible);
-        creditCardName.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.cardHolderName")))).shouldBe(visible);
+    {
+        creditCardNumberField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.cardNumber")))).shouldBe(visible);
+        cardHolderNameField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.cardHolderName")))).shouldBe(visible);
         
         String month = Integer.toString(LocalDate.now().getMonthValue());
         
@@ -108,18 +97,15 @@ public class GuestPaymentPage extends AbstractCheckoutPage
     }
     
     @Override
-    @Step("validate payment page structure")
+    @Step("validate add new credit card page structure")
     public void validateStructure()
     {
         super.validateStructure();
         
-        // validate process wrap
-        validateProcessWrap();
-        
         // validate title
-        title.shouldHave(exactText(Neodymium.localizedText("guestPaymentPage.title"))).shouldBe(visible);
+        $(".h2").shouldHave(exactText(Neodymium.localizedText("account.paymentSettings"))).shouldBe(visible);
         
-        // validate fill in form headlines
+        // validate input descriptions
         validateFillInHeadlines();
         
         // validate placeholder
@@ -132,31 +118,26 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         validateYearDropdown();
         
         // validate "required fields" string
-        $(".me-auto").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
+        $(".reqField").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
         
-        // validate continue button
-        addPaymentButton.shouldHave(exactText(Neodymium.localizedText("button.continue"))).shouldBe(visible);
+        // validate add new credit card button
+        addNewCreditCardButton.shouldHave(exactText(Neodymium.localizedText("button.addNewCreditCard"))).shouldBe(visible);
     }
+  
+    /// ========== add new credit card page navigation ========== ///
     
-    /// ========== send payment form ========== ///
-    
-    private PlaceOrderPage goToPlaceOrderPage(String number, String name, String month, String year)
-    {
-        // fill in form with parameters
-        creditCardNumber.val(number);
-        creditCardName.val(name);
-        expirationMonth.selectOption(month);
-        expirationYear.selectOption(year);
-
-        // go to place order page
-        addPaymentButton.click();
-
-        return new PlaceOrderPage().isExpectedPage();
-    }
-    
-    @Step("fill and send payment form with '{creditCard}'")
-    public PlaceOrderPage goToPlaceOrderPage(CreditCard creditCard)
-    {
-        return goToPlaceOrderPage(creditCard.getCardNumber(), creditCard.getFullName(), creditCard.getExpDateMonth(), creditCard.getExpDateYear());
+    @Step("fill in payment form with {creditCard}")
+    public PaymentOverviewPage addNewCreditCard(CreditCard creditCard) 
+    {        
+        // fill in payment form
+        creditCardNumberField.val(creditCard.getCardNumber());
+        cardHolderNameField.val(creditCard.getFullName());
+        expirationMonth.selectOption(creditCard.getExpDateMonth());
+        expirationYear.selectOption(creditCard.getExpDateYear());
+        
+        // click add new payment button
+        addNewCreditCardButton.click();
+        
+        return new PaymentOverviewPage().isExpectedPage();
     }
 }

@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
@@ -43,7 +42,7 @@ public class HomePage extends AbstractBrowsingPage
     {      
         for (int i = 1; i<= 4; i++) 
         {
-            slideNavigation.findBy(attribute("aria-label", "Slide " + i)).click(ClickOptions.usingJavaScript());
+            slideNavigation.findBy(attribute("aria-label", "Slide " + i)).click();
             slideHeadline.findBy(exactText(Neodymium.localizedText("homePage.slider." + i))).shouldBe(visible);
             slideButton.findBy(exactText(Neodymium.localizedText("button.buyHere"))).shouldBe(visible);
         }
@@ -123,7 +122,7 @@ public class HomePage extends AbstractBrowsingPage
     @Step("reload homepage")
     public HomePage openHomePage()
     {
-        $("#header-brand").click(ClickOptions.usingJavaScript());
+        $("#header-brand").click();
         return new HomePage().isExpectedPage();
     }
 }

@@ -5,7 +5,6 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 
 import io.qameta.allure.Step;
@@ -28,7 +27,7 @@ public class Search extends AbstractComponent
     @Step("open search field")
     public void openSearch()
     {
-        searchField.click(ClickOptions.usingJavaScript());
+        searchField.click();
     }
 
     @Step("search for '{searchTerm}'")

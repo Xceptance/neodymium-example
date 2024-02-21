@@ -9,7 +9,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
@@ -43,7 +42,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("validate size dropdown")
     public void validateSizeDropdown()
     {
-        productSize.click(ClickOptions.usingJavaScript());
+        productSize.click();
 
         if ($$("#product-detail-form-size-selection option").size() > 1)
         {
@@ -56,7 +55,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
             productSize.should(matchText(Neodymium.localizedText("product.size.96x32"))).should(exist);
         }
 
-        productSize.click(ClickOptions.usingJavaScript());
+        productSize.click();
     }
 
     @Step("validate style radio")
@@ -131,7 +130,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("click add to cart button")
     public void clickAddToCartButton()
     {
-        addToCartButton.click(ClickOptions.usingJavaScript());
+        addToCartButton.click();
         $("#mini-cart-menu").waitUntil(visible, 9000);
         $("#mini-cart-menu").waitUntil(not(visible), 9000);
     }
@@ -181,7 +180,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("open homepage from product detail page")
     public HomePage openHomePage()
     {
-        $("#header-brand").click(ClickOptions.usingJavaScript());
+        $("#header-brand").click();
         return new HomePage().isExpectedPage();
     }
 }

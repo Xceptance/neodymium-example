@@ -6,7 +6,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -18,6 +17,10 @@ public class PersonalDataPage extends AbstractBrowsingPage
 {
     private SelenideElement title = $("#titlePersonalData");
 
+    private SelenideElement changeNameOrEmailButton = $("#btnChangeNameEmail");
+    
+    private SelenideElement changePasswordButton = $("#btnChangePassword");
+    
     private SelenideElement deleteButton = $("#btnDeleteAccount");
 
     @Override
@@ -41,8 +44,8 @@ public class PersonalDataPage extends AbstractBrowsingPage
         title.shouldHave(exactText(Neodymium.localizedText("personalDataPage.title"))).shouldBe(visible);
         
         // validate buttons
-        $("#btnChangeNameEmail").shouldHave(exactText(Neodymium.localizedText("button.changeNameOrMail"))).shouldBe(visible);
-        $("#btnChangePassword").shouldHave(exactText(Neodymium.localizedText("button.changePassword"))).shouldBe(visible);
+        changeNameOrEmailButton.shouldHave(exactText(Neodymium.localizedText("button.changeNameOrMail"))).shouldBe(visible);
+        changePasswordButton.shouldHave(exactText(Neodymium.localizedText("button.changePassword"))).shouldBe(visible);
         deleteButton.shouldHave(exactText(Neodymium.localizedText("button.deleteAccount"))).shouldBe(visible);
     }
     
@@ -59,12 +62,32 @@ public class PersonalDataPage extends AbstractBrowsingPage
         $("#customerEmail").shouldHave(exactText(user.getEmail())).shouldBe(visible);
     }
     
+    @Step("validate successful update")
+    public void validateSuccessfulSave()
+    {
+        successMessage.validateSuccessMessage(Neodymium.localizedText("successMessage.successfulUpdate"));
+    }
+    
     /// ========== personal data page navigation ========== ///
     
     @Step("open delete account page from personal data page")
     public DeleteAccountPage openDeleteAccountPage()
     {
-        deleteButton.click(ClickOptions.usingJavaScript());
+        deleteButton.click();
         return new DeleteAccountPage().isExpectedPage();
+    }
+    
+    @Step("open delete account page from personal data page")
+    public ChangeNameOrEmailPage openChangeNameOrEmailPage()
+    {
+        changeNameOrEmailButton.click();
+        return new ChangeNameOrEmailPage().isExpectedPage();
+    }
+    
+    @Step("open delete account page from personal data page")
+    public ChangePasswordPage openChangePasswordPage()
+    {
+        changePasswordButton.click();
+        return new ChangePasswordPage().isExpectedPage();
     }
 }

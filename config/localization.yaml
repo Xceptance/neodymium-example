@@ -9,6 +9,7 @@ default:
         accountOverview: "My Account"
         logout: "Logout"
         addToCart: "Add to cart"
+        addNewAddress: "Add new address"
         addNewShippingAddress: "Add a new shipping address"
         addNewBillingAddress: "Add a new billing address"
         addNewCreditCard: "Add a new credit card"
@@ -22,7 +23,6 @@ default:
         myAddresses: "My Addresses"
         paymentSettings: "Payment Settings"
         personalData: "Personal Data"
-        delete: "Delete"
         edit: "Edit"
         changeNameOrMail: "Change Name or Email"
         changePassword: "Change your password"
@@ -73,8 +73,15 @@ default:
             firstName: "First name"
             lastName: "Last name"
             confirmPassword: "Confirm password"
+            oldPassword: "Old password"
+            newPassword: "New password"
+            repeatNewPassword: "Repeat new password"
         inputDescription:
             fullName: "Full name*"
+            firstName: "First name*"
+            yourFirstName: "Your first name*"
+            lastName: "Last name*" 
+            yourLastName: "Your last name*"          
             company: "Company"
             address: "Address*"
             city: "City*"
@@ -85,14 +92,16 @@ default:
             cardNumber: "Card number*"
             cardHolderName: "Cardholder's name*"
             expirationDate: Expiration date*
-            requiredFields: "*Required fields"
-            email: "Your email*"
-            password: "Your Password*"
-            firstName: "First name*"
-            lastName: "Last name*"           
-            email2: "Email address*"
-            password2: "Password*"
+            yourEmail: "Your email*"
+            email: "Email address*"
+            yourPassword: "Your password*"
+            password: "Password*"
             confirmPassword: "Confirm password*"
+            oldPassword: "Old password*"
+            newPassword: "New password*"
+            repeatNewPassword: "Repeat new password*"
+            shippingInfo: "We only ship to United States and Germany."
+            requiredFields: "*Required fields"
         dropdown:
             country:
                 usa: "United States"
@@ -133,6 +142,7 @@ default:
         successfulOrder: "Thank you for shopping with us!"
         successfulRegistration: "Your account has been created. Log in with your email address and password."
         successfulSave: "Saving completed."
+        successfulUpdate: "Updating completed."
         
     errorMessage:
         noProductsFound: "Sorry! No results found matching your search. Please try again."
@@ -327,11 +337,23 @@ default:
             
     myAddressesPage:
         title: "My Addresses"
+        
+    addNewShippingAddressPage:
+        title: "Add a new shipping address"
+        
+    addNewBillingAddressPage:
+        title: "Add a new billing address"
             
     personalDataPage:
         title: "Personal Data"
         name: "Name"
         email: "Email"
+    
+    changeNameOrEmailPage:
+        title: "Change your personal information"
+    
+    changePasswordPage:
+        title: "Change your password"
             
     deleteAccontPage:
         title: "Delete your account"

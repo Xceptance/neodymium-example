@@ -5,7 +5,6 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -82,8 +81,8 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
         final int index = position - 1;
         
         // select address, press "Use this credit card"
-        $("#payment" + index + " input").click(ClickOptions.usingJavaScript());
-        useCreditCardButton.click(ClickOptions.usingJavaScript());
+        $("#payment" + index + " input").click();
+        useCreditCardButton.click();
 
         return new PlaceOrderPage().isExpectedPage();
     }

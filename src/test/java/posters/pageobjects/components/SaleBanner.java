@@ -6,7 +6,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import com.codeborne.selenide.ClickOptions;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
@@ -27,7 +26,7 @@ public class SaleBanner extends AbstractComponent
     public void validateStructure()
     {
         validateSaleBanner(Neodymium.localizedText("header.sale.first"));
-        $("#carousel-sale .carousel-control-next").click(ClickOptions.usingJavaScript());
+        $("#carousel-sale .carousel-control-next").click();
         validateSaleBanner(Neodymium.localizedText("header.sale.second"));
     }
 }

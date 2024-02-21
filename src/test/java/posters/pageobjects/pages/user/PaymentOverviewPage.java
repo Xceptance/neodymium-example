@@ -5,23 +5,21 @@ import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.HomePage;
-import posters.tests.testdata.dataobjects.CreditCard;
 
 public class PaymentOverviewPage extends AbstractBrowsingPage
 {
     private SelenideElement title = $("#titlePaymentOverview");
     
-    private SelenideElement addNewPayment = $("#linkAddNewPayment");
+    private SelenideElement addNewCreditCardButton = $("#linkAddNewPayment");
 
     @Override
-    @Step("ensure this is a personal data page")
+    @Step("ensure this is a payment overview page")
     public PaymentOverviewPage isExpectedPage()
     {
         super.isExpectedPage();
@@ -29,10 +27,10 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ========== validate content payment settings page ========== ///
+    /// ========== validate content payment overview page ========== ///
     
     @Override
-    @Step("validate personal data page structure")
+    @Step("validate payment overview page structure")
     public void validateStructure()
     {
         super.validateStructure();
@@ -47,38 +45,21 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
     public void validateSuccessfulSave()
     {
         successMessage.validateSuccessMessage(Neodymium.localizedText("successMessage.successfulSave"));
-    }
-    
-    /// ========== add new payment ========== ///
-    
-    @Step("open form to create new payment")
-    public void openNewPayment() 
-    {
-        addNewPayment.click(ClickOptions.usingJavaScript());
-    }
-    
-    @Step("fill in payment form")
-    public void addNewPayment(CreditCard creditCard) 
-    {
-        // open add new payment form
-        openNewPayment();
-        
-        // fill in payment form
-        $("#creditCardNumber").val(creditCard.getCardNumber());
-        $("#name").val(creditCard.getFullName());
-        $("#expirationDateMonth").selectOption(creditCard.getExpDateMonth());
-        $("#expirationDateYear").selectOption(creditCard.getExpDateYear());
-        
-        // click add new payment button
-        $("#btnAddPayment").click(ClickOptions.usingJavaScript());
-    }
+    }    
     
     /// ========== payment overview page navigation ========== ///
     
     @Step("open homepage from payment overview page")
     public HomePage openHomePage()
     {
-        $("#header-brand").click(ClickOptions.usingJavaScript());
+        $("#header-brand").click();
         return new HomePage().isExpectedPage();
+    }
+    
+    @Step("add new credit card")
+    public AddNewCreditCardPage openAddNewCreditCardPage() 
+    {
+        addNewCreditCardButton.click();
+        return new AddNewCreditCardPage().isExpectedPage();
     }
 }

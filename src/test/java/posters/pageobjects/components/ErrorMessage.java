@@ -1,7 +1,6 @@
 package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -17,7 +16,7 @@ public class ErrorMessage extends AbstractComponent
     @Step("ensure availability error message")
     public void isComponentAvailable()
     {
-        errorMessage.should(exist);
+        errorMessage.shouldBe(visible);
     }
     
     @Step("validate visibility of error message '{message}'")

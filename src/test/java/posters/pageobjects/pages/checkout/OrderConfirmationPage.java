@@ -5,7 +5,6 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -70,7 +69,7 @@ public class OrderConfirmationPage extends AbstractBrowsingPage
     @Step("open homepage from order confirmation page")
     public HomePage openHomePage()
     {
-        homePageButton.click(ClickOptions.usingJavaScript());
+        homePageButton.click();
 
         return new HomePage().isExpectedPage();
     }

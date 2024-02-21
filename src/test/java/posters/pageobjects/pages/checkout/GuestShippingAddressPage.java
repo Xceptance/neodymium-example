@@ -8,7 +8,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -18,6 +17,20 @@ import posters.tests.testdata.dataobjects.Address;
 public class GuestShippingAddressPage extends AbstractCheckoutPage
 {
     private SelenideElement title = $("#titleDelAddr");
+    
+    private SelenideElement fullNameField = $("#address-form-input-full-name");
+    
+    private SelenideElement companyField = $("#address-form-input-company");
+    
+    private SelenideElement addressLineField = $("#address-form-input-adress-line");
+    
+    private SelenideElement cityField = $("#address-form-input-city");
+    
+    private SelenideElement stateField = $("#address-form-input-state");
+    
+    private SelenideElement zipField = $("#address-form-input-zip");
+    
+    private SelenideElement countryField = $("#address-form-select-country");
 
     private SelenideElement addShippingButton = $(".ms-auto.btn");
 
@@ -62,17 +75,19 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
     @Step("validate fill-in form placeholder")
     public void validateFillInPlaceholder()
     {
-        $("#address-form-input-full-name").shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.name")))).shouldBe(visible);
-        $("#address-form-input-company").shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.companyName")))).shouldBe(visible);
-        $("#address-form-input-adress-line").shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.address")))).shouldBe(visible);
-        $("#address-form-input-zip").shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.zip")))).shouldBe(visible);
+        fullNameField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.name")))).shouldBe(visible);
+        companyField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.companyName")))).shouldBe(visible);
+        addressLineField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.address")))).shouldBe(visible);
+        cityField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.city")))).shouldBe(visible);
+        stateField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.state")))).shouldBe(visible);
+        zipField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.zip")))).shouldBe(visible);
     }
     
     @Step("validate country dropdown")
     public void validateCountryDropdown()
     {
-        $("#address-form-select-country").shouldBe(matchText(Neodymium.localizedText("fillIn.dropdown.country.usa"))).should(exist);
-        $("#address-form-select-country").shouldBe(matchText(Neodymium.localizedText("fillIn.dropdown.country.germany"))).should(exist);
+        countryField.shouldBe(matchText(Neodymium.localizedText("fillIn.dropdown.country.usa"))).should(exist);
+        countryField.shouldBe(matchText(Neodymium.localizedText("fillIn.dropdown.country.germany"))).should(exist);
     }
     
     @Step("validate shipping address usage for billing address radio")
@@ -81,12 +96,6 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
         $(".mb-1").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.useThisAddressForBilling"))).shouldBe(visible);
         $$(".form-check-label").findBy(attribute("for", "billEqualShipp-Yes")).shouldHave(exactText(Neodymium.localizedText("fillIn.radio.yes"))).shouldBe(visible);        
         $$(".form-check-label").findBy(attribute("for", "billEqualShipp-No")).shouldHave(exactText(Neodymium.localizedText("fillIn.radio.no"))).shouldBe(visible);
-    }
-    
-    @Step("validate required string")
-    public void validateRequiredString() 
-    {
-        $(".me-auto").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
     }
 
     @Override
@@ -104,7 +113,7 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
         // validate fill in form headlines
         validateFillInHeadlines();
 
-        // validate fill in form structure
+        // validate fill in form placeholder
         validateFillInPlaceholder();
 
         // validate country selection dropdown
@@ -114,42 +123,33 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
         validateAddressRadio();
 
         // validate "required fields" string
-        validateRequiredString();
+        $(".me-auto").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
 
         // validate continue button
         addShippingButton.shouldHave(exactText(Neodymium.localizedText("button.continue"))).shouldBe(visible);
     }
 
     /// ========== send shipping address form ========== ///
-
-    private GuestBillingAddressPage goToGuestBillingAddressPage(String name, String company, String address, String city,
-                                                                String state, String zip, String country)
-     {
-         // fill in form with parameters
-         $("#address-form-input-full-name").val(name);
-         $("#address-form-input-company").val(company);
-         $("#address-form-input-adress-line").val(address);
-         $("#address-form-input-city").val(city);
-         $("#address-form-input-state").val(state);
-         $("#address-form-input-zip").val(zip);
-         $("#address-form-select-country").selectOption(country);
-
-         $("#billEqualShipp-No").click(ClickOptions.usingJavaScript());
-
-         // go to guest billing address page
-         addShippingButton.click(ClickOptions.usingJavaScript());
-
-         return new GuestBillingAddressPage().isExpectedPage();
-     }
     
     @Step("fill and send shipping address form with '{shippingAddress}' and go to guest billing address page")
     public GuestBillingAddressPage goToGuestBillingAddressPage(Address shippingAddress)
     {
         String fullName = shippingAddress.getFirstName() + " " + shippingAddress.getLastName();
+        
+        // fill in form with parameters
+        $("#address-form-input-full-name").val(fullName);
+        $("#address-form-input-company").val(shippingAddress.getCompany());
+        $("#address-form-input-adress-line").val(shippingAddress.getStreet());
+        $("#address-form-input-city").val(shippingAddress.getCity());
+        $("#address-form-input-state").val(shippingAddress.getState());
+        $("#address-form-input-zip").val(shippingAddress.getZip());
+        $("#address-form-select-country").selectOption(shippingAddress.getCountry());
 
-        return goToGuestBillingAddressPage(fullName, shippingAddress.getCompany(), shippingAddress.getStreet(),
-                                           shippingAddress.getCity(), shippingAddress.getState(), shippingAddress.getZip(),
-                                           shippingAddress.getCountry());
+        // go to guest billing address page
+        $("#billEqualShipp-No").click();
+        addShippingButton.click();
+
+        return new GuestBillingAddressPage().isExpectedPage();
     }
 
     private GuestPaymentPage goToGuestPaymentPage(String name, String company, String address, String city,
@@ -164,10 +164,10 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
          $("#address-form-input-zip").val(zip);
          $("#address-form-select-country").selectOption(country);
 
-        $("#billEqualShipp-Yes").click(ClickOptions.usingJavaScript());
+        $("#billEqualShipp-Yes").click();
 
         // go to guest payment page
-        addShippingButton.click(ClickOptions.usingJavaScript());
+        addShippingButton.click();
 
         return new GuestPaymentPage().isExpectedPage();
     }

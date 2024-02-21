@@ -1,0 +1,115 @@
+package posters.pageobjects.pages.user;
+
+import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
+import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Neodymium;
+
+import io.qameta.allure.Step;
+import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
+import posters.tests.testdata.dataobjects.User;
+
+public class ChangeNameOrEmailPage extends AbstractBrowsingPage
+{
+    private SelenideElement lastNameField = $("#lastName");
+   
+    private SelenideElement firstNameField = $("#firstName");
+    
+    private SelenideElement emailField = $("#eMail");
+    
+    private SelenideElement passwordField = $("#password");
+    
+    private SelenideElement updateNameOrEmailButton = $("#btnChangeNameEmail");
+    
+    @Override
+    @Step("ensure this is a personal data page")
+    public ChangeNameOrEmailPage isExpectedPage()
+    {
+        super.isExpectedPage();
+        $("#formChangeNameEmail").should(exist);
+        return this;
+    }
+
+    /// ========== validate content change name or email page ========== ///
+    
+    private void validateFillInHeadlines(String headline)
+    {
+        $$(".form-group label").findBy(exactText(headline)).shouldBe(visible);
+    }
+    
+    @Step("validate fill-in form headlines")
+    public void validateFillInHeadlines()
+    {
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.yourLastName"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.yourFirstName"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.yourEmail"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.yourPassword"));
+    }
+    
+    @Step("validate fill in form placeholder")
+    public void validateFillInPlaceholder() 
+    {
+        // clear input fields
+        lastNameField.clear();
+        firstNameField.clear();
+        emailField.clear();
+        
+        // validate placeholder
+        lastNameField.shouldHave(attribute("placeholder", Neodymium.localizedText("fillIn.placeholder.lastName"))).shouldBe(visible);
+        firstNameField.shouldHave(attribute("placeholder", Neodymium.localizedText("fillIn.placeholder.firstName"))).shouldBe(visible);
+        emailField.shouldHave(attribute("placeholder", Neodymium.localizedText("fillIn.placeholder.email"))).shouldBe(visible);
+        passwordField.shouldHave(attribute("placeholder", Neodymium.localizedText("fillIn.placeholder.password"))).shouldBe(visible);
+    }
+    
+    @Override
+    @Step("validate change name or email page structure")
+    public void validateStructure()
+    {
+        super.validateStructure();
+        
+        // validate title
+        $(".h2").shouldHave(exactText(Neodymium.localizedText("changeNameOrEmailPage.title"))).shouldBe(visible);
+        
+        // validate fill in headlines
+        validateFillInHeadlines();
+        
+        // validate fill in placeholder
+        validateFillInPlaceholder();
+        
+        // validate "required fields" string
+        $(".reqField").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
+        
+        // validate update account button
+        updateNameOrEmailButton.shouldHave(exactText(Neodymium.localizedText("button.updateAccount"))).shouldBe(visible);
+    }
+    
+    @Step("validate user information")
+    public void validateUserInformation(User user) 
+    {
+        lastNameField.shouldHave(attribute("value", user.getLastName())).shouldBe(visible);
+        firstNameField.shouldHave(attribute("value", user.getFirstName())).shouldBe(visible);
+        emailField.shouldHave(attribute("value", user.getEmail())).shouldBe(visible);
+    }
+    
+    /// ========== change name or email page navigation ========== ///
+    
+    @Step("change name or email")
+    public PersonalDataPage changeNameOrPassword(User user)
+    {
+        // fill out the change name or email form
+        lastNameField.val(user.getLastName());
+        firstNameField.val(user.getFirstName());
+        emailField.val(user.getEmail());
+        passwordField.val(user.getPassword());
+
+        // click on the update account button
+        updateNameOrEmailButton.click();
+        
+        return new PersonalDataPage().isExpectedPage();
+    }
+}

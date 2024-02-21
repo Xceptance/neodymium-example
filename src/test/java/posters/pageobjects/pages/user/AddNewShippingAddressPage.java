@@ -1,4 +1,4 @@
-package posters.pageobjects.pages.checkout;
+package posters.pageobjects.pages.user;
 
 import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.exactText;
@@ -12,12 +12,11 @@ import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
+import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.tests.testdata.dataobjects.Address;
 
-public class GuestBillingAddressPage extends AbstractCheckoutPage
-{
-    private SelenideElement title = $("#titleBillAddr");
-    
+public class AddNewShippingAddressPage extends AbstractBrowsingPage
+{    
     private SelenideElement fullNameField = $("#address-form-input-full-name");
     
     private SelenideElement companyField = $("#address-form-input-company");
@@ -31,30 +30,20 @@ public class GuestBillingAddressPage extends AbstractCheckoutPage
     private SelenideElement zipField = $("#address-form-input-zip");
     
     private SelenideElement countryField = $("#address-form-select-country");
-
-    private SelenideElement addBillingButton = $(".ms-auto.btn");
+    
+    private SelenideElement addNewAddressButton = $("#btnAddShippAddr");
 
     @Override
-    @Step("ensure this is a billing address page")
-    public GuestBillingAddressPage isExpectedPage()
+    @Step("ensure this is a add new shipping address page")
+    public AddNewShippingAddressPage isExpectedPage()
     {
         super.isExpectedPage();
-        title.should(exist);
+        $("#formAddDelAddr .h2").should(exist);
         return this;
     }
 
-    /// ========== validate content guest billing address page ========== ///
-    
-    @Step("validate process wrap")
-    public void validateProcessWrap() 
-    {
-        for (int i = 1; i <= 6; i++) 
-        {
-            $(".progress-step-" + i + " .progress-bubble").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".number"))).shouldBe(visible);
-            $(".progress-step-" + i + " .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".name"))).shouldBe(visible);    
-        }
-    }
-    
+    /// ========== validate content add new shipping address page ========== ///
+
     private void validateFillInHeadlines(String headline)
     {
         $$(".form-label").findBy(exactText(headline)).shouldBe(visible);
@@ -91,18 +80,15 @@ public class GuestBillingAddressPage extends AbstractCheckoutPage
     }
     
     @Override
-    @Step("validate shipping address page structure")
+    @Step("validate add new shipping address page structure")
     public void validateStructure()
     {
         super.validateStructure();
 
-        // validate process wrap
-         validateProcessWrap();
-
         // validate title
-        title.shouldHave(exactText(Neodymium.localizedText("guestBillingAddressPage.title"))).shouldBe(visible);
-
-        // validate fill form headlines
+        $(".h2").shouldHave(exactText(Neodymium.localizedText("addNewShippingAddressPage.title"))).shouldBe(visible);
+        
+        // validate fill in form headlines
         validateFillInHeadlines();
 
         // validate fill in form placeholder
@@ -110,41 +96,34 @@ public class GuestBillingAddressPage extends AbstractCheckoutPage
 
         // validate country selection dropdown
         validateCountryDropdown();
+        
+        // validate country selection help text
+        $("#address-form-select-country-help-block").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.shippingInfo"))).shouldBe(visible);
 
         // validate "required fields" string
-        $(".me-auto").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
+        $(".reqField").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
 
         // validate continue button
-        addBillingButton.shouldHave(exactText(Neodymium.localizedText("button.continue"))).shouldBe(visible);
-    }
-
-    /// ========== send billing address form ========== ///
-
-    private GuestPaymentPage goToGuestPaymentPage(String name, String company, String address, String city,
-                                                 String state, String zip, String country)
-    {
-        // fill in form with parameters
-        $("#address-form-input-full-name").val(name);
-        $("#address-form-input-company").val(company);
-        $("#address-form-input-adress-line").val(address);
-        $("#address-form-input-city").val(city);
-        $("#address-form-input-state").val(state);
-        $("#address-form-input-zip").val(zip);
-        $("#address-form-select-country").selectOption(country);
-        
-        // go to guest payment page
-        addBillingButton.click();
-
-        return new GuestPaymentPage().isExpectedPage();
+        addNewAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewAddress"))).shouldBe(visible);
     }
     
-    @Step("fill and send new billing address form with '{billingAddress}'")
-    public GuestPaymentPage goToGuestPaymentPage(Address billingAddress)
-    {
-        String fullName = billingAddress.getFirstName() + " " + billingAddress.getLastName();
-
-        return goToGuestPaymentPage(fullName, billingAddress.getCompany(), billingAddress.getStreet(),
-                                    billingAddress.getCity(), billingAddress.getState(), billingAddress.getZip(),
-                                    billingAddress.getCountry());
+    /// ========== add new shipping address page navigation ========== ///
+    
+    @Step("fill in shipping address form with {shippingAddress}")
+    public AddressOverviewPage addNewShippingAddress(Address shippingAddress) 
+    {      
+        // fill in shipping address form
+        fullNameField.val(shippingAddress.getFullName());
+        companyField.val(shippingAddress.getCompany());
+        addressLineField.val(shippingAddress.getStreet());
+        cityField.val(shippingAddress.getCity());
+        stateField.val(shippingAddress.getState());
+        zipField.val(shippingAddress.getZip());
+        countryField.selectOption(shippingAddress.getCountry());
+        
+        // click add new address button
+        addNewAddressButton.click();
+        
+        return new AddressOverviewPage().isExpectedPage();
     }
 }

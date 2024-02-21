@@ -8,7 +8,6 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import org.junit.Assert;
 
-import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
@@ -68,7 +67,6 @@ public class CartPage extends AbstractBrowsingPage
         }
         else
         {
-
             // validate product table head
             validateTableHead();
 
@@ -240,17 +238,17 @@ public class CartPage extends AbstractBrowsingPage
         productContainer.find(".product-count").setValue(Integer.toString(amount));
 
         // click update button
-        productContainer.find(".btnUpdateProduct").click(ClickOptions.usingJavaScript());
+        productContainer.find(".btnUpdateProduct").click();
     }
 
     @Step("remove product on position '{position}' on the cart page")
     public void removeProduct(int position)
     {
         // click delete button
-        $("#btnRemoveProdCount" + (position - 1)).click(ClickOptions.usingJavaScript());
+        $("#btnRemoveProdCount" + (position - 1)).click();
 
         // click delete confirmation button
-        $("#buttonDelete").click(ClickOptions.usingJavaScript());
+        $("#buttonDelete").click();
     }
     
     @Step("wait for update")
@@ -265,28 +263,28 @@ public class CartPage extends AbstractBrowsingPage
     @Step("click on a product on position '{position}' on the cart page")
     public ProductDetailPage openProductDetailPage(int position)
     {
-        $("#product" + (position - 1) + " .img-thumbnail").click(ClickOptions.usingJavaScript());
+        $("#product" + (position - 1) + " .img-thumbnail").click();
         return new ProductDetailPage().isExpectedPage();
     }
 
     @Step("open homepage from cart page")
     public HomePage openHomePage()
     {
-        $("#header-brand").click(ClickOptions.usingJavaScript());
+        $("#header-brand").click();
         return new HomePage().isExpectedPage();
     }
 
     @Step("open guest shipping address from the cart page")
     public GuestShippingAddressPage openGuestShippingAddressPage()
     {
-        $("#btnStartCheckout").click(ClickOptions.usingJavaScript());
+        $("#btnStartCheckout").click();
         return new GuestShippingAddressPage().isExpectedPage();
     }
 
     @Step("open returning customer shipping address from the cart page")
     public ReturningCustomerShippingAddressPage openReturningCustomerShippingAddressPage()
     {
-        $("#btnStartCheckout").click(ClickOptions.usingJavaScript());
+        $("#btnStartCheckout").click();
         return new ReturningCustomerShippingAddressPage().isExpectedPage();
     }
 }

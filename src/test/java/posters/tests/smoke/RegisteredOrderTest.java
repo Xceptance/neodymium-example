@@ -64,16 +64,26 @@ public class RegisteredOrderTest extends AbstractTest
         // add new addresses
         if (!registeredOrderTestData.getShipAddrEqualBillAddr())
         {
-            addressOverviewPage.addNewShipAddr(registeredOrderTestData.getShippingAddress());
+            var addNewShippingAddressPage = addressOverviewPage.openAddNewShippingAddressPage();
+            addNewShippingAddressPage.validateStructure();
+            addressOverviewPage = addNewShippingAddressPage.addNewShippingAddress(registeredOrderTestData.getShippingAddress());
             addressOverviewPage.validateSuccessfulSave();
-            addressOverviewPage.addNewBillAddr(registeredOrderTestData.getBillingAddress());
+            
+            var addNewBillingAddressPage = addressOverviewPage.openAddNewBillingAddressPage();
+            addNewBillingAddressPage.validateStructure();
+            addressOverviewPage = addNewBillingAddressPage.addNewBillingAddress(registeredOrderTestData.getBillingAddress());
             addressOverviewPage.validateSuccessfulSave();
         }
         else
         {
-            addressOverviewPage.addNewShipAddr(registeredOrderTestData.getShippingAddress());
+            var addNewShippingAddressPage = addressOverviewPage.openAddNewShippingAddressPage();
+            addNewShippingAddressPage.validateStructure();
+            addressOverviewPage = addNewShippingAddressPage.addNewShippingAddress(registeredOrderTestData.getShippingAddress());
             addressOverviewPage.validateSuccessfulSave();
-            addressOverviewPage.addNewBillAddr(registeredOrderTestData.getShippingAddress());
+            
+            var addNewBillingAddressPage = addressOverviewPage.openAddNewBillingAddressPage();
+            addNewBillingAddressPage.validateStructure();
+            addressOverviewPage = addNewBillingAddressPage.addNewBillingAddress(registeredOrderTestData.getShippingAddress());
             addressOverviewPage.validateSuccessfulSave();
         }
 
@@ -85,7 +95,9 @@ public class RegisteredOrderTest extends AbstractTest
         paymentOverviewPage.validateStructure();
         
         // add new payment
-        paymentOverviewPage.addNewPayment(registeredOrderTestData.getCreditCard());
+        var addNewCreditCardPage = paymentOverviewPage.openAddNewCreditCardPage();
+        addNewCreditCardPage.validateStructure();
+        paymentOverviewPage = addNewCreditCardPage.addNewCreditCard(registeredOrderTestData.getCreditCard());
         paymentOverviewPage.validateSuccessfulSave();
         
         // go to homepage

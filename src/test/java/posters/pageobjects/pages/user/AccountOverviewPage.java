@@ -5,7 +5,6 @@ import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -56,28 +55,28 @@ public class AccountOverviewPage extends AbstractBrowsingPage
     @Step("open order history page")
     public OrderHistoryPage openOrderHistory()
     {
-        orderOverviewLink.click(ClickOptions.usingJavaScript());
+        orderOverviewLink.click();
         return new OrderHistoryPage().isExpectedPage();
     }
     
     @Step("open my addresses page")
     public AddressOverviewPage openMyAddresses()
     {
-        myAddressesLink.click(ClickOptions.usingJavaScript());
+        myAddressesLink.click();
         return new AddressOverviewPage().isExpectedPage();
     }
     
     @Step("open payment settings page")
     public PaymentOverviewPage openPaymentSettings()
     {
-        paymentSettingsLink.click(ClickOptions.usingJavaScript());
+        paymentSettingsLink.click();
         return new PaymentOverviewPage().isExpectedPage();
     }
     
     @Step("open personal data page")
     public PersonalDataPage openPersonalData()
     {
-        personalDataLink.click(ClickOptions.usingJavaScript());
+        personalDataLink.click();
         return new PersonalDataPage().isExpectedPage();
     }
 }

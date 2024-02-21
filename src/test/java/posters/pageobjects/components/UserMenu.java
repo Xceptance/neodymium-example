@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -35,14 +34,14 @@ public class UserMenu extends AbstractComponent
     @Step("open user menu")
     public void openUserMenu()
     {
-        showUserMenu.click(ClickOptions.usingJavaScript());
+        showUserMenu.click();
         userMenu.waitUntil(visible, 9000);
     }
 
     @Step("close user menu")
     public void closeUserMenu()
     {
-        $("#top-demo-disclaimer").click(ClickOptions.usingJavaScript());
+        $("#top-demo-disclaimer").click();
         userMenu.waitUntil(not(visible), 9000);
     }
 
@@ -50,7 +49,7 @@ public class UserMenu extends AbstractComponent
     public RegisterPage openRegisterPage()
     {
         openUserMenu();
-        userMenu.find("#go-to-registration").click(ClickOptions.usingJavaScript());
+        userMenu.find("#go-to-registration").click();
         return new RegisterPage().isExpectedPage();
     }
 
@@ -58,7 +57,7 @@ public class UserMenu extends AbstractComponent
     public LoginPage openLoginPage()
     {
         openUserMenu();
-        userMenu.find("#go-to-login").click(ClickOptions.usingJavaScript());
+        userMenu.find("#go-to-login").click();
         return new LoginPage().isExpectedPage();
     }
 
@@ -66,7 +65,7 @@ public class UserMenu extends AbstractComponent
     public AccountOverviewPage openAccountOverviewPage()
     {
         openUserMenu();
-        userMenu.find("#go-to-account-overview").click(ClickOptions.usingJavaScript());
+        userMenu.find("#go-to-account-overview").click();
         return new AccountOverviewPage().isExpectedPage();
     }
 
@@ -74,7 +73,7 @@ public class UserMenu extends AbstractComponent
     public HomePage logout()
     {
         openUserMenu();
-        userMenu.find("#go-to-logout").click(ClickOptions.usingJavaScript());
+        userMenu.find("#go-to-logout").click();
         return new HomePage().isExpectedPage();
     }
 
