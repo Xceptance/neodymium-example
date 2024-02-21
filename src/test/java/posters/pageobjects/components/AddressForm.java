@@ -33,6 +33,8 @@ public class AddressForm extends AbstractComponent
     
     private SelenideElement countryField = $("#address-form-select-country");
     
+    private SelenideElement requiredField = $(".reqField, .me-auto");
+    
     private SelenideElement addNewAddressToAddressOverviewButton = $("#btnAddShippAddr, #btnAddBillAddr");
     
     private SelenideElement addNewGuestAddressButton = $("#button-add-shipping-address, #button-add-billing-address");
@@ -145,10 +147,7 @@ public class AddressForm extends AbstractComponent
     
     @Step("validate address form structure")
     public void validateStructure()
-    {
-        // validate title
-        $(".h2").shouldHave(exactText(Neodymium.localizedText("addNewShippingAddressPage.title"))).shouldBe(visible);
-        
+    {       
         // validate fill in form headlines
         validateFillInHeadlines();
 
@@ -162,6 +161,6 @@ public class AddressForm extends AbstractComponent
         $("#address-form-select-country-help-block").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.shippingInfo"))).shouldBe(visible);
 
         // validate "required fields" string
-        $(".reqField").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
+        requiredField.shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
     }
 }

@@ -56,11 +56,11 @@ public class GuestOrderTest extends AbstractTest
         if (!guestOrderTestData.getShipAddrEqualBillAddr()) 
         {
             // go to billing address page and validate
-            var billingAddressPage = shippingAddressPage.goToGuestBillingAddressPage(guestOrderTestData.getShippingAddress());
+            var billingAddressPage = shippingAddressPage.addressForm.goToGuestBillingAddressPage(guestOrderTestData.getShippingAddress());
             billingAddressPage.validateStructure();
         
             // go to payment page and validate
-            paymentPage = billingAddressPage.goToGuestPaymentPage(guestOrderTestData.getBillingAddress());
+            paymentPage = billingAddressPage.addressForm.goToGuestPaymentPage(guestOrderTestData.getBillingAddress());
             paymentPage.validateStructure();
             
             // go to place order page and validate order overview
@@ -70,7 +70,7 @@ public class GuestOrderTest extends AbstractTest
         else
         {
             // go to payment page and validate
-            paymentPage = shippingAddressPage.goToGuestPaymentPage(guestOrderTestData.getShippingAddress());
+            paymentPage = shippingAddressPage.addressForm.goToGuestPaymentPage(guestOrderTestData.getShippingAddress());
             paymentPage.validateStructure();
             
             // go to place order page and validate order overview

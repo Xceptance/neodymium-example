@@ -66,24 +66,24 @@ public class RegisteredOrderTest extends AbstractTest
         {
             var addNewShippingAddressPage = addressOverviewPage.openAddNewShippingAddressPage();
             addNewShippingAddressPage.validateStructure();
-            addressOverviewPage = addNewShippingAddressPage.addNewShippingAddress(registeredOrderTestData.getShippingAddress());
+            addressOverviewPage = addNewShippingAddressPage.addressForm.addNewAddress(registeredOrderTestData.getShippingAddress());
             addressOverviewPage.validateSuccessfulSave();
             
             var addNewBillingAddressPage = addressOverviewPage.openAddNewBillingAddressPage();
             addNewBillingAddressPage.validateStructure();
-            addressOverviewPage = addNewBillingAddressPage.addNewBillingAddress(registeredOrderTestData.getBillingAddress());
+            addressOverviewPage = addNewBillingAddressPage.addressForm.addNewAddress(registeredOrderTestData.getBillingAddress());
             addressOverviewPage.validateSuccessfulSave();
         }
         else
         {
             var addNewShippingAddressPage = addressOverviewPage.openAddNewShippingAddressPage();
             addNewShippingAddressPage.validateStructure();
-            addressOverviewPage = addNewShippingAddressPage.addNewShippingAddress(registeredOrderTestData.getShippingAddress());
+            addressOverviewPage = addNewShippingAddressPage.addressForm.addNewAddress(registeredOrderTestData.getShippingAddress());
             addressOverviewPage.validateSuccessfulSave();
             
             var addNewBillingAddressPage = addressOverviewPage.openAddNewBillingAddressPage();
             addNewBillingAddressPage.validateStructure();
-            addressOverviewPage = addNewBillingAddressPage.addNewBillingAddress(registeredOrderTestData.getShippingAddress());
+            addressOverviewPage = addNewBillingAddressPage.addressForm.addNewAddress(registeredOrderTestData.getShippingAddress());
             addressOverviewPage.validateSuccessfulSave();
         }
 
