@@ -100,11 +100,8 @@ public class RegisteredOrderTest extends AbstractTest
         paymentOverviewPage = addNewCreditCardPage.addNewCreditCard(registeredOrderTestData.getCreditCard());
         paymentOverviewPage.validateSuccessfulSave();
         
-        // go to homepage
-        homePage = paymentOverviewPage.openHomePage();
-        
         // go to category page
-        var categoryPage = homePage.header.topNav.clickCategory(Neodymium.localizedText(registeredOrderTestData.getTopCategory()));
+        var categoryPage = paymentOverviewPage.header.topNav.clickCategory(Neodymium.localizedText(registeredOrderTestData.getTopCategory()));
 
         // go to product detail page, add and store displayed product
         var productDetailPage = categoryPage.clickProductByPosition(registeredOrderTestData.getResultPosition());

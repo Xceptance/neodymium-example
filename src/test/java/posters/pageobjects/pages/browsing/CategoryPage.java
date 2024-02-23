@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -87,7 +88,7 @@ public class CategoryPage extends AbstractBrowsingPage
     @Step("click on a product by position '{position}'")
     public ProductDetailPage clickProductByPosition(int position)
     {
-        $("#product" + (position - 1) + " .btn.btn-primary").click();
+        $("#product" + (position - 1) + " .btn.btn-primary").click(ClickOptions.usingJavaScript());
         return new ProductDetailPage().isExpectedPage();
     }
     
@@ -96,7 +97,7 @@ public class CategoryPage extends AbstractBrowsingPage
     @Step("open homepage from category page")
     public HomePage openHomePage()
     {
-        $("#header-brand").click();
+        $("#header-brand").click(ClickOptions.usingJavaScript());
         return new HomePage().isExpectedPage();
     }
 }

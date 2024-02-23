@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -59,14 +60,14 @@ public class AddressOverviewPage extends AbstractBrowsingPage
     @Step("add new shipping address")
     public AddNewShippingAddressPage openAddNewShippingAddressPage() 
     {
-        addNewShippingAddressButton.click();
+        addNewShippingAddressButton.click(ClickOptions.usingJavaScript());
         return new AddNewShippingAddressPage().isExpectedPage();
     }
     
     @Step("add new billing address")
     public AddNewBillingAddressPage openAddNewBillingAddressPage() 
     {
-        addNewBillingAddressButton.click();
+        addNewBillingAddressButton.click(ClickOptions.usingJavaScript());
         return new AddNewBillingAddressPage().isExpectedPage();
     }
 }

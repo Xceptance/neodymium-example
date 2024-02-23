@@ -4,6 +4,7 @@ import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
@@ -30,7 +31,7 @@ public class NoHitsPage extends AbstractBrowsingPage
     @Step("open homepage from no hits page")
     public HomePage openHomePage()
     {
-        $("#header-brand").click();
+        $("#header-brand").click(ClickOptions.usingJavaScript());
         return new HomePage().isExpectedPage();
     }
 }

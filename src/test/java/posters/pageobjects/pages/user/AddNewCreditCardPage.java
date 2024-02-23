@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import java.time.LocalDate;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -74,7 +75,7 @@ public class AddNewCreditCardPage extends AbstractBrowsingPage
     public void validateMonthDropdown() 
     {
         // open dropdown
-        expirationMonth.click();
+        expirationMonth.click(ClickOptions.usingJavaScript());
         
         // validate months
         for (int i = 1; i <= 12; i++) 
@@ -87,7 +88,7 @@ public class AddNewCreditCardPage extends AbstractBrowsingPage
     public void validateYearDropdown() 
     {        
         // open dropdown
-        expirationYear.click();
+        expirationYear.click(ClickOptions.usingJavaScript());
         
         // validate years
         for (int i = 1; i <= 11; i++) 
@@ -136,7 +137,7 @@ public class AddNewCreditCardPage extends AbstractBrowsingPage
         expirationYear.selectOption(creditCard.getExpDateYear());
         
         // click add new payment button
-        addNewCreditCardButton.click();
+        addNewCreditCardButton.click(ClickOptions.usingJavaScript());
         
         return new PaymentOverviewPage().isExpectedPage();
     }

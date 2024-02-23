@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -108,7 +109,7 @@ public class ChangeNameOrEmailPage extends AbstractBrowsingPage
         passwordField.val(user.getPassword());
 
         // click on the update account button
-        updateNameOrEmailButton.click();
+        updateNameOrEmailButton.click(ClickOptions.usingJavaScript());
         
         return new PersonalDataPage().isExpectedPage();
     }

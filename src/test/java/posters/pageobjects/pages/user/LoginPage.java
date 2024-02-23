@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import org.junit.Assert;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -93,14 +94,14 @@ public class LoginPage extends AbstractBrowsingPage
     @Step("open register page from login page")
     public RegisterPage openRegister()
     {
-        registerLink.click();
+        registerLink.click(ClickOptions.usingJavaScript());
         return new RegisterPage().isExpectedPage();
     }
     
     @Step("open homepage from login page")
     public HomePage openHomePage()
     {
-        $("#header-brand").click();
+        $("#header-brand").click(ClickOptions.usingJavaScript());
         return new HomePage().isExpectedPage();
     }
     
@@ -112,7 +113,7 @@ public class LoginPage extends AbstractBrowsingPage
         passwordField.val(password);
 
         // click on the Sign In button.
-        signInButton.click();
+        signInButton.click(ClickOptions.usingJavaScript());
     }
     
     @Step("fill and send login form with valid user '{user}'")

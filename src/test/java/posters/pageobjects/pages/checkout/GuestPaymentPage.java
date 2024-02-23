@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -85,7 +86,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
     public void validateMonthDropdown() 
     {
         // open dropdown
-        expirationMonth.click();
+        expirationMonth.click(ClickOptions.usingJavaScript());
         
         // validate months
         for (int i = 1; i <= 12; i++) 
@@ -98,7 +99,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
     public void validateYearDropdown() 
     {        
         // open dropdown
-        expirationYear.click();
+        expirationYear.click(ClickOptions.usingJavaScript());
         
         // validate years
         for (int i = 1; i <= 11; i++) 
@@ -149,7 +150,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         expirationYear.selectOption(year);
 
         // go to place order page
-        addPaymentButton.click();
+        addPaymentButton.click(ClickOptions.usingJavaScript());
 
         return new PlaceOrderPage().isExpectedPage();
     }

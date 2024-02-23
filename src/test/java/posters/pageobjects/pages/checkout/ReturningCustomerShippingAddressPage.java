@@ -5,6 +5,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -72,6 +73,7 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
         // validate address data
         addressContainer.find(".name").shouldHave(exactText(fullName)).shouldBe(visible);
         addressContainer.find(".company").shouldHave(exactText(shippingAddress.getCompany())).shouldBe(visible);
+        addressContainer.find(".addressLine").shouldHave(exactText(shippingAddress.getStreet())).shouldBe(visible);
         addressContainer.find(".city").shouldHave(exactText(shippingAddress.getCity())).shouldBe(visible);
         addressContainer.find(".state").shouldHave(exactText(shippingAddress.getState())).shouldBe(visible);
         addressContainer.find(".zip").shouldHave(exactText(shippingAddress.getZip())).shouldBe(visible);
@@ -86,8 +88,8 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
         final int index = position - 1;
         
         // select address, press "Continue"
-        $("#delAddr" + index + " input").click();
-        useShippingAddressButton.click();
+        $("#delAddr" + index + " input").click(ClickOptions.usingJavaScript());
+        useShippingAddressButton.click(ClickOptions.usingJavaScript());
 
         return new ReturningCustomerBillingAddressPage().isExpectedPage();
     }

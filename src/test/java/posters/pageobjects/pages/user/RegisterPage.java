@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -101,7 +102,7 @@ public class RegisterPage extends AbstractBrowsingPage
         passwordRepeatField.val(user.getPassword());
 
         // click on the register button
-        registerButton.click();
+        registerButton.click(ClickOptions.usingJavaScript());
 
         return new LoginPage().isExpectedPage();
     }

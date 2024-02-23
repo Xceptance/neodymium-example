@@ -5,12 +5,12 @@ import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
-import posters.pageobjects.pages.browsing.HomePage;
 
 public class PaymentOverviewPage extends AbstractBrowsingPage
 {
@@ -49,17 +49,10 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
     
     /// ========== payment overview page navigation ========== ///
     
-    @Step("open homepage from payment overview page")
-    public HomePage openHomePage()
-    {
-        $("#header-brand").click();
-        return new HomePage().isExpectedPage();
-    }
-    
     @Step("add new credit card")
     public AddNewCreditCardPage openAddNewCreditCardPage() 
     {
-        addNewCreditCardButton.click();
+        addNewCreditCardButton.click(ClickOptions.usingJavaScript());
         return new AddNewCreditCardPage().isExpectedPage();
     }
 }

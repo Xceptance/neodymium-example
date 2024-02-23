@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -61,7 +62,7 @@ public class AddressForm extends AbstractComponent
         countryField.selectOption(address.getCountry());
         
         // click add new address button
-        addNewAddressToAddressOverviewButton.click();
+        addNewAddressToAddressOverviewButton.click(ClickOptions.usingJavaScript());
         
         return new AddressOverviewPage().isExpectedPage();
     }
@@ -79,8 +80,8 @@ public class AddressForm extends AbstractComponent
         countryField.selectOption(shippingAddress.getCountry());
 
         // go to guest billing address page
-        $("#billEqualShipp-No").click();
-        addNewGuestAddressButton.click();
+        $("#billEqualShipp-No").click(ClickOptions.usingJavaScript());
+        addNewGuestAddressButton.click(ClickOptions.usingJavaScript());
 
         return new GuestBillingAddressPage().isExpectedPage();
     }
@@ -100,10 +101,10 @@ public class AddressForm extends AbstractComponent
         // go to guest payment page
         if ($("#billEqualShipp-Yes").exists() && $("#billEqualShipp-No").exists()) 
         {
-            $("#billEqualShipp-Yes").click();
+            $("#billEqualShipp-Yes").click(ClickOptions.usingJavaScript());
         }
          
-        addNewGuestAddressButton.click();
+        addNewGuestAddressButton.click(ClickOptions.usingJavaScript());
 
         return new GuestPaymentPage().isExpectedPage();
     }
