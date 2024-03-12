@@ -50,6 +50,16 @@ public class AccountOverviewPage extends AbstractBrowsingPage
         paymentSettingsLink.shouldHave(exactText(Neodymium.localizedText("button.paymentSettings"))).shouldBe(visible);
         personalDataLink.shouldHave(exactText(Neodymium.localizedText("button.personalData"))).shouldBe(visible);
     }
+    
+    @Step("validate successful login of user '{firstName}' on home page")
+    public void validateSuccessfulLogin(String firstName)
+    {
+        // validate success message
+        successMessage.validateSuccessMessage(Neodymium.localizedText("successMessage.successfulLogin"));
+        
+        // validate {firstName} in user menu
+        header.userMenu.validateLoggedInName(firstName);
+    }
 
     /// ========== account overview page navigation ========== ///
     

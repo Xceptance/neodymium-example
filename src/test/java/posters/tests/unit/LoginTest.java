@@ -58,7 +58,7 @@ public class LoginTest extends AbstractTest
     public void testLoginWithWrongPasswort()
     {
         loginPage.sendFalseLoginForm(user);
-        loginPage.validateWrongPassword(user.getEmail());
+        loginPage.validateFalseLogin(user.getEmail());
     }
 
     @Test
@@ -66,7 +66,7 @@ public class LoginTest extends AbstractTest
     public void testLoginWithEmailFailure()
     {
         loginPage.sendFalseLoginForm(user);
-        loginPage.validateWrongEmail(user.getEmail());
+        loginPage.validateFalseLogin(user.getEmail());
     }
 
     @Test

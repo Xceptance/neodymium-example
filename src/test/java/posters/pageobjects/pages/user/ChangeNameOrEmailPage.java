@@ -46,10 +46,10 @@ public class ChangeNameOrEmailPage extends AbstractBrowsingPage
     @Step("validate fill-in form headlines")
     public void validateFillInHeadlines()
     {
-        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.yourLastName"));
-        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.yourFirstName"));
-        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.yourEmail"));
-        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.yourPassword"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.lastName"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.firstName"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.email"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.password"));
     }
     
     @Step("validate fill in form placeholder")

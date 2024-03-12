@@ -2,7 +2,7 @@
 	{
 		"firstName": "John",
 		"lastName": "Doe",
-		"email": "admin@example.com",
+		"email": "johndoe@example.com",
 		"password": "topsecret",
 		"testId": "happy path"
 	},

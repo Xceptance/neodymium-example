@@ -20,7 +20,9 @@ import posters.tests.testdata.dataobjects.Address;
 
 public class AddressForm extends AbstractComponent
 {
-    private SelenideElement fullNameField = $("#address-form-input-full-name");
+    private SelenideElement lastNameField = $("#address-form-input-last-name");
+
+    private SelenideElement firstNameField = $("#firstName");
     
     private SelenideElement companyField = $("#address-form-input-company");
     
@@ -53,7 +55,8 @@ public class AddressForm extends AbstractComponent
     public AddressOverviewPage addNewAddress(Address address) 
     {      
         // fill in shipping address form
-        fullNameField.val(address.getFullName());
+        lastNameField.val(address.getLastName());
+        firstNameField.val(address.getFirstName());
         companyField.val(address.getCompany());
         addressLineField.val(address.getStreet());
         cityField.val(address.getCity());
@@ -71,7 +74,8 @@ public class AddressForm extends AbstractComponent
     public GuestBillingAddressPage goToGuestBillingAddressPage(Address shippingAddress)
     {       
         // fill in form with parameters
-        fullNameField.val(shippingAddress.getFullName());
+        lastNameField.val(shippingAddress.getLastName());
+        firstNameField.val(shippingAddress.getFirstName());
         companyField.val(shippingAddress.getCompany());
         addressLineField.val(shippingAddress.getStreet());
         cityField.val(shippingAddress.getCity());
@@ -90,7 +94,8 @@ public class AddressForm extends AbstractComponent
     public GuestPaymentPage goToGuestPaymentPage(Address address)
     {
         // fill in form with parameters
-        fullNameField.val(address.getFullName());
+        lastNameField.val(address.getLastName());
+        firstNameField.val(address.getFirstName());
         companyField.val(address.getCompany());
         addressLineField.val(address.getStreet());
         cityField.val(address.getCity());
@@ -119,7 +124,8 @@ public class AddressForm extends AbstractComponent
     @Step("validate fill-in form headlines")
     public void validateFillInHeadlines()
     {
-        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.fullName"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.lastName"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.firstName"));
         validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.company"));
         validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.address"));
         validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.city"));
@@ -131,7 +137,8 @@ public class AddressForm extends AbstractComponent
     @Step("validate fill-in form placeholder")
     public void validateFillInPlaceholder()
     {
-        fullNameField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.name")))).shouldBe(visible);
+        lastNameField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.lastName")))).shouldBe(visible);
+        firstNameField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.firstName")))).shouldBe(visible);
         companyField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.companyName")))).shouldBe(visible);
         addressLineField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.address")))).shouldBe(visible);
         cityField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.city")))).shouldBe(visible);

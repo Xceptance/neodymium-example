@@ -64,7 +64,7 @@ default:
             companyName: "Company name"
             address: "Street address, Apartment, etc."
             city: "City"
-            state: "Your State"     
+            state: "State"     
             zip: "Zip / Postal"
             cardNumber: Card number
             cardHolderName: "Cardholder's name"
@@ -77,11 +77,8 @@ default:
             newPassword: "New password"
             repeatNewPassword: "Repeat new password"
         inputDescription:
-            fullName: "Full name*"
             firstName: "First name*"
-            yourFirstName: "Your first name*"
             lastName: "Last name*" 
-            yourLastName: "Your last name*"          
             company: "Company"
             address: "Address*"
             city: "City*"
@@ -92,9 +89,7 @@ default:
             cardNumber: "Card number*"
             cardHolderName: "Cardholder's name*"
             expirationDate: Expiration date*
-            yourEmail: "Your email*"
             email: "Email address*"
-            yourPassword: "Your password*"
             password: "Password*"
             confirmPassword: "Confirm password*"
             oldPassword: "Old password*"
@@ -147,6 +142,7 @@ default:
     errorMessage:
         noProductsFound: "Sorry! No results found matching your search. Please try again."
         emptyCart: "Your cart is empty. Continue shopping."
+        errorFalseLogin: "The email address or password is wrong. Please try again."
         emailDoesNotExist: "The email address you entered doesn't exist. Please try again."
         incorrectPassword: "The password you entered is incorrect. Please try again."
         
@@ -280,7 +276,7 @@ default:
                 description: "A perfect symmetry."
                 
     categoryPage:
-        searchResultText: "Your results for your search: "
+        searchResultText: "Results for your search: "
         pagination:
             goToLastPage: "»"
             goToFirstPage: "«"

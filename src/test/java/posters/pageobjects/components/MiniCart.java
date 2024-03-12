@@ -47,14 +47,14 @@ public class MiniCart extends AbstractComponent
     @Step("open the mini cart")
     public void openMiniCart()
     {
-        headerCart.click(ClickOptions.usingJavaScript());
+        headerCart.click();
         miniCart.waitUntil(visible, 9000);            
     }
 
     @Step("close the mini cart")
     public void closeMiniCart()
     {
-        $("#top-demo-disclaimer").click(ClickOptions.usingJavaScript());
+        $("#top-demo-disclaimer").click();
         miniCart.waitUntil(not(visible), 9000);
     }
 
@@ -71,10 +71,19 @@ public class MiniCart extends AbstractComponent
     @Step("get the subtotal price from mini cart")
     public String getSubtotal()
     {
-        openMiniCart();
-        String subtotal = subOrderPrice.text();
-        closeMiniCart();
-
+        String subtotal;
+        
+        if (Integer.parseInt(headerTotalCount.text()) == 0) 
+        {
+            subtotal = "$0.00";
+        }
+        else 
+        {
+            openMiniCart();
+            subtotal = subOrderPrice.text();
+            closeMiniCart();            
+        }
+        
         return subtotal;
     }
 
@@ -156,33 +165,30 @@ public class MiniCart extends AbstractComponent
     @Step("validate mini cart")
     public void validateStructure()
     {
-        openMiniCart();
-
         // validate shopping cart icon
         $(".icon-shopping-cart").shouldBe(visible);
 
+        // if minicart contains 0 items it's not possible to open
+        if (getTotalCount() == 0)
+        {
+            return;
+        }
+
+        openMiniCart();
+        
         // validate total count
         validateTotalCount(calculateTotalCount());
 
-        // validate title
-        // TODO - fix consistency mini cart title
-        // validateTitle();
+        // validate subtotal
+        validateSubtotal(calculateSubtotal());
 
         // validate label subtotal
         $(".labelText").shouldHave(exactText(Neodymium.localizedText("header.miniCart.subtotal"))).shouldBe(visible);
-
-        // validate subtotal
-        if (getTotalCount() == 0)
-        {
-            // if there are no items in cart
-            validateSubtotal("$0.00");
-        }
-        else
-        {
-            // if there are items in cart
-            validateSubtotal(calculateSubtotal());
-        }
-
+            
+        // validate title
+        // TODO - fix consistency mini cart title
+        // validateTitle();
+            
         // validate view cart button
         viewCartButton.shouldHave(exactText(Neodymium.localizedText("button.viewCart"))).shouldBe(visible);
 

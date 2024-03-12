@@ -50,11 +50,8 @@ public class RegisteredOrderTest extends AbstractTest
         var loginPage = registerPage.sendRegisterForm(registeredOrderTestData.getUser());
 
         // send login form
-        homePage = loginPage.sendLoginForm(registeredOrderTestData.getUser());
-        homePage.validateSuccessfulLogin(registeredOrderTestData.getUser().getFirstName());
-        
-        // go to account overview page and validate
-        var accountOverviewPage = homePage.header.userMenu.openAccountOverviewPage();
+        var accountOverviewPage = loginPage.sendLoginForm(registeredOrderTestData.getUser());
+        accountOverviewPage.validateSuccessfulLogin(registeredOrderTestData.getUser().getFirstName());
         accountOverviewPage.validateStructure();
         
         // go to address overview page and validate
@@ -105,8 +102,7 @@ public class RegisteredOrderTest extends AbstractTest
 
         // go to product detail page, add and store displayed product
         var productDetailPage = categoryPage.clickProductByPosition(registeredOrderTestData.getResultPosition());
-        productDetailPage.addToCart(registeredOrderTestData.getsSizeProduct(), registeredOrderTestData.getStyleProduct());
-        final var product = productDetailPage.getProduct();
+        final var product = productDetailPage.addToCart(registeredOrderTestData.getsSizeProduct(), registeredOrderTestData.getStyleProduct());
 
         // go to cart page
         var cartPage = productDetailPage.header.miniCart.openCartPage();

@@ -44,8 +44,7 @@ public class AddToCartTest extends AbstractTest
 
         // go to product detail page, add and store displayed product
         var productDetailPage = subCategoryPage.clickProductByPosition(addToCartTestData.getSubCategoryResultPosition());
-        productDetailPage.addToCart(addToCartTestData.getSizeFirstProduct(), addToCartTestData.getStyleFirstProduct());
-        final var product = productDetailPage.getProduct();
+        final var product = productDetailPage.addToCart(addToCartTestData.getSizeFirstProduct(), addToCartTestData.getStyleFirstProduct());
 
         // go to cart page
         var cartPage = productDetailPage.header.miniCart.openCartPage();

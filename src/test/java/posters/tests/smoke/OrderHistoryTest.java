@@ -50,11 +50,8 @@ public class OrderHistoryTest extends AbstractTest
         var loginPage = registerPage.sendRegisterForm(orderHistoryTestData.getUser());
 
         // send login form
-        homePage = loginPage.sendLoginForm(orderHistoryTestData.getUser());
-        homePage.validateSuccessfulLogin(orderHistoryTestData.getUser().getFirstName());
-        
-        // go to account overview page and validate
-        var accountOverviewPage = homePage.header.userMenu.openAccountOverviewPage();
+        var accountOverviewPage = loginPage.sendLoginForm(orderHistoryTestData.getUser());
+        accountOverviewPage.validateSuccessfulLogin(orderHistoryTestData.getUser().getFirstName());
         
         // go to order history page and validate
         var orderHistoryPage = accountOverviewPage.openOrderHistory();
@@ -104,8 +101,7 @@ public class OrderHistoryTest extends AbstractTest
 
         // go to product detail page, add and store displayed product
         var productDetailPage = categoryPage.clickProductByPosition(orderHistoryTestData.getResultPosition());
-        productDetailPage.addToCart(orderHistoryTestData.getsSizeProduct(), orderHistoryTestData.getStyleProduct());
-        final var product1 = productDetailPage.getProduct();
+        final var product1 = productDetailPage.addToCart(orderHistoryTestData.getsSizeProduct(), orderHistoryTestData.getStyleProduct());
 
         // go to cart page
         var cartPage = productDetailPage.header.miniCart.openCartPage();
@@ -137,16 +133,14 @@ public class OrderHistoryTest extends AbstractTest
 
         // go to product detail page, add and store displayed product
         productDetailPage = categoryPage.clickProductByPosition(orderHistoryTestData.getResultPosition());
-        productDetailPage.addToCart(orderHistoryTestData.getsSizeProduct(), orderHistoryTestData.getStyleProduct());
-        final var product2 = productDetailPage.getProduct();
+        final var product2 = productDetailPage.addToCart(orderHistoryTestData.getsSizeProduct(), orderHistoryTestData.getStyleProduct());
         
         // go to category page
         categoryPage = productDetailPage.header.topNav.clickCategory(Neodymium.localizedText(orderHistoryTestData.getTopCategory3()));
 
         // go to product detail page, add and store displayed product
         productDetailPage = categoryPage.clickProductByPosition(orderHistoryTestData.getResultPosition());
-        productDetailPage.addToCart(orderHistoryTestData.getsSizeProduct(), orderHistoryTestData.getStyleProduct());
-        final var product3 = productDetailPage.getProduct();
+        final var product3 = productDetailPage.addToCart(orderHistoryTestData.getsSizeProduct(), orderHistoryTestData.getStyleProduct());
 
         // go to cart page
         cartPage = productDetailPage.header.miniCart.openCartPage();

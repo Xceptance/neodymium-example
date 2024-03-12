@@ -39,8 +39,7 @@ public class GuestOrderTest extends AbstractTest
         
         // go to product detail page, add and store displayed product
         var productDetailPage = categoryPage.clickProductByPosition(guestOrderTestData.getResultPosition());
-        productDetailPage.addToCart(guestOrderTestData.getsSizeProduct(), guestOrderTestData.getStyleProduct());
-        final var product = productDetailPage.getProduct();
+        final var product = productDetailPage.addToCart(guestOrderTestData.getsSizeProduct(), guestOrderTestData.getStyleProduct());
         
         // go to cart page
         var cartPage = productDetailPage.header.miniCart.openCartPage();

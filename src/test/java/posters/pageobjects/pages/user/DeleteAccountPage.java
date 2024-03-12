@@ -42,7 +42,7 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         deleteForm.find(".h2").shouldHave(exactText(Neodymium.localizedText("deleteAccontPage.title"))).shouldBe(visible);
         
         // validate headline
-        $("label[for='password']").shouldBe(exactText(Neodymium.localizedText("fillIn.inputDescription.yourPassword")));
+        $("label[for='password']").shouldBe(exactText(Neodymium.localizedText("fillIn.inputDescription.password")));
         
         // validate placeholder
         passwordField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.password")))).shouldBe(visible);
