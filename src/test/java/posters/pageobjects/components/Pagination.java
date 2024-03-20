@@ -101,14 +101,19 @@ public class Pagination extends AbstractComponent
                 goToPage(i);
                 $(".active").shouldHave(exactText(Integer.toString(i)));
                 validateElementNumbers(expectedResultCount);
-                validateLeftNavigation();
-                validateRightNavigation();
+                if (i > 1) 
+                {
+                    validateLeftNavigation();
+                }
+                if (i < numberOfPages) 
+                {
+                    validateRightNavigation();                    
+                }
             }
 
             // validate that jump to first page button works properly
             goToFirstPage();
             $(".active").shouldHave(exactText(Integer.toString(1)));            
-            validateLeftNavigation();
             validateRightNavigation();
             validateElementNumbers(expectedResultCount);
             
@@ -116,7 +121,6 @@ public class Pagination extends AbstractComponent
             goToLastPage();
             $(".active").shouldHave(exactText(Integer.toString(numberOfPages)));            
             validateLeftNavigation();
-            validateRightNavigation();
             validateElementNumbers(expectedResultCount);
         }
         else return;

@@ -264,7 +264,7 @@ public class CartPage extends AbstractBrowsingPage
     @Step("click on a product on position '{position}' on the cart page")
     public ProductDetailPage openProductDetailPage(int position)
     {
-        $("#product" + (position - 1) + " .img-thumbnail").click(ClickOptions.usingJavaScript());
+        $("#product" + (position - 1) + " .img-thumbnail").click();
         return new ProductDetailPage().isExpectedPage();
     }
 

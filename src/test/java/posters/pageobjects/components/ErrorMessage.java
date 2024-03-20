@@ -10,7 +10,7 @@ import io.qameta.allure.Step;
 
 public class ErrorMessage extends AbstractComponent
 {
-    private SelenideElement errorMessage = $("#errorMessage");
+    private SelenideElement errorMessage = $(".alert-danger");
 
     @Override
     @Step("ensure availability error message")
@@ -22,8 +22,8 @@ public class ErrorMessage extends AbstractComponent
     @Step("validate visibility of error message '{message}'")
     public void validateErrorMessage(String message)
     {
-        errorMessage.find("strong").shouldHave(exactText(message)).shouldBe(visible);
-        errorMessage.find(".close").shouldHave(exactText("×")).shouldBe(visible);
+        errorMessage.shouldHave(exactText(message)).shouldBe(visible);
+        errorMessage.find(".btn-close").shouldBe(visible);
     }
 
     @Step("validate that no error message is visible")

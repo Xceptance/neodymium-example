@@ -65,9 +65,8 @@ public class AddToCartTest extends AbstractTest
         categoryPage = cartPage.header.search.categoryPageResult(addToCartTestData.getSearchTerm());
 
         // go to product detail page, add and store displayed product
-        productDetailPage = categoryPage.clickProductByPosition(addToCartTestData.getSearchResultPosition());
-        productDetailPage.addToCart(addToCartTestData.getSizeSecondProduct(), addToCartTestData.getStyleSecondProduct());
-        final var product2 = productDetailPage.getProduct();
+        productDetailPage = categoryPage.clickProductByPosition(addToCartTestData.getSearchResultPosition());      
+        final var product2 = productDetailPage.addToCart(addToCartTestData.getSizeSecondProduct(), addToCartTestData.getStyleSecondProduct());
 
         // go to cart page
         cartPage = productDetailPage.header.miniCart.openCartPage();
@@ -130,8 +129,12 @@ public class AddToCartTest extends AbstractTest
         // store product on cart page
         final var productFromCartPageBefore = cartPage.getProduct(1);
         
-        // go to product detail page, add product to cart
-        productDetailPage = cartPage.openProductDetailPage(1);
+        // go to sub category page
+        categoryPage = cartPage.header.topNav.clickCategory(Neodymium.localizedText(addToCartTestData.getTopCategory()));
+        subCategoryPage = categoryPage.header.topNav.clickSubCategory(Neodymium.localizedText(addToCartTestData.getTopCategory()), Neodymium.localizedText(addToCartTestData.getSubCategory()));
+
+        // go to product detail page, add and store displayed product
+        productDetailPage = subCategoryPage.clickProductByPosition(addToCartTestData.getSubCategoryResultPosition());
         productDetailPage.addToCart(productFromCartPageBefore.getSize(), productFromCartPageBefore.getStyle());
         
         // go to cart

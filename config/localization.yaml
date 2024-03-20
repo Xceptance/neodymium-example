@@ -205,7 +205,8 @@ default:
             phone: "Phone: +49-3641-376300"
             email: "E-mail: kontakt@xceptance.de"
             website: "Website: www.xceptance.com"
-        copyright: "Copyright © 2013-2023 Xceptance Software Technologies GmbH"
+        copyright: "Copyright 2013-2023 Xceptance Software Technologies GmbH"
+        photoLicense: "All photos by René Schwietzke under CC-BY-4.0."
         version: "The Poster Demo Store - Version 2.1.1"
         
     checkoutHeader:
@@ -240,22 +241,22 @@ default:
             headline: "Hot Products"
             "1": 
                 title: "Blue Morpho Butterfly"
-                description: "Lovely."
+                description: "A beutiful blue and black butterfly on a leaf."
             "2":
                 title: "Snowdrop Anemone"
                 description: "A blossom in all its details."
             "3":
-                title: "Indian Summer: Red Beeches"
-                description: "Check out that color change!"
+                title: "Indian Summer Red Beeches"
+                description: "An orange/red beech on the side of a small bridge."
             "4":
                 title: "Finger Food"
-                description: "Can't make up your mind?"
+                description: "A finger food plate with a lot of variety."
             "5":
                 title: "Stuffed Turkey"
-                description: "Vegetarians, please skip this one!"
+                description: "The best way to celebrate Thanksgiving."
             "6":
                 title: "Fruit Tart with Cocoa"
-                description: "Isn't this pretty?"
+                description: "An aesthetic fruit tart with cocoa powder."
             "7":
                 title: "Swiss Air Airbus A320"
                 description: "Beautiful take-off."
@@ -266,13 +267,13 @@ default:
                 title: "German Steam Locomotive"
                 description: "For railway nostalgics."
             "10":
-                title: "Grochwitz Castle, Germany"
-                description: "With the sun fighting off a storm."
+                title: "Grochwitz Castle Germany"
+                description: "A beautiful castle with nature surrounding it."
             "11":
-                title: "New Year's Fireworks III"
+                title: "New Years Fireworks III"
                 description: "A fantastic skycolor change!"
             "12":
-                title: "Linnaean Garden and Museum, Sweden"
+                title: "Linnaean Garden and Museum Sweden"
                 description: "A perfect symmetry."
                 
     categoryPage:

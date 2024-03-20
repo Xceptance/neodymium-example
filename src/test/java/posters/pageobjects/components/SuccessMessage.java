@@ -10,7 +10,7 @@ import io.qameta.allure.Step;
 
 public class SuccessMessage extends AbstractComponent
 {
-    private SelenideElement successMessage = $("#successMessage");
+    private SelenideElement successMessage = $(".alert-success");
 
     @Override
     @Step("ensure availability success message")
@@ -22,7 +22,7 @@ public class SuccessMessage extends AbstractComponent
     @Step("validate visibility of success message '{message}'")
     public void validateSuccessMessage(String message)
     {
-        successMessage.find("strong").shouldHave(exactText(message)).shouldBe(visible);
-        successMessage.find(".close").shouldHave(exactText("×")).shouldBe(visible);
+        successMessage.shouldHave(exactText(message)).shouldBe(visible);
+        successMessage.find(".btn-close").shouldBe(visible);
     }
 }

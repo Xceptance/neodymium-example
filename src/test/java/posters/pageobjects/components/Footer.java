@@ -81,7 +81,10 @@ public class Footer extends AbstractComponent
         validateContactInformationSection();
         
         // validate copyright text
-        $("#footer-copyright").shouldHave(exactText(Neodymium.localizedText("footer.copyright")));
+        $("#footer-copyright").shouldHave(text(Neodymium.localizedText("footer.copyright")));
+        
+        // validate photo license
+        $("#footer-copyright").shouldHave(text(Neodymium.localizedText("footer.photoLicense")));
         
         // validate version
         $("#footer-version-information").shouldHave(exactText(Neodymium.localizedText("footer.version")));        
