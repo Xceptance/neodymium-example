@@ -19,21 +19,21 @@ import posters.pageobjects.utility.PriceHelper;
 
 public class MiniCart extends AbstractComponent
 {
-    private SelenideElement headerCart = $("#headerCartOverview");
+    private SelenideElement headerCart = $("#header-cart-overview");
     
-    private SelenideElement headerTotalCount = $("#count_wideView");
+    private SelenideElement headerTotalCount = $("#count-wide-view");
 
     private SelenideElement miniCart = $("#mini-cart-menu");
     
-    private SelenideElement miniCartTitle = $(".cartMiniProductCounter");
+    private SelenideElement miniCartTitle = $(".cart-mini-product-counter");
     
-    private SelenideElement subOrderPrice = $(".subOrderPrice");
+    private SelenideElement subOrderPrice = $(".suborder-price");
     
-    private SelenideElement viewCartButton = $(".goToCart");
+    private SelenideElement viewCartButton = $(".go-to-cart");
 
-    private ElementsCollection productCounts = $$(".prodCount");
+    private ElementsCollection productCounts = $$(".prod-count");
 
-    private ElementsCollection productPrices = $$(".prodPrice strong");
+    private ElementsCollection productPrices = $$(".prod-price strong");
 
     @Override
     @Step("ensure availability mini cart")
@@ -122,7 +122,7 @@ public class MiniCart extends AbstractComponent
     {
         int totalCount = 0;
 
-        if ($(".cartItems").exists())
+        if ($(".cart-items").exists())
         {
             for (SelenideElement productCount : productCounts)
             {
@@ -200,14 +200,14 @@ public class MiniCart extends AbstractComponent
         openMiniCart();
 
         // selector for product
-        SelenideElement miniCartItem = $$("#mini-cart-menu .cartItems").get(position - 1);
+        SelenideElement miniCartItem = $$("#mini-cart-menu .cart-items").get(position - 1);
 
         // validate parameters
-        miniCartItem.find(".prodName").shouldHave(exactText(productName));
-        miniCartItem.find(".prodStyle").shouldHave(exactText(productStyle));
-        miniCartItem.find(".prodSize").shouldHave(exactText(productSize));
-        miniCartItem.find(".prodCount").shouldHave(exactText(Integer.toString(productCount)));
-        miniCartItem.find(".prodPrice").shouldHave(exactText(prodTotalPrice));
+        miniCartItem.find(".prod-name").shouldHave(exactText(productName));
+        miniCartItem.find(".prod-style").shouldHave(exactText(productStyle));
+        miniCartItem.find(".prod-size").shouldHave(exactText(productSize));
+        miniCartItem.find(".prod-count").shouldHave(exactText(Integer.toString(productCount)));
+        miniCartItem.find(".prod-price").shouldHave(exactText(prodTotalPrice));
 
         closeMiniCart();
     }

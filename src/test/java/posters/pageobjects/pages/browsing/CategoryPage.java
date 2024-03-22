@@ -17,9 +17,9 @@ public class CategoryPage extends AbstractBrowsingPage
 {
     public Pagination pagination = new Pagination();
 
-    private SelenideElement productOverview = $("#productOverview");
+    private SelenideElement productOverview = $("#product-overview");
 
-    private SelenideElement titleCategoryName = $("#titleCategoryName");
+    private SelenideElement titleCategoryName = $("#title-category-name");
 
     @Override
     @Step("ensure this is a category page")
@@ -58,7 +58,7 @@ public class CategoryPage extends AbstractBrowsingPage
         if ($("#titleSearchText").exists())
         {
             // if {categoryName} is search input
-            $("#titleSearchText").should(matchText(Neodymium.localizedText("categoryPage.searchResultText"))).shouldBe(visible);
+            $("#title-search-text").should(matchText(Neodymium.localizedText("categoryPage.searchResultText"))).shouldBe(visible);
             $("#searchTextValue").shouldHave(exactText(categoryName)).shouldBe(visible);
             $("#totalProductCount").shouldHave(exactText(Integer.toString(expectedResultCount))).shouldBe(visible);
         }

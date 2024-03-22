@@ -205,7 +205,7 @@ default:
             phone: "Phone: +49-3641-376300"
             email: "E-mail: kontakt@xceptance.de"
             website: "Website: www.xceptance.com"
-        copyright: "Copyright 2013-2023 Xceptance Software Technologies GmbH"
+        copyright: "Copyright 2013-2024 Xceptance Software Technologies GmbH"
         photoLicense: "All photos by René Schwietzke under CC-BY-4.0."
         version: "The Poster Demo Store - Version 2.1.1"
         
@@ -278,9 +278,6 @@ default:
                 
     categoryPage:
         searchResultText: "Results for your search: "
-        pagination:
-            goToLastPage: "»"
-            goToFirstPage: "«"
 
     productDetailPage:
         selectSize: "Select size:"

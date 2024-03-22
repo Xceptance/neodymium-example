@@ -18,7 +18,7 @@ import posters.tests.testdata.dataobjects.Product;
 
 public class ProductDetailPage extends AbstractBrowsingPage
 {
-    private SelenideElement addToCartButton = $("#btnAddToCart");
+    private SelenideElement addToCartButton = $("#btn-add-to-cart");
 
     private SelenideElement productName = $("#product-detail-form-name");
 
