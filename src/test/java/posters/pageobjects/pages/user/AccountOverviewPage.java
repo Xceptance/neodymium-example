@@ -14,7 +14,7 @@ import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
 public class AccountOverviewPage extends AbstractBrowsingPage
 {
-    private SelenideElement title = $("#titleAccountOverview");
+    private SelenideElement title = $("#title-account-overview");
     
     private SelenideElement orderOverviewLink = $("#linkOrderOverview");
     

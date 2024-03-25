@@ -20,15 +20,15 @@ import posters.pageobjects.pages.browsing.HomePage;
 
 public class LoginPage extends AbstractBrowsingPage
 {
-    private SelenideElement loginForm = $("#formLogin");
+    private SelenideElement loginForm = $("#form-login");
 
     private SelenideElement emailField = $("#email");
 
     private SelenideElement passwordField = $("#password");
 
-    private SelenideElement signInButton = $("#btnSignIn");
+    private SelenideElement signInButton = $("#btn-sign-in");
 
-    private SelenideElement registerLink = $("#linkRegister");
+    private SelenideElement registerLink = $("#link-register");
 
     @Override
     @Step("ensure this is a login page")
@@ -52,7 +52,7 @@ public class LoginPage extends AbstractBrowsingPage
         
         // validate fill in headlines
         //$$("#formLogin .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.email"))).shouldBe(visible);
-        $$("#formLogin .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.password"))).shouldBe(visible);
+        $$("#form-login .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.password"))).shouldBe(visible);
         
         // validate fill in placeholder
         emailField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.email")))).shouldBe(visible);
