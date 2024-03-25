@@ -97,7 +97,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
 
         // validate add to cart button
         addToCartButton.shouldHave(exactText(Neodymium.localizedText("button.addToCart"))).shouldBe(visible);
-        $("#btnAddToCart .icon-shopping-cart").shouldBe(visible);
+        $("#btn-add-to-cart .icon-shopping-cart").shouldBe(visible);
     }
 
     @Step("validate product name '{prodName}' on product detail page")

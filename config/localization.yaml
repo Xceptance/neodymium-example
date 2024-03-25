@@ -278,6 +278,10 @@ default:
                 
     categoryPage:
         searchResultText: "Results for your search: "
+        
+    noHitsPage:
+        message: "Sorry, we could not find a match for your search. Please check your spelling or try something less specific."
+        suggestion: "You might want to have a look in the following categories."
 
     productDetailPage:
         selectSize: "Select size:"

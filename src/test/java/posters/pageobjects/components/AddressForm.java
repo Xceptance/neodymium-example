@@ -20,33 +20,33 @@ import posters.tests.testdata.dataobjects.Address;
 
 public class AddressForm extends AbstractComponent
 {
-    private SelenideElement lastNameField = $("#address-form-input-last-name");
+    private SelenideElement lastNameField = $("#address-last-name");
 
-    private SelenideElement firstNameField = $("#firstName");
+    private SelenideElement firstNameField = $("#address-first-name");
     
-    private SelenideElement companyField = $("#address-form-input-company");
+    private SelenideElement companyField = $("#address-company");
     
-    private SelenideElement addressLineField = $("#address-form-input-adress-line");
+    private SelenideElement addressLineField = $("#address-address-line");
     
-    private SelenideElement cityField = $("#address-form-input-city");
+    private SelenideElement cityField = $("#address-city");
     
-    private SelenideElement stateField = $("#address-form-input-state");
+    private SelenideElement stateField = $("#address-state");
     
-    private SelenideElement zipField = $("#address-form-input-zip");
+    private SelenideElement zipField = $("#address-zip");
     
-    private SelenideElement countryField = $("#address-form-select-country");
+    private SelenideElement countryField = $("#address-country");
     
-    private SelenideElement requiredField = $(".reqField, .me-auto");
+    private SelenideElement requiredField = $(".me-auto");
     
     private SelenideElement addNewAddressToAddressOverviewButton = $("#btnAddShippAddr, #btnAddBillAddr");
     
-    private SelenideElement addNewGuestAddressButton = $("#button-add-shipping-address, #button-add-billing-address");
+    private SelenideElement addNewGuestAddressButton = $("#button-add-shipping-address, #btn-add-bill-addr");
     
     @Override
-    @Step("ensure availability top navigation")
+    @Step("ensure availability address form")
     public void isComponentAvailable()
     {
-        $("#address-form-input-full-name").should(exist);
+        lastNameField.should(exist);
     }
     
     /// ========== address form navigation ========== ///
@@ -84,7 +84,7 @@ public class AddressForm extends AbstractComponent
         countryField.selectOption(shippingAddress.getCountry());
 
         // go to guest billing address page
-        $("#billEqualShipp-No").click(ClickOptions.usingJavaScript());
+        $("#bill-unequal-shipp").click(ClickOptions.usingJavaScript());
         addNewGuestAddressButton.click(ClickOptions.usingJavaScript());
 
         return new GuestBillingAddressPage().isExpectedPage();
@@ -104,9 +104,9 @@ public class AddressForm extends AbstractComponent
         countryField.selectOption(address.getCountry());
 
         // go to guest payment page
-        if ($("#billEqualShipp-Yes").exists() && $("#billEqualShipp-No").exists()) 
+        if ($("#bill-equal-shipp").exists() && $("#bill-unequal-shipp").exists()) 
         {
-            $("#billEqualShipp-Yes").click(ClickOptions.usingJavaScript());
+            $("#bill-equal-shipp").click(ClickOptions.usingJavaScript());
         }
          
         addNewGuestAddressButton.click(ClickOptions.usingJavaScript());
@@ -166,7 +166,7 @@ public class AddressForm extends AbstractComponent
         validateCountryDropdown();
         
         // validate country selection help text
-        $("#address-form-select-country-help-block").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.shippingInfo"))).shouldBe(visible);
+        $("#address-country-help").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.shippingInfo"))).shouldBe(visible);
 
         // validate "required fields" string
         requiredField.shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);

@@ -13,7 +13,7 @@ import posters.pageobjects.components.AddressForm;
 
 public class GuestBillingAddressPage extends AbstractCheckoutPage
 {
-    private SelenideElement title = $("#titleBillAddr");
+    private SelenideElement title = $("#title-bill-addr");
 
     private SelenideElement addBillingAddressButton = $(".ms-auto.btn");
     

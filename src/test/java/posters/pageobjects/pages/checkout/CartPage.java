@@ -26,9 +26,9 @@ public class CartPage extends AbstractBrowsingPage
 
     private SelenideElement cartTable = $(".table");
 
-    private ElementsCollection tableHead = $$(".coulmn-name th");
+    private ElementsCollection tableHead = $$(".column-name th");
 
-    private SelenideElement subTotal = $("#orderSubTotalValue");
+    private SelenideElement subTotal = $("#order-sub-total-value");
 
     @Override
     @Step("ensure this is a cart page")
@@ -75,27 +75,27 @@ public class CartPage extends AbstractBrowsingPage
             cartTable.shouldBe(visible);
 
             // validate at least 1 product in product list
-            $("#product0").shouldBe(visible);
+            $("#product-0").shouldBe(visible);
 
             // validate cart summary list
             $(".price-summary-row").shouldBe(visible);
 
             // validate checkout button
-            $("#btnStartCheckout").should(visible);
+            $("#btn-start-checkout").should(visible);
         }
     }
 
     @Step("validate shipping costs '{shippingCosts}' on cart page")
     public void validateShippingCosts(String shippingCosts)
     {
-        $("#priceShippingValue").shouldHave(exactText(shippingCosts));
+        $("#price-shipping-value").shouldHave(exactText(shippingCosts));
     }
 
     @Step("validate tax on cart page")
     public void validateTax(String shippingCosts, String subtotal)
     {
         String tax = PriceHelper.calculateTax(shippingCosts, subtotal);
-        $("#orderSubTotalTaxValue").shouldHave(exactText(tax));
+        $("#order-sub-total-tax-value").shouldHave(exactText(tax));
     }
 
     @Step("validate cart page")
@@ -118,13 +118,13 @@ public class CartPage extends AbstractBrowsingPage
     {
         /// ========== validate total unit price of specified product ========== ///
 
-        SelenideElement productContainer = $("#product" + (position - 1));
+        SelenideElement productContainer = $("#product-" + (position - 1));
 
         // store product unit price (without $ sign) for 1 unit
         String unitPrice = productContainer.find(".product-unit-price").text();
 
         // store product count
-        String quantity = $("#productCount" + (position - 1)).val();
+        String quantity = $("#product-count-" + (position - 1)).val();
 
         // calculate price of specified product
         String newTotalProductPrice = PriceHelper.totalProductPrice(unitPrice, quantity);
@@ -155,7 +155,7 @@ public class CartPage extends AbstractBrowsingPage
     private void validateCartItem(int position, String productName, String productStyle, String productSize, int productAmount, String productPrice)
     {
         // selector for product
-        SelenideElement productContainer = $("#product" + (position - 1));
+        SelenideElement productContainer = $("#product-" + (position - 1));
 
         // validate product image
         productContainer.find(".img-thumbnail").shouldBe(visible);
@@ -168,8 +168,8 @@ public class CartPage extends AbstractBrowsingPage
         productContainer.find(".product-count").shouldHave(exactValue(Integer.toString(productAmount)));
 
         // validate remove and update button
-        $("#btnRemoveProdCount" + (position - 1)).shouldBe(visible);
-        $("#btnUpdateProdCount" + (position - 1)).shouldBe(visible);
+        $("#btn-remove-prod-count-" + (position - 1)).shouldBe(visible);
+        $("#btn-update-prod-count-" + (position - 1)).shouldBe(visible);
     }
 
     @Step("validate '{product}' on the cart page")
@@ -189,37 +189,37 @@ public class CartPage extends AbstractBrowsingPage
     @Step("get product name from line item on position '{position}' on the cart page")
     public String getProductName(int position)
     {
-        return $("#product" + (position - 1) + " .product-name").text();
+        return $("#product-" + (position - 1) + " .product-name").text();
     }
 
     @Step("get product style from line item on position '{position}' on the cart page")
     public String getProductStyle(int position)
     {
-        return $("#product" + (position - 1) + " .product-style").text();
+        return $("#product-" + (position - 1) + " .product-style").text();
     }
 
     @Step("get product size from line item on position '{position}' on the cart page")
     public String getProductSize(int position)
     {
-        return $("#product" + (position - 1) + " .product-size").text();
+        return $("#product-" + (position - 1) + " .product-size").text();
     }
 
     @Step("get product count from line item on position '{position}' on the cart page")
     public String getProductCount(int position)
     {
-        return $("#product" + (position - 1) + " .product-count").val();
+        return $("#product-" + (position - 1) + " .product-count").val();
     }
 
     @Step("get product unit price from line item on position '{position}' on the cart page")
     public String getProductUnitPrice(int position)
     {
-        return $("#product" + (position - 1) + " .product-unit-price").text();
+        return $("#product-" + (position - 1) + " .product-unit-price").text();
     }
 
     @Step("get product total price from line item on position '{position}' on the cart page")
     public String getProductTotalPrice(int position)
     {
-        return $("#product" + (position - 1) + " .product-total-unit-price").text();
+        return $("#product-" + (position - 1) + " .product-total-unit-price").text();
     }
 
     @Step("get product from line item on position '{position}' on the cart page")
@@ -233,30 +233,30 @@ public class CartPage extends AbstractBrowsingPage
     @Step("update product count of product on position '{position}' on the cart page to '{amount}'")
     public void updateProductCount(int position, int amount)
     {
-        SelenideElement productContainer = $("#product" + (position - 1));
+        SelenideElement productContainer = $("#product-" + (position - 1));
 
         // type new amount
         productContainer.find(".product-count").setValue(Integer.toString(amount));
 
         // click update button
-        productContainer.find(".btnUpdateProduct").click(ClickOptions.usingJavaScript());
+        productContainer.find("#btn-update-prod-count-" + (position - 1)).click(ClickOptions.usingJavaScript());
     }
 
     @Step("remove product on position '{position}' on the cart page")
     public void removeProduct(int position)
     {
         // click delete button
-        $("#btnRemoveProdCount" + (position - 1)).click(ClickOptions.usingJavaScript());
+        $("#btn-remove-prod-count-" + (position - 1)).click(ClickOptions.usingJavaScript());
 
         // click delete confirmation button
-        $("#buttonDelete").click(ClickOptions.usingJavaScript());
+        $("#button-delete").click(ClickOptions.usingJavaScript());
     }
     
     @Step("wait for update")
     public void waitForProductUpdate(String subtotalBeforeUpdate) 
     {      
         // wait for subtotal to update
-        $("#orderSubTotalValue").shouldNotHave(exactText(subtotalBeforeUpdate));
+        $("#order-sub-total-value").shouldNotHave(exactText(subtotalBeforeUpdate));
     }
 
     /// ========== cart page navigation ========== ///
@@ -278,14 +278,14 @@ public class CartPage extends AbstractBrowsingPage
     @Step("open guest shipping address from the cart page")
     public GuestShippingAddressPage openGuestShippingAddressPage()
     {
-        $("#btnStartCheckout").click(ClickOptions.usingJavaScript());
+        $("#btn-start-checkout").click(ClickOptions.usingJavaScript());
         return new GuestShippingAddressPage().isExpectedPage();
     }
 
     @Step("open returning customer shipping address from the cart page")
     public ReturningCustomerShippingAddressPage openReturningCustomerShippingAddressPage()
     {
-        $("#btnStartCheckout").click(ClickOptions.usingJavaScript());
+        $("#btn-start-checkout").click(ClickOptions.usingJavaScript());
         return new ReturningCustomerShippingAddressPage().isExpectedPage();
     }
 }

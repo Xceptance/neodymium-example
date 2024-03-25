@@ -19,17 +19,17 @@ import posters.tests.testdata.dataobjects.CreditCard;
 
 public class GuestPaymentPage extends AbstractCheckoutPage
 {
-    private SelenideElement title = $("#titlePayment");
+    private SelenideElement title = $("#title-payment");
 
-    private SelenideElement creditCardNumber = $("#creditCardNumber");
+    private SelenideElement creditCardNumber = $("#creditcard-number");
 
     private SelenideElement creditCardName = $("#name");
 
-    private SelenideElement expirationMonth = $("#expirationDateMonth");
+    private SelenideElement expirationMonth = $("#expiration-date-month");
 
-    private SelenideElement expirationYear = $("#expirationDateYear");
+    private SelenideElement expirationYear = $("#expiration-date-year");
 
-    private SelenideElement addPaymentButton = $("#btnAddPayment");
+    private SelenideElement addPaymentButton = $("#btn-add-payment");
     
     @Override
     @Step("ensure this is a payment page")
@@ -78,8 +78,8 @@ public class GuestPaymentPage extends AbstractCheckoutPage
             month = "0" + Integer.toString(LocalDate.now().getMonthValue());
         }
         
-        $("#expirationDateMonth [selected]").shouldHave(exactText(month)).shouldBe(visible);
-        $("#expirationDateYear [selected]").shouldHave(exactText(Integer.toString(LocalDate.now().getYear()))).shouldBe(visible);
+        $("#expiration-date-month [selected]").shouldHave(exactText(month)).shouldBe(visible);
+        $("#expiration-date-year [selected]").shouldHave(exactText(Integer.toString(LocalDate.now().getYear()))).shouldBe(visible);
     }
     
     @Step("validate month dropdown")
@@ -91,7 +91,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         // validate months
         for (int i = 1; i <= 12; i++) 
         {
-            $$("#expirationDateMonth").findBy(matchText(Neodymium.localizedText("fillIn.dropdown.expireMonth." + i))).shouldBe(visible);
+            $$("#expiration-date-month").findBy(matchText(Neodymium.localizedText("fillIn.dropdown.expireMonth." + i))).shouldBe(visible);
         }
     }
 
@@ -104,7 +104,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         // validate years
         for (int i = 1; i <= 11; i++) 
         {
-            $$("#expirationDateYear").findBy(matchText(Neodymium.localizedText("fillIn.dropdown.expireYear." + i))).shouldBe(visible);
+            $$("#expiration-date-year").findBy(matchText(Neodymium.localizedText("fillIn.dropdown.expireYear." + i))).shouldBe(visible);
         }
     }
     

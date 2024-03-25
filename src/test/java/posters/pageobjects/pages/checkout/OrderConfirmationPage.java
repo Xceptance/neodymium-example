@@ -15,13 +15,13 @@ import posters.pageobjects.pages.browsing.HomePage;
 
 public class OrderConfirmationPage extends AbstractBrowsingPage
 {
-    private SelenideElement homePageButton = $("#goHome");
+    private SelenideElement homePageButton = $("#go-home");
 
     @Step("ensure this is the Order Confirmation page")
     public OrderConfirmationPage isExpectedPage()
     {
         super.isExpectedPage();
-        $("#tYouText").should(exist);
+        $("#confirmation-row").should(exist);
         return this;
     }
     
@@ -52,11 +52,11 @@ public class OrderConfirmationPage extends AbstractBrowsingPage
         $(".icon-check").shouldBe(visible);
 
         // validate thank you message
-        $("#tYouText").shouldHave(exactText(Neodymium.localizedText("orderConfirmationPage.thankYouMessage"))).shouldBe(visible);
+        $("#thank-you-text").shouldHave(exactText(Neodymium.localizedText("orderConfirmationPage.thankYouMessage"))).shouldBe(visible);
         
         // Verifies GoTo HomePage button is visible
-        $("#goHome .icon-shopping-cart").shouldBe(visible);
-        $("#goHome").shouldHave(exactText(Neodymium.localizedText("button.continueShopping"))).shouldBe(visible);
+        homePageButton.find(".icon-shopping-cart").shouldBe(visible);
+        homePageButton.shouldHave(exactText(Neodymium.localizedText("button.continueShopping"))).shouldBe(visible);
     }
     
     @Step("validate successful order")

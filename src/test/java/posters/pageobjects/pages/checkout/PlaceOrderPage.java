@@ -24,25 +24,25 @@ import posters.pageobjects.utility.PriceHelper;
 
 public class PlaceOrderPage extends AbstractCheckoutPage
 {
-    private SelenideElement title = $("#titleOrderOverview");
+    private SelenideElement title = $("#title-order-overview");
     
     private ElementsCollection headlines = $$(".checkout-overview-position h3");
     
     private ElementsCollection tableHead = $$(".order-overview-position th");
 
-    private SelenideElement shippingAddressForm = $("#shippingAddr");
+    private SelenideElement shippingAddressForm = $("#shipping-addr");
 
-    private SelenideElement billingAddressForm = $("#billingAddr");
+    private SelenideElement billingAddressForm = $("#billing-addr");
 
     private SelenideElement paymentForm = $("#payment");
     
-    private ElementsCollection totalProductPrices = $$(".productUnitPrice");
+    private ElementsCollection totalProductPrices = $$(".product-unit-price");
 
-    private SelenideElement subtotalContainer = $("#SubTotalValue");
+    private SelenideElement subtotalContainer = $("#subtotal-value");
     
-    private SelenideElement taxContainer = $("#SubTotalTaxValue");
+    private SelenideElement taxContainer = $("#subtotal-tax-value");
     
-    private SelenideElement orderButton = $("#btnOrder");
+    private SelenideElement orderButton = $("#btn-order");
     
     @Override
     @Step("ensure this is a place order page")
@@ -87,7 +87,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         validateTableHead();
         
         // validate order with costs button
-        $("#btnOrder").shouldHave(exactText(Neodymium.localizedText("button.orderWithCosts"))).shouldBe(visible);
+        orderButton.shouldHave(exactText(Neodymium.localizedText("button.orderWithCosts"))).shouldBe(visible);
     }
     
     private void validateShippingAddressOverview(Address shippingAddress, String headline) 
@@ -106,7 +106,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         }
         
         // validate address
-        shippingAddressForm.find(".addressLine").shouldHave(exactText(shippingAddress.getStreet())).shouldBe(visible);
+        shippingAddressForm.find(".address-line").shouldHave(exactText(shippingAddress.getStreet())).shouldBe(visible);
         
         // validate city, state, zip
         shippingAddressForm.find(".city").shouldHave(exactText(shippingAddress.getCity())).shouldBe(visible);
@@ -133,7 +133,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         }
         
         // validate address
-        billingAddressForm.find(".addressLine").shouldHave(exactText(billingAddress.getStreet())).shouldBe(visible);
+        billingAddressForm.find(".address-line").shouldHave(exactText(billingAddress.getStreet())).shouldBe(visible);
         
         // validate city, state, zip
         billingAddressForm.find(".city").shouldHave(exactText(billingAddress.getCity())).shouldBe(visible);
@@ -153,7 +153,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         paymentForm.find(".name").shouldHave(exactText(creditCard.getFullName())).shouldBe(visible);
         
         // validate censored card number
-        paymentForm.find(".cardNumber").shouldHave(exactText(creditCard.getCrypticCardNumber())).shouldBe(visible);
+        paymentForm.find(".card-number").shouldHave(exactText(creditCard.getCrypticCardNumber())).shouldBe(visible);
         
         // validate expiration date
         paymentForm.find(".month").shouldHave(exactText(creditCard.getExpDateMonth())).shouldBe(visible);
@@ -179,17 +179,17 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     private void validateProduct(int position, String productName, String productStyle, String productSize, int productAmount, String productPrice)
     {
         // selector for product
-        SelenideElement productContainer = $("#product" + (position - 1));
+        SelenideElement productContainer = $("#product-" + (position - 1));
 
         // validate product image
-        productContainer.find(".img-thumbnail").shouldBe(visible);
+        productContainer.find("#cart-picture-" + (position - 1)).shouldBe(visible);
         
         // validate parameters
-        productContainer.find(".pName").shouldHave(exactText(productName));
-        productContainer.find(".productStyle span").shouldHave(exactText(productStyle));
-        productContainer.find(".productSize span").shouldHave(exactText(productSize));
-        productContainer.find(".productUnitPrice").shouldHave(exactText(productPrice));
-        productContainer.find(".productCount").shouldHave(exactValue(Integer.toString(productAmount)));
+        productContainer.find(".product-name").shouldHave(exactText(productName));
+        productContainer.find(".product-style span").shouldHave(exactText(productStyle));
+        productContainer.find(".product-size span").shouldHave(exactText(productSize));
+        productContainer.find(".product-unit-price").shouldHave(exactText(productPrice));
+        productContainer.find(".product-count").shouldHave(exactValue(Integer.toString(productAmount)));
     }
     
     @Step("validate '{product}' on the place order page")
@@ -220,13 +220,13 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         subtotalContainer.shouldHave(exactText(calculateSubtotal()));
         
         // validate shipping costs
-        $("#shippingCosts").shouldHave(exactText(shippingCosts));
+        $("#shipping-costs").shouldHave(exactText(shippingCosts));
        
         // validate tax
         taxContainer.shouldHave(exactText(PriceHelper.calculateTax(shippingCosts, subtotal)));
         
         // validate grand total
-        $("#orderTotal").shouldHave(exactText(PriceHelper.calculateGrandTotal(subtotal, shippingCosts, getTax())));
+        $("#order-total").shouldHave(exactText(PriceHelper.calculateGrandTotal(subtotal, shippingCosts, getTax())));
     }
     
     /// ========== get price summary information ========== ///

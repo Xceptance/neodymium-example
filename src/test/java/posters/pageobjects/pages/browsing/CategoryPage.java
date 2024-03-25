@@ -21,6 +21,8 @@ public class CategoryPage extends AbstractBrowsingPage
 
     private SelenideElement titleCategoryName = $("#title-category-name");
 
+    private SelenideElement titleSearchText = $("#title-search-text");
+
     @Override
     @Step("ensure this is a category page")
     public CategoryPage isExpectedPage()
@@ -55,10 +57,10 @@ public class CategoryPage extends AbstractBrowsingPage
     @Step("validate category name '{categoryName}' and amount results '{expectedResultCount}' on category page")
     public void validateCategoryHeadline(String categoryName, int expectedResultCount)
     {
-        if ($("#titleSearchText").exists())
+        if (titleSearchText.exists())
         {
             // if {categoryName} is search input
-            $("#title-search-text").should(matchText(Neodymium.localizedText("categoryPage.searchResultText"))).shouldBe(visible);
+            titleSearchText.should(matchText(Neodymium.localizedText("categoryPage.searchResultText"))).shouldBe(visible);
             $("#searchTextValue").shouldHave(exactText(categoryName)).shouldBe(visible);
             $("#totalProductCount").shouldHave(exactText(Integer.toString(expectedResultCount))).shouldBe(visible);
         }

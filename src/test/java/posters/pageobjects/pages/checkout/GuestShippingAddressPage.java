@@ -15,7 +15,7 @@ import posters.pageobjects.components.AddressForm;
 
 public class GuestShippingAddressPage extends AbstractCheckoutPage
 {
-    private SelenideElement title = $("#titleDelAddr");
+    private SelenideElement title = $("#title-del-addr");
 
     private SelenideElement addShippingAddressButton = $("#button-add-shipping-address");
     

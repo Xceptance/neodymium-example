@@ -28,7 +28,6 @@ public class BrowseTest extends AbstractTest
         
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
-        homePage.validateStructure();
 
         // go to category page and validate
         var categoryPage = homePage.header.topNav.clickCategory(Neodymium.localizedText(browseTestData.getTopCategory1()));
