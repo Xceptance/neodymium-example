@@ -67,8 +67,8 @@ public class AddNewCreditCardPage extends AbstractBrowsingPage
             month = "0" + Integer.toString(LocalDate.now().getMonthValue());
         }
         
-        $("#expiration-date-month [selected]").shouldHave(exactText(month)).shouldBe(visible);
-        $("#expiration-date-year [selected]").shouldHave(exactText(Integer.toString(LocalDate.now().getYear()))).shouldBe(visible);
+        expirationMonth.find("[selected]").shouldHave(exactText(month)).shouldBe(visible);
+        expirationYear.find("[selected]").shouldHave(exactText(Integer.toString(LocalDate.now().getYear()))).shouldBe(visible);
     }
     
     @Step("validate month dropdown")

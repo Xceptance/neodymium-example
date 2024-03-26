@@ -182,7 +182,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         SelenideElement productContainer = $("#product-" + (position - 1));
 
         // validate product image
-        productContainer.find("#cart-picture-" + (position - 1)).shouldBe(visible);
+        productContainer.find(".img-thumbnail").shouldBe(visible);
         
         // validate parameters
         productContainer.find(".product-name").shouldHave(exactText(productName));

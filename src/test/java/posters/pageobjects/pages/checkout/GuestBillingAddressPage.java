@@ -15,8 +15,6 @@ public class GuestBillingAddressPage extends AbstractCheckoutPage
 {
     private SelenideElement title = $("#title-bill-addr");
 
-    private SelenideElement addBillingAddressButton = $(".ms-auto.btn");
-    
     public AddressForm addressForm = new AddressForm();
 
     @Override
@@ -56,6 +54,6 @@ public class GuestBillingAddressPage extends AbstractCheckoutPage
         addressForm.validateStructure();
 
         // validate continue button
-        addBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.continue"))).shouldBe(visible);
+        $("#btn-add-bill-addr").shouldHave(exactText(Neodymium.localizedText("button.continue"))).shouldBe(visible);
     }
 }

@@ -36,7 +36,7 @@ public class AddressForm extends AbstractComponent
     
     private SelenideElement countryField = $("#address-country");
     
-    private SelenideElement requiredField = $(".me-auto");
+    private SelenideElement requiredField = $(".req-field");
     
     private SelenideElement addNewAddressToAddressOverviewButton = $("#btn-add-shipp-addr, #btn-add-bill-addr");
     

@@ -5,7 +5,6 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
@@ -14,8 +13,6 @@ import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
 public class AddNewBillingAddressPage extends AbstractBrowsingPage
 {        
-    private SelenideElement addNewBillingAddressButton = $("#btn-add-bill-addr");
-    
     public AddressForm addressForm = new AddressForm();
 
     @Override
@@ -40,6 +37,6 @@ public class AddNewBillingAddressPage extends AbstractBrowsingPage
         addressForm.validateStructure();
 
         // validate continue button
-        addNewBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewAddress"))).shouldBe(visible);
+        $("#btn-add-bill-addr").shouldHave(exactText(Neodymium.localizedText("button.addNewAddress"))).shouldBe(visible);
     }
 }

@@ -20,7 +20,6 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
 
     private SelenideElement useCreditCardButton = $("#btn-use-payment");
     
-
     @Override
     @Step("ensure this is a payment page")
     public ReturningCustomerPaymentPage isExpectedPage()

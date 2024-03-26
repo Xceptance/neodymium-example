@@ -17,8 +17,6 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
 {
     private SelenideElement title = $("#title-del-addr");
 
-    private SelenideElement addShippingAddressButton = $("#button-add-shipping-address");
-    
     public AddressForm addressForm = new AddressForm();
 
     @Override
@@ -69,6 +67,6 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
         validateAddressRadio();
 
         // validate continue button
-        addShippingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.continue"))).shouldBe(visible);
+        $("#button-add-shipping-address").shouldHave(exactText(Neodymium.localizedText("button.continue"))).shouldBe(visible);
     }
 }

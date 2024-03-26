@@ -39,7 +39,7 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         super.validateStructure();
 
         // validate title
-        deleteForm.find(".h2").shouldHave(exactText(Neodymium.localizedText("deleteAccontPage.title"))).shouldBe(visible);
+        $(".h2").shouldHave(exactText(Neodymium.localizedText("deleteAccontPage.title"))).shouldBe(visible);
         
         // validate headline
         $("label[for='password']").shouldBe(exactText(Neodymium.localizedText("fillIn.inputDescription.password")));
@@ -48,7 +48,7 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         passwordField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.password")))).shouldBe(visible);
         
         // validate "required fields" string
-        $(".me-auto").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
+        $(".req-field").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
         
         // validate button
         deleteButton.shouldHave(exactText(Neodymium.localizedText("button.delete"))).shouldBe(visible);

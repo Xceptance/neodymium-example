@@ -18,9 +18,8 @@ public class AddressOverviewPage extends AbstractBrowsingPage
 {
     private SelenideElement title = $("#title-address-overview");
     
-    private ElementsCollection addNewShippingAddressButton = $$("#link-add-ship-addr");
-    
     // TODO - change selector for add billing address button
+    private ElementsCollection addNewShippingAddressButton = $$("#link-add-ship-addr");  
     //private SelenideElement addNewBillingAddressButton = $("#link-add-bill-addr");
 
     @Override

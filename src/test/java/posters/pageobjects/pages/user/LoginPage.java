@@ -59,7 +59,7 @@ public class LoginPage extends AbstractBrowsingPage
         passwordField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.password")))).shouldBe(visible);
         
         // validate "required fields" string
-        $(".me-auto").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
+        $(".req-field").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
       
         // validate sign in button
         signInButton.shouldHave(exactText(Neodymium.localizedText("button.signIn")));

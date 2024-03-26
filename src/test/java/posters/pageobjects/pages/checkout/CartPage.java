@@ -17,18 +17,19 @@ import io.qameta.allure.Step;
 import posters.tests.testdata.dataobjects.Product;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.HomePage;
-import posters.pageobjects.pages.browsing.ProductDetailPage;
 import posters.pageobjects.utility.PriceHelper;
 
 public class CartPage extends AbstractBrowsingPage
 {
-    private SelenideElement title = $(".container h2");
+    private SelenideElement title = $("#card-title");
 
     private SelenideElement cartTable = $(".table");
 
     private ElementsCollection tableHead = $$(".column-name th");
 
     private SelenideElement subTotal = $("#order-sub-total-value");
+    
+    private SelenideElement checkoutButton = $("btn-start-checkout");
 
     @Override
     @Step("ensure this is a cart page")
@@ -81,7 +82,7 @@ public class CartPage extends AbstractBrowsingPage
             $(".price-summary-row").shouldBe(visible);
 
             // validate checkout button
-            $("#btn-start-checkout").should(visible);
+            checkoutButton.should(visible);
         }
     }
 
@@ -124,7 +125,7 @@ public class CartPage extends AbstractBrowsingPage
         String unitPrice = productContainer.find(".product-unit-price").text();
 
         // store product count
-        String quantity = $("#product-count-" + (position - 1)).val();
+        String quantity = $("#product-count").val();
 
         // calculate price of specified product
         String newTotalProductPrice = PriceHelper.totalProductPrice(unitPrice, quantity);
@@ -168,8 +169,8 @@ public class CartPage extends AbstractBrowsingPage
         productContainer.find(".product-count").shouldHave(exactValue(Integer.toString(productAmount)));
 
         // validate remove and update button
-        $("#btn-remove-prod-count-" + (position - 1)).shouldBe(visible);
-        $("#btn-update-prod-count-" + (position - 1)).shouldBe(visible);
+        productContainer.find(".btn-update-product").shouldBe(visible);
+        productContainer.find(".btn-remove-product").shouldBe(visible);
     }
 
     @Step("validate '{product}' on the cart page")
@@ -239,7 +240,7 @@ public class CartPage extends AbstractBrowsingPage
         productContainer.find(".product-count").setValue(Integer.toString(amount));
 
         // click update button
-        productContainer.find("#btn-update-prod-count-" + (position - 1)).click(ClickOptions.usingJavaScript());
+        productContainer.find(".btn-update-product").click(ClickOptions.usingJavaScript());
     }
 
     @Step("remove product on position '{position}' on the cart page")
@@ -256,17 +257,10 @@ public class CartPage extends AbstractBrowsingPage
     public void waitForProductUpdate(String subtotalBeforeUpdate) 
     {      
         // wait for subtotal to update
-        $("#order-sub-total-value").shouldNotHave(exactText(subtotalBeforeUpdate));
+        subTotal.shouldNotHave(exactText(subtotalBeforeUpdate));
     }
 
     /// ========== cart page navigation ========== ///
-
-    @Step("click on a product on position '{position}' on the cart page")
-    public ProductDetailPage openProductDetailPage(int position)
-    {
-        $("#product" + (position - 1) + " .img-thumbnail").click();
-        return new ProductDetailPage().isExpectedPage();
-    }
 
     @Step("open homepage from cart page")
     public HomePage openHomePage()
@@ -278,14 +272,14 @@ public class CartPage extends AbstractBrowsingPage
     @Step("open guest shipping address from the cart page")
     public GuestShippingAddressPage openGuestShippingAddressPage()
     {
-        $("#btn-start-checkout").click(ClickOptions.usingJavaScript());
+        checkoutButton.click(ClickOptions.usingJavaScript());
         return new GuestShippingAddressPage().isExpectedPage();
     }
 
     @Step("open returning customer shipping address from the cart page")
     public ReturningCustomerShippingAddressPage openReturningCustomerShippingAddressPage()
     {
-        $("#btn-start-checkout").click(ClickOptions.usingJavaScript());
+        checkoutButton.click(ClickOptions.usingJavaScript());
         return new ReturningCustomerShippingAddressPage().isExpectedPage();
     }
 }

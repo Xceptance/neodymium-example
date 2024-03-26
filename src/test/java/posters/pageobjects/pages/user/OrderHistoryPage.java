@@ -22,9 +22,9 @@ import posters.tests.testdata.dataobjects.Product;
 
 public class OrderHistoryPage extends AbstractBrowsingPage
 {
-    private SelenideElement title = $("#titleOrderHistory");
+    private SelenideElement title = $("#title-order-history");
     
-    private ElementsCollection tableHead = $$x("//div[@id='orderOverview']/table/thead/tr/th"); 
+    private ElementsCollection tableHead = $$x("//div[@id='order-overview']/table/thead/tr/th"); 
 
     @Override
     @Step("ensure this is an order history page")
@@ -59,19 +59,19 @@ public class OrderHistoryPage extends AbstractBrowsingPage
         
         if (numberOfProductInOrder == 1) 
         {
-            productOfOrder = $x("//div[@id='orderOverview']//tr[2 and th[contains(text(), '" + numberOfOrder + "')]]");            
+            productOfOrder = $x("//div[@id='order-overview']//tr[2 and th[contains(text(), '" + numberOfOrder + "')]]");            
         }
         else 
         {
             numberOfProductInOrder--;
-            productOfOrder = $x("//div[@id='orderOverview']//tr[th[contains(text(), '" + numberOfOrder + "')]]/following-sibling::tr[" + numberOfProductInOrder + "]");            
+            productOfOrder = $x("//div[@id='order-overview']//tr[th[contains(text(), '" + numberOfOrder + "')]]/following-sibling::tr[" + numberOfProductInOrder + "]");            
         }
         
         // validate first product of order
         productOfOrder.find(".img-thumbnail").shouldBe(visible);
-        productOfOrder.find(".pName").shouldHave(exactText(product.getName()));
-        productOfOrder.find(".productStyle").should(matchText(product.getStyle()));
-        productOfOrder.find(".productSize").should(matchText(product.getSize()));
+        productOfOrder.find(".product-name").shouldHave(exactText(product.getName()));
+        productOfOrder.find(".product-style").should(matchText(product.getStyle()));
+        productOfOrder.find(".product-size").should(matchText(product.getSize()));
         productOfOrder.find("td:nth-child(4)").shouldHave(exactText(Integer.toString(product.getAmount()) + "x"));
     }
     
