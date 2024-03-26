@@ -29,7 +29,7 @@ public class CartPage extends AbstractBrowsingPage
 
     private SelenideElement subTotal = $("#order-sub-total-value");
     
-    private SelenideElement checkoutButton = $("btn-start-checkout");
+    private SelenideElement checkoutButton = $("#btn-start-checkout");
 
     @Override
     @Step("ensure this is a cart page")
@@ -125,7 +125,7 @@ public class CartPage extends AbstractBrowsingPage
         String unitPrice = productContainer.find(".product-unit-price").text();
 
         // store product count
-        String quantity = $("#product-count").val();
+        String quantity = $(".product-count").val();
 
         // calculate price of specified product
         String newTotalProductPrice = PriceHelper.totalProductPrice(unitPrice, quantity);
