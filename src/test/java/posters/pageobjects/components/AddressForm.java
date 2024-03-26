@@ -38,7 +38,7 @@ public class AddressForm extends AbstractComponent
     
     private SelenideElement requiredField = $(".me-auto");
     
-    private SelenideElement addNewAddressToAddressOverviewButton = $("#btnAddShippAddr, #btnAddBillAddr");
+    private SelenideElement addNewAddressToAddressOverviewButton = $("#btn-add-shipp-addr, #btn-add-bill-addr");
     
     private SelenideElement addNewGuestAddressButton = $("#button-add-shipping-address, #btn-add-bill-addr");
     

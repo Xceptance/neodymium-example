@@ -14,7 +14,7 @@ import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
 public class AddNewShippingAddressPage extends AbstractBrowsingPage
 {        
-    private SelenideElement addNewShippingAddressButton = $("#btnAddShippAddr");
+    private SelenideElement addNewShippingAddressButton = $("#btn-add-shipp-addr");
     
     public AddressForm addressForm = new AddressForm();
 
@@ -23,7 +23,7 @@ public class AddNewShippingAddressPage extends AbstractBrowsingPage
     public AddNewShippingAddressPage isExpectedPage()
     {
         super.isExpectedPage();
-        $("#formAddDelAddr .h2").should(exist);
+        $("#form-add-del-addr").should(exist);
         return this;
     }
     

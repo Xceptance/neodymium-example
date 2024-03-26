@@ -14,11 +14,11 @@ import posters.tests.testdata.dataobjects.CreditCard;
 
 public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
 {
-    private SelenideElement title = $("#titlePayment");
+    private SelenideElement title = $("#title-payment");
     
     private SelenideElement addCreditCardButton = $(".form-group .btn");
 
-    private SelenideElement useCreditCardButton = $("#btnUsePayment");
+    private SelenideElement useCreditCardButton = $("#btn-use-payment");
     
 
     @Override
@@ -26,7 +26,7 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
     public ReturningCustomerPaymentPage isExpectedPage()
     {
         super.isExpectedPage();
-        $("#payment0").should(exist);
+        $("#payment-0").should(exist);
         return this;
     }
 
@@ -65,7 +65,7 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
     public void validateCreditCardContainer(int position, CreditCard creditCard) 
     {
         final int index = position - 1;
-        final SelenideElement creditCardContainer = $("#payment" + index);
+        final SelenideElement creditCardContainer = $("#payment-" + index);
         final String expDate = creditCard.getExpDateMonth() + "/" + creditCard.getExpDateYear();
         
         // validate address data

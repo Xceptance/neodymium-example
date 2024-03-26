@@ -14,7 +14,7 @@ import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
 public class AddNewBillingAddressPage extends AbstractBrowsingPage
 {        
-    private SelenideElement addNewBillingAddressButton = $("#btnAddBillAddr");
+    private SelenideElement addNewBillingAddressButton = $("#btn-add-bill-addr");
     
     public AddressForm addressForm = new AddressForm();
 
@@ -23,7 +23,7 @@ public class AddNewBillingAddressPage extends AbstractBrowsingPage
     public AddNewBillingAddressPage isExpectedPage()
     {
         super.isExpectedPage();
-        $("#formAddBillAddr .h2").should(exist);
+        $("#form-add-bill-addr").should(exist);
         return this;
     }
     

@@ -20,22 +20,22 @@ import posters.tests.testdata.dataobjects.CreditCard;
 
 public class AddNewCreditCardPage extends AbstractBrowsingPage
 {
-    private SelenideElement creditCardNumberField = $("#creditCardNumber");
+    private SelenideElement creditCardNumberField = $("#creditcard-number");
     
     private SelenideElement cardHolderNameField = $("#name");
     
-    private SelenideElement expirationMonth = $("#expirationDateMonth");
+    private SelenideElement expirationMonth = $("#expiration-date-month");
 
-    private SelenideElement expirationYear = $("#expirationDateYear");
+    private SelenideElement expirationYear = $("#expiration-date-year");
     
-    private SelenideElement addNewCreditCardButton = $("#btnAddPayment");
+    private SelenideElement addNewCreditCardButton = $("#btn-add-payment");
 
     @Override
     @Step("ensure this is a add new credit card page")
     public AddNewCreditCardPage isExpectedPage()
     {
         super.isExpectedPage();
-        $("#formAddPayment .h2").should(exist);
+        $("#form-add-payment").should(exist);
         return this;
     }
 
@@ -67,8 +67,8 @@ public class AddNewCreditCardPage extends AbstractBrowsingPage
             month = "0" + Integer.toString(LocalDate.now().getMonthValue());
         }
         
-        $("#expirationDateMonth [selected]").shouldHave(exactText(month)).shouldBe(visible);
-        $("#expirationDateYear [selected]").shouldHave(exactText(Integer.toString(LocalDate.now().getYear()))).shouldBe(visible);
+        $("#expiration-date-month [selected]").shouldHave(exactText(month)).shouldBe(visible);
+        $("#expiration-date-year [selected]").shouldHave(exactText(Integer.toString(LocalDate.now().getYear()))).shouldBe(visible);
     }
     
     @Step("validate month dropdown")
@@ -80,7 +80,7 @@ public class AddNewCreditCardPage extends AbstractBrowsingPage
         // validate months
         for (int i = 1; i <= 12; i++) 
         {
-            $$("#expirationDateMonth").findBy(matchText(Neodymium.localizedText("fillIn.dropdown.expireMonth." + i))).shouldBe(visible);
+            $$("#expiration-date-month").findBy(matchText(Neodymium.localizedText("fillIn.dropdown.expireMonth." + i))).shouldBe(visible);
         }
     }
 
@@ -93,7 +93,7 @@ public class AddNewCreditCardPage extends AbstractBrowsingPage
         // validate years
         for (int i = 1; i <= 11; i++) 
         {
-            $$("#expirationDateYear").findBy(matchText(Neodymium.localizedText("fillIn.dropdown.expireYear." + i))).shouldBe(visible);
+            $$("#expiration-date-year").findBy(matchText(Neodymium.localizedText("fillIn.dropdown.expireYear." + i))).shouldBe(visible);
         }
     }
     
@@ -119,7 +119,7 @@ public class AddNewCreditCardPage extends AbstractBrowsingPage
         validateYearDropdown();
         
         // validate "required fields" string
-        $(".reqField").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
+        $(".req-field").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
         
         // validate add new credit card button
         addNewCreditCardButton.shouldHave(exactText(Neodymium.localizedText("button.addNewCreditCard"))).shouldBe(visible);

@@ -14,17 +14,17 @@ import posters.tests.testdata.dataobjects.Address;
 
 public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
 {
-    private SelenideElement title = $("#titleBillAddr");
+    private SelenideElement title = $("#title-bill-addr");
     
     private SelenideElement addBillingAddressButton = $(".form-group .btn");
     
-    private SelenideElement useBillingAddressButton = $("#btnUseBillAddress");
+    private SelenideElement useBillingAddressButton = $("#btn-use-address-continue");
 
     @Override
     @Step("ensure this is a billing address page")
     public ReturningCustomerBillingAddressPage isExpectedPage()
     {
-        $("#billAddr0").should(exist);
+        $("#bill-addr-0").should(exist);
         return this;
     }
     
@@ -53,7 +53,7 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
         title.shouldHave(exactText(Neodymium.localizedText("returningCustomerBillingAddressPage.title"))).shouldBe(visible);
         
         // validate first address
-        $("#billAddr0").shouldBe(visible);
+        $("#bill-addr-0").shouldBe(visible);
         
         // validate add new billing address button
         addBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewBillingAddress"))).shouldBe(visible);
@@ -66,13 +66,13 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
     public void validateAddressContainer(int position, Address billingAddress) 
     {
         final int index = position - 1;
-        final SelenideElement addressContainer = $("#billAddr" + index);
+        final SelenideElement addressContainer = $("#bill-addr-" + index);
         final String fullName = billingAddress.getFirstName() + " " + billingAddress.getLastName();
         
         // validate address data
         addressContainer.find(".name").shouldHave(exactText(fullName)).shouldBe(visible);
         addressContainer.find(".company").shouldHave(exactText(billingAddress.getCompany())).shouldBe(visible);
-        addressContainer.find(".addressLine").shouldHave(exactText(billingAddress.getStreet())).shouldBe(visible);
+        addressContainer.find(".address-line").shouldHave(exactText(billingAddress.getStreet())).shouldBe(visible);
         addressContainer.find(".city").shouldHave(exactText(billingAddress.getCity())).shouldBe(visible);
         addressContainer.find(".state").shouldHave(exactText(billingAddress.getState())).shouldBe(visible);
         addressContainer.find(".zip").shouldHave(exactText(billingAddress.getZip())).shouldBe(visible);
@@ -87,7 +87,7 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
         final int index = position - 1;
         
         // select address, press "Use this billing address"
-        $("#billAddr" + index + " input").click(ClickOptions.usingJavaScript());
+        $("#bill-addr-" + index + " input").click(ClickOptions.usingJavaScript());
         useBillingAddressButton.click(ClickOptions.usingJavaScript());
 
         return new ReturningCustomerPaymentPage().isExpectedPage();

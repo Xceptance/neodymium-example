@@ -16,11 +16,11 @@ import posters.pageobjects.pages.browsing.HomePage;
 
 public class DeleteAccountPage extends AbstractBrowsingPage
 {
-    private SelenideElement deleteForm = $("#formDeleteAccount");
+    private SelenideElement deleteForm = $("#form-delete-account");
 
     private SelenideElement passwordField = $("#password");
 
-    private SelenideElement deleteButton = $("#btnDeleteAccount");
+    private SelenideElement deleteButton = $("#btn-delete-account");
 
     @Override
     @Step("ensure this is a delete account page")

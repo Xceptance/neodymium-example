@@ -10,9 +10,9 @@ default:
         logout: "Logout"
         addToCart: "Add to cart"
         addNewAddress: "Add new address"
-        addNewShippingAddress: "Add a new shipping address"
-        addNewBillingAddress: "Add a new billing address"
-        addNewCreditCard: "Add a new credit card"
+        addNewShippingAddress: "Add Shipping Address"
+        addNewBillingAddress: "Add Billing Address"
+        addNewCreditCard: "Add credit card"
         useThisShippingAddress: "Continue"
         useThisBillingAddress: "Use this billing address"
         useThisCreditCard: "Use this credit card"
@@ -337,10 +337,10 @@ default:
         title: "My Addresses"
         
     addNewShippingAddressPage:
-        title: "Add a new shipping address"
+        title: "Add shipping address"
         
     addNewBillingAddressPage:
-        title: "Add a new billing address"
+        title: "Add billing address"
             
     personalDataPage:
         title: "Personal Data"

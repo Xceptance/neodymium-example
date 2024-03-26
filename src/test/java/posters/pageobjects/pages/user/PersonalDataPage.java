@@ -16,13 +16,13 @@ import posters.tests.testdata.dataobjects.User;
 
 public class PersonalDataPage extends AbstractBrowsingPage
 {
-    private SelenideElement title = $("#titlePersonalData");
+    private SelenideElement title = $("#title-personal-data");
 
-    private SelenideElement changeNameOrEmailButton = $("#btnChangeNameEmail");
+    private SelenideElement changeNameOrEmailButton = $("#btn-change-name-email");
     
-    private SelenideElement changePasswordButton = $("#btnChangePassword");
+    private SelenideElement changePasswordButton = $("#btn-change-password");
     
-    private SelenideElement deleteButton = $("#btnDeleteAccount");
+    private SelenideElement deleteButton = $("#btn-delete-account");
 
     @Override
     @Step("ensure this is a personal data page")
@@ -56,11 +56,11 @@ public class PersonalDataPage extends AbstractBrowsingPage
         // validate name
         String fullName = user.getFirstName() + " " + user.getLastName();
         $$(".form-group strong").findBy(exactText(Neodymium.localizedText("personalDataPage.name"))).shouldBe(visible);
-        $("#customerName").shouldHave(exactText(fullName)).shouldBe(visible);
+        $("#customer-name").shouldHave(exactText(fullName)).shouldBe(visible);
         
         // validate email
         $$(".form-group strong").findBy(exactText(Neodymium.localizedText("personalDataPage.email"))).shouldBe(visible);
-        $("#customerEmail").shouldHave(exactText(user.getEmail())).shouldBe(visible);
+        $("#customer-email").shouldHave(exactText(user.getEmail())).shouldBe(visible);
     }
     
     @Step("validate successful update")

@@ -14,9 +14,9 @@ import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
 public class PaymentOverviewPage extends AbstractBrowsingPage
 {
-    private SelenideElement title = $("#titlePaymentOverview");
+    private SelenideElement title = $("#title-payment-overview");
     
-    private SelenideElement addNewCreditCardButton = $("#linkAddNewPayment");
+    private SelenideElement addNewCreditCardButton = $("#link-add-new-payment");
 
     @Override
     @Step("ensure this is a payment overview page")
@@ -38,7 +38,7 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
         // validate title
         title.shouldHave(exactText(Neodymium.localizedText("account.paymentSettings"))).shouldBe(visible);
         
-        $("#linkAddNewPayment").shouldHave(exactText(Neodymium.localizedText("button.addNewCreditCard"))).shouldBe(visible);
+        addNewCreditCardButton.shouldHave(exactText(Neodymium.localizedText("button.addNewCreditCard"))).shouldBe(visible);
     }
     
     @Step("validate successful saved change")
