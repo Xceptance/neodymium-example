@@ -21,7 +21,7 @@ import posters.pageobjects.utility.PriceHelper;
 
 public class CartPage extends AbstractBrowsingPage
 {
-    private SelenideElement title = $("#card-title");
+    private SelenideElement title = $("#cart-title");
 
     private SelenideElement cartTable = $(".table");
 
