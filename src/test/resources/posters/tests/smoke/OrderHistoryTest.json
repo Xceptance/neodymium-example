@@ -1,0 +1,89 @@
+[
+	{
+		"user":
+      	{
+      		"firstName": "Jens",
+      		"lastName": "Doe",
+      		"email": "jens@varmail.net",
+      		"password": "topsecret"
+      	},
+      	"topCategory1": "header.topNavigation.1.title",
+      	"topCategory2": "header.topNavigation.2.title",
+      	"topCategory3": "header.topNavigation.3.title",
+      	"resultPosition": "6",
+      	"sizeProduct": "32 x 24 in",
+      	"styleProduct": "gloss",
+     	"shipAddrPos": 1,
+      	"billAddrPos": 1,
+      	"creditCardPos": 1,
+      	"shipAddrEqualBillAddr": true,
+      	"shippingAddress":
+      	{
+            "firstName": "Jens",
+      		"lastName": "Doe",
+      		"company": "Jens Doe Inc.",
+      		"street": "5-7 Jens Doe street",
+      		"city": "New York City",
+      		"state": "New York",
+      		"zip": "12345",
+      		"country": "United States"
+      	},
+      	"creditCard":
+      	{
+      		"fullName": "Jens Doe",
+      		"cardNumber": "4111111111111111",
+      		"crypticCardNumber": "xxxx xxxx xxxx 1111",
+      		"expDateMonth": "06",
+      		"expDateYear": "2028"
+      	}
+	},
+	{
+      	"user":
+      	{
+      		"firstName": "Jens",
+      		"lastName": "Doe",
+      		"email": "jens@varmail.net",
+      		"password": "topsecret"
+      	},
+      	"topCategory1": "header.topNavigation.1.title",
+      	"topCategory2": "header.topNavigation.2.title",
+      	"topCategory3": "header.topNavigation.3.title",
+      	"resultPosition": "2",
+      	"sizeProduct": "16 x 12 in",
+      	"styleProduct": "matte",
+      	"shipAddrPos": 1,
+      	"billAddrPos": 1,
+      	"creditCardPos": 1,
+      	"shipAddrEqualBillAddr": false,
+      	"shippingAddress":
+      	{
+            "firstName": "Jens",
+      		"lastName": "Doe",
+      		"company": "Jens Doe Inc.",
+      		"street": "5-7 Jens Doe street",
+      		"city": "New York City",
+      		"state": "New York",
+      		"zip": "12345",
+      		"country": "United States"
+      	},
+      	"billingAddress":
+      	{
+            "firstName": "Jens",
+      		"lastName": "Doe",
+      		"company": "Jens Doe GmbH",
+      		"street": "Jens Doe Straße 10",
+      		"city": "Hannover",
+      		"state": "Niedersachsen",
+      		"zip": "30159",
+      		"country": "Germany"
+      	},
+      	"creditCard":
+      	{
+      		"fullName": "Jens Doe",
+      		"cardNumber": "4111111111111111",
+      		"crypticCardNumber": "xxxx xxxx xxxx 1111",
+      		"expDateMonth": "11",
+      		"expDateYear": "2030"
+      	}
+	}
+]

@@ -17,9 +17,11 @@ public class CategoryPage extends AbstractBrowsingPage
 {
     public Pagination pagination = new Pagination();
 
-    private SelenideElement productOverview = $("#productOverview");
+    private SelenideElement productOverview = $("#product-overview");
 
-    private SelenideElement titleCategoryName = $("#titleCategoryName");
+    private SelenideElement titleCategoryName = $("#title-category-name");
+
+    private SelenideElement titleSearchText = $("#title-search-text");
 
     @Override
     @Step("ensure this is a category page")
@@ -46,21 +48,19 @@ public class CategoryPage extends AbstractBrowsingPage
     }
 
     /**
-     * Note: If {categoryName} contains a ".", it's a localization string, localized by Neodymium. Else a search
+     * If {categoryName} contains a ".", it's a localization string, localized by Neodymium. Else a search
      * term was used. Both cases have a different headline to validate.
      * 
-     * @param categoryName
-     *            (name of specific category of top navigation)
-     * @param expectedResultCount
-     *            (number of results for specific category/search)
+     * @param categoryName name of specific category of top navigation
+     * @param expectedResultCount number of results for specific category/search
      */
     @Step("validate category name '{categoryName}' and amount results '{expectedResultCount}' on category page")
     public void validateCategoryHeadline(String categoryName, int expectedResultCount)
     {
-        if ($("#titleSearchText").exists())
+        if (titleSearchText.exists())
         {
             // if {categoryName} is search input
-            $("#titleSearchText").should(matchText(Neodymium.localizedText("categoryPage.searchResultText"))).shouldBe(visible);
+            titleSearchText.should(matchText(Neodymium.localizedText("categoryPage.searchResultText"))).shouldBe(visible);
             $("#searchTextValue").shouldHave(exactText(categoryName)).shouldBe(visible);
             $("#totalProductCount").shouldHave(exactText(Integer.toString(expectedResultCount))).shouldBe(visible);
         }

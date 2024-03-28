@@ -20,15 +20,15 @@ import posters.pageobjects.pages.browsing.HomePage;
 
 public class LoginPage extends AbstractBrowsingPage
 {
-    private SelenideElement loginForm = $("#formLogin");
+    private SelenideElement loginForm = $("#form-login");
 
     private SelenideElement emailField = $("#email");
 
     private SelenideElement passwordField = $("#password");
 
-    private SelenideElement signInButton = $("#btnSignIn");
+    private SelenideElement signInButton = $("#btn-sign-in");
 
-    private SelenideElement registerLink = $("#linkRegister");
+    private SelenideElement registerLink = $("#link-register");
 
     @Override
     @Step("ensure this is a login page")
@@ -41,12 +41,6 @@ public class LoginPage extends AbstractBrowsingPage
 
     /// ========== validate content login page ========== ///
     
-    @Step("validate required string")
-    public void validateRequiredString() 
-    {
-        $(".me-auto").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
-    }
-    
     @Override
     @Step("validate login page structure")
     public void validateStructure()
@@ -57,15 +51,15 @@ public class LoginPage extends AbstractBrowsingPage
         loginForm.find("legend").shouldHave(exactText(Neodymium.localizedText("loginPage.title"))).shouldBe(visible);
         
         // validate fill in headlines
-        $$("#formLogin .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.email"))).shouldBe(visible);
-        $$("#formLogin .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.password"))).shouldBe(visible);
+        //$$("#formLogin .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.email"))).shouldBe(visible);
+        $$("#form-login .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.password"))).shouldBe(visible);
         
         // validate fill in placeholder
         emailField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.email")))).shouldBe(visible);
         passwordField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.password")))).shouldBe(visible);
         
         // validate "required fields" string
-        validateRequiredString();
+        $(".req-field").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
       
         // validate sign in button
         signInButton.shouldHave(exactText(Neodymium.localizedText("button.signIn")));
@@ -75,25 +69,16 @@ public class LoginPage extends AbstractBrowsingPage
         registerLink.shouldHave(exactText(Neodymium.localizedText("loginPage.createNewAccount")));
     }
     
-    /// ========== validate success and error messages ========== ///
-    
     @Step("validate successful registration message")
     public void validateSuccessfulRegistration()
     {
         successMessage.validateSuccessMessage(Neodymium.localizedText("successMessage.successfulRegistration"));
     }
-
-    @Step("validate invalid email for login error message")
-    public void validateWrongEmail(String email)
-    {
-        errorMessage.validateErrorMessage(Neodymium.localizedText("errorMessage.emailDoesNotExist"));
-        Assert.assertEquals(emailField.val(), email);
-    }
     
-    @Step("validate invalid password for login error message")
-    public void validateWrongPassword(String email)
+    @Step("validate invalid email or password for login error message")
+    public void validateFalseLogin(String email)
     {
-        errorMessage.validateErrorMessage(Neodymium.localizedText("errorMessage.incorrectPassword"));
+        errorMessage.validateErrorMessage(Neodymium.localizedText("errorMessage.errorFalseLogin"));
         Assert.assertEquals(emailField.val(), email);
     }
     
@@ -125,10 +110,10 @@ public class LoginPage extends AbstractBrowsingPage
     }
     
     @Step("fill and send login form with valid user '{user}'")
-    public HomePage sendLoginForm(User user)
+    public AccountOverviewPage sendLoginForm(User user)
     {
         sendFormWithData(user.getEmail(), user.getPassword());
-        return new HomePage().isExpectedPage();
+        return new AccountOverviewPage().isExpectedPage();
     }
     
     @Step("fill and send login form with invalid user '{user}'")

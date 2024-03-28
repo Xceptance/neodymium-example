@@ -29,8 +29,6 @@ public class Footer extends AbstractComponent
     {
         footer.should(exist);
     }
-
-    /// ========== validate footer ========== ///
     
     @Step("validate about us section")
     private void validateAboutSection() 
@@ -53,6 +51,7 @@ public class Footer extends AbstractComponent
         informationSection.find(".footer-section-headline").shouldHave(exactText(Neodymium.localizedText("footer.3.headline"))).shouldBe(visible);
         informationSection.find(".footer-info").shouldHave(exactText(Neodymium.localizedText("footer.3.description"))).shouldBe(visible);       
     }
+    
     @Step("validate contact information section")
     private void validateContactInformationSection() 
     {
@@ -82,7 +81,10 @@ public class Footer extends AbstractComponent
         validateContactInformationSection();
         
         // validate copyright text
-        $("#footer-copyright").shouldHave(exactText(Neodymium.localizedText("footer.copyright")));
+        $("#footer-copyright").shouldHave(text(Neodymium.localizedText("footer.copyright")));
+        
+        // validate photo license
+        $("#footer-copyright").shouldHave(text(Neodymium.localizedText("footer.photoLicense")));
         
         // validate version
         $("#footer-version-information").shouldHave(exactText(Neodymium.localizedText("footer.version")));        

@@ -42,6 +42,7 @@ public class HeaderFooterTest extends AbstractTest
         var productDetailPage = categoryPage.clickProductByPosition(headerTestData.getResultPosition());
         productDetailPage.header.validateStructure();
         productDetailPage.footer.validateStructure();
+        productDetailPage.clickAddToCartButton();
         
         // go to cart page
         var cartPage = productDetailPage.header.miniCart.openCartPage();

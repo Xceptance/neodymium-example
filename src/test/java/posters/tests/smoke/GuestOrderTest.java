@@ -39,8 +39,7 @@ public class GuestOrderTest extends AbstractTest
         
         // go to product detail page, add and store displayed product
         var productDetailPage = categoryPage.clickProductByPosition(guestOrderTestData.getResultPosition());
-        productDetailPage.addToCart(guestOrderTestData.getsSizeProduct(), guestOrderTestData.getStyleProduct());
-        final var product = productDetailPage.getProduct();
+        final var product = productDetailPage.addToCart(guestOrderTestData.getsSizeProduct(), guestOrderTestData.getStyleProduct());
         
         // go to cart page
         var cartPage = productDetailPage.header.miniCart.openCartPage();
@@ -56,11 +55,11 @@ public class GuestOrderTest extends AbstractTest
         if (!guestOrderTestData.getShipAddrEqualBillAddr()) 
         {
             // go to billing address page and validate
-            var billingAddressPage = shippingAddressPage.goToGuestBillingAddressPage(guestOrderTestData.getShippingAddress());
+            var billingAddressPage = shippingAddressPage.addressForm.goToGuestBillingAddressPage(guestOrderTestData.getShippingAddress());
             billingAddressPage.validateStructure();
         
             // go to payment page and validate
-            paymentPage = billingAddressPage.goToGuestPaymentPage(guestOrderTestData.getBillingAddress());
+            paymentPage = billingAddressPage.addressForm.goToGuestPaymentPage(guestOrderTestData.getBillingAddress());
             paymentPage.validateStructure();
             
             // go to place order page and validate order overview
@@ -70,7 +69,7 @@ public class GuestOrderTest extends AbstractTest
         else
         {
             // go to payment page and validate
-            paymentPage = shippingAddressPage.goToGuestPaymentPage(guestOrderTestData.getShippingAddress());
+            paymentPage = shippingAddressPage.addressForm.goToGuestPaymentPage(guestOrderTestData.getShippingAddress());
             paymentPage.validateStructure();
             
             // go to place order page and validate order overview

@@ -14,19 +14,18 @@ import posters.tests.testdata.dataobjects.CreditCard;
 
 public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
 {
-    private SelenideElement title = $("#titlePayment");
+    private SelenideElement title = $("#title-payment");
     
     private SelenideElement addCreditCardButton = $(".form-group .btn");
 
-    private SelenideElement useCreditCardButton = $("#btnUsePayment");
+    private SelenideElement useCreditCardButton = $("#btn-use-payment");
     
-
     @Override
     @Step("ensure this is a payment page")
     public ReturningCustomerPaymentPage isExpectedPage()
     {
         super.isExpectedPage();
-        $("#payment0").should(exist);
+        $("#payment-0").should(exist);
         return this;
     }
 
@@ -65,13 +64,13 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
     public void validateCreditCardContainer(int position, CreditCard creditCard) 
     {
         final int index = position - 1;
-        final SelenideElement creditCardContainer = $("#payment" + index);
+        final SelenideElement creditCardContainer = $("#payment-" + index);
         final String expDate = creditCard.getExpDateMonth() + "/" + creditCard.getExpDateYear();
         
         // validate address data
         creditCardContainer.find(".name").shouldHave(exactText(creditCard.getFullName())).shouldBe(visible);
-        creditCardContainer.find(".creditCard").shouldHave(exactText(creditCard.getCrypticCardNumber())).shouldBe(visible);
-        creditCardContainer.find(".validTo").shouldHave(exactText(expDate)).shouldBe(visible);
+        creditCardContainer.find(".creditcard").shouldHave(exactText(creditCard.getCrypticCardNumber())).shouldBe(visible);
+        creditCardContainer.find(".valid-to").shouldHave(exactText(expDate)).shouldBe(visible);
     }
     
     /// ========== select credit card ========== ///
@@ -82,7 +81,7 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
         final int index = position - 1;
         
         // select address, press "Use this credit card"
-        $("#payment" + index + " input").click(ClickOptions.usingJavaScript());
+        $("#payment-" + index + " input").click(ClickOptions.usingJavaScript());
         useCreditCardButton.click(ClickOptions.usingJavaScript());
 
         return new PlaceOrderPage().isExpectedPage();

@@ -6,7 +6,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -24,12 +23,12 @@ public class TopNavigation extends AbstractComponent
         categoryMenu.should(exist);
     }
     
-    // ========== category navigation ==========- //
+    /// ========== category navigation ========== ///
     
     @Step("click on the top category '{topCategory}'")
     public CategoryPage clickCategory(String topCategory)
     {
-        $$("#header-categories .nav-link[href*=\"/topCategory/\"]").findBy(exactText(topCategory)).click(ClickOptions.usingJavaScript());
+        $$("#header-categories .nav-item").findBy(exactText(topCategory)).click();
         return new CategoryPage().isExpectedPage();
     }
     
@@ -37,11 +36,11 @@ public class TopNavigation extends AbstractComponent
     public CategoryPage clickSubCategory(String topCategory, String subCategory)
     {
         $$(".nav-item.dropdown").findBy(exactText(topCategory)).hover();
-        $$("#header-categories ul.dropdown-menu li").findBy(exactText(subCategory)).click(ClickOptions.usingJavaScript());
+        $$("#header-categories ul.dropdown-menu li").findBy(exactText(subCategory)).click();
         return new CategoryPage().isExpectedPage();
     }
     
-    // ========== validate top navigation ========== //
+    /// ========== validate top navigation ========== ///
     
     @Step("validate top category name '{topCategory}'")
     public void validateNavComponent(String topCategory) 
