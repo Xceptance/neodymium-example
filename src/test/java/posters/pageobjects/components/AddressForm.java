@@ -38,9 +38,7 @@ public class AddressForm extends AbstractComponent
     
     private SelenideElement requiredField = $(".me-auto");
     
-    private SelenideElement addNewAddressToAddressOverviewButton = $("#btn-add-shipp-addr, #btn-add-bill-addr");
-    
-    private SelenideElement addNewGuestAddressButton = $("#button-add-shipping-address, #btn-add-bill-addr");
+    private SelenideElement addAddressButton = $("#btn-add-shipp-addr, #btn-add-bill-addr");
     
     @Override
     @Step("ensure availability address form")
@@ -65,7 +63,7 @@ public class AddressForm extends AbstractComponent
         countryField.selectOption(address.getCountry());
         
         // click add new address button
-        addNewAddressToAddressOverviewButton.click(ClickOptions.usingJavaScript());
+        addAddressButton.click(ClickOptions.usingJavaScript());
         
         return new AddressOverviewPage().isExpectedPage();
     }
@@ -85,7 +83,7 @@ public class AddressForm extends AbstractComponent
 
         // go to guest billing address page
         $("#bill-unequal-shipp").click(ClickOptions.usingJavaScript());
-        addNewGuestAddressButton.click(ClickOptions.usingJavaScript());
+        addAddressButton.click(ClickOptions.usingJavaScript());
 
         return new GuestBillingAddressPage().isExpectedPage();
     }
@@ -109,7 +107,7 @@ public class AddressForm extends AbstractComponent
             $("#bill-equal-shipp").click(ClickOptions.usingJavaScript());
         }
          
-        addNewGuestAddressButton.click(ClickOptions.usingJavaScript());
+        addAddressButton.click(ClickOptions.usingJavaScript());
 
         return new GuestPaymentPage().isExpectedPage();
     }

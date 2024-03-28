@@ -69,8 +69,8 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
         
         // validate address data
         creditCardContainer.find(".name").shouldHave(exactText(creditCard.getFullName())).shouldBe(visible);
-        creditCardContainer.find(".creditCard").shouldHave(exactText(creditCard.getCrypticCardNumber())).shouldBe(visible);
-        creditCardContainer.find(".validTo").shouldHave(exactText(expDate)).shouldBe(visible);
+        creditCardContainer.find(".creditcard").shouldHave(exactText(creditCard.getCrypticCardNumber())).shouldBe(visible);
+        creditCardContainer.find(".valid-to").shouldHave(exactText(expDate)).shouldBe(visible);
     }
     
     /// ========== select credit card ========== ///
@@ -81,7 +81,7 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
         final int index = position - 1;
         
         // select address, press "Use this credit card"
-        $("#payment" + index + " input").click(ClickOptions.usingJavaScript());
+        $("#payment-" + index + " input").click(ClickOptions.usingJavaScript());
         useCreditCardButton.click(ClickOptions.usingJavaScript());
 
         return new PlaceOrderPage().isExpectedPage();

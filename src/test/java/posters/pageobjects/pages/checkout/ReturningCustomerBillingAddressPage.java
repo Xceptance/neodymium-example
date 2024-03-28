@@ -18,7 +18,7 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
     
     private SelenideElement addBillingAddressButton = $(".form-group .btn");
     
-    private SelenideElement useBillingAddressButton = $("#btn-use-address-continue");
+    private SelenideElement useBillingAddressButton = $("#btn-use-bill-address");
 
     @Override
     @Step("ensure this is a billing address page")

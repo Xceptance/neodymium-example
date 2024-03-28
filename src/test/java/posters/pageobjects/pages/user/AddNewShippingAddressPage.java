@@ -37,6 +37,6 @@ public class AddNewShippingAddressPage extends AbstractBrowsingPage
         addressForm.validateStructure();
 
         // validate continue button
-        $("#button-add-shipping-address").shouldHave(exactText(Neodymium.localizedText("button.addNewAddress"))).shouldBe(visible);
+        $("#btn-add-shipp-addr").shouldHave(exactText(Neodymium.localizedText("button.addNewAddress"))).shouldBe(visible);
     }
 }
