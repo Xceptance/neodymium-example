@@ -16,21 +16,25 @@ public class OrderHistoryTestData
 
     private int resultPosition;
     
-    private String sizeProduct;
+    private String sizeProduct16x12;
     
-    private String styleProduct;
+    private String sizeProduct32x24;
     
-    private int shipAddrPos;
+    private String sizeProduct64x48;
     
-    private int billAddrPos;
+    private String styleProductMatte;
+
+    private String styleProductGloss;
     
-    private int creditCardPos;
+    private int amountChange;
     
-    private Boolean shipAddrEqualBillAddr;
+    private int shippingAddressPosition;
     
-    private Address shippingAddress;
+    private int billingAddressPosition;
     
-    private Address billingAddress;
+    private int creditCardPosition;
+    
+    private Address address;
     
     private CreditCard creditCard;
     
@@ -59,44 +63,54 @@ public class OrderHistoryTestData
         return resultPosition;
     }
     
-    public String getsSizeProduct()
+    public String getsSizeProduct16x12()
     {
-        return sizeProduct;
+        return sizeProduct16x12;
     }
     
-    public String getStyleProduct()
+    public String getsSizeProduct32x24()
     {
-        return styleProduct;
+        return sizeProduct32x24;
     }
     
-    public int getShipAddrPos() 
+    public String getsSizeProduct64x48()
     {
-        return shipAddrPos;
+        return sizeProduct64x48;
     }
     
-    public int getBillAddrPos() 
+    public String getStyleProductMatte()
     {
-        return billAddrPos;
+        return styleProductMatte;
     }
     
-    public int getCreditCardPos() 
+    public String getStyleProductGloss()
     {
-        return creditCardPos;
+        return styleProductGloss;
+    }
+
+    public int getAmountChange()
+    {
+        return amountChange;
     }
     
-    public Boolean getShipAddrEqualBillAddr()
+    public int getShippingAddressPosition() 
     {
-        return shipAddrEqualBillAddr;
+        return shippingAddressPosition;
     }
     
-    public Address getShippingAddress() 
+    public int getBillingAddressPosition() 
     {
-        return shippingAddress;
+        return billingAddressPosition;
     }
     
-    public Address getBillingAddress() 
+    public int getCreditCardPosition() 
     {
-        return billingAddress;
+        return creditCardPosition;
+    }
+    
+    public Address getAddress() 
+    {
+        return address;
     }
     
     public CreditCard getCreditCard() 

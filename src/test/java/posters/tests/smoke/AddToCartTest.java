@@ -1,6 +1,7 @@
 package posters.tests.smoke;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
@@ -21,15 +22,22 @@ import posters.tests.testdata.processes.AddToCartTestData;
 @Tag("smoke")
 public class AddToCartTest extends AbstractTest
 {
+    private AddToCartTestData addToCartTestData;
+    
+    private String shippingCosts;
+
+    @Before
+    public void setup()
+    {
+        shippingCosts = Neodymium.dataValue("shippingCosts");
+        addToCartTestData = DataUtils.get(AddToCartTestData.class);
+    }
+    
     @Test
     @DataSet(1)
     @DataSet(2)
     public void testAddProductsToCart()
     {   
-        // use test data
-        final String shippingCosts = Neodymium.dataValue("shippingCosts");
-        final AddToCartTestData addToCartTestData = DataUtils.get(AddToCartTestData.class);
-
         /// ========== PART 1: USE TOP NAVIGATION TO ADD PRODUCT TO CART ========== ///
         
         // go to homepage
@@ -39,12 +47,12 @@ public class AddToCartTest extends AbstractTest
         final String oldSubtotal = homePage.header.miniCart.getSubtotal();
 
         // go to sub category page
-        var categoryPage = homePage.header.topNav.clickCategory(Neodymium.localizedText(addToCartTestData.getTopCategory()));
-        var subCategoryPage = categoryPage.header.topNav.clickSubCategory(Neodymium.localizedText(addToCartTestData.getTopCategory()), Neodymium.localizedText(addToCartTestData.getSubCategory()));
+        var subCategoryPage = homePage.header.topNav.clickSubCategory(Neodymium.localizedText(addToCartTestData.getTopCategory()), Neodymium.localizedText(addToCartTestData.getSubCategory()));
 
         // go to product detail page, add and store displayed product
         var productDetailPage = subCategoryPage.clickProductByPosition(addToCartTestData.getSubCategoryResultPosition());
-        final var product = productDetailPage.addToCart(addToCartTestData.getSizeFirstProduct(), addToCartTestData.getStyleFirstProduct());
+        productDetailPage.addToCart(addToCartTestData.getSizeFirstProduct(), addToCartTestData.getStyleFirstProduct());
+        final var product = productDetailPage.getProduct();
 
         // go to cart page
         var cartPage = productDetailPage.header.miniCart.openCartPage();
@@ -62,11 +70,12 @@ public class AddToCartTest extends AbstractTest
         final String oldSubtotal2 = cartPage.header.miniCart.getSubtotal();
         
         // go to category page via search
-        categoryPage = cartPage.header.search.categoryPageResult(addToCartTestData.getSearchTerm());
+        var categoryPage = cartPage.header.search.categoryPageResult(addToCartTestData.getSearchTerm());
 
         // go to product detail page, add and store displayed product
         productDetailPage = categoryPage.clickProductByPosition(addToCartTestData.getSearchResultPosition());      
-        final var product2 = productDetailPage.addToCart(addToCartTestData.getSizeSecondProduct(), addToCartTestData.getStyleSecondProduct());
+        productDetailPage.addToCart(addToCartTestData.getSizeSecondProduct(), addToCartTestData.getStyleSecondProduct());
+        final var product2 = productDetailPage.getProduct();
 
         // go to cart page
         cartPage = productDetailPage.header.miniCart.openCartPage();
@@ -130,8 +139,7 @@ public class AddToCartTest extends AbstractTest
         final var productFromCartPageBefore = cartPage.getProduct(1);
         
         // go to sub category page
-        categoryPage = cartPage.header.topNav.clickCategory(Neodymium.localizedText(addToCartTestData.getTopCategory()));
-        subCategoryPage = categoryPage.header.topNav.clickSubCategory(Neodymium.localizedText(addToCartTestData.getTopCategory()), Neodymium.localizedText(addToCartTestData.getSubCategory()));
+        subCategoryPage = cartPage.header.topNav.clickSubCategory(Neodymium.localizedText(addToCartTestData.getTopCategory()), Neodymium.localizedText(addToCartTestData.getSubCategory()));
 
         // go to product detail page, add and store displayed product
         productDetailPage = subCategoryPage.clickProductByPosition(addToCartTestData.getSubCategoryResultPosition());

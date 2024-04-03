@@ -133,15 +133,12 @@ public class ProductDetailPage extends AbstractBrowsingPage
         addToCartButton.click(ClickOptions.usingJavaScript());
     }
 
-    @Step("add and return product with size '{size}' and style '{style}' to cart")
-    public Product addToCart(String size, String style)
+    @Step("add product with size '{size}' and style '{style}' to cart")
+    public void addToCart(String size, String style)
     {
         setSize(size);
-        setStyle(style);
-        Product product = getProduct();        
+        setStyle(style);   
         clickAddToCartButton();
-        
-        return product;
     }
 
     /// ========== get product details ========== ///

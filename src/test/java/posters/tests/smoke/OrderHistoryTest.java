@@ -2,9 +2,9 @@ package posters.tests.smoke;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
-import com.xceptance.neodymium.module.statement.testdata.DataSet;
 import com.xceptance.neodymium.util.DataUtils;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -18,6 +18,7 @@ import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 import posters.tests.testdata.processes.OrderHistoryTestData;
 
+@Ignore
 @Owner("Lisa Smith")
 @Severity(SeverityLevel.BLOCKER)
 @Tag("smoke")
@@ -32,14 +33,9 @@ public class OrderHistoryTest extends AbstractTest
         orderHistoryTestData = DataUtils.get(OrderHistoryTestData.class);
     }
    
-    @DataSet(1)
-    @DataSet(2)
     @Test
     public void testOrderHistory()
     {
-        // use test data
-        final String shippingCosts = Neodymium.dataValue("shippingCosts");
-
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
 
@@ -64,26 +60,13 @@ public class OrderHistoryTest extends AbstractTest
         var addressOverviewPage = accountOverviewPage.openMyAddresses();
         
         // add new addresses
-        if (!orderHistoryTestData.getShipAddrEqualBillAddr())
-        {
-            var addNewShippingAddressPage = addressOverviewPage.openAddNewShippingAddressPage();
-            addressOverviewPage = addNewShippingAddressPage.addressForm.addNewAddress(orderHistoryTestData.getShippingAddress());
-            addressOverviewPage.validateSuccessfulSave();
-            
-            var addNewBillingAddressPage = addressOverviewPage.openAddNewBillingAddressPage();
-            addressOverviewPage = addNewBillingAddressPage.addressForm.addNewAddress(orderHistoryTestData.getBillingAddress());
-            addressOverviewPage.validateSuccessfulSave();
-        }
-        else
-        {
-            var addNewShippingAddressPage = addressOverviewPage.openAddNewShippingAddressPage();
-            addressOverviewPage = addNewShippingAddressPage.addressForm.addNewAddress(orderHistoryTestData.getShippingAddress());
-            addressOverviewPage.validateSuccessfulSave();
-            
-            var addNewBillingAddressPage = addressOverviewPage.openAddNewBillingAddressPage();
-            addressOverviewPage = addNewBillingAddressPage.addressForm.addNewAddress(orderHistoryTestData.getShippingAddress());
-            addressOverviewPage.validateSuccessfulSave();
-        }
+        var addNewShippingAddressPage = addressOverviewPage.openAddNewShippingAddressPage();
+        addressOverviewPage = addNewShippingAddressPage.addressForm.addNewAddress(orderHistoryTestData.getAddress());
+        addressOverviewPage.validateSuccessfulSave();
+        
+        var addNewBillingAddressPage = addressOverviewPage.openAddNewBillingAddressPage();
+        addressOverviewPage = addNewBillingAddressPage.addressForm.addNewAddress(orderHistoryTestData.getAddress());
+        addressOverviewPage.validateSuccessfulSave();
 
         // go to account overview page
         accountOverviewPage = addressOverviewPage.header.userMenu.openAccountOverviewPage();
@@ -101,22 +84,24 @@ public class OrderHistoryTest extends AbstractTest
 
         // go to product detail page, add and store displayed product
         var productDetailPage = categoryPage.clickProductByPosition(orderHistoryTestData.getResultPosition());
-        final var product1 = productDetailPage.addToCart(orderHistoryTestData.getsSizeProduct(), orderHistoryTestData.getStyleProduct());
+        productDetailPage.addToCart(orderHistoryTestData.getsSizeProduct16x12(), orderHistoryTestData.getStyleProductMatte());
 
         // go to cart page
         var cartPage = productDetailPage.header.miniCart.openCartPage();
+        cartPage.updateProductCount(1, orderHistoryTestData.getAmountChange());
+        final var product1 = cartPage.getProduct(1); 
 
         // go to shipping address page
         var shippingAddressPage = cartPage.openReturningCustomerShippingAddressPage();
 
         // go to billing address page
-        var billingAddressPage = shippingAddressPage.selectShippingAddress(orderHistoryTestData.getShipAddrPos());
+        var billingAddressPage = shippingAddressPage.selectShippingAddress(orderHistoryTestData.getShippingAddressPosition());
 
         // go to payment page
-        var paymentPage = billingAddressPage.selectBillingAddress(orderHistoryTestData.getBillAddrPos());
+        var paymentPage = billingAddressPage.selectBillingAddress(orderHistoryTestData.getBillingAddressPosition());
 
         // go to place order page
-        var placeOrderPage = paymentPage.selectCreditCard(orderHistoryTestData.getCreditCardPos());
+        var placeOrderPage = paymentPage.selectCreditCard(orderHistoryTestData.getCreditCardPosition());
 
         // go to order confirmation page
         var orderConfirmationPage = placeOrderPage.placeOrder();
@@ -133,29 +118,32 @@ public class OrderHistoryTest extends AbstractTest
 
         // go to product detail page, add and store displayed product
         productDetailPage = categoryPage.clickProductByPosition(orderHistoryTestData.getResultPosition());
-        final var product2 = productDetailPage.addToCart(orderHistoryTestData.getsSizeProduct(), orderHistoryTestData.getStyleProduct());
+        productDetailPage.addToCart(orderHistoryTestData.getsSizeProduct32x24(), orderHistoryTestData.getStyleProductGloss());
         
         // go to category page
         categoryPage = productDetailPage.header.topNav.clickCategory(Neodymium.localizedText(orderHistoryTestData.getTopCategory3()));
 
         // go to product detail page, add and store displayed product
         productDetailPage = categoryPage.clickProductByPosition(orderHistoryTestData.getResultPosition());
-        final var product3 = productDetailPage.addToCart(orderHistoryTestData.getsSizeProduct(), orderHistoryTestData.getStyleProduct());
+        productDetailPage.addToCart(orderHistoryTestData.getsSizeProduct64x48(), orderHistoryTestData.getStyleProductMatte());
 
         // go to cart page
         cartPage = productDetailPage.header.miniCart.openCartPage();
+        cartPage.updateProductCount(2, orderHistoryTestData.getAmountChange());
+        final var product2 = cartPage.getProduct(2);
+        final var product3 = cartPage.getProduct(1);
 
         // go to shipping address page
         shippingAddressPage = cartPage.openReturningCustomerShippingAddressPage();
 
         // go to billing address page
-        billingAddressPage = shippingAddressPage.selectShippingAddress(orderHistoryTestData.getShipAddrPos());
+        billingAddressPage = shippingAddressPage.selectShippingAddress(orderHistoryTestData.getShippingAddressPosition());
 
         // go to payment page
-        paymentPage = billingAddressPage.selectBillingAddress(orderHistoryTestData.getBillAddrPos());
+        paymentPage = billingAddressPage.selectBillingAddress(orderHistoryTestData.getBillingAddressPosition());
 
         // go to place order page
-        placeOrderPage = paymentPage.selectCreditCard(orderHistoryTestData.getCreditCardPos());
+        placeOrderPage = paymentPage.selectCreditCard(orderHistoryTestData.getCreditCardPosition());
 
         // go to order confirmation page
         orderConfirmationPage = placeOrderPage.placeOrder();

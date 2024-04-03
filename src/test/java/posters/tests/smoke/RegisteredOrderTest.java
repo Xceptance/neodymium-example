@@ -33,7 +33,7 @@ public class RegisteredOrderTest extends AbstractTest
     }
    
     @DataSet(1)
-    @DataSet(2)
+    //@DataSet(2)
     @Test
     public void testOrderingAsRegisteredUser()
     {
@@ -102,10 +102,12 @@ public class RegisteredOrderTest extends AbstractTest
 
         // go to product detail page, add and store displayed product
         var productDetailPage = categoryPage.clickProductByPosition(registeredOrderTestData.getResultPosition());
-        final var product = productDetailPage.addToCart(registeredOrderTestData.getsSizeProduct(), registeredOrderTestData.getStyleProduct());
+        productDetailPage.addToCart(registeredOrderTestData.getsSizeProduct(), registeredOrderTestData.getStyleProduct());
 
         // go to cart page
         var cartPage = productDetailPage.header.miniCart.openCartPage();
+        cartPage.updateProductCount(1, registeredOrderTestData.getAmountChange());
+        final var product = cartPage.getProduct(1);
 
         // go to shipping address page
         var shippingAddressPage = cartPage.openReturningCustomerShippingAddressPage();

@@ -1,7 +1,6 @@
 [
     {
         "topCategory": "header.topNavigation.1.title",
-        "categoryResultPosition": "1",
         "subCategory": "header.topNavigation.1.subCategory.1",
         "subCategoryResultPosition": "1",
         "sizeFirstProduct": "16 x 12 in",
@@ -14,17 +13,16 @@
         "amountChange": "3"
     },
     {
-        "topCategory": "header.topNavigation.3.title",
-        "categoryResultPosition": "2",
-        "subCategory": "header.topNavigation.3.subCategory.2",
+        "topCategory": "header.topNavigation.2.title",
+        "subCategory": "header.topNavigation.2.subCategory.2",
         "subCategoryResultPosition": "2",
-        "sizeFirstProduct": "16 x 12 in",
+        "sizeFirstProduct": "32 x 24 in",
         "styleFirstProduct": "gloss",
         "searchTerm": "boston",
         "searchResultPosition": "4",
         "sizeSecondProduct": "96 x 32 in",
         "styleSecondProduct": "matte",
-        "productUpdatePosition": "1",
+        "productUpdatePosition": "2",
         "amountChange": "5"
     }
 ]

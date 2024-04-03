@@ -13,6 +13,8 @@ public class GuestOrderTestData
     
     private String styleProduct;
     
+    private int amountChange;
+    
     private Address shippingAddress;
     
     private Boolean shipAddrEqualBillAddr;
@@ -39,6 +41,11 @@ public class GuestOrderTestData
     public String getStyleProduct()
     {
         return styleProduct;
+    }
+    
+    public int getAmountChange()
+    {
+        return amountChange;
     }
     
     public Address getShippingAddress() 

@@ -38,7 +38,7 @@ public class AddressForm extends AbstractComponent
     
     private SelenideElement requiredField = $(".me-auto");
     
-    private SelenideElement addAddressButton = $("#btn-add-shipp-addr, #btn-add-bill-addr");
+    private SelenideElement addAddressButton = $("#btn-add-shipp-addr, #button-add-shipping-address, #btn-add-bill-addr");
     
     @Override
     @Step("ensure availability address form")

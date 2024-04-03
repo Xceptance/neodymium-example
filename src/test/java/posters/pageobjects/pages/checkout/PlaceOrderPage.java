@@ -36,8 +36,6 @@ public class PlaceOrderPage extends AbstractCheckoutPage
 
     private SelenideElement paymentForm = $("#payment");
     
-    private ElementsCollection totalProductPrices = $$(".product-unit-price");
-
     private SelenideElement subtotalContainer = $("#subtotal-value");
     
     private SelenideElement taxContainer = $("#subtotal-tax-value");
@@ -252,10 +250,17 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     public String calculateSubtotal() 
     {
         double subtotal = 0;
+        int products = $$(".order-overview-position tbody tr").size();
         
-        for (SelenideElement totalProductPrice : totalProductPrices) 
+        for (int i = 0; i < products; i++) 
         {
-            subtotal = PriceHelper.calculateSubtotalPlaceOrderPage(subtotal, totalProductPrice.getText());
+            SelenideElement product = $("#product-" + i);
+            
+            String productPrice = product.find(".product-unit-price").text();
+            String productAmount = product.find(".product-count").text();     
+            String totalProductPrice = PriceHelper.calculateTotalProductPrice(productPrice, productAmount);
+            
+            subtotal = PriceHelper.calculateSubtotalPlaceOrderPage(subtotal, totalProductPrice);
         }
         
         return PriceHelper.format(subtotal);

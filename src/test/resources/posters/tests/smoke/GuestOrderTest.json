@@ -4,6 +4,7 @@
       "resultPosition": "5",
       "sizeProduct": "64 x 48 in",
       "styleProduct": "gloss",
+      "amountChange": "2",
       "shippingAddress":
       {
             "firstName": "Jimmy Blue",
@@ -40,6 +41,7 @@
       "resultPosition": "2",
       "sizeProduct": "16 x 12 in",
       "styleProduct": "matte",
+      "amountChange": "1",
       "shippingAddress":
       {
             "firstName": "Gregor",

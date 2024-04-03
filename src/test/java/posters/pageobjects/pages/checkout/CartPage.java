@@ -128,7 +128,7 @@ public class CartPage extends AbstractBrowsingPage
         String quantity = $(".product-count").val();
 
         // calculate price of specified product
-        String newTotalProductPrice = PriceHelper.totalProductPrice(unitPrice, quantity);
+        String newTotalProductPrice = PriceHelper.calculateTotalProductPrice(unitPrice, quantity);
 
         // verify calculated unit price equals the displayed total unit price
         productContainer.find(".product-total-unit-price").shouldHave(exactText(newTotalProductPrice));

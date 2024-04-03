@@ -41,7 +41,7 @@ public class CategoryPage extends AbstractBrowsingPage
         super.validateStructure();
 
         // validate poster count in headline is not 0
-        $("#totalProductCount").shouldNotBe(exactText("0")).shouldBe(visible);
+        $("#total-product-count").shouldNotBe(exactText("0")).shouldBe(visible);
 
         // validate at least 1 poster is displayed
         $("#product0").shouldBe(visible);
@@ -61,8 +61,8 @@ public class CategoryPage extends AbstractBrowsingPage
         {
             // if {categoryName} is search input
             titleSearchText.should(matchText(Neodymium.localizedText("categoryPage.searchResultText"))).shouldBe(visible);
-            $("#searchTextValue").shouldHave(exactText(categoryName)).shouldBe(visible);
-            $("#totalProductCount").shouldHave(exactText(Integer.toString(expectedResultCount))).shouldBe(visible);
+            $("#search-text-value").shouldHave(exactText(categoryName)).shouldBe(visible);
+            $("#total-product-count").shouldHave(exactText(Integer.toString(expectedResultCount))).shouldBe(visible);
         }
         else
         {

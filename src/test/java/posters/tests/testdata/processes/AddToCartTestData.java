@@ -4,8 +4,6 @@ public class AddToCartTestData
 {
     private String topCategory;
 
-    private int categoryResultPosition;
-
     private String subCategory;
 
     private int subCategoryResultPosition;
@@ -31,11 +29,6 @@ public class AddToCartTestData
         return topCategory;
     }
 
-    public int getCategoryResultPosition()
-    {
-        return categoryResultPosition;
-    }
-    
     public String getSubCategory()
     {
         return subCategory;
