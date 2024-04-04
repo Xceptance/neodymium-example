@@ -95,19 +95,19 @@ public class AddToCartTest extends AbstractTest
         final String oldSubtotal3 = cartPage.header.miniCart.getSubtotal(); 
         
         // store product before update
-        final var productBeforeUpdate = cartPage.getProduct(addToCartTestData.getProductUpdatePosition());
+        final var productBeforeUpdate = cartPage.getProduct(1);
         
         // update amount of product on cart page
-        cartPage.updateProductCount(addToCartTestData.getProductUpdatePosition(), addToCartTestData.getAmountChange());
+        cartPage.updateProductCount(1, addToCartTestData.getAmountChange());
         cartPage.waitForProductUpdate(oldSubtotal3);
         
         // store subtotal of updated product
-        String subtotalAfterUpdate = cartPage.getProductTotalPrice(addToCartTestData.getProductUpdatePosition());
+        String subtotalAfterUpdate = cartPage.getProductTotalPrice(1);
         
         // validate cart page
-        cartPage.validateCartItem(addToCartTestData.getProductUpdatePosition(), productBeforeUpdate, addToCartTestData.getAmountChange());
+        cartPage.validateCartItem(1, productBeforeUpdate, addToCartTestData.getAmountChange());
         cartPage.validate(shippingCosts, cartPage.header.miniCart.getSubtotal());
-        cartPage.validateTotalAfterAdd(addToCartTestData.getProductUpdatePosition(), oldSubtotal3, productBeforeUpdate.getTotalPrice());
+        cartPage.validateTotalAfterAdd(1, oldSubtotal3, productBeforeUpdate.getTotalPrice());
         cartPage.header.miniCart.validateStructure();
         cartPage.header.miniCart.validateMiniCartItem(1, productBeforeUpdate, addToCartTestData.getAmountChange(), subtotalAfterUpdate);
         

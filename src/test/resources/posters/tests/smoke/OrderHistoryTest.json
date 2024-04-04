@@ -16,7 +16,7 @@
       	"sizeProduct64x48": "64 x 48 in",
       	"styleProductMatte": "matte",
       	"styleProductGloss": "gloss",
-      	"amountChangeProduct": "3",
+      	"updateProductAmount": "3",
      	"shippingAddressPosition": 1,
       	"billingAddressPosition": 1,
       	"creditCardPosition": 1,

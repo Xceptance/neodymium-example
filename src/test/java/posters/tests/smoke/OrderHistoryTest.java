@@ -2,7 +2,6 @@ package posters.tests.smoke;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.xceptance.neodymium.util.DataUtils;
@@ -18,7 +17,6 @@ import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 import posters.tests.testdata.processes.OrderHistoryTestData;
 
-@Ignore
 @Owner("Lisa Smith")
 @Severity(SeverityLevel.BLOCKER)
 @Tag("smoke")
@@ -88,7 +86,7 @@ public class OrderHistoryTest extends AbstractTest
 
         // go to cart page
         var cartPage = productDetailPage.header.miniCart.openCartPage();
-        cartPage.updateProductCount(1, orderHistoryTestData.getAmountChange());
+        cartPage.updateProductCount(1, orderHistoryTestData.getUpdateProductAmount());
         final var product1 = cartPage.getProduct(1); 
 
         // go to shipping address page
@@ -129,7 +127,7 @@ public class OrderHistoryTest extends AbstractTest
 
         // go to cart page
         cartPage = productDetailPage.header.miniCart.openCartPage();
-        cartPage.updateProductCount(2, orderHistoryTestData.getAmountChange());
+        cartPage.updateProductCount(2, orderHistoryTestData.getUpdateProductAmount());
         final var product2 = cartPage.getProduct(2);
         final var product3 = cartPage.getProduct(1);
 
@@ -153,8 +151,8 @@ public class OrderHistoryTest extends AbstractTest
         
         // go to order history page
         orderHistoryPage = accountOverviewPage.openOrderHistory();
-        orderHistoryPage.validateOrder(1, 1, product2);
-        orderHistoryPage.validateOrder(1, 2, product3);
+        orderHistoryPage.validateOrder(1, 2, product2);
+        orderHistoryPage.validateOrder(1, 1, product3);
         orderHistoryPage.validateOrder(2, 1, product1); 
     }
     

@@ -26,7 +26,7 @@ public class OrderHistoryTestData
 
     private String styleProductGloss;
     
-    private int amountChange;
+    private int updateProductAmount;
     
     private int shippingAddressPosition;
     
@@ -88,9 +88,9 @@ public class OrderHistoryTestData
         return styleProductGloss;
     }
 
-    public int getAmountChange()
+    public int getUpdateProductAmount()
     {
-        return amountChange;
+        return updateProductAmount;
     }
     
     public int getShippingAddressPosition() 
