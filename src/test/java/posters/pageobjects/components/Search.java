@@ -14,7 +14,7 @@ import posters.pageobjects.pages.browsing.NoHitsPage;
 
 public class Search extends AbstractComponent
 {
-    private SelenideElement searchField = $("#s");
+    private SelenideElement searchField = $("#header-search-text");
 
     @Override
     @Step("validate availability search bar")

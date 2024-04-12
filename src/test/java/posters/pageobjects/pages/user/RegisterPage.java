@@ -83,7 +83,7 @@ public class RegisterPage extends AbstractBrowsingPage
         validateFillInPlaceholder();
         
         // validate "required fields" string
-        $("#req-field").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
+        $(".req-field").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
       
         // validate sign in button
         registerButton.shouldHave(exactText(Neodymium.localizedText("button.createAccount")));

@@ -44,7 +44,7 @@ public class CategoryPage extends AbstractBrowsingPage
         $("#total-product-count").shouldNotBe(exactText("0")).shouldBe(visible);
 
         // validate at least 1 poster is displayed
-        $("#product0").shouldBe(visible);
+        $("#product-0").shouldBe(visible);
     }
 
     /**
@@ -84,13 +84,13 @@ public class CategoryPage extends AbstractBrowsingPage
     @Step("get a product name by position '{position}'")
     public String getProductNameByPosition(int position)
     {
-        return $("#product" + (position - 1) + " h5").text();
+        return $("#product-" + (position - 1) + " h5").text();
     }
 
     @Step("click on a product by position '{position}'")
     public ProductDetailPage clickProductByPosition(int position)
     {
-        $("#product" + (position - 1) + " .btn.btn-primary").click(ClickOptions.usingJavaScript());
+        $("#product-" + (position - 1) + " .btn.btn-primary").click(ClickOptions.usingJavaScript());
         return new ProductDetailPage().isExpectedPage();
     }
     
