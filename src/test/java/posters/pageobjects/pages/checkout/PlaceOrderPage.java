@@ -42,6 +42,8 @@ public class PlaceOrderPage extends AbstractCheckoutPage
     
     private SelenideElement orderButton = $("#btn-order");
     
+    private SelenideElement orderTotal = $("#order-total");
+    
     @Override
     @Step("ensure this is a place order page")
     public PlaceOrderPage isExpectedPage()
@@ -224,7 +226,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         taxContainer.shouldHave(exactText(PriceHelper.calculateTax(shippingCosts, subtotal)));
         
         // validate grand total
-        $("#order-total").shouldHave(exactText(PriceHelper.calculateGrandTotal(subtotal, shippingCosts, getTax())));
+        orderTotal.shouldHave(exactText(PriceHelper.calculateGrandTotal(subtotal, shippingCosts, getTax())));
     }
     
     /// ========== get price summary information ========== ///
@@ -264,6 +266,12 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         }
         
         return PriceHelper.format(subtotal);
+    }
+    
+    @Step("get total order price")
+    public String getTotalOrderPrice() 
+    {
+        return orderTotal.text();
     }
     
     /// ========== place order page navigation ========== ///

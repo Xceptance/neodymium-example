@@ -85,7 +85,7 @@ public class RegisteredOrderTest extends AbstractTest
         }
 
         // go to account overview page
-        accountOverviewPage = addressOverviewPage.header.userMenu.openAccountOverviewPage();
+        accountOverviewPage = addressOverviewPage.openAccountOverviewPage();
         
         // go to payment settings page and validate
         var paymentOverviewPage = accountOverviewPage.openPaymentSettings();

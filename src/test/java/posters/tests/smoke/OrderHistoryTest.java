@@ -52,7 +52,7 @@ public class OrderHistoryTest extends AbstractTest
         orderHistoryPage.validateStructure();
         
         // go to account overview page
-        accountOverviewPage = orderHistoryPage.header.userMenu.openAccountOverviewPage();
+        accountOverviewPage = orderHistoryPage.openAccountOverviewPage();
         
         // go to address overview page and validate
         var addressOverviewPage = accountOverviewPage.openMyAddresses();
@@ -67,8 +67,8 @@ public class OrderHistoryTest extends AbstractTest
         addressOverviewPage.validateSuccessfulSave();
 
         // go to account overview page
-        accountOverviewPage = addressOverviewPage.header.userMenu.openAccountOverviewPage();
-        
+        accountOverviewPage = addressOverviewPage.openAccountOverviewPage();
+            
         // go to payment settings page and validate
         var paymentOverviewPage = accountOverviewPage.openPaymentSettings();
         
@@ -100,6 +100,7 @@ public class OrderHistoryTest extends AbstractTest
 
         // go to place order page
         var placeOrderPage = paymentPage.selectCreditCard(orderHistoryTestData.getCreditCardPosition());
+        final String orderTotal1 = placeOrderPage.getTotalOrderPrice();
 
         // go to order confirmation page
         var orderConfirmationPage = placeOrderPage.placeOrder();
@@ -109,7 +110,7 @@ public class OrderHistoryTest extends AbstractTest
         
         // go to order history page
         orderHistoryPage = accountOverviewPage.openOrderHistory();
-        orderHistoryPage.validateOrder(1, 1, product1);
+        orderHistoryPage.validateOrder(1, 1, orderTotal1, product1);
         
         // go to category page
         categoryPage = orderHistoryPage.header.topNav.clickCategory(Neodymium.localizedText(orderHistoryTestData.getTopCategory2()));
@@ -128,8 +129,8 @@ public class OrderHistoryTest extends AbstractTest
         // go to cart page
         cartPage = productDetailPage.header.miniCart.openCartPage();
         cartPage.updateProductCount(2, orderHistoryTestData.getUpdateProductAmount());
-        final var product2 = cartPage.getProduct(2);
-        final var product3 = cartPage.getProduct(1);
+        final var product2 = cartPage.getProduct(1);
+        final var product3 = cartPage.getProduct(2);
 
         // go to shipping address page
         shippingAddressPage = cartPage.openReturningCustomerShippingAddressPage();
@@ -142,6 +143,7 @@ public class OrderHistoryTest extends AbstractTest
 
         // go to place order page
         placeOrderPage = paymentPage.selectCreditCard(orderHistoryTestData.getCreditCardPosition());
+        final var orderTotal2 = placeOrderPage.getTotalOrderPrice();
 
         // go to order confirmation page
         orderConfirmationPage = placeOrderPage.placeOrder();
@@ -151,9 +153,9 @@ public class OrderHistoryTest extends AbstractTest
         
         // go to order history page
         orderHistoryPage = accountOverviewPage.openOrderHistory();
-        orderHistoryPage.validateOrder(1, 2, product2);
-        orderHistoryPage.validateOrder(1, 1, product3);
-        orderHistoryPage.validateOrder(2, 1, product1); 
+        orderHistoryPage.validateOrder(1, 1, orderTotal2, product2);
+        orderHistoryPage.validateOrder(1, 2, orderTotal2, product3);
+        orderHistoryPage.validateOrder(2, 1, orderTotal1, product1); 
     }
     
     @After

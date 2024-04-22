@@ -19,6 +19,8 @@ public class AddressOverviewPage extends AbstractBrowsingPage
     private SelenideElement addNewShippingAddressButton = $("#link-add-ship-addr");  
     
     private SelenideElement addNewBillingAddressButton = $("#link-add-bill-addr");
+    
+    private SelenideElement goBackButton = $("#link-acc-overview");
 
     @Override
     @Step("ensure this is a address overview page")
@@ -47,6 +49,9 @@ public class AddressOverviewPage extends AbstractBrowsingPage
         // validate billing addresses overview
         $("#titleBillAddr").shouldHave(exactText(Neodymium.localizedText("account.billingAddress"))).shouldBe(visible);
         addNewBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewBillingAddress"))).shouldBe(visible);
+        
+        // validate button
+        goBackButton.shouldHave(exactText(Neodymium.localizedText("button.back"))).shouldBe(visible);
     }
     
     @Step("validate successful saved change")
@@ -69,5 +74,12 @@ public class AddressOverviewPage extends AbstractBrowsingPage
     {
         addNewBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewBillingAddress"))).click(ClickOptions.usingJavaScript());
         return new AddNewBillingAddressPage().isExpectedPage();
+    }
+    
+    @Step("go to account overview page")
+    public AccountOverviewPage openAccountOverviewPage() 
+    {
+        goBackButton.click(ClickOptions.usingJavaScript());
+        return new AccountOverviewPage().isExpectedPage();
     }
 }

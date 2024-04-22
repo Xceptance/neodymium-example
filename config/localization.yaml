@@ -30,6 +30,7 @@ default:
         delete: "Delete"
         updateAccount: "Update account"
         submit: "Submit"
+        back: "Back"
         
     product:
         size:
@@ -332,6 +333,9 @@ default:
         title: "Order History"
         purchasedPosters: "Purchased posters"
         orderDetails: "Order details"
+        quantity: "Quantity"
+        orderDate: "Order Date"
+        orderTotal: "Order Total"
             
     myAddressesPage:
         title: "My Addresses"
