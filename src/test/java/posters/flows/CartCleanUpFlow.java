@@ -21,7 +21,6 @@ public class CartCleanUpFlow
         {
             // go to cart page
             var cartPage = homePage.header.miniCart.openCartPage();
-            int currentCount = cartPage.header.miniCart.getTotalCount();
             
             // remove the first product as long as one is available
             while (cartPage.header.miniCart.getTotalCount() != 0)
