@@ -65,7 +65,7 @@ public class CartPage extends AbstractBrowsingPage
         // check if cart contains items, validate
         if (header.miniCart.getTotalCount() == 0)
         {
-            $("#errorCartMessage").shouldHave(exactText(Neodymium.localizedText("errorMessage.emptyCart"))).shouldBe(visible);
+            $("#error-cart-message").shouldHave(exactText(Neodymium.localizedText("errorMessage.emptyCart"))).shouldBe(visible);
         }
         else
         {
@@ -105,6 +105,13 @@ public class CartPage extends AbstractBrowsingPage
         validateStructure();
         validateShippingCosts(shippingCosts);
         validateTax(shippingCosts, subtotal);
+    }
+    
+    @Step("validate empty cart")
+    public void validateEmptyCartPage() 
+    {
+        validateStructure();
+        $("#error-cart-message").shouldHave(exactText(Neodymium.localizedText("errorMessage.emptyCart"))).shouldBe(visible);
     }
 
     /**

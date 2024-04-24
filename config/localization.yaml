@@ -208,7 +208,7 @@ default:
             website: "Website: www.xceptance.com"
         copyright: "Copyright 2013-2024 Xceptance Software Technologies GmbH"
         photoLicense: "All photos by René Schwietzke under CC-BY-4.0."
-        version: "The Poster Demo Store - Version 2.1.1"
+        version: "The Poster Demo Store - Version 2.2.0"
         
     checkoutHeader:
         "1":
