@@ -242,12 +242,22 @@ public class CartPage extends AbstractBrowsingPage
     public void updateProductCount(int position, int amount)
     {
         SelenideElement productContainer = $("#product-" + (position - 1));
-
+        String priceBeforeProductCountUpdate = productContainer.find(".product-total-unit-price").text();
+        
         // type new amount
         productContainer.find(".product-count").setValue(Integer.toString(amount));
-
+        
         // click update button
         productContainer.find(".btn-update-product").click(ClickOptions.usingJavaScript());
+        
+        if (position != 1) 
+        {
+            // update product container because it moved to the top
+            productContainer = $("#product-0");
+        }
+        
+        // wait for the product price to be updated
+        productContainer.find(".product-total-unit-price").shouldNotHave(exactText(priceBeforeProductCountUpdate));
     }
 
     @Step("remove product on position '{position}' on the cart page")
