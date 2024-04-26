@@ -17,20 +17,20 @@ import posters.tests.testdata.dataobjects.User;
 
 public class ChangePasswordPage extends AbstractBrowsingPage
 {
-    private SelenideElement oldPasswordField = $("#oldPassword");
+    private SelenideElement oldPasswordField = $("#old-password");
     
     private SelenideElement newPasswordField = $("#password");
     
-    private SelenideElement newPasswortAgainField = $("#passwordAgain");
+    private SelenideElement newPasswortAgainField = $("#password-again");
     
-    private SelenideElement updatePasswordButton = $("#btnChangePassword");
+    private SelenideElement updatePasswordButton = $("#btn-change-password");
     
     @Override
     @Step("ensure this is a change password page")
     public ChangePasswordPage isExpectedPage()
     {
         super.isExpectedPage();
-        $("#formChangePassword").should(exist);
+        $("#form-change-password").should(exist);
         return this;
     }
 

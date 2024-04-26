@@ -2,9 +2,9 @@
 	{
 		"user":
       	{
-      		"firstName": "Jens",
-      		"lastName": "Doe",
-      		"email": "jens@varmail.net",
+      		"firstName": "Registered",
+      		"lastName": "Order",
+      		"email": "registeredorder@varmail.net",
       		"password": "topsecret"
       	},
       	"topCategory": "header.topNavigation.2.title",
@@ -18,30 +18,31 @@
       	"shipAddrEqualBillAddr": true,
       	"shippingAddress":
       	{
-            "firstName": "Jens",
-      		"lastName": "Doe",
-      		"company": "Jens Doe Inc.",
-      		"street": "5-7 Jens Doe street",
-      		"city": "New York City",
-      		"state": "New York",
+            "firstName": "Registered",
+      		"lastName": "Order",
+      		"company": "Registered Order Inc.",
+      		"street": "5-7 Registered Order street",
+      		"city": "Registered Order City",
+      		"state": "Registered Order State",
       		"zip": "12345",
       		"country": "United States"
       	},
       	"creditCard":
       	{
-      		"fullName": "Jens Doe",
+      		"fullName": "Registered Order",
       		"cardNumber": "4111111111111111",
       		"crypticCardNumber": "xxxx xxxx xxxx 1111",
       		"expDateMonth": "06",
       		"expDateYear": "2028"
-      	}
+      	},
+      	"testId": "registered order: same shipping and billing address"
 	},
 	{
-      	"user":
+		"user":
       	{
-      		"firstName": "Jens",
-      		"lastName": "Doe",
-      		"email": "jens@varmail.net",
+      		"firstName": "Registered",
+      		"lastName": "Order",
+      		"email": "registeredorder@varmail.net",
       		"password": "topsecret"
       	},
       	"topCategory": "header.topNavigation.4.title",
@@ -55,33 +56,34 @@
       	"shipAddrEqualBillAddr": false,
       	"shippingAddress":
       	{
-            "firstName": "Jens",
-      		"lastName": "Doe",
-      		"company": "Jens Doe Inc.",
-      		"street": "5-7 Jens Doe street",
-      		"city": "New York City",
-      		"state": "New York",
+            "firstName": "Registered",
+      		"lastName": "Order",
+      		"company": "Registered Order Inc.",
+      		"street": "5-7 Registered Order street",
+      		"city": "Registered Order City",
+      		"state": "Registered Order State",
       		"zip": "12345",
       		"country": "United States"
       	},
       	"billingAddress":
       	{
-            "firstName": "Jens",
-      		"lastName": "Doe",
-      		"company": "Jens Doe GmbH",
-      		"street": "Jens Doe Straße 10",
-      		"city": "Hannover",
-      		"state": "Niedersachsen",
+            "firstName": "Registered",
+      		"lastName": "Order",
+      		"company": "Registered Order GmbH",
+      		"street": "Registered Order Straße",
+      		"city": "Registered Order Stadt",
+      		"state": "Registered Order Bundesland",
       		"zip": "30159",
       		"country": "Germany"
       	},
       	"creditCard":
       	{
-      		"fullName": "Jens Doe",
+      		"fullName": "Registered Order",
       		"cardNumber": "4111111111111111",
       		"crypticCardNumber": "xxxx xxxx xxxx 1111",
       		"expDateMonth": "11",
       		"expDateYear": "2030"
-      	}
+      	},
+      	"testId": "registered order: different shipping and billing address"
 	}
 ]

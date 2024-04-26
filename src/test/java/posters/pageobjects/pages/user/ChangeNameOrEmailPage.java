@@ -17,22 +17,22 @@ import posters.tests.testdata.dataobjects.User;
 
 public class ChangeNameOrEmailPage extends AbstractBrowsingPage
 {
-    private SelenideElement lastNameField = $("#lastName");
+    private SelenideElement lastNameField = $("#last-name");
    
-    private SelenideElement firstNameField = $("#firstName");
+    private SelenideElement firstNameField = $("#first-name");
     
-    private SelenideElement emailField = $("#eMail");
+    private SelenideElement emailField = $("#e-mail");
     
     private SelenideElement passwordField = $("#password");
     
-    private SelenideElement updateNameOrEmailButton = $("#btnChangeNameEmail");
+    private SelenideElement updateNameOrEmailButton = $("#btn-change-name-email");
     
     @Override
     @Step("ensure this is a personal data page")
     public ChangeNameOrEmailPage isExpectedPage()
     {
         super.isExpectedPage();
-        $("#formChangeNameEmail").should(exist);
+        $("#form-change-name-email").should(exist);
         return this;
     }
 
@@ -55,12 +55,6 @@ public class ChangeNameOrEmailPage extends AbstractBrowsingPage
     @Step("validate fill in form placeholder")
     public void validateFillInPlaceholder() 
     {
-        // clear input fields
-        lastNameField.clear();
-        firstNameField.clear();
-        emailField.clear();
-        
-        // validate placeholder
         lastNameField.shouldHave(attribute("placeholder", Neodymium.localizedText("fillIn.placeholder.lastName"))).shouldBe(visible);
         firstNameField.shouldHave(attribute("placeholder", Neodymium.localizedText("fillIn.placeholder.firstName"))).shouldBe(visible);
         emailField.shouldHave(attribute("placeholder", Neodymium.localizedText("fillIn.placeholder.email"))).shouldBe(visible);

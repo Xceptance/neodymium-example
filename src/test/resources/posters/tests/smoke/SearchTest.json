@@ -2,9 +2,11 @@
     {
         "searchTerm": "bear",
         "expectedResultCount": "3",
-        "resultPosition": "1"
+        "resultPosition": "1",
+        "testId": "search with expected result"
     },
     {
-        "searchTerm": "Foobar"
+        "searchTerm": "Foobar",
+        "testId": "search with no result"
     }
 ]
