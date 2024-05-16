@@ -7,6 +7,8 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import java.time.Duration;
+
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -48,14 +50,13 @@ public class MiniCart extends AbstractComponent
     public void openMiniCart()
     {
         headerCart.click();
-        miniCart.waitUntil(visible, 9000);            
-    }
+		miniCart.shouldBe(visible, Duration.ofMillis(9000));    }
 
     @Step("close the mini cart")
     public void closeMiniCart()
     {
         $("#top-demo-disclaimer").click();
-        miniCart.waitUntil(not(visible), 9000);
+		miniCart.shouldBe(not(visible), Duration.ofMillis(9000));    
     }
 
     @Step("open the cart page")

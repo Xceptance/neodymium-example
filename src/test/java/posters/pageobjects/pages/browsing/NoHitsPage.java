@@ -6,6 +6,8 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import static com.codeborne.selenide.CollectionCondition.size;
+
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.xceptance.neodymium.util.Neodymium;
@@ -45,7 +47,7 @@ public class NoHitsPage extends AbstractBrowsingPage
         categories.findBy(exactText(Neodymium.localizedText("header.topNavigation.2.title"))).shouldBe(visible);
         categories.findBy(exactText(Neodymium.localizedText("header.topNavigation.3.title"))).shouldBe(visible);
         categories.findBy(exactText(Neodymium.localizedText("header.topNavigation.4.title"))).shouldBe(visible);
-        categoryImages.shouldHaveSize(4);
+        categoryImages.shouldHave(size(4));
     }
     
     @Step("open homepage from no hits page")

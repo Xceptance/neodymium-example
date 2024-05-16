@@ -164,7 +164,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("get selected product size from product detail page")
     public String getChosenSize()
     {
-        return productSize.getSelectedText();
+        return productSize.getSelectedOptionText();
     }
 
     @Step("get product details from product detail page")

@@ -7,6 +7,8 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
+import java.time.Duration;
+
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
@@ -36,14 +38,13 @@ public class UserMenu extends AbstractComponent
     public void openUserMenu()
     {
         showUserMenu.click(ClickOptions.usingJavaScript());
-        userMenu.waitUntil(visible, 9000);
-    }
+        userMenu.shouldBe(visible, Duration.ofMillis(9000));    }
 
     @Step("close user menu")
     public void closeUserMenu()
     {
         $("#top-demo-disclaimer").click(ClickOptions.usingJavaScript());
-        userMenu.waitUntil(not(visible), 9000);
+		userMenu.shouldBe(not(visible), Duration.ofMillis(9000));    
     }
 
     @Step("open register page from user menu")

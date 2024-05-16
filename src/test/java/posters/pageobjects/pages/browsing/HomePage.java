@@ -7,6 +7,8 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import static com.codeborne.selenide.CollectionCondition.size;
+
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -52,7 +54,7 @@ public class HomePage extends AbstractBrowsingPage
     @Step("validate featured categories")
     public void validateFeaturedCategories()
     {
-        $$(".category-tile-image").shouldHaveSize(4);
+        $$(".category-tile-image").shouldHave(size(4));
         
         for (int i = 1; i <= 4; i++) 
         {
@@ -64,7 +66,7 @@ public class HomePage extends AbstractBrowsingPage
     public void validateFeaturedProducts()
     {
         $(".product-display-heading h2").shouldHave(exactText(Neodymium.localizedText("homePage.featuredProducts.headline"))).shouldBe(visible);
-        $$(".card-img-top").shouldHaveSize(12);
+        $$(".card-img-top").shouldHave(size(12));
         
         for (int i = 1; i <= 12; i++) 
         {
