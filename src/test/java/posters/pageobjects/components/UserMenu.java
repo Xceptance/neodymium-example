@@ -2,10 +2,11 @@ package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+
+import java.time.Duration;
 
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
@@ -36,14 +37,14 @@ public class UserMenu extends AbstractComponent
     public void openUserMenu()
     {
         showUserMenu.click(ClickOptions.usingJavaScript());
-        userMenu.waitUntil(visible, 9000);
+        userMenu.shouldBe(visible, Duration.ofMillis(9000));
     }
 
     @Step("close user menu")
     public void closeUserMenu()
     {
         $("#top-demo-disclaimer").click(ClickOptions.usingJavaScript());
-        userMenu.waitUntil(not(visible), 9000);
+        userMenu.shouldBe(visible, Duration.ofMillis(9000));
     }
 
     @Step("open register page from user menu")
@@ -99,12 +100,12 @@ public class UserMenu extends AbstractComponent
         userMenu.find(".first-name").shouldHave(exactText(firstName));
         closeUserMenu();
     }
-    
+
     @Step("validate logged in user menu")
     public void validateStructure()
     {
         openUserMenu();
-        
+
         // validate user icon
         $(".icon-user2").shouldBe(visible);
 

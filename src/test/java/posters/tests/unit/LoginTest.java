@@ -2,7 +2,8 @@ package posters.tests.unit;
 
 import org.junit.Before;
 import org.junit.Test;
-import com.xceptance.neodymium.module.statement.testdata.DataSet;
+
+import com.xceptance.neodymium.common.testdata.DataSet;
 import com.xceptance.neodymium.util.DataUtils;
 
 import io.qameta.allure.Owner;
@@ -19,7 +20,7 @@ import posters.tests.testdata.dataobjects.User;
 @Tag("functionality")
 @Tag("registered")
 public class LoginTest extends AbstractTest
-{    
+{
     private User user;
 
     private LoginPage loginPage;
@@ -31,7 +32,7 @@ public class LoginTest extends AbstractTest
 
         loginPage = prepareTest();
     }
-    
+
     private LoginPage prepareTest()
     {
         // go to login page

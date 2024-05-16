@@ -3,8 +3,8 @@ package posters.tests.smoke;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.xceptance.neodymium.module.statement.testdata.DataSet;
-import com.xceptance.neodymium.module.statement.testdata.SuppressDataSets;
+import com.xceptance.neodymium.common.testdata.DataSet;
+import com.xceptance.neodymium.common.testdata.SuppressDataSets;
 import com.xceptance.neodymium.util.DataUtils;
 
 import io.qameta.allure.Owner;
@@ -20,7 +20,7 @@ import posters.tests.testdata.pageobjects.components.SearchTestData;
 @Tag("smoke")
 @SuppressDataSets
 public class SearchTest extends AbstractTest
-{       
+{
     private SearchTestData searchTestData;
 
     @Before
@@ -28,11 +28,11 @@ public class SearchTest extends AbstractTest
     {
         searchTestData = DataUtils.get(SearchTestData.class);
     }
-    
+
     @Test
     @DataSet(1)
     public void testSearching()
-    {  
+    {
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
 
@@ -40,11 +40,11 @@ public class SearchTest extends AbstractTest
         var categoryPage = homePage.header.search.categoryPageResult(searchTestData.getSearchTerm());
         categoryPage.validate(searchTestData.getSearchTerm(), searchTestData.getExpectedResultCount());
 
-        //go to product detail page
+        // go to product detail page
         final String productName = categoryPage.getProductNameByPosition(searchTestData.getResultPosition());
         var productDetailPage = categoryPage.clickProductByPosition(searchTestData.getResultPosition());
         productDetailPage.validate(productName);
-        
+
         // go to homepage
         homePage = productDetailPage.openHomePage();
     }
@@ -52,14 +52,14 @@ public class SearchTest extends AbstractTest
     @Test
     @DataSet(2)
     public void testSearchingWithoutResult()
-    {  
+    {
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
 
         // go to no hits page
         var noHitsPage = homePage.header.search.noHitsPageResult(searchTestData.getSearchTerm());
         noHitsPage.validateStructure();
-        
+
         // go to homepage
         homePage = noHitsPage.openHomePage();
     }
