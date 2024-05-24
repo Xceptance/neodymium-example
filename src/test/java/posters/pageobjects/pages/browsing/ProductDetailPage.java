@@ -131,6 +131,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     public void clickAddToCartButton()
     {
         addToCartButton.click(ClickOptions.usingJavaScript());
+        header.miniCart.closeMiniCart();
     }
 
     @Step("add product with size '{size}' and style '{style}' to cart")

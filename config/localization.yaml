@@ -247,11 +247,11 @@ default:
                 title: "Snowdrop Anemone"
                 description: "A blossom in all its details."
             "3":
-                title: "Indian Summer Red Beeches"
-                description: "An orange/red beech on the side of a small bridge."
+                title: "Cheese Varieties"
+                description: "A symbol of French culinary."
             "4":
-                title: "Finger Food"
-                description: "A finger food plate with a lot of variety."
+                title: "Fir Covered with Snow"
+                description: "A very small fir tilted to the side, covered with snow."
             "5":
                 title: "Stuffed Turkey"
                 description: "The best way to celebrate Thanksgiving."
@@ -259,17 +259,17 @@ default:
                 title: "Fruit Tart with Cocoa"
                 description: "An aesthetic fruit tart with cocoa powder."
             "7":
-                title: "Swiss Air Airbus A320"
-                description: "Beautiful take-off."
+                title: "Air Lingus Airbus A320"
+                description: "Hail to Saint Patrick!"
             "8":
-                title: "IFA F8"
-                description: "One of 25.000."
+                title: "IFA H6 Green"
+                description: "A bright green truck from old times."
             "9":
-                title: "German Steam Locomotive"
-                description: "For railway nostalgics."
+                title: "Third Avenue Railway System"
+                description: "The old railway system of NYC."
             "10":
-                title: "Grochwitz Castle Germany"
-                description: "A beautiful castle with nature surrounding it."
+                title: "Old NYC Subway"
+                description: "Nothing lasts forever."
             "11":
                 title: "New Years Fireworks III"
                 description: "A fantastic skycolor change!"

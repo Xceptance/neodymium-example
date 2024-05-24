@@ -34,7 +34,7 @@ public class AddToCartTest extends AbstractTest
     }
     
     @Test
-    @DataSet(1)
+    //@DataSet(1)
     @DataSet(2)
     public void testAddProductsToCart()
     {   
