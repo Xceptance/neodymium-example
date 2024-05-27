@@ -1,9 +1,9 @@
 package posters.tests.smoke;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
+import com.xceptance.neodymium.junit5.NeodymiumTest;
 import com.xceptance.neodymium.util.DataUtils;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -22,16 +22,16 @@ import posters.tests.testdata.processes.OrderHistoryTestData;
 @Tag("smoke")
 @Tag("registered")
 public class OrderHistoryTest extends AbstractTest
-{   
+{
     private OrderHistoryTestData orderHistoryTestData;
 
-    @Before
+    @BeforeEach
     public void setup()
     {
         orderHistoryTestData = DataUtils.get(OrderHistoryTestData.class);
     }
-   
-    @Test
+
+    @NeodymiumTest
     public void testOrderHistory()
     {
         // go to homepage
@@ -46,37 +46,37 @@ public class OrderHistoryTest extends AbstractTest
         // send login form
         var accountOverviewPage = loginPage.sendLoginForm(orderHistoryTestData.getUser());
         accountOverviewPage.validateSuccessfulLogin(orderHistoryTestData.getUser().getFirstName());
-        
+
         // go to order history page and validate
         var orderHistoryPage = accountOverviewPage.openOrderHistory();
         orderHistoryPage.validateStructure();
-        
+
         // go to account overview page
         accountOverviewPage = orderHistoryPage.openAccountOverviewPage();
-        
+
         // go to address overview page and validate
         var addressOverviewPage = accountOverviewPage.openMyAddresses();
-        
+
         // add new addresses
         var addNewShippingAddressPage = addressOverviewPage.openAddNewShippingAddressPage();
         addressOverviewPage = addNewShippingAddressPage.addressForm.addNewAddress(orderHistoryTestData.getAddress());
         addressOverviewPage.validateSuccessfulSave();
-        
+
         var addNewBillingAddressPage = addressOverviewPage.openAddNewBillingAddressPage();
         addressOverviewPage = addNewBillingAddressPage.addressForm.addNewAddress(orderHistoryTestData.getAddress());
         addressOverviewPage.validateSuccessfulSave();
 
         // go to account overview page
         accountOverviewPage = addressOverviewPage.openAccountOverviewPage();
-            
+
         // go to payment settings page and validate
         var paymentOverviewPage = accountOverviewPage.openPaymentSettings();
-        
+
         // add new payment
         var addNewCreditCardPage = paymentOverviewPage.openAddNewCreditCardPage();
         paymentOverviewPage = addNewCreditCardPage.addNewCreditCard(orderHistoryTestData.getCreditCard());
         paymentOverviewPage.validateSuccessfulSave();
-     
+
         // go to category page
         var categoryPage = paymentOverviewPage.header.topNav.clickCategory(Neodymium.localizedText(orderHistoryTestData.getTopCategory1()));
 
@@ -87,7 +87,7 @@ public class OrderHistoryTest extends AbstractTest
         // go to cart page
         var cartPage = productDetailPage.header.miniCart.openCartPage();
         cartPage.updateProductCount(1, orderHistoryTestData.getUpdateProductAmount());
-        final var product1 = cartPage.getProduct(1); 
+        final var product1 = cartPage.getProduct(1);
 
         // go to shipping address page
         var shippingAddressPage = cartPage.openReturningCustomerShippingAddressPage();
@@ -104,21 +104,21 @@ public class OrderHistoryTest extends AbstractTest
 
         // go to order confirmation page
         var orderConfirmationPage = placeOrderPage.placeOrder();
-        
+
         // go to account overview page
         accountOverviewPage = orderConfirmationPage.header.userMenu.openAccountOverviewPage();
-        
+
         // go to order history page
         orderHistoryPage = accountOverviewPage.openOrderHistory();
         orderHistoryPage.validateOrder(1, 1, orderTotal1, product1);
-        
+
         // go to category page
         categoryPage = orderHistoryPage.header.topNav.clickCategory(Neodymium.localizedText(orderHistoryTestData.getTopCategory2()));
 
         // go to product detail page, add and store displayed product
         productDetailPage = categoryPage.clickProductByPosition(orderHistoryTestData.getResultPosition());
         productDetailPage.addToCart(orderHistoryTestData.getsSizeProduct32x24(), orderHistoryTestData.getStyleProductGloss());
-        
+
         // go to category page
         categoryPage = productDetailPage.header.topNav.clickCategory(Neodymium.localizedText(orderHistoryTestData.getTopCategory3()));
 
@@ -147,20 +147,20 @@ public class OrderHistoryTest extends AbstractTest
 
         // go to order confirmation page
         orderConfirmationPage = placeOrderPage.placeOrder();
-        
+
         // go to account overview page
         accountOverviewPage = orderConfirmationPage.header.userMenu.openAccountOverviewPage();
-        
+
         // go to order history page
         orderHistoryPage = accountOverviewPage.openOrderHistory();
         orderHistoryPage.validateOrder(1, 1, orderTotal2, product2);
         orderHistoryPage.validateOrder(1, 2, orderTotal2, product3);
-        orderHistoryPage.validateOrder(2, 1, orderTotal1, product1); 
+        orderHistoryPage.validateOrder(2, 1, orderTotal1, product1);
     }
-    
-    @After
+
+    @AfterEach
     public void after()
-    {     
+    {
         CartCleanUpFlow.flow();
         DeleteUserFlow.flow(orderHistoryTestData.getUser());
     }

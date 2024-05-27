@@ -1,9 +1,8 @@
 package posters.tests.component;
 
-import org.junit.Test;
-
-import com.xceptance.neodymium.module.statement.testdata.DataSet;
-import com.xceptance.neodymium.module.statement.testdata.SuppressDataSets;
+import com.xceptance.neodymium.common.testdata.DataSet;
+import com.xceptance.neodymium.common.testdata.SuppressDataSets;
+import com.xceptance.neodymium.junit5.NeodymiumTest;
 import com.xceptance.neodymium.util.DataUtils;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -20,21 +19,21 @@ import posters.tests.testdata.pageobjects.components.PaginationTestData;
 @Tag("smoke")
 @SuppressDataSets
 public class PaginationTest extends AbstractTest
-{       
-    @Test
+{
+    @NeodymiumTest
     @DataSet(1)
     public void testPagination()
-    {  
+    {
         // use test data
         final PaginationTestData paginationTestData = DataUtils.get(PaginationTestData.class);
-        
+
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
 
         // go to category page
         var categoryPage = homePage.header.topNav.clickCategory(Neodymium.localizedText(paginationTestData.getTopCategory()));
         categoryPage.pagination.validateStructure(paginationTestData.getExpectedResultCount());
-        
+
         // go to homepage
         homePage = categoryPage.openHomePage();
     }

@@ -1,10 +1,10 @@
 package posters.tests.smoke;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
-import com.xceptance.neodymium.module.statement.testdata.DataSet;
+import com.xceptance.neodymium.common.testdata.DataSet;
+import com.xceptance.neodymium.junit5.NeodymiumTest;
 import com.xceptance.neodymium.util.DataUtils;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -23,18 +23,18 @@ import posters.tests.testdata.processes.RegisteredOrderTestData;
 @Tag("smoke")
 @Tag("registered")
 public class RegisteredOrderTest extends AbstractTest
-{   
+{
     private RegisteredOrderTestData registeredOrderTestData;
 
-    @Before
+    @BeforeEach
     public void setup()
     {
         registeredOrderTestData = DataUtils.get(RegisteredOrderTestData.class);
     }
-   
+
     @DataSet(1)
     @DataSet(2)
-    @Test
+    @NeodymiumTest
     public void testOrderingAsRegisteredUser()
     {
         // use test data
@@ -53,11 +53,11 @@ public class RegisteredOrderTest extends AbstractTest
         var accountOverviewPage = loginPage.sendLoginForm(registeredOrderTestData.getUser());
         accountOverviewPage.validateSuccessfulLogin(registeredOrderTestData.getUser().getFirstName());
         accountOverviewPage.validateStructure();
-        
+
         // go to address overview page and validate
         var addressOverviewPage = accountOverviewPage.openMyAddresses();
         addressOverviewPage.validateStructure();
-        
+
         // add new addresses
         if (!registeredOrderTestData.getShipAddrEqualBillAddr())
         {
@@ -65,7 +65,7 @@ public class RegisteredOrderTest extends AbstractTest
             addNewShippingAddressPage.validateStructure();
             addressOverviewPage = addNewShippingAddressPage.addressForm.addNewAddress(registeredOrderTestData.getShippingAddress());
             addressOverviewPage.validateSuccessfulSave();
-            
+
             var addNewBillingAddressPage = addressOverviewPage.openAddNewBillingAddressPage();
             addNewBillingAddressPage.validateStructure();
             addressOverviewPage = addNewBillingAddressPage.addressForm.addNewAddress(registeredOrderTestData.getBillingAddress());
@@ -77,7 +77,7 @@ public class RegisteredOrderTest extends AbstractTest
             addNewShippingAddressPage.validateStructure();
             addressOverviewPage = addNewShippingAddressPage.addressForm.addNewAddress(registeredOrderTestData.getShippingAddress());
             addressOverviewPage.validateSuccessfulSave();
-            
+
             var addNewBillingAddressPage = addressOverviewPage.openAddNewBillingAddressPage();
             addNewBillingAddressPage.validateStructure();
             addressOverviewPage = addNewBillingAddressPage.addressForm.addNewAddress(registeredOrderTestData.getShippingAddress());
@@ -86,17 +86,17 @@ public class RegisteredOrderTest extends AbstractTest
 
         // go to account overview page
         accountOverviewPage = addressOverviewPage.openAccountOverviewPage();
-        
+
         // go to payment settings page and validate
         var paymentOverviewPage = accountOverviewPage.openPaymentSettings();
         paymentOverviewPage.validateStructure();
-        
+
         // add new payment
         var addNewCreditCardPage = paymentOverviewPage.openAddNewCreditCardPage();
         addNewCreditCardPage.validateStructure();
         paymentOverviewPage = addNewCreditCardPage.addNewCreditCard(registeredOrderTestData.getCreditCard());
         paymentOverviewPage.validateSuccessfulSave();
-        
+
         // go to category page
         var categoryPage = paymentOverviewPage.header.topNav.clickCategory(Neodymium.localizedText(registeredOrderTestData.getTopCategory()));
 
@@ -137,11 +137,13 @@ public class RegisteredOrderTest extends AbstractTest
 
         if (!registeredOrderTestData.getShipAddrEqualBillAddr())
         {
-            placeOrderPage.validateOrderOverview(registeredOrderTestData.getShippingAddress(), registeredOrderTestData.getBillingAddress(), registeredOrderTestData.getCreditCard());
+            placeOrderPage.validateOrderOverview(registeredOrderTestData.getShippingAddress(), registeredOrderTestData.getBillingAddress(),
+                                                 registeredOrderTestData.getCreditCard());
         }
         else
         {
-            placeOrderPage.validateOrderOverview(registeredOrderTestData.getShippingAddress(), registeredOrderTestData.getShippingAddress(), registeredOrderTestData.getCreditCard());
+            placeOrderPage.validateOrderOverview(registeredOrderTestData.getShippingAddress(), registeredOrderTestData.getShippingAddress(),
+                                                 registeredOrderTestData.getCreditCard());
         }
 
         placeOrderPage.validateStructure();
@@ -151,14 +153,14 @@ public class RegisteredOrderTest extends AbstractTest
         // go to order confirmation page
         var orderConfirmationPage = placeOrderPage.placeOrder();
         orderConfirmationPage.validateStructure();
-        
+
         // go to homepage
         homePage = orderConfirmationPage.openHomePage();
     }
-    
-    @After
+
+    @AfterEach
     public void after()
-    {     
+    {
         CartCleanUpFlow.flow();
         DeleteUserFlow.flow(registeredOrderTestData.getUser());
     }
