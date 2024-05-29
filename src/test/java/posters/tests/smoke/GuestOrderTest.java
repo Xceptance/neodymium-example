@@ -1,5 +1,6 @@
 package posters.tests.smoke;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
@@ -22,15 +23,22 @@ import posters.tests.testdata.processes.GuestOrderTestData;
 @Tag("registered")
 public class GuestOrderTest extends AbstractTest
 {    
+    private GuestOrderTestData guestOrderTestData;
+    
+    private String shippingCosts;
+
+    @Before
+    public void setup()
+    {
+        shippingCosts = Neodymium.dataValue("shippingCosts");
+        guestOrderTestData = DataUtils.get(GuestOrderTestData.class);
+    }
+    
     @Test
     @DataSet(1)
     @DataSet(2)
     public void testOrderingAsGuest()
     {        
-        // use test data
-        final String shippingCosts = Neodymium.dataValue("shippingCosts");
-        final GuestOrderTestData guestOrderTestData = DataUtils.get(GuestOrderTestData.class);
-           
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
 
@@ -40,10 +48,11 @@ public class GuestOrderTest extends AbstractTest
         // go to product detail page, add and store displayed product
         var productDetailPage = categoryPage.clickProductByPosition(guestOrderTestData.getResultPosition());
         productDetailPage.addToCart(guestOrderTestData.getsSizeProduct(), guestOrderTestData.getStyleProduct());
-        final var product = productDetailPage.getProduct();
         
         // go to cart page
         var cartPage = productDetailPage.header.miniCart.openCartPage();
+        cartPage.updateProductCount(1, guestOrderTestData.getAmountChange());
+        final var product = cartPage.getProduct(1);
         
         // go to shipping address page and validate
         var shippingAddressPage = cartPage.openGuestShippingAddressPage();
@@ -56,11 +65,11 @@ public class GuestOrderTest extends AbstractTest
         if (!guestOrderTestData.getShipAddrEqualBillAddr()) 
         {
             // go to billing address page and validate
-            var billingAddressPage = shippingAddressPage.goToGuestBillingAddressPage(guestOrderTestData.getShippingAddress());
+            var billingAddressPage = shippingAddressPage.addressForm.goToGuestBillingAddressPage(guestOrderTestData.getShippingAddress());
             billingAddressPage.validateStructure();
         
             // go to payment page and validate
-            paymentPage = billingAddressPage.goToGuestPaymentPage(guestOrderTestData.getBillingAddress());
+            paymentPage = billingAddressPage.addressForm.goToGuestPaymentPage(guestOrderTestData.getBillingAddress());
             paymentPage.validateStructure();
             
             // go to place order page and validate order overview
@@ -70,7 +79,7 @@ public class GuestOrderTest extends AbstractTest
         else
         {
             // go to payment page and validate
-            paymentPage = shippingAddressPage.goToGuestPaymentPage(guestOrderTestData.getShippingAddress());
+            paymentPage = shippingAddressPage.addressForm.goToGuestPaymentPage(guestOrderTestData.getShippingAddress());
             paymentPage.validateStructure();
             
             // go to place order page and validate order overview

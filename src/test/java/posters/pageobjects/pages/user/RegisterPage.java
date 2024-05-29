@@ -44,7 +44,7 @@ public class RegisterPage extends AbstractBrowsingPage
     
     private void validateFillInHeadlines(String headline)
     {
-        $$("#form-register .mb-3 label").findBy(exactText(headline)).shouldBe(visible);
+        $$(".form-label").findBy(exactText(headline)).shouldBe(visible);
     }
     
     @Step("validate fill-in form headlines")
@@ -52,8 +52,8 @@ public class RegisterPage extends AbstractBrowsingPage
     {
         validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.firstName"));
         validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.lastName"));
-        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.email2"));
-        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.password2"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.email"));
+        validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.password"));
         validateFillInHeadlines(Neodymium.localizedText("fillIn.inputDescription.confirmPassword"));
     }
     
@@ -66,13 +66,7 @@ public class RegisterPage extends AbstractBrowsingPage
         passwordField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.password")))).shouldBe(visible);
         passwordRepeatField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.confirmPassword")))).shouldBe(visible);
     }
-    
-    @Step("validate required string")
-    public void validateRequiredString() 
-    {
-        $("#req-field").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
-    }
-    
+
     @Override
     @Step("validate register page structure")
     public void validateStructure()
@@ -89,7 +83,7 @@ public class RegisterPage extends AbstractBrowsingPage
         validateFillInPlaceholder();
         
         // validate "required fields" string
-        validateRequiredString();
+        $(".req-field").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
       
         // validate sign in button
         registerButton.shouldHave(exactText(Neodymium.localizedText("button.createAccount")));
@@ -107,7 +101,7 @@ public class RegisterPage extends AbstractBrowsingPage
         passwordField.val(user.getPassword());
         passwordRepeatField.val(user.getPassword());
 
-        // click on the Register Button
+        // click on the register button
         registerButton.click(ClickOptions.usingJavaScript());
 
         return new LoginPage().isExpectedPage();

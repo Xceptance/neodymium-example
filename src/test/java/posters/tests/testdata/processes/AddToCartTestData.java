@@ -4,8 +4,6 @@ public class AddToCartTestData
 {
     private String topCategory;
 
-    private int categoryResultPosition;
-
     private String subCategory;
 
     private int subCategoryResultPosition;
@@ -25,21 +23,12 @@ public class AddToCartTestData
     private int productUpdatePosition;
 
     private int amountChange;
-
-    /// ========== top category ========== ///
     
     public String getTopCategory()
     {
         return topCategory;
     }
 
-    public int getCategoryResultPosition()
-    {
-        return categoryResultPosition;
-    }
-    
-    /// ========== sub category ========== ///
-    
     public String getSubCategory()
     {
         return subCategory;
@@ -59,8 +48,6 @@ public class AddToCartTestData
     {
         return styleFirstProduct;
     }
-
-    /// ========== search term ========== ///
     
     public String getSearchTerm()
     {
@@ -81,8 +68,6 @@ public class AddToCartTestData
     {
         return styleSecondProduct;
     }
-
-    /// ========== update data ========== ///
     
     public int getProductUpdatePosition()
     {

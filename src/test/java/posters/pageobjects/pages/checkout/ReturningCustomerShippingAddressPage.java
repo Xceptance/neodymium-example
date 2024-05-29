@@ -14,18 +14,18 @@ import posters.tests.testdata.dataobjects.Address;
 
 public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
 {
-    private SelenideElement title = $("#titleDelAddr");
+    private SelenideElement title = $("#title-del-addr");
     
     private SelenideElement addShippingAddressButton = $(".form-group .btn");
     
-    private SelenideElement useShippingAddressButton = $("#btnUseAddressContinue");
+    private SelenideElement useShippingAddressButton = $("#btn-use-address-continue");
 
     @Override
     @Step("ensure this is a shipping address page")
     public ReturningCustomerShippingAddressPage isExpectedPage()
     {
         super.isExpectedPage();
-        $("#delAddr0").should(exist);
+        $("#del-addr-0").should(exist);
         return this;
     }
 
@@ -54,7 +54,7 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
         title.shouldHave(exactText(Neodymium.localizedText("returningCustomerShippingAddressPage.title"))).shouldBe(visible);
         
         // validate first address
-        $("#delAddr0").shouldBe(visible);
+        $("#del-addr-0").shouldBe(visible);
         
         // validate add new shipping address button
         addShippingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewShippingAddress"))).shouldBe(visible);
@@ -67,12 +67,13 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
     public void validateAddressContainer(int position, Address shippingAddress) 
     {
         final int index = position - 1;
-        final SelenideElement addressContainer = $("#delAddr" + index);
+        final SelenideElement addressContainer = $("#del-addr-" + index);
         final String fullName = shippingAddress.getFirstName() + " " + shippingAddress.getLastName();
         
         // validate address data
         addressContainer.find(".name").shouldHave(exactText(fullName)).shouldBe(visible);
         addressContainer.find(".company").shouldHave(exactText(shippingAddress.getCompany())).shouldBe(visible);
+        addressContainer.find(".address-line").shouldHave(exactText(shippingAddress.getStreet())).shouldBe(visible);
         addressContainer.find(".city").shouldHave(exactText(shippingAddress.getCity())).shouldBe(visible);
         addressContainer.find(".state").shouldHave(exactText(shippingAddress.getState())).shouldBe(visible);
         addressContainer.find(".zip").shouldHave(exactText(shippingAddress.getZip())).shouldBe(visible);
@@ -87,7 +88,7 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
         final int index = position - 1;
         
         // select address, press "Continue"
-        $("#delAddr" + index + " input").click(ClickOptions.usingJavaScript());
+        $("#del-addr-" + index + " input").click(ClickOptions.usingJavaScript());
         useShippingAddressButton.click(ClickOptions.usingJavaScript());
 
         return new ReturningCustomerBillingAddressPage().isExpectedPage();

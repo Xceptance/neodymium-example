@@ -3,6 +3,7 @@ package posters.flows;
 import io.qameta.allure.Step;
 import posters.tests.testdata.dataobjects.User;
 import posters.pageobjects.pages.browsing.HomePage;
+import posters.pageobjects.pages.user.AccountOverviewPage;
 
 public class DeleteUserFlow
 {
@@ -11,17 +12,20 @@ public class DeleteUserFlow
     {
         HomePage homePage = new HomePage();
         
+        AccountOverviewPage accountOverviewPage = new AccountOverviewPage();
+        
         // check if the user is logged in if the login failed
         if (!homePage.header.userMenu.validateIsLoggedIn()) 
         {
             var loginPage = homePage.header.userMenu.openLoginPage();
-            homePage = loginPage.sendLoginForm(user);
-            homePage.validateSuccessfulLogin(user.getFirstName());
+            accountOverviewPage = loginPage.sendLoginForm(user);
+            accountOverviewPage.validateSuccessfulLogin(user.getFirstName());
+            accountOverviewPage.validateStructure();
         }
-        
-        // go to account page and validate
-        var accountOverviewPage = homePage.header.userMenu.openAccountOverviewPage();
-        accountOverviewPage.validateStructure();
+        else 
+        {
+            accountOverviewPage = homePage.header.userMenu.openAccountOverviewPage();
+        }
 
         // go to personal data page and validate
         var personalDataPage = accountOverviewPage.openPersonalData();
@@ -39,7 +43,7 @@ public class DeleteUserFlow
         // verify that the account is not available anymore
         var loginPage = homePage.header.userMenu.openLoginPage();
         loginPage.sendFalseLoginForm(user);
-        loginPage.validateWrongEmail(user.getEmail());
+        loginPage.validateFalseLogin(user.getEmail());
         
         // go to homePage
         homePage = loginPage.openHomePage();

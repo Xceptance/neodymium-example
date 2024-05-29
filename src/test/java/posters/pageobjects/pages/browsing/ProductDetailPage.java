@@ -4,7 +4,6 @@ import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.matchText;
-import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -19,7 +18,7 @@ import posters.tests.testdata.dataobjects.Product;
 
 public class ProductDetailPage extends AbstractBrowsingPage
 {
-    private SelenideElement addToCartButton = $("#btnAddToCart");
+    private SelenideElement addToCartButton = $("#btn-add-to-cart");
 
     private SelenideElement productName = $("#product-detail-form-name");
 
@@ -98,7 +97,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
 
         // validate add to cart button
         addToCartButton.shouldHave(exactText(Neodymium.localizedText("button.addToCart"))).shouldBe(visible);
-        $("#btnAddToCart .icon-shopping-cart").shouldBe(visible);
+        $("#btn-add-to-cart .icon-shopping-cart").shouldBe(visible);
     }
 
     @Step("validate product name '{prodName}' on product detail page")
@@ -125,22 +124,21 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("select style '{style}'")
     public void setStyle(String style)
     {
-        $("input#finish-" + style).selectRadio(style);
+        $("#finish-" + style).click(ClickOptions.usingJavaScript());
     }
 
     @Step("click add to cart button")
     public void clickAddToCartButton()
     {
         addToCartButton.click(ClickOptions.usingJavaScript());
-        $("#mini-cart-menu").waitUntil(visible, 9000);
-        $("#mini-cart-menu").waitUntil(not(visible), 9000);
+        header.miniCart.closeMiniCart();
     }
 
     @Step("add product with size '{size}' and style '{style}' to cart")
     public void addToCart(String size, String style)
     {
         setSize(size);
-        setStyle(style);
+        setStyle(style);   
         clickAddToCartButton();
     }
 

@@ -38,7 +38,7 @@ public class PriceHelper
      * @return unitPrice * quantity
      */
     @Step("calculate total product price")
-    public static String totalProductPrice(String unitPrice, String quantity)
+    public static String calculateTotalProductPrice(String unitPrice, String quantity)
     {
         double res = (double) (Math.round((Double.valueOf(removeCurrency(unitPrice)) * Double.valueOf(quantity)) * 100)) / 100;
         return format(res);

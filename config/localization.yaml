@@ -9,12 +9,13 @@ default:
         accountOverview: "My Account"
         logout: "Logout"
         addToCart: "Add to cart"
-        addNewShippingAddress: "Add a new shipping address"
-        addNewBillingAddress: "Add a new billing address"
-        addNewCreditCard: "Add a new credit card"
+        addNewAddress: "Add new address"
+        addNewShippingAddress: "Add Shipping Address"
+        addNewBillingAddress: "Add Billing Address"
+        addNewCreditCard: "Add Credit Card"
         useThisShippingAddress: "Continue"
-        useThisBillingAddress: "Use this billing address"
-        useThisCreditCard: "Use this credit card"
+        useThisBillingAddress: "Use This Billing Address"
+        useThisCreditCard: "Use This Credit Card"
         continue: "Continue"
         orderWithCosts: "Order with costs"
         continueShopping: "Continue Shopping"
@@ -22,7 +23,6 @@ default:
         myAddresses: "My Addresses"
         paymentSettings: "Payment Settings"
         personalData: "Personal Data"
-        delete: "Delete"
         edit: "Edit"
         changeNameOrMail: "Change Name or Email"
         changePassword: "Change your password"
@@ -30,6 +30,7 @@ default:
         delete: "Delete"
         updateAccount: "Update account"
         submit: "Submit"
+        back: "Back"
         
     product:
         size:
@@ -64,7 +65,7 @@ default:
             companyName: "Company name"
             address: "Street address, Apartment, etc."
             city: "City"
-            state: "Your State"     
+            state: "State"     
             zip: "Zip / Postal"
             cardNumber: Card number
             cardHolderName: "Cardholder's name"
@@ -73,8 +74,12 @@ default:
             firstName: "First name"
             lastName: "Last name"
             confirmPassword: "Confirm password"
+            oldPassword: "Old password"
+            newPassword: "New password"
+            repeatNewPassword: "Repeat new password"
         inputDescription:
-            fullName: "Full name*"
+            firstName: "First name*"
+            lastName: "Last name*" 
             company: "Company"
             address: "Address*"
             city: "City*"
@@ -85,14 +90,14 @@ default:
             cardNumber: "Card number*"
             cardHolderName: "Cardholder's name*"
             expirationDate: Expiration date*
-            requiredFields: "*Required fields"
-            email: "Your email*"
-            password: "Your Password*"
-            firstName: "First name*"
-            lastName: "Last name*"           
-            email2: "Email address*"
-            password2: "Password*"
+            email: "Email address*"
+            password: "Password*"
             confirmPassword: "Confirm password*"
+            oldPassword: "Old password*"
+            newPassword: "New password*"
+            repeatNewPassword: "Repeat new password*"
+            shippingInfo: "We only ship to United States and Germany."
+            requiredFields: "*Required fields"
         dropdown:
             country:
                 usa: "United States"
@@ -133,10 +138,12 @@ default:
         successfulOrder: "Thank you for shopping with us!"
         successfulRegistration: "Your account has been created. Log in with your email address and password."
         successfulSave: "Saving completed."
+        successfulUpdate: "Updating completed."
         
     errorMessage:
         noProductsFound: "Sorry! No results found matching your search. Please try again."
         emptyCart: "Your cart is empty. Continue shopping."
+        errorFalseLogin: "The email address or password is wrong. Please try again."
         emailDoesNotExist: "The email address you entered doesn't exist. Please try again."
         incorrectPassword: "The password you entered is incorrect. Please try again."
         
@@ -199,8 +206,9 @@ default:
             phone: "Phone: +49-3641-376300"
             email: "E-mail: kontakt@xceptance.de"
             website: "Website: www.xceptance.com"
-        copyright: "Copyright © 2013-2023 Xceptance Software Technologies GmbH"
-        version: "The Poster Demo Store - Version 2.1.1"
+        copyright: "Copyright 2013-2024 Xceptance Software Technologies GmbH"
+        photoLicense: "All photos by René Schwietzke under CC-BY-4.0."
+        version: "The Poster Demo Store - Version 2.3.0"
         
     checkoutHeader:
         "1":
@@ -234,46 +242,47 @@ default:
             headline: "Hot Products"
             "1": 
                 title: "Blue Morpho Butterfly"
-                description: "Lovely."
+                description: "A beautiful blue and black butterfly on a leaf."
             "2":
                 title: "Snowdrop Anemone"
                 description: "A blossom in all its details."
             "3":
-                title: "Indian Summer: Red Beeches"
-                description: "Check out that color change!"
+                title: "Cheese Varieties"
+                description: "A symbol of French culinary."
             "4":
-                title: "Finger Food"
-                description: "Can't make up your mind?"
+                title: "Fir Covered with Snow"
+                description: "A very small fir tilted to the side, covered with snow."
             "5":
                 title: "Stuffed Turkey"
-                description: "Vegetarians, please skip this one!"
+                description: "The best way to celebrate Thanksgiving."
             "6":
                 title: "Fruit Tart with Cocoa"
-                description: "Isn't this pretty?"
+                description: "An aesthetic fruit tart with cocoa powder."
             "7":
-                title: "Swiss Air Airbus A320"
-                description: "Beautiful take-off."
+                title: "Air Lingus Airbus A320"
+                description: "Hail to Saint Patrick!"
             "8":
-                title: "IFA F8"
-                description: "One of 25.000."
+                title: "IFA H6 Green"
+                description: "A bright green truck from old times."
             "9":
-                title: "German Steam Locomotive"
-                description: "For railway nostalgics."
+                title: "Third Avenue Railway System"
+                description: "The old railway system of NYC."
             "10":
-                title: "Grochwitz Castle, Germany"
-                description: "With the sun fighting off a storm."
+                title: "Old NYC Subway"
+                description: "Nothing lasts forever."
             "11":
-                title: "New Year's Fireworks III"
+                title: "New Years Fireworks III"
                 description: "A fantastic skycolor change!"
             "12":
-                title: "Linnaean Garden and Museum, Sweden"
+                title: "Linnaean Garden and Museum Sweden"
                 description: "A perfect symmetry."
                 
     categoryPage:
-        searchResultText: "Your results for your search: "
-        pagination:
-            goToLastPage: "»"
-            goToFirstPage: "«"
+        searchResultText: "Results for your search: "
+        
+    noHitsPage:
+        message: "Sorry, we could not find a match for your search. Please check your spelling or try something less specific."
+        suggestion: "You might want to have a look in the following categories."
 
     productDetailPage:
         selectSize: "Select size:"
@@ -324,14 +333,29 @@ default:
         title: "Order History"
         purchasedPosters: "Purchased posters"
         orderDetails: "Order details"
+        quantity: "Quantity"
+        orderDate: "Order Date"
+        orderTotal: "Order Total"
             
     myAddressesPage:
         title: "My Addresses"
+        
+    addNewShippingAddressPage:
+        title: "Add shipping address"
+        
+    addNewBillingAddressPage:
+        title: "Add billing address"
             
     personalDataPage:
         title: "Personal Data"
         name: "Name"
         email: "Email"
+    
+    changeNameOrEmailPage:
+        title: "Change your personal information"
+    
+    changePasswordPage:
+        title: "Change your password"
             
     deleteAccontPage:
         title: "Delete your account"

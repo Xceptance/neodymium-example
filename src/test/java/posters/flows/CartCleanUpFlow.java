@@ -13,16 +13,25 @@ public class CartCleanUpFlow
         // go to homepage (needed cause checkout header don't has miniCart -> clean up would fail)
         var homePage = init.openHomePage();
         
-        // go to cart page
-        var cartPage = homePage.header.miniCart.openCartPage();
-        
-        // remove the first product as long as one is available
-        while (cartPage.header.miniCart.getTotalCount() != 0)
+        if (homePage.header.miniCart.getTotalCount() == 0) 
         {
-            cartPage.removeProduct(1);
+            return;
         }
-        
-        // go to homepage
-        homePage = cartPage.openHomePage();
+        else 
+        {
+            // go to cart page
+            var cartPage = homePage.header.miniCart.openCartPage();
+            
+            // remove the first product as long as one is available
+            while (cartPage.header.miniCart.getTotalCount() != 0)
+            {
+                // make sure cart page is empty
+                cartPage.removeProduct(1);                
+                cartPage.validateEmptyCartPage();
+            }
+            
+            // go to homepage
+            homePage = cartPage.openHomePage();            
+        }
     }
 }

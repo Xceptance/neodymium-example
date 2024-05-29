@@ -17,9 +17,11 @@ public class CategoryPage extends AbstractBrowsingPage
 {
     public Pagination pagination = new Pagination();
 
-    private SelenideElement productOverview = $("#productOverview");
+    private SelenideElement productOverview = $("#product-overview");
 
-    private SelenideElement titleCategoryName = $("#titleCategoryName");
+    private SelenideElement titleCategoryName = $("#title-category-name");
+
+    private SelenideElement titleSearchText = $("#title-search-text");
 
     @Override
     @Step("ensure this is a category page")
@@ -39,30 +41,28 @@ public class CategoryPage extends AbstractBrowsingPage
         super.validateStructure();
 
         // validate poster count in headline is not 0
-        $("#totalProductCount").shouldNotBe(exactText("0")).shouldBe(visible);
+        $("#total-product-count").shouldNotBe(exactText("0")).shouldBe(visible);
 
         // validate at least 1 poster is displayed
-        $("#product0").shouldBe(visible);
+        $("#product-0").shouldBe(visible);
     }
 
     /**
-     * Note: If {categoryName} contains a ".", it's a localization string, localized by Neodymium. Else a search
+     * If {categoryName} contains a ".", it's a localization string, localized by Neodymium. Else a search
      * term was used. Both cases have a different headline to validate.
      * 
-     * @param categoryName
-     *            (name of specific category of top navigation)
-     * @param expectedResultCount
-     *            (number of results for specific category/search)
+     * @param categoryName name of specific category of top navigation
+     * @param expectedResultCount number of results for specific category/search
      */
     @Step("validate category name '{categoryName}' and amount results '{expectedResultCount}' on category page")
     public void validateCategoryHeadline(String categoryName, int expectedResultCount)
     {
-        if ($("#titleSearchText").exists())
+        if (titleSearchText.exists())
         {
             // if {categoryName} is search input
-            $("#titleSearchText").should(matchText(Neodymium.localizedText("categoryPage.searchResultText"))).shouldBe(visible);
-            $("#searchTextValue").shouldHave(exactText(categoryName)).shouldBe(visible);
-            $("#totalProductCount").shouldHave(exactText(Integer.toString(expectedResultCount))).shouldBe(visible);
+            titleSearchText.should(matchText(Neodymium.localizedText("categoryPage.searchResultText"))).shouldBe(visible);
+            $("#search-text-value").shouldHave(exactText(categoryName)).shouldBe(visible);
+            $("#total-product-count").shouldHave(exactText(Integer.toString(expectedResultCount))).shouldBe(visible);
         }
         else
         {
@@ -84,13 +84,13 @@ public class CategoryPage extends AbstractBrowsingPage
     @Step("get a product name by position '{position}'")
     public String getProductNameByPosition(int position)
     {
-        return $("#product" + (position - 1) + " h5").text();
+        return $("#product-" + (position - 1) + " h5").text();
     }
 
     @Step("click on a product by position '{position}'")
     public ProductDetailPage clickProductByPosition(int position)
     {
-        $("#product" + (position - 1) + " .btn.btn-primary").click(ClickOptions.usingJavaScript());
+        $("#product-" + (position - 1) + " .btn.btn-primary").click(ClickOptions.usingJavaScript());
         return new ProductDetailPage().isExpectedPage();
     }
     

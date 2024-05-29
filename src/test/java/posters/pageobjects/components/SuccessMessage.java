@@ -1,7 +1,6 @@
 package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -11,21 +10,19 @@ import io.qameta.allure.Step;
 
 public class SuccessMessage extends AbstractComponent
 {
-    private SelenideElement successMessage = $("#successMessage");
+    private SelenideElement successMessage = $(".alert-success");
 
     @Override
     @Step("ensure availability success message")
     public void isComponentAvailable()
     {
-        successMessage.should(exist);
+        successMessage.shouldBe(visible);
     }
-    
-    /// ========== validate success message ========== ///
 
     @Step("validate visibility of success message '{message}'")
     public void validateSuccessMessage(String message)
     {
-        successMessage.find("strong").shouldHave(exactText(message)).shouldBe(visible);
-        successMessage.find(".close").shouldHave(exactText("×")).shouldBe(visible);
+        successMessage.shouldHave(exactText(message)).shouldBe(visible);
+        successMessage.find(".btn-close").shouldBe(visible);
     }
 }

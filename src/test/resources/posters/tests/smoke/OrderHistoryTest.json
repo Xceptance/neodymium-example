@@ -1,0 +1,43 @@
+[
+	{
+		"user":
+      	{
+      		"firstName": "Order",
+      		"lastName": "History",
+      		"email": "orderhistory@varmail.net",
+      		"password": "topsecret"
+      	},
+      	"topCategory1": "header.topNavigation.1.title",
+      	"topCategory2": "header.topNavigation.2.title",
+      	"topCategory3": "header.topNavigation.3.title",
+      	"resultPosition": "1",
+      	"sizeProduct16x12": "16 x 12 in",
+      	"sizeProduct32x24": "32 x 24 in",
+      	"sizeProduct64x48": "64 x 48 in",
+      	"styleProductMatte": "matte",
+      	"styleProductGloss": "gloss",
+      	"updateProductAmount": "3",
+     	"shippingAddressPosition": 1,
+      	"billingAddressPosition": 1,
+      	"creditCardPosition": 1,
+      	"address":
+      	{
+            "firstName": "Order",
+      		"lastName": "History",
+      		"company": "Order History Inc.",
+      		"street": "Order History Street",
+      		"city": "Order History City",
+      		"state": "Order History State",
+      		"zip": "12345",
+      		"country": "United States"
+      	},
+      	"creditCard":
+      	{
+      		"fullName": "Order History",
+      		"cardNumber": "4111111111111111",
+      		"crypticCardNumber": "xxxx xxxx xxxx 1111",
+      		"expDateMonth": "06",
+      		"expDateYear": "2028"
+      	}
+	}
+]

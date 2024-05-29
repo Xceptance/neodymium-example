@@ -16,11 +16,11 @@ import posters.pageobjects.pages.browsing.HomePage;
 
 public class DeleteAccountPage extends AbstractBrowsingPage
 {
-    private SelenideElement deleteForm = $("#formDeleteAccount");
+    private SelenideElement deleteForm = $("#form-delete-account");
 
     private SelenideElement passwordField = $("#password");
 
-    private SelenideElement deleteButton = $("#btnDeleteAccount");
+    private SelenideElement deleteButton = $("#btn-delete-account");
 
     @Override
     @Step("ensure this is a delete account page")
@@ -31,14 +31,6 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         
         return this;
     }
-
-    /// ========== validate content delete account page ========== ///
-    
-    @Step("validate required string")
-    public void validateRequiredString() 
-    {
-        $(".me-auto").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
-    }
     
     @Override
     @Step("validate delete account page structure")
@@ -47,7 +39,7 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         super.validateStructure();
 
         // validate title
-        deleteForm.find(".h2").shouldHave(exactText(Neodymium.localizedText("deleteAccontPage.title"))).shouldBe(visible);
+        $(".h2").shouldHave(exactText(Neodymium.localizedText("deleteAccontPage.title"))).shouldBe(visible);
         
         // validate headline
         $("label[for='password']").shouldBe(exactText(Neodymium.localizedText("fillIn.inputDescription.password")));
@@ -56,13 +48,11 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         passwordField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.password")))).shouldBe(visible);
         
         // validate "required fields" string
-        validateRequiredString();
+        $(".req-field").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
         
         // validate button
         deleteButton.shouldHave(exactText(Neodymium.localizedText("button.delete"))).shouldBe(visible);
     }
-    
-    /// ========== delete account page navigation ========== ///
 
     @Step("delete account")
     public HomePage deleteAccount(String password)

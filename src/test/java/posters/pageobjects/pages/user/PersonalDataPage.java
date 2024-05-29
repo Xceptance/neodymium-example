@@ -16,9 +16,13 @@ import posters.tests.testdata.dataobjects.User;
 
 public class PersonalDataPage extends AbstractBrowsingPage
 {
-    private SelenideElement title = $("#titlePersonalData");
+    private SelenideElement title = $("#title-personal-data");
 
-    private SelenideElement deleteButton = $("#btnDeleteAccount");
+    private SelenideElement changeNameOrEmailButton = $("#btn-change-name-email");
+    
+    private SelenideElement changePasswordButton = $("#btn-change-password");
+    
+    private SelenideElement deleteButton = $("#btn-delete-account");
 
     @Override
     @Step("ensure this is a personal data page")
@@ -41,8 +45,8 @@ public class PersonalDataPage extends AbstractBrowsingPage
         title.shouldHave(exactText(Neodymium.localizedText("personalDataPage.title"))).shouldBe(visible);
         
         // validate buttons
-        $("#btnChangeNameEmail").shouldHave(exactText(Neodymium.localizedText("button.changeNameOrMail"))).shouldBe(visible);
-        $("#btnChangePassword").shouldHave(exactText(Neodymium.localizedText("button.changePassword"))).shouldBe(visible);
+        changeNameOrEmailButton.shouldHave(exactText(Neodymium.localizedText("button.changeNameOrMail"))).shouldBe(visible);
+        changePasswordButton.shouldHave(exactText(Neodymium.localizedText("button.changePassword"))).shouldBe(visible);
         deleteButton.shouldHave(exactText(Neodymium.localizedText("button.deleteAccount"))).shouldBe(visible);
     }
     
@@ -52,11 +56,17 @@ public class PersonalDataPage extends AbstractBrowsingPage
         // validate name
         String fullName = user.getFirstName() + " " + user.getLastName();
         $$(".form-group strong").findBy(exactText(Neodymium.localizedText("personalDataPage.name"))).shouldBe(visible);
-        $("#customerName").shouldHave(exactText(fullName)).shouldBe(visible);
+        $("#customer-name").shouldHave(exactText(fullName)).shouldBe(visible);
         
         // validate email
         $$(".form-group strong").findBy(exactText(Neodymium.localizedText("personalDataPage.email"))).shouldBe(visible);
-        $("#customerEmail").shouldHave(exactText(user.getEmail())).shouldBe(visible);
+        $("#customer-email").shouldHave(exactText(user.getEmail())).shouldBe(visible);
+    }
+    
+    @Step("validate successful update")
+    public void validateSuccessfulSave()
+    {
+        successMessage.validateSuccessMessage(Neodymium.localizedText("successMessage.successfulUpdate"));
     }
     
     /// ========== personal data page navigation ========== ///
@@ -66,5 +76,19 @@ public class PersonalDataPage extends AbstractBrowsingPage
     {
         deleteButton.click(ClickOptions.usingJavaScript());
         return new DeleteAccountPage().isExpectedPage();
+    }
+    
+    @Step("open delete account page from personal data page")
+    public ChangeNameOrEmailPage openChangeNameOrEmailPage()
+    {
+        changeNameOrEmailButton.click(ClickOptions.usingJavaScript());
+        return new ChangeNameOrEmailPage().isExpectedPage();
+    }
+    
+    @Step("open delete account page from personal data page")
+    public ChangePasswordPage openChangePasswordPage()
+    {
+        changePasswordButton.click(ClickOptions.usingJavaScript());
+        return new ChangePasswordPage().isExpectedPage();
     }
 }

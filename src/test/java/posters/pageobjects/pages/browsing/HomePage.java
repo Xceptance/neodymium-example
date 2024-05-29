@@ -32,7 +32,7 @@ public class HomePage extends AbstractBrowsingPage
     public HomePage isExpectedPage()
     {
         super.isExpectedPage();
-        $("#carousel-product-display").should(exist);
+        $("#intro-text-homepage").should(exist);
         return this;
     }
 
@@ -100,18 +100,6 @@ public class HomePage extends AbstractBrowsingPage
         
         // validate shop all products button
         $(".btn-shop-all").shouldHave(exactText(Neodymium.localizedText("button.shopAllProducts"))).shouldBe(visible);
-    }
-    
-    /// ========== validate success messages ========== ///
-    
-    @Step("validate successful login of user '{firstName}' on home page")
-    public void validateSuccessfulLogin(String firstName)
-    {
-        // validate success message
-        successMessage.validateSuccessMessage(Neodymium.localizedText("successMessage.successfulLogin"));
-        
-        // validate {firstName} in user menu
-        header.userMenu.validateLoggedInName(firstName);
     }
     
     @Step("validate successful account deletion on home page")

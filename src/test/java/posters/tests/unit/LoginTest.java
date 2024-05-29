@@ -2,8 +2,6 @@ package posters.tests.unit;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import com.xceptance.neodymium.module.statement.browser.multibrowser.Browser;
 import com.xceptance.neodymium.module.statement.testdata.DataSet;
 import com.xceptance.neodymium.util.DataUtils;
 
@@ -60,7 +58,7 @@ public class LoginTest extends AbstractTest
     public void testLoginWithWrongPasswort()
     {
         loginPage.sendFalseLoginForm(user);
-        loginPage.validateWrongPassword(user.getEmail());
+        loginPage.validateFalseLogin(user.getEmail());
     }
 
     @Test
@@ -68,7 +66,7 @@ public class LoginTest extends AbstractTest
     public void testLoginWithEmailFailure()
     {
         loginPage.sendFalseLoginForm(user);
-        loginPage.validateWrongEmail(user.getEmail());
+        loginPage.validateFalseLogin(user.getEmail());
     }
 
     @Test

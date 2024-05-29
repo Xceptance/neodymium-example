@@ -4,62 +4,66 @@
       "resultPosition": "5",
       "sizeProduct": "64 x 48 in",
       "styleProduct": "gloss",
+      "amountChange": "2",
       "shippingAddress":
       {
-            "firstName": "Jimmy Blue",
-      		"lastName": "Ochsenknecht",
-      		"company": "Ochsenknecht Records",
-      		"street": "6 Wall St",
-      		"city": "Burlington",
-      		"state": "Massachusetts",
-      		"zip": "01803",
+            "firstName": "Guest",
+      		"lastName": "Order",
+      		"company": "Guest Order Inc.",
+      		"street": "Guest Order Street",
+      		"city": "Guest Order City",
+      		"state": "Guest Order State",
+      		"zip": "12345",
       		"country": "United States"
       },
       "shipAddrEqualBillAddr": false,
       "billingAddress":
       {
-            "firstName": "Jimmy Blue",
-      		"lastName": "Ochsenknecht",
-      		"company": "",
-      		"street": "9 Floor St",
-      		"city": "Los Angeles",
-      		"state": "California",
-      		"zip": "00018",
-      		"country": "United States"
+            "firstName": "Guest",
+      		"lastName": "Order",
+      		"company": "Guest Order GmbH",
+      		"street": "Guest Order Straße",
+      		"city": "Guest Order Stadt",
+      		"state": "Guest Order Bundesland",
+      		"zip": "30159",
+      		"country": "Germany"
       },
       "creditCard":
       {
-      		"fullName": "Jimmy Blue",
+      		"fullName": "Guest Order",
       		"cardNumber": "4111111111111111",
       		"crypticCardNumber": "xxxx xxxx xxxx 1111",
       		"expDateMonth": "12",
       		"expDateYear": "2026"
-      }
+      },
+      "testId": "guest order: different shipping and billing address"
    },
    {
       "topCategory": "header.topNavigation.2.title",
       "resultPosition": "2",
       "sizeProduct": "16 x 12 in",
       "styleProduct": "matte",
+      "amountChange": "3",
       "shippingAddress":
       {
-            "firstName": "Gregor",
-      		"lastName": "Onkh",
-      		"company": "Ocha-Ocha GmbH",
-      		"street": "Lizardstraße 77",
-      		"city": "Braunschweig",
-      		"state": "Niedersachsen",
-      		"zip": "38100",
+            "firstName": "Guest",
+      		"lastName": "Order",
+      		"company": "Guest Order Unternehmen",
+      		"street": "Guest Order Gasse",
+      		"city": "Guest Order Dorf",
+      		"state": "Guest Order Landkreis",
+      		"zip": "30167",
       		"country": "Germany"
       },
       "shipAddrEqualBillAddr": true,
       "creditCard":
       {
-      		"fullName": "Gregor Onkh",
+      		"fullName": "Guest Order",
       		"cardNumber": "4111111111111111",
       		"crypticCardNumber": "xxxx xxxx xxxx 1111",
-      		"expDateMonth": "12",
-      		"expDateYear": "2026"
-      }
+      		"expDateMonth": "05",
+      		"expDateYear": "2029"
+      },
+      "testId": "guest order: same shipping and billing address"
    }
 ]

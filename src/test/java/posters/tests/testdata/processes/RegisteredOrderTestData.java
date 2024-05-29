@@ -16,6 +16,8 @@ public class RegisteredOrderTestData
     
     private String styleProduct;
     
+    private int amountChange;
+    
     private int shipAddrPos;
     
     private int billAddrPos;
@@ -53,6 +55,11 @@ public class RegisteredOrderTestData
     public String getStyleProduct()
     {
         return styleProduct;
+    }
+    
+    public int getAmountChange()
+    {
+        return amountChange;
     }
     
     public int getShipAddrPos() 

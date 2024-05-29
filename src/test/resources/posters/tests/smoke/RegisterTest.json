@@ -1,57 +1,57 @@
 [
     {
-        "firstName": "Jane",
-        "lastName": "Doe",
-        "email": "jane@varmail.net",
+        "firstName": "Register",
+        "lastName": "Jane",
+        "email": "registerjane@varmail.net",
         "password": "topsecret",
         "testId": "Jane's test"
     },
     {
-        "firstName": "Simon",
-        "lastName": "Doe",
-        "email": "simon@varmail.net",
+        "firstName": "Register",
+        "lastName": "Simon",
+        "email": "registersimon@varmail.net",
         "password": "topsecret",
         "testId": "Simons's test"
     },
     {
-        "firstName": "James",
-        "lastName": "Doe",
-        "email": "james@varmail.net",
+        "firstName": "Register",
+        "lastName": "James",
+        "email": "registerjames@varmail.net",
         "password": "topsecret",
         "testId": "James' test"
     },
     {
-        "firstName": "Josh",
-        "lastName": "Doe",
-        "email": "josh@varmail.net",
+        "firstName": "Register",
+        "lastName": "Josh",
+        "email": "registerjosh@varmail.net",
         "password": "topsecret",
         "testId": "Josh's test"
     },
     {
-        "firstName": "Jim",
-        "lastName": "Doe",
-        "email": "jim@varmail.net",
+        "firstName": "Register",
+        "lastName": "Jim",
+        "email": "registerjim@varmail.net",
         "password": "topsecret",
         "testId": "Jim's test"
     },
     {
-        "firstName": "Jude",
-        "lastName": "Doe",
-        "email": "jude@varmail.net",
+        "firstName": "Register",
+        "lastName": "Jude",
+        "email": "registerjude@varmail.net",
         "password": "topsecret",
         "testId": "Jude's test"
     },
     {
-        "firstName": "Joel",
-        "lastName": "Doe",
-        "email": "joel@varmail.net",
+        "firstName": "Register",
+        "lastName": "joel",
+        "email": "registerjoel@varmail.net",
         "password": "topsecret",
         "testId": "Joel's test"
     },
     {
-        "firstName": "Jeremiah",
-        "lastName": "Doe",
-        "email": "jeremiah@varmail.net",
+        "firstName": "Register",
+        "lastName": "Jeremiah",
+        "email": "registerjeremiah@varmail.net",
         "password": "topsecret",
         "testId": "Jeremiah's test"
     }

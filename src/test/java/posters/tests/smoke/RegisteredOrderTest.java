@@ -50,11 +50,8 @@ public class RegisteredOrderTest extends AbstractTest
         var loginPage = registerPage.sendRegisterForm(registeredOrderTestData.getUser());
 
         // send login form
-        homePage = loginPage.sendLoginForm(registeredOrderTestData.getUser());
-        homePage.validateSuccessfulLogin(registeredOrderTestData.getUser().getFirstName());
-        
-        // go to account overview page and validate
-        var accountOverviewPage = homePage.header.userMenu.openAccountOverviewPage();
+        var accountOverviewPage = loginPage.sendLoginForm(registeredOrderTestData.getUser());
+        accountOverviewPage.validateSuccessfulLogin(registeredOrderTestData.getUser().getFirstName());
         accountOverviewPage.validateStructure();
         
         // go to address overview page and validate
@@ -64,43 +61,53 @@ public class RegisteredOrderTest extends AbstractTest
         // add new addresses
         if (!registeredOrderTestData.getShipAddrEqualBillAddr())
         {
-            addressOverviewPage.addNewShipAddr(registeredOrderTestData.getShippingAddress());
+            var addNewShippingAddressPage = addressOverviewPage.openAddNewShippingAddressPage();
+            addNewShippingAddressPage.validateStructure();
+            addressOverviewPage = addNewShippingAddressPage.addressForm.addNewAddress(registeredOrderTestData.getShippingAddress());
             addressOverviewPage.validateSuccessfulSave();
-            addressOverviewPage.addNewBillAddr(registeredOrderTestData.getBillingAddress());
+            
+            var addNewBillingAddressPage = addressOverviewPage.openAddNewBillingAddressPage();
+            addNewBillingAddressPage.validateStructure();
+            addressOverviewPage = addNewBillingAddressPage.addressForm.addNewAddress(registeredOrderTestData.getBillingAddress());
             addressOverviewPage.validateSuccessfulSave();
         }
         else
         {
-            addressOverviewPage.addNewShipAddr(registeredOrderTestData.getShippingAddress());
+            var addNewShippingAddressPage = addressOverviewPage.openAddNewShippingAddressPage();
+            addNewShippingAddressPage.validateStructure();
+            addressOverviewPage = addNewShippingAddressPage.addressForm.addNewAddress(registeredOrderTestData.getShippingAddress());
             addressOverviewPage.validateSuccessfulSave();
-            addressOverviewPage.addNewBillAddr(registeredOrderTestData.getShippingAddress());
+            
+            var addNewBillingAddressPage = addressOverviewPage.openAddNewBillingAddressPage();
+            addNewBillingAddressPage.validateStructure();
+            addressOverviewPage = addNewBillingAddressPage.addressForm.addNewAddress(registeredOrderTestData.getShippingAddress());
             addressOverviewPage.validateSuccessfulSave();
         }
 
         // go to account overview page
-        accountOverviewPage = addressOverviewPage.header.userMenu.openAccountOverviewPage();
+        accountOverviewPage = addressOverviewPage.openAccountOverviewPage();
         
         // go to payment settings page and validate
         var paymentOverviewPage = accountOverviewPage.openPaymentSettings();
         paymentOverviewPage.validateStructure();
         
         // add new payment
-        paymentOverviewPage.addNewPayment(registeredOrderTestData.getCreditCard());
+        var addNewCreditCardPage = paymentOverviewPage.openAddNewCreditCardPage();
+        addNewCreditCardPage.validateStructure();
+        paymentOverviewPage = addNewCreditCardPage.addNewCreditCard(registeredOrderTestData.getCreditCard());
         paymentOverviewPage.validateSuccessfulSave();
         
-        // go to homepage
-        homePage = paymentOverviewPage.openHomePage();
-        
         // go to category page
-        var categoryPage = homePage.header.topNav.clickCategory(Neodymium.localizedText(registeredOrderTestData.getTopCategory()));
+        var categoryPage = paymentOverviewPage.header.topNav.clickCategory(Neodymium.localizedText(registeredOrderTestData.getTopCategory()));
 
         // go to product detail page, add and store displayed product
         var productDetailPage = categoryPage.clickProductByPosition(registeredOrderTestData.getResultPosition());
         productDetailPage.addToCart(registeredOrderTestData.getsSizeProduct(), registeredOrderTestData.getStyleProduct());
-        final var product = productDetailPage.getProduct();
 
         // go to cart page
         var cartPage = productDetailPage.header.miniCart.openCartPage();
+        cartPage.updateProductCount(1, registeredOrderTestData.getAmountChange());
+        final var product = cartPage.getProduct(1);
 
         // go to shipping address page
         var shippingAddressPage = cartPage.openReturningCustomerShippingAddressPage();

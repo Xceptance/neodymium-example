@@ -14,15 +14,15 @@ import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
 public class AccountOverviewPage extends AbstractBrowsingPage
 {
-    private SelenideElement title = $("#titleAccountOverview");
+    private SelenideElement title = $("#title-account-overview");
     
-    private SelenideElement orderOverviewLink = $("#linkOrderOverview");
+    private SelenideElement orderOverviewLink = $("#link-order-overview");
     
-    private SelenideElement myAddressesLink = $("#linkAddressOverview");
+    private SelenideElement myAddressesLink = $("#link-address-overview");
     
-    private SelenideElement paymentSettingsLink = $("#linkPaymentOverview");
+    private SelenideElement paymentSettingsLink = $("#link-payment-overview");
 
-    private SelenideElement personalDataLink = $("#linkSettingOverview");
+    private SelenideElement personalDataLink = $("#link-setting-overview");
 
     @Override
     @Step("ensure this is an account overview page")
@@ -49,6 +49,21 @@ public class AccountOverviewPage extends AbstractBrowsingPage
         myAddressesLink.shouldHave(exactText(Neodymium.localizedText("button.myAddresses"))).shouldBe(visible);
         paymentSettingsLink.shouldHave(exactText(Neodymium.localizedText("button.paymentSettings"))).shouldBe(visible);
         personalDataLink.shouldHave(exactText(Neodymium.localizedText("button.personalData"))).shouldBe(visible);
+        
+        $(".icon-book").shouldBe(visible);
+        $(".icon-history").shouldBe(visible);
+        $(".icon-credit-card").shouldBe(visible);
+        $(".icon-cog").shouldBe(visible);
+    }
+    
+    @Step("validate successful login of user '{firstName}' on home page")
+    public void validateSuccessfulLogin(String firstName)
+    {
+        // validate success message
+        successMessage.validateSuccessMessage(Neodymium.localizedText("successMessage.successfulLogin"));
+        
+        // validate {firstName} in user menu
+        header.userMenu.validateLoggedInName(firstName);
     }
 
     /// ========== account overview page navigation ========== ///

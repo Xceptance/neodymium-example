@@ -17,8 +17,6 @@ public class User
         this.email = email;
         this.password = password;
     }
-
-    /// ========== get user data ========== ///
     
     public String getFirstName()
     {
