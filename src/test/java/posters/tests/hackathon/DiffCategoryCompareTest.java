@@ -31,8 +31,10 @@ public class DiffCategoryCompareTest extends AbstractTest
         OpenHomePageFlow.openCategory("Dining", "2");
         Selenide.screenshot("category-page-now");
         File target = new File("build/reports/tests/category-page-now.png");
-        File referenceChrome = new File("chromeScreenshot/diff-category-page-reference-" + Neodymium.getBrowserProfileName() + ".png");
-        File referenceFirefox = new File("firefoxScreenshot/diff-category-page-reference-" + Neodymium.getBrowserProfileName() + ".png");
+        File referenceChrome = new File("chromeScreenshot/diff-category-page-reference-" + Neodymium.getBrowserProfileName().replace("Firefox_", "Chrome_")
+                                        + ".png");
+        File referenceFirefox = new File("firefoxScreenshot/diff-category-page-reference-" + Neodymium.getBrowserProfileName().replace("Chrome_", "Firefox_")
+                                         + ".png");
 
         List<HashingAlgorithm> algos = List.of(new AverageKernelHash(64), new PerceptiveHash(64), new AverageHash(64), new MedianHash(64));
         for (HashingAlgorithm hasher : algos)

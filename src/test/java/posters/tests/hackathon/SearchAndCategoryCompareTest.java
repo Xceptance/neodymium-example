@@ -31,8 +31,10 @@ public class SearchAndCategoryCompareTest extends AbstractTest
         OpenHomePageFlow.openCategory("World of Nature", "1");
         Selenide.screenshot("category-page-now");
         File target = new File("build/reports/tests/category-page-now.png");
-        File referenceChrome = new File("chromeScreenshot/search-category-page-reference-" + Neodymium.getBrowserProfileName() + ".png");
-        File referenceFirefox = new File("firefoxScreenshot/search-category-page-reference-" + Neodymium.getBrowserProfileName() + ".png");
+        File referenceChrome = new File("chromeScreenshot/search-category-page-reference-" + Neodymium.getBrowserProfileName().replace("Firefox_", "Chrome_")
+                                        + ".png");
+        File referenceFirefox = new File("firefoxScreenshot/search-category-page-reference-" + Neodymium.getBrowserProfileName().replace("Chrome_", "Firefox_")
+                                         + ".png");
 
         List<HashingAlgorithm> algos = List.of(new AverageKernelHash(64), new PerceptiveHash(64), new AverageHash(64), new MedianHash(64));
         for (HashingAlgorithm hasher : algos)
