@@ -47,10 +47,11 @@ public class SameCategoryCompareTest extends AbstractTest
             double similarityScoreFirefox = targetHash.normalizedHammingDistance(referenceFirefoxHash);
             double similarityScoreChrome = targetHash.normalizedHammingDistance(referenceChromeHash);
 
-            System.out.println("Similarity score for Firefox_1200x768 in compare to " + Neodymium.getBrowserProfileName()
+            System.out.println("Similarity score for " + referenceFirefox.getName().replaceAll(".*_", "") + " in compare to "
+                               + Neodymium.getBrowserProfileName()
                                + " is "
                                + similarityScoreFirefox);
-            System.out.println("Similarity score for Chrome_1200x768 in compare to " + Neodymium.getBrowserProfileName()
+            System.out.println("Similarity score for " + referenceChrome.getName().replaceAll(".*_", "") + " in compare to " + Neodymium.getBrowserProfileName()
                                + " is "
                                + similarityScoreChrome);
         }
