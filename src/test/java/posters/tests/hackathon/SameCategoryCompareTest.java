@@ -17,12 +17,13 @@ import dev.brachtendorf.jimagehash.hashAlgorithms.HashingAlgorithm;
 import dev.brachtendorf.jimagehash.hashAlgorithms.MedianHash;
 import dev.brachtendorf.jimagehash.hashAlgorithms.PerceptiveHash;
 import posters.flows.OpenHomePageFlow;
+import posters.tests.AbstractTest;
 
 @Browser("Firefox_1400x1000")
 @Browser("Chrome_1400x1000")
 @Browser("Chrome_1200x768")
 @Browser("Firefox_1200x768")
-public class SameCategoryCompareTest
+public class SameCategoryCompareTest extends AbstractTest
 {
     @Test
     public void testBrowsing() throws IOException

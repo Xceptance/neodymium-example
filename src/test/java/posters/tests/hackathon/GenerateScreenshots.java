@@ -7,12 +7,13 @@ import com.xceptance.neodymium.module.statement.browser.multibrowser.Browser;
 import com.xceptance.neodymium.util.Neodymium;
 
 import posters.flows.OpenHomePageFlow;
+import posters.tests.AbstractTest;
 
 @Browser("Firefox_1400x1000")
 @Browser("Chrome_1400x1000")
 @Browser("Chrome_1200x768")
 @Browser("Firefox_1200x768")
-public class GenerateScreenshots
+public class GenerateScreenshots extends AbstractTest
 {
     @Test
     public void generateImages()
