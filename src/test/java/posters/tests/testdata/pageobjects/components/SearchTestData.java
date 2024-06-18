@@ -6,8 +6,6 @@ public class SearchTestData
     
     private int expectedResultCount;
 
-    private int resultPosition;
-    
     public String getSearchTerm()
     {
         return searchTerm;
@@ -17,10 +15,4 @@ public class SearchTestData
     {
         return expectedResultCount;
     }
-    
-    public int getResultPosition()
-    {
-        return resultPosition;
-    }
-
 }

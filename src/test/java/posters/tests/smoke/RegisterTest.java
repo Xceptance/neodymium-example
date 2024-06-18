@@ -1,12 +1,10 @@
 package posters.tests.smoke;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
+import com.xceptance.neodymium.common.testdata.DataItem;
 import com.xceptance.neodymium.common.testdata.DataSet;
-import com.xceptance.neodymium.common.testdata.SuppressDataSets;
-import com.xceptance.neodymium.util.DataUtils;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
@@ -21,17 +19,11 @@ import posters.tests.testdata.dataobjects.User;
 @Severity(SeverityLevel.CRITICAL)
 @Tag("smoke")
 @Tag("registered")
-@SuppressDataSets
 public class RegisterTest extends AbstractTest
 {
+    @DataItem
     private User user;
-
-    @Before
-    public void setup()
-    {
-        user = DataUtils.get(User.class);
-    }
-
+    
     @Test
     @DataSet(2)
     public void testRegistering()

@@ -2,9 +2,7 @@ package posters.tests.component;
 
 import org.junit.Test;
 
-import com.xceptance.neodymium.common.testdata.DataSet;
-import com.xceptance.neodymium.common.testdata.SuppressDataSets;
-import com.xceptance.neodymium.util.DataUtils;
+import com.xceptance.neodymium.common.testdata.DataItem;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
@@ -18,16 +16,14 @@ import posters.tests.testdata.pageobjects.components.HeaderTestData;
 @Owner("Tim Brown")
 @Severity(SeverityLevel.MINOR)
 @Tag("smoke")
-@SuppressDataSets
 public class HeaderFooterTest extends AbstractTest
 {
+    @DataItem
+    private HeaderTestData headerTestData;
+    
     @Test
-    @DataSet(1)
     public void testHeaderFooter()
     {
-        // use test data
-        final HeaderTestData headerTestData = DataUtils.get(HeaderTestData.class);
-
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
         homePage.header.validateStructure();

@@ -45,6 +45,11 @@ public class CreditCard
         return expDateYear;
     }
 
+    public String getExpDate() 
+    {
+        return expDateMonth + "/" + expDateYear;
+    }
+
     @Override
     public String toString()
     {

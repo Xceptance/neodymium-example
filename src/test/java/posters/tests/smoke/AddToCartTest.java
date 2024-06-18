@@ -1,11 +1,9 @@
 package posters.tests.smoke;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
-import com.xceptance.neodymium.common.testdata.DataSet;
-import com.xceptance.neodymium.util.DataUtils;
+import com.xceptance.neodymium.common.testdata.DataItem;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
@@ -13,6 +11,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.Tag;
 import posters.flows.CartCleanUpFlow;
+import posters.flows.CartFlow;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 import posters.tests.testdata.processes.AddToCartTestData;
@@ -22,23 +21,16 @@ import posters.tests.testdata.processes.AddToCartTestData;
 @Tag("smoke")
 public class AddToCartTest extends AbstractTest
 {
+    @DataItem
     private AddToCartTestData addToCartTestData;
-
+    
+    @DataItem
     private String shippingCosts;
-
-    @Before
-    public void setup()
-    {
-        shippingCosts = Neodymium.dataValue("shippingCosts");
-        addToCartTestData = DataUtils.get(AddToCartTestData.class);
-    }
-
+    
     @Test
-    @DataSet(1)
-    @DataSet(2)
     public void testAddProductsToCart()
     {
-        /// ========== PART 1: USE TOP NAVIGATION TO ADD PRODUCT TO CART ========== ///
+      /// ========== PART 1: USE TOP NAVIGATION TO ADD PRODUCT TO CART ========== ///
 
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
@@ -51,44 +43,46 @@ public class AddToCartTest extends AbstractTest
                                                                       Neodymium.localizedText(addToCartTestData.getSubCategory()));
 
         // go to product detail page, add and store displayed product
-        var productDetailPage = subCategoryPage.clickProductByPosition(addToCartTestData.getSubCategoryResultPosition());
-        productDetailPage.addToCart(addToCartTestData.getSizeFirstProduct(), addToCartTestData.getStyleFirstProduct());
+        final var firstTestDataProduct = addToCartTestData.getProduct1();
+        var productDetailPage = subCategoryPage.clickProductByName(firstTestDataProduct.getName());
+        productDetailPage.addToCart(firstTestDataProduct.getSize(), firstTestDataProduct.getStyle());
         final var product = productDetailPage.getProduct();
 
         // go to cart page
         var cartPage = productDetailPage.header.miniCart.openCartPage();
 
         // validate cart page
-        cartPage.validateCartItem(1, product);
+        cartPage.validateCartItem(product);
         cartPage.validate(shippingCosts, cartPage.header.miniCart.getSubtotal());
-        cartPage.validateTotalAfterAdd(1, oldSubtotal, 0.00);
+        CartFlow.validateTotalAfterAdd(firstTestDataProduct.getName(), firstTestDataProduct.getSize(), firstTestDataProduct.getStyle(), oldSubtotal, 0.00);
         cartPage.header.miniCart.validateStructure();
-        cartPage.header.miniCart.validateMiniCartItem(1, product);
+        cartPage.header.miniCart.validateMiniCartItem(product);
 
         /// ========== PART 2: USE SEARCH BAR TO ADD PRODUCT TO CART ========== ///
 
         // store old subtotal
         final String oldSubtotal2 = cartPage.header.miniCart.getSubtotal();
 
-        // go to category page via search
-        var categoryPage = cartPage.header.search.categoryPageResult(addToCartTestData.getSearchTerm());
+        // go to search results page via search
+        var searchResultPage = cartPage.header.search.searchResult(addToCartTestData.getSearchTerm());
 
         // go to product detail page, add and store displayed product
-        productDetailPage = categoryPage.clickProductByPosition(addToCartTestData.getSearchResultPosition());
-        productDetailPage.addToCart(addToCartTestData.getSizeSecondProduct(), addToCartTestData.getStyleSecondProduct());
+        final var secondTestDataProduct = addToCartTestData.getProduct2();
+        productDetailPage = searchResultPage.clickProductByName(secondTestDataProduct.getName());
+        productDetailPage.addToCart(secondTestDataProduct.getSize(), secondTestDataProduct.getStyle());
         final var product2 = productDetailPage.getProduct();
 
         // go to cart page
         cartPage = productDetailPage.header.miniCart.openCartPage();
 
         // validate cart page
-        cartPage.validateCartItem(1, product2);
-        cartPage.validateCartItem(2, product);
+        cartPage.validateCartItem(product2);
+        cartPage.validateCartItem(product);
         cartPage.validate(shippingCosts, cartPage.header.miniCart.getSubtotal());
-        cartPage.validateTotalAfterAdd(1, oldSubtotal2, 0.00);
+        CartFlow.validateTotalAfterAdd(secondTestDataProduct.getName(), secondTestDataProduct.getSize(), secondTestDataProduct.getStyle(), oldSubtotal2, 0.00);
         cartPage.header.miniCart.validateStructure();
-        cartPage.header.miniCart.validateMiniCartItem(1, product2);
-        cartPage.header.miniCart.validateMiniCartItem(2, product);
+        cartPage.header.miniCart.validateMiniCartItem(product2);
+        cartPage.header.miniCart.validateMiniCartItem(product);
 
         /// ========== PART 3: CHANGE QUANTITY OF PRODUCT IN CART ========== ///
 
@@ -99,18 +93,18 @@ public class AddToCartTest extends AbstractTest
         final var productBeforeUpdate = cartPage.getProduct(1);
 
         // update amount of product on cart page
-        cartPage.updateProductCount(1, addToCartTestData.getAmountChange());
+        cartPage.updateProductCount(secondTestDataProduct.getName(), secondTestDataProduct.getAmount());
         cartPage.waitForProductUpdate(oldSubtotal3);
 
         // store subtotal of updated product
         String subtotalAfterUpdate = cartPage.getProductTotalPrice(1);
 
         // validate cart page
-        cartPage.validateCartItem(1, productBeforeUpdate, addToCartTestData.getAmountChange());
+        cartPage.validateCartItem(productBeforeUpdate, secondTestDataProduct.getAmount());
         cartPage.validate(shippingCosts, cartPage.header.miniCart.getSubtotal());
-        cartPage.validateTotalAfterAdd(1, oldSubtotal3, productBeforeUpdate.getTotalPrice());
+        CartFlow.validateTotalAfterAdd(secondTestDataProduct.getName(), secondTestDataProduct.getSize(), secondTestDataProduct.getStyle(), oldSubtotal3, productBeforeUpdate.getTotalPrice());
         cartPage.header.miniCart.validateStructure();
-        cartPage.header.miniCart.validateMiniCartItem(1, productBeforeUpdate, addToCartTestData.getAmountChange(), subtotalAfterUpdate);
+        cartPage.header.miniCart.validateMiniCartItem(productBeforeUpdate, secondTestDataProduct.getAmount(), subtotalAfterUpdate);
 
         /// ========== PART 4: REMOVE PRODUCT FROM CART ========== ///
 
@@ -121,15 +115,15 @@ public class AddToCartTest extends AbstractTest
         final String subtotalBeforeRemove = cartPage.getProductTotalPrice(1);
 
         // remove first product on cart page
-        cartPage.removeProduct(1);
+        cartPage.removeProduct(secondTestDataProduct.getName());
         cartPage.waitForProductUpdate(oldSubtotal4);
 
         // validate cart page
-        cartPage.validateCartItem(1, product);
+        cartPage.validateCartItem(product);
         cartPage.validate(shippingCosts, cartPage.header.miniCart.getSubtotal());
-        cartPage.validateTotalAfterRemove(oldSubtotal4, subtotalBeforeRemove);
+        CartFlow.validateTotalAfterRemove(oldSubtotal4, subtotalBeforeRemove);
         cartPage.header.miniCart.validateStructure();
-        cartPage.header.miniCart.validateMiniCartItem(1, product);
+        cartPage.header.miniCart.validateMiniCartItem(product);
 
         /// ========== PART 5: ADD SAME PRODUCT TO CART AGAIN ========== ///
 
@@ -144,7 +138,7 @@ public class AddToCartTest extends AbstractTest
                                                                   Neodymium.localizedText(addToCartTestData.getSubCategory()));
 
         // go to product detail page, add and store displayed product
-        productDetailPage = subCategoryPage.clickProductByPosition(addToCartTestData.getSubCategoryResultPosition());
+        productDetailPage = subCategoryPage.clickProductByName(firstTestDataProduct.getName());
         productDetailPage.addToCart(productFromCartPageBefore.getSize(), productFromCartPageBefore.getStyle());
 
         // go to cart
@@ -155,11 +149,11 @@ public class AddToCartTest extends AbstractTest
         final var productFromCartPageAfter = cartPage.getProduct(1);
 
         // validate cart page
-        cartPage.validateCartItem(1, productFromCartPageBefore, productFromCartPageAfter.getAmount());
+        cartPage.validateCartItem(productFromCartPageBefore, productFromCartPageAfter.getAmount());
         cartPage.validate(shippingCosts, cartPage.header.miniCart.getSubtotal());
-        cartPage.validateTotalAfterAdd(1, oldSubtotal5, productFromCartPageBefore.getTotalPrice());
+        CartFlow.validateTotalAfterAdd(firstTestDataProduct.getName(), firstTestDataProduct.getSize(), firstTestDataProduct.getStyle(), oldSubtotal5, productFromCartPageBefore.getTotalPrice());
         cartPage.header.miniCart.validateStructure();
-        cartPage.header.miniCart.validateMiniCartItem(1, productFromCartPageBefore, cartPage.header.miniCart.getTotalCount(), subtotalAfterUpdate);
+        cartPage.header.miniCart.validateMiniCartItem(productFromCartPageBefore, cartPage.header.miniCart.getTotalCount(), subtotalAfterUpdate);
 
         // go to homepage
         homePage = cartPage.openHomePage();

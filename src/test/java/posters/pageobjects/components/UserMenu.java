@@ -82,19 +82,19 @@ public class UserMenu extends AbstractComponent
     /// ========== validate user menu ========== ///
 
     @Step("validate that nobody is logged in")
-    public void validateNotLoggedIn()
+    public void checkIfNoUserIsLoggedIn()
     {
         userMenu.find("#go-to-login").exists();
     }
 
     @Step("validate that somebody is logged in")
-    public boolean validateIsLoggedIn()
+    public boolean checkIfUserIsLoggedIn()
     {
         return userMenu.find(".first-name").exists();
     }
 
     @Step("validate that '{firstName}' is displayed in user menu")
-    public void validateLoggedInName(String firstName)
+    public void validateLoggedInUserName(String firstName)
     {
         openUserMenu();
         userMenu.find(".first-name").shouldHave(exactText(firstName));
@@ -113,7 +113,7 @@ public class UserMenu extends AbstractComponent
         userMenu.find(".header-user-menu-heading").shouldHave(text(Neodymium.localizedText("header.userMenu.title"))).shouldBe(visible);
 
         // validate buttons
-        if (validateIsLoggedIn())
+        if (checkIfUserIsLoggedIn())
         {
             // if customer is logged in
             userMenu.find("#go-to-account-overview").shouldHave(exactText(Neodymium.localizedText("button.accountOverview"))).shouldBe(visible);

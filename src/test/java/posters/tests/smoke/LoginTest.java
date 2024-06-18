@@ -1,10 +1,10 @@
-package posters.tests.unit;
+package posters.tests.smoke;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import com.xceptance.neodymium.common.testdata.DataItem;
 import com.xceptance.neodymium.common.testdata.DataSet;
-import com.xceptance.neodymium.util.DataUtils;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
@@ -21,6 +21,7 @@ import posters.tests.testdata.dataobjects.User;
 @Tag("registered")
 public class LoginTest extends AbstractTest
 {
+    @DataItem
     private User user;
 
     private LoginPage loginPage;
@@ -28,8 +29,6 @@ public class LoginTest extends AbstractTest
     @Before
     public void setup()
     {
-        user = DataUtils.get(User.class);
-
         loginPage = prepareTest();
     }
 
@@ -40,7 +39,7 @@ public class LoginTest extends AbstractTest
         loginPage.validateStructure();
 
         // validate that nobody is logged in
-        loginPage.header.userMenu.validateNotLoggedIn();
+        loginPage.header.userMenu.checkIfNoUserIsLoggedIn();
 
         return new LoginPage().isExpectedPage();
     }
