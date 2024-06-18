@@ -9,8 +9,8 @@ import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 
 import io.qameta.allure.Step;
-import posters.pageobjects.pages.browsing.CategoryPage;
 import posters.pageobjects.pages.browsing.NoHitsPage;
+import posters.pageobjects.pages.browsing.SearchResultPage;
 
 public class Search extends AbstractComponent
 {
@@ -53,10 +53,10 @@ public class Search extends AbstractComponent
     }
 
     @Step("search for '{searchTerm}' with result")
-    public CategoryPage categoryPageResult(String searchTerm)
+    public SearchResultPage searchResult(String searchTerm)
     {
         search(searchTerm);
-        return new CategoryPage().isExpectedPage();
+        return new SearchResultPage().isExpectedPage();
     }
     
     /// ========== validate search ========== ///

@@ -1,15 +1,14 @@
 package posters.tests.component;
 
-import com.xceptance.neodymium.common.testdata.DataSet;
-import com.xceptance.neodymium.common.testdata.SuppressDataSets;
+import org.junit.jupiter.api.Tag;
+
+import com.xceptance.neodymium.common.testdata.DataItem;
 import com.xceptance.neodymium.junit5.NeodymiumTest;
-import com.xceptance.neodymium.util.DataUtils;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 import posters.tests.testdata.pageobjects.components.HeaderTestData;
@@ -17,16 +16,14 @@ import posters.tests.testdata.pageobjects.components.HeaderTestData;
 @Owner("Tim Brown")
 @Severity(SeverityLevel.MINOR)
 @Tag("smoke")
-@SuppressDataSets
 public class HeaderFooterTest extends AbstractTest
 {
+    @DataItem
+    private HeaderTestData headerTestData;
+    
     @NeodymiumTest
-    @DataSet(1)
     public void testHeaderFooter()
     {
-        // use test data
-        final HeaderTestData headerTestData = DataUtils.get(HeaderTestData.class);
-
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
         homePage.header.validateStructure();

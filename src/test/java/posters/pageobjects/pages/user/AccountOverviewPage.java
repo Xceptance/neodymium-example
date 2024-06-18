@@ -63,7 +63,7 @@ public class AccountOverviewPage extends AbstractBrowsingPage
         successMessage.validateSuccessMessage(Neodymium.localizedText("successMessage.successfulLogin"));
         
         // validate {firstName} in user menu
-        header.userMenu.validateLoggedInName(firstName);
+        header.userMenu.validateLoggedInUserName(firstName);
     }
 
     /// ========== account overview page navigation ========== ///

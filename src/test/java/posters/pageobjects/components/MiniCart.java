@@ -1,5 +1,6 @@
 package posters.pageobjects.components;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.not;
@@ -9,9 +10,15 @@ import static com.codeborne.selenide.Selenide.$$;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import com.codeborne.selenide.CheckResult;
 import com.codeborne.selenide.ClickOptions;
+import com.codeborne.selenide.Driver;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebElementCondition;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
@@ -43,20 +50,26 @@ public class MiniCart extends AbstractComponent
     {
         miniCart.should(exist);
     }
+    
+    @Step("check if minicart is available")
+    public boolean isAvailable() 
+    {
+        return headerCart.exists();
+    }
 
     /// ========== mini cart navigation ==========- ///
 
     @Step("open the mini cart")
     public void openMiniCart()
     {
-        headerCart.click();
+        headerCart.click(ClickOptions.usingJavaScript());    
         miniCart.shouldBe(visible, Duration.ofMillis(9000));
     }
 
     @Step("close the mini cart")
     public void closeMiniCart()
     {
-        $("#top-demo-disclaimer").click();
+        $("#top-demo-disclaimer").click(ClickOptions.usingJavaScript());
         miniCart.shouldBe(not(visible), Duration.ofMillis(9000));
     }
 
@@ -197,33 +210,48 @@ public class MiniCart extends AbstractComponent
         closeMiniCart();
     }
 
-    private void validateMiniCartItem(int position, String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
+    private void validateMiniCartItem(String productName, String productStyle, String productSize, int productCount, String prodTotalPrice)
     {
         openMiniCart();
 
         // selector for product
-        SelenideElement miniCartItem = $$("#mini-cart-menu .cart-items").get(position - 1);
+        SelenideElement productContainer = $$(".cart-items").shouldHave(sizeGreaterThan(0))
+                                                                 .findBy(new WebElementCondition("has name " + productName + ", style " + productStyle
+                                                                                                 + " and size " + productSize)
+                                                                 {
+                                                                     @Override
+                                                                     public CheckResult check(Driver driver, WebElement element)
+                                                                     {
+                                                                         boolean matchesName = element.findElement(By.cssSelector(".prod-name")).getText()
+                                                                                                      .equals(productName);
+                                                                         boolean matchesStyle = element.findElement(By.cssSelector(".prod-style")).getText()
+                                                                                                       .equals(productStyle);
+                                                                         boolean matchesSize = element.findElement(By.cssSelector(".prod-size")).getText()
+                                                                                                      .equals(productSize);
+                                                                         return new CheckResult(matchesName && matchesStyle && matchesSize, "");
+                                                                     }
+                                                                 }).shouldBe(visible, Duration.ofMillis(9000));
 
         // validate parameters
-        miniCartItem.find(".prod-name").shouldHave(exactText(productName));
-        miniCartItem.find(".prod-style").shouldHave(exactText(productStyle));
-        miniCartItem.find(".prod-size").shouldHave(exactText(productSize));
-        miniCartItem.find(".prod-count").shouldHave(exactText(Integer.toString(productCount)));
-        miniCartItem.find(".prod-price").shouldHave(exactText(prodTotalPrice));
+        productContainer.find(".prod-name").shouldHave(exactText(productName));
+        productContainer.find(".prod-style").shouldHave(exactText(productStyle));
+        productContainer.find(".prod-size").shouldHave(exactText(productSize));
+        productContainer.find(".prod-count").shouldHave(exactText(Integer.toString(productCount)));
+        productContainer.find(".prod-price").shouldHave(exactText(prodTotalPrice));
 
         closeMiniCart();
     }
 
     @Step("validate '{product}' on position {position} in the mini cart")
-    public void validateMiniCartItem(int position, Product product)
+    public void validateMiniCartItem(Product product)
     {
-        validateMiniCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(),
+        validateMiniCartItem(product.getName(), product.getStyle(), product.getSize(), product.getAmount(),
                              PriceHelper.format(product.getTotalPrice()));
     }
 
     @Step("validate '{product}' on position '{position}' in the mini cart after changing it's quantity")
-    public void validateMiniCartItem(int position, Product product, int productAmount, String productPrice)
+    public void validateMiniCartItem(Product product, int productAmount, String productPrice)
     {
-        validateMiniCartItem(position, product.getName(), product.getStyle(), product.getSize(), productAmount, productPrice);
+        validateMiniCartItem(product.getName(), product.getStyle(), product.getSize(), productAmount, productPrice);
     }
 }

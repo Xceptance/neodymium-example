@@ -37,8 +37,6 @@ public class ProductDetailPage extends AbstractBrowsingPage
         return this;
     }
 
-    /// ========== validate content product detail page ========== ///
-
     @Step("validate size dropdown")
     public void validateSizeDropdown()
     {

@@ -2,27 +2,39 @@
     {
         "topCategory": "header.topNavigation.1.title",
         "subCategory": "header.topNavigation.1.subCategory.1",
-        "subCategoryResultPosition": "1",
-        "sizeFirstProduct": "16 x 12 in",
-        "styleFirstProduct": "matte",
         "searchTerm": "pizza",
-        "searchResultPosition": "1",
-        "sizeSecondProduct": "64 x 48 in",
-        "styleSecondProduct": "gloss",
-        "productUpdatePosition": "1",
-        "amountChange": "3"
+        "product1":
+        {
+            "name": "Grizzly Bear",
+            "size": "16 x 12 in",
+            "style": "matte",
+            "amount": "1"
+        },
+        "product2":
+        {
+            "name": "Frozen Pizza",
+            "size": "64 x 48 in",
+            "style": "gloss",
+            "amount": "3"
+        }
     },
     {
         "topCategory": "header.topNavigation.2.title",
         "subCategory": "header.topNavigation.2.subCategory.2",
-        "subCategoryResultPosition": "2",
-        "sizeFirstProduct": "32 x 24 in",
-        "styleFirstProduct": "gloss",
         "searchTerm": "boston",
-        "searchResultPosition": "4",
-        "sizeSecondProduct": "96 x 32 in",
-        "styleSecondProduct": "matte",
-        "productUpdatePosition": "2",
-        "amountChange": "5"
+        "product1":
+        {
+            "name": "Goulash with Dumplings",
+            "size": "32 x 24 in",
+            "style": "gloss",
+            "amount": "1"
+        },
+        "product2":
+        {
+            "name": "North Boston",
+            "size": "96 x 32 in",
+            "style": "matte",
+            "amount": "5"
+        }
     }
 ]

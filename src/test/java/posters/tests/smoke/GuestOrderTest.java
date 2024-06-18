@@ -1,16 +1,15 @@
 package posters.tests.smoke;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 
-import com.xceptance.neodymium.common.testdata.DataSet;
+import com.xceptance.neodymium.common.WorkInProgress;
+import com.xceptance.neodymium.common.testdata.DataItem;
 import com.xceptance.neodymium.junit5.NeodymiumTest;
-import com.xceptance.neodymium.util.DataUtils;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.pageobjects.pages.checkout.GuestPaymentPage;
 import posters.pageobjects.pages.checkout.PlaceOrderPage;
@@ -23,20 +22,14 @@ import posters.tests.testdata.processes.GuestOrderTestData;
 @Tag("registered")
 public class GuestOrderTest extends AbstractTest
 {
+    @DataItem
     private GuestOrderTestData guestOrderTestData;
 
+    @DataItem
     private String shippingCosts;
 
-    @BeforeEach
-    public void setup()
-    {
-        shippingCosts = Neodymium.dataValue("shippingCosts");
-        guestOrderTestData = DataUtils.get(GuestOrderTestData.class);
-    }
-
+    @WorkInProgress
     @NeodymiumTest
-    @DataSet(1)
-    @DataSet(2)
     public void testOrderingAsGuest()
     {
         // go to homepage
@@ -46,12 +39,13 @@ public class GuestOrderTest extends AbstractTest
         var categoryPage = homePage.header.topNav.clickCategory(Neodymium.localizedText(guestOrderTestData.getTopCategory()));
 
         // go to product detail page, add and store displayed product
-        var productDetailPage = categoryPage.clickProductByPosition(guestOrderTestData.getResultPosition());
-        productDetailPage.addToCart(guestOrderTestData.getsSizeProduct(), guestOrderTestData.getStyleProduct());
+        final var testDataProduct = guestOrderTestData.getProduct();
+        var productDetailPage = categoryPage.clickProductByName(testDataProduct.getName());
+        productDetailPage.addToCart(testDataProduct.getSize(), testDataProduct.getStyle());
 
         // go to cart page
         var cartPage = productDetailPage.header.miniCart.openCartPage();
-        cartPage.updateProductCount(1, guestOrderTestData.getAmountChange());
+        cartPage.updateProductCount(testDataProduct.getName(), testDataProduct.getAmount());
         final var product = cartPage.getProduct(1);
 
         // go to shipping address page and validate
@@ -62,7 +56,7 @@ public class GuestOrderTest extends AbstractTest
         GuestPaymentPage paymentPage;
         PlaceOrderPage placeOrderPage;
 
-        if (!guestOrderTestData.getShipAddrEqualBillAddr())
+        if (!guestOrderTestData.getSameShippingAndBillingAddress())
         {
             // go to billing address page and validate
             var billingAddressPage = shippingAddressPage.addressForm.goToGuestBillingAddressPage(guestOrderTestData.getShippingAddress());
@@ -91,7 +85,7 @@ public class GuestOrderTest extends AbstractTest
 
         placeOrderPage.validateStructure();
         placeOrderPage.validateProduct(1, product);
-        placeOrderPage.validatePriceSummary(placeOrderPage.getSubtotal(), shippingCosts);
+        placeOrderPage.validatePriceSummary(shippingCosts);
 
         // go to order confirmation page and validate
         var orderConfirmationPage = placeOrderPage.placeOrder();
@@ -99,5 +93,22 @@ public class GuestOrderTest extends AbstractTest
 
         // go to homepage
         homePage = orderConfirmationPage.openHomePage();
+    }
+    
+    // Intentionally not executed because of missing WorkInProgress annotation.
+    // For Showcase purposes only.
+    @NeodymiumTest
+    public void testOrderingAsGuestPayPal() 
+    {
+        // go to homepage
+        var homePage = OpenHomePageFlow.flow();
+
+        // go to category page
+        var categoryPage = homePage.header.topNav.clickCategory(Neodymium.localizedText(guestOrderTestData.getTopCategory()));
+        
+        // go to product detail page, add and store displayed product
+        final var testDataProduct = guestOrderTestData.getProduct();
+        var productDetailPage = categoryPage.clickProductByName(testDataProduct.getName());
+        productDetailPage.addToCart(testDataProduct.getSize(), testDataProduct.getStyle());
     }
 }

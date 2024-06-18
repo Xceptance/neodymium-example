@@ -1,15 +1,15 @@
-package posters.tests.unit;
+package posters.tests.smoke;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 
+import com.xceptance.neodymium.common.testdata.DataItem;
 import com.xceptance.neodymium.common.testdata.DataSet;
 import com.xceptance.neodymium.junit5.NeodymiumTest;
-import com.xceptance.neodymium.util.DataUtils;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenLoginPageFlow;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.tests.AbstractTest;
@@ -21,6 +21,7 @@ import posters.tests.testdata.dataobjects.User;
 @Tag("registered")
 public class LoginTest extends AbstractTest
 {
+    @DataItem
     private User user;
 
     private LoginPage loginPage;
@@ -28,8 +29,6 @@ public class LoginTest extends AbstractTest
     @BeforeEach
     public void setup()
     {
-        user = DataUtils.get(User.class);
-
         loginPage = prepareTest();
     }
 
@@ -40,7 +39,7 @@ public class LoginTest extends AbstractTest
         loginPage.validateStructure();
 
         // validate that nobody is logged in
-        loginPage.header.userMenu.validateNotLoggedIn();
+        loginPage.header.userMenu.checkIfNoUserIsLoggedIn();
 
         return new LoginPage().isExpectedPage();
     }

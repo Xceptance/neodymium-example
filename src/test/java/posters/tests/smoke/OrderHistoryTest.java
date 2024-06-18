@@ -1,16 +1,15 @@
 package posters.tests.smoke;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 
+import com.xceptance.neodymium.common.testdata.DataItem;
 import com.xceptance.neodymium.junit5.NeodymiumTest;
-import com.xceptance.neodymium.util.DataUtils;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.junit4.Tag;
 import posters.flows.CartCleanUpFlow;
 import posters.flows.DeleteUserFlow;
 import posters.flows.OpenHomePageFlow;
@@ -23,13 +22,8 @@ import posters.tests.testdata.processes.OrderHistoryTestData;
 @Tag("registered")
 public class OrderHistoryTest extends AbstractTest
 {
+    @DataItem
     private OrderHistoryTestData orderHistoryTestData;
-
-    @BeforeEach
-    public void setup()
-    {
-        orderHistoryTestData = DataUtils.get(OrderHistoryTestData.class);
-    }
 
     @NeodymiumTest
     public void testOrderHistory()
@@ -81,26 +75,26 @@ public class OrderHistoryTest extends AbstractTest
         var categoryPage = paymentOverviewPage.header.topNav.clickCategory(Neodymium.localizedText(orderHistoryTestData.getTopCategory1()));
 
         // go to product detail page, add and store displayed product
-        var productDetailPage = categoryPage.clickProductByPosition(orderHistoryTestData.getResultPosition());
-        productDetailPage.addToCart(orderHistoryTestData.getsSizeProduct16x12(), orderHistoryTestData.getStyleProductMatte());
+        final var firstOrderFirstProduct = orderHistoryTestData.getOrder1().getProducts().get(0);
+        var productDetailPage = categoryPage.clickProductByName(firstOrderFirstProduct.getName());
+        productDetailPage.addToCart(firstOrderFirstProduct.getSize(), firstOrderFirstProduct.getStyle());
 
         // go to cart page
         var cartPage = productDetailPage.header.miniCart.openCartPage();
-        cartPage.updateProductCount(1, orderHistoryTestData.getUpdateProductAmount());
-        final var product1 = cartPage.getProduct(1);
+        cartPage.updateProductCount(firstOrderFirstProduct.getName(), firstOrderFirstProduct.getAmount());
 
         // go to shipping address page
         var shippingAddressPage = cartPage.openReturningCustomerShippingAddressPage();
 
         // go to billing address page
-        var billingAddressPage = shippingAddressPage.selectShippingAddress(orderHistoryTestData.getShippingAddressPosition());
+        var billingAddressPage = shippingAddressPage.selectShippingAddress(orderHistoryTestData.getAddress());
 
         // go to payment page
-        var paymentPage = billingAddressPage.selectBillingAddress(orderHistoryTestData.getBillingAddressPosition());
+        var paymentPage = billingAddressPage.selectBillingAddress(orderHistoryTestData.getAddress());
 
         // go to place order page
-        var placeOrderPage = paymentPage.selectCreditCard(orderHistoryTestData.getCreditCardPosition());
-        final String orderTotal1 = placeOrderPage.getTotalOrderPrice();
+        var placeOrderPage = paymentPage.selectCreditCard(orderHistoryTestData.getCreditCard());
+        final String orderTotal = placeOrderPage.getTotalOrderPrice();
 
         // go to order confirmation page
         var orderConfirmationPage = placeOrderPage.placeOrder();
@@ -110,39 +104,39 @@ public class OrderHistoryTest extends AbstractTest
 
         // go to order history page
         orderHistoryPage = accountOverviewPage.openOrderHistory();
-        orderHistoryPage.validateOrder(1, 1, orderTotal1, product1);
+        orderHistoryPage.validateOrder(orderHistoryTestData.getOrder1(), orderTotal);
 
         // go to category page
         categoryPage = orderHistoryPage.header.topNav.clickCategory(Neodymium.localizedText(orderHistoryTestData.getTopCategory2()));
 
         // go to product detail page, add and store displayed product
-        productDetailPage = categoryPage.clickProductByPosition(orderHistoryTestData.getResultPosition());
-        productDetailPage.addToCart(orderHistoryTestData.getsSizeProduct32x24(), orderHistoryTestData.getStyleProductGloss());
+        final var secondOrderFirstProduct = orderHistoryTestData.getOrder2().getProducts().get(0);
+        productDetailPage = categoryPage.clickProductByName(secondOrderFirstProduct.getName());
+        productDetailPage.addToCart(secondOrderFirstProduct.getSize(), secondOrderFirstProduct.getStyle());
 
         // go to category page
         categoryPage = productDetailPage.header.topNav.clickCategory(Neodymium.localizedText(orderHistoryTestData.getTopCategory3()));
 
         // go to product detail page, add and store displayed product
-        productDetailPage = categoryPage.clickProductByPosition(orderHistoryTestData.getResultPosition());
-        productDetailPage.addToCart(orderHistoryTestData.getsSizeProduct64x48(), orderHistoryTestData.getStyleProductMatte());
+        final var secondOrderSecondProduct = orderHistoryTestData.getOrder2().getProducts().get(1);
+        productDetailPage = categoryPage.clickProductByName(secondOrderSecondProduct.getName());
+        productDetailPage.addToCart(secondOrderSecondProduct.getSize(), secondOrderSecondProduct.getStyle());
 
         // go to cart page
         cartPage = productDetailPage.header.miniCart.openCartPage();
-        cartPage.updateProductCount(2, orderHistoryTestData.getUpdateProductAmount());
-        final var product2 = cartPage.getProduct(1);
-        final var product3 = cartPage.getProduct(2);
+        cartPage.updateProductCount(secondOrderFirstProduct.getName(), secondOrderFirstProduct.getAmount());
 
         // go to shipping address page
         shippingAddressPage = cartPage.openReturningCustomerShippingAddressPage();
 
         // go to billing address page
-        billingAddressPage = shippingAddressPage.selectShippingAddress(orderHistoryTestData.getShippingAddressPosition());
+        billingAddressPage = shippingAddressPage.selectShippingAddress(orderHistoryTestData.getAddress());
 
         // go to payment page
-        paymentPage = billingAddressPage.selectBillingAddress(orderHistoryTestData.getBillingAddressPosition());
+        paymentPage = billingAddressPage.selectBillingAddress(orderHistoryTestData.getAddress());
 
         // go to place order page
-        placeOrderPage = paymentPage.selectCreditCard(orderHistoryTestData.getCreditCardPosition());
+        placeOrderPage = paymentPage.selectCreditCard(orderHistoryTestData.getCreditCard());
         final var orderTotal2 = placeOrderPage.getTotalOrderPrice();
 
         // go to order confirmation page
@@ -153,9 +147,8 @@ public class OrderHistoryTest extends AbstractTest
 
         // go to order history page
         orderHistoryPage = accountOverviewPage.openOrderHistory();
-        orderHistoryPage.validateOrder(1, 1, orderTotal2, product2);
-        orderHistoryPage.validateOrder(1, 2, orderTotal2, product3);
-        orderHistoryPage.validateOrder(2, 1, orderTotal1, product1);
+        orderHistoryPage.validateOrder(orderHistoryTestData.getOrder2(), orderTotal2);
+        orderHistoryPage.validateOrder(orderHistoryTestData.getOrder1(), orderTotal);
     }
 
     @AfterEach
