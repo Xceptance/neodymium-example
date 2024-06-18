@@ -44,7 +44,7 @@ public class UserMenu extends AbstractComponent
     public void closeUserMenu()
     {
         $("#top-demo-disclaimer").click(ClickOptions.usingJavaScript());
-        userMenu.shouldBe(visible, Duration.ofMillis(9000));
+        userMenu.shouldNotBe(visible, Duration.ofMillis(9000));
     }
 
     @Step("open register page from user menu")

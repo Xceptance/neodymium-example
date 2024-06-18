@@ -30,7 +30,7 @@ public class AddToCartTest extends AbstractTest
     @Test
     public void testAddProductsToCart()
     {
-      /// ========== PART 1: USE TOP NAVIGATION TO ADD PRODUCT TO CART ========== ///
+        /// ========== PART 1: USE TOP NAVIGATION TO ADD PRODUCT TO CART ========== ///
 
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
@@ -76,8 +76,8 @@ public class AddToCartTest extends AbstractTest
         cartPage = productDetailPage.header.miniCart.openCartPage();
 
         // validate cart page
-        cartPage.validateCartItem(product2);
         cartPage.validateCartItem(product);
+        cartPage.validateCartItem(product2);
         cartPage.validate(shippingCosts, cartPage.header.miniCart.getSubtotal());
         CartFlow.validateTotalAfterAdd(secondTestDataProduct.getName(), secondTestDataProduct.getSize(), secondTestDataProduct.getStyle(), oldSubtotal2, 0.00);
         cartPage.header.miniCart.validateStructure();

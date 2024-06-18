@@ -31,7 +31,7 @@ public class RegisteredOrderTest extends AbstractTest
     @Test
     public void testOrderingAsRegisteredUser()
     {
-     // go to homepage
+        // go to homepage
         var homePage = OpenHomePageFlow.flow();
 
         // go to register page

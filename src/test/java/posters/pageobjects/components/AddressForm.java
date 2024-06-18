@@ -54,6 +54,8 @@ public class AddressForm extends AbstractComponent
         lastNameField.val(address.getLastName());
         firstNameField.val(address.getFirstName());
         companyField.val(address.getCompany());
+        addressLineField.val(address.getStreet());
+        cityField.val(address.getCity());
         stateField.val(address.getState());
         zipField.val(address.getZip());
         countryField.selectOption(address.getCountry());

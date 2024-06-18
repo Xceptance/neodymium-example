@@ -32,7 +32,7 @@ public class GuestOrderTest extends AbstractTest
     @Test
     public void testOrderingAsGuest()
     {
-     // go to homepage
+        // go to homepage
         var homePage = OpenHomePageFlow.flow();
 
         // go to category page
