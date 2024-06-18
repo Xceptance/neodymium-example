@@ -24,13 +24,13 @@ public class RegisteredOrderTest extends AbstractTest
 {
     @DataItem
     private RegisteredOrderTestData registeredOrderTestData;
+    
+    @DataItem
+    private String shippingCosts = Neodymium.dataValue("shippingCosts");
 
     @NeodymiumTest
     public void testOrderingAsRegisteredUser()
     {
-        // use test data
-        final String shippingCosts = Neodymium.dataValue("shippingCosts");
-
         // go to homepage
         var homePage = OpenHomePageFlow.flow();
 

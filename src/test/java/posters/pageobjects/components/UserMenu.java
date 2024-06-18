@@ -2,7 +2,6 @@ package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -45,7 +44,7 @@ public class UserMenu extends AbstractComponent
     public void closeUserMenu()
     {
         $("#top-demo-disclaimer").click(ClickOptions.usingJavaScript());
-        userMenu.shouldBe(not(visible), Duration.ofMillis(9000));
+        userMenu.shouldNotBe(visible, Duration.ofMillis(9000));
     }
 
     @Step("open register page from user menu")

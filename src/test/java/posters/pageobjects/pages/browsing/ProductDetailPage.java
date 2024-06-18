@@ -37,6 +37,8 @@ public class ProductDetailPage extends AbstractBrowsingPage
         return this;
     }
 
+    /// ========== validate content product detail page ========== ///
+
     @Step("validate size dropdown")
     public void validateSizeDropdown()
     {
@@ -137,8 +139,20 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("add product with size '{size}' and style '{style}' to cart")
     public void addToCart(String size, String style)
     {
+        // save product price and size before updating
+        String productPriceBeforeUpdate = productPrice.text();
+        String currentlySelectedSizeOption = productSize.getSelectedOptionText();
+        
+        // set style and size
         setSize(size);
         setStyle(style);
+
+        // wait for product price to be updated
+        if (!size.equals(currentlySelectedSizeOption)) 
+        {
+            productPrice.shouldNotHave(exactText(productPriceBeforeUpdate));
+        }
+        
         clickAddToCartButton();
     }
 
