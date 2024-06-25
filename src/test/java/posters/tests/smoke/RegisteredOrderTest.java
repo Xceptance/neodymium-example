@@ -25,8 +25,11 @@ public class RegisteredOrderTest extends AbstractTest
     @DataItem
     private RegisteredOrderTestData registeredOrderTestData;
     
-    @DataItem
-    private String shippingCosts;
+    // If you want a different name for a test data key, you can define the desired name 
+    // and then assign the value to the specified name using the test data key as parameter 
+    // in the DataItem annotation, as shown below.
+    @DataItem("shippingCosts")
+    private String shippingCostsValue;
 
     @Test
     public void testOrderingAsRegisteredUser()
