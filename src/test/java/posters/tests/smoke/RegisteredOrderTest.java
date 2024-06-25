@@ -112,7 +112,7 @@ public class RegisteredOrderTest extends AbstractTest
                                              registeredOrderTestData.getCreditCard());
         placeOrderPage.validateStructure();
         placeOrderPage.validateProduct(1, product);
-        placeOrderPage.validatePriceSummary(shippingCosts);
+        placeOrderPage.validatePriceSummary(shippingCostsValue);
 
         // go to order confirmation page
         var orderConfirmationPage = placeOrderPage.placeOrder();
