@@ -3,6 +3,8 @@ package posters.pageobjects.pages.checkout;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exactValue;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -10,14 +12,17 @@ import static com.codeborne.selenide.Selenide.$$;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.codeborne.selenide.CheckResult;
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.Driver;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebElementCondition;
+import com.codeborne.selenide.impl.WebDriverInstance;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
@@ -33,8 +38,6 @@ public class CartPage extends AbstractBrowsingPage
     private SelenideElement cartTable = $(".table");
 
     private ElementsCollection tableHead = $$(".column-name th");
-
-    private SelenideElement subTotal = $("#order-sub-total-value");
 
     private SelenideElement checkoutButton = $("#btn-start-checkout");
 
@@ -212,33 +215,58 @@ public class CartPage extends AbstractBrowsingPage
     }
 
     /// ========== update product data ========== ///
+    
+    private SelenideElement getProductContainerByName(String productName)
+    {
+        return $$(".product-name").findBy(exactText(productName)).closest(".js-cart-product");
+    }
 
     @Step("update product count of product with productName '{productName}' on the cart page to '{amount}'")
     public void updateProductCount(String productName, int amount)
     {
-        SelenideElement productContainer = $$(".product-name").findBy(exactText(productName)).closest(".js-cart-product");
-        String priceBeforeProductCountUpdate = productContainer.find(".product-total-unit-price").text();
+        SelenideElement productContainer = getProductContainerByName(productName);
+        
+        // get unit product price
+        String productUnitPrice = productContainer.find(".product-unit-price").text();
 
         // type new amount
         productContainer.find(".product-count").setValue(Integer.toString(amount));
 
         // click update button
         productContainer.find(".btn-update-product").click(ClickOptions.usingJavaScript());
-
+        
         // wait for the product price to be updated
-        productContainer.find(".product-total-unit-price").shouldNotHave(exactText(priceBeforeProductCountUpdate));
+        getProductContainerByName(productName).find(".product-total-unit-price").shouldHave(not(exactText(productUnitPrice)), Duration.ofMillis(9000));
     }
 
     @Step("remove product with product name '{productName}' on the cart page")
     public void removeProduct(String productName)
     {
-        SelenideElement productContainer = $$(".product-name").findBy(exactText(productName)).closest(".js-cart-product");
+        SelenideElement productContainer = getProductContainerByName(productName);
+        int productCount = $$(".js-cart-product").size();
+        int productRow = Integer.parseInt(productContainer.find("th").text());
         
         // click delete button
         productContainer.find(".btn-remove-product").click(ClickOptions.usingJavaScript());
 
+        // wait for product deletion modal
+        $("#delete-product-modal .product-name").shouldHave(exactText(productName));
+        
         // click delete confirmation button
         $("#button-delete").click(ClickOptions.usingJavaScript());
+        
+        openHomePage();
+        header.miniCart.openCartPage();
+        
+        if (productRow == 1 && productCount == 1) 
+        {
+            waitForEmptyCartPage();
+        }
+        else if (productRow > 1)
+        {
+            $$(".js-cart-product").last().find("th").shouldHave(exactText(Integer.toString(productCount - 1)));
+            productContainer.shouldNot(exist);
+        }
     }
     
     @Step("remove product on position '{position}' on the cart page")
@@ -251,13 +279,6 @@ public class CartPage extends AbstractBrowsingPage
         $("#button-delete").click(ClickOptions.usingJavaScript());
     }
 
-    @Step("wait for update")
-    public void waitForProductUpdate(String subtotalBeforeUpdate)
-    {
-        // wait for subtotal to update
-        subTotal.shouldNotHave(exactText(subtotalBeforeUpdate));
-    }
-    
     @Step("wait for empty cart page")
     public void waitForEmptyCartPage()
     {
