@@ -77,7 +77,7 @@ public class MiniCart extends AbstractComponent
     public CartPage openCartPage()
     {
         openMiniCart();
-        viewCartButton.click();
+        viewCartButton.click(ClickOptions.usingJavaScript());
         return new CartPage().isExpectedPage();
     }
 

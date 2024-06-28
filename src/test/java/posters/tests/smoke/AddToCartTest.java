@@ -115,7 +115,6 @@ public class AddToCartTest extends AbstractTest
 
         // remove first product on cart page
         cartPage.removeProduct(secondTestDataProduct.getName());
-        cartPage.header.miniCart.openCartPage();
 
         // validate cart page
         cartPage.validateCartItem(product);

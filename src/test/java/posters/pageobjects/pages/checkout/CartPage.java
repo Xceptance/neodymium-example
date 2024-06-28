@@ -1,5 +1,6 @@
 package posters.pageobjects.pages.checkout;
 
+import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exactValue;
@@ -21,6 +22,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebElementCondition;
 import com.xceptance.neodymium.util.Neodymium;
+import com.xceptance.neodymium.util.SelenideAddons;
 
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
@@ -116,37 +118,44 @@ public class CartPage extends AbstractBrowsingPage
 
     private void validateCartItem(String productName, String productStyle, String productSize, int productAmount, String productPrice)
     {
-        // selector for product
-        SelenideElement productContainer = $$(".js-cart-product").shouldHave(sizeGreaterThan(0))
-                                                                 .findBy(new WebElementCondition("has name " + productName + ", style " + productStyle
-                                                                                                 + " and size " + productSize)
-                                                                 {
-                                                                     @Override
-                                                                     public CheckResult check(Driver driver, WebElement element)
+        // The cartpage is quite unreliable and often creates stale elements, due to JS background updates.
+        SelenideAddons.$safe(() -> {
+
+            // selector for product
+            SelenideElement productContainer = $$(".js-cart-product").shouldHave(sizeGreaterThan(0))
+                                                                     .findBy(new WebElementCondition("has name " + productName + ", style " + productStyle
+                                                                                                     + " and size " + productSize)
                                                                      {
-                                                                         boolean matchesName = element.findElement(By.cssSelector(".product-name")).getText()
-                                                                                                      .equals(productName);
-                                                                         boolean matchesStyle = element.findElement(By.cssSelector(".product-style")).getText()
-                                                                                                       .equals(productStyle);
-                                                                         boolean matchesSize = element.findElement(By.cssSelector(".product-size")).getText()
-                                                                                                      .equals(productSize);
-                                                                         return new CheckResult(matchesName && matchesStyle && matchesSize, "");
-                                                                     }
-                                                                 }).shouldBe(visible, Duration.ofMillis(9000));
-        
-        // validate product image
-        productContainer.find(".img-thumbnail").shouldBe(visible);
+                                                                         @Override
+                                                                         public CheckResult check(Driver driver, WebElement element)
+                                                                         {
+                                                                             boolean matchesName = element.findElement(By.cssSelector(".product-name"))
+                                                                                                          .getText()
+                                                                                                          .equals(productName);
+                                                                             boolean matchesStyle = element.findElement(By.cssSelector(".product-style"))
+                                                                                                           .getText()
+                                                                                                           .equals(productStyle);
+                                                                             boolean matchesSize = element.findElement(By.cssSelector(".product-size"))
+                                                                                                          .getText()
+                                                                                                          .equals(productSize);
+                                                                             return new CheckResult(matchesName && matchesStyle && matchesSize, "");
+                                                                         }
+                                                                     }).shouldBe(visible, Duration.ofMillis(9000));
 
-        // validate parameters
-        productContainer.find(".product-name").shouldHave(exactText(productName));
-        productContainer.find(".product-style").shouldHave(exactText(productStyle));
-        productContainer.find(".product-size").shouldHave(exactText(productSize));
-        productContainer.find(".product-unit-price").shouldHave(exactText(productPrice));
-        productContainer.find(".product-count").shouldHave(exactValue(Integer.toString(productAmount)));
+            // validate product image
+            productContainer.find(".img-thumbnail").shouldBe(visible);
 
-        // validate remove and update button
-        productContainer.find(".btn-update-product").shouldBe(visible);
-        productContainer.find(".btn-remove-product").shouldBe(visible);
+            // validate parameters
+            productContainer.find(".product-name").shouldHave(exactText(productName));
+            productContainer.find(".product-style").shouldHave(exactText(productStyle));
+            productContainer.find(".product-size").shouldHave(exactText(productSize));
+            productContainer.find(".product-unit-price").shouldHave(exactText(productPrice));
+            productContainer.find(".product-count").shouldHave(exactValue(Integer.toString(productAmount)));
+
+            // validate remove and update button
+            productContainer.find(".btn-update-product").shouldBe(visible);
+            productContainer.find(".btn-remove-product").shouldBe(visible);
+        });
     }
 
     @Step("validate '{product}' on the cart page")
@@ -244,16 +253,13 @@ public class CartPage extends AbstractBrowsingPage
         int productRow = Integer.parseInt(productContainer.find("th").text());
         
         // click delete button
-        productContainer.find(".btn-remove-product").click(ClickOptions.usingJavaScript());
+        productContainer.find(".btn-remove-product").click();
 
         // wait for product deletion modal
         $("#delete-product-modal .product-name").shouldHave(exactText(productName));
         
         // click delete confirmation button
-        $("#button-delete").click(ClickOptions.usingJavaScript());
-        
-        openHomePage();
-        header.miniCart.openCartPage();
+        $("#button-delete").click();
         
         if (productRow == 1 && productCount == 1) 
         {
@@ -261,6 +267,7 @@ public class CartPage extends AbstractBrowsingPage
         }
         else if (productRow > 1)
         {
+            $$(".js-cart-product").shouldHave(size(productCount - 1));
             $$(".js-cart-product").last().find("th").shouldHave(exactText(Integer.toString(productCount - 1)));
             productContainer.shouldNot(exist);
         }
