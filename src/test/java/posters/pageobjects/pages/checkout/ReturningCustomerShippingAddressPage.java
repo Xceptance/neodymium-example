@@ -1,12 +1,22 @@
 package posters.pageobjects.pages.checkout;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import com.codeborne.selenide.CheckResult;
 import com.codeborne.selenide.ClickOptions;
+import com.codeborne.selenide.Driver;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebElementCondition;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
@@ -63,15 +73,39 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
         useShippingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.continue"))).shouldBe(visible);
     }
     
-    @Step("validate shipping address '{shippingAddress}' on position '{position}' in address container")
-    public void validateAddressContainer(int position, Address shippingAddress) 
+    @Step("validate shipping address '{shippingAddress}' in address container")
+    public void validateAddressContainer(Address shippingAddress) 
     {
-        final int index = position - 1;
-        final SelenideElement addressContainer = $("#del-addr-" + index);
-        final String fullName = shippingAddress.getFirstName() + " " + shippingAddress.getLastName();
+        // selector for product
+        final SelenideElement addressContainer = $$(".thumbnail").shouldHave(sizeGreaterThan(0))
+                                                                 .findBy(new WebElementCondition("has full name " + shippingAddress.getFullName() + ", company " + shippingAddress.getCompany()
+                                                                                                 + ", street " + shippingAddress.getStreet() + ", city" + shippingAddress.getCity()
+                                                                                                 + ", state " + shippingAddress.getState() + ", zip " + shippingAddress.getZip()
+                                                                                                 + " and country " + shippingAddress.getCountry())
+                                                                 {
+                                                                     @Override
+                                                                     public CheckResult check(Driver driver, WebElement element)
+                                                                     {
+                                                                         boolean matchesName = element.findElement(By.cssSelector(".name")).getText()
+                                                                                                      .equals(shippingAddress.getFullName());
+                                                                         boolean matchesCompany = element.findElement(By.cssSelector(".company")).getText()
+                                                                                                         .equals(shippingAddress.getCompany());
+                                                                         boolean matchesStreet = element.findElement(By.cssSelector(".address-line")).getText()
+                                                                                                        .equals(shippingAddress.getStreet());
+                                                                         boolean matchesCity = element.findElement(By.cssSelector(".city")).getText()
+                                                                                                      .equals(shippingAddress.getCity());
+                                                                         boolean matchesState = element.findElement(By.cssSelector(".state")).getText()
+                                                                                                       .equals(shippingAddress.getState());
+                                                                         boolean matchesZip = element.findElement(By.cssSelector(".zip")).getText()
+                                                                                                     .equals(shippingAddress.getZip());
+                                                                         boolean matchesCountry = element.findElement(By.cssSelector(".country")).getText()
+                                                                                                         .equals(shippingAddress.getCountry());
+                                                                         return new CheckResult(matchesName && matchesCompany && matchesStreet && matchesCity && matchesState && matchesZip && matchesCountry, "");
+                                                                     }
+                                                                 }).shouldBe(visible, Duration.ofMillis(9000));
         
         // validate address data
-        addressContainer.find(".name").shouldHave(exactText(fullName)).shouldBe(visible);
+        addressContainer.find(".name").shouldHave(exactText(shippingAddress.getFullName())).shouldBe(visible);
         addressContainer.find(".company").shouldHave(exactText(shippingAddress.getCompany())).shouldBe(visible);
         addressContainer.find(".address-line").shouldHave(exactText(shippingAddress.getStreet())).shouldBe(visible);
         addressContainer.find(".city").shouldHave(exactText(shippingAddress.getCity())).shouldBe(visible);
@@ -82,15 +116,40 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
 
     /// ========== select shipping address ========== ///
 
-    @Step("select a shipping address on position '{position}'")
-    public ReturningCustomerBillingAddressPage selectShippingAddress(int position)
+    @Step("select the shipping address '{shippingAddress}'")
+    public ReturningCustomerBillingAddressPage selectShippingAddress(Address shippingAddress) 
     {
-        final int index = position - 1;
+        // selector for product
+        final SelenideElement addressContainer = $$(".thumbnail").shouldHave(sizeGreaterThan(0))
+                                                                 .findBy(new WebElementCondition("has full name " + shippingAddress.getFullName() + ", company " + shippingAddress.getCompany()
+                                                                                                 + ", street " + shippingAddress.getStreet() + ", city" + shippingAddress.getCity()
+                                                                                                 + ", state " + shippingAddress.getState() + ", zip " + shippingAddress.getZip()
+                                                                                                 + " and country " + shippingAddress.getCountry())
+                                                                 {
+                                                                     @Override
+                                                                     public CheckResult check(Driver driver, WebElement element)
+                                                                     {
+                                                                         boolean matchesName = element.findElement(By.cssSelector(".name")).getText()
+                                                                                                      .equals(shippingAddress.getFullName());
+                                                                         boolean matchesCompany = element.findElement(By.cssSelector(".company")).getText()
+                                                                                                         .equals(shippingAddress.getCompany());
+                                                                         boolean matchesStreet = element.findElement(By.cssSelector(".address-line")).getText()
+                                                                                                        .equals(shippingAddress.getStreet());
+                                                                         boolean matchesCity = element.findElement(By.cssSelector(".city")).getText()
+                                                                                                      .equals(shippingAddress.getCity());
+                                                                         boolean matchesState = element.findElement(By.cssSelector(".state")).getText()
+                                                                                                       .equals(shippingAddress.getState());
+                                                                         boolean matchesZip = element.findElement(By.cssSelector(".zip")).getText()
+                                                                                                     .equals(shippingAddress.getZip());
+                                                                         boolean matchesCountry = element.findElement(By.cssSelector(".country")).getText()
+                                                                                                         .equals(shippingAddress.getCountry());
+                                                                         return new CheckResult(matchesName && matchesCompany && matchesStreet && matchesCity && matchesState && matchesZip && matchesCountry, "");
+                                                                     }
+                                                                 }).shouldBe(visible, Duration.ofMillis(9000));
         
-        // select address, press "Continue"
-        $("#del-addr-" + index + " input").click(ClickOptions.usingJavaScript());
+        addressContainer.find("input").click(ClickOptions.usingJavaScript());
         useShippingAddressButton.click(ClickOptions.usingJavaScript());
-
+        
         return new ReturningCustomerBillingAddressPage().isExpectedPage();
     }
 }

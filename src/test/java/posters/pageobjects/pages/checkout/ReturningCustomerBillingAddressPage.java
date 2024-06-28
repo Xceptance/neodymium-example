@@ -1,12 +1,22 @@
 package posters.pageobjects.pages.checkout;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import com.codeborne.selenide.CheckResult;
 import com.codeborne.selenide.ClickOptions;
+import com.codeborne.selenide.Driver;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebElementCondition;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
@@ -62,15 +72,39 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
         useBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.useThisBillingAddress"))).shouldBe(visible);
     }
     
-    @Step("validate billing address '{billingAddress}' on position '{position}' in address container")
-    public void validateAddressContainer(int position, Address billingAddress) 
+    @Step("validate billing address '{billingAddress}' in address container")
+    public void validateAddressContainer(Address billingAddress) 
     {
-        final int index = position - 1;
-        final SelenideElement addressContainer = $("#bill-addr-" + index);
-        final String fullName = billingAddress.getFirstName() + " " + billingAddress.getLastName();
+        // selector for product
+        final SelenideElement addressContainer = $$(".thumbnail").shouldHave(sizeGreaterThan(0))
+                                                                 .findBy(new WebElementCondition("has full name " + billingAddress.getFullName() + ", company " + billingAddress.getCompany()
+                                                                                                 + ", street " + billingAddress.getStreet() + ", city" + billingAddress.getCity()
+                                                                                                 + ", state " + billingAddress.getState() + ", zip " + billingAddress.getZip()
+                                                                                                 + " and country " + billingAddress.getCountry())
+                                                                 {
+                                                                     @Override
+                                                                     public CheckResult check(Driver driver, WebElement element)
+                                                                     {
+                                                                         boolean matchesName = element.findElement(By.cssSelector(".name")).getText()
+                                                                                                      .equals(billingAddress.getFullName());
+                                                                         boolean matchesCompany = element.findElement(By.cssSelector(".company")).getText()
+                                                                                                         .equals(billingAddress.getCompany());
+                                                                         boolean matchesStreet = element.findElement(By.cssSelector(".address-line")).getText()
+                                                                                                        .equals(billingAddress.getStreet());
+                                                                         boolean matchesCity = element.findElement(By.cssSelector(".city")).getText()
+                                                                                                      .equals(billingAddress.getCity());
+                                                                         boolean matchesState = element.findElement(By.cssSelector(".state")).getText()
+                                                                                                       .equals(billingAddress.getState());
+                                                                         boolean matchesZip = element.findElement(By.cssSelector(".zip")).getText()
+                                                                                                     .equals(billingAddress.getZip());
+                                                                         boolean matchesCountry = element.findElement(By.cssSelector(".country")).getText()
+                                                                                                         .equals(billingAddress.getCountry());
+                                                                         return new CheckResult(matchesName && matchesCompany && matchesStreet && matchesCity && matchesState && matchesZip && matchesCountry, "");
+                                                                     }
+                                                                 }).shouldBe(visible, Duration.ofMillis(9000));
         
         // validate address data
-        addressContainer.find(".name").shouldHave(exactText(fullName)).shouldBe(visible);
+        addressContainer.find(".name").shouldHave(exactText(billingAddress.getFullName())).shouldBe(visible);
         addressContainer.find(".company").shouldHave(exactText(billingAddress.getCompany())).shouldBe(visible);
         addressContainer.find(".address-line").shouldHave(exactText(billingAddress.getStreet())).shouldBe(visible);
         addressContainer.find(".city").shouldHave(exactText(billingAddress.getCity())).shouldBe(visible);
@@ -81,15 +115,40 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
 
     /// ========== select billing address ========== ///
     
-    @Step("select a billing address on position '{position}'")
-    public ReturningCustomerPaymentPage selectBillingAddress(int position)
+    @Step("select the billing address '{billingAddress}'")
+    public ReturningCustomerPaymentPage selectBillingAddress(Address billingAddress) 
     {
-        final int index = position - 1;
+        // selector for product
+        final SelenideElement addressContainer = $$(".thumbnail").shouldHave(sizeGreaterThan(0))
+                                                                 .findBy(new WebElementCondition("has full name " + billingAddress.getFullName() + ", company " + billingAddress.getCompany()
+                                                                                                 + ", street " + billingAddress.getStreet() + ", city" + billingAddress.getCity()
+                                                                                                 + ", state " + billingAddress.getState() + ", zip " + billingAddress.getZip()
+                                                                                                 + " and country " + billingAddress.getCountry())
+                                                                 {
+                                                                     @Override
+                                                                     public CheckResult check(Driver driver, WebElement element)
+                                                                     {
+                                                                         boolean matchesName = element.findElement(By.cssSelector(".name")).getText()
+                                                                                                      .equals(billingAddress.getFullName());
+                                                                         boolean matchesCompany = element.findElement(By.cssSelector(".company")).getText()
+                                                                                                         .equals(billingAddress.getCompany());
+                                                                         boolean matchesStreet = element.findElement(By.cssSelector(".address-line")).getText()
+                                                                                                        .equals(billingAddress.getStreet());
+                                                                         boolean matchesCity = element.findElement(By.cssSelector(".city")).getText()
+                                                                                                      .equals(billingAddress.getCity());
+                                                                         boolean matchesState = element.findElement(By.cssSelector(".state")).getText()
+                                                                                                       .equals(billingAddress.getState());
+                                                                         boolean matchesZip = element.findElement(By.cssSelector(".zip")).getText()
+                                                                                                     .equals(billingAddress.getZip());
+                                                                         boolean matchesCountry = element.findElement(By.cssSelector(".country")).getText()
+                                                                                                         .equals(billingAddress.getCountry());
+                                                                         return new CheckResult(matchesName && matchesCompany && matchesStreet && matchesCity && matchesState && matchesZip && matchesCountry, "");
+                                                                     }
+                                                                 }).shouldBe(visible, Duration.ofMillis(9000));
         
-        // select address, press "Use this billing address"
-        $("#bill-addr-" + index + " input").click(ClickOptions.usingJavaScript());
+        addressContainer.find("input").click(ClickOptions.usingJavaScript());
         useBillingAddressButton.click(ClickOptions.usingJavaScript());
-
+        
         return new ReturningCustomerPaymentPage().isExpectedPage();
     }
 }

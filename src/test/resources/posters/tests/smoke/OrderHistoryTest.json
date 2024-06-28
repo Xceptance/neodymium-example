@@ -10,16 +10,36 @@
       	"topCategory1": "header.topNavigation.1.title",
       	"topCategory2": "header.topNavigation.2.title",
       	"topCategory3": "header.topNavigation.3.title",
-      	"resultPosition": "1",
-      	"sizeProduct16x12": "16 x 12 in",
-      	"sizeProduct32x24": "32 x 24 in",
-      	"sizeProduct64x48": "64 x 48 in",
-      	"styleProductMatte": "matte",
-      	"styleProductGloss": "gloss",
-      	"updateProductAmount": "3",
-     	"shippingAddressPosition": 1,
-      	"billingAddressPosition": 1,
-      	"creditCardPosition": 1,
+      	"order1":
+      	{
+      	    "products": 
+      	    [
+      	        {
+      	            "name": "Grizzly Bear",
+      	            "size": "16 x 12 in",
+      	            "style": "matte",
+      	            "amount": "3"
+      	        }
+      	    ]
+      	},
+        "order2":
+        {
+      	    "products":
+      	    [
+      	        {
+      	            "name": "Tomato and Mozzarella Bites",
+      	            "size": "32 x 24 in",
+      	            "style": "gloss",
+      	            "amount": "3"
+      	        },
+      	        {
+      	            "name": "Swiss Air Airbus A320",
+      	            "size": "64 x 48 in",
+      	            "style": "matte",
+      	            "amount": "1"
+      	        }
+      	    ]
+      	},
       	"address":
       	{
             "firstName": "Order",

@@ -1,7 +1,9 @@
 package posters.tests.smoke;
 
-import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 
+import com.xceptance.neodymium.junit5.NeodymiumTest;
 import com.xceptance.neodymium.util.AllureAddons;
 import com.xceptance.neodymium.util.Neodymium;
 
@@ -12,8 +14,6 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.TmsLink;
-import io.qameta.allure.junit4.DisplayName;
-import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 
@@ -26,7 +26,7 @@ import posters.tests.AbstractTest;
 @DisplayName("HomepageTest")
 public class HomePageTest extends AbstractTest
 {
-    @Test
+    @NeodymiumTest
     @Description(value = "A basic description for home page validation.")
     public void testVisitingHomepage()
     {

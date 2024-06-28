@@ -1,29 +1,19 @@
 package posters.tests.testdata.processes;
 
+import posters.tests.testdata.dataobjects.Product;
+
 public class AddToCartTestData
 {
     private String topCategory;
 
     private String subCategory;
-
-    private int subCategoryResultPosition;
     
-    private String sizeFirstProduct;
-    
-    private String styleFirstProduct;
-
     private String searchTerm;
 
-    private int searchResultPosition;
+    private Product product1;
     
-    private String sizeSecondProduct;
-    
-    private String styleSecondProduct;
-    
-    private int productUpdatePosition;
+    private Product product2;
 
-    private int amountChange;
-    
     public String getTopCategory()
     {
         return topCategory;
@@ -34,48 +24,18 @@ public class AddToCartTestData
         return subCategory;
     }
     
-    public int getSubCategoryResultPosition()
-    {
-        return subCategoryResultPosition;
-    }
-    
-    public String getSizeFirstProduct()
-    {
-        return sizeFirstProduct;
-    }
-    
-    public String getStyleFirstProduct()
-    {
-        return styleFirstProduct;
-    }
-    
     public String getSearchTerm()
     {
         return searchTerm;
     }
     
-    public int getSearchResultPosition()
+    public Product getProduct1()
     {
-        return searchResultPosition;
+        return product1;
     }
     
-    public String getSizeSecondProduct()
+    public Product getProduct2()
     {
-        return sizeSecondProduct;
-    }
-    
-    public String getStyleSecondProduct()
-    {
-        return styleSecondProduct;
-    }
-    
-    public int getProductUpdatePosition()
-    {
-        return productUpdatePosition;
-    }
-    
-    public int getAmountChange()
-    {
-        return amountChange;
+        return product2;
     }
 }

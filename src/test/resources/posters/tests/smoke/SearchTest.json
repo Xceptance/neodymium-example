@@ -2,7 +2,6 @@
     {
         "searchTerm": "bear",
         "expectedResultCount": "3",
-        "resultPosition": "1",
         "testId": "search with expected result"
     },
     {

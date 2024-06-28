@@ -2,6 +2,7 @@ package posters.tests.testdata.processes;
 
 import posters.tests.testdata.dataobjects.Address;
 import posters.tests.testdata.dataobjects.CreditCard;
+import posters.tests.testdata.dataobjects.Product;
 import posters.tests.testdata.dataobjects.User;
 
 public class RegisteredOrderTestData
@@ -10,25 +11,9 @@ public class RegisteredOrderTestData
     
     private String topCategory;
 
-    private int resultPosition;
+    private Product product;
     
-    private String sizeProduct;
-    
-    private String styleProduct;
-    
-    private int amountChange;
-    
-    private int shipAddrPos;
-    
-    private int billAddrPos;
-    
-    private int creditCardPos;
-    
-    private Boolean shipAddrEqualBillAddr;
-    
-    private Address shippingAddress;
-    
-    private Address billingAddress;
+    private Address address;
     
     private CreditCard creditCard;
     
@@ -42,54 +27,14 @@ public class RegisteredOrderTestData
         return topCategory;
     }
     
-    public int getResultPosition()
+    public Product getProduct()
     {
-        return resultPosition;
+        return product;
     }
     
-    public String getsSizeProduct()
+    public Address getAddress() 
     {
-        return sizeProduct;
-    }
-    
-    public String getStyleProduct()
-    {
-        return styleProduct;
-    }
-    
-    public int getAmountChange()
-    {
-        return amountChange;
-    }
-    
-    public int getShipAddrPos() 
-    {
-        return shipAddrPos;
-    }
-    
-    public int getBillAddrPos() 
-    {
-        return billAddrPos;
-    }
-    
-    public int getCreditCardPos() 
-    {
-        return creditCardPos;
-    }
-    
-    public Boolean getShipAddrEqualBillAddr()
-    {
-        return shipAddrEqualBillAddr;
-    }
-    
-    public Address getShippingAddress() 
-    {
-        return shippingAddress;
-    }
-    
-    public Address getBillingAddress() 
-    {
-        return billingAddress;
+        return address;
     }
     
     public CreditCard getCreditCard() 

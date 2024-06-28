@@ -25,7 +25,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     private SelenideElement productPrice = $("#product-detail-form-price");
 
     private SelenideElement productSize = $("#product-detail-form-size-selection");
-    
+
     private ElementsCollection productStyle = $$(".form-check-label");
 
     @Override
@@ -85,11 +85,13 @@ public class ProductDetailPage extends AbstractBrowsingPage
         $("#product-detail-form-description").shouldBe(visible);
 
         // validate size selection
-        $$(".form-label").findBy(attribute("for", "product-detail-form-size-selection")).shouldHave(exactText(Neodymium.localizedText("productDetailPage.selectSize"))).shouldBe(visible);
+        $$(".form-label").findBy(attribute("for", "product-detail-form-size-selection"))
+                         .shouldHave(exactText(Neodymium.localizedText("productDetailPage.selectSize"))).shouldBe(visible);
         validateSizeDropdown();
 
         // validate style selection
-        $$(".form-label").findBy(attribute("for", "product-detail-form-style-selection")).shouldHave(exactText(Neodymium.localizedText("productDetailPage.selectStyle"))).shouldBe(visible);
+        $$(".form-label").findBy(attribute("for", "product-detail-form-style-selection"))
+                         .shouldHave(exactText(Neodymium.localizedText("productDetailPage.selectStyle"))).shouldBe(visible);
         validateStyleRadio();
 
         // validate print information
@@ -137,8 +139,20 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("add product with size '{size}' and style '{style}' to cart")
     public void addToCart(String size, String style)
     {
+        // save product price and size before updating
+        String productPriceBeforeUpdate = productPrice.text();
+        String currentlySelectedSizeOption = productSize.getSelectedOptionText();
+        
+        // set style and size
         setSize(size);
-        setStyle(style);   
+        setStyle(style);
+
+        // wait for product price to be updated
+        if (!size.equals(currentlySelectedSizeOption)) 
+        {
+            productPrice.shouldNotHave(exactText(productPriceBeforeUpdate));
+        }
+        
         clickAddToCartButton();
     }
 
@@ -165,7 +179,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
     @Step("get selected product size from product detail page")
     public String getChosenSize()
     {
-        return productSize.getSelectedText();
+        return productSize.getSelectedOptionText();
     }
 
     @Step("get product details from product detail page")
@@ -173,9 +187,9 @@ public class ProductDetailPage extends AbstractBrowsingPage
     {
         return new Product(getProductName(), getProductPrice(), getChosenStyle(), getChosenSize(), 1);
     }
-    
+
     /// ========== product detail page navigation ========== ///
-    
+
     @Step("open homepage from product detail page")
     public HomePage openHomePage()
     {

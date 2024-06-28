@@ -1,69 +1,75 @@
 [
-   {
-      "topCategory": "header.topNavigation.1.title",
-      "resultPosition": "5",
-      "sizeProduct": "64 x 48 in",
-      "styleProduct": "gloss",
-      "amountChange": "2",
-      "shippingAddress":
-      {
+    {
+        "topCategory": "header.topNavigation.1.title",
+        "product":
+        {
+            "name": "Roman Snail",
+            "size": "64 x 48 in",
+            "style": "gloss",
+            "amount": "2"
+        },
+        "shippingAddress":
+        {
             "firstName": "Guest",
-      		"lastName": "Order",
-      		"company": "Guest Order Inc.",
-      		"street": "Guest Order Street",
-      		"city": "Guest Order City",
-      		"state": "Guest Order State",
-      		"zip": "12345",
-      		"country": "United States"
-      },
-      "shipAddrEqualBillAddr": false,
-      "billingAddress":
-      {
+      	    "lastName": "Order",
+      	    "company": "Guest Order Inc.",
+      	    "street": "Guest Order Street",
+      	    "city": "Guest Order City",
+      	    "state": "Guest Order State",
+      	    "zip": "12345",
+      	    "country": "United States"
+        },
+        "sameShippingAndBillingAddress": false,
+        "billingAddress":
+        {
             "firstName": "Guest",
-      		"lastName": "Order",
-      		"company": "Guest Order GmbH",
-      		"street": "Guest Order Straße",
-      		"city": "Guest Order Stadt",
-      		"state": "Guest Order Bundesland",
-      		"zip": "30159",
-      		"country": "Germany"
-      },
-      "creditCard":
-      {
-      		"fullName": "Guest Order",
-      		"cardNumber": "4111111111111111",
-      		"crypticCardNumber": "xxxx xxxx xxxx 1111",
-      		"expDateMonth": "12",
-      		"expDateYear": "2026"
-      },
-      "testId": "guest order: different shipping and billing address"
-   },
-   {
-      "topCategory": "header.topNavigation.2.title",
-      "resultPosition": "2",
-      "sizeProduct": "16 x 12 in",
-      "styleProduct": "matte",
-      "amountChange": "3",
-      "shippingAddress":
-      {
+      	    "lastName": "Order",
+      	    "company": "Guest Order GmbH",
+      	    "street": "Guest Order Straße",
+      	    "city": "Guest Order Stadt",
+      	    "state": "Guest Order Bundesland",
+      	    "zip": "30159",
+      	    "country": "Germany"
+        },
+        "creditCard":
+        {
+      	    "fullName": "Guest Order",
+      	    "cardNumber": "4111111111111111",
+      	    "crypticCardNumber": "xxxx xxxx xxxx 1111",
+      	    "expDateMonth": "12",
+      	    "expDateYear": "2026"
+        },
+        "testId": "guest order: different shipping and billing address"
+    },
+    {
+        "topCategory": "header.topNavigation.2.title",
+        "product":
+        {
+            "name": "Rolled Bacon",
+            "size": "16 x 12 in",
+            "style": "matte",
+            "amount": "3"
+        },
+        "shippingAddress":
+        {
             "firstName": "Guest",
-      		"lastName": "Order",
-      		"company": "Guest Order Unternehmen",
-      		"street": "Guest Order Gasse",
-      		"city": "Guest Order Dorf",
-      		"state": "Guest Order Landkreis",
-      		"zip": "30167",
-      		"country": "Germany"
-      },
-      "shipAddrEqualBillAddr": true,
-      "creditCard":
-      {
-      		"fullName": "Guest Order",
-      		"cardNumber": "4111111111111111",
-      		"crypticCardNumber": "xxxx xxxx xxxx 1111",
-      		"expDateMonth": "05",
-      		"expDateYear": "2029"
-      },
-      "testId": "guest order: same shipping and billing address"
-   }
+      	    "lastName": "Order",
+      	    "company": "Guest Order Unternehmen",
+      	    "street": "Guest Order Gasse",
+      	    "city": "Guest Order Dorf",
+      	    "state": "Guest Order Landkreis",
+      	    "zip": "30167",
+      	    "country": "Germany"
+        },
+        "sameShippingAndBillingAddress": true,
+        "creditCard":
+        {
+      	    "fullName": "Guest Order",
+      	    "cardNumber": "4111111111111111",
+      	    "crypticCardNumber": "xxxx xxxx xxxx 1111",
+      	    "expDateMonth": "05",
+      	    "expDateYear": "2029"
+        },
+        "testId": "guest order: same shipping and billing address"
+    }
 ]

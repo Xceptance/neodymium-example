@@ -1,12 +1,22 @@
 package posters.pageobjects.pages.checkout;
 
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
+import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import com.codeborne.selenide.CheckResult;
 import com.codeborne.selenide.ClickOptions;
+import com.codeborne.selenide.Driver;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebElementCondition;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
@@ -61,27 +71,57 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
     }
     
     @Step("validate credit card '{creditCard}' on position '{position}' in credit card container")
-    public void validateCreditCardContainer(int position, CreditCard creditCard) 
+    public void validateCreditCardContainer(CreditCard creditCard) 
     {
-        final int index = position - 1;
-        final SelenideElement creditCardContainer = $("#payment-" + index);
-        final String expDate = creditCard.getExpDateMonth() + "/" + creditCard.getExpDateYear();
+        // selector for product
+        final SelenideElement creditCardContainer = $$(".thumbnail").shouldHave(sizeGreaterThan(0))
+                                                                 .findBy(new WebElementCondition("has full name " + creditCard.getFullName() + ", card number " + creditCard.getCrypticCardNumber()
+                                                                                                 + ", expire date " + creditCard.getExpDate())
+                                                                 {
+                                                                     @Override
+                                                                     public CheckResult check(Driver driver, WebElement element)
+                                                                     {
+                                                                         boolean matchesName = element.findElement(By.cssSelector(".name")).getText()
+                                                                                                      .equals(creditCard.getFullName());
+                                                                         boolean matchesCreditCard = element.findElement(By.cssSelector(".creditcard")).getText()
+                                                                                                         .equals(creditCard.getCrypticCardNumber());
+                                                                         boolean matchesExpDate = element.findElement(By.cssSelector(".valid-to")).getText()
+                                                                                                        .equals(creditCard.getExpDate());
+                                                                         return new CheckResult(matchesName && matchesCreditCard && matchesExpDate, "");
+                                                                     }
+                                                                 }).shouldBe(visible, Duration.ofMillis(9000));
         
         // validate address data
         creditCardContainer.find(".name").shouldHave(exactText(creditCard.getFullName())).shouldBe(visible);
         creditCardContainer.find(".creditcard").shouldHave(exactText(creditCard.getCrypticCardNumber())).shouldBe(visible);
-        creditCardContainer.find(".valid-to").shouldHave(exactText(expDate)).shouldBe(visible);
+        creditCardContainer.find(".valid-to").shouldHave(exactText(creditCard.getExpDate())).shouldBe(visible);
     }
     
     /// ========== select credit card ========== ///
 
     @Step("select a credit card on position '{position}'")
-    public PlaceOrderPage selectCreditCard(int position)
+    public PlaceOrderPage selectCreditCard(CreditCard creditCard)
     {
-        final int index = position - 1;
+        // selector for product
+        final SelenideElement creditCardContainer = $$(".thumbnail").shouldHave(sizeGreaterThan(0))
+                                                                 .findBy(new WebElementCondition("has full name " + creditCard.getFullName() + ", card number " + creditCard.getCrypticCardNumber()
+                                                                                                 + ", expire date " + creditCard.getExpDate())
+                                                                 {
+                                                                     @Override
+                                                                     public CheckResult check(Driver driver, WebElement element)
+                                                                     {
+                                                                         boolean matchesName = element.findElement(By.cssSelector(".name")).getText()
+                                                                                                      .equals(creditCard.getFullName());
+                                                                         boolean matchesCreditCard = element.findElement(By.cssSelector(".creditcard")).getText()
+                                                                                                         .equals(creditCard.getCrypticCardNumber());
+                                                                         boolean matchesExpDate = element.findElement(By.cssSelector(".valid-to")).getText()
+                                                                                                        .equals(creditCard.getExpDate());
+                                                                         return new CheckResult(matchesName && matchesCreditCard && matchesExpDate, "");
+                                                                     }
+                                                                 }).shouldBe(visible, Duration.ofMillis(9000));
         
-        // select address, press "Use this credit card"
-        $("#payment-" + index + " input").click(ClickOptions.usingJavaScript());
+        // select credit card, press "Use this credit card"
+        creditCardContainer.find("input").click(ClickOptions.usingJavaScript());
         useCreditCardButton.click(ClickOptions.usingJavaScript());
 
         return new PlaceOrderPage().isExpectedPage();

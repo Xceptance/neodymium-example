@@ -4,19 +4,18 @@
       	{
       		"firstName": "Registered",
       		"lastName": "Order",
-      		"email": "registeredorder@varmail.net",
+      		"email": "registeredorder@varmail2.net",
       		"password": "topsecret"
       	},
       	"topCategory": "header.topNavigation.2.title",
-      	"resultPosition": "6",
-      	"sizeProduct": "32 x 24 in",
-      	"styleProduct": "gloss",
-      	"amountChange": "2",
-     	"shipAddrPos": 1,
-      	"billAddrPos": 1,
-      	"creditCardPos": 1,
-      	"shipAddrEqualBillAddr": true,
-      	"shippingAddress":
+      	"product":
+      	{
+      	    "name": "Rocket Salad with Mozzarella",
+      	    "size": "32 x 24 in",
+      	    "style": "gloss",
+      	    "amount": "2"
+      	},
+      	"address":
       	{
             "firstName": "Registered",
       		"lastName": "Order",
@@ -34,56 +33,6 @@
       		"crypticCardNumber": "xxxx xxxx xxxx 1111",
       		"expDateMonth": "06",
       		"expDateYear": "2028"
-      	},
-      	"testId": "registered order: same shipping and billing address"
-	},
-	{
-		"user":
-      	{
-      		"firstName": "Registered",
-      		"lastName": "Order",
-      		"email": "registeredorder@varmail.net",
-      		"password": "topsecret"
-      	},
-      	"topCategory": "header.topNavigation.4.title",
-      	"resultPosition": "2",
-      	"sizeProduct": "16 x 12 in",
-      	"styleProduct": "matte",
-      	"amountChange": "3",
-      	"shipAddrPos": 1,
-      	"billAddrPos": 1,
-      	"creditCardPos": 1,
-      	"shipAddrEqualBillAddr": false,
-      	"shippingAddress":
-      	{
-            "firstName": "Registered",
-      		"lastName": "Order",
-      		"company": "Registered Order Inc.",
-      		"street": "5-7 Registered Order street",
-      		"city": "Registered Order City",
-      		"state": "Registered Order State",
-      		"zip": "12345",
-      		"country": "United States"
-      	},
-      	"billingAddress":
-      	{
-            "firstName": "Registered",
-      		"lastName": "Order",
-      		"company": "Registered Order GmbH",
-      		"street": "Registered Order Straße",
-      		"city": "Registered Order Stadt",
-      		"state": "Registered Order Bundesland",
-      		"zip": "30159",
-      		"country": "Germany"
-      	},
-      	"creditCard":
-      	{
-      		"fullName": "Registered Order",
-      		"cardNumber": "4111111111111111",
-      		"crypticCardNumber": "xxxx xxxx xxxx 1111",
-      		"expDateMonth": "11",
-      		"expDateYear": "2030"
-      	},
-      	"testId": "registered order: different shipping and billing address"
+      	}
 	}
 ]

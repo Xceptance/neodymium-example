@@ -49,10 +49,8 @@ public class AddressForm extends AbstractComponent
     
     /// ========== address form navigation ========== ///
     
-    @Step("fill in address form with {address}")
-    public AddressOverviewPage addNewAddress(Address address) 
-    {      
-        // fill in shipping address form
+    private void fillInAddressForm(Address address) 
+    {
         lastNameField.val(address.getLastName());
         firstNameField.val(address.getFirstName());
         companyField.val(address.getCompany());
@@ -61,6 +59,13 @@ public class AddressForm extends AbstractComponent
         stateField.val(address.getState());
         zipField.val(address.getZip());
         countryField.selectOption(address.getCountry());
+    }
+    
+    @Step("fill in address form with {address}")
+    public AddressOverviewPage addNewAddress(Address address) 
+    {      
+        // fill in shipping address form
+        fillInAddressForm(address);
         
         // click add new address button
         addAddressButton.click(ClickOptions.usingJavaScript());
@@ -72,14 +77,7 @@ public class AddressForm extends AbstractComponent
     public GuestBillingAddressPage goToGuestBillingAddressPage(Address shippingAddress)
     {       
         // fill in form with parameters
-        lastNameField.val(shippingAddress.getLastName());
-        firstNameField.val(shippingAddress.getFirstName());
-        companyField.val(shippingAddress.getCompany());
-        addressLineField.val(shippingAddress.getStreet());
-        cityField.val(shippingAddress.getCity());
-        stateField.val(shippingAddress.getState());
-        zipField.val(shippingAddress.getZip());
-        countryField.selectOption(shippingAddress.getCountry());
+        fillInAddressForm(shippingAddress);
 
         // go to guest billing address page
         $("#bill-unequal-shipp").click(ClickOptions.usingJavaScript());
@@ -92,14 +90,7 @@ public class AddressForm extends AbstractComponent
     public GuestPaymentPage goToGuestPaymentPage(Address address)
     {
         // fill in form with parameters
-        lastNameField.val(address.getLastName());
-        firstNameField.val(address.getFirstName());
-        companyField.val(address.getCompany());
-        addressLineField.val(address.getStreet());
-        cityField.val(address.getCity());
-        stateField.val(address.getState());
-        zipField.val(address.getZip());
-        countryField.selectOption(address.getCountry());
+        fillInAddressForm(address);
 
         // go to guest payment page
         if ($("#bill-equal-shipp").exists() && $("#bill-unequal-shipp").exists()) 
