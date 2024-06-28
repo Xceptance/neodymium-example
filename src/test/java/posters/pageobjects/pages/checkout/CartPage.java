@@ -12,17 +12,14 @@ import static com.codeborne.selenide.Selenide.$$;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.codeborne.selenide.CheckResult;
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.Driver;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebElementCondition;
-import com.codeborne.selenide.impl.WebDriverInstance;
 import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
