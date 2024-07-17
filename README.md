@@ -45,5 +45,10 @@ If you like our ideas and you would like to start a test automation project usin
 
 Check out [Neodymium template](https://github.com/Xceptance/neodymium-template).
 
+# JUnit 5 vs. JUnit 4
+
+With Version 5.0.0 of Neodymium we introduced JUnit 5 as our standard way of doing things. But since JUnit 4 is still very popular we decided to keep a backwards compability to JUnit 4. Hot to use this can be seen in the branch `update-to-neo-5-junit-4` 
+
+
 ## License
 MIT
