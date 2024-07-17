@@ -8,10 +8,14 @@ public class CartCleanUpFlow
     @Step("clean up cart flow")
     public static void flow()
     {
-        HomePage init = new HomePage();
-
-        // go to homepage (needed cause checkout header don't has miniCart -> clean up would fail)
-        var homePage = init.openHomePage();
+        HomePage homePage = new HomePage();
+        
+        if (!homePage.header.miniCart.isAvailable()) 
+        {
+            // if test failed on CheckoutPage, there is no mini cart (would cause the cleanup to fail)
+            // that is why we go to the Homepage first
+            homePage = homePage.openHomePage();
+        }
         
         if (homePage.header.miniCart.getTotalCount() == 0) 
         {
@@ -22,13 +26,19 @@ public class CartCleanUpFlow
             // go to cart page
             var cartPage = homePage.header.miniCart.openCartPage();
             
-            // remove the first product as long as one is available
-            while (cartPage.header.miniCart.getTotalCount() != 0)
+            // remove all products from cart
+            for (int i = cartPage.getAmountDifferentProducts(); i >= 1; i--) 
             {
-                // make sure cart page is empty
-                cartPage.removeProduct(1);                
-                cartPage.validateEmptyCartPage();
+                cartPage.removeProduct(i);
+                
+                if (i == 1) 
+                {
+                    cartPage.waitForEmptyCartPage();
+                }
             }
+            
+            // validate empty cart page
+            cartPage.validateStructure();
             
             // go to homepage
             homePage = cartPage.openHomePage();            

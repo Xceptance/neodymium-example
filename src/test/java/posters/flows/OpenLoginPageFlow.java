@@ -13,7 +13,6 @@ public class OpenLoginPageFlow
 
         // open login page and check for expected page
         var loginPage = homePage.header.userMenu.openLoginPage();
-        loginPage.isExpectedPage();
 
         return loginPage.isExpectedPage();
     }

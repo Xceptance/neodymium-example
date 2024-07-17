@@ -2,22 +2,17 @@ package posters.tests.testdata.processes;
 
 import posters.tests.testdata.dataobjects.Address;
 import posters.tests.testdata.dataobjects.CreditCard;
+import posters.tests.testdata.dataobjects.Product;
 
 public class GuestOrderTestData
 {
     private String topCategory;
 
-    private int resultPosition;
-    
-    private String sizeProduct;
-    
-    private String styleProduct;
-    
-    private int amountChange;
+    private Product product;
     
     private Address shippingAddress;
     
-    private Boolean shipAddrEqualBillAddr;
+    private Boolean sameShippingAndBillingAddress;
     
     private Address billingAddress;
     
@@ -28,34 +23,19 @@ public class GuestOrderTestData
         return topCategory;
     }
     
-    public int getResultPosition()
+    public Product getProduct()
     {
-        return resultPosition;
+        return product;
     }
-    
-    public String getsSizeProduct()
-    {
-        return sizeProduct;
-    }
-    
-    public String getStyleProduct()
-    {
-        return styleProduct;
-    }
-    
-    public int getAmountChange()
-    {
-        return amountChange;
-    }
-    
+
     public Address getShippingAddress() 
     {
         return shippingAddress;
     }
     
-    public Boolean getShipAddrEqualBillAddr()
+    public Boolean getSameShippingAndBillingAddress()
     {
-        return shipAddrEqualBillAddr;
+        return sameShippingAndBillingAddress;
     }
     
     public Address getBillingAddress() 

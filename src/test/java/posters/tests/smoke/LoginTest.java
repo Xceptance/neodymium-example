@@ -1,14 +1,15 @@
-package posters.tests.unit;
+package posters.tests.smoke;
 
-import org.junit.Before;
-import org.junit.Test;
-import com.xceptance.neodymium.module.statement.testdata.DataSet;
-import com.xceptance.neodymium.util.DataUtils;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
+
+import com.xceptance.neodymium.common.testdata.DataItem;
+import com.xceptance.neodymium.common.testdata.DataSet;
+import com.xceptance.neodymium.junit5.NeodymiumTest;
 
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.junit4.Tag;
 import posters.flows.OpenLoginPageFlow;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.tests.AbstractTest;
@@ -19,19 +20,18 @@ import posters.tests.testdata.dataobjects.User;
 @Tag("functionality")
 @Tag("registered")
 public class LoginTest extends AbstractTest
-{    
+{
+    @DataItem
     private User user;
 
     private LoginPage loginPage;
 
-    @Before
+    @BeforeEach
     public void setup()
     {
-        user = DataUtils.get(User.class);
-
         loginPage = prepareTest();
     }
-    
+
     private LoginPage prepareTest()
     {
         // go to login page
@@ -39,12 +39,12 @@ public class LoginTest extends AbstractTest
         loginPage.validateStructure();
 
         // validate that nobody is logged in
-        loginPage.header.userMenu.validateNotLoggedIn();
+        loginPage.header.userMenu.checkIfNoUserIsLoggedIn();
 
         return new LoginPage().isExpectedPage();
     }
 
-    @Test
+    @NeodymiumTest
     @DataSet(1)
     public void testSuccessfulLogin()
     {
@@ -53,7 +53,7 @@ public class LoginTest extends AbstractTest
         homePage.validateSuccessfulLogin(user.getFirstName());
     }
 
-    @Test
+    @NeodymiumTest
     @DataSet(2)
     public void testLoginWithWrongPasswort()
     {
@@ -61,7 +61,7 @@ public class LoginTest extends AbstractTest
         loginPage.validateFalseLogin(user.getEmail());
     }
 
-    @Test
+    @NeodymiumTest
     @DataSet(3)
     public void testLoginWithEmailFailure()
     {
@@ -69,7 +69,7 @@ public class LoginTest extends AbstractTest
         loginPage.validateFalseLogin(user.getEmail());
     }
 
-    @Test
+    @NeodymiumTest
     @DataSet(4)
     @DataSet(5)
     public void testLoginWithoutRequiredFields()

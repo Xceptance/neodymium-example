@@ -1,23 +1,34 @@
 package posters.pageobjects.pages.checkout;
 
+import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exactValue;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import org.junit.Assert;
+import java.time.Duration;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import com.codeborne.selenide.CheckResult;
 import com.codeborne.selenide.ClickOptions;
+import com.codeborne.selenide.Driver;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebElementCondition;
 import com.xceptance.neodymium.util.Neodymium;
+import com.xceptance.neodymium.util.SelenideAddons;
 
 import io.qameta.allure.Step;
-import posters.tests.testdata.dataobjects.Product;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.utility.PriceHelper;
+import posters.tests.testdata.dataobjects.Product;
 
 public class CartPage extends AbstractBrowsingPage
 {
@@ -27,8 +38,6 @@ public class CartPage extends AbstractBrowsingPage
 
     private ElementsCollection tableHead = $$(".column-name th");
 
-    private SelenideElement subTotal = $("#order-sub-total-value");
-    
     private SelenideElement checkoutButton = $("#btn-start-checkout");
 
     @Override
@@ -106,90 +115,59 @@ public class CartPage extends AbstractBrowsingPage
         validateShippingCosts(shippingCosts);
         validateTax(shippingCosts, subtotal);
     }
-    
-    @Step("validate empty cart")
-    public void validateEmptyCartPage() 
+
+    private void validateCartItem(String productName, String productStyle, String productSize, int productAmount, String productPrice)
     {
-        validateStructure();
-        $("#error-cart-message").shouldHave(exactText(Neodymium.localizedText("errorMessage.emptyCart"))).shouldBe(visible);
-    }
+        // The cartpage is quite unreliable and often creates stale elements, due to JS background updates.
+        SelenideAddons.$safe(() -> {
 
-    /**
-     * It checks if the price change of subtotal is equal to the price change of the product.
-     * 
-     * @param position of specific product in cart
-     * @param oldSubTotal subtotal before adding new product to cart/ increasing product quantity
-     * @param oldTotalProductPrice product price before adding/ increasing product quantity
-     */
-    @Step("validate sub total and line item total after adding on the cart page")
-    public void validateTotalAfterAdd(int position, String oldSubTotal, double oldTotalProductPrice)
-    {
-        /// ========== validate total unit price of specified product ========== ///
+            // selector for product
+            SelenideElement productContainer = $$(".js-cart-product").shouldHave(sizeGreaterThan(0))
+                                                                     .findBy(new WebElementCondition("has name " + productName + ", style " + productStyle
+                                                                                                     + " and size " + productSize)
+                                                                     {
+                                                                         @Override
+                                                                         public CheckResult check(Driver driver, WebElement element)
+                                                                         {
+                                                                             boolean matchesName = element.findElement(By.cssSelector(".product-name"))
+                                                                                                          .getText()
+                                                                                                          .equals(productName);
+                                                                             boolean matchesStyle = element.findElement(By.cssSelector(".product-style"))
+                                                                                                           .getText()
+                                                                                                           .equals(productStyle);
+                                                                             boolean matchesSize = element.findElement(By.cssSelector(".product-size"))
+                                                                                                          .getText()
+                                                                                                          .equals(productSize);
+                                                                             return new CheckResult(matchesName && matchesStyle && matchesSize, "");
+                                                                         }
+                                                                     }).shouldBe(visible, Duration.ofMillis(9000));
 
-        SelenideElement productContainer = $("#product-" + (position - 1));
+            // validate product image
+            productContainer.find(".img-thumbnail").shouldBe(visible);
 
-        // store product unit price (without $ sign) for 1 unit
-        String unitPrice = productContainer.find(".product-unit-price").text();
+            // validate parameters
+            productContainer.find(".product-name").shouldHave(exactText(productName));
+            productContainer.find(".product-style").shouldHave(exactText(productStyle));
+            productContainer.find(".product-size").shouldHave(exactText(productSize));
+            productContainer.find(".product-unit-price").shouldHave(exactText(productPrice));
+            productContainer.find(".product-count").shouldHave(exactValue(Integer.toString(productAmount)));
 
-        // store product count
-        String quantity = $(".product-count").val();
-
-        // calculate price of specified product
-        String newTotalProductPrice = PriceHelper.calculateTotalProductPrice(unitPrice, quantity);
-
-        // verify calculated unit price equals the displayed total unit price
-        productContainer.find(".product-total-unit-price").shouldHave(exactText(newTotalProductPrice));
-
-        /// ========== validate sub total ========== ///
-
-        String newSubTotal = subTotal.text();
-
-        // new total - old total = price of item you just added
-        String productPrice = PriceHelper.substract(newSubTotal, oldSubTotal);
-
-        // price difference for specific product after changing product amount
-        String totalProductPriceChange = PriceHelper.substract(newTotalProductPrice, PriceHelper.format(oldTotalProductPrice));
-
-        Assert.assertEquals(productPrice, totalProductPriceChange);
-    }
-
-    @Step("validate sub total and line item total after removing on the cart page")
-    public void validateTotalAfterRemove(String oldSubTotal, String oldTotalProductPrice)
-    {
-        String newSubTotal = PriceHelper.substract(oldSubTotal, oldTotalProductPrice);
-        subTotal.shouldHave(exactText(newSubTotal));
-    }
-
-    private void validateCartItem(int position, String productName, String productStyle, String productSize, int productAmount, String productPrice)
-    {
-        // selector for product
-        SelenideElement productContainer = $("#product-" + (position - 1));
-
-        // validate product image
-        productContainer.find(".img-thumbnail").shouldBe(visible);
-
-        // validate parameters
-        productContainer.find(".product-name").shouldHave(exactText(productName));
-        productContainer.find(".product-style").shouldHave(exactText(productStyle));
-        productContainer.find(".product-size").shouldHave(exactText(productSize));
-        productContainer.find(".product-unit-price").shouldHave(exactText(productPrice));
-        productContainer.find(".product-count").shouldHave(exactValue(Integer.toString(productAmount)));
-
-        // validate remove and update button
-        productContainer.find(".btn-update-product").shouldBe(visible);
-        productContainer.find(".btn-remove-product").shouldBe(visible);
+            // validate remove and update button
+            productContainer.find(".btn-update-product").shouldBe(visible);
+            productContainer.find(".btn-remove-product").shouldBe(visible);
+        });
     }
 
     @Step("validate '{product}' on the cart page")
-    public void validateCartItem(int position, Product product)
+    public void validateCartItem(Product product)
     {
-        validateCartItem(position, product.getName(), product.getStyle(), product.getSize(), product.getAmount(), product.getUnitPrice());
+        validateCartItem(product.getName(), product.getStyle(), product.getSize(), product.getAmount(), product.getUnitPrice());
     }
 
     @Step("validate '{product}' on the cart page after changing it's quantity")
-    public void validateCartItem(int position, Product product, int productAmount)
+    public void validateCartItem(Product product, int productAmount)
     {
-        validateCartItem(position, product.getName(), product.getStyle(), product.getSize(), productAmount, product.getUnitPrice());
+        validateCartItem(product.getName(), product.getStyle(), product.getSize(), productAmount, product.getUnitPrice());
     }
 
     /// ========== get product data ========== ///
@@ -235,31 +213,66 @@ public class CartPage extends AbstractBrowsingPage
     {
         return new Product(getProductName(position), getProductUnitPrice(position), getProductStyle(position), getProductSize(position), Integer.parseInt(getProductCount(position)));
     }
+    
+    @Step("get the amount of different products in cart")
+    public int getAmountDifferentProducts() 
+    {
+        return $$(".js-cart-product").size();
+    }
 
     /// ========== update product data ========== ///
-
-    @Step("update product count of product on position '{position}' on the cart page to '{amount}'")
-    public void updateProductCount(int position, int amount)
+    
+    private SelenideElement getProductContainerByName(String productName)
     {
-        SelenideElement productContainer = $("#product-" + (position - 1));
-        String priceBeforeProductCountUpdate = productContainer.find(".product-total-unit-price").text();
+        return $$(".product-name").findBy(exactText(productName)).closest(".js-cart-product");
+    }
+
+    @Step("update product count of product with productName '{productName}' on the cart page to '{amount}'")
+    public void updateProductCount(String productName, int amount)
+    {
+        SelenideElement productContainer = getProductContainerByName(productName);
         
+        // get unit product price
+        String productUnitPrice = productContainer.find(".product-unit-price").text();
+
         // type new amount
         productContainer.find(".product-count").setValue(Integer.toString(amount));
-        
+
         // click update button
         productContainer.find(".btn-update-product").click(ClickOptions.usingJavaScript());
         
-        if (position != 1) 
-        {
-            // update product container because it moved to the top
-            productContainer = $("#product-0");
-        }
-        
         // wait for the product price to be updated
-        productContainer.find(".product-total-unit-price").shouldNotHave(exactText(priceBeforeProductCountUpdate));
+        getProductContainerByName(productName).find(".product-total-unit-price").shouldHave(not(exactText(productUnitPrice)), Duration.ofMillis(9000));
     }
 
+    @Step("remove product with product name '{productName}' on the cart page")
+    public void removeProduct(String productName)
+    {
+        SelenideElement productContainer = getProductContainerByName(productName);
+        int productCount = $$(".js-cart-product").size();
+        int productRow = Integer.parseInt(productContainer.find("th").text());
+        
+        // click delete button
+        productContainer.find(".btn-remove-product").click();
+
+        // wait for product deletion modal
+        $("#delete-product-modal .product-name").shouldHave(exactText(productName));
+        
+        // click delete confirmation button
+        $("#button-delete").click();
+        
+        if (productRow == 1 && productCount == 1) 
+        {
+            waitForEmptyCartPage();
+        }
+        else if (productRow > 1)
+        {
+            $$(".js-cart-product").shouldHave(size(productCount - 1));
+            $$(".js-cart-product").last().find("th").shouldHave(exactText(Integer.toString(productCount - 1)));
+            productContainer.shouldNot(exist);
+        }
+    }
+    
     @Step("remove product on position '{position}' on the cart page")
     public void removeProduct(int position)
     {
@@ -269,12 +282,11 @@ public class CartPage extends AbstractBrowsingPage
         // click delete confirmation button
         $("#button-delete").click(ClickOptions.usingJavaScript());
     }
-    
-    @Step("wait for update")
-    public void waitForProductUpdate(String subtotalBeforeUpdate) 
-    {      
-        // wait for subtotal to update
-        subTotal.shouldNotHave(exactText(subtotalBeforeUpdate));
+
+    @Step("wait for empty cart page")
+    public void waitForEmptyCartPage()
+    {
+        $("#error-cart-message").shouldBe(visible);
     }
 
     /// ========== cart page navigation ========== ///

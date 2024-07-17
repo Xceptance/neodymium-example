@@ -15,7 +15,7 @@ public class DeleteUserFlow
         AccountOverviewPage accountOverviewPage = new AccountOverviewPage();
         
         // check if the user is logged in if the login failed
-        if (!homePage.header.userMenu.validateIsLoggedIn()) 
+        if (!homePage.header.userMenu.checkIfUserIsLoggedIn()) 
         {
             var loginPage = homePage.header.userMenu.openLoginPage();
             accountOverviewPage = loginPage.sendLoginForm(user);
