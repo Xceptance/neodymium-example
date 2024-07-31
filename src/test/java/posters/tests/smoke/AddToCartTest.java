@@ -101,7 +101,7 @@ public class AddToCartTest extends AbstractTest
         // validate cart page
         cartPage.validateCartItem(productBeforeUpdate, secondTestDataProduct.getAmount());
         cartPage.validate(shippingCosts, cartPage.header.miniCart.getSubtotal());
-        CartFlow.validateTotalAfterAdd(secondTestDataProduct.getName(), secondTestDataProduct.getSize(), secondTestDataProduct.getStyle(), oldSubtotal3, productBeforeUpdate.getTotalPrice());
+        CartFlow.validateTotalAfterAdd(secondTestDataProduct.getName(), secondTestDataProduct.getSize(), secondTestDataProduct.getStyle(), oldSubtotal3, productBeforeUpdate.calculateTotalPrice());
         cartPage.header.miniCart.validateStructure();
         cartPage.header.miniCart.validateMiniCartItem(productBeforeUpdate, secondTestDataProduct.getAmount(), subtotalAfterUpdate);
 
@@ -149,7 +149,7 @@ public class AddToCartTest extends AbstractTest
         // validate cart page
         cartPage.validateCartItem(productFromCartPageBefore, productFromCartPageAfter.getAmount());
         cartPage.validate(shippingCosts, cartPage.header.miniCart.getSubtotal());
-        CartFlow.validateTotalAfterAdd(firstTestDataProduct.getName(), firstTestDataProduct.getSize(), firstTestDataProduct.getStyle(), oldSubtotal5, productFromCartPageBefore.getTotalPrice());
+        CartFlow.validateTotalAfterAdd(firstTestDataProduct.getName(), firstTestDataProduct.getSize(), firstTestDataProduct.getStyle(), oldSubtotal5, productFromCartPageBefore.calculateTotalPrice());
         cartPage.header.miniCart.validateStructure();
         cartPage.header.miniCart.validateMiniCartItem(productFromCartPageBefore, cartPage.header.miniCart.getTotalCount(), subtotalAfterUpdate);
 

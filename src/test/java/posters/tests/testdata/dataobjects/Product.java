@@ -53,7 +53,7 @@ public class Product
         return Double.parseDouble(PriceHelper.removeCurrency(unitPrice));
     }
 
-    public double getTotalPrice()
+    public double calculateTotalPrice()
     {
         return amount * getUnitPriceDouble();
     }
