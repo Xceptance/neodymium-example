@@ -85,4 +85,13 @@ public class BrowseTestData
     {
         return resultPosition4;
     }
+
+    @Override
+    public String toString()
+    {
+        return "BrowseTestData [topCategory1=" + topCategory1 + ", expectedResultCount1=" + expectedResultCount1 + ", resultPosition1=" + resultPosition1
+               + ", topCategory2=" + topCategory2 + ", expectedResultCount2=" + expectedResultCount2 + ", resultPosition2=" + resultPosition2
+               + ", topCategory3=" + topCategory3 + ", expectedResultCount3=" + expectedResultCount3 + ", resultPosition3=" + resultPosition3
+               + ", topCategory4=" + topCategory4 + ", expectedResultCount4=" + expectedResultCount4 + ", resultPosition4=" + resultPosition4 + "]";
+    }
 }

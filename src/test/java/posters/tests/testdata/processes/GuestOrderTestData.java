@@ -47,4 +47,11 @@ public class GuestOrderTestData
     {
         return creditCard;
     }
+
+    @Override
+    public String toString()
+    {
+        return "GuestOrderTestData [topCategory=" + topCategory + ", product=" + product + ", shippingAddress=" + shippingAddress
+               + ", sameShippingAndBillingAddress=" + sameShippingAndBillingAddress + ", billingAddress=" + billingAddress + ", creditCard=" + creditCard + "]";
+    }
 }

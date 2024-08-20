@@ -15,4 +15,10 @@ public class PaginationTestData
     {
         return expectedResultCount;
     }
+    
+    @Override
+    public String toString()
+    {
+        return "PaginationTestData [topCategory=" + topCategory + ", expectedResultCount=" + expectedResultCount + "]";
+    }
 }

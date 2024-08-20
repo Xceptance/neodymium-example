@@ -15,4 +15,10 @@ public class HeaderTestData
     {
         return resultPosition;
     }
+    
+    @Override
+    public String toString()
+    {
+        return "HeaderTestData [topCategory=" + topCategory + ", resultPosition=" + resultPosition + "]";
+    }
 }

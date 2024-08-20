@@ -15,4 +15,10 @@ public class SearchTestData
     {
         return expectedResultCount;
     }
+    
+    @Override
+    public String toString()
+    {
+        return "SearchTestData [searchTerm=" + searchTerm + ", expectedResultCount=" + expectedResultCount + "]";
+    }
 }

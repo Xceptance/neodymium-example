@@ -62,4 +62,11 @@ public class OrderHistoryTestData
     {
         return creditCard;
     }
+    
+    @Override
+    public String toString()
+    {
+        return "OrderHistoryTestData [user=" + user + ", topCategory1=" + topCategory1 + ", topCategory2=" + topCategory2 + ", topCategory3=" + topCategory3
+            + ", order1=" + order1 + ", order2=" + order2 + ", address=" + address + ", creditCard=" + creditCard + "]";
+    }
 }

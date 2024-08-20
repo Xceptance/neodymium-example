@@ -41,4 +41,11 @@ public class RegisteredOrderTestData
     {
         return creditCard;
     }
+    
+    @Override
+    public String toString()
+    {
+        return "RegisteredOrderTestData [user=" + user + ", topCategory=" + topCategory + ", product=" + product + ", address=" + address + ", creditCard="
+            + creditCard + "]";
+    }
 }

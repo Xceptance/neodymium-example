@@ -38,4 +38,11 @@ public class AddToCartTestData
     {
         return product2;
     }
+    
+    @Override
+    public String toString()
+    {
+        return "AddToCartTestData [topCategory=" + topCategory + ", subCategory=" + subCategory + ", searchTerm=" + searchTerm + ", product1=" + product1
+            + ", product2=" + product2 + "]";
+    }
 }
