@@ -1,0 +1,37 @@
+[
+	{
+		"firstName": "Muhammad Sarosh",
+		"lastName": "Ali",
+		"email": "muhammadsaroshali+student@gmail.com",
+		"password": "vEp34B",
+		"testId": "happy path"
+	},
+	{
+		"firstName": "Muhammad Sarosh",
+		"lastName": "Ali",
+		"email": "muhammadsaroshali+student@gmail.com",
+		"password": "testWrongPassword",
+		"testId": "wrong password"
+	},
+	{
+		"firstName": "Muhammad Sarosh",
+		"lastName": "Ali",
+		"email": "testWrongEmail@email.wrong",
+		"password": "vEp34B",
+		"testId": "wrong password"
+	},
+	{
+		"firstName": "Muhammad Sarosh",
+		"lastName": "Ali",
+		"email": "",
+		"password": "vEp34B",
+		"testId": "missing email"
+	},
+	{
+		"firstName": "Muhammad Sarosh",
+		"lastName": "Ali",
+		"email": "muhammadsaroshali+student@gmail.com",
+		"password": "",
+		"testId": "missing password"
+	}
+]

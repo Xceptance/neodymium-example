@@ -33,51 +33,26 @@ public class HomePage extends AbstractBrowsingPage
     public HomePage isExpectedPage()
     {
         super.isExpectedPage();
-        $("#intro-text-homepage").should(exist);
+        $(".uk-section [src=\"imgs/logo.png\"]").should(exist);
+        $(".uk-margin > .uk-grid .uk-width-3-4").should(exist);
         return this;
+    }
+
+    @Step("validate successful login of user '{firstName}' on home page")
+    public void validateSuccessfulLogin(String firstName, String lastName)
+    {
+        // validate {firstName} in user menu
+        header.userMenu.validateLoggedInUserName(firstName, lastName);
     }
 
     /// ========== validate content homepage ========== ///
 
-    @Step("validate poster slide")
-    public void validatePosterSlide()
-    {
-        for (int i = 1; i <= 4; i++)
-        {
-            slideNavigation.findBy(attribute("aria-label", "Slide " + i)).click(ClickOptions.usingJavaScript());
-            slideHeadline.findBy(exactText(Neodymium.localizedText("homePage.slider." + i))).shouldBe(visible);
-            slideButton.findBy(exactText(Neodymium.localizedText("button.buyHere"))).shouldBe(visible);
-        }
-    }
-
     @Step("validate featured categories")
     public void validateFeaturedCategories()
     {
-        $$(".category-tile-image").shouldHave(size(4));
 
-        for (int i = 1; i <= 4; i++)
-        {
-            featuredCategories.findBy(exactText(Neodymium.localizedText("header.topNavigation." + i + ".title"))).shouldBe(visible);
-        }
     }
 
-    @Step("validate featured products")
-    public void validateFeaturedProducts()
-    {
-        $(".product-display-heading h2").shouldHave(exactText(Neodymium.localizedText("homePage.featuredProducts.headline"))).shouldBe(visible);
-        $$(".card-img-top").shouldHave(size(12));
-
-        for (int i = 1; i <= 12; i++)
-        {
-            SelenideElement productCard = $(".card.product-tile:nth-child(" + i + ")");
-
-            productCard.find(".card-title").shouldHave(exactText(Neodymium.localizedText("homePage.featuredProducts." + i + ".title"))).shouldBe(visible);
-            productCard.find(".product-tile-text").shouldHave(exactText(Neodymium.localizedText("homePage.featuredProducts." + i + ".description")))
-                       .shouldBe(visible);
-            productCard.find(".product-tile-price").shouldBe(visible);
-            productCard.find(".btn").shouldHave(exactText(Neodymium.localizedText("button.buyHere"))).shouldBe(visible);
-        }
-    }
 
     @Override
     @Step("validate structure home page")
@@ -88,17 +63,9 @@ public class HomePage extends AbstractBrowsingPage
         // validate sale banner
         saleBanner.validateStructure();
 
-        // validate poster slide
-        validatePosterSlide();
-
         // validate intro
         $("#intro-text-homepage").shouldHave(exactText(Neodymium.localizedText("homePage.intro"))).shouldBe(visible);
 
-        // validate featured categories
-        validateFeaturedCategories();
-
-        // validate featured products
-        validateFeaturedProducts();
 
         // validate shop all products button
         $(".btn-shop-all").shouldHave(exactText(Neodymium.localizedText("button.shopAllProducts"))).shouldBe(visible);

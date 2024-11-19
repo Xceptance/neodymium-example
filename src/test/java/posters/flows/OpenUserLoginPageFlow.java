@@ -6,18 +6,17 @@ import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.UserLoginPage;
-import posters.pageobjects.pages.user.LoginPage;
 
-public class OpenLoginPageFlow
+public class OpenUserLoginPageFlow
 {
     @Step("open login page flow")
-    public static LoginPage flow()
+    public static UserLoginPage flow()
     {
         // initialize the session and go to home page
-       // var homePage = OpenHomePageFlow.flow();
+        // var homePage = OpenHomePageFlow.flow();
 
         // open login page and check for expected page
         open(Neodymium.configuration().url());
-        return new LoginPage().isExpectedPage();
+        return new UserLoginPage().isExpectedPage();
     }
 }

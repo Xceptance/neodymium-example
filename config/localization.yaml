@@ -4,8 +4,8 @@ default:
         buyHere: "Buy here"
         shopAllProducts: "Shop All Products"
         viewCart: "view cart"
-        createAccount: "Create account"
-        signIn: "Sign In"
+        createAccount: " Account erstellen"
+        signIn: " Anmelden"
         accountOverview: "My Account"
         logout: "Logout"
         addToCart: "Add to cart"
@@ -143,9 +143,11 @@ default:
     errorMessage:
         noProductsFound: "Sorry! No results found matching your search. Please try again."
         emptyCart: "Your cart is empty. Continue shopping."
-        errorFalseLogin: "The email address or password is wrong. Please try again."
-        emailDoesNotExist: "The email address you entered doesn't exist. Please try again."
-        incorrectPassword: "The password you entered is incorrect. Please try again."
+        errorFalseLogin: "Fehler: Benutzername oder Paßwort falsch. Mit dieser Kombination ist kein Login möglich. Haben Sie ihr Paßwort vergessen? Dann nutzen Sie die Paßwort vergessen Funktion."
+        errorMissingEmail: "Ihre Eingaben waren fehlerhaft oder unvollständig. Bitte prüfen Sie alle Pflichtfelder. Hinweis: TU-E-Mail "
+        errorMissingPassword: "Ihre Eingaben waren fehlerhaft oder unvollständig. Bitte prüfen Sie alle Pflichtfelder. Hinweis: Paßwort "
+        emailDoesNotExist: "Fehler: Benutzername oder Paßwort falsch. Mit dieser Kombination ist kein Login möglich. Haben Sie ihr Paßwort vergessen? Dann nutzen Sie die Paßwort vergessen Funktion."
+        incorrectPassword: "Fehler: Benutzername oder Paßwort falsch. Mit dieser Kombination ist kein Login möglich. Haben Sie ihr Paßwort vergessen? Dann nutzen Sie die Paßwort vergessen Funktion."
         
     header:
         disclaimer: "This is a demo application. Orders will not be fulfilled. Do not enter ANY personal and sensitive data!"
@@ -230,52 +232,17 @@ default:
             number: "6"
             name: "COMPLETED"
             
-    homePage:
-        title: "The Poster Demo Store - The Ultimate Online Shop"
+    homePage: 
+        title: "TESTSYSTEM-Registrierungsportal Automatisierungstechnik @ TU-Ilmenau"
+        heading: "Fakultät Informatik und Automatisierung"
+        welcomeMsg: "Welcome Mr.  "
         slider:
             "1": "NORTH BOSTON"
             "2": "BOSTON SUNSET"
             "3": "BRYCE NATIONAL PARK, UTAH I"
             "4": "BRYCE NATIONAL PARK, UTAH II"
         intro: "Began with a simple idea \"SHATATATATA!\" - M. Scott"
-        featuredProducts:
-            headline: "Hot Products"
-            "1": 
-                title: "Blue Morpho Butterfly"
-                description: "A beautiful blue and black butterfly on a leaf."
-            "2":
-                title: "Snowdrop Anemone"
-                description: "A blossom in all its details."
-            "3":
-                title: "Cheese Varieties"
-                description: "A symbol of French culinary."
-            "4":
-                title: "Fir Covered with Snow"
-                description: "A very small fir tilted to the side, covered with snow."
-            "5":
-                title: "Stuffed Turkey"
-                description: "The best way to celebrate Thanksgiving."
-            "6":
-                title: "Fruit Tart with Cocoa"
-                description: "An aesthetic fruit tart with cocoa powder."
-            "7":
-                title: "Air Lingus Airbus A320"
-                description: "Hail to Saint Patrick!"
-            "8":
-                title: "IFA H6 Green"
-                description: "A bright green truck from old times."
-            "9":
-                title: "Third Avenue Railway System"
-                description: "The old railway system of NYC."
-            "10":
-                title: "Old NYC Subway"
-                description: "Nothing lasts forever."
-            "11":
-                title: "New Years Fireworks III"
-                description: "A fantastic skycolor change!"
-            "12":
-                title: "Linnaean Garden and Museum Sweden"
-                description: "A perfect symmetry."
+
                 
     categoryPage:
         searchResultText: "Results for your search: "
@@ -319,9 +286,13 @@ default:
         thankYouMessage: "Thank you for your purchase, your order is being processed."
         
     loginPage:
-        title: "Sign-In"
+        title: "Anmelden"
+        heading: "Fakultät Informatik und Automatisierung"
         newCustomer: "New customer"
-        createNewAccount: "Create new Account"
+        createNewAccount: " Account erstellen"
+        registerLabLinkText: " Registrierung für ein Praktikum"
+        registerProjectLinkText: " Meine Projekte (Anmeldung)"
+        forgotPassword: "Paßwort vergessen?"
             
     registerPage:
         title: "Create an account"

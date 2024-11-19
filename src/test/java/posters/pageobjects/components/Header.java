@@ -11,13 +11,10 @@ import io.qameta.allure.Step;
 
 public class Header extends AbstractComponent
 {
-    public Search search = new Search();
 
-    public TopNavigation topNav = new TopNavigation();
 
     public UserMenu userMenu = new UserMenu();
     
-    public MiniCart miniCart = new MiniCart();
         
     @Override
     @Step("validate availability header")
@@ -31,9 +28,6 @@ public class Header extends AbstractComponent
     {
         $("#top-demo-disclaimer").shouldHave(exactText(Neodymium.localizedText("header.disclaimer"))).shouldBe(visible);
         $("#header-brand").shouldBe(visible);
-        search.validateStructure();
-        topNav.validateStructure();
         userMenu.validateStructure();
-        miniCart.validateStructure();
     }
 }

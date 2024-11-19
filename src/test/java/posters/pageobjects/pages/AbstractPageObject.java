@@ -6,7 +6,7 @@ public abstract class AbstractPageObject
 {
     public Title title = new Title();
 
-    public AbstractPageObject isExpectedPage()
+    public AbstractPageObject isExpectedPage() 
     {
         return this;
     }

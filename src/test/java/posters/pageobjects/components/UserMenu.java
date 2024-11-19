@@ -14,43 +14,26 @@ import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.HomePage;
-import posters.pageobjects.pages.user.AccountOverviewPage;
+import posters.pageobjects.pages.browsing.UserLoginPage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.pageobjects.pages.user.RegisterPage;
 
 public class UserMenu extends AbstractComponent
 {
-    private SelenideElement userMenu = $("#user-menu");
-
-    private SelenideElement showUserMenu = $("#show-user-menu");
+    private SelenideElement userMenu = $(".rightTopMenu#portalHeader3");
 
     @Override
     @Step("ensure availability user menu")
     public void isComponentAvailable()
     {
-        showUserMenu.should(exist);
+        userMenu.should(exist);
     }
 
     /// ========== user menu navigation ========== ///
 
-    @Step("open user menu")
-    public void openUserMenu()
-    {
-        showUserMenu.click(ClickOptions.usingJavaScript());
-        userMenu.shouldBe(visible, Duration.ofMillis(9000));
-    }
-
-    @Step("close user menu")
-    public void closeUserMenu()
-    {
-        $("#top-demo-disclaimer").click(ClickOptions.usingJavaScript());
-        userMenu.shouldNotBe(visible, Duration.ofMillis(9000));
-    }
-
     @Step("open register page from user menu")
     public RegisterPage openRegisterPage()
     {
-        openUserMenu();
         userMenu.find("#go-to-registration").click(ClickOptions.usingJavaScript());
         return new RegisterPage().isExpectedPage();
     }
@@ -58,23 +41,22 @@ public class UserMenu extends AbstractComponent
     @Step("open login page from user menu")
     public LoginPage openLoginPage()
     {
-        openUserMenu();
         userMenu.find("#go-to-login").click(ClickOptions.usingJavaScript());
         return new LoginPage().isExpectedPage();
     }
 
-    @Step("open account page from user menu")
-    public AccountOverviewPage openAccountOverviewPage()
+    @Step("open login page from user menu")
+    public UserLoginPage openUserLoginPage()
     {
-        openUserMenu();
-        userMenu.find("#go-to-account-overview").click(ClickOptions.usingJavaScript());
-        return new AccountOverviewPage().isExpectedPage();
+        userMenu.find("#go-to-login").click(ClickOptions.usingJavaScript());
+        return new UserLoginPage().isExpectedPage();
     }
+
+
 
     @Step("perform logout")
     public HomePage logout()
     {
-        openUserMenu();
         userMenu.find("#go-to-logout").click(ClickOptions.usingJavaScript());
         return new HomePage().isExpectedPage();
     }
@@ -84,52 +66,30 @@ public class UserMenu extends AbstractComponent
     @Step("validate that nobody is logged in")
     public void checkIfNoUserIsLoggedIn()
     {
-        userMenu.find("#go-to-login").exists();
+        userMenu.find("#loginWin").exists();
     }
 
     @Step("validate that somebody is logged in")
     public boolean checkIfUserIsLoggedIn()
     {
-        return userMenu.find(".first-name").exists();
+        return userMenu.find("#welcomeMsg").exists();
     }
 
     @Step("validate that '{firstName}' is displayed in user menu")
-    public void validateLoggedInUserName(String firstName)
+    public void validateLoggedInUserName(String firstName, String lastName)
     {
-        openUserMenu();
-        userMenu.find(".first-name").shouldHave(exactText(firstName));
-        closeUserMenu();
+        userMenu.find("#welcomeMsg").shouldHave(exactText(Neodymium.localizedText("homePage.welcomeMsg")+firstName+" "+lastName));
     }
 
     @Step("validate logged in user menu")
     public void validateStructure()
     {
-        openUserMenu();
 
-        // validate user icon
-        $(".icon-user2").shouldBe(visible);
+        // validate user menu
+        $(".rightTopMenu#portalHeader3").shouldBe(visible);
+        $("#welcomeMsg").shouldBe(visible);
+        userMenu.find("[uk-icon=\"user\"]").closest("a").shouldHave(exactText(" My profile")).shouldBe(visible);
+        userMenu.find("[uk-icon=\"lock\"]").closest("a").shouldHave(exactText(" Logout")).shouldBe(visible);
 
-        // validate title
-        userMenu.find(".header-user-menu-heading").shouldHave(text(Neodymium.localizedText("header.userMenu.title"))).shouldBe(visible);
-
-        // validate buttons
-        if (checkIfUserIsLoggedIn())
-        {
-            // if customer is logged in
-            userMenu.find("#go-to-account-overview").shouldHave(exactText(Neodymium.localizedText("button.accountOverview"))).shouldBe(visible);
-            userMenu.find("#go-to-logout").shouldHave(exactText(Neodymium.localizedText("button.logout"))).shouldBe(visible);
-            userMenu.find(".icon-info-large").shouldBe(visible);
-            userMenu.find(".icon-log-out").shouldBe(visible);
-        }
-        else
-        {
-            // if customer is not logged in
-            userMenu.find("#go-to-registration").shouldHave(exactText(Neodymium.localizedText("button.createAccount"))).shouldBe(visible);
-            userMenu.find("#go-to-login").shouldHave(exactText(Neodymium.localizedText("button.signIn"))).shouldBe(visible);
-            userMenu.find(".icon-user-add-outline").shouldBe(visible);
-            userMenu.find(".icon-log-in").shouldBe(visible);
-        }
-
-        closeUserMenu();
     }
 }

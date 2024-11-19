@@ -3,6 +3,7 @@ package posters.pageobjects.pages.user;
 import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.name;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -15,27 +16,36 @@ import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.tests.testdata.dataobjects.User;
+import posters.pageobjects.components.LoginHeader;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.HomePage;
 
 public class LoginPage extends AbstractBrowsingPage
 {
-    private SelenideElement loginForm = $("#form-login");
+    public LoginHeader loginHeader = new LoginHeader();
 
-    private SelenideElement emailField = $("#email");
+    private SelenideElement loginForm = $("#loginWin .uk-card");
 
-    private SelenideElement passwordField = $("#password");
+    private SelenideElement emailField = $("#login_email");
 
-    private SelenideElement signInButton = $("#btn-sign-in");
+    private SelenideElement passwordField = $("#login_pwd");
 
-    private SelenideElement registerLink = $("#link-register");
+    private SelenideElement language = $(".uk-margin [uk-icon=\"icon: world\"]");
 
+    private SelenideElement signInButton = $("#loginForm button");
+
+    private SelenideElement registerButton = $("#loginWin .uk-width-1-1 > button");
+    private SelenideElement registerLabLink = $("#uk-tab-66-tab-0");
+    private SelenideElement registerProjectLink = $("#uk-tab-66-tab-1");
+    
     @Override
     @Step("ensure this is a login page")
     public LoginPage isExpectedPage()
     {
         super.isExpectedPage();
         loginForm.should(exist);
+        $(".uk-section [src=\"imgs/logo.png\"]").should(exist);
+        $(".uk-margin > .uk-grid .uk-width-3-4").should(exist);
         return this;
     }
 
@@ -45,28 +55,28 @@ public class LoginPage extends AbstractBrowsingPage
     @Step("validate login page structure")
     public void validateStructure()
     {
-        super.validateStructure();
+        loginHeader.validateStructure();
 
         // validate title
-        loginForm.find("legend").shouldHave(exactText(Neodymium.localizedText("loginPage.title"))).shouldBe(visible);
+       $("#uk-tab-40-tabpanel-0 > h4").shouldHave(exactText(Neodymium.localizedText("loginPage.title"))).shouldBe(visible);
         
-        // validate fill in headlines
-        //$$("#formLogin .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.email"))).shouldBe(visible);
-        $$("#form-login .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.password"))).shouldBe(visible);
+       //input fields and language
+       passwordField.should(exist);
+       emailField.should(exist);
+       language.should(exist);
+
+        // forgotten password
+        $("#loginForm a").shouldHave(exactText(Neodymium.localizedText("loginPage.forgotPassword"))).shouldBe(visible);
         
-        // validate fill in placeholder
-        emailField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.email")))).shouldBe(visible);
-        passwordField.shouldHave(attribute("placeholder", (Neodymium.localizedText("fillIn.placeholder.password")))).shouldBe(visible);
-        
-        // validate "required fields" string
-        $(".req-field").shouldHave(exactText(Neodymium.localizedText("fillIn.inputDescription.requiredFields"))).shouldBe(visible);
-      
         // validate sign in button
         signInButton.shouldHave(exactText(Neodymium.localizedText("button.signIn")));
-        
-        // validate new account creation
-        $(".header-container").shouldHave(exactText(Neodymium.localizedText("loginPage.newCustomer")));
-        registerLink.shouldHave(exactText(Neodymium.localizedText("loginPage.createNewAccount")));
+        registerButton.shouldHave(exactText(Neodymium.localizedText("button.createAccount")));
+
+        // validate links
+        registerLabLink.should(exist).click();
+        registerLabLink.shouldHave(exactText(Neodymium.localizedText("loginPage.registerLabLinkText")));
+        registerProjectLink.should(exist).click();
+        registerProjectLink.shouldHave(exactText(Neodymium.localizedText("loginPage.registerProjectLinkText")));
     }
     
     @Step("validate successful registration message")
@@ -81,13 +91,27 @@ public class LoginPage extends AbstractBrowsingPage
         errorMessage.validateErrorMessage(Neodymium.localizedText("errorMessage.errorFalseLogin"));
         Assert.assertEquals(emailField.val(), email);
     }
+
+    @Step("validate missing email or password for login error message")
+    public void validateMissingLoginInfo(String email)
+    {
+        if(email.isEmpty())
+        {
+            errorMessage.validateErrorMessage(Neodymium.localizedText("errorMessage.errorMissingEmail"));
+            Assert.assertEquals(emailField.val(), email);
+        }
+        else
+        {
+            errorMessage.validateErrorMessage(Neodymium.localizedText("errorMessage.errorMissingPassword"));
+        }
+    }
     
     /// ========== login page navigation ========== ///
     
     @Step("open register page from login page")
     public RegisterPage openRegister()
     {
-        registerLink.click(ClickOptions.usingJavaScript());
+        registerLabLink.click(ClickOptions.usingJavaScript());
         return new RegisterPage().isExpectedPage();
     }
     
@@ -110,10 +134,10 @@ public class LoginPage extends AbstractBrowsingPage
     }
     
     @Step("fill and send login form with valid user '{user}'")
-    public AccountOverviewPage sendLoginForm(User user)
+    public HomePage sendLoginForm(User user)
     {
         sendFormWithData(user.getEmail(), user.getPassword());
-        return new AccountOverviewPage().isExpectedPage();
+        return new HomePage().isExpectedPage();
     }
     
     @Step("fill and send login form with invalid user '{user}'")

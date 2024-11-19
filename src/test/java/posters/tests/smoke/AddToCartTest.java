@@ -63,12 +63,9 @@ public class AddToCartTest extends AbstractTest
         // store old subtotal
         final String oldSubtotal2 = cartPage.header.miniCart.getSubtotal();
 
-        // go to search results page via search
-        var searchResultPage = cartPage.header.search.searchResult(addToCartTestData.getSearchTerm());
 
         // go to product detail page, add and store displayed product
         final var secondTestDataProduct = addToCartTestData.getProduct2();
-        productDetailPage = searchResultPage.clickProductByName(secondTestDataProduct.getName());
         productDetailPage.addToCart(secondTestDataProduct.getSize(), secondTestDataProduct.getStyle());
         final var product2 = productDetailPage.getProduct();
 

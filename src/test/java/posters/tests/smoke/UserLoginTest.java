@@ -11,6 +11,8 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import posters.flows.OpenLoginPageFlow;
+import posters.flows.OpenUserLoginPageFlow;
+import posters.pageobjects.pages.browsing.UserLoginPage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.tests.AbstractTest;
 import posters.tests.testdata.dataobjects.User;
@@ -19,7 +21,7 @@ import posters.tests.testdata.dataobjects.User;
 @Severity(SeverityLevel.NORMAL)
 @Tag("functionality")
 @Tag("registered")
-public class LoginTest extends AbstractTest
+public class UserLoginTest extends AbstractTest
 {
     @DataItem
     private User user;
@@ -39,7 +41,7 @@ public class LoginTest extends AbstractTest
         loginPage.validateStructure();
 
         // validate that nobody is logged in
-        loginPage.header.userMenu.checkIfNoUserIsLoggedIn();
+        loginPage.loginHeader.userMenu.checkIfNoUserIsLoggedIn();
 
         return new LoginPage().isExpectedPage();
     }
@@ -50,7 +52,7 @@ public class LoginTest extends AbstractTest
     {
         var homePage = loginPage.sendLoginForm(user);
         homePage.header.userMenu.validateStructure();
-        //homePage.validateSuccessfulLogin(user.getFirstName());
+        homePage.validateSuccessfulLogin(user.getFirstName(), user.getLastName());
     }
 
     @NeodymiumTest
@@ -75,6 +77,7 @@ public class LoginTest extends AbstractTest
     public void testLoginWithoutRequiredFields()
     {
         loginPage.sendFalseLoginForm(user);
-        loginPage.errorMessage.validateNoErrorMessageOnPage();
+        loginPage.validateMissingLoginInfo(user.getEmail());
+        //loginPage.errorMessage.validateNoErrorMessageOnPage();
     }
 }
