@@ -1,7 +1,10 @@
 package posters.tests.smoke;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Tag;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.xceptance.neodymium.common.testdata.DataItem;
 import com.xceptance.neodymium.common.testdata.DataSet;
 import com.xceptance.neodymium.junit5.NeodymiumTest;
@@ -49,5 +52,7 @@ public class SearchTest extends AbstractTest
 
         // go to homepage
         homePage = noHitsPage.openHomePage();
+        Selenide.$("#not-visible").shouldBe(Condition.visible);
+        Assert.fail("Should fail to test full page screenshots");
     }
 }

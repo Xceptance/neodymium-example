@@ -30,7 +30,7 @@
     <surefire.version>3.0.0-M5</surefire.version>
     <aspectj.version>1.9.22</aspectj.version>
     <allure.version>2.12.0</allure.version>
-    <neodymium.version>5.0.2</neodymium.version>
+    <neodymium.version>5.1.1</neodymium.version>
     <xcmailr.version>1.1.3</xcmailr.version>
     <maven.javadoc.version>3.2.0</maven.javadoc.version>
     <log4j.version>2.23.1</log4j.version>
