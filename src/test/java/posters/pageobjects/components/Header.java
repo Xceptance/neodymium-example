@@ -1,29 +1,39 @@
 package posters.pageobjects.components;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-
+import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-
+import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
+
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.$;
 
 public class Header extends AbstractComponent
 {
+
+    private SelenideElement header = $("#header-navigation-bar");
+
     public Search search = new Search();
 
     public TopNavigation topNav = new TopNavigation();
 
     public UserMenu userMenu = new UserMenu();
-    
+
     public MiniCart miniCart = new MiniCart();
-        
+
     @Override
     @Step("validate availability header")
-    public void isComponentAvailable()
+    public void ensureComponentAvailable()
     {
-        $("#header-navigation-bar").should(exist);
+        header.should(exist);
+    }
+
+    @Override
+    @Step("check availability of header")
+    public boolean isAvailable()
+    {
+        SelenideAddons.optionalWaitUntilCondition(header, exist);
+        return header.exists();
     }
 
     @Step("validate header")

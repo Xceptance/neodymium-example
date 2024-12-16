@@ -1,14 +1,12 @@
 package posters.pageobjects.pages.browsing;
 
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.matchText;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-
 import com.codeborne.selenide.SelenideElement;
-
+import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.components.Pagination;
+
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.$;
 
 public class CategoryPage extends AbstractProductListingPage
 {
@@ -18,11 +16,19 @@ public class CategoryPage extends AbstractProductListingPage
 
     @Override
     @Step("ensure this is a category page")
-    public CategoryPage isExpectedPage()
+    public CategoryPage reached()
     {
-        super.isExpectedPage();
+        super.reached();
         titleCategoryName.should(exist);
         return this;
+    }
+
+    @Override
+    @Step("check if this is a category page")
+    public boolean isExpectedPage()
+    {
+        SelenideAddons.optionalWaitUntilCondition(titleCategoryName, exist);
+        return titleCategoryName.exists();
     }
 
     @Override
@@ -33,14 +39,15 @@ public class CategoryPage extends AbstractProductListingPage
     }
 
     /**
-     * @param categoryName name of specific category of top navigation
+     * @param categoryName
+     *     name of specific category of top navigation
      */
     @Step("validate category name '{categoryName}' on category page")
     public void validateHeadline(String categoryName)
     {
         titleCategoryName.should(matchText(categoryName)).shouldBe(visible);
     }
-    
+
     @Step("validate search results page of search term '{searchTerm}'")
     public void validate(String searchTerm, int expectedResultCount)
     {

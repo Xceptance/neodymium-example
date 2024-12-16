@@ -1,24 +1,35 @@
 package posters.pageobjects.components;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import com.codeborne.selenide.ClickOptions;
+import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Neodymium;
+import com.xceptance.neodymium.util.SelenideAddons;
+import io.qameta.allure.Step;
 
 import java.time.Duration;
 
-import com.codeborne.selenide.ClickOptions;
-import com.xceptance.neodymium.util.Neodymium;
-
-import io.qameta.allure.Step;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class SaleBanner extends AbstractComponent
 {
+
+    private SelenideElement saleCarousel = $("#carousel-sale");
+
     @Override
-    public void isComponentAvailable()
+    @Step("check availability of sale banner")
+    public void ensureComponentAvailable()
     {
-        $("#carousel-sale").should(exist);
+        saleCarousel.should(exist);
+    }
+
+    @Override
+    @Step("check availability of sale banner")
+    public boolean isAvailable()
+    {
+        SelenideAddons.optionalWaitUntilCondition(saleCarousel, exist);
+        return saleCarousel.exists();
     }
 
     private void validateSaleBanner(String text)

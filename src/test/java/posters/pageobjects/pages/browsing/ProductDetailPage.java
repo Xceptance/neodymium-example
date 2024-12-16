@@ -1,20 +1,16 @@
 package posters.pageobjects.pages.browsing;
 
-import static com.codeborne.selenide.Condition.attribute;
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.matchText;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-
+import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.tests.testdata.dataobjects.Product;
+
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class ProductDetailPage extends AbstractBrowsingPage
 {
@@ -30,11 +26,19 @@ public class ProductDetailPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a product detail page")
-    public ProductDetailPage isExpectedPage()
+    public ProductDetailPage reached()
     {
-        super.isExpectedPage();
+        super.reached();
         productName.should(exist);
         return this;
+    }
+
+    @Override
+    @Step("check if this is a product detail page")
+    public boolean isExpectedPage()
+    {
+        SelenideAddons.optionalWaitUntilCondition(productName, exist);
+        return productName.exists();
     }
 
     /// ========== validate content product detail page ========== ///
@@ -142,17 +146,17 @@ public class ProductDetailPage extends AbstractBrowsingPage
         // save product price and size before updating
         String productPriceBeforeUpdate = productPrice.text();
         String currentlySelectedSizeOption = productSize.getSelectedOptionText();
-        
+
         // set style and size
         setSize(size);
         setStyle(style);
 
         // wait for product price to be updated
-        if (!size.equals(currentlySelectedSizeOption)) 
+        if (!size.equals(currentlySelectedSizeOption))
         {
             productPrice.shouldNotHave(exactText(productPriceBeforeUpdate));
         }
-        
+
         clickAddToCartButton();
     }
 
@@ -194,6 +198,6 @@ public class ProductDetailPage extends AbstractBrowsingPage
     public HomePage openHomePage()
     {
         $("#header-brand").click(ClickOptions.usingJavaScript());
-        return new HomePage().isExpectedPage();
+        return new HomePage().reached();
     }
 }

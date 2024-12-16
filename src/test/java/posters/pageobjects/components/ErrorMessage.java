@@ -1,12 +1,11 @@
 package posters.pageobjects.components;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-
 import com.codeborne.selenide.SelenideElement;
-
+import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
+
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.$;
 
 public class ErrorMessage extends AbstractComponent
 {
@@ -14,11 +13,19 @@ public class ErrorMessage extends AbstractComponent
 
     @Override
     @Step("ensure availability error message")
-    public void isComponentAvailable()
+    public void ensureComponentAvailable()
     {
         errorMessage.shouldBe(visible);
     }
-    
+
+    @Override
+    @Step("check availability of error message")
+    public boolean isAvailable()
+    {
+        SelenideAddons.optionalWaitUntilCondition(errorMessage, exist);
+        return errorMessage.exists();
+    }
+
     @Step("validate visibility of error message '{message}'")
     public void validateErrorMessage(String message)
     {

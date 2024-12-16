@@ -1,12 +1,11 @@
 package posters.flows;
 
-import static com.codeborne.selenide.Selenide.clearBrowserCookies;
-import static com.codeborne.selenide.Selenide.open;
-
 import com.xceptance.neodymium.util.Neodymium;
-
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.HomePage;
+
+import static com.codeborne.selenide.Selenide.clearBrowserCookies;
+import static com.codeborne.selenide.Selenide.open;
 
 public class OpenHomePageFlow
 {
@@ -18,6 +17,6 @@ public class OpenHomePageFlow
 
         // open home page
         open(Neodymium.configuration().url());
-        return new HomePage().isExpectedPage();
+        return new HomePage().reached();
     }
 }

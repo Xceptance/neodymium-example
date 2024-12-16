@@ -1,29 +1,39 @@
 package posters.pageobjects.pages.user;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-
+import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-
+import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.components.AddressForm;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.$;
+
 public class AddNewBillingAddressPage extends AbstractBrowsingPage
-{        
+{
+
+    private SelenideElement billingAddressForm = $("#form-add-bill-addr");
+
     public AddressForm addressForm = new AddressForm();
 
     @Override
-    @Step("ensure this is a add new billing address page")
-    public AddNewBillingAddressPage isExpectedPage()
+    @Step("ensure this is an add new billing address page")
+    public AddNewBillingAddressPage reached()
     {
-        super.isExpectedPage();
-        $("#form-add-bill-addr").should(exist);
+        super.reached();
+        billingAddressForm.should(exist);
         return this;
     }
-    
+
+    @Override
+    @Step("check if this is an add new billing address page")
+    public boolean isExpectedPage()
+    {
+        SelenideAddons.optionalWaitUntilCondition(billingAddressForm, exist);
+        return billingAddressForm.exists();
+    }
+
     @Override
     @Step("validate add new billing address page structure")
     public void validateStructure()
@@ -32,7 +42,7 @@ public class AddNewBillingAddressPage extends AbstractBrowsingPage
 
         // validate title
         $(".h2").shouldHave(exactText(Neodymium.localizedText("addNewBillingAddressPage.title"))).shouldBe(visible);
-        
+
         // validate address form
         addressForm.validateStructure();
 

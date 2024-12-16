@@ -1,34 +1,23 @@
 package posters.pageobjects.pages.checkout;
 
-import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.exactValue;
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.not;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-
-import java.time.Duration;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import com.codeborne.selenide.CheckResult;
-import com.codeborne.selenide.ClickOptions;
-import com.codeborne.selenide.Driver;
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebElementCondition;
+import com.codeborne.selenide.*;
 import com.xceptance.neodymium.util.Neodymium;
 import com.xceptance.neodymium.util.SelenideAddons;
-
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.utility.PriceHelper;
 import posters.tests.testdata.dataobjects.Product;
+
+import java.time.Duration;
+
+import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class CartPage extends AbstractBrowsingPage
 {
@@ -42,11 +31,19 @@ public class CartPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a cart page")
-    public CartPage isExpectedPage()
+    public CartPage reached()
     {
-        super.isExpectedPage();
+        super.reached();
         title.shouldBe(visible);
         return this;
+    }
+
+    @Override
+    @Step("check if this is a cart page")
+    public boolean isExpectedPage()
+    {
+        SelenideAddons.optionalWaitUntilCondition(title, visible);
+        return title.isDisplayed();
     }
 
     /// ========== validate content cart page ========== ///
@@ -124,7 +121,7 @@ public class CartPage extends AbstractBrowsingPage
             // selector for product
             SelenideElement productContainer = $$(".js-cart-product").shouldHave(sizeGreaterThan(0))
                                                                      .findBy(new WebElementCondition("has name " + productName + ", style " + productStyle
-                                                                                                     + " and size " + productSize)
+                                                                                                         + " and size " + productSize)
                                                                      {
                                                                          @Override
                                                                          public CheckResult check(Driver driver, WebElement element)
@@ -211,17 +208,18 @@ public class CartPage extends AbstractBrowsingPage
     @Step("get product from line item on position '{position}' on the cart page")
     public Product getProduct(int position)
     {
-        return new Product(getProductName(position), getProductUnitPrice(position), getProductStyle(position), getProductSize(position), Integer.parseInt(getProductCount(position)));
+        return new Product(getProductName(position), getProductUnitPrice(position), getProductStyle(position), getProductSize(position),
+                           Integer.parseInt(getProductCount(position)));
     }
-    
+
     @Step("get the amount of different products in cart")
-    public int getAmountDifferentProducts() 
+    public int getAmountDifferentProducts()
     {
         return $$(".js-cart-product").size();
     }
 
     /// ========== update product data ========== ///
-    
+
     private SelenideElement getProductContainerByName(String productName)
     {
         return $$(".product-name").findBy(exactText(productName)).closest(".js-cart-product");
@@ -231,7 +229,7 @@ public class CartPage extends AbstractBrowsingPage
     public void updateProductCount(String productName, int amount)
     {
         SelenideElement productContainer = getProductContainerByName(productName);
-        
+
         // get unit product price
         String productUnitPrice = productContainer.find(".product-unit-price").text();
 
@@ -240,7 +238,7 @@ public class CartPage extends AbstractBrowsingPage
 
         // click update button
         productContainer.find(".btn-update-product").click(ClickOptions.usingJavaScript());
-        
+
         // wait for the product price to be updated
         getProductContainerByName(productName).find(".product-total-unit-price").shouldHave(not(exactText(productUnitPrice)), Duration.ofMillis(9000));
     }
@@ -251,17 +249,17 @@ public class CartPage extends AbstractBrowsingPage
         SelenideElement productContainer = getProductContainerByName(productName);
         int productCount = $$(".js-cart-product").size();
         int productRow = Integer.parseInt(productContainer.find("th").text());
-        
+
         // click delete button
         productContainer.find(".btn-remove-product").click();
 
         // wait for product deletion modal
         $("#delete-product-modal .product-name").shouldHave(exactText(productName));
-        
+
         // click delete confirmation button
         $("#button-delete").click();
-        
-        if (productRow == 1 && productCount == 1) 
+
+        if (productRow == 1 && productCount == 1)
         {
             waitForEmptyCartPage();
         }
@@ -272,7 +270,7 @@ public class CartPage extends AbstractBrowsingPage
             productContainer.shouldNot(exist);
         }
     }
-    
+
     @Step("remove product on position '{position}' on the cart page")
     public void removeProduct(int position)
     {
@@ -295,20 +293,20 @@ public class CartPage extends AbstractBrowsingPage
     public HomePage openHomePage()
     {
         $("#header-brand").click(ClickOptions.usingJavaScript());
-        return new HomePage().isExpectedPage();
+        return new HomePage().reached();
     }
 
     @Step("open guest shipping address from the cart page")
     public GuestShippingAddressPage openGuestShippingAddressPage()
     {
         checkoutButton.click(ClickOptions.usingJavaScript());
-        return new GuestShippingAddressPage().isExpectedPage();
+        return new GuestShippingAddressPage().reached();
     }
 
     @Step("open returning customer shipping address from the cart page")
     public ReturningCustomerShippingAddressPage openReturningCustomerShippingAddressPage()
     {
         checkoutButton.click(ClickOptions.usingJavaScript());
-        return new ReturningCustomerShippingAddressPage().isExpectedPage();
+        return new ReturningCustomerShippingAddressPage().reached();
     }
 }

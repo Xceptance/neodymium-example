@@ -1,22 +1,19 @@
 package posters.pageobjects.components;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-
-import java.time.Duration;
-
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-
+import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.user.AccountOverviewPage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.pageobjects.pages.user.RegisterPage;
+
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.$;
 
 public class UserMenu extends AbstractComponent
 {
@@ -26,9 +23,17 @@ public class UserMenu extends AbstractComponent
 
     @Override
     @Step("ensure availability user menu")
-    public void isComponentAvailable()
+    public void ensureComponentAvailable()
     {
         showUserMenu.should(exist);
+    }
+
+    @Override
+    @Step("check availability of user menu")
+    public boolean isAvailable()
+    {
+        SelenideAddons.optionalWaitUntilCondition(showUserMenu, exist);
+        return showUserMenu.exists();
     }
 
     /// ========== user menu navigation ========== ///
@@ -52,7 +57,7 @@ public class UserMenu extends AbstractComponent
     {
         openUserMenu();
         userMenu.find("#go-to-registration").click(ClickOptions.usingJavaScript());
-        return new RegisterPage().isExpectedPage();
+        return new RegisterPage().reached();
     }
 
     @Step("open login page from user menu")
@@ -60,7 +65,7 @@ public class UserMenu extends AbstractComponent
     {
         openUserMenu();
         userMenu.find("#go-to-login").click(ClickOptions.usingJavaScript());
-        return new LoginPage().isExpectedPage();
+        return new LoginPage().reached();
     }
 
     @Step("open account page from user menu")
@@ -68,7 +73,7 @@ public class UserMenu extends AbstractComponent
     {
         openUserMenu();
         userMenu.find("#go-to-account-overview").click(ClickOptions.usingJavaScript());
-        return new AccountOverviewPage().isExpectedPage();
+        return new AccountOverviewPage().reached();
     }
 
     @Step("perform logout")
@@ -76,7 +81,7 @@ public class UserMenu extends AbstractComponent
     {
         openUserMenu();
         userMenu.find("#go-to-logout").click(ClickOptions.usingJavaScript());
-        return new HomePage().isExpectedPage();
+        return new HomePage().reached();
     }
 
     /// ========== validate user menu ========== ///

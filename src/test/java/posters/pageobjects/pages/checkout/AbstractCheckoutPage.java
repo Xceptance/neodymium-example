@@ -16,10 +16,10 @@ public abstract class AbstractCheckoutPage extends AbstractPageObject
     @Override
     public void validateStructure()
     {
-        isExpectedPage();
+        reached();
 
-        checkoutHeader.isComponentAvailable();
-        footer.isComponentAvailable();
-        userMenu.isComponentAvailable();
+        checkoutHeader.ensureComponentAvailable();
+        footer.ensureComponentAvailable();
+        userMenu.ensureComponentAvailable();
     }
 }

@@ -19,12 +19,12 @@ public abstract class AbstractBrowsingPage extends AbstractPageObject
     @Override
     public void validateStructure()
     {
-        isExpectedPage();
+        reached();
 
-        header.isComponentAvailable();
-        footer.isComponentAvailable();
-        header.search.isComponentAvailable();
-        header.topNav.isComponentAvailable();
-        header.userMenu.isComponentAvailable();
+        header.ensureComponentAvailable();
+        footer.ensureComponentAvailable();
+        header.search.ensureComponentAvailable();
+        header.topNav.ensureComponentAvailable();
+        header.userMenu.ensureComponentAvailable();
     }
 }

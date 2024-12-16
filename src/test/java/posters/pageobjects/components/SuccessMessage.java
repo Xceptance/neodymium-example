@@ -1,12 +1,11 @@
 package posters.pageobjects.components;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-
 import com.codeborne.selenide.SelenideElement;
-
+import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
+
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.$;
 
 public class SuccessMessage extends AbstractComponent
 {
@@ -14,9 +13,17 @@ public class SuccessMessage extends AbstractComponent
 
     @Override
     @Step("ensure availability success message")
-    public void isComponentAvailable()
+    public void ensureComponentAvailable()
     {
         successMessage.shouldBe(visible);
+    }
+
+    @Override
+    @Step("check availability of success message")
+    public boolean isAvailable()
+    {
+        SelenideAddons.optionalWaitUntilCondition(successMessage, exist);
+        return successMessage.exists();
     }
 
     @Step("validate visibility of success message '{message}'")

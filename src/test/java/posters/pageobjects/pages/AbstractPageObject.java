@@ -6,10 +6,12 @@ public abstract class AbstractPageObject
 {
     public Title title = new Title();
 
-    public AbstractPageObject isExpectedPage()
+    public AbstractPageObject reached()
     {
         return this;
     }
 
-    abstract public void validateStructure();
+    public abstract boolean isExpectedPage();
+
+    public abstract void validateStructure();
 }

@@ -1,23 +1,22 @@
 package posters.pageobjects.pages.browsing;
 
-import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.Condition.attribute;
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-
+import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.components.SaleBanner;
 
+import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
+
 public class HomePage extends AbstractBrowsingPage
 {
+    private SelenideElement homePageIntroText = $("#intro-text-homepage");
+
     private ElementsCollection slideNavigation = $$("#carousel-btn");
 
     private ElementsCollection slideHeadline = $$(".carousel-content-product h1");
@@ -30,11 +29,19 @@ public class HomePage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a home page")
-    public HomePage isExpectedPage()
+    public HomePage reached()
     {
-        super.isExpectedPage();
-        $("#intro-text-homepage").should(exist);
+        super.reached();
+        homePageIntroText.should(exist);
         return this;
+    }
+
+    @Override
+    @Step("check if this is a home page")
+    public boolean isExpectedPage()
+    {
+        SelenideAddons.optionalWaitUntilCondition(homePageIntroText, exist);
+        return homePageIntroText.exists();
     }
 
     /// ========== validate content homepage ========== ///
@@ -116,6 +123,6 @@ public class HomePage extends AbstractBrowsingPage
     public HomePage openHomePage()
     {
         $("#header-brand").click(ClickOptions.usingJavaScript());
-        return new HomePage().isExpectedPage();
+        return new HomePage().reached();
     }
 }

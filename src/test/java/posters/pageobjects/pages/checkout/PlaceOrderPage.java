@@ -1,26 +1,20 @@
 package posters.pageobjects.pages.checkout;
 
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.exactValue;
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.matchText;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
-
-import org.apache.commons.lang3.StringUtils;
-
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-
+import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
+import org.apache.commons.lang3.StringUtils;
+import posters.pageobjects.utility.PriceHelper;
 import posters.tests.testdata.dataobjects.Address;
 import posters.tests.testdata.dataobjects.CreditCard;
 import posters.tests.testdata.dataobjects.Product;
-import posters.pageobjects.utility.PriceHelper;
+
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class PlaceOrderPage extends AbstractCheckoutPage
 {
@@ -46,11 +40,19 @@ public class PlaceOrderPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a place order page")
-    public PlaceOrderPage isExpectedPage()
+    public PlaceOrderPage reached()
     {
-        super.isExpectedPage();
+        super.reached();
         title.should(exist);
         return this;
+    }
+
+    @Override
+    @Step("check if this is a place order page")
+    public boolean isExpectedPage()
+    {
+        SelenideAddons.optionalWaitUntilCondition(title, exist);
+        return title.exists();
     }
 
     /// ========== validate content place order page ========== ///
@@ -249,7 +251,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
 
     /**
      * Loops through all total product prices on the place order page and adds it to the "subtotal" variable.
-     * 
+     *
      * @return subtotal The sum of all total product prices
      */
     @Step("calculate sum of all total product prices")
@@ -286,6 +288,6 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         // click on "Order with costs" button
         orderButton.click(ClickOptions.usingJavaScript());
 
-        return new OrderConfirmationPage().isExpectedPage();
+        return new OrderConfirmationPage().reached();
     }
 }
