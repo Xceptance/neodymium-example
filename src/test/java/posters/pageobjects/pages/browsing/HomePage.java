@@ -19,11 +19,8 @@ import posters.pageobjects.components.SaleBanner;
 public class HomePage extends AbstractBrowsingPage
 {
     private ElementsCollection slideNavigation = $$("#carousel-btn");
-
     private ElementsCollection slideHeadline = $$(".carousel-content-product h1");
-
     private ElementsCollection slideButton = $$(".carousel-content-product .btn-primary");
-
     private ElementsCollection featuredCategories = $$(".category-tile-title");
 
     public SaleBanner saleBanner = new SaleBanner();
