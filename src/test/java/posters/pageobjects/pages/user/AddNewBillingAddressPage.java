@@ -7,10 +7,12 @@ import io.qameta.allure.Step;
 import posters.pageobjects.components.AddressForm;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class AddNewBillingAddressPage extends AbstractBrowsingPage
+public class AddNewBillingAddressPage extends AbstractBrowsingPage<AddNewBillingAddressPage>
 {
 
     private SelenideElement billingAddressForm = $("#form-add-bill-addr");
@@ -19,11 +21,9 @@ public class AddNewBillingAddressPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is an add new billing address page")
-    public AddNewBillingAddressPage reached()
+    public AddNewBillingAddressPage assertExpectedPage()
     {
-        super.reached();
-        billingAddressForm.should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -36,7 +36,7 @@ public class AddNewBillingAddressPage extends AbstractBrowsingPage
 
     @Override
     @Step("validate add new billing address page structure")
-    public void validateStructure()
+    public AddNewBillingAddressPage validateStructure()
     {
         super.validateStructure();
 
@@ -48,5 +48,7 @@ public class AddNewBillingAddressPage extends AbstractBrowsingPage
 
         // validate continue button
         $("#btn-add-bill-addr").shouldHave(exactText(Neodymium.localizedText("button.addNewAddress"))).shouldBe(visible);
+
+        return this;
     }
 }

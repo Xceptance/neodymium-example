@@ -8,10 +8,12 @@ import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.HomePage;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class OrderConfirmationPage extends AbstractBrowsingPage
+public class OrderConfirmationPage extends AbstractBrowsingPage<OrderConfirmationPage>
 {
 
     private SelenideElement orderConfirmationInfo = $("#confirmation-row");
@@ -19,11 +21,9 @@ public class OrderConfirmationPage extends AbstractBrowsingPage
     private SelenideElement homePageButton = $("#go-home");
 
     @Step("ensure this is the Order Confirmation page")
-    public OrderConfirmationPage reached()
+    public OrderConfirmationPage assertExpectedPage()
     {
-        super.reached();
-        orderConfirmationInfo.should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -48,7 +48,7 @@ public class OrderConfirmationPage extends AbstractBrowsingPage
     }
 
     @Step("validate order confirmation page structure")
-    public void validateStructure()
+    public OrderConfirmationPage validateStructure()
     {
         super.validateStructure();
 
@@ -67,6 +67,8 @@ public class OrderConfirmationPage extends AbstractBrowsingPage
         // Verifies GoTo HomePage button is visible
         homePageButton.find(".icon-shopping-cart").shouldBe(visible);
         homePageButton.shouldHave(exactText(Neodymium.localizedText("button.continueShopping"))).shouldBe(visible);
+
+        return this;
     }
 
     @Step("validate successful order")
@@ -81,6 +83,6 @@ public class OrderConfirmationPage extends AbstractBrowsingPage
     public HomePage openHomePage()
     {
         homePageButton.click(ClickOptions.usingJavaScript());
-        return new HomePage().reached();
+        return new HomePage().assertExpectedPage();
     }
 }

@@ -5,10 +5,12 @@ import com.xceptance.neodymium.util.Neodymium;
 import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class CheckoutHeader extends AbstractComponent
+public class CheckoutHeader extends AbstractComponent<CheckoutHeader>
 {
 
     private SelenideElement progressIndicator = $(".progress-indicator");
@@ -17,14 +19,14 @@ public class CheckoutHeader extends AbstractComponent
 
     @Override
     @Step("ensure availability checkout header")
-    public void ensureComponentAvailable()
+    public CheckoutHeader assertComponentAvailable()
     {
-        progressIndicator.should(exist);
+        return super.assertComponentAvailable();
     }
 
     @Override
     @Step("check availability of checkout header")
-    public boolean isAvailable()
+    public boolean isComponentAvailable()
     {
         SelenideAddons.optionalWaitUntilCondition(progressIndicator, exist);
         return progressIndicator.exists();
@@ -35,7 +37,7 @@ public class CheckoutHeader extends AbstractComponent
     {
         $("#top-demo-disclaimer").shouldHave(exactText(Neodymium.localizedText("header.disclaimer"))).shouldBe(visible);
         $("#header-brand").shouldBe(visible);
-        ;
+
         userMenu.validateStructure();
     }
 }

@@ -12,10 +12,13 @@ import posters.pageobjects.pages.user.RegisterPage;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class UserMenu extends AbstractComponent
+public class UserMenu extends AbstractComponent<UserMenu>
 {
     private SelenideElement userMenu = $("#user-menu");
 
@@ -23,14 +26,14 @@ public class UserMenu extends AbstractComponent
 
     @Override
     @Step("ensure availability user menu")
-    public void ensureComponentAvailable()
+    public UserMenu assertComponentAvailable()
     {
-        showUserMenu.should(exist);
+        return super.assertComponentAvailable();
     }
 
     @Override
     @Step("check availability of user menu")
-    public boolean isAvailable()
+    public boolean isComponentAvailable()
     {
         SelenideAddons.optionalWaitUntilCondition(showUserMenu, exist);
         return showUserMenu.exists();
@@ -57,7 +60,7 @@ public class UserMenu extends AbstractComponent
     {
         openUserMenu();
         userMenu.find("#go-to-registration").click(ClickOptions.usingJavaScript());
-        return new RegisterPage().reached();
+        return new RegisterPage().assertExpectedPage();
     }
 
     @Step("open login page from user menu")
@@ -65,7 +68,7 @@ public class UserMenu extends AbstractComponent
     {
         openUserMenu();
         userMenu.find("#go-to-login").click(ClickOptions.usingJavaScript());
-        return new LoginPage().reached();
+        return new LoginPage().assertExpectedPage();
     }
 
     @Step("open account page from user menu")
@@ -73,7 +76,7 @@ public class UserMenu extends AbstractComponent
     {
         openUserMenu();
         userMenu.find("#go-to-account-overview").click(ClickOptions.usingJavaScript());
-        return new AccountOverviewPage().reached();
+        return new AccountOverviewPage().assertExpectedPage();
     }
 
     @Step("perform logout")
@@ -81,7 +84,7 @@ public class UserMenu extends AbstractComponent
     {
         openUserMenu();
         userMenu.find("#go-to-logout").click(ClickOptions.usingJavaScript());
-        return new HomePage().reached();
+        return new HomePage().assertExpectedPage();
     }
 
     /// ========== validate user menu ========== ///

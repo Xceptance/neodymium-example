@@ -1,8 +1,17 @@
 package posters.pageobjects.components;
 
-public abstract class AbstractComponent
-{
-    abstract public void ensureComponentAvailable();
+import com.xceptance.neodymium.util.SelenideAddons;
+import org.junit.jupiter.api.Assertions;
 
-    abstract public boolean isAvailable();
+public abstract class AbstractComponent<T extends AbstractComponent<T>>
+{
+    public T assertComponentAvailable()
+    {
+        SelenideAddons.wrapAssertionError(() -> {
+            Assertions.assertTrue(isComponentAvailable(), "Component could not be identified");
+        });
+        return (T) this;
+    }
+
+    public abstract boolean isComponentAvailable();
 }

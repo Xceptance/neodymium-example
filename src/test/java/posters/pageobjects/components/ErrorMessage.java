@@ -4,23 +4,25 @@ import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class ErrorMessage extends AbstractComponent
+public class ErrorMessage extends AbstractComponent<ErrorMessage>
 {
     private SelenideElement errorMessage = $(".alert-danger");
 
     @Override
     @Step("ensure availability error message")
-    public void ensureComponentAvailable()
+    public ErrorMessage assertComponentAvailable()
     {
-        errorMessage.shouldBe(visible);
+        return super.assertComponentAvailable();
     }
 
     @Override
     @Step("check availability of error message")
-    public boolean isAvailable()
+    public boolean isComponentAvailable()
     {
         SelenideAddons.optionalWaitUntilCondition(errorMessage, exist);
         return errorMessage.exists();

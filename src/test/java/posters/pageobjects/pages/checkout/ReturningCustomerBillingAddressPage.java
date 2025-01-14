@@ -1,6 +1,10 @@
 package posters.pageobjects.pages.checkout;
 
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.CheckResult;
+import com.codeborne.selenide.ClickOptions;
+import com.codeborne.selenide.Driver;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebElementCondition;
 import com.xceptance.neodymium.util.Neodymium;
 import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
@@ -11,11 +15,13 @@ import posters.tests.testdata.dataobjects.Address;
 import java.time.Duration;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
+public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage<ReturningCustomerBillingAddressPage>
 {
     private SelenideElement title = $("#title-bill-addr");
 
@@ -25,7 +31,7 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a billing address page")
-    public ReturningCustomerBillingAddressPage reached()
+    public ReturningCustomerBillingAddressPage assertExpectedPage()
     {
         $("#bill-addr-0").should(exist);
         return this;
@@ -35,7 +41,7 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
     @Step("check if this is a billing address page")
     public boolean isExpectedPage()
     {
-        SelenideAddons.optionalWaitUntilCondition(title, exist);
+        SelenideAddons.optionalWaitUntilCondition($("#bill-addr-0"), exist);
         return title.exists();
     }
 
@@ -54,7 +60,7 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("validate returning customer billing address page structure")
-    public void validateStructure()
+    public ReturningCustomerBillingAddressPage validateStructure()
     {
         super.validateStructure();
 
@@ -72,6 +78,8 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
 
         // validate continue button
         useBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.useThisBillingAddress"))).shouldBe(visible);
+
+        return this;
     }
 
     @Step("validate billing address '{billingAddress}' in address container")
@@ -157,6 +165,6 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
         addressContainer.find("input").click(ClickOptions.usingJavaScript());
         useBillingAddressButton.click(ClickOptions.usingJavaScript());
 
-        return new ReturningCustomerPaymentPage().reached();
+        return new ReturningCustomerPaymentPage().assertExpectedPage();
     }
 }

@@ -10,11 +10,14 @@ import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.tests.testdata.dataobjects.User;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class LoginPage extends AbstractBrowsingPage
+public class LoginPage extends AbstractBrowsingPage<LoginPage>
 {
     private SelenideElement loginForm = $("#form-login");
 
@@ -28,11 +31,9 @@ public class LoginPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a login page")
-    public LoginPage reached()
+    public LoginPage assertExpectedPage()
     {
-        super.reached();
-        loginForm.should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -44,10 +45,12 @@ public class LoginPage extends AbstractBrowsingPage
     }
 
     /// ========== validate content login page ========== ///
+    ///
+    /// @return
 
     @Override
     @Step("validate login page structure")
-    public void validateStructure()
+    public LoginPage validateStructure()
     {
         super.validateStructure();
 
@@ -71,6 +74,8 @@ public class LoginPage extends AbstractBrowsingPage
         // validate new account creation
         $(".header-container").shouldHave(exactText(Neodymium.localizedText("loginPage.newCustomer")));
         registerLink.shouldHave(exactText(Neodymium.localizedText("loginPage.createNewAccount")));
+
+        return this;
     }
 
     @Step("validate successful registration message")
@@ -92,14 +97,14 @@ public class LoginPage extends AbstractBrowsingPage
     public RegisterPage openRegister()
     {
         registerLink.click(ClickOptions.usingJavaScript());
-        return new RegisterPage().reached();
+        return new RegisterPage().assertExpectedPage();
     }
 
     @Step("open homepage from login page")
     public HomePage openHomePage()
     {
         $("#header-brand").click(ClickOptions.usingJavaScript());
-        return new HomePage().reached();
+        return new HomePage().assertExpectedPage();
     }
 
     @Step("send login form")
@@ -117,13 +122,13 @@ public class LoginPage extends AbstractBrowsingPage
     public AccountOverviewPage sendLoginForm(User user)
     {
         sendFormWithData(user.getEmail(), user.getPassword());
-        return new AccountOverviewPage().reached();
+        return new AccountOverviewPage().assertExpectedPage();
     }
 
     @Step("fill and send login form with invalid user '{user}'")
     public LoginPage sendFalseLoginForm(User user)
     {
         sendFormWithData(user.getEmail(), user.getPassword());
-        return new LoginPage().reached();
+        return new LoginPage().assertExpectedPage();
     }
 }

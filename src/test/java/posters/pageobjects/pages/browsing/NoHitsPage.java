@@ -8,11 +8,13 @@ import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class NoHitsPage extends AbstractBrowsingPage
+public class NoHitsPage extends AbstractBrowsingPage<NoHitsPage>
 {
 
     private SelenideElement alert = $(".alert-danger");
@@ -23,11 +25,9 @@ public class NoHitsPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a no hits page")
-    public NoHitsPage reached()
+    public NoHitsPage assertExpectedPage()
     {
-        super.reached();
-        alert.shouldHave(exactText(Neodymium.localizedText("errorMessage.noProductsFound"))).should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -40,7 +40,7 @@ public class NoHitsPage extends AbstractBrowsingPage
 
     @Override
     @Step("validate structure no hits page")
-    public void validateStructure()
+    public NoHitsPage validateStructure()
     {
         super.validateStructure();
 
@@ -57,12 +57,14 @@ public class NoHitsPage extends AbstractBrowsingPage
         categories.findBy(exactText(Neodymium.localizedText("header.topNavigation.3.title"))).shouldBe(visible);
         categories.findBy(exactText(Neodymium.localizedText("header.topNavigation.4.title"))).shouldBe(visible);
         categoryImages.shouldHave(size(4));
+
+        return this;
     }
 
     @Step("open homepage from no hits page")
     public HomePage openHomePage()
     {
         $("#header-brand").click(ClickOptions.usingJavaScript());
-        return new HomePage().reached();
+        return new HomePage().assertExpectedPage();
     }
 }

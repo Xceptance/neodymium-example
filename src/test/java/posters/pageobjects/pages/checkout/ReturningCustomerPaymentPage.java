@@ -1,6 +1,10 @@
 package posters.pageobjects.pages.checkout;
 
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.CheckResult;
+import com.codeborne.selenide.ClickOptions;
+import com.codeborne.selenide.Driver;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebElementCondition;
 import com.xceptance.neodymium.util.Neodymium;
 import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
@@ -11,11 +15,13 @@ import posters.tests.testdata.dataobjects.CreditCard;
 import java.time.Duration;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
+public class ReturningCustomerPaymentPage extends AbstractCheckoutPage<ReturningCustomerPaymentPage>
 {
     private SelenideElement title = $("#title-payment");
 
@@ -25,11 +31,9 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a payment page")
-    public ReturningCustomerPaymentPage reached()
+    public ReturningCustomerPaymentPage assertExpectedPage()
     {
-        super.reached();
-        $("#payment-0").should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -55,7 +59,7 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
 
     @Override
     @Step("validate returning customer payment page structure")
-    public void validateStructure()
+    public ReturningCustomerPaymentPage validateStructure()
     {
         super.validateStructure();
 
@@ -70,6 +74,8 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
 
         // validate continue button
         useCreditCardButton.shouldHave(exactText(Neodymium.localizedText("button.useThisCreditCard"))).shouldBe(visible);
+
+        return this;
     }
 
     @Step("validate credit card '{creditCard}' on position '{position}' in credit card container")
@@ -130,6 +136,6 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
         creditCardContainer.find("input").click(ClickOptions.usingJavaScript());
         useCreditCardButton.click(ClickOptions.usingJavaScript());
 
-        return new PlaceOrderPage().reached();
+        return new PlaceOrderPage().assertExpectedPage();
     }
 }

@@ -8,18 +8,20 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public abstract class AbstractProductListingPage extends AbstractBrowsingPage
+public abstract class AbstractProductListingPage<T extends AbstractProductListingPage<T>> extends AbstractBrowsingPage<T>
 {
     @Override
-    public void validateStructure()
+    public T validateStructure()
     {
-        reached();
+        super.validateStructure();
 
         // validate poster count in headline is not 0
         $("#total-product-count").shouldNotBe(exactText("0")).shouldBe(visible);
 
         // validate at least 1 poster is displayed
         $("#product-0").shouldBe(visible);
+
+        return (T) this;
     }
 
     /**
@@ -42,20 +44,20 @@ public abstract class AbstractProductListingPage extends AbstractBrowsingPage
     public ProductDetailPage clickProductByName(String productName)
     {
         $$(".card-title").findBy(exactText(productName)).closest(".product-tile").find(".btn.btn-primary").click(ClickOptions.usingJavaScript());
-        return new ProductDetailPage().reached();
+        return new ProductDetailPage().assertExpectedPage();
     }
 
     @Step("click on a product by position '{position}'")
     public ProductDetailPage clickProductByPosition(int position)
     {
         $("#product-" + (position - 1) + " .btn.btn-primary").click(ClickOptions.usingJavaScript());
-        return new ProductDetailPage().reached();
+        return new ProductDetailPage().assertExpectedPage();
     }
 
     @Step("open homepage from category page")
     public HomePage openHomePage()
     {
         $("#header-brand").click(ClickOptions.usingJavaScript());
-        return new HomePage().reached();
+        return new HomePage().assertExpectedPage();
     }
 }

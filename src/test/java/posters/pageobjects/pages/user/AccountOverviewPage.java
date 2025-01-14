@@ -7,10 +7,12 @@ import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class AccountOverviewPage extends AbstractBrowsingPage
+public class AccountOverviewPage extends AbstractBrowsingPage<AccountOverviewPage>
 {
     private SelenideElement title = $("#title-account-overview");
 
@@ -24,11 +26,9 @@ public class AccountOverviewPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is an account overview page")
-    public AccountOverviewPage reached()
+    public AccountOverviewPage assertExpectedPage()
     {
-        super.reached();
-        title.should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -40,10 +40,12 @@ public class AccountOverviewPage extends AbstractBrowsingPage
     }
 
     /// ========== validate content account overview page ========== ///
+    ///
+    /// @return
 
     @Override
     @Step("validate account overview page structure")
-    public void validateStructure()
+    public AccountOverviewPage validateStructure()
     {
         super.validateStructure();
 
@@ -60,6 +62,8 @@ public class AccountOverviewPage extends AbstractBrowsingPage
         $(".icon-history").shouldBe(visible);
         $(".icon-credit-card").shouldBe(visible);
         $(".icon-cog").shouldBe(visible);
+
+        return this;
     }
 
     @Step("validate successful login of user '{firstName}' on home page")
@@ -78,27 +82,27 @@ public class AccountOverviewPage extends AbstractBrowsingPage
     public OrderHistoryPage openOrderHistory()
     {
         orderOverviewLink.click(ClickOptions.usingJavaScript());
-        return new OrderHistoryPage().reached();
+        return new OrderHistoryPage().assertExpectedPage();
     }
 
     @Step("open my addresses page")
     public AddressOverviewPage openMyAddresses()
     {
         myAddressesLink.click(ClickOptions.usingJavaScript());
-        return new AddressOverviewPage().reached();
+        return new AddressOverviewPage().assertExpectedPage();
     }
 
     @Step("open payment settings page")
     public PaymentOverviewPage openPaymentSettings()
     {
         paymentSettingsLink.click(ClickOptions.usingJavaScript());
-        return new PaymentOverviewPage().reached();
+        return new PaymentOverviewPage().assertExpectedPage();
     }
 
     @Step("open personal data page")
     public PersonalDataPage openPersonalData()
     {
         personalDataLink.click(ClickOptions.usingJavaScript());
-        return new PersonalDataPage().reached();
+        return new PersonalDataPage().assertExpectedPage();
     }
 }

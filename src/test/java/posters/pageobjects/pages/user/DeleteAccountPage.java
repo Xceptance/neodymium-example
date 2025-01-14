@@ -8,10 +8,13 @@ import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.HomePage;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class DeleteAccountPage extends AbstractBrowsingPage
+public class DeleteAccountPage extends AbstractBrowsingPage<DeleteAccountPage>
 {
     private SelenideElement deleteForm = $("#form-delete-account");
 
@@ -21,12 +24,9 @@ public class DeleteAccountPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a delete account page")
-    public DeleteAccountPage reached()
+    public DeleteAccountPage assertExpectedPage()
     {
-        super.reached();
-        deleteForm.should(exist);
-
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -39,7 +39,7 @@ public class DeleteAccountPage extends AbstractBrowsingPage
 
     @Override
     @Step("validate delete account page structure")
-    public void validateStructure()
+    public DeleteAccountPage validateStructure()
     {
         super.validateStructure();
 
@@ -57,6 +57,8 @@ public class DeleteAccountPage extends AbstractBrowsingPage
 
         // validate button
         deleteButton.shouldHave(exactText(Neodymium.localizedText("button.delete"))).shouldBe(visible);
+
+        return this;
     }
 
     @Step("delete account")
@@ -65,6 +67,6 @@ public class DeleteAccountPage extends AbstractBrowsingPage
         passwordField.setValue(password);
         deleteButton.click(ClickOptions.usingJavaScript());
 
-        return new HomePage().reached();
+        return new HomePage().assertExpectedPage();
     }
 }

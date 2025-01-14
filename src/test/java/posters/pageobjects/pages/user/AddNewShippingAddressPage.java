@@ -6,18 +6,20 @@ import io.qameta.allure.Step;
 import posters.pageobjects.components.AddressForm;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class AddNewShippingAddressPage extends AbstractBrowsingPage
+public class AddNewShippingAddressPage extends AbstractBrowsingPage<AddNewShippingAddressPage>
 {
     public AddressForm addressForm = new AddressForm();
 
     @Override
     @Step("ensure this is an add new shipping address page")
-    public AddNewShippingAddressPage reached()
+    public AddNewShippingAddressPage assertExpectedPage()
     {
-        super.reached();
+        super.assertExpectedPage();
         $("#form-add-del-addr").should(exist);
         return this;
     }
@@ -32,7 +34,7 @@ public class AddNewShippingAddressPage extends AbstractBrowsingPage
 
     @Override
     @Step("validate add new shipping address page structure")
-    public void validateStructure()
+    public AddNewShippingAddressPage validateStructure()
     {
         super.validateStructure();
 
@@ -44,5 +46,7 @@ public class AddNewShippingAddressPage extends AbstractBrowsingPage
 
         // validate continue button
         $("#btn-add-shipp-addr").shouldHave(exactText(Neodymium.localizedText("button.addNewAddress"))).shouldBe(visible);
+
+        return this;
     }
 }

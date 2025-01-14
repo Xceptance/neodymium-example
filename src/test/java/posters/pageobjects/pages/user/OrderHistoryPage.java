@@ -13,11 +13,14 @@ import posters.tests.testdata.dataobjects.Product;
 
 import java.time.LocalDate;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.matchText;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class OrderHistoryPage extends AbstractBrowsingPage
+public class OrderHistoryPage extends AbstractBrowsingPage<OrderHistoryPage>
 {
     private SelenideElement title = $("#title-order-history");
 
@@ -25,11 +28,9 @@ public class OrderHistoryPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is an order history page")
-    public OrderHistoryPage reached()
+    public OrderHistoryPage assertExpectedPage()
     {
-        super.reached();
-        title.should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -41,10 +42,12 @@ public class OrderHistoryPage extends AbstractBrowsingPage
     }
 
     /// ========== validate content order history page ========== ///
+    ///
+    /// @return
 
     @Override
     @Step("validate personal data page structure")
-    public void validateStructure()
+    public OrderHistoryPage validateStructure()
     {
         super.validateStructure();
 
@@ -58,6 +61,8 @@ public class OrderHistoryPage extends AbstractBrowsingPage
 
         // validate button
         goBackButton.shouldHave(exactText(Neodymium.localizedText("button.back"))).shouldBe(visible);
+
+        return this;
     }
 
     @Step("validate order")
@@ -99,13 +104,13 @@ public class OrderHistoryPage extends AbstractBrowsingPage
     public HomePage openHomePage()
     {
         $("#header-brand").click(ClickOptions.usingJavaScript());
-        return new HomePage().reached();
+        return new HomePage().assertExpectedPage();
     }
 
     @Step("open account overview page")
     public AccountOverviewPage openAccountOverviewPage()
     {
         goBackButton.click(ClickOptions.usingJavaScript());
-        return new AccountOverviewPage().reached();
+        return new AccountOverviewPage().assertExpectedPage();
     }
 }

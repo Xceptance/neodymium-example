@@ -1,6 +1,11 @@
 package posters.pageobjects.pages.checkout;
 
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.CheckResult;
+import com.codeborne.selenide.ClickOptions;
+import com.codeborne.selenide.Driver;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebElementCondition;
 import com.xceptance.neodymium.util.Neodymium;
 import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
@@ -15,11 +20,15 @@ import java.time.Duration;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exactValue;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.not;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class CartPage extends AbstractBrowsingPage
+public class CartPage extends AbstractBrowsingPage<CartPage>
 {
     private SelenideElement title = $("#cart-title");
 
@@ -31,11 +40,9 @@ public class CartPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a cart page")
-    public CartPage reached()
+    public CartPage assertExpectedPage()
     {
-        super.reached();
-        title.shouldBe(visible);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -61,7 +68,7 @@ public class CartPage extends AbstractBrowsingPage
 
     @Override
     @Step("validate cart page structure")
-    public void validateStructure()
+    public CartPage validateStructure()
     {
         super.validateStructure();
 
@@ -90,6 +97,8 @@ public class CartPage extends AbstractBrowsingPage
             // validate checkout button
             checkoutButton.should(visible);
         }
+
+        return this;
     }
 
     @Step("validate shipping costs '{shippingCosts}' on cart page")
@@ -293,20 +302,20 @@ public class CartPage extends AbstractBrowsingPage
     public HomePage openHomePage()
     {
         $("#header-brand").click(ClickOptions.usingJavaScript());
-        return new HomePage().reached();
+        return new HomePage().assertExpectedPage();
     }
 
     @Step("open guest shipping address from the cart page")
     public GuestShippingAddressPage openGuestShippingAddressPage()
     {
         checkoutButton.click(ClickOptions.usingJavaScript());
-        return new GuestShippingAddressPage().reached();
+        return new GuestShippingAddressPage().assertExpectedPage();
     }
 
     @Step("open returning customer shipping address from the cart page")
     public ReturningCustomerShippingAddressPage openReturningCustomerShippingAddressPage()
     {
         checkoutButton.click(ClickOptions.usingJavaScript());
-        return new ReturningCustomerShippingAddressPage().reached();
+        return new ReturningCustomerShippingAddressPage().assertExpectedPage();
     }
 }

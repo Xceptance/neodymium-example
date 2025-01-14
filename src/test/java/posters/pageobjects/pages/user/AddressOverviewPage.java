@@ -7,10 +7,12 @@ import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class AddressOverviewPage extends AbstractBrowsingPage
+public class AddressOverviewPage extends AbstractBrowsingPage<AddressOverviewPage>
 {
     private SelenideElement title = $("#title-address-overview");
 
@@ -22,11 +24,9 @@ public class AddressOverviewPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is an address overview page")
-    public AddressOverviewPage reached()
+    public AddressOverviewPage assertExpectedPage()
     {
-        super.reached();
-        title.should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -38,10 +38,12 @@ public class AddressOverviewPage extends AbstractBrowsingPage
     }
 
     /// ========== validate content address overview page ========== ///
+    ///
+    /// @return
 
     @Override
     @Step("validate personal data page structure")
-    public void validateStructure()
+    public AddressOverviewPage validateStructure()
     {
         super.validateStructure();
 
@@ -58,6 +60,8 @@ public class AddressOverviewPage extends AbstractBrowsingPage
 
         // validate button
         goBackButton.shouldHave(exactText(Neodymium.localizedText("button.back"))).shouldBe(visible);
+
+        return this;
     }
 
     @Step("validate successful saved change")
@@ -72,20 +76,20 @@ public class AddressOverviewPage extends AbstractBrowsingPage
     public AddNewShippingAddressPage openAddNewShippingAddressPage()
     {
         addNewShippingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewShippingAddress"))).click(ClickOptions.usingJavaScript());
-        return new AddNewShippingAddressPage().reached();
+        return new AddNewShippingAddressPage().assertExpectedPage();
     }
 
     @Step("add new billing address")
     public AddNewBillingAddressPage openAddNewBillingAddressPage()
     {
         addNewBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewBillingAddress"))).click(ClickOptions.usingJavaScript());
-        return new AddNewBillingAddressPage().reached();
+        return new AddNewBillingAddressPage().assertExpectedPage();
     }
 
     @Step("go to account overview page")
     public AccountOverviewPage openAccountOverviewPage()
     {
         goBackButton.click(ClickOptions.usingJavaScript());
-        return new AccountOverviewPage().reached();
+        return new AccountOverviewPage().assertExpectedPage();
     }
 }

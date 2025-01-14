@@ -6,24 +6,26 @@ import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.CategoryPage;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class TopNavigation extends AbstractComponent
+public class TopNavigation extends AbstractComponent<TopNavigation>
 {
     private SelenideElement categoryMenu = $("#header-categories");
 
     @Override
     @Step("ensure availability top navigation")
-    public void ensureComponentAvailable()
+    public TopNavigation assertComponentAvailable()
     {
-        categoryMenu.should(exist);
+        return super.assertComponentAvailable();
     }
 
     @Override
     @Step("check availability of top navigation")
-    public boolean isAvailable()
+    public boolean isComponentAvailable()
     {
         SelenideAddons.optionalWaitUntilCondition(categoryMenu, exist);
         return categoryMenu.exists();
@@ -35,7 +37,7 @@ public class TopNavigation extends AbstractComponent
     public CategoryPage clickCategory(String topCategory)
     {
         $$("#header-categories .nav-item").findBy(exactText(topCategory)).click();
-        return new CategoryPage().reached();
+        return new CategoryPage().assertExpectedPage();
     }
 
     @Step("click on the '{subCategory}' sub category within the top category '{topCategory}'")
@@ -43,7 +45,7 @@ public class TopNavigation extends AbstractComponent
     {
         $$(".nav-item.dropdown").findBy(exactText(topCategory)).hover();
         $$("#header-categories ul.dropdown-menu li").findBy(exactText(subCategory)).click();
-        return new CategoryPage().reached();
+        return new CategoryPage().assertExpectedPage();
     }
 
     /// ========== validate top navigation ========== ///
@@ -63,6 +65,9 @@ public class TopNavigation extends AbstractComponent
     @Step("validate structure top navigation")
     public void validateStructure()
     {
+        // close sub navigation
+        $("#top-demo-disclaimer").hover();
+
         // validate navigation bar
         validateNavComponent(Neodymium.localizedText("header.topNavigation.1.title"));
         validateNavComponent(Neodymium.localizedText("header.topNavigation.2.title"));

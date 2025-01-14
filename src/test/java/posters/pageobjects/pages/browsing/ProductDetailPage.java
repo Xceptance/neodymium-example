@@ -8,11 +8,15 @@ import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.tests.testdata.dataobjects.Product;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.matchText;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class ProductDetailPage extends AbstractBrowsingPage
+public class ProductDetailPage extends AbstractBrowsingPage<ProductDetailPage>
 {
     private SelenideElement addToCartButton = $("#btn-add-to-cart");
 
@@ -26,11 +30,9 @@ public class ProductDetailPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a product detail page")
-    public ProductDetailPage reached()
+    public ProductDetailPage assertExpectedPage()
     {
-        super.reached();
-        productName.should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -71,7 +73,7 @@ public class ProductDetailPage extends AbstractBrowsingPage
 
     @Override
     @Step("validate product detail page structure")
-    public void validateStructure()
+    public ProductDetailPage validateStructure()
     {
         super.validateStructure();
 
@@ -104,6 +106,8 @@ public class ProductDetailPage extends AbstractBrowsingPage
         // validate add to cart button
         addToCartButton.shouldHave(exactText(Neodymium.localizedText("button.addToCart"))).shouldBe(visible);
         $("#btn-add-to-cart .icon-shopping-cart").shouldBe(visible);
+
+        return this;
     }
 
     @Step("validate product name '{prodName}' on product detail page")
@@ -198,6 +202,6 @@ public class ProductDetailPage extends AbstractBrowsingPage
     public HomePage openHomePage()
     {
         $("#header-brand").click(ClickOptions.usingJavaScript());
-        return new HomePage().reached();
+        return new HomePage().assertExpectedPage();
     }
 }

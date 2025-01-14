@@ -8,11 +8,14 @@ import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.tests.testdata.dataobjects.User;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class RegisterPage extends AbstractBrowsingPage
+public class RegisterPage extends AbstractBrowsingPage<RegisterPage>
 {
     private SelenideElement registerForm = $("#form-register");
 
@@ -30,11 +33,9 @@ public class RegisterPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a register page")
-    public RegisterPage reached()
+    public RegisterPage assertExpectedPage()
     {
-        super.reached();
-        registerForm.should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -74,7 +75,7 @@ public class RegisterPage extends AbstractBrowsingPage
 
     @Override
     @Step("validate register page structure")
-    public void validateStructure()
+    public RegisterPage validateStructure()
     {
         super.validateStructure();
 
@@ -92,6 +93,8 @@ public class RegisterPage extends AbstractBrowsingPage
 
         // validate sign in button
         registerButton.shouldHave(exactText(Neodymium.localizedText("button.createAccount")));
+
+        return this;
     }
 
     /// ========== register page navigation ========== ///
@@ -109,6 +112,6 @@ public class RegisterPage extends AbstractBrowsingPage
         // click on the register button
         registerButton.click(ClickOptions.usingJavaScript());
 
-        return new LoginPage().reached();
+        return new LoginPage().assertExpectedPage();
     }
 }

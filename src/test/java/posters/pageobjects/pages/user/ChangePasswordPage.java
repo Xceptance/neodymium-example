@@ -8,11 +8,14 @@ import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.tests.testdata.dataobjects.User;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class ChangePasswordPage extends AbstractBrowsingPage
+public class ChangePasswordPage extends AbstractBrowsingPage<ChangePasswordPage>
 {
 
     private SelenideElement changePasswordForm = $("#form-change-password");
@@ -27,11 +30,9 @@ public class ChangePasswordPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a change password page")
-    public ChangePasswordPage reached()
+    public ChangePasswordPage assertExpectedPage()
     {
-        super.reached();
-        changePasswordForm.should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -68,7 +69,7 @@ public class ChangePasswordPage extends AbstractBrowsingPage
 
     @Override
     @Step("validate change password page structure")
-    public void validateStructure()
+    public ChangePasswordPage validateStructure()
     {
         super.validateStructure();
 
@@ -86,6 +87,8 @@ public class ChangePasswordPage extends AbstractBrowsingPage
 
         // validate update account button
         updatePasswordButton.shouldHave(exactText(Neodymium.localizedText("button.submit"))).shouldBe(visible);
+
+        return this;
     }
 
     /// ========== change password page navigation ========== ///
@@ -101,6 +104,6 @@ public class ChangePasswordPage extends AbstractBrowsingPage
         // click on the update account button
         updatePasswordButton.click(ClickOptions.usingJavaScript());
 
-        return new PersonalDataPage().reached();
+        return new PersonalDataPage().assertExpectedPage();
     }
 }

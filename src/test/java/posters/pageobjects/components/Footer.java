@@ -5,10 +5,13 @@ import com.xceptance.neodymium.util.Neodymium;
 import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class Footer extends AbstractComponent
+public class Footer extends AbstractComponent<Footer>
 {
     private SelenideElement footer = $("#footer");
 
@@ -22,14 +25,14 @@ public class Footer extends AbstractComponent
 
     @Override
     @Step("ensure availability footer")
-    public void ensureComponentAvailable()
+    public Footer assertComponentAvailable()
     {
-        footer.should(exist);
+        return super.assertComponentAvailable();
     }
 
     @Override
     @Step("check availability of footer")
-    public boolean isAvailable()
+    public boolean isComponentAvailable()
     {
         SelenideAddons.optionalWaitUntilCondition(footer, exist);
         return footer.exists();

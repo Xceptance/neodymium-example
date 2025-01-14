@@ -1,6 +1,11 @@
 package posters.pageobjects.components;
 
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.CheckResult;
+import com.codeborne.selenide.ClickOptions;
+import com.codeborne.selenide.Driver;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebElementCondition;
 import com.xceptance.neodymium.util.Neodymium;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -12,11 +17,13 @@ import posters.tests.testdata.dataobjects.Product;
 import java.time.Duration;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.not;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class MiniCart extends AbstractComponent
+public class MiniCart extends AbstractComponent<MiniCart>
 {
     private SelenideElement headerCart = $("#header-cart-overview");
 
@@ -36,14 +43,14 @@ public class MiniCart extends AbstractComponent
 
     @Override
     @Step("ensure availability mini cart")
-    public void ensureComponentAvailable()
+    public MiniCart assertComponentAvailable()
     {
-        miniCart.should(exist);
+        return super.assertComponentAvailable();
     }
 
     @Override
     @Step("check if mini cart is available")
-    public boolean isAvailable()
+    public boolean isComponentAvailable()
     {
         return headerCart.exists();
     }
@@ -69,7 +76,7 @@ public class MiniCart extends AbstractComponent
     {
         openMiniCart();
         viewCartButton.click(ClickOptions.usingJavaScript());
-        return new CartPage().reached();
+        return new CartPage().assertExpectedPage();
     }
 
     /// ========== get mini cart data ========== ///

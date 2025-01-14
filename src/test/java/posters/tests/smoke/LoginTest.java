@@ -39,7 +39,7 @@ public class LoginTest extends AbstractTest
         // validate that nobody is logged in
         loginPage.header.userMenu.checkIfNoUserIsLoggedIn();
 
-        return new LoginPage().reached();
+        return loginPage;
     }
 
     @NeodymiumTest

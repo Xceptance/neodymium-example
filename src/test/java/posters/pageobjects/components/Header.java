@@ -5,10 +5,12 @@ import com.xceptance.neodymium.util.Neodymium;
 import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class Header extends AbstractComponent
+public class Header extends AbstractComponent<Header>
 {
 
     private SelenideElement header = $("#header-navigation-bar");
@@ -23,14 +25,14 @@ public class Header extends AbstractComponent
 
     @Override
     @Step("validate availability header")
-    public void ensureComponentAvailable()
+    public Header assertComponentAvailable()
     {
-        header.should(exist);
+        return super.assertComponentAvailable();
     }
 
     @Override
     @Step("check availability of header")
-    public boolean isAvailable()
+    public boolean isComponentAvailable()
     {
         SelenideAddons.optionalWaitUntilCondition(header, exist);
         return header.exists();

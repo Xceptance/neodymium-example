@@ -9,11 +9,14 @@ import io.qameta.allure.Step;
 import posters.pageobjects.components.SaleBanner;
 
 import static com.codeborne.selenide.CollectionCondition.size;
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class HomePage extends AbstractBrowsingPage
+public class HomePage extends AbstractBrowsingPage<HomePage>
 {
     private SelenideElement homePageIntroText = $("#intro-text-homepage");
 
@@ -29,11 +32,9 @@ public class HomePage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a home page")
-    public HomePage reached()
+    public HomePage assertExpectedPage()
     {
-        super.reached();
-        homePageIntroText.should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -88,7 +89,7 @@ public class HomePage extends AbstractBrowsingPage
 
     @Override
     @Step("validate structure home page")
-    public void validateStructure()
+    public HomePage validateStructure()
     {
         super.validateStructure();
 
@@ -109,6 +110,8 @@ public class HomePage extends AbstractBrowsingPage
 
         // validate shop all products button
         $(".btn-shop-all").shouldHave(exactText(Neodymium.localizedText("button.shopAllProducts"))).shouldBe(visible);
+
+        return this;
     }
 
     @Step("validate successful account deletion on home page")
@@ -123,6 +126,6 @@ public class HomePage extends AbstractBrowsingPage
     public HomePage openHomePage()
     {
         $("#header-brand").click(ClickOptions.usingJavaScript());
-        return new HomePage().reached();
+        return new HomePage().assertExpectedPage();
     }
 }

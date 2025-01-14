@@ -9,12 +9,17 @@ import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.tests.testdata.dataobjects.CreditCard;
 
 import java.time.LocalDate;
+import java.time.Year;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.matchText;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class AddNewCreditCardPage extends AbstractBrowsingPage
+public class AddNewCreditCardPage extends AbstractBrowsingPage<AddNewCreditCardPage>
 {
 
     private SelenideElement addPaymentForm = $("#form-add-payment");
@@ -31,11 +36,9 @@ public class AddNewCreditCardPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is an add new credit card page")
-    public AddNewCreditCardPage reached()
+    public AddNewCreditCardPage assertExpectedPage()
     {
-        super.reached();
-        addPaymentForm.should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -96,17 +99,18 @@ public class AddNewCreditCardPage extends AbstractBrowsingPage
     {
         // open dropdown
         expirationYear.click(ClickOptions.usingJavaScript());
+        int currentYear = Year.now().getValue();
 
         // validate years
-        for (int i = 1; i <= 11; i++)
+        for (int i = 0; i < 11; i++)
         {
-            $$("#expiration-date-year").findBy(matchText(Neodymium.localizedText("fillIn.dropdown.expireYear." + i))).shouldBe(visible);
+            $$("#expiration-date-year").findBy(matchText(String.valueOf(currentYear + i))).shouldBe(visible);
         }
     }
 
     @Override
     @Step("validate add new credit card page structure")
-    public void validateStructure()
+    public AddNewCreditCardPage validateStructure()
     {
         super.validateStructure();
 
@@ -130,6 +134,8 @@ public class AddNewCreditCardPage extends AbstractBrowsingPage
 
         // validate add new credit card button
         addNewCreditCardButton.shouldHave(exactText(Neodymium.localizedText("button.addNewCreditCard"))).shouldBe(visible);
+
+        return this;
     }
 
     /// ========== add new credit card page navigation ========== ///
@@ -146,6 +152,6 @@ public class AddNewCreditCardPage extends AbstractBrowsingPage
         // click add new payment button
         addNewCreditCardButton.click(ClickOptions.usingJavaScript());
 
-        return new PaymentOverviewPage().reached();
+        return new PaymentOverviewPage().assertExpectedPage();
     }
 }

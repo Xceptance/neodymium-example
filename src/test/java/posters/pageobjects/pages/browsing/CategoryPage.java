@@ -5,10 +5,12 @@ import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.components.Pagination;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.matchText;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class CategoryPage extends AbstractProductListingPage
+public class CategoryPage extends AbstractProductListingPage<CategoryPage>
 {
     public Pagination pagination = new Pagination();
 
@@ -16,11 +18,9 @@ public class CategoryPage extends AbstractProductListingPage
 
     @Override
     @Step("ensure this is a category page")
-    public CategoryPage reached()
+    public CategoryPage assertExpectedPage()
     {
-        super.reached();
-        titleCategoryName.should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -33,9 +33,10 @@ public class CategoryPage extends AbstractProductListingPage
 
     @Override
     @Step("validate category page structure")
-    public void validateStructure()
+    public CategoryPage validateStructure()
     {
         super.validateStructure();
+        return this;
     }
 
     /**

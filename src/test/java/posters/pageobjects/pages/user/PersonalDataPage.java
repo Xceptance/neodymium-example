@@ -8,11 +8,13 @@ import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.tests.testdata.dataobjects.User;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class PersonalDataPage extends AbstractBrowsingPage
+public class PersonalDataPage extends AbstractBrowsingPage<PersonalDataPage>
 {
     private SelenideElement title = $("#title-personal-data");
 
@@ -24,11 +26,9 @@ public class PersonalDataPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a personal data page")
-    public PersonalDataPage reached()
+    public PersonalDataPage assertExpectedPage()
     {
-        super.reached();
-        title.should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -40,10 +40,12 @@ public class PersonalDataPage extends AbstractBrowsingPage
     }
 
     /// ========== validate content personal data page ========== ///
+    ///
+    /// @return
 
     @Override
     @Step("validate personal data page structure")
-    public void validateStructure()
+    public PersonalDataPage validateStructure()
     {
         super.validateStructure();
 
@@ -54,6 +56,8 @@ public class PersonalDataPage extends AbstractBrowsingPage
         changeNameOrEmailButton.shouldHave(exactText(Neodymium.localizedText("button.changeNameOrMail"))).shouldBe(visible);
         changePasswordButton.shouldHave(exactText(Neodymium.localizedText("button.changePassword"))).shouldBe(visible);
         deleteButton.shouldHave(exactText(Neodymium.localizedText("button.deleteAccount"))).shouldBe(visible);
+
+        return this;
     }
 
     @Step("validate personal data of '{user}")
@@ -81,20 +85,20 @@ public class PersonalDataPage extends AbstractBrowsingPage
     public DeleteAccountPage openDeleteAccountPage()
     {
         deleteButton.click(ClickOptions.usingJavaScript());
-        return new DeleteAccountPage().reached();
+        return new DeleteAccountPage().assertExpectedPage();
     }
 
     @Step("open delete account page from personal data page")
     public ChangeNameOrEmailPage openChangeNameOrEmailPage()
     {
         changeNameOrEmailButton.click(ClickOptions.usingJavaScript());
-        return new ChangeNameOrEmailPage().reached();
+        return new ChangeNameOrEmailPage().assertExpectedPage();
     }
 
     @Step("open delete account page from personal data page")
     public ChangePasswordPage openChangePasswordPage()
     {
         changePasswordButton.click(ClickOptions.usingJavaScript());
-        return new ChangePasswordPage().reached();
+        return new ChangePasswordPage().assertExpectedPage();
     }
 }

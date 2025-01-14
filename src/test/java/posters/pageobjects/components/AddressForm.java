@@ -10,11 +10,15 @@ import posters.pageobjects.pages.checkout.GuestPaymentPage;
 import posters.pageobjects.pages.user.AddressOverviewPage;
 import posters.tests.testdata.dataobjects.Address;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.matchText;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class AddressForm extends AbstractComponent
+public class AddressForm extends AbstractComponent<AddressForm>
 {
     private SelenideElement lastNameField = $("#address-last-name");
 
@@ -38,14 +42,14 @@ public class AddressForm extends AbstractComponent
 
     @Override
     @Step("ensure availability of address form")
-    public void ensureComponentAvailable()
+    public AddressForm assertComponentAvailable()
     {
-        lastNameField.should(exist);
+        return super.assertComponentAvailable();
     }
 
     @Override
     @Step("check availability of address form")
-    public boolean isAvailable()
+    public boolean isComponentAvailable()
     {
         SelenideAddons.optionalWaitUntilCondition(lastNameField, exist);
         return lastNameField.exists();
@@ -74,7 +78,7 @@ public class AddressForm extends AbstractComponent
         // click add new address button
         addAddressButton.click(ClickOptions.usingJavaScript());
 
-        return new AddressOverviewPage().reached();
+        return new AddressOverviewPage().assertExpectedPage();
     }
 
     @Step("fill and send shipping address form with '{shippingAddress}' and go to guest billing address page")
@@ -87,7 +91,7 @@ public class AddressForm extends AbstractComponent
         $("#bill-unequal-shipp").click(ClickOptions.usingJavaScript());
         addAddressButton.click(ClickOptions.usingJavaScript());
 
-        return new GuestBillingAddressPage().reached();
+        return new GuestBillingAddressPage().assertExpectedPage();
     }
 
     @Step("fill and send address form with '{address}' and go to guest payment page")
@@ -104,7 +108,7 @@ public class AddressForm extends AbstractComponent
 
         addAddressButton.click(ClickOptions.usingJavaScript());
 
-        return new GuestPaymentPage().reached();
+        return new GuestPaymentPage().assertExpectedPage();
     }
 
     /// ========== validate address form ========== ///

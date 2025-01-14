@@ -5,11 +5,13 @@ import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class Pagination extends AbstractComponent
+public class Pagination extends AbstractComponent<Pagination>
 {
     private SelenideElement pagination = $("#pagination-bottom");
 
@@ -27,14 +29,14 @@ public class Pagination extends AbstractComponent
 
     @Override
     @Step("check availability of pagination")
-    public void ensureComponentAvailable()
+    public Pagination assertComponentAvailable()
     {
-        pagination.shouldBe(visible);
+        return super.assertComponentAvailable();
     }
 
     @Override
     @Step("check availability of pagination")
-    public boolean isAvailable()
+    public boolean isComponentAvailable()
     {
         SelenideAddons.optionalWaitUntilCondition(pagination, exist);
         return pagination.exists();

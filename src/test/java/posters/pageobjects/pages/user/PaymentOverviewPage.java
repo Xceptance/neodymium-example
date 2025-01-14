@@ -7,10 +7,12 @@ import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class PaymentOverviewPage extends AbstractBrowsingPage
+public class PaymentOverviewPage extends AbstractBrowsingPage<PaymentOverviewPage>
 {
     private SelenideElement title = $("#title-payment-overview");
 
@@ -18,11 +20,9 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a payment overview page")
-    public PaymentOverviewPage reached()
+    public PaymentOverviewPage assertExpectedPage()
     {
-        super.reached();
-        title.should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -34,10 +34,12 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
     }
 
     /// ========== validate content payment overview page ========== ///
+    ///
+    /// @return
 
     @Override
     @Step("validate payment overview page structure")
-    public void validateStructure()
+    public PaymentOverviewPage validateStructure()
     {
         super.validateStructure();
 
@@ -45,6 +47,8 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
         title.shouldHave(exactText(Neodymium.localizedText("account.paymentSettings"))).shouldBe(visible);
 
         addNewCreditCardButton.shouldHave(exactText(Neodymium.localizedText("button.addNewCreditCard"))).shouldBe(visible);
+
+        return this;
     }
 
     @Step("validate successful saved change")
@@ -59,6 +63,6 @@ public class PaymentOverviewPage extends AbstractBrowsingPage
     public AddNewCreditCardPage openAddNewCreditCardPage()
     {
         addNewCreditCardButton.click(ClickOptions.usingJavaScript());
-        return new AddNewCreditCardPage().reached();
+        return new AddNewCreditCardPage().assertExpectedPage();
     }
 }

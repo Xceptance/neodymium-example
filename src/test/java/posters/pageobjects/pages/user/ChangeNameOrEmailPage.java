@@ -8,11 +8,14 @@ import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.tests.testdata.dataobjects.User;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class ChangeNameOrEmailPage extends AbstractBrowsingPage
+public class ChangeNameOrEmailPage extends AbstractBrowsingPage<ChangeNameOrEmailPage>
 {
 
     private SelenideElement changeNameOrEmailForm = $("#form-change-name-email");
@@ -29,11 +32,9 @@ public class ChangeNameOrEmailPage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a change name or email page")
-    public ChangeNameOrEmailPage reached()
+    public ChangeNameOrEmailPage assertExpectedPage()
     {
-        super.reached();
-        changeNameOrEmailForm.should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -71,7 +72,7 @@ public class ChangeNameOrEmailPage extends AbstractBrowsingPage
 
     @Override
     @Step("validate change name or email page structure")
-    public void validateStructure()
+    public ChangeNameOrEmailPage validateStructure()
     {
         super.validateStructure();
 
@@ -89,6 +90,8 @@ public class ChangeNameOrEmailPage extends AbstractBrowsingPage
 
         // validate update account button
         updateNameOrEmailButton.shouldHave(exactText(Neodymium.localizedText("button.updateAccount"))).shouldBe(visible);
+
+        return this;
     }
 
     @Step("validate user information")
@@ -113,6 +116,6 @@ public class ChangeNameOrEmailPage extends AbstractBrowsingPage
         // click on the update account button
         updateNameOrEmailButton.click(ClickOptions.usingJavaScript());
 
-        return new PersonalDataPage().reached();
+        return new PersonalDataPage().assertExpectedPage();
     }
 }

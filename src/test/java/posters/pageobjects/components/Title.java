@@ -6,17 +6,18 @@ import org.junit.Assert;
 
 import static com.codeborne.selenide.Selenide.title;
 
-public class Title extends AbstractComponent
+public class Title extends AbstractComponent<Title>
 {
     @Override
     @Step("check availability of title")
-    public void ensureComponentAvailable()
+    public Title assertComponentAvailable()
     {
+        return super.assertComponentAvailable();
     }
 
     @Override
     @Step("check availability of title")
-    public boolean isAvailable()
+    public boolean isComponentAvailable()
     {
         return true;
     }

@@ -1,6 +1,10 @@
 package posters.pageobjects.pages.checkout;
 
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.CheckResult;
+import com.codeborne.selenide.ClickOptions;
+import com.codeborne.selenide.Driver;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebElementCondition;
 import com.xceptance.neodymium.util.Neodymium;
 import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
@@ -11,11 +15,13 @@ import posters.tests.testdata.dataobjects.Address;
 import java.time.Duration;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
+public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage<ReturningCustomerShippingAddressPage>
 {
     private SelenideElement title = $("#title-del-addr");
 
@@ -25,11 +31,9 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a shipping address page")
-    public ReturningCustomerShippingAddressPage reached()
+    public ReturningCustomerShippingAddressPage assertExpectedPage()
     {
-        super.reached();
-        $("#del-addr-0").should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -55,7 +59,7 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
 
     @Override
     @Step("validate returning customer shipping address page structure")
-    public void validateStructure()
+    public ReturningCustomerShippingAddressPage validateStructure()
     {
         super.validateStructure();
 
@@ -73,6 +77,8 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
 
         // validate continue button
         useShippingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.continue"))).shouldBe(visible);
+
+        return this;
     }
 
     @Step("validate shipping address '{shippingAddress}' in address container")
@@ -158,6 +164,6 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
         addressContainer.find("input").click(ClickOptions.usingJavaScript());
         useShippingAddressButton.click(ClickOptions.usingJavaScript());
 
-        return new ReturningCustomerBillingAddressPage().reached();
+        return new ReturningCustomerBillingAddressPage().assertExpectedPage();
     }
 }

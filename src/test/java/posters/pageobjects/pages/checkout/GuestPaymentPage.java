@@ -8,12 +8,17 @@ import io.qameta.allure.Step;
 import posters.tests.testdata.dataobjects.CreditCard;
 
 import java.time.LocalDate;
+import java.time.Year;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.attribute;
+import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.matchText;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class GuestPaymentPage extends AbstractCheckoutPage
+public class GuestPaymentPage extends AbstractCheckoutPage<GuestPaymentPage>
 {
     private SelenideElement title = $("#title-payment");
 
@@ -29,11 +34,9 @@ public class GuestPaymentPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a payment page")
-    public GuestPaymentPage reached()
+    public GuestPaymentPage assertExpectedPage()
     {
-        super.reached();
-        title.should(exist);
-        return this;
+        return super.assertExpectedPage();
     }
 
     @Override
@@ -105,17 +108,18 @@ public class GuestPaymentPage extends AbstractCheckoutPage
     {
         // open dropdown
         expirationYear.click(ClickOptions.usingJavaScript());
+        int currentYear = Year.now().getValue();
 
         // validate years
-        for (int i = 1; i <= 11; i++)
+        for (int i = 0; i < 11; i++)
         {
-            $$("#expiration-date-year").findBy(matchText(Neodymium.localizedText("fillIn.dropdown.expireYear." + i))).shouldBe(visible);
+            $$("#expiration-date-year").findBy(matchText(String.valueOf(currentYear + i))).shouldBe(visible);
         }
     }
 
     @Override
     @Step("validate payment page structure")
-    public void validateStructure()
+    public GuestPaymentPage validateStructure()
     {
         super.validateStructure();
 
@@ -142,6 +146,8 @@ public class GuestPaymentPage extends AbstractCheckoutPage
 
         // validate continue button
         addPaymentButton.shouldHave(exactText(Neodymium.localizedText("button.continue"))).shouldBe(visible);
+
+        return this;
     }
 
     /// ========== send payment form ========== ///
@@ -157,7 +163,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage
         // go to place order page
         addPaymentButton.click(ClickOptions.usingJavaScript());
 
-        return new PlaceOrderPage().reached();
+        return new PlaceOrderPage().assertExpectedPage();
     }
 
     @Step("fill and send payment form with '{creditCard}'")
