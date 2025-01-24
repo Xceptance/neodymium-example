@@ -18,6 +18,8 @@ public class Header extends AbstractComponent
     public UserMenu userMenu = new UserMenu();
     
     public MiniCart miniCart = new MiniCart();
+    
+    public LocaleMenu localeMenu = new LocaleMenu();
         
     @Override
     @Step("validate availability header")
@@ -35,5 +37,6 @@ public class Header extends AbstractComponent
         topNav.validateStructure();
         userMenu.validateStructure();
         miniCart.validateStructure();
+        localeMenu.validateStructure();
     }
 }

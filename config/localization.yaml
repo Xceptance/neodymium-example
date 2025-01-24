@@ -184,7 +184,7 @@ default:
             subtotal: "Subtotal"
         sale:
             first: "25% off (Almost) Everything! Use Code: Posters Sale"
-            second: "Our biggest sale yet 50% off all Posters"
+            second: "Our biggest sale yet, 50% off all Posters!"
     
     footer:
         "1":
@@ -235,14 +235,14 @@ default:
         slider:
             "1": "NORTH BOSTON"
             "2": "BOSTON SUNSET"
-            "3": "BRYCE NATIONAL PARK, UTAH I"
-            "4": "BRYCE NATIONAL PARK, UTAH II"
+            "3": "BRYCE CANYON NATIONAL PARK, UTAH I"
+            "4": "BRYCE CANYON NATIONAL PARK, UTAH II"
         intro: "Began with a simple idea \"SHATATATATA!\" - M. Scott"
         featuredProducts:
             headline: "Hot Products"
             "1": 
                 title: "Blue Morpho Butterfly"
-                description: "A beautiful blue and black butterfly on a leaf."
+                description: "A beautiful blue and black butterfly on a leaf"
             "2":
                 title: "Snowdrop Anemone"
                 description: "A blossom in all its details."
