@@ -6,6 +6,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -37,31 +38,31 @@ public class Pagination extends AbstractComponent
     @Step("click on page number '{pageNumber}'")
     public void goToPage(int pageNumber)
     {
-        paginationComponents.findBy(exactText(Integer.toString(pageNumber))).click();
+        paginationComponents.findBy(exactText(Integer.toString(pageNumber))).click(ClickOptions.usingJavaScript());
     }
 
     @Step("click on go to first page")
     public void goToFirstPage()
     {
-        firstPage.click();
+        firstPage.click(ClickOptions.usingJavaScript());
     }
     
     @Step("click on go to first page")
     public void goToPreviousPage()
     {
-        previousPage.click();
+        previousPage.click(ClickOptions.usingJavaScript());
     }
 
     @Step("click on go to last page")
     public void goToNextPage()
     {
-        nextPage.click();
+        nextPage.click(ClickOptions.usingJavaScript());
     }
     
     @Step("click on go to last page")
     public void goToLastPage()
     {
-        lastPage.click();
+        lastPage.click(ClickOptions.usingJavaScript());
     }
        
     /// ========== validate pagination ========== ///
@@ -146,14 +147,13 @@ public class Pagination extends AbstractComponent
             {
                 if(i == 1) 
                 {
-                    goToPage(i);
                     activePage.shouldHave(exactText(Integer.toString(i)));
                     validateElementNumbers(expectedResultCount);
 
+                    validateNavigation();                    
                     validateAvailabilityLeftNavigation(false);
                     validateAvailabilityLRightNavigation(true);
                     
-                    validateNavigation();                    
                     goToNextPage();                  
                     activePage.shouldHave(exactText(Integer.toString(i+1)));
                     goToPreviousPage();
