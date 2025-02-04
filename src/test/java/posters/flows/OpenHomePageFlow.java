@@ -20,7 +20,7 @@ public class OpenHomePageFlow
         HomePage homePage = new HomePage();
         open(Neodymium.configuration().url());
         homePage.header.localeMenu.changeLocale("de-DE");
-        homePage.header.localeMenu.changeLocale("en-US");
+//        homePage.header.localeMenu.changeLocale("en-US");
         return new HomePage().isExpectedPage();
     }
 }

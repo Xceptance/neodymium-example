@@ -1,5 +1,4 @@
 default:
-
     button:
         buyHere: "Buy here"
         shopAllProducts: "Shop All Products"
@@ -30,8 +29,7 @@ default:
         delete: "Delete"
         updateAccount: "Update account"
         submit: "Submit"
-        back: "Back"
-        
+        back: "Back"       
     product:
         size:
             "16x12": "16 x 12 in"
@@ -45,19 +43,16 @@ default:
         title: "Product"
         unitPrice: "Unit Price"
         totalPrice: "Total Price"
-    
     price:
         title: Summary
         subtotal: "Subtotal:"
         shipping: "Shipping:"
         tax: "Tax (6.0%)"
-        grandTotal: "Total"
-    
+        grandTotal: "Total"   
     account:
         shippingAddress: "Shipping Address"
         billingAddress: "Billing Address"
-        paymentSettings: "Payment Settings"
-    
+        paymentSettings: "Payment Settings"    
     fillIn:
         placeholder:
             search: "Search"
@@ -130,7 +125,6 @@ default:
         radio:
             "yes": "Yes"
             "no": "No"
-             
     successMessage:
         successfulOrder: "Thank you for shopping with us!"
         successfulLogin: "Login successful. Have fun in our shop!"
@@ -139,14 +133,12 @@ default:
         successfulRegistration: "Your account has been created. Log in with your email address and password."
         successfulSave: "Saving completed."
         successfulUpdate: "Updating completed."
-        
     errorMessage:
         noProductsFound: "Sorry! No results found matching your search. Please try again."
         emptyCart: "Your cart is empty. Continue shopping."
         errorFalseLogin: "The email address or password is wrong. Please try again."
         emailDoesNotExist: "The email address you entered doesn't exist. Please try again."
         incorrectPassword: "The password you entered is incorrect. Please try again."
-        
     header:
         disclaimer: "This is a demo application. Orders will not be fulfilled. Do not enter ANY personal and sensitive data!"
         topNavigation:
@@ -185,7 +177,6 @@ default:
         sale:
             first: "25% off (Almost) Everything! Use Code: Posters Sale"
             second: "Our biggest sale yet, 50% off all Posters!"
-    
     footer:
         "1":
             headline: "ABOUT"
@@ -209,7 +200,6 @@ default:
         copyright: "Copyright 2013-2024 Xceptance Software Technologies GmbH"
         photoLicense: "All photos by René Schwietzke under CC-BY-4.0."
         version: "The Poster Demo Store - Version 2.4.0"
-        
     checkoutHeader:
         "1":
             number: "1"
@@ -229,7 +219,6 @@ default:
         "6":
             number: "6"
             name: "COMPLETED"
-            
     homePage:
         title: "The Poster Demo Store - The Ultimate Online Shop"
         slider:
@@ -276,59 +265,43 @@ default:
             "12":
                 title: "Linnaean Garden and Museum Sweden"
                 description: "A perfect symmetry."
-                
     categoryPage:
         searchResultText: "Results for your search: "
-        
     noHitsPage:
         message: "Sorry, we could not find a match for your search. Please check your spelling or try something less specific."
         suggestion: "You might want to have a look in the following categories."
-
     productDetailPage:
         selectSize: "Select size:"
         selectStyle: "Select style:"
         printInformation: "Printed with high quality ink and a special coating to protect the colors. Available with matte and gloss finish."
-        
     cartPage:
         title: "Cart"
         number: "#"
         update: "Remove/Update"
-        
     guestShippingAddressPage:
         title: "Enter a shipping address"
-        
     returningCustomerShippingAddressPage:
         title: "Select or enter a shipping address"
-        
     guestBillingAddressPage:
         title: "Enter a billing address"
-        
     returningCustomerBillingAddressPage:
         title: "Select or enter a billing address"
-        
     guestPaymentPage:
         title: "Enter a payment method"
-        
     returningCustomerPaymentPage:
         title: "Select or enter a credit card"
-            
     placeOrderPage:
         title: "Order Overview"
-        
     orderConfirmationPage:
         thankYouMessage: "Thank you for your purchase, your order is being processed."
-        
     loginPage:
         title: "Sign-In"
         newCustomer: "New customer"
         createNewAccount: "Create new Account"
-            
     registerPage:
         title: "Create an account"
-        
     accountOverviewPage:
         title: "My Account"
-            
     orderHistoryPage:
         title: "Order History"
         purchasedPosters: "Purchased posters"
@@ -336,27 +309,347 @@ default:
         quantity: "Quantity"
         orderDate: "Order Date"
         orderTotal: "Order Total"
-            
     myAddressesPage:
         title: "My Addresses"
-        
     addNewShippingAddressPage:
         title: "Add shipping address"
-        
     addNewBillingAddressPage:
         title: "Add billing address"
-            
     personalDataPage:
         title: "Personal Data"
         name: "Name"
         email: "Email"
-    
     changeNameOrEmailPage:
         title: "Change your personal information"
-    
     changePasswordPage:
         title: "Change your password"
-            
     deleteAccontPage:
         title: "Delete your account"
-            
+        
+de_DE:
+   button:
+       buyHere: "Buy here"
+       shopAllProducts: "Shop All Products"
+       viewCart: "Warenkorb Ansehen"
+       createAccount: "In Den Warenkorb"
+       signIn: "Sign In"
+       accountOverview: "Ihr Benutzerkonto"
+       logout: "Abmelden"
+       addToCart: "Add to cart"
+       addNewAddress: "Neue Addresse hinzufügen"
+       addNewShippingAddress: "Eine neue Lieferadresse Hinzufügen"
+       addNewBillingAddress: "Eine neue Rechnungsadresse Hinzufügen"
+       addNewCreditCard: "Eine neue Zahlungsmethode hinzufügen"
+       useThisShippingAddress: "Continue"
+       useThisBillingAddress: "Use This Billing Address"
+       useThisCreditCard: "Use This Credit Card"
+       continue: "Continue"
+       orderWithCosts: "Order with costs"
+       continueShopping: "Continue Shopping"
+       orderHistory: "Übersicht Getätigter Bestellungen"
+       myAddresses: "Meine Addressen"
+       paymentSettings: "Zahlungseinstellungen"
+       personalData: "Persönliche Daten"
+       edit: "Edit"
+       changeNameOrMail: "Change Name or Email"
+       changePassword: "Change your password"
+       deleteAccount: "Ihr Benutzerkonto Löschen"
+       delete: "Löschen"
+       updateAccount: "Update account"
+       submit: "Submit"
+       back: "Back"      
+   product:
+       size:
+           "16x12": "16 x 12 in"
+           "32x24": "32 x 24 in"
+           "64x48": "64 x 48 in"
+           "96x32": "96 x 32 in"
+       style:
+           matte: "matte"
+           gloss: "gloss"
+       quantity: "Quantity"
+       title: "Product"
+       unitPrice: "Unit Price"
+       totalPrice: "Total Price"
+   price:
+       title: Zusammenfassung
+       subtotal: "Zwischensummy:"
+       shipping: "Lieferkosten:"
+       tax: "Steuern (6%):"
+       grandTotal: "Gesamtpreis"  
+   account:
+       shippingAddress: "Shipping Address"
+       billingAddress: "Billing Address"
+       paymentSettings: "Payment Settings"   
+   fillIn:
+       placeholder:
+           search: "Suchen"
+           name: "Your name"
+           companyName: "Ihr Unternehmen"
+           address: "Straße, Hausnummer, etc."
+           city: "Ortschaft"
+           state: "Bundesland/Region"    
+           zip: "Postleitzahl"
+           cardNumber: "Kartennummer"
+           cardHolderName: "Name des Karteninhabers"
+           email: "E-Mail-Addresse"
+           password: "Passwort"
+           firstName: "Vorname"
+           lastName: "Nachname"
+           confirmPassword: "Passwort bestätigen"
+           oldPassword: "Old password"
+           newPassword: "New password"
+           repeatNewPassword: "Repeat new password"
+       inputDescription:
+           firstName: "Vorname*"
+           lastName: "Nachname*"
+           company: "Ihr Unternehmen"
+           address: "Addresse*"
+           city: "Ortschaft*"
+           state: "Bundesland/Region*"
+           zip: "Postleitzahl*"
+           country: "Land*"
+           useThisAddressForBilling: "Diese Adresse auch als Rechnungsadresse verwenden?*"
+           cardNumber: "Kartennummer*"
+           cardHolderName: "Name des Karteninhabers*"
+           expirationDate: Ablaufdatum*
+           email: "E-Mail*"
+           password: "Passwort*"
+           confirmPassword: "Passwort bestätigen*"
+           oldPassword: "Old password*"
+           newPassword: "New password*"
+           repeatNewPassword: "Repeat new password*"
+           shippingInfo: "Lieferung nur an Vereinigte Staaten von Amerika und Deutschland."
+           requiredFields: "*Pflichtfelder"
+       dropdown:
+           country:
+               usa: "Vereinigte Staaten von Amerika"
+               germany: "Deutschland"
+           expireMonth:
+               "1": "01"
+               "2": "02"
+               "3": "03"
+               "4": "04"
+               "5": "05"
+               "6": "06"
+               "7": "07"
+               "8": "08"
+               "9": "09"
+               "10": "10"
+               "11": "11"
+               "12": "12"
+           expireYear:
+               "1": "2025"
+               "2": "2026"
+               "3": "2027"
+               "4": "2028"
+               "5": "2029"
+               "6": "2030"
+               "7": "2031"
+               "8": "2032"
+               "9": "2033"
+               "10": "2034"
+               "11": "2035"
+       radio:
+           "yes": "Yes"
+           "no": "No"
+   successMessage:
+       successfulOrder: "Thank you for shopping with us!"
+       successfulLogin: "Login successful. Have fun in our shop!"
+       successfulAccountDeletion: "Your account has been deleted. We hope to see you soon again!"
+       successfulOrder: "Thank you for shopping with us!"
+       successfulRegistration: "Your account has been created. Log in with your email address and password."
+       successfulSave: "Saving completed."
+       successfulUpdate: "Updating completed."
+   errorMessage:
+       noProductsFound: "Sorry! No results found matching your search. Please try again."
+       emptyCart: "Your cart is empty. Continue shopping."
+       errorFalseLogin: "The email address or password is wrong. Please try again."
+       emailDoesNotExist: "The email address you entered doesn't exist. Please try again."
+       incorrectPassword: "The password you entered is incorrect. Please try again."
+   header:
+       disclaimer: "Dies ist eine Demo Applikation. Bestellungen werden nicht bearbeitet. Geben sie auf keinen Fall sensible oder persönliche Daten ein"
+       topNavigation:
+           "1":
+               title: "Welt der Natur"
+               subCategory:
+                   "1": "Tiere"
+                   "2": "Blumen"
+                   "3": "Bäume"
+           "2":
+               title: "Essen "
+               subCategory:
+                   "1": "Aufschnitt"
+                   "2": "Hauptgerichte"
+                   "3": "Süßes"
+           "3":
+               title: "Verkehr"
+               subCategory:
+                   "1": "Luftverkehr"
+                   "2": "Kraftfahrzeuge"
+                   "3": "Schienenverkehr"
+           "4":
+               title: "Panoramen"
+               subCategory:
+                   "1": "Architektur"
+                   "2": "Feuerwerk"
+                   "3": "Landschaften"
+                   "4": "Extragroße Panoramen"
+       userMenu:
+           title: "Willkommen"
+       miniCart:
+           title:
+               singular: "item in the cart"
+               plural: "items in the cart"
+           subtotal: "Subtotal"
+       sale:
+           first: "25% auf (fast) alles! Nutze den Code: Posters Sale"
+           second: "Unsere bisher größte Aktion: 50% auf alle Poster!"
+   footer:
+       "1":
+           headline: "ABOUT"
+           description: "The Poster Demo Store is a small e-commerce demo application. It is meant for functional testing, test automation, and load and performance testing. It can also help you to learn programming better. This software is licensed under Apache License 2.0."
+           github: "GitHub: "
+       "2":
+           headline: "CUSTOMER CARE"
+           description: "Contact"
+       "3":
+           headline: "INFORMATION"
+           description: "This software is for demo and testing purposes only. Orders will not be fulfilled. Do not enter sensitive or personal data!"
+       "4":
+           headline: "CONTACT INFORMATION"
+           company: "Xceptance GmbH"
+           street: "Leutragraben 2-4"
+           zip: "07743 Jena"
+           country: "Germany" 
+           phone: "Phone: +49-3641-376300"
+           email: "E-mail: kontakt@xceptance.de"
+           website: "Website: www.xceptance.com"
+       copyright: "Copyright 2013-2024 Xceptance Software Technologies GmbH"
+       photoLicense: "All photos by René Schwietzke under CC-BY-4.0."
+       version: "The Poster Demo Store - Version 2.4.0"
+   checkoutHeader:
+       "1":
+           number: "1"
+           name: "CART"
+       "2":
+           number: "2"
+           name: "SHIPPING"
+       "3":
+           number: "3"
+           name: "BILLING"
+       "4":
+           number: "4"
+           name: "PAYMENT"
+       "5":
+           number: "5"
+           name: "SUMMARY"
+       "6":
+           number: "6"
+           name: "COMPLETED"
+   homePage:
+       title: "Der Poster Demo Shop - Der Ultimative Online Shop"
+       slider:
+           "1": "Nord-Bosten"
+           "2": "Platzhalter"
+           "3": "Bryce-Canyon-Nationalpark, I"
+           "4": "Bryce-Canyon-Nationalpark, II"
+       intro: "Began with a simple idea \"SHATATATATA!\" - M. Scott"
+       featuredProducts:
+           headline: "Beliebte Produkte"
+           "1":
+               title: "Blauer Morphofalter"
+               description: "Ein hübscher, blau-schwarzer Schmetterling auf einem Blatt"
+           "2":
+               title: "Platzhalter"
+               description: "Platzhalter"
+           "3":
+               title: "Platzhalter"
+               description: "Platzhalter"
+           "4":
+               title: "Platzhalter"
+               description: "Platzhalter"
+           "5":
+               title: "Platzhalter"
+               description: "Platzhalter"
+           "6":
+               title: "Platzhalter"
+               description: "Platzhalter"
+           "7":
+               title: "Platzhalter"
+               description: "Platzhalter"
+           "8":
+               title: "Platzhalter"
+               description: "Platzhalter"
+           "9":
+               title: "Platzhalter"
+               description: "Platzhalter"
+           "10":
+               title: "Platzhalter"
+               description: "Platzhalter"
+           "11":
+               title: "Platzhalter"
+               description: "Platzhalter"
+           "12":
+               title: "Platzhalter"
+               description: "Platzhalter"
+   categoryPage:
+       searchResultText: "Die Ergebnisse ihrer Suche: "
+   noHitsPage:
+       message: "Sorry, we could not find a match for your search. Please check your spelling or try something less specific."
+       suggestion: "You might want to have a look in the following categories."
+   productDetailPage:
+       selectSize: "Wählen sie eine Größe:"
+       selectStyle: "Wählen sie eine Oberflächenart:"
+       printInformation: "Gedruckt mit hochwertiger Tinte und mit einer besonderen Beschichtung zum Schutz der Farben. Verfügbar sowohl mit glänzender, als auch mit matter Oberfläche."
+   cartPage:
+       title: "Cart"
+       number: "#"
+       update: "Entfernen/Aktualisieren"
+   guestShippingAddressPage:
+       title: "Enter a shipping address"
+   returningCustomerShippingAddressPage:
+       title: "Select or enter a shipping address"
+   guestBillingAddressPage:
+       title: "Enter a billing address"
+   returningCustomerBillingAddressPage:
+       title: "Select or enter a billing address"
+   guestPaymentPage:
+       title: "Enter a payment method"
+   returningCustomerPaymentPage:
+       title: "Select or enter a credit card"
+   placeOrderPage:
+       title: "Order Overview"
+   orderConfirmationPage:
+       thankYouMessage: "Thank you for your purchase, your order is being processed."
+   loginPage:
+       title: "Sign-In"
+       newCustomer: "New customer"
+       createNewAccount: "Create new Account"
+   registerPage:
+       title: "Create an account"
+   accountOverviewPage:
+       title: "My Account"
+   orderHistoryPage:
+       title: "Order History"
+       purchasedPosters: "Purchased posters"
+       orderDetails: "Order details"
+       quantity: "Quantity"
+       orderDate: "Order Date"
+       orderTotal: "Order Total"
+   myAddressesPage:
+       title: "Meine Addressen"
+   addNewShippingAddressPage:
+       title: "Eine neue Lieferadresse hinzufügen"
+   addNewBillingAddressPage:
+       title: "Eine neue Rechnungsadresse hinzufügen"
+   personalDataPage:
+       title: "Personal Data"
+       name: "Name"
+       email: "Email"
+   changeNameOrEmailPage:
+       title: "Change your personal information"
+   changePasswordPage:
+       title: "Change your password"
+   deleteAccontPage:
+       title: "Delete your account"
