@@ -76,13 +76,29 @@ public class AddressOverviewPage extends AbstractBrowsingPage<AddressOverviewPag
     public AddNewShippingAddressPage openAddNewShippingAddressPage()
     {
         addNewShippingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewShippingAddress"))).click(ClickOptions.usingJavaScript());
-        return new AddNewShippingAddressPage().assertExpectedPage();
+
+        // for firefox the JavaScript click didn't work sometimes, so in this case click again normally
+        AddNewShippingAddressPage addNewShippingAddressPage = new AddNewShippingAddressPage();
+        if (!addNewShippingAddressPage.isExpectedPage())
+        {
+            addNewShippingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewShippingAddress"))).click();
+        }
+
+        return addNewShippingAddressPage.assertExpectedPage();
     }
 
     @Step("add new billing address")
     public AddNewBillingAddressPage openAddNewBillingAddressPage()
     {
         addNewBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewBillingAddress"))).click(ClickOptions.usingJavaScript());
+
+        // for firefox the JavaScript click didn't work sometimes, so in this case click again normally
+        AddNewBillingAddressPage addNewBillingAddressPage = new AddNewBillingAddressPage();
+        if (!addNewBillingAddressPage.isExpectedPage())
+        {
+            addNewBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewBillingAddress"))).click();
+        }
+
         return new AddNewBillingAddressPage().assertExpectedPage();
     }
 
