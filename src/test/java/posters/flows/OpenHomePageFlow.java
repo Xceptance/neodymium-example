@@ -1,12 +1,12 @@
 package posters.flows;
 
+import com.xceptance.neodymium.util.Neodymium;
+import io.qameta.allure.Step;
+import posters.pageobjects.components.Header;
+import posters.pageobjects.pages.browsing.HomePage;
+
 import static com.codeborne.selenide.Selenide.clearBrowserCookies;
 import static com.codeborne.selenide.Selenide.open;
-
-import com.xceptance.neodymium.util.Neodymium;
-
-import io.qameta.allure.Step;
-import posters.pageobjects.pages.browsing.HomePage;
 
 public class OpenHomePageFlow
 {
@@ -19,8 +19,22 @@ public class OpenHomePageFlow
         // open home page
         HomePage homePage = new HomePage();
         open(Neodymium.configuration().url());
-        homePage.header.localeMenu.changeLocale("de-DE");
-//        homePage.header.localeMenu.changeLocale("en-US");
+
+        changeLocale(homePage.header);
+
         return new HomePage().isExpectedPage();
+    }
+
+    public static void changeLocale(Header header)
+    {
+        String locale = Neodymium.configuration().locale();
+        if ("de_DE".equals(locale))
+        {
+            header.localeMenu.changeLocale("de-DE");
+        }
+        else
+        {
+            header.localeMenu.changeLocale("en-US");
+        }
     }
 }

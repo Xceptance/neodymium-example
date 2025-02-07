@@ -1,58 +1,67 @@
 [
-    {
-        "firstName": "Register",
-        "lastName": "Jane",
-        "email": "registerjane@varmail.net",
-        "password": "topsecret",
-        "testId": "Jane's test"
-    },
-    {
-        "firstName": "Register",
-        "lastName": "Simon",
-        "email": "registersimon@varmail.net",
-        "password": "topsecret",
-        "testId": "Simons's test"
-    },
-    {
-        "firstName": "Register",
-        "lastName": "James",
-        "email": "registerjames@varmail.net",
-        "password": "topsecret",
-        "testId": "James' test"
-    },
-    {
-        "firstName": "Register",
-        "lastName": "Josh",
-        "email": "registerjosh@varmail.net",
-        "password": "topsecret",
-        "testId": "Josh's test"
-    },
-    {
-        "firstName": "Register",
-        "lastName": "Jim",
-        "email": "registerjim@varmail.net",
-        "password": "topsecret",
-        "testId": "Jim's test"
-    },
-    {
-        "firstName": "Register",
-        "lastName": "Jude",
-        "email": "registerjude@varmail.net",
-        "password": "topsecret",
-        "testId": "Jude's test"
-    },
-    {
-        "firstName": "Register",
-        "lastName": "joel",
-        "email": "registerjoel@varmail.net",
-        "password": "topsecret",
-        "testId": "Joel's test"
-    },
-    {
-        "firstName": "Register",
-        "lastName": "Jeremiah",
-        "email": "registerjeremiah@varmail.net",
-        "password": "topsecret",
-        "testId": "Jeremiah's test"
-    }
+  {
+    "firstName": "Registrierung",
+    "lastName": "Ronny",
+    "email": "registrierungRonny@varmail.net",
+    "password": "strengGeheim",
+    "testId": "register test DE",
+    "locale": "de_DE"
+  },
+  {
+    "firstName": "Register",
+    "lastName": "Ronald",
+    "email": "registerRonald@varmail.net",
+    "password": "topsecret",
+    "testId": "register test US",
+    "locale": "en_US"
+  },
+  {
+    "firstName": "Register",
+    "lastName": "Simon",
+    "email": "registersimon@varmail.net",
+    "password": "topsecret",
+    "testId": "Simons's test"
+  },
+  {
+    "firstName": "Register",
+    "lastName": "James",
+    "email": "registerjames@varmail.net",
+    "password": "topsecret",
+    "testId": "James' test"
+  },
+  {
+    "firstName": "Register",
+    "lastName": "Josh",
+    "email": "registerjosh@varmail.net",
+    "password": "topsecret",
+    "testId": "Josh's test"
+  },
+  {
+    "firstName": "Register",
+    "lastName": "Jim",
+    "email": "registerjim@varmail.net",
+    "password": "topsecret",
+    "testId": "Jim's test"
+  },
+  {
+    "firstName": "Register",
+    "lastName": "Jude",
+    "email": "registerjude@varmail.net",
+    "password": "topsecret",
+    "testId": "Jude's test"
+  },
+  {
+    "firstName": "Register",
+    "lastName": "joel",
+    "email": "registerjoel@varmail.net",
+    "password": "topsecret",
+    "testId": "Joel's test"
+  },
+  {
+    "firstName": "Register",
+    "lastName": "Jeremiah",
+    "email": "registerjeremiah@varmail.net",
+    "password": "topsecret",
+    "testId": "Jeremiah's test"
+  }
 ]

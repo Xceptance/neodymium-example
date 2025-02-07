@@ -1,15 +1,13 @@
 package posters.tests.smoke;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Tag;
-
 import com.xceptance.neodymium.common.testdata.DataItem;
 import com.xceptance.neodymium.junit5.NeodymiumTest;
 import com.xceptance.neodymium.util.Neodymium;
-
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Tag;
 import posters.flows.CartCleanUpFlow;
 import posters.flows.DeleteUserFlow;
 import posters.flows.OpenHomePageFlow;
@@ -38,8 +36,8 @@ public class OrderHistoryTest extends AbstractTest
         var loginPage = registerPage.sendRegisterForm(orderHistoryTestData.getUser());
 
         // send login form
-        var accountOverviewPage = loginPage.sendLoginForm(orderHistoryTestData.getUser());
-        accountOverviewPage.validateSuccessfulLogin(orderHistoryTestData.getUser().getFirstName());
+        homePage = loginPage.sendLoginForm(orderHistoryTestData.getUser());
+        var accountOverviewPage = homePage.header.userMenu.openAccountOverviewPage();
 
         // go to order history page and validate
         var orderHistoryPage = accountOverviewPage.openOrderHistory();

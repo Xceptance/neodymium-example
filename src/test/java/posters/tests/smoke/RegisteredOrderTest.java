@@ -1,15 +1,13 @@
 package posters.tests.smoke;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Tag;
-
 import com.xceptance.neodymium.common.testdata.DataItem;
 import com.xceptance.neodymium.junit5.NeodymiumTest;
 import com.xceptance.neodymium.util.Neodymium;
-
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Tag;
 import posters.flows.CartCleanUpFlow;
 import posters.flows.DeleteUserFlow;
 import posters.flows.OpenHomePageFlow;
@@ -24,7 +22,7 @@ public class RegisteredOrderTest extends AbstractTest
 {
     @DataItem
     private RegisteredOrderTestData registeredOrderTestData;
-    
+
     // If you want a different name for a test data key, you can define the desired name 
     // and then assign the value to the specified name using the test data key as parameter 
     // in the DataItem annotation, as shown below.
@@ -44,8 +42,8 @@ public class RegisteredOrderTest extends AbstractTest
         var loginPage = registerPage.sendRegisterForm(registeredOrderTestData.getUser());
 
         // send login form
-        var accountOverviewPage = loginPage.sendLoginForm(registeredOrderTestData.getUser());
-        accountOverviewPage.validateSuccessfulLogin(registeredOrderTestData.getUser().getFirstName());
+        homePage = loginPage.sendLoginForm(registeredOrderTestData.getUser());
+        var accountOverviewPage = homePage.header.userMenu.openAccountOverviewPage();
         accountOverviewPage.validateStructure();
 
         // go to address overview page and validate
@@ -53,12 +51,12 @@ public class RegisteredOrderTest extends AbstractTest
         addressOverviewPage.validateStructure();
 
         var addNewShippingAddressPage = addressOverviewPage.openAddNewShippingAddressPage();
-        
+
         // add new shipping address
         addNewShippingAddressPage.validateStructure();
         addressOverviewPage = addNewShippingAddressPage.addressForm.addNewAddress(registeredOrderTestData.getAddress());
         //addressOverviewPage.validateSuccessfulSave();
-        
+
         // add new billing address
         var addNewBillingAddressPage = addressOverviewPage.openAddNewBillingAddressPage();
         addNewBillingAddressPage.validateStructure();

@@ -1,38 +1,70 @@
 [
-	{
-		"user":
-      	{
-      		"firstName": "Registered",
-      		"lastName": "Order",
-      		"email": "registeredorder@varmail2.net",
-      		"password": "topsecret"
-      	},
-      	"topCategory": "header.topNavigation.2.title",
-      	"product":
-      	{
-      	    "name": "Rocket Salad with Mozzarella",
-      	    "size": "32 x 24 in",
-      	    "style": "gloss",
-      	    "amount": "2"
-      	},
-      	"address":
-      	{
-            "firstName": "Registered",
-      		"lastName": "Order",
-      		"company": "Registered Order Inc.",
-      		"street": "5-7 Registered Order street",
-      		"city": "Registered Order City",
-      		"state": "Registered Order State",
-      		"zip": "12345",
-      		"country": "United States"
-      	},
-      	"creditCard":
-      	{
-      		"fullName": "Registered Order",
-      		"cardNumber": "4111111111111111",
-      		"crypticCardNumber": "xxxx xxxx xxxx 1111",
-      		"expDateMonth": "06",
-      		"expDateYear": "2028"
-      	}
-	}
+  {
+    "locale": "en_US",
+    "testId": "search with expected result US",
+    "user": {
+      "firstName": "Registered",
+      "lastName": "Order",
+      "email": "registeredorder@varmail2.net",
+      "password": "strictGoHome"
+    },
+    "topCategory": "header.topNavigation.2.title",
+    "product": {
+      "name": "Rocket Salad with Mozzarella",
+      "size": "32 x 24 in",
+      "style": "gloss",
+      "amount": "2"
+    },
+    "address": {
+      "firstName": "Registered",
+      "lastName": "Order",
+      "company": "Registered Order Inc.",
+      "street": "5-7 Registered Order street",
+      "city": "Registered Order City",
+      "state": "Registered Order State",
+      "zip": "12345",
+      "country": "United States"
+    },
+    "creditCard": {
+      "fullName": "Registered Order",
+      "cardNumber": "4111111111111111",
+      "crypticCardNumber": "xxxx xxxx xxxx 1111",
+      "expDateMonth": "06",
+      "expDateYear": "2028"
+    }
+  },
+  {
+    "locale": "de_DE",
+    "testId": "search with expected result DE",
+    "user": {
+      "firstName": "Registrierung",
+      "lastName": "Regina",
+      "email": "registrierungRegina@varmail42.net",
+      "password": "strengGeheim"
+    },
+    "topCategory": "header.topNavigation.1.title",
+    "product": {
+      "name": "Bartkauz",
+      "size": "32 x 24 in",
+      "style": "gloss",
+      "amount": "2"
+    },
+    "address": {
+      "firstName": "Registrierung",
+      "lastName": "Bestellung",
+      "company": "Registrierung Bestellung KGaA.",
+      "street": "Knallerballerweg 42",
+      "city": "Rostock",
+      "state": "MeckPomm",
+      "zip": "18055",
+      "country": "Deutschland"
+    },
+    "creditCard": {
+      "fullName": "Registrierung Bestellung",
+      "cardNumber": "4111111111111111",
+      "crypticCardNumber": "xxxx xxxx xxxx 1111",
+      "expDateMonth": "06",
+      "expDateYear": "2028"
+    }
+  }
 ]

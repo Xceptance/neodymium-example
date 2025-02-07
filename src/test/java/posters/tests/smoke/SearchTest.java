@@ -1,14 +1,12 @@
 package posters.tests.smoke;
 
-import org.junit.jupiter.api.Tag;
-
 import com.xceptance.neodymium.common.testdata.DataItem;
 import com.xceptance.neodymium.common.testdata.DataSet;
 import com.xceptance.neodymium.junit5.NeodymiumTest;
-
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.junit.jupiter.api.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 import posters.tests.testdata.pageobjects.components.SearchTestData;
@@ -22,7 +20,8 @@ public class SearchTest extends AbstractTest
     private SearchTestData searchTestData;
 
     @NeodymiumTest
-    @DataSet(1)
+    @DataSet(id = "search with expected result US")
+    @DataSet(id = "search with expected result DE")
     public void testSearching()
     {
         // go to homepage
@@ -37,7 +36,8 @@ public class SearchTest extends AbstractTest
     }
 
     @NeodymiumTest
-    @DataSet(2)
+    @DataSet(id = "search with no result US")
+    @DataSet(id = "search with no result DE")
     public void testSearchingWithoutResult()
     {
         // go to homepage

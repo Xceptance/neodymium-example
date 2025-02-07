@@ -1,37 +1,82 @@
 [
-	{
-		"firstName": "John",
-		"lastName": "Doe",
-		"email": "johndoe@example.com",
-		"password": "topsecret",
-		"testId": "happy path"
-	},
-	{
-		"firstName": "John",
-		"lastName": "Doe",
-		"email": "admin@example.com",
-		"password": "notsecret",
-		"testId": "wrong password"
-	},
-	{
-		"firstName": "John",
-		"lastName": "Doe",
-		"email": "admin@example.company",
-		"password": "topsecret",
-		"testId": "wrong email"
-	},
-	{
-		"firstName": "John",
-		"lastName": "Doe",
-		"email": "",
-		"password": "topsecret",
-		"testId": "missing email"
-	},
-	{
-		"firstName": "John",
-		"lastName": "Doe",
-		"email": "admin@example.net",
-		"password": "",
-		"testId": "missing password"
-	}
+  {
+    "locale": "en_US",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "johndoe@example.com",
+    "password": "topsecret",
+    "testId": "happy path US"
+  },
+  {
+    "locale": "de_DE",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "johndoe@example.com",
+    "password": "topsecret",
+    "testId": "happy path DE"
+  },
+  {
+    "locale": "en_US",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "admin@example.com",
+    "password": "notsecret",
+    "testId": "wrong password US"
+  },
+  {
+    "locale": "de_DE",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "admin@example.com",
+    "password": "notsecret",
+    "testId": "wrong password DE"
+  },
+  {
+    "locale": "en_US",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "admin@example.company",
+    "password": "topsecret",
+    "testId": "wrong email US"
+  },
+  {
+    "locale": "de_DE",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "admin@example.company",
+    "password": "topsecret",
+    "testId": "wrong email DE"
+  },
+  {
+    "locale": "en_US",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "",
+    "password": "topsecret",
+    "testId": "missing email US"
+  },
+  {
+    "locale": "de_DE",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "",
+    "password": "topsecret",
+    "testId": "missing email DE"
+  },
+  {
+    "locale": "en_US",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "admin@example.net",
+    "password": "",
+    "testId": "missing password US"
+  },
+  {
+    "locale": "de_DE",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "admin@example.net",
+    "password": "",
+    "testId": "missing password DE"
+  }
 ]

@@ -1,40 +1,78 @@
 [
-    {
-        "topCategory": "header.topNavigation.1.title",
-        "subCategory": "header.topNavigation.1.subCategory.1",
-        "searchTerm": "pizza",
-        "product1":
-        {
-            "name": "Grizzly Bear",
-            "size": "16 x 12 in",
-            "style": "matte",
-            "amount": "1"
-        },
-        "product2":
-        {
-            "name": "Frozen Pizza",
-            "size": "64 x 48 in",
-            "style": "gloss",
-            "amount": "3"
-        }
+  {
+    "locale": "en_US",
+    "testId": "add to cart test 1 US",
+    "topCategory": "header.topNavigation.1.title",
+    "subCategory": "header.topNavigation.1.subCategory.1",
+    "searchTerm": "pizza",
+    "product1": {
+      "name": "Grizzly Bear",
+      "size": "16 x 12 in",
+      "style": "matte",
+      "amount": "1"
     },
-    {
-        "topCategory": "header.topNavigation.2.title",
-        "subCategory": "header.topNavigation.2.subCategory.2",
-        "searchTerm": "boston",
-        "product1":
-        {
-            "name": "Goulash with Dumplings",
-            "size": "32 x 24 in",
-            "style": "gloss",
-            "amount": "1"
-        },
-        "product2":
-        {
-            "name": "North Boston",
-            "size": "96 x 32 in",
-            "style": "matte",
-            "amount": "5"
-        }
+    "product2": {
+      "name": "Frozen Pizza",
+      "size": "64 x 48 in",
+      "style": "gloss",
+      "amount": "3"
     }
+  },
+  {
+    "locale": "en_US",
+    "testId": "add to cart test 2 US",
+    "topCategory": "header.topNavigation.2.title",
+    "subCategory": "header.topNavigation.2.subCategory.2",
+    "searchTerm": "boston",
+    "product1": {
+      "name": "Goulash with Dumplings",
+      "size": "32 x 24 in",
+      "style": "gloss",
+      "amount": "1"
+    },
+    "product2": {
+      "name": "North Boston",
+      "size": "96 x 32 in",
+      "style": "matte",
+      "amount": "5"
+    }
+  },
+  {
+    "locale": "de_DE",
+    "testId": "add to cart test 1 DE",
+    "topCategory": "header.topNavigation.1.title",
+    "subCategory": "header.topNavigation.1.subCategory.1",
+    "searchTerm": "baum",
+    "product1": {
+      "name": "Grizzlybär",
+      "size": "16 x 12 in",
+      "style": "matte",
+      "amount": "1"
+    },
+    "product2": {
+      "name": "Winterwunderland",
+      "size": "64 x 48 in",
+      "style": "gloss",
+      "amount": "3"
+    }
+  },
+  {
+    "locale": "de_DE",
+    "testId": "add to cart test 2 DE",
+    "topCategory": "header.topNavigation.1.title",
+    "subCategory": "header.topNavigation.1.subCategory.2",
+    "searchTerm": "boston",
+    "product1": {
+      "name": "Pink-weiße Kaktus-Dahlie",
+      "size": "32 x 24 in",
+      "style": "gloss",
+      "amount": "1"
+    },
+    "product2": {
+      "name": "Nord-Boston",
+      "size": "96 x 32 in",
+      "style": "matte",
+      "amount": "5"
+    }
+  }
 ]

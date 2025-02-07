@@ -129,7 +129,6 @@ default:
         successfulOrder: "Thank you for shopping with us!"
         successfulLogin: "Login successful. Have fun in our shop!"
         successfulAccountDeletion: "Your account has been deleted. We hope to see you soon again!"
-        successfulOrder: "Thank you for shopping with us!"
         successfulRegistration: "Your account has been created. Log in with your email address and password."
         successfulSave: "Saving completed."
         successfulUpdate: "Updating completed."
@@ -328,31 +327,31 @@ default:
         
 de_DE:
    button:
-       buyHere: "Buy here"
-       shopAllProducts: "Shop All Products"
-       viewCart: "Warenkorb Ansehen"
-       createAccount: "In Den Warenkorb"
-       signIn: "Sign In"
+       buyHere: "Hier kaufen"
+       shopAllProducts: "Alle Produkte"
+       viewCart: "Warenkorb ansehen"
+       createAccount: "Benutzerkonto erstellen"
+       signIn: "Anmelden"
        accountOverview: "Ihr Benutzerkonto"
        logout: "Abmelden"
-       addToCart: "Add to cart"
+       addToCart: "In den Warenkorb"
        addNewAddress: "Neue Addresse hinzufügen"
        addNewShippingAddress: "Eine neue Lieferadresse Hinzufügen"
        addNewBillingAddress: "Eine neue Rechnungsadresse Hinzufügen"
        addNewCreditCard: "Eine neue Zahlungsmethode hinzufügen"
-       useThisShippingAddress: "Continue"
-       useThisBillingAddress: "Use This Billing Address"
-       useThisCreditCard: "Use This Credit Card"
-       continue: "Continue"
-       orderWithCosts: "Order with costs"
-       continueShopping: "Continue Shopping"
+       useThisShippingAddress: "Weiter"
+       useThisBillingAddress: "Diese Rechnungsadresse verwenden"
+       useThisCreditCard: "Diese Zahlungsmethode verwenden"
+       continue: "Weiter"
+       orderWithCosts: "Kostenpflichtig bestellen"
+       continueShopping: "Einkauf Fortsetzen"
        orderHistory: "Übersicht Getätigter Bestellungen"
        myAddresses: "Meine Addressen"
        paymentSettings: "Zahlungseinstellungen"
        personalData: "Persönliche Daten"
-       edit: "Edit"
-       changeNameOrMail: "Change Name or Email"
-       changePassword: "Change your password"
+       edit: "Bearbeiten"
+       changeNameOrMail: "Name oder E-Mail ändern"
+       changePassword: "Ihr Passwort ändern"
        deleteAccount: "Ihr Benutzerkonto Löschen"
        delete: "Löschen"
        updateAccount: "Update account"
@@ -365,22 +364,22 @@ de_DE:
            "64x48": "64 x 48 in"
            "96x32": "96 x 32 in"
        style:
-           matte: "matte"
-           gloss: "gloss"
-       quantity: "Quantity"
-       title: "Product"
-       unitPrice: "Unit Price"
-       totalPrice: "Total Price"
+           matte: "Matt"
+           gloss: "Glänzend"
+       quantity: "Menge"
+       title: "Produkt"
+       unitPrice: "Einzelpreis"
+       totalPrice: "Gesamtpreis"
    price:
-       title: Zusammenfassung
-       subtotal: "Zwischensummy:"
+       title: "Zusammenfassung"
+       subtotal: "Zwischensumme:"
        shipping: "Lieferkosten:"
-       tax: "Steuern (6%):"
-       grandTotal: "Gesamtpreis"  
+       tax: "Steuern (6.0%):"
+       grandTotal: "Gesamtkosten:"
    account:
-       shippingAddress: "Shipping Address"
-       billingAddress: "Billing Address"
-       paymentSettings: "Payment Settings"   
+       shippingAddress: "Lieferaddresse"
+       billingAddress: "Rechnungsaddresse"
+       paymentSettings: "Zahlungseinstellungen"
    fillIn:
        placeholder:
            search: "Suchen"
@@ -397,13 +396,13 @@ de_DE:
            firstName: "Vorname"
            lastName: "Nachname"
            confirmPassword: "Passwort bestätigen"
-           oldPassword: "Old password"
-           newPassword: "New password"
-           repeatNewPassword: "Repeat new password"
+           oldPassword: "Altes Passwort"
+           newPassword: "neues Passwort"
+           repeatNewPassword: "Wiederholen sie ihr neues Passwort"
        inputDescription:
            firstName: "Vorname*"
            lastName: "Nachname*"
-           company: "Ihr Unternehmen"
+           company: "Unternehmen"
            address: "Addresse*"
            city: "Ortschaft*"
            state: "Bundesland/Region*"
@@ -412,13 +411,13 @@ de_DE:
            useThisAddressForBilling: "Diese Adresse auch als Rechnungsadresse verwenden?*"
            cardNumber: "Kartennummer*"
            cardHolderName: "Name des Karteninhabers*"
-           expirationDate: Ablaufdatum*
-           email: "E-Mail*"
+           expirationDate: "Ablaufdatum*"
+           email: "E-Mail-Addresse*"
            password: "Passwort*"
            confirmPassword: "Passwort bestätigen*"
-           oldPassword: "Old password*"
-           newPassword: "New password*"
-           repeatNewPassword: "Repeat new password*"
+           oldPassword: "Altes Passwort*"
+           newPassword: "Neues Passwort*"
+           repeatNewPassword: "Passwort wiederholen*"
            shippingInfo: "Lieferung nur an Vereinigte Staaten von Amerika und Deutschland."
            requiredFields: "*Pflichtfelder"
        dropdown:
@@ -451,24 +450,23 @@ de_DE:
                "10": "2034"
                "11": "2035"
        radio:
-           "yes": "Yes"
-           "no": "No"
+           "yes": "Ja"
+           "no": "Nein"
    successMessage:
        successfulOrder: "Thank you for shopping with us!"
        successfulLogin: "Login successful. Have fun in our shop!"
        successfulAccountDeletion: "Your account has been deleted. We hope to see you soon again!"
-       successfulOrder: "Thank you for shopping with us!"
        successfulRegistration: "Your account has been created. Log in with your email address and password."
        successfulSave: "Saving completed."
        successfulUpdate: "Updating completed."
    errorMessage:
        noProductsFound: "Sorry! No results found matching your search. Please try again."
-       emptyCart: "Your cart is empty. Continue shopping."
+       emptyCart: "Ihr Warenkorb ist leer. Führen sie ihren Einkauf fort."
        errorFalseLogin: "The email address or password is wrong. Please try again."
        emailDoesNotExist: "The email address you entered doesn't exist. Please try again."
        incorrectPassword: "The password you entered is incorrect. Please try again."
    header:
-       disclaimer: "Dies ist eine Demo Applikation. Bestellungen werden nicht bearbeitet. Geben sie auf keinen Fall sensible oder persönliche Daten ein"
+       disclaimer: "Dies ist eine Demo Applikation. Bestellungen werden nicht bearbeitet. Geben sie auf keinen Fall sensible oder persönliche Daten ein!"
        topNavigation:
            "1":
                title: "Welt der Natur"
@@ -499,58 +497,58 @@ de_DE:
            title: "Willkommen"
        miniCart:
            title:
-               singular: "item in the cart"
-               plural: "items in the cart"
-           subtotal: "Subtotal"
+               singular: "Positionen im Warenkorb"
+               plural: "Positionen im Warenkorb"
+           subtotal: "Zwischensumme"
        sale:
-           first: "25% auf (fast) alles! Nutze den Code: Posters Sale"
-           second: "Unsere bisher größte Aktion: 50% auf alle Poster!"
+           first: "25% Rabatt auf (fast) alles! Nutze den Code: Posters Sale"
+           second: "Unsere bisher größte Aktion: 50% Rabatt auf alle Poster!"
    footer:
        "1":
-           headline: "ABOUT"
-           description: "The Poster Demo Store is a small e-commerce demo application. It is meant for functional testing, test automation, and load and performance testing. It can also help you to learn programming better. This software is licensed under Apache License 2.0."
+           headline: "ÜBER UNS"
+           description: "Der Poster Demo Shop ist eine kleine Demonstration einer Online-Handelsplattform. Er ist für funktionales Testen, Testautomatisierung, und Last- und Performancetesten gedacht. Er kann auch dabei helfen programmieren zu lernen. Diese Software unterliegt der Apache License 2.0."
            github: "GitHub: "
        "2":
-           headline: "CUSTOMER CARE"
-           description: "Contact"
+           headline: "Kundenservice"
+           description: "Kontakt"
        "3":
-           headline: "INFORMATION"
-           description: "This software is for demo and testing purposes only. Orders will not be fulfilled. Do not enter sensitive or personal data!"
+           headline: "Wichtige Informationen"
+           description: "Diese Software dient ausschließlich zu Test- und Demonstrationszwecken. Bestellungen werden nicht bearbeitet. Geben sie auf keinen Fall sensible oder persönliche Daten ein!"
        "4":
-           headline: "CONTACT INFORMATION"
+           headline: "Kontaktinformationen"
            company: "Xceptance GmbH"
            street: "Leutragraben 2-4"
            zip: "07743 Jena"
-           country: "Germany" 
-           phone: "Phone: +49-3641-376300"
-           email: "E-mail: kontakt@xceptance.de"
-           website: "Website: www.xceptance.com"
+           country: "Deutschland"
+           phone: "Telefon: +49-3641-376300"
+           email: "E-Mail: kontakt@xceptance.de"
+           website: "Webseite: www.xceptance.de"
        copyright: "Copyright 2013-2024 Xceptance Software Technologies GmbH"
-       photoLicense: "All photos by René Schwietzke under CC-BY-4.0."
-       version: "The Poster Demo Store - Version 2.4.0"
+       photoLicense: "Alle Fotos angefertigt von René Schwietzke und veröffentlicht unter der CC-BY-4.0 Lizenz."
+       version: "Der Poster Demo Shop - Version 2.4.0"
    checkoutHeader:
        "1":
            number: "1"
-           name: "CART"
+           name: "WARENKORB"
        "2":
            number: "2"
-           name: "SHIPPING"
+           name: "LIEFERUNG"
        "3":
            number: "3"
-           name: "BILLING"
+           name: "RECHNUNG"
        "4":
            number: "4"
-           name: "PAYMENT"
+           name: "ZAHLUNG"
        "5":
            number: "5"
-           name: "SUMMARY"
+           name: "ZUSAMMENFASSUNG"
        "6":
            number: "6"
-           name: "COMPLETED"
+           name: "ABGESCHLOSSEN"
    homePage:
        title: "Der Poster Demo Shop - Der Ultimative Online Shop"
        slider:
-           "1": "Nord-Bosten"
+           "1": "Nord-Boston"
            "2": "Platzhalter"
            "3": "Bryce-Canyon-Nationalpark, I"
            "4": "Bryce-Canyon-Nationalpark, II"
@@ -607,36 +605,36 @@ de_DE:
        number: "#"
        update: "Entfernen/Aktualisieren"
    guestShippingAddressPage:
-       title: "Enter a shipping address"
+       title: "Geben sie eine Lieferadresse ein"
    returningCustomerShippingAddressPage:
-       title: "Select or enter a shipping address"
+       title: "Wählen sie eine Lieferadresse aus oder geben sie eine ein"
    guestBillingAddressPage:
-       title: "Enter a billing address"
+       title: "Geben sie eine Rechnungsadresse ein"
    returningCustomerBillingAddressPage:
-       title: "Select or enter a billing address"
+       title: "Wählen sie eine Rechnungsadresse aus oder geben sie eine ein"
    guestPaymentPage:
-       title: "Enter a payment method"
+       title: "Geben sie eine Zahlungsmethode an"
    returningCustomerPaymentPage:
-       title: "Select or enter a credit card"
+       title: "Wählen sie eine Zahlungsmethode aus oder geben sie eine neue an"
    placeOrderPage:
-       title: "Order Overview"
+       title: "Bestellungsüberblick"
    orderConfirmationPage:
-       thankYouMessage: "Thank you for your purchase, your order is being processed."
+       thankYouMessage: "Vielen Dank für ihren Einkauf, ihre Bestellung ist in Bearbeitung."
    loginPage:
-       title: "Sign-In"
-       newCustomer: "New customer"
-       createNewAccount: "Create new Account"
+       title: "Anmelden"
+       newCustomer: "Neukunde"
+       createNewAccount: "Neues Benutzerkonto anlegen"
    registerPage:
-       title: "Create an account"
+       title: "Ein Benutzerkonto erstellen"
    accountOverviewPage:
-       title: "My Account"
+       title: "Ihr Benutzerkonto"
    orderHistoryPage:
-       title: "Order History"
-       purchasedPosters: "Purchased posters"
-       orderDetails: "Order details"
-       quantity: "Quantity"
-       orderDate: "Order Date"
-       orderTotal: "Order Total"
+       title: "Übersicht getätigter Bestellungen"
+       purchasedPosters: "Gekaufte Poster"
+       orderDetails: "Bestellungsdetails"
+       quantity: "Menge"
+       orderDate: "Bestelldatum"
+       orderTotal: "Bestellwert"
    myAddressesPage:
        title: "Meine Addressen"
    addNewShippingAddressPage:
@@ -644,12 +642,12 @@ de_DE:
    addNewBillingAddressPage:
        title: "Eine neue Rechnungsadresse hinzufügen"
    personalDataPage:
-       title: "Personal Data"
+       title: "Persönliche Daten"
        name: "Name"
-       email: "Email"
+       email: "E-Mail"
    changeNameOrEmailPage:
-       title: "Change your personal information"
+       title: "Name oder E-Mail ändern"
    changePasswordPage:
-       title: "Change your password"
+       title: "Ihr Passwort ändern"
    deleteAccontPage:
-       title: "Delete your account"
+       title: "Ihr Benutzerkonto löschen"
