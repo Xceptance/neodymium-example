@@ -47,7 +47,7 @@ public class Pagination extends AbstractComponent<Pagination>
     @Step("click on page number '{pageNumber}'")
     public void goToPage(int pageNumber)
     {
-        paginationComponents.findBy(exactText(Integer.toString(pageNumber))).click();
+        paginationComponents.findBy(exactText(Integer.toString(pageNumber))).scrollTo().scrollIntoView("{block: 'center'}").click();
     }
 
     @Step("click on go to first page")
