@@ -12,9 +12,13 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
+import static com.codeborne.selenide.Condition.*;
+
 public class TopNavigation extends AbstractComponent<TopNavigation>
 {
     private SelenideElement categoryMenu = $("#header-categories");
+
+    private SelenideElement logo = $("#header-brand");
 
     @Override
     @Step("ensure availability top navigation")
@@ -53,6 +57,7 @@ public class TopNavigation extends AbstractComponent<TopNavigation>
     @Step("validate top category name '{topCategory}'")
     public void validateNavComponent(String topCategory)
     {
+        logo.hover();
         $$(".nav-item").findBy(exactText(topCategory)).shouldBe(visible);
     }
 

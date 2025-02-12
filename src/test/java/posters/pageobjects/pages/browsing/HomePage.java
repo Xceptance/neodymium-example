@@ -21,11 +21,8 @@ public class HomePage extends AbstractBrowsingPage<HomePage>
     private SelenideElement homePageIntroText = $("#intro-text-homepage");
 
     private ElementsCollection slideNavigation = $$("#carousel-btn");
-
     private ElementsCollection slideHeadline = $$(".carousel-content-product h1");
-
     private ElementsCollection slideButton = $$(".carousel-content-product .btn-primary");
-
     private ElementsCollection featuredCategories = $$(".category-tile-title");
 
     public SaleBanner saleBanner = new SaleBanner();

@@ -47,6 +47,7 @@ public class Pagination extends AbstractComponent<Pagination>
     @Step("click on page number '{pageNumber}'")
     public void goToPage(int pageNumber)
     {
+        // because of some scrolling problems with current chromedriver both scrolls are necessary here. If this is fixed one can be removed
         paginationComponents.findBy(exactText(Integer.toString(pageNumber))).scrollTo().scrollIntoView("{block: 'center'}").click();
     }
 
@@ -149,67 +150,44 @@ public class Pagination extends AbstractComponent<Pagination>
     {
         int numberOfPages = (expectedResultCount % 8 == 0) ? (expectedResultCount / 8) : (expectedResultCount / 8 + 1);
 
-        if (numberOfPages > 1)
+        if (numberOfPages <= 1)
         {
-            pagination.shouldBe(visible);
-
-            // validate click on pagination numbers works properly
-            for (int i = 1; i <= numberOfPages; i++)
-            {
-                if (i == 1)
-                {
-                    goToPage(i);
-                    activePage.shouldHave(exactText(Integer.toString(i)));
-                    validateElementNumbers(expectedResultCount);
-
-                    validateAvailabilityLeftNavigation(false);
-                    validateAvailabilityLRightNavigation(true);
-
-                    validateNavigation();
-                    goToNextPage();
-                    activePage.shouldHave(exactText(Integer.toString(i + 1)));
-                    goToPreviousPage();
-                    activePage.shouldHave(exactText(Integer.toString(i)));
-                }
-                else if (i == numberOfPages)
-                {
-                    goToPage(i);
-                    activePage.shouldHave(exactText(Integer.toString(i)));
-                    validateElementNumbers(expectedResultCount);
-
-                    validateNavigation();
-                    validateAvailabilityLeftNavigation(true);
-                    validateAvailabilityLRightNavigation(false);
-
-                    goToPreviousPage();
-                    activePage.shouldHave(exactText(Integer.toString(i - 1)));
-                    goToNextPage();
-                    activePage.shouldHave(exactText(Integer.toString(i)));
-                }
-                else
-                {
-                    goToPage(i);
-                    activePage.shouldHave(exactText(Integer.toString(i)));
-                    validateElementNumbers(expectedResultCount);
-
-                    validateNavigation();
-                    validateAvailabilityLeftNavigation(true);
-                    validateAvailabilityLRightNavigation(true);
-
-                    goToNextPage();
-                    activePage.shouldHave(exactText(Integer.toString(i + 1)));
-                    goToPreviousPage();
-                    activePage.shouldHave(exactText(Integer.toString(i)));
-                }
-            }
-
-            goToFirstPage();
-            activePage.shouldHave(exactText(Integer.toString(1)));
-
-            goToLastPage();
-            activePage.shouldHave(exactText(Integer.toString(numberOfPages)));
-        }
-        else
             return;
+        }
+
+        pagination.shouldBe(visible);
+
+        // validate click on pagination numbers works properly
+        for (int i = 1; i <= numberOfPages; i++)
+        {
+            goToPage(i);
+            activePage.shouldHave(exactText(Integer.toString(i)));
+            validateElementNumbers(expectedResultCount);
+            validateNavigation();
+
+            validateAvailabilityLeftNavigation(i > 1);
+            validateAvailabilityLRightNavigation(i < numberOfPages);
+
+            if (i < numberOfPages)
+            {
+                goToNextPage();
+                activePage.shouldHave(exactText(Integer.toString(i + 1)));
+                goToPreviousPage();
+                activePage.shouldHave(exactText(Integer.toString(i)));
+            }
+            else
+            {
+                goToPreviousPage();
+                activePage.shouldHave(exactText(Integer.toString(i - 1)));
+                goToNextPage();
+                activePage.shouldHave(exactText(Integer.toString(i)));
+            }
+        }
+
+        goToFirstPage();
+        activePage.shouldHave(exactText(Integer.toString(1)));
+
+        goToLastPage();
+        activePage.shouldHave(exactText(Integer.toString(numberOfPages)));
     }
 }
