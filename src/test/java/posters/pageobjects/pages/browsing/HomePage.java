@@ -1,5 +1,13 @@
 package posters.pageobjects.pages.browsing;
 
+import com.codeborne.selenide.ClickOptions;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Neodymium;
+import com.xceptance.neodymium.util.SelenideAddons;
+import io.qameta.allure.Step;
+import posters.pageobjects.components.SaleBanner;
+
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.exactText;
@@ -8,16 +16,10 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import com.codeborne.selenide.ClickOptions;
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
-import com.xceptance.neodymium.util.Neodymium;
-
-import io.qameta.allure.Step;
-import posters.pageobjects.components.SaleBanner;
-
-public class HomePage extends AbstractBrowsingPage
+public class HomePage extends AbstractBrowsingPage<HomePage>
 {
+    private SelenideElement homePageIntroText = $("#intro-text-homepage");
+
     private ElementsCollection slideNavigation = $$("#carousel-btn");
     private ElementsCollection slideHeadline = $$(".carousel-content-product h1");
     private ElementsCollection slideButton = $$(".carousel-content-product .btn-primary");
@@ -27,11 +29,17 @@ public class HomePage extends AbstractBrowsingPage
 
     @Override
     @Step("ensure this is a home page")
-    public HomePage isExpectedPage()
+    public HomePage assertExpectedPage()
     {
-        super.isExpectedPage();
-        $("#intro-text-homepage").should(exist);
-        return this;
+        return super.assertExpectedPage();
+    }
+
+    @Override
+    @Step("check if this is a home page")
+    public boolean isExpectedPage()
+    {
+        SelenideAddons.optionalWaitUntilCondition(homePageIntroText, exist);
+        return homePageIntroText.exists();
     }
 
     /// ========== validate content homepage ========== ///
@@ -78,7 +86,7 @@ public class HomePage extends AbstractBrowsingPage
 
     @Override
     @Step("validate structure home page")
-    public void validateStructure()
+    public HomePage validateStructure()
     {
         super.validateStructure();
 
@@ -99,6 +107,8 @@ public class HomePage extends AbstractBrowsingPage
 
         // validate shop all products button
         $(".btn-shop-all").shouldHave(exactText(Neodymium.localizedText("button.shopAllProducts"))).shouldBe(visible);
+
+        return this;
     }
 
     @Step("validate successful account deletion on home page")
@@ -113,6 +123,6 @@ public class HomePage extends AbstractBrowsingPage
     public HomePage openHomePage()
     {
         $("#header-brand").click(ClickOptions.usingJavaScript());
-        return new HomePage().isExpectedPage();
+        return new HomePage().assertExpectedPage();
     }
 }

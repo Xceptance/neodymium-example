@@ -1,5 +1,19 @@
 package posters.pageobjects.pages.checkout;
 
+import com.codeborne.selenide.CheckResult;
+import com.codeborne.selenide.ClickOptions;
+import com.codeborne.selenide.Driver;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebElementCondition;
+import com.xceptance.neodymium.util.Neodymium;
+import com.xceptance.neodymium.util.SelenideAddons;
+import io.qameta.allure.Step;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import posters.tests.testdata.dataobjects.Address;
+
+import java.time.Duration;
+
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
@@ -7,81 +21,76 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import java.time.Duration;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import com.codeborne.selenide.CheckResult;
-import com.codeborne.selenide.ClickOptions;
-import com.codeborne.selenide.Driver;
-import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebElementCondition;
-import com.xceptance.neodymium.util.Neodymium;
-
-import io.qameta.allure.Step;
-import posters.tests.testdata.dataobjects.Address;
-
-public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
+public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage<ReturningCustomerShippingAddressPage>
 {
     private SelenideElement title = $("#title-del-addr");
-    
+
     private SelenideElement addShippingAddressButton = $(".form-group .btn");
-    
+
     private SelenideElement useShippingAddressButton = $("#btn-use-address-continue");
 
     @Override
     @Step("ensure this is a shipping address page")
-    public ReturningCustomerShippingAddressPage isExpectedPage()
+    public ReturningCustomerShippingAddressPage assertExpectedPage()
     {
-        super.isExpectedPage();
-        $("#del-addr-0").should(exist);
-        return this;
+        return super.assertExpectedPage();
+    }
+
+    @Override
+    @Step("check if this is a shipping address page")
+    public boolean isExpectedPage()
+    {
+        SelenideAddons.optionalWaitUntilCondition(title, exist);
+        return title.exists();
     }
 
     /// ========== validate content returning customer shipping address page ========== ///
-    
+
     @Step("validate process wrap")
-    public void validateProcessWrap() 
+    public void validateProcessWrap()
     {
-        for (int i = 1; i <= 6; i++) 
+        for (int i = 1; i <= 6; i++)
         {
             $(".progress-step-" + i + " .progress-bubble").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".number"))).shouldBe(visible);
-            $(".progress-step-" + i + " .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".name"))).shouldBe(visible);         
+            $(".progress-step-" + i + " .progress-bubble-caption").shouldHave(exactText(Neodymium.localizedText("checkoutHeader." + i + ".name")))
+                                                                  .shouldBe(visible);
         }
     }
-    
+
     @Override
     @Step("validate returning customer shipping address page structure")
-    public void validateStructure()
+    public ReturningCustomerShippingAddressPage validateStructure()
     {
         super.validateStructure();
-        
+
         // validate process wrap
         validateProcessWrap();
-        
+
         // validate title
         title.shouldHave(exactText(Neodymium.localizedText("returningCustomerShippingAddressPage.title"))).shouldBe(visible);
-        
+
         // validate first address
         $("#del-addr-0").shouldBe(visible);
-        
+
         // validate add new shipping address button
         addShippingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewShippingAddress"))).shouldBe(visible);
-        
+
         // validate continue button
         useShippingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.continue"))).shouldBe(visible);
+
+        return this;
     }
-    
+
     @Step("validate shipping address '{shippingAddress}' in address container")
-    public void validateAddressContainer(Address shippingAddress) 
+    public void validateAddressContainer(Address shippingAddress)
     {
         // selector for product
         final SelenideElement addressContainer = $$(".thumbnail").shouldHave(sizeGreaterThan(0))
-                                                                 .findBy(new WebElementCondition("has full name " + shippingAddress.getFullName() + ", company " + shippingAddress.getCompany()
-                                                                                                 + ", street " + shippingAddress.getStreet() + ", city" + shippingAddress.getCity()
-                                                                                                 + ", state " + shippingAddress.getState() + ", zip " + shippingAddress.getZip()
-                                                                                                 + " and country " + shippingAddress.getCountry())
+                                                                 .findBy(new WebElementCondition(
+                                                                     "has full name " + shippingAddress.getFullName() + ", company " + shippingAddress.getCompany()
+                                                                         + ", street " + shippingAddress.getStreet() + ", city" + shippingAddress.getCity()
+                                                                         + ", state " + shippingAddress.getState() + ", zip " + shippingAddress.getZip()
+                                                                         + " and country " + shippingAddress.getCountry())
                                                                  {
                                                                      @Override
                                                                      public CheckResult check(Driver driver, WebElement element)
@@ -100,10 +109,12 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
                                                                                                      .equals(shippingAddress.getZip());
                                                                          boolean matchesCountry = element.findElement(By.cssSelector(".country")).getText()
                                                                                                          .equals(shippingAddress.getCountry());
-                                                                         return new CheckResult(matchesName && matchesCompany && matchesStreet && matchesCity && matchesState && matchesZip && matchesCountry, "");
+                                                                         return new CheckResult(
+                                                                             matchesName && matchesCompany && matchesStreet && matchesCity && matchesState && matchesZip && matchesCountry,
+                                                                             "");
                                                                      }
                                                                  }).shouldBe(visible, Duration.ofMillis(9000));
-        
+
         // validate address data
         addressContainer.find(".name").shouldHave(exactText(shippingAddress.getFullName())).shouldBe(visible);
         addressContainer.find(".company").shouldHave(exactText(shippingAddress.getCompany())).shouldBe(visible);
@@ -111,20 +122,21 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
         addressContainer.find(".city").shouldHave(exactText(shippingAddress.getCity())).shouldBe(visible);
         addressContainer.find(".state").shouldHave(exactText(shippingAddress.getState())).shouldBe(visible);
         addressContainer.find(".zip").shouldHave(exactText(shippingAddress.getZip())).shouldBe(visible);
-        addressContainer.find(".country").shouldHave(exactText(shippingAddress.getCountry())).shouldBe(visible);  
+        addressContainer.find(".country").shouldHave(exactText(shippingAddress.getCountry())).shouldBe(visible);
     }
 
     /// ========== select shipping address ========== ///
 
     @Step("select the shipping address '{shippingAddress}'")
-    public ReturningCustomerBillingAddressPage selectShippingAddress(Address shippingAddress) 
+    public ReturningCustomerBillingAddressPage selectShippingAddress(Address shippingAddress)
     {
         // selector for product
         final SelenideElement addressContainer = $$(".thumbnail").shouldHave(sizeGreaterThan(0))
-                                                                 .findBy(new WebElementCondition("has full name " + shippingAddress.getFullName() + ", company " + shippingAddress.getCompany()
-                                                                                                 + ", street " + shippingAddress.getStreet() + ", city" + shippingAddress.getCity()
-                                                                                                 + ", state " + shippingAddress.getState() + ", zip " + shippingAddress.getZip()
-                                                                                                 + " and country " + shippingAddress.getCountry())
+                                                                 .findBy(new WebElementCondition(
+                                                                     "has full name " + shippingAddress.getFullName() + ", company " + shippingAddress.getCompany()
+                                                                         + ", street " + shippingAddress.getStreet() + ", city" + shippingAddress.getCity()
+                                                                         + ", state " + shippingAddress.getState() + ", zip " + shippingAddress.getZip()
+                                                                         + " and country " + shippingAddress.getCountry())
                                                                  {
                                                                      @Override
                                                                      public CheckResult check(Driver driver, WebElement element)
@@ -143,13 +155,15 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
                                                                                                      .equals(shippingAddress.getZip());
                                                                          boolean matchesCountry = element.findElement(By.cssSelector(".country")).getText()
                                                                                                          .equals(shippingAddress.getCountry());
-                                                                         return new CheckResult(matchesName && matchesCompany && matchesStreet && matchesCity && matchesState && matchesZip && matchesCountry, "");
+                                                                         return new CheckResult(
+                                                                             matchesName && matchesCompany && matchesStreet && matchesCity && matchesState && matchesZip && matchesCountry,
+                                                                             "");
                                                                      }
                                                                  }).shouldBe(visible, Duration.ofMillis(9000));
-        
+
         addressContainer.find("input").click(ClickOptions.usingJavaScript());
         useShippingAddressButton.click(ClickOptions.usingJavaScript());
-        
-        return new ReturningCustomerBillingAddressPage().isExpectedPage();
+
+        return new ReturningCustomerBillingAddressPage().assertExpectedPage();
     }
 }

@@ -1,15 +1,13 @@
 package posters.tests.smoke;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Tag;
-
 import com.xceptance.neodymium.common.testdata.DataItem;
 import com.xceptance.neodymium.common.testdata.DataSet;
 import com.xceptance.neodymium.junit5.NeodymiumTest;
-
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import posters.flows.OpenLoginPageFlow;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.tests.AbstractTest;
@@ -41,7 +39,7 @@ public class LoginTest extends AbstractTest
         // validate that nobody is logged in
         loginPage.header.userMenu.checkIfNoUserIsLoggedIn();
 
-        return new LoginPage().isExpectedPage();
+        return loginPage;
     }
 
     @NeodymiumTest

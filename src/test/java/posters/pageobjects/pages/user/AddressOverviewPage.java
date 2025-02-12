@@ -1,41 +1,49 @@
 package posters.pageobjects.pages.user;
 
+import com.codeborne.selenide.ClickOptions;
+import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Neodymium;
+import com.xceptance.neodymium.util.SelenideAddons;
+import io.qameta.allure.Step;
+import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
+
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-import com.codeborne.selenide.ClickOptions;
-import com.codeborne.selenide.SelenideElement;
-import com.xceptance.neodymium.util.Neodymium;
-
-import io.qameta.allure.Step;
-import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
-
-public class AddressOverviewPage extends AbstractBrowsingPage
+public class AddressOverviewPage extends AbstractBrowsingPage<AddressOverviewPage>
 {
     private SelenideElement title = $("#title-address-overview");
-    
-    private SelenideElement addNewShippingAddressButton = $("#link-add-ship-addr");  
-    
+
+    private SelenideElement addNewShippingAddressButton = $("#link-add-ship-addr");
+
     private SelenideElement addNewBillingAddressButton = $("#link-add-bill-addr");
-    
+
     private SelenideElement goBackButton = $("#link-acc-overview");
 
     @Override
-    @Step("ensure this is a address overview page")
-    public AddressOverviewPage isExpectedPage()
+    @Step("ensure this is an address overview page")
+    public AddressOverviewPage assertExpectedPage()
     {
-        super.isExpectedPage();
-        title.should(exist);
-        return this;
+        return super.assertExpectedPage();
+    }
+
+    @Override
+    @Step("check if this is an address overview page")
+    public boolean isExpectedPage()
+    {
+        SelenideAddons.optionalWaitUntilCondition(title, exist);
+        return title.exists();
     }
 
     /// ========== validate content address overview page ========== ///
+    ///
+    /// @return
 
     @Override
     @Step("validate personal data page structure")
-    public void validateStructure()
+    public AddressOverviewPage validateStructure()
     {
         super.validateStructure();
 
@@ -49,37 +57,55 @@ public class AddressOverviewPage extends AbstractBrowsingPage
         // validate billing addresses overview
         $("#titleBillAddr").shouldHave(exactText(Neodymium.localizedText("account.billingAddress"))).shouldBe(visible);
         addNewBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewBillingAddress"))).shouldBe(visible);
-        
+
         // validate button
         goBackButton.shouldHave(exactText(Neodymium.localizedText("button.back"))).shouldBe(visible);
+
+        return this;
     }
-    
+
     @Step("validate successful saved change")
     public void validateSuccessfulSave()
     {
         successMessage.validateSuccessMessage(Neodymium.localizedText("successMessage.successfulSave"));
     }
-    
+
     /// ========== address overview page navigation ========== ///
-    
+
     @Step("add new shipping address")
-    public AddNewShippingAddressPage openAddNewShippingAddressPage() 
+    public AddNewShippingAddressPage openAddNewShippingAddressPage()
     {
         addNewShippingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewShippingAddress"))).click(ClickOptions.usingJavaScript());
-        return new AddNewShippingAddressPage().isExpectedPage();
+
+        // for firefox the JavaScript click didn't work sometimes, so in this case click again normally
+        AddNewShippingAddressPage addNewShippingAddressPage = new AddNewShippingAddressPage();
+        if (!addNewShippingAddressPage.isExpectedPage())
+        {
+            addNewShippingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewShippingAddress"))).click();
+        }
+
+        return addNewShippingAddressPage.assertExpectedPage();
     }
-    
+
     @Step("add new billing address")
-    public AddNewBillingAddressPage openAddNewBillingAddressPage() 
+    public AddNewBillingAddressPage openAddNewBillingAddressPage()
     {
         addNewBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewBillingAddress"))).click(ClickOptions.usingJavaScript());
-        return new AddNewBillingAddressPage().isExpectedPage();
+
+        // for firefox the JavaScript click didn't work sometimes, so in this case click again normally
+        AddNewBillingAddressPage addNewBillingAddressPage = new AddNewBillingAddressPage();
+        if (!addNewBillingAddressPage.isExpectedPage())
+        {
+            addNewBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewBillingAddress"))).click();
+        }
+
+        return new AddNewBillingAddressPage().assertExpectedPage();
     }
-    
+
     @Step("go to account overview page")
-    public AccountOverviewPage openAccountOverviewPage() 
+    public AccountOverviewPage openAccountOverviewPage()
     {
         goBackButton.click(ClickOptions.usingJavaScript());
-        return new AccountOverviewPage().isExpectedPage();
+        return new AccountOverviewPage().assertExpectedPage();
     }
 }

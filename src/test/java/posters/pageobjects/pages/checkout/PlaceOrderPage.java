@@ -1,5 +1,17 @@
 package posters.pageobjects.pages.checkout;
 
+import com.codeborne.selenide.ClickOptions;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Neodymium;
+import com.xceptance.neodymium.util.SelenideAddons;
+import io.qameta.allure.Step;
+import org.apache.commons.lang3.StringUtils;
+import posters.pageobjects.utility.PriceHelper;
+import posters.tests.testdata.dataobjects.Address;
+import posters.tests.testdata.dataobjects.CreditCard;
+import posters.tests.testdata.dataobjects.Product;
+
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exactValue;
 import static com.codeborne.selenide.Condition.exist;
@@ -9,20 +21,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.codeborne.selenide.ClickOptions;
-import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.SelenideElement;
-import com.xceptance.neodymium.util.Neodymium;
-
-import io.qameta.allure.Step;
-import posters.tests.testdata.dataobjects.Address;
-import posters.tests.testdata.dataobjects.CreditCard;
-import posters.tests.testdata.dataobjects.Product;
-import posters.pageobjects.utility.PriceHelper;
-
-public class PlaceOrderPage extends AbstractCheckoutPage
+public class PlaceOrderPage extends AbstractCheckoutPage<PlaceOrderPage>
 {
     private SelenideElement title = $("#title-order-overview");
 
@@ -46,11 +45,17 @@ public class PlaceOrderPage extends AbstractCheckoutPage
 
     @Override
     @Step("ensure this is a place order page")
-    public PlaceOrderPage isExpectedPage()
+    public PlaceOrderPage assertExpectedPage()
     {
-        super.isExpectedPage();
-        title.should(exist);
-        return this;
+        return super.assertExpectedPage();
+    }
+
+    @Override
+    @Step("check if this is a place order page")
+    public boolean isExpectedPage()
+    {
+        SelenideAddons.optionalWaitUntilCondition(title, exist);
+        return title.exists();
     }
 
     /// ========== validate content place order page ========== ///
@@ -77,7 +82,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
 
     @Override
     @Step("validate place order page structure")
-    public void validateStructure()
+    public PlaceOrderPage validateStructure()
     {
         super.validateStructure();
 
@@ -89,6 +94,8 @@ public class PlaceOrderPage extends AbstractCheckoutPage
 
         // validate order with costs button
         orderButton.shouldHave(exactText(Neodymium.localizedText("button.orderWithCosts"))).shouldBe(visible);
+
+        return this;
     }
 
     private void validateShippingAddressOverview(Address shippingAddress, String headline)
@@ -249,7 +256,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage
 
     /**
      * Loops through all total product prices on the place order page and adds it to the "subtotal" variable.
-     * 
+     *
      * @return subtotal The sum of all total product prices
      */
     @Step("calculate sum of all total product prices")
@@ -286,6 +293,6 @@ public class PlaceOrderPage extends AbstractCheckoutPage
         // click on "Order with costs" button
         orderButton.click(ClickOptions.usingJavaScript());
 
-        return new OrderConfirmationPage().isExpectedPage();
+        return new OrderConfirmationPage().assertExpectedPage();
     }
 }

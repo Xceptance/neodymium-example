@@ -1,17 +1,25 @@
 package posters.pageobjects.components;
 
-import static com.codeborne.selenide.Selenide.title;
-
+import com.xceptance.neodymium.util.SelenideAddons;
+import io.qameta.allure.Step;
 import org.junit.Assert;
 
-import com.xceptance.neodymium.util.SelenideAddons;
+import static com.codeborne.selenide.Selenide.title;
 
-import io.qameta.allure.Step;
-
-public class Title extends AbstractComponent
+public class Title extends AbstractComponent<Title>
 {
-    public void isComponentAvailable()
+    @Override
+    @Step("check availability of title")
+    public Title assertComponentAvailable()
     {
+        return super.assertComponentAvailable();
+    }
+
+    @Override
+    @Step("check availability of title")
+    public boolean isComponentAvailable()
+    {
+        return true;
     }
 
     @Step("validate that the page title matches {title}")
