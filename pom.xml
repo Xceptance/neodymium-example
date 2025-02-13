@@ -5,7 +5,7 @@
   
   <groupId>com.xceptance.neodymium.project</groupId>
   <artifactId>neodymium-example</artifactId>
-  <version>5.0.2</version>
+  <version>5.2.0</version>
   <packaging>jar</packaging>
 
   <name>neodymium-example</name>
