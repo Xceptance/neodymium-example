@@ -35,3 +35,4 @@ dev-*.properties
 .idea/encodings.xml
 .idea/compiler.xml
 .idea/.gitignore
+/allure-results/
