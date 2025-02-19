@@ -1,7 +1,7 @@
 [
   {
     "locale": "en_US",
-    "testId": "search with expected result US",
+    "testId": "registered order US",
     "user": {
       "firstName": "Registered",
       "lastName": "Order",
@@ -35,7 +35,7 @@
   },
   {
     "locale": "de_DE",
-    "testId": "search with expected result DE",
+    "testId": "registered order DE",
     "user": {
       "firstName": "Registrierung",
       "lastName": "Regina",

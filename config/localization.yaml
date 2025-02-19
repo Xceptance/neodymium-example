@@ -2,33 +2,32 @@ default:
     button:
         buyHere: "Buy here"
         shopAllProducts: "Shop All Products"
-        viewCart: "view cart"
-        createAccount: "Create account"
+        viewCart: "View Cart"
+        createAccount: "Create Account"
         signIn: "Sign In"
         accountOverview: "My Account"
         logout: "Logout"
-        addToCart: "Add to cart"
-        addNewAddress: "Add new address"
+        addToCart: "Add To Cart"
+        addNewAddress: "Add New Address"
         addNewShippingAddress: "Add Shipping Address"
         addNewBillingAddress: "Add Billing Address"
         addNewCreditCard: "Add Credit Card"
-        useThisShippingAddress: "Continue"
+        useThisShippingAddress: "Use This Shipping Address"
         useThisBillingAddress: "Use This Billing Address"
         useThisCreditCard: "Use This Credit Card"
         continue: "Continue"
-        orderWithCosts: "Order with costs"
+        orderWithCosts: "Order With Costs"
         continueShopping: "Continue Shopping"
         orderHistory: "Order History"
         myAddresses: "My Addresses"
         paymentSettings: "Payment Settings"
         personalData: "Personal Data"
         edit: "Edit"
-        changeNameOrMail: "Change Name or Email"
-        changePassword: "Change your password"
-        deleteAccount: "Delete your account"
+        changeNameOrMail: "Change Your Name or Email"
+        changePassword: "Change Your Password"
+        deleteAccount: "Delete Your Account"
         delete: "Delete"
-        updateAccount: "Update account"
-        submit: "Submit"
+        updateAccount: "Update Your Account"
         back: "Back"       
     product:
         size:
@@ -37,8 +36,8 @@ default:
             "64x48": "64 x 48 in"
             "96x32": "96 x 32 in"
         style:
-            matte: "matte"
-            gloss: "gloss"
+            matte: "Matte"
+            gloss: "Gloss"
         quantity: "Quantity"
         title: "Product"
         unitPrice: "Unit Price"
@@ -56,43 +55,43 @@ default:
     fillIn:
         placeholder:
             search: "Search"
-            name: "Your name"
-            companyName: "Company name"
-            address: "Street address, Apartment, etc."
+            name: "Your Name"
+            companyName: "Company Name"
+            address: "Street Address, Apartment, etc."
             city: "City"
             state: "State/Province"     
-            zip: "ZIP/Postal code"
-            cardNumber: Card number
-            cardHolderName: "Cardholder's name"
-            email: "Email address"
+            zip: "ZIP/Postal Code"
+            cardNumber: Card Number
+            cardHolderName: "Cardholder's Name"
+            email: "Email Address"
             password: "Password"
-            firstName: "First name"
-            lastName: "Last name"
-            confirmPassword: "Confirm password"
-            oldPassword: "Old password"
-            newPassword: "New password"
-            repeatNewPassword: "Repeat new password"
+            firstName: "First Name"
+            lastName: "Last Name"
+            confirmPassword: "Confirm Password"
+            oldPassword: "Old Password"
+            newPassword: "New Password"
+            repeatNewPassword: "Repeat New Password"
         inputDescription:
-            firstName: "First name*"
-            lastName: "Last name*" 
+            firstName: "First Name*"
+            lastName: "Last Name*" 
             company: "Company"
             address: "Address*"
             city: "City*"
             state: "State/Province*"
-            zip: "Zip/Postal code*"
+            zip: "Zip/Postal Code*"
             country: "Country*"
-            useThisAddressForBilling: "Use this address for billing?*"
-            cardNumber: "Card number*"
-            cardHolderName: "Cardholder's name*"
-            expirationDate: Expiration date*
-            email: "Email address*"
+            useThisAddressForBilling: "Use This Address for Billing?*"
+            cardNumber: "Card Number*"
+            cardHolderName: "Cardholder's Name*"
+            expirationDate: Expiration Date*
+            email: "Email Address*"
             password: "Password*"
-            confirmPassword: "Confirm password*"
-            oldPassword: "Old password*"
-            newPassword: "New password*"
-            repeatNewPassword: "Repeat new password*"
+            confirmPassword: "Confirm Password*"
+            oldPassword: "Old Password*"
+            newPassword: "New Password*"
+            repeatNewPassword: "Repeat New Password*"
             shippingInfo: "We only ship to United States and Germany."
-            requiredFields: "*Required fields"
+            requiredFields: "*Required Fields"
         dropdown:
             country:
                 usa: "United States"
@@ -136,8 +135,7 @@ default:
         noProductsFound: "Sorry! No results found matching your search. Please try again."
         emptyCart: "Your cart is empty. Continue shopping."
         errorFalseLogin: "The email address or password is wrong. Please try again."
-        emailDoesNotExist: "The email address you entered doesn't exist. Please try again."
-        incorrectPassword: "The password you entered is incorrect. Please try again."
+        errorFalseEmailFormat: "Please enter a valid email address."
     header:
         disclaimer: "This is a demo application. Orders will not be fulfilled. Do not enter ANY personal and sensitive data!"
         topNavigation:
@@ -268,37 +266,37 @@ default:
         searchResultText: "Results for your search: "
     noHitsPage:
         message: "Sorry, we could not find a match for your search. Please check your spelling or try something less specific."
-        suggestion: "You might want to have a look in the following categories."
+        suggestion: "You might want to have a look at the following categories."
     productDetailPage:
-        selectSize: "Select size:"
-        selectStyle: "Select style:"
+        selectSize: "Select Size:"
+        selectStyle: "Select Style:"
         printInformation: "Printed with high quality ink and a special coating to protect the colors. Available with matte and gloss finish."
     cartPage:
         title: "Cart"
         number: "#"
         update: "Remove/Update"
     guestShippingAddressPage:
-        title: "Enter a shipping address"
+        title: "Enter a Shipping Address"
     returningCustomerShippingAddressPage:
-        title: "Select or enter a shipping address"
+        title: "Select or Enter a Shipping Address"
     guestBillingAddressPage:
-        title: "Enter a billing address"
+        title: "Enter a Billing Address"
     returningCustomerBillingAddressPage:
-        title: "Select or enter a billing address"
+        title: "Select or Enter a Billing Address"
     guestPaymentPage:
-        title: "Enter a payment method"
+        title: "Enter a Credit Card"
     returningCustomerPaymentPage:
-        title: "Select or enter a credit card"
+        title: "Select or Enter a Credit Card"
     placeOrderPage:
         title: "Order Overview"
     orderConfirmationPage:
         thankYouMessage: "Thank you for your purchase, your order is being processed."
     loginPage:
         title: "Sign-In"
-        newCustomer: "New customer"
-        createNewAccount: "Create new Account"
+        newCustomer: "New Customer"
+        createNewAccount: "Create New Account"
     registerPage:
-        title: "Create an account"
+        title: "Create an Account"
     accountOverviewPage:
         title: "My Account"
     orderHistoryPage:
@@ -311,19 +309,19 @@ default:
     myAddressesPage:
         title: "My Addresses"
     addNewShippingAddressPage:
-        title: "Add shipping address"
+        title: "Add Shipping Address"
     addNewBillingAddressPage:
-        title: "Add billing address"
+        title: "Add Billing Address"
     personalDataPage:
         title: "Personal Data"
         name: "Name"
         email: "Email"
     changeNameOrEmailPage:
-        title: "Change your personal information"
+        title: "Change Your Personal Information"
     changePasswordPage:
-        title: "Change your password"
+        title: "Change Your Password"
     deleteAccontPage:
-        title: "Delete your account"
+        title: "Delete Your Account"
         
 de_DE:
    button:
@@ -335,28 +333,27 @@ de_DE:
        accountOverview: "Ihr Benutzerkonto"
        logout: "Abmelden"
        addToCart: "In den Warenkorb"
-       addNewAddress: "Neue Addresse hinzufügen"
+       addNewAddress: "Neue Adresse hinzufügen"
        addNewShippingAddress: "Eine neue Lieferadresse Hinzufügen"
        addNewBillingAddress: "Eine neue Rechnungsadresse Hinzufügen"
        addNewCreditCard: "Eine neue Zahlungsmethode hinzufügen"
-       useThisShippingAddress: "Weiter"
+       useThisShippingAddress: "Diese Lieferadresse verwenden"
        useThisBillingAddress: "Diese Rechnungsadresse verwenden"
        useThisCreditCard: "Diese Zahlungsmethode verwenden"
        continue: "Weiter"
        orderWithCosts: "Kostenpflichtig bestellen"
        continueShopping: "Einkauf Fortsetzen"
        orderHistory: "Übersicht Getätigter Bestellungen"
-       myAddresses: "Meine Addressen"
+       myAddresses: "Meine Adressen"
        paymentSettings: "Zahlungseinstellungen"
        personalData: "Persönliche Daten"
        edit: "Bearbeiten"
        changeNameOrMail: "Name oder E-Mail ändern"
        changePassword: "Ihr Passwort ändern"
-       deleteAccount: "Ihr Benutzerkonto Löschen"
+       deleteAccount: "Ihr Benutzerkonto löschen"
        delete: "Löschen"
-       updateAccount: "Update account"
-       submit: "Submit"
-       back: "Back"      
+       updateAccount: "Ihr Benutzerkonto aktualisieren"
+       back: "Zurück"      
    product:
        size:
            "16x12": "16 x 12 in"
@@ -377,33 +374,32 @@ de_DE:
        tax: "Steuern (6.0%):"
        grandTotal: "Gesamtkosten:"
    account:
-       shippingAddress: "Lieferaddresse"
-       billingAddress: "Rechnungsaddresse"
+       shippingAddress: "Lieferadresse"
+       billingAddress: "Rechnungsadresse"
        paymentSettings: "Zahlungseinstellungen"
    fillIn:
        placeholder:
            search: "Suchen"
-           name: "Your name"
-           companyName: "Ihr Unternehmen"
+           companyName: "Unternehmen"
            address: "Straße, Hausnummer, etc."
            city: "Ortschaft"
            state: "Bundesland/Region"    
            zip: "Postleitzahl"
            cardNumber: "Kartennummer"
            cardHolderName: "Name des Karteninhabers"
-           email: "E-Mail-Addresse"
+           email: "E-Mail-Adresse"
            password: "Passwort"
            firstName: "Vorname"
            lastName: "Nachname"
            confirmPassword: "Passwort bestätigen"
            oldPassword: "Altes Passwort"
-           newPassword: "neues Passwort"
+           newPassword: "Neues Passwort"
            repeatNewPassword: "Wiederholen sie ihr neues Passwort"
        inputDescription:
            firstName: "Vorname*"
            lastName: "Nachname*"
            company: "Unternehmen"
-           address: "Addresse*"
+           address: "Adresse*"
            city: "Ortschaft*"
            state: "Bundesland/Region*"
            zip: "Postleitzahl*"
@@ -412,7 +408,7 @@ de_DE:
            cardNumber: "Kartennummer*"
            cardHolderName: "Name des Karteninhabers*"
            expirationDate: "Ablaufdatum*"
-           email: "E-Mail-Addresse*"
+           email: "E-Mail-Adresse*"
            password: "Passwort*"
            confirmPassword: "Passwort bestätigen*"
            oldPassword: "Altes Passwort*"
@@ -453,18 +449,17 @@ de_DE:
            "yes": "Ja"
            "no": "Nein"
    successMessage:
-       successfulOrder: "Thank you for shopping with us!"
-       successfulLogin: "Login successful. Have fun in our shop!"
-       successfulAccountDeletion: "Your account has been deleted. We hope to see you soon again!"
-       successfulRegistration: "Your account has been created. Log in with your email address and password."
-       successfulSave: "Saving completed."
-       successfulUpdate: "Updating completed."
+       successfulOrder: "Wir danken für ihren Einkauf!"
+       successfulLogin: "Sie wurden erfolgreich angemeldet. Wir wünschen viel Spaß in unserem Shop!"
+       successfulAccountDeletion: "Ihr Benutzerkonto wurde gelöscht. Wir würden uns freuen sie wiederzusehen!"
+       successfulRegistration: "Ihr Benutzerkonto wurde erstellt. Melden sie sich mit ihrer E-Mail-Adresse und mit ihrem Passwort an."
+       successfulSave: "Speichern abgeschlossen."
+       successfulUpdate: "Aktualisieren abgeschlossen."
    errorMessage:
-       noProductsFound: "Sorry! No results found matching your search. Please try again."
+       noProductsFound: "Entschuldigung! Wir konnten leider keine Ergebnisse für ihre Suche finden. Bitte versuchen sie eine neue Suche."
        emptyCart: "Ihr Warenkorb ist leer. Führen sie ihren Einkauf fort."
-       errorFalseLogin: "The email address or password is wrong. Please try again."
-       emailDoesNotExist: "The email address you entered doesn't exist. Please try again."
-       incorrectPassword: "The password you entered is incorrect. Please try again."
+       errorFalseLogin: "Die E-Mail-Adresse oder das Passwort ist falsch. Bitte versuchen sie es erneut."
+       errorFalseEmailFormat: "Bitte geben sie eine valide E-Mail-Adresse ein."
    header:
        disclaimer: "Dies ist eine Demo Applikation. Bestellungen werden nicht bearbeitet. Geben sie auf keinen Fall sensible oder persönliche Daten ein!"
        topNavigation:
@@ -475,7 +470,7 @@ de_DE:
                    "2": "Blumen"
                    "3": "Bäume"
            "2":
-               title: "Essen "
+               title: "Essen"
                subCategory:
                    "1": "Aufschnitt"
                    "2": "Hauptgerichte"
@@ -497,7 +492,7 @@ de_DE:
            title: "Willkommen"
        miniCart:
            title:
-               singular: "Positionen im Warenkorb"
+               singular: "Position im Warenkorb"
                plural: "Positionen im Warenkorb"
            subtotal: "Zwischensumme"
        sale:
@@ -594,14 +589,14 @@ de_DE:
    categoryPage:
        searchResultText: "Die Ergebnisse ihrer Suche: "
    noHitsPage:
-       message: "Sorry, we could not find a match for your search. Please check your spelling or try something less specific."
-       suggestion: "You might want to have a look in the following categories."
+       message: "Leider konnten wir für Ihre Suche keine Übereinstimmung finden. Bitte überprüfen Sie Ihre Rechtschreibung oder versuchen Sie es etwas weniger spezifisch."
+       suggestion: "Vielleicht möchten Sie einen Blick auf die folgenden Kategorien werfen."
    productDetailPage:
        selectSize: "Wählen sie eine Größe:"
        selectStyle: "Wählen sie eine Oberflächenart:"
        printInformation: "Gedruckt mit hochwertiger Tinte und mit einer besonderen Beschichtung zum Schutz der Farben. Verfügbar sowohl mit glänzender, als auch mit matter Oberfläche."
    cartPage:
-       title: "Cart"
+       title: "Warenkorb"
        number: "#"
        update: "Entfernen/Aktualisieren"
    guestShippingAddressPage:
@@ -636,7 +631,7 @@ de_DE:
        orderDate: "Bestelldatum"
        orderTotal: "Bestellwert"
    myAddressesPage:
-       title: "Meine Addressen"
+       title: "Meine Adressen"
    addNewShippingAddressPage:
        title: "Eine neue Lieferadresse hinzufügen"
    addNewBillingAddressPage:

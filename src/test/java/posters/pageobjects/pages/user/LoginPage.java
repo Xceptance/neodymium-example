@@ -15,7 +15,6 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static posters.flows.OpenHomePageFlow.changeLocale;
 
 public class LoginPage extends AbstractBrowsingPage
 {
@@ -50,7 +49,7 @@ public class LoginPage extends AbstractBrowsingPage
         loginForm.find("legend").shouldHave(exactText(Neodymium.localizedText("loginPage.title"))).shouldBe(visible);
 
         // validate fill in headlines
-        //$$("#formLogin .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.email"))).shouldBe(visible);
+        $$("#form-login .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.email"))).shouldBe(visible);
         $$("#form-login .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.password"))).shouldBe(visible);
 
         // validate fill in placeholder
@@ -80,6 +79,13 @@ public class LoginPage extends AbstractBrowsingPage
         errorMessage.validateErrorMessage(Neodymium.localizedText("errorMessage.errorFalseLogin"));
         Assert.assertEquals(emailField.val(), email);
     }
+    
+    @Step("validate invalid email format for login error message")
+    public void validateFalseEmailFormat(String email)
+    {
+        errorMessage.validateErrorMessage(Neodymium.localizedText("errorMessage.errorFalseEmailFormat"));
+        Assert.assertEquals(emailField.val(), email);
+    }
 
     /// ========== login page navigation ========== ///
 
@@ -98,7 +104,7 @@ public class LoginPage extends AbstractBrowsingPage
     }
 
     @Step("send login form")
-    public void sendFormWithData(String email, String password)
+    private void sendFormWithData(String email, String password)
     {
         // fill out the login form
         emailField.val(email);
@@ -109,16 +115,14 @@ public class LoginPage extends AbstractBrowsingPage
     }
 
     @Step("fill and send login form with valid user '{user}'")
-    public HomePage sendLoginForm(User user)
+    public AccountOverviewPage sendLoginForm(User user)
     {
         sendFormWithData(user.getEmail(), user.getPassword());
 
-        HomePage homePage = new HomePage().isExpectedPage();
-        homePage.header.userMenu.validateLoggedInUserName(user.getFirstName());
+        AccountOverviewPage accountOverviewPage = new AccountOverviewPage().isExpectedPage();
+        accountOverviewPage.header.userMenu.validateLoggedInUserName(user.getFirstName());
 
-        changeLocale(homePage.header);
-
-        return homePage;
+        return accountOverviewPage;
     }
 
     @Step("fill and send login form with invalid user '{user}'")

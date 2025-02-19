@@ -34,6 +34,7 @@ public class OpenHomePageFlow
         }
         else
         {
+            header.localeMenu.changeLocale("de-DE");
             header.localeMenu.changeLocale("en-US");
         }
     }

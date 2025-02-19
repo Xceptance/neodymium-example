@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.user.AccountOverviewPage;
 import posters.tests.testdata.dataobjects.User;
+import static com.codeborne.selenide.Selenide.$;
 
 public class DeleteUserFlow
 {
@@ -11,17 +12,24 @@ public class DeleteUserFlow
     public static void flow(User user)
     {
         HomePage homePage = new HomePage();
+        AccountOverviewPage accountOverviewPage = new AccountOverviewPage();
 
         // check if the user is logged in if the login failed
         if (!homePage.header.userMenu.isUserLoggedIn())
         {
             var loginPage = homePage.header.userMenu.openLoginPage();
-            homePage = loginPage.sendLoginForm(user);
-
-            // TODO check error message if account doesn't exist and return since then no account needs to be deleted
+            accountOverviewPage = loginPage.sendLoginForm(user);
+            
+            if ($(".alert-danger").isDisplayed()) 
+            {
+                return;
+            }
         }
-
-        AccountOverviewPage accountOverviewPage = homePage.header.userMenu.openAccountOverviewPage();
+        else 
+        {
+            // go to account overview page
+            accountOverviewPage = homePage.header.userMenu.openAccountOverviewPage();
+        }
 
         // go to personal data page and validate
         var personalDataPage = accountOverviewPage.openPersonalData();

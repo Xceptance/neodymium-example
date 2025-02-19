@@ -40,7 +40,7 @@ public class RegisterTest extends AbstractTest
         loginPage.validateSuccessfulRegistration();
 
         // send login form and validate the user is logged in
-        homePage = loginPage.sendLoginForm(user);
+        loginPage.sendLoginForm(user);
     }
 
     @AfterEach

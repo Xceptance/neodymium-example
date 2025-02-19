@@ -2,6 +2,7 @@ package posters.pageobjects.components;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -28,7 +29,7 @@ public class TopNavigation extends AbstractComponent
     @Step("click on the top category '{topCategory}'")
     public CategoryPage clickCategory(String topCategory)
     {
-        $$("#header-categories .nav-item").findBy(exactText(topCategory)).click();
+        $$("#header-categories .nav-item").findBy(matchText(topCategory)).click();
         return new CategoryPage().isExpectedPage();
     }
     

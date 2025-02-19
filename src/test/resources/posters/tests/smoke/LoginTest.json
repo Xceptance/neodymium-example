@@ -51,6 +51,22 @@
     "locale": "en_US",
     "firstName": "John",
     "lastName": "Doe",
+    "email": "j",
+    "password": "topsecret",
+    "testId": "wrong email format US"
+  },
+  {
+    "locale": "de_DE",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "j",
+    "password": "topsecret",
+    "testId": "wrong email format DE"
+  },
+  {
+    "locale": "en_US",
+    "firstName": "John",
+    "lastName": "Doe",
     "email": "",
     "password": "topsecret",
     "testId": "missing email US"

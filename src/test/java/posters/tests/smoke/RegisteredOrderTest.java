@@ -42,8 +42,7 @@ public class RegisteredOrderTest extends AbstractTest
         var loginPage = registerPage.sendRegisterForm(registeredOrderTestData.getUser());
 
         // send login form
-        homePage = loginPage.sendLoginForm(registeredOrderTestData.getUser());
-        var accountOverviewPage = homePage.header.userMenu.openAccountOverviewPage();
+        var accountOverviewPage = loginPage.sendLoginForm(registeredOrderTestData.getUser());
         accountOverviewPage.validateStructure();
 
         // go to address overview page and validate
@@ -55,7 +54,7 @@ public class RegisteredOrderTest extends AbstractTest
         // add new shipping address
         addNewShippingAddressPage.validateStructure();
         addressOverviewPage = addNewShippingAddressPage.addressForm.addNewAddress(registeredOrderTestData.getAddress());
-        //addressOverviewPage.validateSuccessfulSave();
+        addressOverviewPage.validateSuccessfulSave();
 
         // add new billing address
         var addNewBillingAddressPage = addressOverviewPage.openAddNewBillingAddressPage();

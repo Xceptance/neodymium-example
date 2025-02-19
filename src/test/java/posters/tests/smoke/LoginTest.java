@@ -3,6 +3,7 @@ package posters.tests.smoke;
 import com.xceptance.neodymium.common.testdata.DataItem;
 import com.xceptance.neodymium.common.testdata.DataSet;
 import com.xceptance.neodymium.junit5.NeodymiumTest;
+
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -44,9 +45,8 @@ public class LoginTest extends AbstractTest
     @DataSet(id = "happy path DE")
     public void testSuccessfulLogin()
     {
-        var homePage = loginPage.sendLoginForm(user);
-        homePage.header.userMenu.validateStructure();
-        homePage.header.userMenu.validateLoggedInUserName(user.getFirstName());
+        var accountOverviewPage = loginPage.sendLoginForm(user);
+        accountOverviewPage.validateSuccessfulLogin(user.getFirstName());
     }
 
     @NeodymiumTest
@@ -65,6 +65,15 @@ public class LoginTest extends AbstractTest
     {
         loginPage.sendFalseLoginForm(user);
         loginPage.validateFalseLogin(user.getEmail());
+    }
+    
+    @NeodymiumTest
+    @DataSet(id = "wrong email format US")
+    @DataSet(id = "wrong email format DE")
+    public void testLoginWithWrongEmailFormat()
+    {
+        loginPage.sendFalseLoginForm(user);
+        loginPage.validateFalseEmailFormat(user.getEmail());
     }
 
     @NeodymiumTest

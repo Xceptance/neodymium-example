@@ -80,6 +80,7 @@ public class UserMenu extends AbstractComponent
     }
 
     /// ========== validate user menu ========== ///
+    
     @Step("check if somebody is logged in")
     public boolean isUserLoggedIn()
     {

@@ -55,7 +55,7 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage
         super.validateStructure();
         
         // validate process wrap
-         validateProcessWrap();
+        validateProcessWrap();
 
         // validate title
         title.shouldHave(exactText(Neodymium.localizedText("guestShippingAddressPage.title"))).shouldBe(visible);
