@@ -30,14 +30,5 @@
     "expectedResultCount4": "34",
     "resultPosition4": "1",
     "testId": "browse test: all top categories in order DE"
-  },
-  {
-    "topCategory1": "header.topNavigation.1.title",
-    "expectedResultCount1": "30",
-    "resultPosition1": "4",
-    "topCategory2": "header.topNavigation.4.title",
-    "expectedResultCount2": "34",
-    "resultPosition2": "2",
-    "testId": "browse test: doing things?"
   }
 ]

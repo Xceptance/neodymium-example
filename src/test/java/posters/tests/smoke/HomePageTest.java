@@ -3,6 +3,7 @@ package posters.tests.smoke;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 
+import com.xceptance.neodymium.common.testdata.DataSet;
 import com.xceptance.neodymium.junit5.NeodymiumTest;
 import com.xceptance.neodymium.util.AllureAddons;
 import com.xceptance.neodymium.util.Neodymium;
@@ -26,7 +27,10 @@ import posters.tests.AbstractTest;
 @DisplayName("HomepageTest")
 public class HomePageTest extends AbstractTest
 {
+
     @NeodymiumTest
+    @DataSet(id = "homepage test: US")
+    @DataSet(id = "homepage test: DE")
     @Description(value = "A basic description for home page validation.")
     public void testVisitingHomepage()
     {

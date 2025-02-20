@@ -1,0 +1,10 @@
+[
+  {
+    "locale": "en_US",
+    "testId": "homepage test: US"
+  },
+  {
+    "locale": "de_DE",
+    "testId": "homepage test: DE"
+  }
+]

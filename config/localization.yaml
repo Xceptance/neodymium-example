@@ -228,7 +228,7 @@ default:
             headline: "Hot Products"
             "1": 
                 title: "Blue Morpho Butterfly"
-                description: "A beautiful blue and black butterfly on a leaf"
+                description: "A beautiful blue and black butterfly on a leaf."
             "2":
                 title: "Snowdrop Anemone"
                 description: "A blossom in all its details."
@@ -544,7 +544,7 @@ de_DE:
        title: "Der Poster Demo Shop - Der Ultimative Online Shop"
        slider:
            "1": "Nord-Boston"
-           "2": "Platzhalter"
+           "2": "Boston Sonnenuntergang"
            "3": "Bryce-Canyon-Nationalpark, I"
            "4": "Bryce-Canyon-Nationalpark, II"
        intro: "Began with a simple idea \"SHATATATATA!\" - M. Scott"
@@ -552,40 +552,40 @@ de_DE:
            headline: "Beliebte Produkte"
            "1":
                title: "Blauer Morphofalter"
-               description: "Ein hübscher, blau-schwarzer Schmetterling auf einem Blatt"
+               description: "Ein hübscher, blau-schwarzer Schmetterling auf einem Blatt."
            "2":
-               title: "Platzhalter"
-               description: "Platzhalter"
+               title: "Schneeglöckchen"
+               description: "Eine Blüte mit all ihren Details."
            "3":
-               title: "Platzhalter"
-               description: "Platzhalter"
+               title: "Verschiedene Käsesorten"
+               description: "Ein Symbol französischer Küche."
            "4":
-               title: "Platzhalter"
-               description: "Platzhalter"
+               title: "Schneebedeckte Tanne"
+               description: "Eine sehr kleine und schneebedeckte Tanne."
            "5":
-               title: "Platzhalter"
-               description: "Platzhalter"
+               title: "Gefüllter Truthahn"
+               description: "Der beste Weg Thanksgiving zu feiern."
            "6":
-               title: "Platzhalter"
-               description: "Platzhalter"
+               title: "Obstkuchen mit Kakao"
+               description: "Ein sehr schöner Obstkuchen mit Kakaopulver."
            "7":
-               title: "Platzhalter"
-               description: "Platzhalter"
+               title: "Air Lingus Airbus A320"
+               description: "Preiset Saint Patrick!"
            "8":
-               title: "Platzhalter"
-               description: "Platzhalter"
+               title: "IFA H6 Grün"
+               description: "Ein hellgrüner LKW von alten Zeiten."
            "9":
-               title: "Platzhalter"
-               description: "Platzhalter"
+               title: "Third Avenue Eisenbahnsystem"
+               description: "Das alte Eisenbahnsystem von NYC."
            "10":
-               title: "Platzhalter"
-               description: "Platzhalter"
+               title: "Alte New Yorker U-Bahn"
+               description: "Nichts hält ewig."
            "11":
-               title: "Platzhalter"
-               description: "Platzhalter"
+               title: "Neujahrsfeuerwerk III"
+               description: "Ein fantastischer Farbwechsel!"
            "12":
-               title: "Platzhalter"
-               description: "Platzhalter"
+               title: "Linneanum Garten und Museum Schweden"
+               description: "Eine perfekte Symmetrie."
    categoryPage:
        searchResultText: "Die Ergebnisse ihrer Suche: "
    noHitsPage:
