@@ -23,6 +23,8 @@ public class Header extends AbstractComponent<Header>
 
     public MiniCart miniCart = new MiniCart();
 
+    public LocaleMenu localeMenu = new LocaleMenu();
+
     @Override
     @Step("validate availability header")
     public Header assertComponentAvailable()
@@ -42,10 +44,12 @@ public class Header extends AbstractComponent<Header>
     public void validateStructure()
     {
         $("#top-demo-disclaimer").shouldHave(exactText(Neodymium.localizedText("header.disclaimer"))).shouldBe(visible);
+        $("#top-demo-disclaimer").click();
         $("#header-brand").shouldBe(visible);
         search.validateStructure();
         topNav.validateStructure();
         userMenu.validateStructure();
         miniCart.validateStructure();
+        localeMenu.validateStructure();
     }
 }

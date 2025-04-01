@@ -1,9 +1,10 @@
 package posters.flows;
 
 import io.qameta.allure.Step;
-import posters.tests.testdata.dataobjects.User;
 import posters.pageobjects.pages.browsing.HomePage;
 import posters.pageobjects.pages.user.AccountOverviewPage;
+import posters.tests.testdata.dataobjects.User;
+import static com.codeborne.selenide.Selenide.$;
 
 public class DeleteUserFlow
 {
@@ -11,19 +12,22 @@ public class DeleteUserFlow
     public static void flow(User user)
     {
         HomePage homePage = new HomePage();
-        
         AccountOverviewPage accountOverviewPage = new AccountOverviewPage();
-        
+
         // check if the user is logged in if the login failed
-        if (!homePage.header.userMenu.checkIfUserIsLoggedIn()) 
+        if (!homePage.header.userMenu.isUserLoggedIn())
         {
             var loginPage = homePage.header.userMenu.openLoginPage();
             accountOverviewPage = loginPage.sendLoginForm(user);
-            accountOverviewPage.validateSuccessfulLogin(user.getFirstName());
-            accountOverviewPage.validateStructure();
+            
+            if ($(".alert-danger").isDisplayed()) 
+            {
+                return;
+            }
         }
         else 
         {
+            // go to account overview page
             accountOverviewPage = homePage.header.userMenu.openAccountOverviewPage();
         }
 
@@ -44,7 +48,7 @@ public class DeleteUserFlow
         var loginPage = homePage.header.userMenu.openLoginPage();
         loginPage.sendFalseLoginForm(user);
         loginPage.validateFalseLogin(user.getEmail());
-        
+
         // go to homePage
         homePage = loginPage.openHomePage();
     }

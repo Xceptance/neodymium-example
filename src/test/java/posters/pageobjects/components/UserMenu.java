@@ -14,6 +14,7 @@ import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -51,7 +52,7 @@ public class UserMenu extends AbstractComponent<UserMenu>
     @Step("close user menu")
     public void closeUserMenu()
     {
-        $("#top-demo-disclaimer").click(ClickOptions.usingJavaScript());
+        $("#top-demo-disclaimer").click();
         userMenu.shouldNotBe(visible, Duration.ofMillis(9000));
     }
 
@@ -89,16 +90,15 @@ public class UserMenu extends AbstractComponent<UserMenu>
 
     /// ========== validate user menu ========== ///
 
-    @Step("validate that nobody is logged in")
-    public void checkIfNoUserIsLoggedIn()
-    {
-        userMenu.find("#go-to-login").exists();
-    }
-
-    @Step("validate that somebody is logged in")
-    public boolean checkIfUserIsLoggedIn()
+    @Step("check if somebody is logged in")
+    public boolean isUserLoggedIn()
     {
         return userMenu.find(".first-name").exists();
+    }
+
+    public void validateUserIsNotLoggedIn()
+    {
+        userMenu.find(".first-name").shouldBe(not(visible));
     }
 
     @Step("validate that '{firstName}' is displayed in user menu")
@@ -121,7 +121,7 @@ public class UserMenu extends AbstractComponent<UserMenu>
         userMenu.find(".header-user-menu-heading").shouldHave(text(Neodymium.localizedText("header.userMenu.title"))).shouldBe(visible);
 
         // validate buttons
-        if (checkIfUserIsLoggedIn())
+        if (isUserLoggedIn())
         {
             // if customer is logged in
             userMenu.find("#go-to-account-overview").shouldHave(exactText(Neodymium.localizedText("button.accountOverview"))).shouldBe(visible);

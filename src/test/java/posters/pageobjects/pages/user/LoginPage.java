@@ -45,8 +45,6 @@ public class LoginPage extends AbstractBrowsingPage<LoginPage>
     }
 
     /// ========== validate content login page ========== ///
-    ///
-    /// @return
 
     @Override
     @Step("validate login page structure")
@@ -58,7 +56,7 @@ public class LoginPage extends AbstractBrowsingPage<LoginPage>
         loginForm.find("legend").shouldHave(exactText(Neodymium.localizedText("loginPage.title"))).shouldBe(visible);
 
         // validate fill in headlines
-        //$$("#formLogin .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.email"))).shouldBe(visible);
+        $$("#form-login .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.email"))).shouldBe(visible);
         $$("#form-login .form-group label").findBy(exactText(Neodymium.localizedText("fillIn.inputDescription.password"))).shouldBe(visible);
 
         // validate fill in placeholder
@@ -91,6 +89,13 @@ public class LoginPage extends AbstractBrowsingPage<LoginPage>
         Assert.assertEquals(emailField.val(), email);
     }
 
+    @Step("validate invalid email format for login error message")
+    public void validateFalseEmailFormat(String email)
+    {
+        errorMessage.validateErrorMessage(Neodymium.localizedText("errorMessage.errorFalseEmailFormat"));
+        Assert.assertEquals(emailField.val(), email);
+    }
+
     /// ========== login page navigation ========== ///
 
     @Step("open register page from login page")
@@ -108,7 +113,7 @@ public class LoginPage extends AbstractBrowsingPage<LoginPage>
     }
 
     @Step("send login form")
-    public void sendFormWithData(String email, String password)
+    private void sendFormWithData(String email, String password)
     {
         // fill out the login form
         emailField.val(email);
@@ -122,7 +127,11 @@ public class LoginPage extends AbstractBrowsingPage<LoginPage>
     public AccountOverviewPage sendLoginForm(User user)
     {
         sendFormWithData(user.getEmail(), user.getPassword());
-        return new AccountOverviewPage().assertExpectedPage();
+
+        AccountOverviewPage accountOverviewPage = new AccountOverviewPage().assertExpectedPage();
+        accountOverviewPage.header.userMenu.validateLoggedInUserName(user.getFirstName());
+
+        return accountOverviewPage;
     }
 
     @Step("fill and send login form with invalid user '{user}'")

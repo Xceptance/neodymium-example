@@ -1,5 +1,6 @@
 package posters.pageobjects.components;
 
+import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.SelenideAddons;
@@ -47,32 +48,31 @@ public class Pagination extends AbstractComponent<Pagination>
     @Step("click on page number '{pageNumber}'")
     public void goToPage(int pageNumber)
     {
-        // because of some scrolling problems with current chromedriver both scrolls are necessary here. If this is fixed one can be removed
-        paginationComponents.findBy(exactText(Integer.toString(pageNumber))).scrollTo().scrollIntoView("{block: 'center'}").click();
+        paginationComponents.findBy(exactText(Integer.toString(pageNumber))).click(ClickOptions.usingJavaScript());
     }
 
     @Step("click on go to first page")
     public void goToFirstPage()
     {
-        firstPage.click();
+        firstPage.click(ClickOptions.usingJavaScript());
     }
 
     @Step("click on go to first page")
     public void goToPreviousPage()
     {
-        previousPage.click();
+        previousPage.click(ClickOptions.usingJavaScript());
     }
 
     @Step("click on go to last page")
     public void goToNextPage()
     {
-        nextPage.click();
+        nextPage.click(ClickOptions.usingJavaScript());
     }
 
     @Step("click on go to last page")
     public void goToLastPage()
     {
-        lastPage.click();
+        lastPage.click(ClickOptions.usingJavaScript());
     }
 
     /// ========== validate pagination ========== ///

@@ -8,11 +8,10 @@ import posters.pageobjects.pages.browsing.CategoryPage;
 
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-
-import static com.codeborne.selenide.Condition.*;
 
 public class TopNavigation extends AbstractComponent<TopNavigation>
 {
@@ -40,13 +39,14 @@ public class TopNavigation extends AbstractComponent<TopNavigation>
     @Step("click on the top category '{topCategory}'")
     public CategoryPage clickCategory(String topCategory)
     {
-        $$("#header-categories .nav-item").findBy(exactText(topCategory)).click();
+        $$("#header-categories .nav-item").findBy(matchText(topCategory)).click();
         return new CategoryPage().assertExpectedPage();
     }
 
     @Step("click on the '{subCategory}' sub category within the top category '{topCategory}'")
     public CategoryPage clickSubCategory(String topCategory, String subCategory)
     {
+        logo.hover();
         $$(".nav-item.dropdown").findBy(exactText(topCategory)).hover();
         $$("#header-categories ul.dropdown-menu li").findBy(exactText(subCategory)).click();
         return new CategoryPage().assertExpectedPage();

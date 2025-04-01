@@ -1,6 +1,12 @@
 [
-    {
-        "topCategory": "header.topNavigation.1.title",
-        "resultPosition": "1"
-    }
+  {
+    "locale": "en_US",
+    "topCategory": "header.topNavigation.1.title",
+    "resultPosition": "1"
+  },
+  {
+    "locale": "de_DE",
+    "topCategory": "header.topNavigation.1.title",
+    "resultPosition": "1"
+  }
 ]

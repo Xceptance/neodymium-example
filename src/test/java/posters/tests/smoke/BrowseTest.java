@@ -1,15 +1,13 @@
 package posters.tests.smoke;
 
-import org.junit.jupiter.api.Tag;
-
 import com.xceptance.neodymium.common.testdata.DataItem;
 import com.xceptance.neodymium.common.testdata.DataSet;
 import com.xceptance.neodymium.junit5.NeodymiumTest;
 import com.xceptance.neodymium.util.Neodymium;
-
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.junit.jupiter.api.Tag;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
 import posters.tests.testdata.processes.BrowseTestData;
@@ -21,9 +19,10 @@ public class BrowseTest extends AbstractTest
 {
     @DataItem
     private BrowseTestData browseTestData;
-    
+
     @NeodymiumTest
-    @DataSet(1)
+    @DataSet(id = "browse test: all top categories in order US")
+    @DataSet(id = "browse test: all top categories in order DE")
     public void testBrowsing()
     {
         // go to homepage

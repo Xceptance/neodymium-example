@@ -1,63 +1,112 @@
 [
-	{
-		"user":
-      	{
-      		"firstName": "Order",
-      		"lastName": "History",
-      		"email": "orderhistory@varmail.net",
-      		"password": "topsecret"
-      	},
-      	"topCategory1": "header.topNavigation.1.title",
-      	"topCategory2": "header.topNavigation.2.title",
-      	"topCategory3": "header.topNavigation.3.title",
-      	"order1":
-      	{
-      	    "products": 
-      	    [
-      	        {
-      	            "name": "Grizzly Bear",
-      	            "size": "16 x 12 in",
-      	            "style": "matte",
-      	            "amount": "3"
-      	        }
-      	    ]
-      	},
-        "order2":
+  {
+    "locale": "en_US",
+    "user": {
+      "firstName": "Order",
+      "lastName": "History",
+      "email": "orderhistory@varmail.net",
+      "password": "topsecret"
+    },
+    "topCategory1": "header.topNavigation.1.title",
+    "topCategory2": "header.topNavigation.2.title",
+    "topCategory3": "header.topNavigation.3.title",
+    "order1": {
+      "products": [
         {
-      	    "products":
-      	    [
-      	        {
-      	            "name": "Tomato and Mozzarella Bites",
-      	            "size": "32 x 24 in",
-      	            "style": "gloss",
-      	            "amount": "3"
-      	        },
-      	        {
-      	            "name": "Swiss Air Airbus A320",
-      	            "size": "64 x 48 in",
-      	            "style": "matte",
-      	            "amount": "1"
-      	        }
-      	    ]
-      	},
-      	"address":
-      	{
-            "firstName": "Order",
-      		"lastName": "History",
-      		"company": "Order History Inc.",
-      		"street": "Order History Street",
-      		"city": "Order History City",
-      		"state": "Order History State",
-      		"zip": "12345",
-      		"country": "United States"
-      	},
-      	"creditCard":
-      	{
-      		"fullName": "Order History",
-      		"cardNumber": "4111111111111111",
-      		"crypticCardNumber": "xxxx xxxx xxxx 1111",
-      		"expDateMonth": "06",
-      		"expDateYear": "2028"
-      	}
-	}
+          "name": "Grizzly Bear",
+          "size": "16 x 12 in",
+          "style": "matte",
+          "amount": "3"
+        }
+      ]
+    },
+    "order2": {
+      "products": [
+        {
+          "name": "Tomato and Mozzarella Bites",
+          "size": "32 x 24 in",
+          "style": "gloss",
+          "amount": "3"
+        },
+        {
+          "name": "Swiss Air Airbus A320",
+          "size": "64 x 48 in",
+          "style": "matte",
+          "amount": "1"
+        }
+      ]
+    },
+    "address": {
+      "firstName": "Order",
+      "lastName": "History",
+      "company": "Order History Inc.",
+      "street": "Order History Street",
+      "city": "Order History City",
+      "state": "Order History State",
+      "zip": "12345",
+      "country": "United States"
+    },
+    "creditCard": {
+      "fullName": "Order History",
+      "cardNumber": "4111111111111111",
+      "crypticCardNumber": "xxxx xxxx xxxx 1111",
+      "expDateMonth": "06",
+      "expDateYear": "2028"
+    }
+  },
+  {
+    "locale": "de_DE",
+    "user": {
+      "firstName": "Bernd",
+      "lastName": "Bestellung Geschichte",
+      "email": "BerndBestellungGeschichte@varmail.net",
+      "password": "topsecret"
+    },
+    "topCategory1": "header.topNavigation.1.title",
+    "topCategory2": "header.topNavigation.1.title",
+    "topCategory3": "header.topNavigation.1.title",
+    "order1": {
+      "products": [
+        {
+          "name": "Grizzlybär",
+          "size": "16 x 12 in",
+          "style": "matte",
+          "amount": "3"
+        }
+      ]
+    },
+    "order2": {
+      "products": [
+        {
+          "name": "Bartkauz",
+          "size": "32 x 24 in",
+          "style": "gloss",
+          "amount": "3"
+        },
+        {
+          "name": "Schwedischer Elch",
+          "size": "64 x 48 in",
+          "style": "matte",
+          "amount": "1"
+        }
+      ]
+    },
+    "address": {
+      "firstName": "Bestellung",
+      "lastName": "Bernd",
+      "company": "Bestellung Geschichte GmbH.",
+      "street": "Bestellung Geschichte Straße",
+      "city": "Bestellung Geschichte Stadt",
+      "state": "Bestellung Geschichte Bundesland",
+      "zip": "12345",
+      "country": "Deutschland"
+    },
+    "creditCard": {
+      "fullName": "Bestellung Geschichte",
+      "cardNumber": "4111111111111111",
+      "crypticCardNumber": "xxxx xxxx xxxx 1111",
+      "expDateMonth": "06",
+      "expDateYear": "2028"
+    }
+  }
 ]

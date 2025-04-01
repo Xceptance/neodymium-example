@@ -27,7 +27,7 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage<R
 
     private SelenideElement addShippingAddressButton = $(".form-group .btn");
 
-    private SelenideElement useShippingAddressButton = $("#btn-use-address-continue");
+    private SelenideElement useShippingAddressButton = $("#btn-use-ship-address");
 
     @Override
     @Step("ensure this is a shipping address page")
@@ -76,7 +76,7 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage<R
         addShippingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.addNewShippingAddress"))).shouldBe(visible);
 
         // validate continue button
-        useShippingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.continue"))).shouldBe(visible);
+        useShippingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.useThisShippingAddress"))).shouldBe(visible);
 
         return this;
     }

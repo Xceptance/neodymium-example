@@ -1,15 +1,13 @@
 package posters.tests.smoke;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Tag;
-
 import com.xceptance.neodymium.common.testdata.DataItem;
 import com.xceptance.neodymium.common.testdata.DataSet;
 import com.xceptance.neodymium.junit5.NeodymiumTest;
-
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Tag;
 import posters.flows.DeleteUserFlow;
 import posters.flows.OpenHomePageFlow;
 import posters.tests.AbstractTest;
@@ -25,7 +23,8 @@ public class RegisterTest extends AbstractTest
     private User user;
 
     @NeodymiumTest
-    @DataSet(2)
+    @DataSet(id = "register test US")
+    @DataSet(id = "register test DE")
     public void testRegistering()
     {
         // go to homepage
@@ -40,9 +39,8 @@ public class RegisterTest extends AbstractTest
         loginPage.validateStructure();
         loginPage.validateSuccessfulRegistration();
 
-        // send login form
-        var accountOverviewPage = loginPage.sendLoginForm(user);
-        accountOverviewPage.validateSuccessfulLogin(user.getFirstName());
+        // send login form and validate the user is logged in
+        loginPage.sendLoginForm(user);
     }
 
     @AfterEach

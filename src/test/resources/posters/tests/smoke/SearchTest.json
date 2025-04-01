@@ -1,11 +1,24 @@
 [
-    {
-        "searchTerm": "bear",
-        "expectedResultCount": "3",
-        "testId": "search with expected result"
-    },
-    {
-        "searchTerm": "Foobar",
-        "testId": "search with no result"
-    }
+  {
+    "locale": "en_US",
+    "searchTerm": "bear",
+    "expectedResultCount": "3",
+    "testId": "search with expected result US"
+  },
+  {
+    "locale": "de_DE",
+    "searchTerm": "bär",
+    "expectedResultCount": "1",
+    "testId": "search with expected result DE"
+  },
+  {
+    "locale": "en_US",
+    "searchTerm": "Foobar",
+    "testId": "search with no result US"
+  },
+  {
+    "locale": "de_DE",
+    "searchTerm": "BlaBlub",
+    "testId": "search with no result DE"
+  }
 ]

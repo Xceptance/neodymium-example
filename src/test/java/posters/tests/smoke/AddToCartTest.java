@@ -1,15 +1,14 @@
 package posters.tests.smoke;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Tag;
-
 import com.xceptance.neodymium.common.testdata.DataItem;
+import com.xceptance.neodymium.common.testdata.DataSet;
 import com.xceptance.neodymium.junit5.NeodymiumTest;
 import com.xceptance.neodymium.util.Neodymium;
-
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Tag;
 import posters.flows.CartCleanUpFlow;
 import posters.flows.CartFlow;
 import posters.flows.OpenHomePageFlow;
@@ -23,11 +22,12 @@ public class AddToCartTest extends AbstractTest
 {
     @DataItem
     private AddToCartTestData addToCartTestData;
-    
+
     @DataItem
     private String shippingCosts;
 
     @NeodymiumTest
+    @DataSet(id = "add to cart test 1 US")
     public void testAddProductsToCart()
     {
         /// ========== PART 1: USE TOP NAVIGATION TO ADD PRODUCT TO CART ========== ///
@@ -101,7 +101,8 @@ public class AddToCartTest extends AbstractTest
         // validate cart page
         cartPage.validateCartItem(productBeforeUpdate, secondTestDataProduct.getAmount());
         cartPage.validate(shippingCosts, cartPage.header.miniCart.getSubtotal());
-        CartFlow.validateTotalAfterAdd(secondTestDataProduct.getName(), secondTestDataProduct.getSize(), secondTestDataProduct.getStyle(), oldSubtotal3, productBeforeUpdate.calculateTotalPrice());
+        CartFlow.validateTotalAfterAdd(secondTestDataProduct.getName(), secondTestDataProduct.getSize(), secondTestDataProduct.getStyle(), oldSubtotal3,
+                                       productBeforeUpdate.calculateTotalPrice());
         cartPage.header.miniCart.validateStructure();
         cartPage.header.miniCart.validateMiniCartItem(productBeforeUpdate, secondTestDataProduct.getAmount(), subtotalAfterUpdate);
 
@@ -149,7 +150,8 @@ public class AddToCartTest extends AbstractTest
         // validate cart page
         cartPage.validateCartItem(productFromCartPageBefore, productFromCartPageAfter.getAmount());
         cartPage.validate(shippingCosts, cartPage.header.miniCart.getSubtotal());
-        CartFlow.validateTotalAfterAdd(firstTestDataProduct.getName(), firstTestDataProduct.getSize(), firstTestDataProduct.getStyle(), oldSubtotal5, productFromCartPageBefore.calculateTotalPrice());
+        CartFlow.validateTotalAfterAdd(firstTestDataProduct.getName(), firstTestDataProduct.getSize(), firstTestDataProduct.getStyle(), oldSubtotal5,
+                                       productFromCartPageBefore.calculateTotalPrice());
         cartPage.header.miniCart.validateStructure();
         cartPage.header.miniCart.validateMiniCartItem(productFromCartPageBefore, cartPage.header.miniCart.getTotalCount(), subtotalAfterUpdate);
 

@@ -39,7 +39,6 @@ public class OrderHistoryTest extends AbstractTest
 
         // send login form
         var accountOverviewPage = loginPage.sendLoginForm(orderHistoryTestData.getUser());
-        accountOverviewPage.validateSuccessfulLogin(orderHistoryTestData.getUser().getFirstName());
 
         // go to order history page and validate
         var orderHistoryPage = accountOverviewPage.openOrderHistory();

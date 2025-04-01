@@ -27,40 +27,39 @@ public class LoginTest extends AbstractTest
     @BeforeEach
     public void setup()
     {
-        loginPage = prepareTest();
-    }
-
-    private LoginPage prepareTest()
-    {
         // go to login page
         loginPage = OpenLoginPageFlow.flow();
         loginPage.validateStructure();
 
         // validate that nobody is logged in
-        loginPage.header.userMenu.checkIfNoUserIsLoggedIn();
-
-        return loginPage;
+        loginPage.header.userMenu.openUserMenu();
+        loginPage.header.userMenu.validateUserIsNotLoggedIn();
+        loginPage.header.userMenu.closeUserMenu();
+        
+        loginPage = new LoginPage().assertExpectedPage();
     }
 
     @NeodymiumTest
-    @DataSet(1)
+    @DataSet(id = "happy path US")
+    @DataSet(id = "happy path DE")
     public void testSuccessfulLogin()
     {
-        var homePage = loginPage.sendLoginForm(user);
-        homePage.header.userMenu.validateStructure();
-        homePage.validateSuccessfulLogin(user.getFirstName());
+        var accountOverviewPage = loginPage.sendLoginForm(user);
+        accountOverviewPage.validateSuccessfulLogin(user.getFirstName());
     }
 
     @NeodymiumTest
-    @DataSet(2)
-    public void testLoginWithWrongPasswort()
+    @DataSet(id = "wrong password US")
+    @DataSet(id = "wrong password DE")
+    public void testLoginWithWrongPassword()
     {
         loginPage.sendFalseLoginForm(user);
         loginPage.validateFalseLogin(user.getEmail());
     }
 
     @NeodymiumTest
-    @DataSet(3)
+    @DataSet(id = "wrong email US")
+    @DataSet(id = "wrong email DE")
     public void testLoginWithEmailFailure()
     {
         loginPage.sendFalseLoginForm(user);
@@ -68,8 +67,19 @@ public class LoginTest extends AbstractTest
     }
 
     @NeodymiumTest
-    @DataSet(4)
-    @DataSet(5)
+    @DataSet(id = "wrong email format US")
+    @DataSet(id = "wrong email format DE")
+    public void testLoginWithWrongEmailFormat()
+    {
+        loginPage.sendFalseLoginForm(user);
+        loginPage.validateFalseEmailFormat(user.getEmail());
+    }
+
+    @NeodymiumTest
+    @DataSet(id = "missing email US")
+    @DataSet(id = "missing email DE")
+    @DataSet(id = "missing password US")
+    @DataSet(id = "missing password DE")
     public void testLoginWithoutRequiredFields()
     {
         loginPage.sendFalseLoginForm(user);

@@ -1,37 +1,34 @@
 default:
-
     button:
         buyHere: "Buy here"
         shopAllProducts: "Shop All Products"
-        viewCart: "view cart"
-        createAccount: "Create account"
+        viewCart: "View Cart"
+        createAccount: "Create Account"
         signIn: "Sign In"
         accountOverview: "My Account"
         logout: "Logout"
-        addToCart: "Add to cart"
-        addNewAddress: "Add new address"
+        addToCart: "Add To Cart"
+        addNewAddress: "Add New Address"
         addNewShippingAddress: "Add Shipping Address"
         addNewBillingAddress: "Add Billing Address"
         addNewCreditCard: "Add Credit Card"
-        useThisShippingAddress: "Continue"
+        useThisShippingAddress: "Use This Shipping Address"
         useThisBillingAddress: "Use This Billing Address"
         useThisCreditCard: "Use This Credit Card"
         continue: "Continue"
-        orderWithCosts: "Order with costs"
+        orderWithCosts: "Order With Costs"
         continueShopping: "Continue Shopping"
         orderHistory: "Order History"
         myAddresses: "My Addresses"
         paymentSettings: "Payment Settings"
         personalData: "Personal Data"
         edit: "Edit"
-        changeNameOrMail: "Change Name or Email"
-        changePassword: "Change your password"
-        deleteAccount: "Delete your account"
+        changeNameOrMail: "Change Your Name or Email"
+        changePassword: "Change Your Password"
+        deleteAccount: "Delete Your Account"
         delete: "Delete"
-        updateAccount: "Update account"
-        submit: "Submit"
-        back: "Back"
-        
+        updateAccount: "Update Your Account"
+        back: "Back"       
     product:
         size:
             "16x12": "16 x 12 in"
@@ -39,65 +36,62 @@ default:
             "64x48": "64 x 48 in"
             "96x32": "96 x 32 in"
         style:
-            matte: "matte"
-            gloss: "gloss"
+            matte: "Matte"
+            gloss: "Gloss"
         quantity: "Quantity"
         title: "Product"
         unitPrice: "Unit Price"
         totalPrice: "Total Price"
-    
     price:
         title: Summary
         subtotal: "Subtotal:"
         shipping: "Shipping:"
         tax: "Tax (6.0%)"
-        grandTotal: "Total"
-    
+        grandTotal: "Total"   
     account:
         shippingAddress: "Shipping Address"
         billingAddress: "Billing Address"
-        paymentSettings: "Payment Settings"
-    
+        paymentSettings: "Payment Settings"    
     fillIn:
         placeholder:
             search: "Search"
-            name: "Your name"
-            companyName: "Company name"
-            address: "Street address, Apartment, etc."
+            name: "Your Name"
+            companyName: "Company Name"
+            address: "Street Address, Apartment, etc."
             city: "City"
-            state: "State"     
-            zip: "Zip / Postal"
-            cardNumber: Card number
-            cardHolderName: "Cardholder's name"
-            email: "Email address"
+            state: "State/Province"     
+            zip: "ZIP/Postal Code"
+            cardNumber: Card Number
+            cardHolderName: "Cardholder's Name"
+            email: "Email Address"
             password: "Password"
-            firstName: "First name"
-            lastName: "Last name"
-            confirmPassword: "Confirm password"
-            oldPassword: "Old password"
-            newPassword: "New password"
-            repeatNewPassword: "Repeat new password"
+            firstName: "First Name"
+            lastName: "Last Name"
+            confirmPassword: "Confirm Password"
+            oldPassword: "Old Password"
+            newPassword: "New Password"
+            repeatNewPassword: "Repeat New Password"
         inputDescription:
-            firstName: "First name*"
-            lastName: "Last name*" 
+            firstName: "First Name*"
+            lastName: "Last Name*" 
             company: "Company"
             address: "Address*"
             city: "City*"
             state: "State/Province*"
-            zip: "Zip/Postal code*"
+            zip: "Zip/Postal Code*"
             country: "Country*"
-            useThisAddressForBilling: "Use this address for billing?*"
-            cardNumber: "Card number*"
-            cardHolderName: "Cardholder's name*"
-            expirationDate: Expiration date*
-            email: "Email address*"
+            useThisAddressForBilling: "Use This Address for Billing?*"
+            cardNumber: "Card Number*"
+            cardHolderName: "Cardholder's Name*"
+            expirationDate: Expiration Date*
+            email: "Email Address*"
             password: "Password*"
-            confirmPassword: "Confirm password*"
-            oldPassword: "Old password*"
-            newPassword: "New password*"
-            repeatNewPassword: "Repeat new password*"
+            confirmPassword: "Confirm Password*"
+            oldPassword: "Old Password*"
+            newPassword: "New Password*"
+            repeatNewPassword: "Repeat New Password*"
             shippingInfo: "We only ship to United States and Germany."
-            requiredFields: "*Required fields"
+            requiredFields: "*Required Fields"
         dropdown:
             country:
                 usa: "United States"
@@ -130,23 +124,18 @@ default:
         radio:
             "yes": "Yes"
             "no": "No"
-             
     successMessage:
         successfulOrder: "Thank you for shopping with us!"
         successfulLogin: "Login successful. Have fun in our shop!"
         successfulAccountDeletion: "Your account has been deleted. We hope to see you soon again!"
-        successfulOrder: "Thank you for shopping with us!"
         successfulRegistration: "Your account has been created. Log in with your email address and password."
         successfulSave: "Saving completed."
         successfulUpdate: "Updating completed."
-        
     errorMessage:
         noProductsFound: "Sorry! No results found matching your search. Please try again."
         emptyCart: "Your cart is empty. Continue shopping."
         errorFalseLogin: "The email address or password is wrong. Please try again."
-        emailDoesNotExist: "The email address you entered doesn't exist. Please try again."
-        incorrectPassword: "The password you entered is incorrect. Please try again."
-        
+        errorFalseEmailFormat: "Please enter a valid email address."
     header:
         disclaimer: "This is a demo application. Orders will not be fulfilled. Do not enter ANY personal and sensitive data!"
         topNavigation:
@@ -184,8 +173,7 @@ default:
             subtotal: "Subtotal"
         sale:
             first: "25% off (Almost) Everything! Use Code: Posters Sale"
-            second: "Our biggest sale yet 50% off all Posters"
-    
+            second: "Our biggest sale yet, 50% off all Posters!"
     footer:
         "1":
             headline: "ABOUT"
@@ -208,8 +196,7 @@ default:
             website: "Website: www.xceptance.com"
         copyright: "Copyright 2013-2024 Xceptance Software Technologies GmbH"
         photoLicense: "All photos by René Schwietzke under CC-BY-4.0."
-        version: "The Poster Demo Store - Version 2.4.0"
-        
+        version: "The Poster Demo Store - Version 2.5.0"
     checkoutHeader:
         "1":
             number: "1"
@@ -229,14 +216,13 @@ default:
         "6":
             number: "6"
             name: "COMPLETED"
-            
     homePage:
         title: "The Poster Demo Store - The Ultimate Online Shop"
         slider:
             "1": "NORTH BOSTON"
             "2": "BOSTON SUNSET"
-            "3": "BRYCE NATIONAL PARK, UTAH I"
-            "4": "BRYCE NATIONAL PARK, UTAH II"
+            "3": "BRYCE CANYON NATIONAL PARK, UTAH I"
+            "4": "BRYCE CANYON NATIONAL PARK, UTAH II"
         intro: "Began with a simple idea \"SHATATATATA!\" - M. Scott"
         featuredProducts:
             headline: "Hot Products"
@@ -276,59 +262,43 @@ default:
             "12":
                 title: "Linnaean Garden and Museum Sweden"
                 description: "A perfect symmetry."
-                
     categoryPage:
         searchResultText: "Results for your search: "
-        
     noHitsPage:
         message: "Sorry, we could not find a match for your search. Please check your spelling or try something less specific."
-        suggestion: "You might want to have a look in the following categories."
-
+        suggestion: "You might want to have a look at the following categories."
     productDetailPage:
-        selectSize: "Select size:"
-        selectStyle: "Select style:"
+        selectSize: "Select Size:"
+        selectStyle: "Select Style:"
         printInformation: "Printed with high quality ink and a special coating to protect the colors. Available with matte and gloss finish."
-        
     cartPage:
         title: "Cart"
         number: "#"
         update: "Remove/Update"
-        
     guestShippingAddressPage:
-        title: "Enter a shipping address"
-        
+        title: "Enter a Shipping Address"
     returningCustomerShippingAddressPage:
-        title: "Select or enter a shipping address"
-        
+        title: "Select or Enter a Shipping Address"
     guestBillingAddressPage:
-        title: "Enter a billing address"
-        
+        title: "Enter a Billing Address"
     returningCustomerBillingAddressPage:
-        title: "Select or enter a billing address"
-        
+        title: "Select or Enter a Billing Address"
     guestPaymentPage:
-        title: "Enter a payment method"
-        
+        title: "Enter a Credit Card"
     returningCustomerPaymentPage:
-        title: "Select or enter a credit card"
-            
+        title: "Select or Enter a Credit Card"
     placeOrderPage:
         title: "Order Overview"
-        
     orderConfirmationPage:
         thankYouMessage: "Thank you for your purchase, your order is being processed."
-        
     loginPage:
         title: "Sign-In"
-        newCustomer: "New customer"
-        createNewAccount: "Create new Account"
-            
+        newCustomer: "New Customer"
+        createNewAccount: "Create New Account"
     registerPage:
-        title: "Create an account"
-        
+        title: "Create an Account"
     accountOverviewPage:
         title: "My Account"
-            
     orderHistoryPage:
         title: "Order History"
         purchasedPosters: "Purchased posters"
@@ -336,26 +306,343 @@ default:
         quantity: "Quantity"
         orderDate: "Order Date"
         orderTotal: "Order Total"
-            
     myAddressesPage:
         title: "My Addresses"
-        
     addNewShippingAddressPage:
-        title: "Add shipping address"
-        
+        title: "Add Shipping Address"
     addNewBillingAddressPage:
-        title: "Add billing address"
-            
+        title: "Add Billing Address"
     personalDataPage:
         title: "Personal Data"
         name: "Name"
         email: "Email"
-    
     changeNameOrEmailPage:
-        title: "Change your personal information"
-    
+        title: "Change Your Personal Information"
     changePasswordPage:
-        title: "Change your password"
-            
+        title: "Change Your Password"
     deleteAccontPage:
-        title: "Delete your account"
+        title: "Delete Your Account"
+        
+de_DE:
+   button:
+       buyHere: "Hier kaufen"
+       shopAllProducts: "Alle Produkte"
+       viewCart: "Warenkorb ansehen"
+       createAccount: "Benutzerkonto erstellen"
+       signIn: "Anmelden"
+       accountOverview: "Ihr Benutzerkonto"
+       logout: "Abmelden"
+       addToCart: "In den Warenkorb"
+       addNewAddress: "Neue Adresse hinzufügen"
+       addNewShippingAddress: "Eine neue Lieferadresse Hinzufügen"
+       addNewBillingAddress: "Eine neue Rechnungsadresse Hinzufügen"
+       addNewCreditCard: "Eine neue Zahlungsmethode hinzufügen"
+       useThisShippingAddress: "Diese Lieferadresse verwenden"
+       useThisBillingAddress: "Diese Rechnungsadresse verwenden"
+       useThisCreditCard: "Diese Zahlungsmethode verwenden"
+       continue: "Weiter"
+       orderWithCosts: "Kostenpflichtig bestellen"
+       continueShopping: "Einkauf Fortsetzen"
+       orderHistory: "Übersicht Getätigter Bestellungen"
+       myAddresses: "Meine Adressen"
+       paymentSettings: "Zahlungseinstellungen"
+       personalData: "Persönliche Daten"
+       edit: "Bearbeiten"
+       changeNameOrMail: "Name oder E-Mail ändern"
+       changePassword: "Ihr Passwort ändern"
+       deleteAccount: "Ihr Benutzerkonto löschen"
+       delete: "Löschen"
+       updateAccount: "Ihr Benutzerkonto aktualisieren"
+       back: "Zurück"      
+   product:
+       size:
+           "16x12": "16 x 12 in"
+           "32x24": "32 x 24 in"
+           "64x48": "64 x 48 in"
+           "96x32": "96 x 32 in"
+       style:
+           matte: "Matt"
+           gloss: "Glänzend"
+       quantity: "Menge"
+       title: "Produkt"
+       unitPrice: "Einzelpreis"
+       totalPrice: "Gesamtpreis"
+   price:
+       title: "Zusammenfassung"
+       subtotal: "Zwischensumme:"
+       shipping: "Lieferkosten:"
+       tax: "Steuern (6.0%):"
+       grandTotal: "Gesamtkosten:"
+   account:
+       shippingAddress: "Lieferadresse"
+       billingAddress: "Rechnungsadresse"
+       paymentSettings: "Zahlungseinstellungen"
+   fillIn:
+       placeholder:
+           search: "Suchen"
+           companyName: "Unternehmen"
+           address: "Straße, Hausnummer, etc."
+           city: "Ortschaft"
+           state: "Bundesland/Region"    
+           zip: "Postleitzahl"
+           cardNumber: "Kartennummer"
+           cardHolderName: "Name des Karteninhabers"
+           email: "E-Mail-Adresse"
+           password: "Passwort"
+           firstName: "Vorname"
+           lastName: "Nachname"
+           confirmPassword: "Passwort bestätigen"
+           oldPassword: "Altes Passwort"
+           newPassword: "Neues Passwort"
+           repeatNewPassword: "Wiederholen sie ihr neues Passwort"
+       inputDescription:
+           firstName: "Vorname*"
+           lastName: "Nachname*"
+           company: "Unternehmen"
+           address: "Adresse*"
+           city: "Ortschaft*"
+           state: "Bundesland/Region*"
+           zip: "Postleitzahl*"
+           country: "Land*"
+           useThisAddressForBilling: "Diese Adresse auch als Rechnungsadresse verwenden?*"
+           cardNumber: "Kartennummer*"
+           cardHolderName: "Name des Karteninhabers*"
+           expirationDate: "Ablaufdatum*"
+           email: "E-Mail-Adresse*"
+           password: "Passwort*"
+           confirmPassword: "Passwort bestätigen*"
+           oldPassword: "Altes Passwort*"
+           newPassword: "Neues Passwort*"
+           repeatNewPassword: "Passwort wiederholen*"
+           shippingInfo: "Lieferung nur an Vereinigte Staaten von Amerika und Deutschland."
+           requiredFields: "*Pflichtfelder"
+       dropdown:
+           country:
+               usa: "Vereinigte Staaten von Amerika"
+               germany: "Deutschland"
+           expireMonth:
+               "1": "01"
+               "2": "02"
+               "3": "03"
+               "4": "04"
+               "5": "05"
+               "6": "06"
+               "7": "07"
+               "8": "08"
+               "9": "09"
+               "10": "10"
+               "11": "11"
+               "12": "12"
+           expireYear:
+               "1": "2025"
+               "2": "2026"
+               "3": "2027"
+               "4": "2028"
+               "5": "2029"
+               "6": "2030"
+               "7": "2031"
+               "8": "2032"
+               "9": "2033"
+               "10": "2034"
+               "11": "2035"
+       radio:
+           "yes": "Ja"
+           "no": "Nein"
+   successMessage:
+       successfulOrder: "Wir danken für ihren Einkauf!"
+       successfulLogin: "Sie wurden erfolgreich angemeldet. Wir wünschen viel Spaß in unserem Shop!"
+       successfulAccountDeletion: "Ihr Benutzerkonto wurde gelöscht. Wir würden uns freuen sie wiederzusehen!"
+       successfulRegistration: "Ihr Benutzerkonto wurde erstellt. Melden sie sich mit ihrer E-Mail-Adresse und mit ihrem Passwort an."
+       successfulSave: "Speichern abgeschlossen."
+       successfulUpdate: "Aktualisieren abgeschlossen."
+   errorMessage:
+       noProductsFound: "Entschuldigung! Wir konnten leider keine Ergebnisse für ihre Suche finden. Bitte versuchen sie eine neue Suche."
+       emptyCart: "Ihr Warenkorb ist leer. Führen sie ihren Einkauf fort."
+       errorFalseLogin: "Die E-Mail-Adresse oder das Passwort ist falsch. Bitte versuchen sie es erneut."
+       errorFalseEmailFormat: "Bitte geben sie eine valide E-Mail-Adresse ein."
+   header:
+       disclaimer: "Dies ist eine Demo Applikation. Bestellungen werden nicht bearbeitet. Geben sie auf keinen Fall sensible oder persönliche Daten ein!"
+       topNavigation:
+           "1":
+               title: "Welt der Natur"
+               subCategory:
+                   "1": "Tiere"
+                   "2": "Blumen"
+                   "3": "Bäume"
+           "2":
+               title: "Essen"
+               subCategory:
+                   "1": "Aufschnitt"
+                   "2": "Hauptgerichte"
+                   "3": "Süßes"
+           "3":
+               title: "Verkehr"
+               subCategory:
+                   "1": "Luftverkehr"
+                   "2": "Kraftfahrzeuge"
+                   "3": "Schienenverkehr"
+           "4":
+               title: "Panoramen"
+               subCategory:
+                   "1": "Architektur"
+                   "2": "Feuerwerk"
+                   "3": "Landschaften"
+                   "4": "Extragroße Panoramen"
+       userMenu:
+           title: "Willkommen"
+       miniCart:
+           title:
+               singular: "Position im Warenkorb"
+               plural: "Positionen im Warenkorb"
+           subtotal: "Zwischensumme"
+       sale:
+           first: "25% Rabatt auf (fast) alles! Nutze den Code: Posters Sale"
+           second: "Unsere bisher größte Aktion: 50% Rabatt auf alle Poster!"
+   footer:
+       "1":
+           headline: "ÜBER UNS"
+           description: "Der Poster Demo Shop ist eine kleine Demonstration einer Online-Handelsplattform. Er ist für funktionales Testen, Testautomatisierung, und Last- und Performancetesten gedacht. Er kann auch dabei helfen programmieren zu lernen. Diese Software unterliegt der Apache License 2.0."
+           github: "GitHub: "
+       "2":
+           headline: "Kundenservice"
+           description: "Kontakt"
+       "3":
+           headline: "Wichtige Informationen"
+           description: "Diese Software dient ausschließlich zu Test- und Demonstrationszwecken. Bestellungen werden nicht bearbeitet. Geben sie auf keinen Fall sensible oder persönliche Daten ein!"
+       "4":
+           headline: "Kontaktinformationen"
+           company: "Xceptance GmbH"
+           street: "Leutragraben 2-4"
+           zip: "07743 Jena"
+           country: "Deutschland"
+           phone: "Telefon: +49-3641-376300"
+           email: "E-Mail: kontakt@xceptance.de"
+           website: "Webseite: www.xceptance.de"
+       copyright: "Copyright 2013-2024 Xceptance Software Technologies GmbH"
+       photoLicense: "Alle Fotos angefertigt von René Schwietzke und veröffentlicht unter der CC-BY-4.0 Lizenz."
+       version: "Der Poster Demo Shop - Version 2.5.0"
+   checkoutHeader:
+       "1":
+           number: "1"
+           name: "WARENKORB"
+       "2":
+           number: "2"
+           name: "LIEFERUNG"
+       "3":
+           number: "3"
+           name: "RECHNUNG"
+       "4":
+           number: "4"
+           name: "ZAHLUNG"
+       "5":
+           number: "5"
+           name: "ZUSAMMENFASSUNG"
+       "6":
+           number: "6"
+           name: "ABGESCHLOSSEN"
+   homePage:
+       title: "Der Poster Demo Shop - Der Ultimative Online Shop"
+       slider:
+           "1": "Nord-Boston"
+           "2": "Boston Sonnenuntergang"
+           "3": "Bryce-Canyon-Nationalpark, I"
+           "4": "Bryce-Canyon-Nationalpark, II"
+       intro: "Began with a simple idea \"SHATATATATA!\" - M. Scott"
+       featuredProducts:
+           headline: "Beliebte Produkte"
+           "1":
+               title: "Blauer Morphofalter"
+               description: "Ein hübscher, blau-schwarzer Schmetterling auf einem Blatt."
+           "2":
+               title: "Schneeglöckchen"
+               description: "Eine Blüte mit all ihren Details."
+           "3":
+               title: "Verschiedene Käsesorten"
+               description: "Ein Symbol französischer Küche."
+           "4":
+               title: "Schneebedeckte Tanne"
+               description: "Eine sehr kleine und schneebedeckte Tanne."
+           "5":
+               title: "Gefüllter Truthahn"
+               description: "Der beste Weg Thanksgiving zu feiern."
+           "6":
+               title: "Obstkuchen mit Kakao"
+               description: "Ein sehr schöner Obstkuchen mit Kakaopulver."
+           "7":
+               title: "Air Lingus Airbus A320"
+               description: "Preiset Saint Patrick!"
+           "8":
+               title: "IFA H6 Grün"
+               description: "Ein hellgrüner LKW von alten Zeiten."
+           "9":
+               title: "Third Avenue Eisenbahnsystem"
+               description: "Das alte Eisenbahnsystem von NYC."
+           "10":
+               title: "Alte New Yorker U-Bahn"
+               description: "Nichts hält ewig."
+           "11":
+               title: "Neujahrsfeuerwerk III"
+               description: "Ein fantastischer Farbwechsel!"
+           "12":
+               title: "Linneanum Garten und Museum Schweden"
+               description: "Eine perfekte Symmetrie."
+   categoryPage:
+       searchResultText: "Die Ergebnisse ihrer Suche: "
+   noHitsPage:
+       message: "Leider konnten wir für Ihre Suche keine Übereinstimmung finden. Bitte überprüfen Sie Ihre Rechtschreibung oder versuchen Sie es etwas weniger spezifisch."
+       suggestion: "Vielleicht möchten Sie einen Blick auf die folgenden Kategorien werfen."
+   productDetailPage:
+       selectSize: "Wählen sie eine Größe:"
+       selectStyle: "Wählen sie eine Oberflächenart:"
+       printInformation: "Gedruckt mit hochwertiger Tinte und mit einer besonderen Beschichtung zum Schutz der Farben. Verfügbar sowohl mit glänzender, als auch mit matter Oberfläche."
+   cartPage:
+       title: "Warenkorb"
+       number: "#"
+       update: "Entfernen/Aktualisieren"
+   guestShippingAddressPage:
+       title: "Geben sie eine Lieferadresse ein"
+   returningCustomerShippingAddressPage:
+       title: "Wählen sie eine Lieferadresse aus oder geben sie eine ein"
+   guestBillingAddressPage:
+       title: "Geben sie eine Rechnungsadresse ein"
+   returningCustomerBillingAddressPage:
+       title: "Wählen sie eine Rechnungsadresse aus oder geben sie eine ein"
+   guestPaymentPage:
+       title: "Geben sie eine Zahlungsmethode an"
+   returningCustomerPaymentPage:
+       title: "Wählen sie eine Zahlungsmethode aus oder geben sie eine neue an"
+   placeOrderPage:
+       title: "Bestellungsüberblick"
+   orderConfirmationPage:
+       thankYouMessage: "Vielen Dank für ihren Einkauf, ihre Bestellung ist in Bearbeitung."
+   loginPage:
+       title: "Anmelden"
+       newCustomer: "Neukunde"
+       createNewAccount: "Neues Benutzerkonto anlegen"
+   registerPage:
+       title: "Ein Benutzerkonto erstellen"
+   accountOverviewPage:
+       title: "Ihr Benutzerkonto"
+   orderHistoryPage:
+       title: "Übersicht getätigter Bestellungen"
+       purchasedPosters: "Gekaufte Poster"
+       orderDetails: "Bestellungsdetails"
+       quantity: "Menge"
+       orderDate: "Bestelldatum"
+       orderTotal: "Bestellwert"
+   myAddressesPage:
+       title: "Meine Adressen"
+   addNewShippingAddressPage:
+       title: "Eine neue Lieferadresse hinzufügen"
+   addNewBillingAddressPage:
+       title: "Eine neue Rechnungsadresse hinzufügen"
+   personalDataPage:
+       title: "Persönliche Daten"
+       name: "Name"
+       email: "E-Mail"
+   changeNameOrEmailPage:
+       title: "Name oder E-Mail ändern"
+   changePasswordPage:
+       title: "Ihr Passwort ändern"
+   deleteAccontPage:
+       title: "Ihr Benutzerkonto löschen"
