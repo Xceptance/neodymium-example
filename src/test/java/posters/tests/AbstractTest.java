@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Browser("Chrome_1200x768")
-//@Browser("Firefox_1200x768")
+@Browser("Firefox_1200x768")
 public abstract class AbstractTest
 {
     protected static final Logger LOGGER = LoggerFactory.getLogger(AbstractTest.class);
