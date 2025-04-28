@@ -12,6 +12,8 @@ import posters.pageobjects.pages.user.RegisterPage;
 
 import java.time.Duration;
 
+import org.junit.Assert;
+
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.not;
@@ -19,7 +21,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class UserMenu extends AbstractComponent<UserMenu>
+public class UserMenu extends AbstractComponent
 {
     private SelenideElement userMenu = $("#user-menu");
 
@@ -27,17 +29,9 @@ public class UserMenu extends AbstractComponent<UserMenu>
 
     @Override
     @Step("ensure availability user menu")
-    public UserMenu assertComponentAvailable()
+    public void assertComponentAvailable()
     {
-        return super.assertComponentAvailable();
-    }
-
-    @Override
-    @Step("check availability of user menu")
-    public boolean isComponentAvailable()
-    {
-        SelenideAddons.optionalWaitUntilCondition(showUserMenu, exist);
-        return showUserMenu.exists();
+        Assert.assertTrue(SelenideAddons.optionalWaitUntilCondition(showUserMenu, exist));
     }
 
     /// ========== user menu navigation ========== ///

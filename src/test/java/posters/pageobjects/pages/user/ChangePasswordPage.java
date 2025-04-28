@@ -3,7 +3,6 @@ package posters.pageobjects.pages.user;
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.tests.testdata.dataobjects.User;
@@ -15,7 +14,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class ChangePasswordPage extends AbstractBrowsingPage<ChangePasswordPage>
+public class ChangePasswordPage extends AbstractBrowsingPage
 {
 
     private SelenideElement changePasswordForm = $("#form-change-password");
@@ -32,15 +31,8 @@ public class ChangePasswordPage extends AbstractBrowsingPage<ChangePasswordPage>
     @Step("ensure this is a change password page")
     public ChangePasswordPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is a change password page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(changePasswordForm, exist);
-        return changePasswordForm.exists();
+        changePasswordForm.should(exist);
+        return this;
     }
 
     /// ========== validate change password page ========== ///
@@ -69,7 +61,7 @@ public class ChangePasswordPage extends AbstractBrowsingPage<ChangePasswordPage>
 
     @Override
     @Step("validate change password page structure")
-    public ChangePasswordPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -87,8 +79,6 @@ public class ChangePasswordPage extends AbstractBrowsingPage<ChangePasswordPage>
 
         // validate update account button
         updatePasswordButton.shouldHave(exactText(Neodymium.localizedText("button.submit"))).shouldBe(visible);
-
-        return this;
     }
 
     /// ========== change password page navigation ========== ///

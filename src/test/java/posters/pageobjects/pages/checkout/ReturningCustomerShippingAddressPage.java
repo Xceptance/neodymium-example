@@ -6,8 +6,8 @@ import com.codeborne.selenide.Driver;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebElementCondition;
 import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import posters.tests.testdata.dataobjects.Address;
@@ -21,7 +21,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage<ReturningCustomerShippingAddressPage>
+public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage
 {
     private SelenideElement title = $("#title-del-addr");
 
@@ -33,15 +33,8 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage<R
     @Step("ensure this is a shipping address page")
     public ReturningCustomerShippingAddressPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is a shipping address page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(title, exist);
-        return title.exists();
+        title.should(exist);
+        return this;
     }
 
     /// ========== validate content returning customer shipping address page ========== ///
@@ -59,7 +52,7 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage<R
 
     @Override
     @Step("validate returning customer shipping address page structure")
-    public ReturningCustomerShippingAddressPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -77,8 +70,6 @@ public class ReturningCustomerShippingAddressPage extends AbstractCheckoutPage<R
 
         // validate continue button
         useShippingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.useThisShippingAddress"))).shouldBe(visible);
-
-        return this;
     }
 
     @Step("validate shipping address '{shippingAddress}' in address container")

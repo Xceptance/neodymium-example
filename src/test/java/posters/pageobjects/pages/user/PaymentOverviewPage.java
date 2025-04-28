@@ -3,7 +3,6 @@ package posters.pageobjects.pages.user;
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
@@ -12,7 +11,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class PaymentOverviewPage extends AbstractBrowsingPage<PaymentOverviewPage>
+public class PaymentOverviewPage extends AbstractBrowsingPage
 {
     private SelenideElement title = $("#title-payment-overview");
 
@@ -22,24 +21,15 @@ public class PaymentOverviewPage extends AbstractBrowsingPage<PaymentOverviewPag
     @Step("ensure this is a payment overview page")
     public PaymentOverviewPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is a payment overview page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(title, exist);
-        return title.exists();
+        title.should(exist);
+        return this;
     }
 
     /// ========== validate content payment overview page ========== ///
-    ///
-    /// @return
 
     @Override
     @Step("validate payment overview page structure")
-    public PaymentOverviewPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -47,8 +37,6 @@ public class PaymentOverviewPage extends AbstractBrowsingPage<PaymentOverviewPag
         title.shouldHave(exactText(Neodymium.localizedText("account.paymentSettings"))).shouldBe(visible);
 
         addNewCreditCardButton.shouldHave(exactText(Neodymium.localizedText("button.addNewCreditCard"))).shouldBe(visible);
-
-        return this;
     }
 
     @Step("validate successful saved change")

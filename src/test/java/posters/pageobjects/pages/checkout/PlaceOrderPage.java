@@ -4,9 +4,9 @@ import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import org.apache.commons.lang3.StringUtils;
+
 import posters.pageobjects.utility.PriceHelper;
 import posters.tests.testdata.dataobjects.Address;
 import posters.tests.testdata.dataobjects.CreditCard;
@@ -21,7 +21,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class PlaceOrderPage extends AbstractCheckoutPage<PlaceOrderPage>
+public class PlaceOrderPage extends AbstractCheckoutPage
 {
     private SelenideElement title = $("#title-order-overview");
 
@@ -47,15 +47,8 @@ public class PlaceOrderPage extends AbstractCheckoutPage<PlaceOrderPage>
     @Step("ensure this is a place order page")
     public PlaceOrderPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is a place order page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(title, exist);
-        return title.exists();
+        title.should(exist);
+        return this;
     }
 
     /// ========== validate content place order page ========== ///
@@ -82,7 +75,7 @@ public class PlaceOrderPage extends AbstractCheckoutPage<PlaceOrderPage>
 
     @Override
     @Step("validate place order page structure")
-    public PlaceOrderPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -94,8 +87,6 @@ public class PlaceOrderPage extends AbstractCheckoutPage<PlaceOrderPage>
 
         // validate order with costs button
         orderButton.shouldHave(exactText(Neodymium.localizedText("button.orderWithCosts"))).shouldBe(visible);
-
-        return this;
     }
 
     private void validateShippingAddressOverview(Address shippingAddress, String headline)

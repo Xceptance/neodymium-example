@@ -18,7 +18,9 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class AddressForm extends AbstractComponent<AddressForm>
+import org.junit.Assert;
+
+public class AddressForm extends AbstractComponent
 {
     private SelenideElement lastNameField = $("#address-last-name");
 
@@ -42,17 +44,9 @@ public class AddressForm extends AbstractComponent<AddressForm>
 
     @Override
     @Step("ensure availability of address form")
-    public AddressForm assertComponentAvailable()
+    public void assertComponentAvailable()
     {
-        return super.assertComponentAvailable();
-    }
-
-    @Override
-    @Step("check availability of address form")
-    public boolean isComponentAvailable()
-    {
-        SelenideAddons.optionalWaitUntilCondition(lastNameField, exist);
-        return lastNameField.exists();
+        Assert.assertTrue(SelenideAddons.optionalWaitUntilCondition(lastNameField, exist));
     }
 
     /// ========== address form navigation ========== ///

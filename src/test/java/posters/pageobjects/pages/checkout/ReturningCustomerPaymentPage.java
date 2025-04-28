@@ -6,8 +6,8 @@ import com.codeborne.selenide.Driver;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebElementCondition;
 import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import posters.tests.testdata.dataobjects.CreditCard;
@@ -21,7 +21,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class ReturningCustomerPaymentPage extends AbstractCheckoutPage<ReturningCustomerPaymentPage>
+public class ReturningCustomerPaymentPage extends AbstractCheckoutPage
 {
     private SelenideElement title = $("#title-payment");
 
@@ -33,15 +33,8 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage<Returning
     @Step("ensure this is a payment page")
     public ReturningCustomerPaymentPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is a payment page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(title, exist);
-        return title.exists();
+        title.should(exist);
+        return this;
     }
 
     /// ========== validate content returning customer payment page ========== ///
@@ -59,7 +52,7 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage<Returning
 
     @Override
     @Step("validate returning customer payment page structure")
-    public ReturningCustomerPaymentPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -74,8 +67,6 @@ public class ReturningCustomerPaymentPage extends AbstractCheckoutPage<Returning
 
         // validate continue button
         useCreditCardButton.shouldHave(exactText(Neodymium.localizedText("button.useThisCreditCard"))).shouldBe(visible);
-
-        return this;
     }
 
     @Step("validate credit card '{creditCard}' on position '{position}' in credit card container")

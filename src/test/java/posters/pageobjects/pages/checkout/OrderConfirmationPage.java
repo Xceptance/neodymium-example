@@ -3,7 +3,6 @@ package posters.pageobjects.pages.checkout;
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.HomePage;
@@ -13,9 +12,8 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class OrderConfirmationPage extends AbstractBrowsingPage<OrderConfirmationPage>
+public class OrderConfirmationPage extends AbstractBrowsingPage
 {
-
     private SelenideElement orderConfirmationInfo = $("#confirmation-row");
 
     private SelenideElement homePageButton = $("#go-home");
@@ -23,15 +21,8 @@ public class OrderConfirmationPage extends AbstractBrowsingPage<OrderConfirmatio
     @Step("ensure this is the Order Confirmation page")
     public OrderConfirmationPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is a order confirmation page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(orderConfirmationInfo, exist);
-        return orderConfirmationInfo.exists();
+        orderConfirmationInfo.should(exist);
+        return this;
     }
 
     /// ========== validate content order confirmation page ========== ///
@@ -48,7 +39,7 @@ public class OrderConfirmationPage extends AbstractBrowsingPage<OrderConfirmatio
     }
 
     @Step("validate order confirmation page structure")
-    public OrderConfirmationPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -67,8 +58,6 @@ public class OrderConfirmationPage extends AbstractBrowsingPage<OrderConfirmatio
         // Verifies GoTo HomePage button is visible
         homePageButton.find(".icon-shopping-cart").shouldBe(visible);
         homePageButton.shouldHave(exactText(Neodymium.localizedText("button.continueShopping"))).shouldBe(visible);
-
-        return this;
     }
 
     @Step("validate successful order")

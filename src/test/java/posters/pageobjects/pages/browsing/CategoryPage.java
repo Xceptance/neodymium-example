@@ -1,7 +1,6 @@
 package posters.pageobjects.pages.browsing;
 
 import com.codeborne.selenide.SelenideElement;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.components.Pagination;
 
@@ -10,7 +9,7 @@ import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class CategoryPage extends AbstractProductListingPage<CategoryPage>
+public class CategoryPage extends AbstractProductListingPage
 {
     public Pagination pagination = new Pagination();
 
@@ -20,23 +19,15 @@ public class CategoryPage extends AbstractProductListingPage<CategoryPage>
     @Step("ensure this is a category page")
     public CategoryPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is a category page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(titleCategoryName, exist);
-        return titleCategoryName.exists();
+        titleCategoryName.should(exist);
+        return this;
     }
 
     @Override
     @Step("validate category page structure")
-    public CategoryPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
-        return this;
     }
 
     /**

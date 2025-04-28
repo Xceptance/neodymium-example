@@ -8,10 +8,10 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public abstract class AbstractProductListingPage<T extends AbstractProductListingPage<T>> extends AbstractBrowsingPage<T>
+public abstract class AbstractProductListingPage extends AbstractBrowsingPage
 {
     @Override
-    public T validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -20,8 +20,6 @@ public abstract class AbstractProductListingPage<T extends AbstractProductListin
 
         // validate at least 1 poster is displayed
         $("#product-0").shouldBe(visible);
-
-        return (T) this;
     }
 
     /**

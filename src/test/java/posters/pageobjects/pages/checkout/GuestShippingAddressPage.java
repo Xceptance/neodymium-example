@@ -2,7 +2,6 @@ package posters.pageobjects.pages.checkout;
 
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.components.AddressForm;
 
@@ -13,7 +12,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class GuestShippingAddressPage extends AbstractCheckoutPage<GuestShippingAddressPage>
+public class GuestShippingAddressPage extends AbstractCheckoutPage
 {
     private SelenideElement title = $("#title-del-addr");
 
@@ -23,15 +22,8 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage<GuestShipping
     @Step("ensure this is a shipping address page")
     public GuestShippingAddressPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is a shipping address page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(title, exist);
-        return title.exists();
+        title.should(exist);
+        return this;
     }
 
     /// ========== validate content guest shipping address page ========== ///
@@ -59,7 +51,7 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage<GuestShipping
 
     @Override
     @Step("validate shipping address page structure")
-    public GuestShippingAddressPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -77,7 +69,5 @@ public class GuestShippingAddressPage extends AbstractCheckoutPage<GuestShipping
 
         // validate continue button
         $("#button-add-shipping-address").shouldHave(exactText(Neodymium.localizedText("button.continue"))).shouldBe(visible);
-
-        return this;
     }
 }

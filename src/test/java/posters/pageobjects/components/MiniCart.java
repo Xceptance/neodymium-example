@@ -7,7 +7,11 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebElementCondition;
 import com.xceptance.neodymium.util.Neodymium;
+import com.xceptance.neodymium.util.SelenideAddons;
+
 import io.qameta.allure.Step;
+
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import posters.pageobjects.pages.checkout.CartPage;
@@ -18,12 +22,13 @@ import java.time.Duration;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.exactText;
+import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class MiniCart extends AbstractComponent<MiniCart>
+public class MiniCart extends AbstractComponent
 {
     private SelenideElement headerCart = $("#header-cart-overview");
 
@@ -43,16 +48,15 @@ public class MiniCart extends AbstractComponent<MiniCart>
 
     @Override
     @Step("ensure availability mini cart")
-    public MiniCart assertComponentAvailable()
+    public void assertComponentAvailable()
     {
-        return super.assertComponentAvailable();
+        Assert.assertTrue(SelenideAddons.optionalWaitUntilCondition(headerCart, exist));
     }
-
-    @Override
-    @Step("check if mini cart is available")
+    
+    @Step("ensure availability mini cart")
     public boolean isComponentAvailable()
     {
-        return headerCart.exists();
+         return miniCart.exists();
     }
 
     /// ========== mini cart navigation ==========- ///

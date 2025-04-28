@@ -6,8 +6,8 @@ import com.codeborne.selenide.Driver;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebElementCondition;
 import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import posters.tests.testdata.dataobjects.Address;
@@ -21,7 +21,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage<ReturningCustomerBillingAddressPage>
+public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage
 {
     private SelenideElement title = $("#title-bill-addr");
 
@@ -33,16 +33,8 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage<Re
     @Step("ensure this is a billing address page")
     public ReturningCustomerBillingAddressPage assertExpectedPage()
     {
-        $("#bill-addr-0").should(exist);
+        title.should(exist);
         return this;
-    }
-
-    @Override
-    @Step("check if this is a billing address page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition($("#bill-addr-0"), exist);
-        return title.exists();
     }
 
     /// ========== validate content returning customer billing address page ========== ///
@@ -60,7 +52,7 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage<Re
 
     @Override
     @Step("validate returning customer billing address page structure")
-    public ReturningCustomerBillingAddressPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -78,8 +70,6 @@ public class ReturningCustomerBillingAddressPage extends AbstractCheckoutPage<Re
 
         // validate continue button
         useBillingAddressButton.shouldHave(exactText(Neodymium.localizedText("button.useThisBillingAddress"))).shouldBe(visible);
-
-        return this;
     }
 
     @Step("validate billing address '{billingAddress}' in address container")

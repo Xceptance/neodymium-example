@@ -10,26 +10,20 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class CheckoutHeader extends AbstractComponent<CheckoutHeader>
-{
+import org.junit.Assert;
 
+public class CheckoutHeader extends AbstractComponent
+{
     private SelenideElement progressIndicator = $(".progress-indicator");
 
     public UserMenu userMenu = new UserMenu();
 
     @Override
     @Step("ensure availability checkout header")
-    public CheckoutHeader assertComponentAvailable()
+    public void assertComponentAvailable()
     {
-        return super.assertComponentAvailable();
-    }
+        Assert.assertTrue(SelenideAddons.optionalWaitUntilCondition(progressIndicator, exist));
 
-    @Override
-    @Step("check availability of checkout header")
-    public boolean isComponentAvailable()
-    {
-        SelenideAddons.optionalWaitUntilCondition(progressIndicator, exist);
-        return progressIndicator.exists();
     }
 
     @Step("validate header")

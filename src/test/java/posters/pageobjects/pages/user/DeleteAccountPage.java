@@ -3,7 +3,6 @@ package posters.pageobjects.pages.user;
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.HomePage;
@@ -14,7 +13,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class DeleteAccountPage extends AbstractBrowsingPage<DeleteAccountPage>
+public class DeleteAccountPage extends AbstractBrowsingPage
 {
     private SelenideElement deleteForm = $("#form-delete-account");
 
@@ -26,20 +25,13 @@ public class DeleteAccountPage extends AbstractBrowsingPage<DeleteAccountPage>
     @Step("ensure this is a delete account page")
     public DeleteAccountPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is a delete account page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(deleteForm, exist);
-        return deleteForm.exists();
+        deleteForm.should(exist);
+        return this;
     }
 
     @Override
     @Step("validate delete account page structure")
-    public DeleteAccountPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -57,8 +49,6 @@ public class DeleteAccountPage extends AbstractBrowsingPage<DeleteAccountPage>
 
         // validate button
         deleteButton.shouldHave(exactText(Neodymium.localizedText("button.delete"))).shouldBe(visible);
-
-        return this;
     }
 
     @Step("delete account")

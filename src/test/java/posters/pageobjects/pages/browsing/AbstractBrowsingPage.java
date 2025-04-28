@@ -6,7 +6,7 @@ import posters.pageobjects.components.Header;
 import posters.pageobjects.components.SuccessMessage;
 import posters.pageobjects.pages.AbstractPageObject;
 
-public abstract class AbstractBrowsingPage<T extends AbstractBrowsingPage<T>> extends AbstractPageObject<T>
+public abstract class AbstractBrowsingPage extends AbstractPageObject
 {
     public Header header = new Header();
 
@@ -17,16 +17,14 @@ public abstract class AbstractBrowsingPage<T extends AbstractBrowsingPage<T>> ex
     public ErrorMessage errorMessage = new ErrorMessage();
 
     @Override
-    public T validateStructure()
+    public void validateStructure()
     {
-        super.assertExpectedPage();
+        assertExpectedPage();
 
         header.assertComponentAvailable();
         footer.assertComponentAvailable();
         header.search.assertComponentAvailable();
         header.topNav.assertComponentAvailable();
         header.userMenu.assertComponentAvailable();
-
-        return (T) this;
     }
 }

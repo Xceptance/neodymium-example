@@ -9,23 +9,17 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class SuccessMessage extends AbstractComponent<SuccessMessage>
+import org.junit.Assert;
+
+public class SuccessMessage extends AbstractComponent
 {
     private SelenideElement successMessage = $(".alert-success");
 
     @Override
     @Step("ensure availability success message")
-    public SuccessMessage assertComponentAvailable()
+    public void assertComponentAvailable()
     {
-        return super.assertComponentAvailable();
-    }
-
-    @Override
-    @Step("check availability of success message")
-    public boolean isComponentAvailable()
-    {
-        SelenideAddons.optionalWaitUntilCondition(successMessage, exist);
-        return successMessage.exists();
+        Assert.assertTrue(SelenideAddons.optionalWaitUntilCondition(successMessage, exist));
     }
 
     @Step("validate visibility of success message '{message}'")

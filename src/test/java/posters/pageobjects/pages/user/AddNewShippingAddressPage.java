@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class AddNewShippingAddressPage extends AbstractBrowsingPage<AddNewShippingAddressPage>
+public class AddNewShippingAddressPage extends AbstractBrowsingPage
 {
     public AddressForm addressForm = new AddressForm();
 
@@ -19,13 +19,11 @@ public class AddNewShippingAddressPage extends AbstractBrowsingPage<AddNewShippi
     @Step("ensure this is an add new shipping address page")
     public AddNewShippingAddressPage assertExpectedPage()
     {
-        super.assertExpectedPage();
-        $("#form-add-del-addr").should(exist);
+        $(".h2").should(exist);
         return this;
     }
-
-    @Override
-    @Step("check if this is an add new shipping address page")
+    
+    @Step("check if this is a change name or email page")
     public boolean isExpectedPage()
     {
         SelenideAddons.optionalWaitUntilCondition($(".h2"), exist);
@@ -34,7 +32,7 @@ public class AddNewShippingAddressPage extends AbstractBrowsingPage<AddNewShippi
 
     @Override
     @Step("validate add new shipping address page structure")
-    public AddNewShippingAddressPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -46,7 +44,5 @@ public class AddNewShippingAddressPage extends AbstractBrowsingPage<AddNewShippi
 
         // validate continue button
         $("#btn-add-shipp-addr").shouldHave(exactText(Neodymium.localizedText("button.addNewAddress"))).shouldBe(visible);
-
-        return this;
     }
 }

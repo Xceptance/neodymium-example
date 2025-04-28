@@ -12,23 +12,17 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class Search extends AbstractComponent<Search>
+import org.junit.Assert;
+
+public class Search extends AbstractComponent
 {
     private SelenideElement searchField = $("#header-search-text");
 
     @Override
     @Step("validate availability search bar")
-    public Search assertComponentAvailable()
+    public void assertComponentAvailable()
     {
-        return super.assertComponentAvailable();
-    }
-
-    @Override
-    @Step("check availability of search bar")
-    public boolean isComponentAvailable()
-    {
-        SelenideAddons.optionalWaitUntilCondition(searchField, exist);
-        return searchField.exists();
+        Assert.assertTrue(SelenideAddons.optionalWaitUntilCondition(searchField, exist));
     }
 
     /// ========== search navigation ========== ///

@@ -3,7 +3,6 @@ package posters.pageobjects.pages.user;
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.tests.testdata.dataobjects.User;
@@ -15,7 +14,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class ChangeNameOrEmailPage extends AbstractBrowsingPage<ChangeNameOrEmailPage>
+public class ChangeNameOrEmailPage extends AbstractBrowsingPage
 {
 
     private SelenideElement changeNameOrEmailForm = $("#form-change-name-email");
@@ -34,15 +33,8 @@ public class ChangeNameOrEmailPage extends AbstractBrowsingPage<ChangeNameOrEmai
     @Step("ensure this is a change name or email page")
     public ChangeNameOrEmailPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is a change name or email page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(changeNameOrEmailForm, exist);
-        return changeNameOrEmailForm.exists();
+        changeNameOrEmailForm.should(exist);
+        return this;
     }
 
     /// ========== validate content change name or email page ========== ///
@@ -72,7 +64,7 @@ public class ChangeNameOrEmailPage extends AbstractBrowsingPage<ChangeNameOrEmai
 
     @Override
     @Step("validate change name or email page structure")
-    public ChangeNameOrEmailPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -90,8 +82,6 @@ public class ChangeNameOrEmailPage extends AbstractBrowsingPage<ChangeNameOrEmai
 
         // validate update account button
         updateNameOrEmailButton.shouldHave(exactText(Neodymium.localizedText("button.updateAccount"))).shouldBe(visible);
-
-        return this;
     }
 
     @Step("validate user information")

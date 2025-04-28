@@ -4,7 +4,6 @@ import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.components.SaleBanner;
 
@@ -16,13 +15,16 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class HomePage extends AbstractBrowsingPage<HomePage>
+public class HomePage extends AbstractBrowsingPage
 {
     private SelenideElement homePageIntroText = $("#intro-text-homepage");
 
     private ElementsCollection slideNavigation = $$("#carousel-btn");
+    
     private ElementsCollection slideHeadline = $$(".carousel-content-product h1");
+    
     private ElementsCollection slideButton = $$(".carousel-content-product .btn-primary");
+    
     private ElementsCollection featuredCategories = $$(".category-tile-title");
 
     public SaleBanner saleBanner = new SaleBanner();
@@ -31,15 +33,8 @@ public class HomePage extends AbstractBrowsingPage<HomePage>
     @Step("ensure this is a home page")
     public HomePage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is a home page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(homePageIntroText, exist);
-        return homePageIntroText.exists();
+        homePageIntroText.should(exist);
+        return this;
     }
 
     /// ========== validate content homepage ========== ///
@@ -86,7 +81,7 @@ public class HomePage extends AbstractBrowsingPage<HomePage>
 
     @Override
     @Step("validate structure home page")
-    public HomePage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -107,8 +102,6 @@ public class HomePage extends AbstractBrowsingPage<HomePage>
 
         // validate shop all products button
         $(".btn-shop-all").shouldHave(exactText(Neodymium.localizedText("button.shopAllProducts"))).shouldBe(visible);
-
-        return this;
     }
 
     @Step("validate successful account deletion on home page")

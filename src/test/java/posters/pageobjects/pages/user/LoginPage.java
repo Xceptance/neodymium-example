@@ -1,15 +1,5 @@
 package posters.pageobjects.pages.user;
 
-import com.codeborne.selenide.ClickOptions;
-import com.codeborne.selenide.SelenideElement;
-import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
-import io.qameta.allure.Step;
-import org.junit.Assert;
-import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
-import posters.pageobjects.pages.browsing.HomePage;
-import posters.tests.testdata.dataobjects.User;
-
 import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
@@ -17,7 +7,18 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class LoginPage extends AbstractBrowsingPage<LoginPage>
+import org.junit.Assert;
+
+import com.codeborne.selenide.ClickOptions;
+import com.codeborne.selenide.SelenideElement;
+import com.xceptance.neodymium.util.Neodymium;
+
+import io.qameta.allure.Step;
+import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
+import posters.pageobjects.pages.browsing.HomePage;
+import posters.tests.testdata.dataobjects.User;
+
+public class LoginPage extends AbstractBrowsingPage
 {
     private SelenideElement loginForm = $("#form-login");
 
@@ -33,22 +34,15 @@ public class LoginPage extends AbstractBrowsingPage<LoginPage>
     @Step("ensure this is a login page")
     public LoginPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is a login page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(loginForm, exist);
-        return loginForm.exists();
+        loginForm.should(exist);
+        return this;
     }
 
     /// ========== validate content login page ========== ///
 
     @Override
     @Step("validate login page structure")
-    public LoginPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -72,8 +66,6 @@ public class LoginPage extends AbstractBrowsingPage<LoginPage>
         // validate new account creation
         $(".header-container").shouldHave(exactText(Neodymium.localizedText("loginPage.newCustomer")));
         registerLink.shouldHave(exactText(Neodymium.localizedText("loginPage.createNewAccount")));
-
-        return this;
     }
 
     @Step("validate successful registration message")

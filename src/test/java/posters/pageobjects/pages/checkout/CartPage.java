@@ -9,6 +9,7 @@ import com.codeborne.selenide.WebElementCondition;
 import com.xceptance.neodymium.util.Neodymium;
 import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
@@ -28,7 +29,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class CartPage extends AbstractBrowsingPage<CartPage>
+public class CartPage extends AbstractBrowsingPage
 {
     private SelenideElement title = $("#cart-title");
 
@@ -42,15 +43,8 @@ public class CartPage extends AbstractBrowsingPage<CartPage>
     @Step("ensure this is a cart page")
     public CartPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is a cart page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(title, visible);
-        return title.isDisplayed();
+        title.should(exist);
+        return this;
     }
 
     /// ========== validate content cart page ========== ///
@@ -68,7 +62,7 @@ public class CartPage extends AbstractBrowsingPage<CartPage>
 
     @Override
     @Step("validate cart page structure")
-    public CartPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -97,8 +91,6 @@ public class CartPage extends AbstractBrowsingPage<CartPage>
             // validate checkout button
             checkoutButton.should(visible);
         }
-
-        return this;
     }
 
     @Step("validate shipping costs '{shippingCosts}' on cart page")

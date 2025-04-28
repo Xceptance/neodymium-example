@@ -3,7 +3,6 @@ package posters.pageobjects.pages.user;
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.tests.testdata.dataobjects.CreditCard;
@@ -19,9 +18,8 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class AddNewCreditCardPage extends AbstractBrowsingPage<AddNewCreditCardPage>
+public class AddNewCreditCardPage extends AbstractBrowsingPage
 {
-
     private SelenideElement addPaymentForm = $("#form-add-payment");
 
     private SelenideElement creditCardNumberField = $("#creditcard-number");
@@ -38,15 +36,8 @@ public class AddNewCreditCardPage extends AbstractBrowsingPage<AddNewCreditCardP
     @Step("ensure this is an add new credit card page")
     public AddNewCreditCardPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is an add new credit card page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(addPaymentForm, exist);
-        return addPaymentForm.exists();
+        addPaymentForm.should(exist);
+        return this;
     }
 
     /// ========== validate content add new credit card page ========== ///
@@ -110,7 +101,7 @@ public class AddNewCreditCardPage extends AbstractBrowsingPage<AddNewCreditCardP
 
     @Override
     @Step("validate add new credit card page structure")
-    public AddNewCreditCardPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -134,8 +125,6 @@ public class AddNewCreditCardPage extends AbstractBrowsingPage<AddNewCreditCardP
 
         // validate add new credit card button
         addNewCreditCardButton.shouldHave(exactText(Neodymium.localizedText("button.addNewCreditCard"))).shouldBe(visible);
-
-        return this;
     }
 
     /// ========== add new credit card page navigation ========== ///

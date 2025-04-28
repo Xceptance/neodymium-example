@@ -5,7 +5,7 @@ import posters.pageobjects.components.Footer;
 import posters.pageobjects.components.UserMenu;
 import posters.pageobjects.pages.AbstractPageObject;
 
-public abstract class AbstractCheckoutPage<T extends AbstractCheckoutPage<T>> extends AbstractPageObject<T>
+public abstract class AbstractCheckoutPage extends AbstractPageObject
 {
     public CheckoutHeader checkoutHeader = new CheckoutHeader();
 
@@ -14,14 +14,12 @@ public abstract class AbstractCheckoutPage<T extends AbstractCheckoutPage<T>> ex
     public UserMenu userMenu = new UserMenu();
 
     @Override
-    public T validateStructure()
+    public void validateStructure()
     {
         assertExpectedPage();
 
         checkoutHeader.assertComponentAvailable();
         footer.assertComponentAvailable();
         userMenu.assertComponentAvailable();
-
-        return (T) this;
     }
 }

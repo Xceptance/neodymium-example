@@ -6,6 +6,8 @@ import io.qameta.allure.Step;
 
 import java.time.Duration;
 
+import org.junit.Assert;
+
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.not;
@@ -20,17 +22,9 @@ public class LocaleMenu extends AbstractComponent
 
     @Override
     @Step("validate availability Locale Menu")
-    public AbstractComponent assertComponentAvailable()
+    public void assertComponentAvailable()
     {
-        return super.assertComponentAvailable();
-    }
-
-    @Override
-    @Step("validate availability locale menu")
-    public boolean isComponentAvailable()
-    {
-        SelenideAddons.optionalWaitUntilCondition(showLocaleMenu, exist);
-        return showLocaleMenu.exists();
+        Assert.assertTrue(SelenideAddons.optionalWaitUntilCondition(showLocaleMenu, exist));
     }
 
     @Step("validate locale menu")

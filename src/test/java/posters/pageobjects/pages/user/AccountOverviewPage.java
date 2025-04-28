@@ -3,7 +3,6 @@ package posters.pageobjects.pages.user;
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 
@@ -12,7 +11,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class AccountOverviewPage extends AbstractBrowsingPage<AccountOverviewPage>
+public class AccountOverviewPage extends AbstractBrowsingPage
 {
     private SelenideElement title = $("#title-account-overview");
 
@@ -28,22 +27,15 @@ public class AccountOverviewPage extends AbstractBrowsingPage<AccountOverviewPag
     @Step("ensure this is an account overview page")
     public AccountOverviewPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is an account overview page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(title, exist);
-        return title.exists();
+        title.should(exist);
+        return this;
     }
 
     /// ========== validate content account overview page ========== ///
 
     @Override
     @Step("validate account overview page structure")
-    public AccountOverviewPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -60,8 +52,6 @@ public class AccountOverviewPage extends AbstractBrowsingPage<AccountOverviewPag
         $(".icon-history").shouldBe(visible);
         $(".icon-credit-card").shouldBe(visible);
         $(".icon-cog").shouldBe(visible);
-
-        return this;
     }
 
     @Step("validate successful login of user '{firstName}' on home page")

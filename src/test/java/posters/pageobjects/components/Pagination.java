@@ -12,7 +12,9 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class Pagination extends AbstractComponent<Pagination>
+import org.junit.Assert;
+
+public class Pagination extends AbstractComponent
 {
     private SelenideElement pagination = $("#pagination-bottom");
 
@@ -30,17 +32,9 @@ public class Pagination extends AbstractComponent<Pagination>
 
     @Override
     @Step("check availability of pagination")
-    public Pagination assertComponentAvailable()
+    public void assertComponentAvailable()
     {
-        return super.assertComponentAvailable();
-    }
-
-    @Override
-    @Step("check availability of pagination")
-    public boolean isComponentAvailable()
-    {
-        SelenideAddons.optionalWaitUntilCondition(pagination, exist);
-        return pagination.exists();
+        Assert.assertTrue(SelenideAddons.optionalWaitUntilCondition(pagination, exist));
     }
 
     /// ========== pagination navigation ========== ///

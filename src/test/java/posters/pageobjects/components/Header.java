@@ -10,9 +10,10 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class Header extends AbstractComponent<Header>
-{
+import org.junit.Assert;
 
+public class Header extends AbstractComponent
+{
     private SelenideElement header = $("#header-navigation-bar");
 
     public Search search = new Search();
@@ -27,17 +28,9 @@ public class Header extends AbstractComponent<Header>
 
     @Override
     @Step("validate availability header")
-    public Header assertComponentAvailable()
+    public void assertComponentAvailable()
     {
-        return super.assertComponentAvailable();
-    }
-
-    @Override
-    @Step("check availability of header")
-    public boolean isComponentAvailable()
-    {
-        SelenideAddons.optionalWaitUntilCondition(header, exist);
-        return header.exists();
+        Assert.assertTrue(SelenideAddons.optionalWaitUntilCondition(header, exist));
     }
 
     @Step("validate header")

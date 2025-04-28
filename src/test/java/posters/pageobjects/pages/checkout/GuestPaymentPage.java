@@ -3,7 +3,6 @@ package posters.pageobjects.pages.checkout;
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.tests.testdata.dataobjects.CreditCard;
 
@@ -18,7 +17,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class GuestPaymentPage extends AbstractCheckoutPage<GuestPaymentPage>
+public class GuestPaymentPage extends AbstractCheckoutPage
 {
     private SelenideElement title = $("#title-payment");
 
@@ -36,15 +35,8 @@ public class GuestPaymentPage extends AbstractCheckoutPage<GuestPaymentPage>
     @Step("ensure this is a payment page")
     public GuestPaymentPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is a payment page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(title, exist);
-        return title.exists();
+        title.should(exist);
+        return this;
     }
 
     /// ========== validate content guest payment page ========== ///
@@ -119,7 +111,7 @@ public class GuestPaymentPage extends AbstractCheckoutPage<GuestPaymentPage>
 
     @Override
     @Step("validate payment page structure")
-    public GuestPaymentPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -146,8 +138,6 @@ public class GuestPaymentPage extends AbstractCheckoutPage<GuestPaymentPage>
 
         // validate continue button
         addPaymentButton.shouldHave(exactText(Neodymium.localizedText("button.continue"))).shouldBe(visible);
-
-        return this;
     }
 
     /// ========== send payment form ========== ///

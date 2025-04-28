@@ -8,30 +8,24 @@ import io.qameta.allure.Step;
 
 import java.time.Duration;
 
+import org.junit.Assert;
+
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class SaleBanner extends AbstractComponent<SaleBanner>
+public class SaleBanner extends AbstractComponent
 {
 
     private SelenideElement saleCarousel = $("#carousel-sale");
 
     @Override
     @Step("check availability of sale banner")
-    public SaleBanner assertComponentAvailable()
+    public void assertComponentAvailable()
     {
-        return super.assertComponentAvailable();
-    }
-
-    @Override
-    @Step("check availability of sale banner")
-    public boolean isComponentAvailable()
-    {
-        SelenideAddons.optionalWaitUntilCondition(saleCarousel, exist);
-        return saleCarousel.exists();
+        Assert.assertTrue(SelenideAddons.optionalWaitUntilCondition(saleCarousel, exist));
     }
 
     private void validateSaleBanner(String text)

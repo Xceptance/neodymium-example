@@ -11,7 +11,9 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class Footer extends AbstractComponent<Footer>
+import org.junit.Assert;
+
+public class Footer extends AbstractComponent
 {
     private SelenideElement footer = $("#footer");
 
@@ -25,17 +27,9 @@ public class Footer extends AbstractComponent<Footer>
 
     @Override
     @Step("ensure availability footer")
-    public Footer assertComponentAvailable()
+    public void assertComponentAvailable()
     {
-        return super.assertComponentAvailable();
-    }
-
-    @Override
-    @Step("check availability of footer")
-    public boolean isComponentAvailable()
-    {
-        SelenideAddons.optionalWaitUntilCondition(footer, exist);
-        return footer.exists();
+        Assert.assertTrue(SelenideAddons.optionalWaitUntilCondition(footer, exist));
     }
 
     @Step("validate about us section")

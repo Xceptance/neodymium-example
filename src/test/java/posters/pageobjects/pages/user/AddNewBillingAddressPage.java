@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class AddNewBillingAddressPage extends AbstractBrowsingPage<AddNewBillingAddressPage>
+public class AddNewBillingAddressPage extends AbstractBrowsingPage
 {
 
     private SelenideElement billingAddressForm = $("#form-add-bill-addr");
@@ -23,11 +23,11 @@ public class AddNewBillingAddressPage extends AbstractBrowsingPage<AddNewBilling
     @Step("ensure this is an add new billing address page")
     public AddNewBillingAddressPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
+        billingAddressForm.should(exist);
+        return this;
     }
-
-    @Override
-    @Step("check if this is an add new billing address page")
+    
+    @Step("check if this is a change name or email page")
     public boolean isExpectedPage()
     {
         SelenideAddons.optionalWaitUntilCondition(billingAddressForm, exist);
@@ -36,7 +36,7 @@ public class AddNewBillingAddressPage extends AbstractBrowsingPage<AddNewBilling
 
     @Override
     @Step("validate add new billing address page structure")
-    public AddNewBillingAddressPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -48,7 +48,5 @@ public class AddNewBillingAddressPage extends AbstractBrowsingPage<AddNewBilling
 
         // validate continue button
         $("#btn-add-bill-addr").shouldHave(exactText(Neodymium.localizedText("button.addNewAddress"))).shouldBe(visible);
-
-        return this;
     }
 }

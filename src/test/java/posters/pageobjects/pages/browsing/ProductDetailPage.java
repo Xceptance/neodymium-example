@@ -4,7 +4,6 @@ import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.tests.testdata.dataobjects.Product;
 
@@ -16,7 +15,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class ProductDetailPage extends AbstractBrowsingPage<ProductDetailPage>
+public class ProductDetailPage extends AbstractBrowsingPage
 {
     private SelenideElement addToCartButton = $("#btn-add-to-cart");
 
@@ -32,15 +31,8 @@ public class ProductDetailPage extends AbstractBrowsingPage<ProductDetailPage>
     @Step("ensure this is a product detail page")
     public ProductDetailPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is a product detail page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(productName, exist);
-        return productName.exists();
+        productName.should(exist);
+        return this;
     }
 
     /// ========== validate content product detail page ========== ///
@@ -73,7 +65,7 @@ public class ProductDetailPage extends AbstractBrowsingPage<ProductDetailPage>
 
     @Override
     @Step("validate product detail page structure")
-    public ProductDetailPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -106,8 +98,6 @@ public class ProductDetailPage extends AbstractBrowsingPage<ProductDetailPage>
         // validate add to cart button
         addToCartButton.shouldHave(exactText(Neodymium.localizedText("button.addToCart"))).shouldBe(visible);
         $("#btn-add-to-cart .icon-shopping-cart").shouldBe(visible);
-
-        return this;
     }
 
     @Step("validate product name '{prodName}' on product detail page")

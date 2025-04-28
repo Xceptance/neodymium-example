@@ -2,7 +2,6 @@ package posters.pageobjects.pages.browsing;
 
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.exactText;
@@ -11,7 +10,7 @@ import static com.codeborne.selenide.Condition.matchText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
-public class SearchResultPage extends AbstractProductListingPage<SearchResultPage>
+public class SearchResultPage extends AbstractProductListingPage
 {
     private SelenideElement titleSearchText = $("#title-search-text");
 
@@ -19,26 +18,17 @@ public class SearchResultPage extends AbstractProductListingPage<SearchResultPag
     @Step("ensure this is a search results page")
     public SearchResultPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is a search result page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(titleSearchText, exist);
-        return titleSearchText.exists();
+        titleSearchText.should(exist);
+        return this;
     }
 
     @Override
     @Step("validate search results page structure")
-    public SearchResultPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
         $("#search-text-value").shouldBe(visible);
-
-        return this;
     }
 
     /**

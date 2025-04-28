@@ -13,7 +13,9 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class TopNavigation extends AbstractComponent<TopNavigation>
+import org.junit.Assert;
+
+public class TopNavigation extends AbstractComponent
 {
     private SelenideElement categoryMenu = $("#header-categories");
 
@@ -21,17 +23,9 @@ public class TopNavigation extends AbstractComponent<TopNavigation>
 
     @Override
     @Step("ensure availability top navigation")
-    public TopNavigation assertComponentAvailable()
+    public void assertComponentAvailable()
     {
-        return super.assertComponentAvailable();
-    }
-
-    @Override
-    @Step("check availability of top navigation")
-    public boolean isComponentAvailable()
-    {
-        SelenideAddons.optionalWaitUntilCondition(categoryMenu, exist);
-        return categoryMenu.exists();
+        Assert.assertTrue(SelenideAddons.optionalWaitUntilCondition(categoryMenu, exist));
     }
 
     /// ========== category navigation ========== ///

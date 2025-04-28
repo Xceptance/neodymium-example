@@ -3,7 +3,6 @@ package posters.pageobjects.pages.user;
 import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.tests.testdata.dataobjects.User;
@@ -14,7 +13,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class PersonalDataPage extends AbstractBrowsingPage<PersonalDataPage>
+public class PersonalDataPage extends AbstractBrowsingPage
 {
     private SelenideElement title = $("#title-personal-data");
 
@@ -28,24 +27,15 @@ public class PersonalDataPage extends AbstractBrowsingPage<PersonalDataPage>
     @Step("ensure this is a personal data page")
     public PersonalDataPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
-    }
-
-    @Override
-    @Step("check if this is a personal data page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(title, exist);
-        return title.exists();
+        title.should(exist);
+        return this;
     }
 
     /// ========== validate content personal data page ========== ///
-    ///
-    /// @return
 
     @Override
     @Step("validate personal data page structure")
-    public PersonalDataPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -56,8 +46,6 @@ public class PersonalDataPage extends AbstractBrowsingPage<PersonalDataPage>
         changeNameOrEmailButton.shouldHave(exactText(Neodymium.localizedText("button.changeNameOrMail"))).shouldBe(visible);
         changePasswordButton.shouldHave(exactText(Neodymium.localizedText("button.changePassword"))).shouldBe(visible);
         deleteButton.shouldHave(exactText(Neodymium.localizedText("button.deleteAccount"))).shouldBe(visible);
-
-        return this;
     }
 
     @Step("validate personal data of '{user}")

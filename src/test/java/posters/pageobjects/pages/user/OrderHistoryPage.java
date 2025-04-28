@@ -4,7 +4,6 @@ import com.codeborne.selenide.ClickOptions;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import com.xceptance.neodymium.util.Neodymium;
-import com.xceptance.neodymium.util.SelenideAddons;
 import io.qameta.allure.Step;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.HomePage;
@@ -20,7 +19,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class OrderHistoryPage extends AbstractBrowsingPage<OrderHistoryPage>
+public class OrderHistoryPage extends AbstractBrowsingPage
 {
     private SelenideElement title = $("#title-order-history");
 
@@ -30,24 +29,16 @@ public class OrderHistoryPage extends AbstractBrowsingPage<OrderHistoryPage>
     @Step("ensure this is an order history page")
     public OrderHistoryPage assertExpectedPage()
     {
-        return super.assertExpectedPage();
+        title.should(exist);
+        return this;
     }
 
-    @Override
-    @Step("check if this is an order history page")
-    public boolean isExpectedPage()
-    {
-        SelenideAddons.optionalWaitUntilCondition(title, exist);
-        return title.exists();
-    }
 
     /// ========== validate content order history page ========== ///
-    ///
-    /// @return
 
     @Override
     @Step("validate personal data page structure")
-    public OrderHistoryPage validateStructure()
+    public void validateStructure()
     {
         super.validateStructure();
 
@@ -61,8 +52,6 @@ public class OrderHistoryPage extends AbstractBrowsingPage<OrderHistoryPage>
 
         // validate button
         goBackButton.shouldHave(exactText(Neodymium.localizedText("button.back"))).shouldBe(visible);
-
-        return this;
     }
 
     @Step("validate order")
