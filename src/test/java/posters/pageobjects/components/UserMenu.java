@@ -31,12 +31,7 @@ public class UserMenu extends AbstractComponent
 
     /// ========== user menu navigation ========== ///
 
-    @Step("open register page from user menu")
-    public RegisterPage openRegisterPage()
-    {
-        userMenu.find("#go-to-registration").click(ClickOptions.usingJavaScript());
-        return new RegisterPage().isExpectedPage();
-    }
+
 
     @Step("open login page from user menu")
     public LoginPage openLoginPage()
@@ -90,6 +85,7 @@ public class UserMenu extends AbstractComponent
         $("#welcomeMsg").shouldBe(visible);
         userMenu.find("[uk-icon=\"user\"]").closest("a").shouldHave(exactText(" My profile")).shouldBe(visible);
         userMenu.find("[uk-icon=\"lock\"]").closest("a").shouldHave(exactText(" Logout")).shouldBe(visible);
+        
 
     }
 }

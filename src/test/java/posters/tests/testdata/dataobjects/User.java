@@ -8,14 +8,24 @@ public class User
 
     String email;
 
+    String emailAdmin;
+    String passwordAdmin;
+
+
     String password;
 
-    public User(String firstName, String lastName, String email, String password)
+    String matriculationNumber;
+
+    public User(String firstName, String lastName, String email, String password, String emailAdmin, String passwordAdmin, String matriculationNumber)
     {
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.emailAdmin = emailAdmin;
+        this.passwordAdmin = passwordAdmin;
+        this.matriculationNumber = matriculationNumber;
     }
     
     public String getFirstName()
@@ -37,10 +47,25 @@ public class User
     {
         return password;
     }
+    
+    public String getEmailAdmin()
+    {
+        return emailAdmin;
+    }
+
+    public String getPasswordAdmin()
+    {
+        return passwordAdmin;
+    }
+    
+    public String getMatriculationNumber()
+    {
+        return matriculationNumber;
+    }
 
     @Override
     public String toString()
     {
-        return "User [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password + "]";
+        return "User [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password + ", passwordAdmin=" + passwordAdmin + ", emailAdmin=" + emailAdmin + ", matriculationNumber=" + matriculationNumber + "]";
     }
 }

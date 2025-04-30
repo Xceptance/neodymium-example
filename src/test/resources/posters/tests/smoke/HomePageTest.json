@@ -1,0 +1,17 @@
+[
+    {
+        "firstName": "Muhammad Sarosh",
+        "lastName": "Ali",
+        "email": "muhammadsaroshali+student@gmail.com",
+        "password": "vEp34B",
+        "testId": "happy path",
+        "emailAdmin": "muhammad-sarosh.ali@tu-ilmenau.de",
+        "passwordAdmin": "FH2F_txPUJn"
+    },
+    {
+        "firstName": "",
+        "email": "muhammad-sarosh.ali@tu-ilmenau.de",
+        "password": "FH2F_txPUJn",
+        "testId": ""
+    }
+]

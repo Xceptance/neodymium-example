@@ -16,12 +16,16 @@ import com.xceptance.neodymium.util.Neodymium;
 
 import io.qameta.allure.Step;
 import posters.tests.testdata.dataobjects.User;
+import posters.flows.OpenLoginPageFlow;
+import posters.pageobjects.components.Footer;
 import posters.pageobjects.components.LoginHeader;
 import posters.pageobjects.pages.browsing.AbstractBrowsingPage;
 import posters.pageobjects.pages.browsing.HomePage;
 
 public class LoginPage extends AbstractBrowsingPage
 {
+    private Footer footer = new Footer();
+
     public LoginHeader loginHeader = new LoginHeader();
 
     private SelenideElement loginForm = $("#loginWin .uk-card");
@@ -35,9 +39,13 @@ public class LoginPage extends AbstractBrowsingPage
     private SelenideElement signInButton = $("#loginForm button");
 
     private SelenideElement registerButton = $("#loginWin .uk-width-1-1 > button");
+
     private SelenideElement registerLabLink = $("#uk-tab-66-tab-0");
+    
     private SelenideElement registerProjectLink = $("#uk-tab-66-tab-1");
     
+    private SelenideElement userMenu = $(".rightTopMenu#portalHeader3");
+
     @Override
     @Step("ensure this is a login page")
     public LoginPage isExpectedPage()
@@ -51,6 +59,19 @@ public class LoginPage extends AbstractBrowsingPage
 
     /// ========== validate content login page ========== ///
     
+    @Step("open register page from login page")
+    public RegisterPage openRegisterPage()
+    {
+        $("#loginWin .uk-width-1-1 > button").click();
+        return new RegisterPage().isExpectedPage();
+    }
+
+    @Step("validate that nobody is logged in")
+    public void checkIfNoUserIsLoggedIn()
+    {
+        userMenu.find("#loginWin").exists();
+    }
+
     @Override
     @Step("validate login page structure")
     public void validateStructure()
@@ -58,7 +79,7 @@ public class LoginPage extends AbstractBrowsingPage
         loginHeader.validateStructure();
 
         // validate title
-       $("#uk-tab-40-tabpanel-0 > h4").shouldHave(exactText(Neodymium.localizedText("loginPage.title"))).shouldBe(visible);
+       $("#uk-tab-40-tabpanel-0 > h4").shouldHave(exactText(Neodymium.localizedText("loginPage.title")));
         
        //input fields and language
        passwordField.should(exist);
@@ -66,7 +87,7 @@ public class LoginPage extends AbstractBrowsingPage
        language.should(exist);
 
         // forgotten password
-        $("#loginForm a").shouldHave(exactText(Neodymium.localizedText("loginPage.forgotPassword"))).shouldBe(visible);
+        $("#loginForm a").shouldHave(exactText(Neodymium.localizedText("loginPage.forgotPassword")));
         
         // validate sign in button
         signInButton.shouldHave(exactText(Neodymium.localizedText("button.signIn")));
@@ -77,6 +98,17 @@ public class LoginPage extends AbstractBrowsingPage
         registerLabLink.shouldHave(exactText(Neodymium.localizedText("loginPage.registerLabLinkText")));
         registerProjectLink.should(exist).click();
         registerProjectLink.shouldHave(exactText(Neodymium.localizedText("loginPage.registerProjectLinkText")));
+
+        footer.validateStructure();
+    }
+
+    
+    @Step("set language to english")
+    public void setLanguage()
+    {
+        // go to login page
+        $("#loginForm > div:nth-child(3) > div > select").click(ClickOptions.usingDefaultMethod());
+        $("#loginForm .uk-select [value='EN']").shouldBe(visible).click(ClickOptions.usingDefaultMethod());
     }
     
     @Step("validate successful registration message")
@@ -88,7 +120,7 @@ public class LoginPage extends AbstractBrowsingPage
     @Step("validate invalid email or password for login error message")
     public void validateFalseLogin(String email)
     {
-        errorMessage.validateErrorMessage(Neodymium.localizedText("errorMessage.errorFalseLogin"));
+        errorMessage.validateErrorMessageLogin(Neodymium.localizedText("errorMessage.errorFalseLogin"));
         Assert.assertEquals(emailField.val(), email);
     }
 
@@ -97,23 +129,16 @@ public class LoginPage extends AbstractBrowsingPage
     {
         if(email.isEmpty())
         {
-            errorMessage.validateErrorMessage(Neodymium.localizedText("errorMessage.errorMissingEmail"));
+            errorMessage.validateErrorMessageLogin(Neodymium.localizedText("errorMessage.errorMissingEmail"));
             Assert.assertEquals(emailField.val(), email);
         }
         else
         {
-            errorMessage.validateErrorMessage(Neodymium.localizedText("errorMessage.errorMissingPassword"));
+            errorMessage.validateErrorMessageLogin(Neodymium.localizedText("errorMessage.errorMissingPassword"));
         }
     }
     
     /// ========== login page navigation ========== ///
-    
-    @Step("open register page from login page")
-    public RegisterPage openRegister()
-    {
-        registerLabLink.click(ClickOptions.usingJavaScript());
-        return new RegisterPage().isExpectedPage();
-    }
     
     @Step("open homepage from login page")
     public HomePage openHomePage()

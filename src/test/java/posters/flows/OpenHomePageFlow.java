@@ -15,7 +15,6 @@ public class OpenHomePageFlow
     {
         // clear cookies to ensure a new session
         clearBrowserCookies();
-
         // open home page
         open(Neodymium.configuration().url());
         return new HomePage().isExpectedPage();

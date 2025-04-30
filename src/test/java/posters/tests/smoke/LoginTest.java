@@ -15,7 +15,7 @@ import posters.pageobjects.pages.user.LoginPage;
 import posters.tests.AbstractTest;
 import posters.tests.testdata.dataobjects.User;
 
-@Owner("Tim Brown")
+@Owner("ACC")
 @Severity(SeverityLevel.NORMAL)
 @Tag("functionality")
 @Tag("registered")
@@ -36,10 +36,11 @@ public class LoginTest extends AbstractTest
     {
         // go to login page
         loginPage = OpenLoginPageFlow.flow();
+        loginPage.setLanguage();
         loginPage.validateStructure();
 
         // validate that nobody is logged in
-        loginPage.header.userMenu.checkIfNoUserIsLoggedIn();
+        loginPage.checkIfNoUserIsLoggedIn();
 
         return new LoginPage().isExpectedPage();
     }

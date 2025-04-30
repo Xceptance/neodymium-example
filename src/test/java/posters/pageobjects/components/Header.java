@@ -20,14 +20,15 @@ public class Header extends AbstractComponent
     @Step("validate availability header")
     public void isComponentAvailable()
     {
-        $("#header-navigation-bar").should(exist);
+        $("#mainWin #portalHeader").should(exist);
     }
 
     @Step("validate header")
     public void validateStructure()
     {
-        $("#top-demo-disclaimer").shouldHave(exactText(Neodymium.localizedText("header.disclaimer"))).shouldBe(visible);
-        $("#header-brand").shouldBe(visible);
+        $("#mainWin #portalHeader #portalHeader1").shouldBe(visible);
+        $("#mainWin #portalHeader #portalHeader2").shouldBe(visible);
+        $("#mainWin #portalHeader #portalHeader3").shouldBe(visible);
         userMenu.validateStructure();
     }
 }

@@ -11,13 +11,11 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import posters.flows.OpenLoginPageFlow;
-import posters.flows.OpenUserLoginPageFlow;
-import posters.pageobjects.pages.browsing.UserLoginPage;
 import posters.pageobjects.pages.user.LoginPage;
 import posters.tests.AbstractTest;
 import posters.tests.testdata.dataobjects.User;
 
-@Owner("Tim Brown")
+@Owner("AE")
 @Severity(SeverityLevel.NORMAL)
 @Tag("functionality")
 @Tag("registered")
@@ -38,10 +36,11 @@ public class UserLoginTest extends AbstractTest
     {
         // go to login page
         loginPage = OpenLoginPageFlow.flow();
+        loginPage.setLanguage();
         loginPage.validateStructure();
 
         // validate that nobody is logged in
-        loginPage.loginHeader.userMenu.checkIfNoUserIsLoggedIn();
+        loginPage.checkIfNoUserIsLoggedIn();
 
         return new LoginPage().isExpectedPage();
     }

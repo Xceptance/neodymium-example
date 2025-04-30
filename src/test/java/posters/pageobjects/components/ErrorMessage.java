@@ -10,24 +10,31 @@ import io.qameta.allure.Step;
 
 public class ErrorMessage extends AbstractComponent
 {
-    private SelenideElement errorMessage = $("#loginForm .uk-width-3-4 .formReturn");
+    private SelenideElement errorMessageLogin = $("#loginForm .uk-width-3-4 .formReturn");
+    private SelenideElement errorMessageRegister = $("#registerForm .formReturn");
 
     @Override
     @Step("ensure availability error message")
     public void isComponentAvailable()
     {
-        errorMessage.shouldBe(visible);
+        errorMessageLogin.shouldBe(visible);
     }
     
     @Step("validate visibility of error message '{message}'")
-    public void validateErrorMessage(String message)
+    public void validateErrorMessageLogin(String message)
     {
-        errorMessage.shouldHave(exactText(message)).shouldBe(visible);
+        errorMessageLogin.shouldHave(exactText(message)).shouldBe(visible);
+    }    
+    
+    @Step("validate visibility of error message for registration '{message}'")
+    public void validateErrorMessageRegister(String message)
+    {
+        errorMessageRegister.shouldHave(exactText(message)).shouldBe(visible);
     }
 
     @Step("validate that no error message is visible")
     public void validateNoErrorMessageOnPage()
     {
-        errorMessage.shouldNotBe(visible);
+        errorMessageLogin.shouldBe(visible);
     }
 }

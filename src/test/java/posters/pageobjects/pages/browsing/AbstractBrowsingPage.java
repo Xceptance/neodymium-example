@@ -9,11 +9,8 @@ import posters.pageobjects.pages.AbstractPageObject;
 public abstract class AbstractBrowsingPage extends AbstractPageObject
 {
     public Header header = new Header();
-
     public Footer footer = new Footer();
-
     public SuccessMessage successMessage = new SuccessMessage();
-
     public ErrorMessage errorMessage = new ErrorMessage();
 
     @Override
