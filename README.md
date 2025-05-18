@@ -1,2 +1,2 @@
 # Introduction
-Regression Testing For an Automated Portal for Auutomation Engineering Department 
+Regression Testing For an Automated Portal for the Automation Engineering Department 
