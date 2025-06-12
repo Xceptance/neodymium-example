@@ -243,14 +243,14 @@ public class MiniCart extends AbstractComponent
         closeMiniCart();
     }
 
-    @Step("validate '{product}' on position '{position}' in the mini cart")
+    @Step("validate '{product}' in the mini cart")
     public void validateMiniCartItem(Product product)
     {
         validateMiniCartItem(product.getName(), product.getStyle(), product.getSize(), product.getAmount(),
                              PriceHelper.format(product.calculateTotalPrice()));
     }
 
-    @Step("validate '{product}' on position '{position}' in the mini cart after changing it's quantity")
+    @Step("validate '{product}' in the mini cart after changing it's quantity")
     public void validateMiniCartItem(Product product, int productAmount, String productPrice)
     {
         validateMiniCartItem(product.getName(), product.getStyle(), product.getSize(), productAmount, productPrice);
